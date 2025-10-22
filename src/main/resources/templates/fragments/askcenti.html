@@ -1,0 +1,210 @@
+<div th:fragment="askcenti" th:remove="tag">
+	<div class="askCenti p-3" id="askCentiBlock">
+		<div class="centiHeaderBlock d-flex align-items-center justify-content-between">
+			<div class="centiheadericon">
+				<img src="img/demo/chatbot.png" id=""class="" alt="ask_centi_icon">
+				<label for="Security" class="form-label  centilabel">Ask Centi</label>
+			</div>
+			<div class="centiheadericon mr-2 d-flex" style="color: #6e6e6e;">
+				<div class="btn-group headerBtnGroup">
+				  <div type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				    <a href="javascript:void(0);" class="headingIconsBlock"
+						data-toggle="tooltip" data-placement="top" data-original-title="More Options"> <i class="fa fa-ellipsis-v"></i>
+					</a>
+				  </div>
+				  <div class="dropdown-menu">
+				    <a class="dropdown-item" href="#">
+						<span>
+							<i class="fa fa-times mr-2"></i>
+							<span>Clear History</span>
+						</span>
+					</a>
+				    <a class="dropdown-item" href="#">
+						<span>
+							<i class="fa fa-file-text mr-2"></i>
+							<span>More Suggestions</span>
+						</span>
+					</a>
+				    <a class="dropdown-item" href="#">
+						<span>
+							<i class="fa fa-info mr-2"></i>
+							<span>Send Feedback</span>
+						</span>
+					</a>
+				  </div>
+				</div>
+				<a href="javascript:void(0);" class="headingIconsBlock" id="expandCenti"
+					data-toggle="tooltip" data-placement="top" data-original-title="Expand"> <i class="fa fa-expand"></i>
+				</a>
+				<a href="javascript:void(0);" class="headingIconsBlock" id="centiClose"
+					data-toggle="tooltip" data-placement="top" data-original-title="Close"> <i class="fa fa-times"></i>
+				</a>
+			</div>
+		</div>
+		<div class="centiTitle mt-2">
+			<div class="centiTitleName centiuserName">Hello, Paterson</div>
+			<div class="centiTitleName position-relative" style="top: -10px;">How can I help you today?</div>
+		</div>
+		<div class="detailBlocks d-flex mt-3" style="border-radius: 10px 10px 0px 0px;">
+			<div class="detailBlockIcon d-flex align-items-center justify-content-center">
+				<i class="fa fa-file-text" aria-hidden="true"></i>
+			</div>
+			<div class="ml-2 detailContentBlock">
+				<p class="mb-0 detailTitle">Summarize this email</p>
+				<span class="detailText">in more detail</span>
+			</div>
+		</div>
+		<div class="detailBlocks d-flex mt-1">
+			<div class="detailBlockIcon d-flex align-items-center justify-content-center">
+				<i class="fa fa-envelope" aria-hidden="true"></i>
+			</div>
+			<div class="ml-2 detailContentBlock">
+				<p class="mb-0 detailTitle">What can Centi do</p>
+				<span class="detailText">in Gmail</span>
+			</div>
+		</div>
+		<div class="detailBlocks d-flex mt-1" style="border-radius: 0px 0px 10px 10px;">
+			<div class="detailBlockIcon d-flex align-items-center justify-content-center">
+				<i class="fa fa-file-text" aria-hidden="true"></i>
+			</div>
+			<div class="ml-2 detailContentBlock">
+				<p class="mb-0 detailTitle">List action items</p>
+				<span class="detailText">from this email</span>
+			</div>
+		</div>
+		<div class="moreBtn text-center cursor-pointer mt-3" style="font-size: 10px;"> <span class="p-2">More Suggestions ></span> </div>
+		<div class="footerprombtBlock w-100 position-absolute">
+			<div class="footerInput w-100">				
+				<input type="text" class="form-control pl-3" aria-label="" placeholder="Enter a prompt here" name="" id="" value="">
+				<p class="text-center footerDesc">Omnet for Workspace can make mistakes, including about people, so double-check it. <a style="text-decoration: underline !important;">Learn more</a> </p>
+			</div>
+		</div>
+	</div> 
+	<style>
+		.footerInput input{
+			background-color: #f0f4f9;
+			height: 50px;
+			border-radius: 15px;
+			font-size: 16px;
+		}
+		.footerprombtBlock{
+		    bottom: 5px;
+		    left: 0;
+		}
+		.footerInput{
+		    padding-left: 20px;
+		    padding-right: 20px;
+		}
+		.footerDesc{
+			font-size: 10px;
+    		margin-top: 10px;
+		}
+		.askCenti{
+			min-width: 310px;
+			border-radius: 10px;
+			height: 100%;
+			background-color: #fff;
+		    box-shadow: 0px 0px 13px 0px rgba(62, 44, 90, 0.08);
+		    border: 1px solid rgba(0, 0, 0, 0.09);
+		    border-bottom: 1px solid #e0e0e0;
+		    margin-left: 10px;
+		    position: relative;
+		}
+		.detailText{
+			color: #6c6c6c;
+			font-size: 12px;
+		}
+		.detailTitle{
+			font-size: 12px;
+    		font-weight: 500;
+		}
+		.detailContentBlock{
+			line-height: 1.2;
+		}
+		.centiTitleName{
+			font-size: 22px;
+			font-weight: 500;
+		    inline-size: fit-content;
+		    word-break: break-word;
+		    color: #6c6c6c;
+		}
+		.centiuserName{
+			background: linear-gradient(135deg, #217bfe 0, #078efb 33%, #ac87eb 100%);
+		    background-clip: text;
+		    color: transparent;
+		}
+		.centiheadericon .headingIconsBlock{
+		    width: 25px;
+		    height: 25px;
+		    display: flex;
+		    border-radius: 50px;
+		    align-items: center;
+		    justify-content: center;
+		    color: #6c6c6c;
+		}
+		.centiheadericon .headingIconsBlock:hover{
+			background: #ccc;
+		}
+		.centilabel{
+			color: #1f1f1f;
+		}
+		.centiheadericon img{
+			border-radius: 50px;
+		    width: 30px;
+		    height: 30px;
+		    margin-right: 5px;	
+		}
+		.detailBlocks{
+			background-color: #f0f4f9;
+			padding: 12px;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		.detailBlocks:hover{
+			background-color: #dde3ea;	
+		}
+		.detailBlockIcon{
+			background-color: #fff;
+			width: 30px;
+			height: 30px;
+			border-radius: 10px;
+		}
+		.moreBtn span:hover{
+			background-color: #d7ecff;
+			border-radius: 20px;
+			color: #217bfe;
+		}
+		.dropdown-toggle:after{
+			display: none;
+		}
+		.dropdown-menu .dropdown-item{
+			padding-left: 10px;
+		}
+	</style>
+	<script>
+		const askCenti = document.getElementById('askCenti');
+		const askCentiBlock = document.getElementById('askCentiBlock');
+		const centiClose = document.getElementById('centiClose');
+		
+		document.getElementById("expandCenti").addEventListener("click", function() {
+		    const askCentiBlock = document.getElementById("askCentiBlock");
+		    askCentiBlock.classList.toggle("active");
+		});
+		
+		askCenti.addEventListener('click', function() {
+		  if (askCentiBlock.style.display === 'none') {
+		    askCentiBlock.style.display = 'block';
+		  } else {
+		    askCentiBlock.style.display = 'none';
+		  }
+		});
+		centiClose.addEventListener('click', function() {
+			askCentiBlock.style.display = 'none';
+		});
+		
+	  	
+	</script>
+</div>
+
+            
+           

@@ -1,0 +1,4078 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<title class="DocketsSidebar">SentenceCalc</title>
+<div th:replace="~{fragments/head :: head}"></div>
+
+<body class="mod-bg-1 mod-nav-link">
+	<!-- BEGIN Page Header -->
+	<div th:replace="~{fragments/header :: header}"></div>
+	<div th:replace="~{fragments/navmenus :: navmenus}"></div>
+	<!-- END Page Header -->
+	<!-- BEGIN Page Wrapper -->
+	<div class="page-wrapper">
+		<div class="page-inner">
+			<!-- BEGIN Left Aside -->
+			<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+			<!-- END Left Aside -->  
+			<div class="page-content-wrapper">
+				<!-- BEGIN Page Content -->
+				<!-- the #js-page-content id is needed for some plugins to initialize -->
+				<main id="js-page-content" role="main" class="page-content">
+					<!-- <ol class="breadcrumb page-breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">SmartAdmin</a></li>
+                            <li class="breadcrumb-item">category_1</li>
+                            <li class="breadcrumb-item">category_2</li>
+                            <li class="breadcrumb-item active">Page Titile</li>
+                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        </ol> -->
+					<div class="subheader position-relative mb-1">
+						<h1 class="subheader-title">
+							<div th:replace="~{fragments/toggleMenu :: toggleMenu}"></div>
+							<!--<i class='subheader-icon fal fa-'></i> Sentence Calc (Auto) </span>-->
+							<i class='subheader-icon fal fa-'></i> <span id="screenNameHolder" th:data-name="${screenCode}" th:text="${screenName}"></span></span> 
+						</h1>
+						<div class="frame-wrap bg-transparent">
+							<div class="btn-group">
+								<div class="col-12 pr-0">
+									<div class="js-get-date">[your date here]</div>
+								</div>
+							</div>
+							<a href="javascript:void(0);"
+								class="btn btn-primary btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="modal" data-target="#newChargesListModal"> <i
+									class="fal fa-plus"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-warning btn-sm btn-icon waves-effect waves-themed disabled"
+								data-toggle="tooltip" data-placement="top" data-original-title="Print"> <i
+									class="fal fa-print"></i>
+							</a> <a href="javascript:void(0);" id="cancel"
+								class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="tooltip" data-placement="top" data-original-title="Clear"> <i
+									class="fal fa-times"></i>
+							</a> <a id="saveBtn" href="javascript:void(0);"
+								class="btn btn-success btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="OK/Save"> <i class="fal fa-save"></i>
+							</a> <a href="javascript:void(0);" id="exit"
+								class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="Cancel/Exit"> <i class="fal fa-sign-out"></i>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="row">
+                        <div class="col-12 col-xl-12">
+						   <div th:replace="~{fragments/formheader :: formheader}"></div>
+						   <div class="mb-2 d-flex align-items-center justify-content-end">
+							   <!--<span data-toggle="modal" data-target="#listofNewChargesModal">
+								   <a href="javascript:void(0);"
+										class="btn btn-primary btn-sm btn-icon waves-effect waves-themed mr-2"
+										data-toggle="tooltip" data-placement="top" data-original-title="New Order"> <i
+											class="fa fa-plus"></i>
+									</a>
+							   </span>-->
+								<span data-toggle="modal" data-target="#sentenceOrderDetailModal">
+									<a href="javascript:void(0);"
+										class="btn btn-primary btn-sm btn-icon waves-effect waves-themed mr-2"
+										data-toggle="tooltip" data-placement="top" data-original-title="Modify/Approve Order"> <i
+											class="fa fa-pencil"></i>
+									</a>
+								</span>
+								<span data-toggle="modal" data-target="#viewOrderDetailModal">
+									<a href="javascript:void(0);"
+										class="btn btn-primary btn-sm btn-icon waves-effect waves-themed mr-2"
+										data-toggle="tooltip" data-placement="top" data-original-title=" View Order"> <i
+											class="fa fa-list"></i>
+									</a>
+								</span>
+								<!--<a href="javascript:void(0);"
+									class="btn btn-primary btn-sm btn-icon waves-effect waves-themed mr-2"
+									data-toggle="tooltip" data-placement="top" data-original-title="Cancel Order"> <i
+										class="fa fa-ban"></i>
+								</a>-->
+								<a href="javascript:void(0);"
+									class="btn btn-primary btn-sm btn-icon waves-effect waves-themed mr-2"
+									data-toggle="tooltip" data-placement="top" data-original-title="Calculate"> <i
+										class="fa fa-calculator"></i>
+								</a>
+								<a href="javascript:void(0);"
+									class="btn btn-primary btn-sm btn-icon waves-effect waves-themed"
+									data-toggle="tooltip" data-placement="top" data-original-title="Document"> <i
+										class="fa fa-file"></i>
+								</a>
+							</div>
+							<div id="panel-1" class="panel">
+                                <div class="panel-container show">
+                                    <div class="panel-content p-1">
+                                        <div id="js-checkbox-toggles">
+                                            <div class="row m-1">
+												<div class="d-flex align-items-center w-100 col-lg-2 pl-0 floatingFields mt-1">																	
+													<input type="text" class="form-control floatingLable pickerField" disabled aria-label="Security" placeholder="" name="Group" id="caseNum" value="">
+													<label for="Security" class="form-label mr-2 mb-0 text-nowrap">Case# <span class="text-danger">*</span></label>
+													<button href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="" disabled>
+														<i class="fa fa-download"></i>
+													</button>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-2 pl-0 floatingFields mt-1">																	
+													<input type="text" class="form-control floatingLable sentenceMainFormField" aria-label="Security" placeholder="" name="CRA_NUM" id="craNum" value="" autocomplete="nope">
+													<label for="Security" class="form-label mr-2 mb-0 text-nowrap">CRA# <span class="text-danger">*</span></label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-2 pl-0 floatingFields mt-1">																	
+													<input type="text" class="form-control floatingLable sentenceMainFormField editableField" aria-label="Security" placeholder="" name="SHORT_DESC" id="chargeDesc" value="" autocomplete="nope">
+													<label for="Security" class="form-label mr-2 mb-0 text-nowrap">Charge Desc <span class="text-danger">*</span></label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-2 pl-0 floatingFields mt-1">														
+													<input type="text" class="form-control floatingLable sentenceMainFormField date-input2 editableField" placeholder="" name="OFFENSE_DATE" id="offenceDate" value="" autocomplete="nope">
+													<label for="Security" class="form-label mr-2 mb-0 text-nowrap">Offense Date</label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-2 pl-0 floatingFields mt-1">																
+													<input type="text" class="form-control floatingLable sentenceMainFormField date-input1 editableField" placeholder="" name="SOH_SENT_DATE" id="sentDate" value="" autocomplete="nope">
+													<label for="Security" class="form-label mr-2 mb-0 text-nowrap">Sent. Dt. <span class="text-danger">*</span></label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-2 pl-0 floatingFields mt-1">															
+													<input type="text" class="form-control floatingLable pickerField editableField" disabled placeholder="" name="COURT_NAME" id="court" value="" autocomplete="nope">
+													<input type="hidden" name="COURT_CODE" id="courtCodeHdn" value="">
+													<label for="Security" class="form-label mr-2 mb-0 text-nowrap">Court <span class="text-danger">*</span></label>
+													<!--<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off sentenceMainFormField" data-toggle="tooltip" data-placement="top" data-original-title="Download">
+														<i class="fa fa-download"></i>
+													</a>-->
+													<div style="width: fit-content;">
+														<span data-toggle="modal" data-target="#courtModal" class="courtModal" id="courtModalBtn" modal-title="Court Modal Button">
+															<a href="#" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex 
+															align-items-center sentenceMainFormField" data-class="nav-function-hidden" 
+															data-toggle="tooltip" data-placement="top" data-original-title="Court">
+																<i class="fa fa-building" aria-hidden="true"></i>
+															</a>
+														</span>
+													</div>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-2 pl-0 mt-3 floatingFields">													
+													<input type="text" class="form-control floatingLable pickerField editableField" disabled placeholder="" name="JUDGE_NAME" id="judge" value="">
+													<input type="hidden" name="JUDGE_CODE" id="judgeCodeHdn" value="" autocomplete="nope">
+													<label for="Security" class="form-label mr-2 mb-0 text-nowrap">Judge <span class="text-danger">*</span></label>
+													<!--<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off sentenceMainFormField" data-target="#ObservingOfficer" data-toggle="tooltip" data-placement="top" data-original-title="SelectJudge">
+														<i class="fa fa-download"></i>
+													</a>-->
+													<div style="width: fit-content;">
+														<span data-toggle="modal" data-target="#judgeModal" class="judgeModal" id="judgeModalBtn" modal-title="Judge Modal">
+															<a href="#" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex 
+															align-items-center sentenceMainFormField" data-class="nav-function-hidden" 
+															data-toggle="tooltip" data-placement="top" data-original-title="Judge">
+																<i class="fa fa-users" aria-hidden="true"></i>
+															</a>
+														</span>
+													</div>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-1 pl-0 mt-3">
+													<div class="custom-control custom-checkbox custom-control-inline">
+														<input type="checkbox" class="custom-control-input sentenceMainFormField editableField" name="FLAG_4204K" id="4204K">
+														<label class="custom-control-label" for="4204K">4204 K</label>
+													</div>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-2 pl-0 mt-3 floatingFields">													
+													<input type="text" class="form-control floatingLable pickerField editableField" disabled aria-label="statute" placeholder="" name="statute" id="statute" value="">
+													<label for="statute" class="form-label mr-2 mb-0 text-nowrap">Statute</label>
+													<!--<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off sentenceMainFormField" data-toggle="tooltip" data-placement="top" data-original-title="Download">
+														<i class="fa fa-gavel" aria-hidden="true"></i>
+													</a>-->
+													<div style="width: fit-content;">
+														<span data-toggle="modal" data-target="#statuteModal" class="statuteModal" id="statuteModalBtn" modal-title="Statute Modal Button">
+															<button href="#" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex 
+															align-items-center" data-class="nav-function-hidden" 
+															data-toggle="tooltip" data-placement="top" data-original-title="Statute">
+																<i class="fa fa-gavel" aria-hidden="true"></i>
+															</button>
+														</span>
+													</div>
+												</div>
+											</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="panel-1" class="panel">
+                                <div class="panel-container show">
+                                    <div class="panel-content p-1">
+                                        <div id="js-checkbox-toggles">
+                                            <div class="m-1 row">
+												<div class="d-flex align-items-center w-100 col-lg-2 px-0 floatingFields mt-1">	
+													<input type="text" class="form-control floatingLable sentenceMainFormField date-input1 editableField" placeholder="" name="EFFECTIVE_DATE" id="effDate" value="" autocomplete="nope">
+													<label for="effDate" class="form-label mr-2 mb-0 text-nowrap">Effective Date <span class="text-danger">*</span></label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-3 mt-1">	
+													<label for="sentType-DrpDwn" class="form-label mr-2 mb-0 text-nowrap">Sent. Type 
+														<span class="text-danger" data-asw-org-font-size="13" style="font-size: 13px;">*</span>
+													</label>
+													<select class="custom-select form-control typecontact editableField" id="sentType-DrpDwn" name="SENTENCE_TYPE"></select>
+												</div>
+												<div class="d-flex align-items-center justify-content-around w-100 col-lg-2 px-0 mt-1 position-relative" style="left: -5px;">	
+													<div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input sentenceMainFormField editableField" id="TISRadios" name="TIS_NTIS" value="TIS">
+                                                        <label class="custom-control-label" for="TISRadios">TIS</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input sentenceMainFormField editableField" id="NTISRadios" name="TIS_NTIS" value="NTIS">
+                                                        <label class="custom-control-label" for="NTISRadios">NTIS</label>
+                                                    </div>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-3 pl-0 mt-1">
+													<label for="sentTo-DrpDwn" class="form-label mr-2 mb-0 text-nowrap">Sent. To</label>
+													<select class="custom-select form-control typecontact editableField" id="sentTo-DrpDwn" name="SOH_SNTC_LVL_CD"></select>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-2 px-0 mt-1">	
+													<label for="heldAT-DrpDwn" class="form-label mr-2 mb-0 text-nowrap">Held At</label>
+													<select class="custom-select form-control typecontact editableField" id="heldAt-DrpDwn" name="HELD_AT">
+														
+													</select>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-2 px-0 mt-3">	
+													<label for="facility-DrpDwn" class="form-label mr-2 mb-0 text-nowrap">Facility</label>
+													<select class="custom-select form-control typecontact editableField" id="facility-DrpDwn" name="FACILITY">
+													</select>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-1 pr-0 mt-3">
+													<div class="custom-control custom-checkbox custom-control-inline">
+														<input type="checkbox" class="custom-control-input sentenceMainFormField editableField" id="indefiniteChkBox" name="SOH_INDEFINITE_FLAG">
+														<label class="custom-control-label" for="indefiniteChkBox" style="font-weight: 500;">Indefinite</label>
+													</div>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-1 pl-0 floatingFields mt-3">	
+													<input type="number" class="form-control floatingLable sentenceMainFormField editableField" aria-label="lenY" placeholder="" name="LENGTH_YY" id="lenY" value="" min="0" autocomplete="nope">
+													<label for="lenY" class="form-label mr-2 mb-0 text-nowrap">Length Y</label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-1 pl-0 floatingFields mt-3">	
+													<input type="number" class="form-control floatingLable sentenceMainFormField editableField" aria-label="lenM" placeholder="" name="LENGTH_MM" id="lenM" value="" min="0" autocomplete="nope">
+													<label for="lenM" class="form-label mr-2 mb-0 text-nowrap">Length M</label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-1 pl-0 floatingFields mt-3">	
+													<input type="number" class="form-control floatingLable sentenceMainFormField editableField" aria-label="lenD" placeholder="" name="LENGTH_DD" id="lenD" value="" min="0" autocomplete="nope">
+													<label for="lenD" class="form-label mr-2 mb-0 text-nowrap">Length D</label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-1 pl-0 mt-3 floatingFields">	
+													<input type="number" class="form-control floatingLable sentenceMainFormField editableField" aria-label="jailY" placeholder="" name="JAIL_CREDIT_YY" id="jailY" value="" min="0" autocomplete="nope">
+													<label for="jailY" class="form-label mr-2 mb-0 text-nowrap">Jail Cr. Y</label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-1 pl-0 mt-3 floatingFields">	
+													<input type="number" class="form-control floatingLable sentenceMainFormField editableField" aria-label="jailM" placeholder="" name="JAIL_CREDIT_MM" id="jailM" value="" min="0" autocomplete="nope">
+													<label for="jailM" class="form-label mr-2 mb-0 text-nowrap">Jail Cr. M</label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-1 pl-0 mt-3 floatingFields">	
+													<input type="number" class="form-control floatingLable sentenceMainFormField editableField" aria-label="jailD" placeholder="" name="JAIL_CREDIT_DD" id="jailD" value="" min="0" autocomplete="nope">
+													<label for="jailD" class="form-label mr-2 mb-0 text-nowrap">Jail Cr. D</label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-1 pl-0 mt-3 floatingFields">	
+													<input type="number" class="form-control floatingLable sentenceMainFormField editableField" aria-label="minMandY" placeholder="" name="MIN_MAND_YY" id="minMandY" value="" min="0" autocomplete="nope">
+													<label for="minMandY" class="form-label mr-2 mb-0 text-nowrap">Min/Mand Y</label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-1 pl-0 mt-3 floatingFields">	
+													<input type="number" class="form-control floatingLable sentenceMainFormField editableField" aria-label="minMandM" placeholder="" name="MIN_MAND_MM" id="minMandM" value="" min="0" autocomplete="nope">
+													<label for="minMandM" class="form-label mr-2 mb-0 text-nowrap">Min/Mand M</label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-1 px-0 mt-3 floatingFields">	
+													<input type="number" class="form-control floatingLable sentenceMainFormField editableField" aria-label="minMandD" placeholder="" name="MIN_MAND_DD" id="minMandD" value="" min="0" autocomplete="nope">
+													<label for="minMandD" class="form-label mr-2 mb-0 text-nowrap">Min/Mand D</label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-2 px-0 mt-3">
+													<div class="custom-control custom-checkbox custom-control-inline">
+														<input type="checkbox" class="custom-control-input sentenceMainFormField editableField" id="deferredChkBox" name="DEFERRED_FLAG">
+														<label class="custom-control-label" for="deferredChkBox" style="font-weight: 500;">Deferred</label>
+													</div>
+													<div class="d-flex align-items-center w-100 floatingFields">	
+														<input type="text" class="form-control floatingLable sentenceMainFormField date-input1 editableField" aria-label="defStDate" placeholder="" name="DEFERRED_DATE" id="defStDate" value="" autocomplete="nope">
+														<label for="defStDate" class="form-label mr-2 mb-0 text-nowrap">Def. St. Date</label>
+													</div>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-4 pr-0 mt-3 justify-content-between">
+													<div class="custom-control custom-checkbox custom-control-inline">
+														<input type="checkbox" class="custom-control-input sentenceMainFormField editableField" name="ELIGIBLE_FR_PAROLE_FLAG" id="eligParolChkBox">
+														<label class="custom-control-label text-nowrap" for="eligParolChkBox" style="font-weight: 500;">Elig. Parole?</label>
+													</div>
+													<div class="custom-control custom-checkbox custom-control-inline">
+														<input type="checkbox" class="custom-control-input sentenceMainFormField editableField" name="SOH_GDTM_CALC_FLAG" id="eligGdtmChkBox">
+														<label class="custom-control-label text-nowrap" for="eligGdtmChkBox" style="font-weight: 500;">Elig. GDTM?</label>
+													</div>
+													<div class="custom-control custom-checkbox custom-control-inline">
+														<input type="checkbox" class="custom-control-input sentenceMainFormField editableField" name="SOH_DOC_DISCRETION" id="docDiscretionChkBox">
+														<label class="custom-control-label text-nowrap" for="docDiscretionChkBox" style="font-weight: 500;">DOC Discretion</label>
+													</div>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-1 pl-0 mt-3 floatingFields">	
+													<input type="number" class="form-control floatingLable sentenceMainFormField editableField" aria-label="absLenY" placeholder="" name="ABS_LEN_YY" id="absLenY" value="" autocomplete="nope">
+													<label for="absLenY" class="form-label mr-2 mb-0 text-nowrap">Abs. Len. Y</label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-1 pl-0 mt-3 floatingFields">	
+													<input type="number" class="form-control floatingLable sentenceMainFormField editableField" aria-label="absLenM" placeholder="" name="ABS_LEN_MM" id="absLenM" value="" autocomplete="nope">
+													<label for="absLenM" class="form-label mr-2 mb-0 text-nowrap">Abs. Len. M</label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-1 pl-0 mt-3 floatingFields">	
+													<input type="number" class="form-control floatingLable sentenceMainFormField editableField" aria-label="absLenD" placeholder="" name="ABS_LEN_DD" id="absLenD" value="" autocomplete="nope">
+													<label for="absLenD" class="form-label mr-2 mb-0 text-nowrap">Abs. Len. D</label>
+												</div>
+												<div class="d-flex align-items-center justify-content-around w-100 col-lg-3 mt-3">	
+													<div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input sentenceMainFormField editableField" id="consTo" name="CONS_CONC_FLAG" value="S">
+                                                        <label class="custom-control-label text-nowrap" for="consTo">Cons. To</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input sentenceMainFormField editableField" id="consWith" name="CONS_CONC_FLAG" value="C">
+                                                        <label class="custom-control-label text-nowrap" for="consWith">Cons. With</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input sentenceMainFormField editableField" id="consNA" name="CONS_CONC_FLAG" value="N">
+                                                        <label class="custom-control-label" for="consNA">N/A</label>
+                                                    </div>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-2 px-0 mt-3">
+													<input type="text" class="form-control pickerField" placeholder="" name="Group" id="Group" value="" disabled>
+													<button href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" disabled>
+														<i class="fa fa-download"></i>
+													</button>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-4 mt-3">
+													<div class="custom-control custom-checkbox custom-control-inline mr-1">
+														<input type="checkbox" class="custom-control-input sentenceMainFormField editableField" id="susTimeSrvd">
+														<label class="custom-control-label text-nowrap" for="susTimeSrvd" style="font-weight: 500;">Suspended Time Served</label>
+													</div>
+													<div data-toggle="modal" data-target="#listCommitedChargesModal">
+														<button href="#" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="List of Committed Charges" disabled>
+															<i class="fa fa-link"></i>
+														</button >
+													</div>
+													<!--<div class="mr-2" data-toggle="modal" data-target="#costFinesModal">
+														<a href="#" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off sentenceMainFormField" data-toggle="tooltip" data-placement="top" data-original-title="Cost & Fines">
+															<i class="fa fa-usd"></i>
+														</a>
+													</div>-->
+													<div class="mr-2" style="width: fit-content;">
+														<span data-toggle="modal" data-target="#costFinesModal" class="costFinesModal" id="costFinesModalBtn" modal-title="Cost and Fines Modal Button">
+															<button href="#" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center" data-class="nav-function-hidden" tabindex="4" disabled>
+																<i class="fa fa-usd" aria-hidden="true"></i>
+															</button>
+														</span>
+													</div>
+													<div class="d-flex align-items-center floatingFields w-100">	
+														<input type="text" class="form-control floatingLable sentenceMainFormField date-input1 editableField" placeholder="" name="SOH_RELEASE_DATE" id="relDate" value="" autocomplete="nope">
+														<label for="relDate" class="form-label mr-2 mb-0 text-nowrap">Rel. Date</label>
+													</div>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-1 pl-0 mt-3 floatingFields">	
+													<input type="time" class="form-control floatingLable sentenceMainFormField editableField" placeholder="" name="SOH_RELEASE_TIME" id="time" value="" autocomplete="nope">
+													<label for="time" class="form-label mr-2 mb-0 text-nowrap">Time</label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-2 pl-0 mt-3 floatingFields">	
+													<input type="number" class="form-control floatingLable sentenceMainFormField editableField" placeholder="" name="SOH_MERIT_DAYS" id="daysEarned" value="" autocomplete="nope">
+													<label for="daysEarned" class="form-label mr-2 mb-0 text-nowrap">Merit/Bonus Days Earned</label>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-2 pl-0 mt-3 floatingFields">	
+													<input type="number" class="form-control floatingLable sentenceMainFormField editableField" placeholder="" name="SOH_WEEKENDER_DAYS" id="daysPerWeekToServe" value="" autocomplete="nope">
+													<label for="daysPerWeekToServe" class="form-label mr-2 mb-0 text-nowrap">Days Per Week to Serve</label>
+													
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-1 pl-0 mt-3">
+													<div class="custom-control custom-checkbox custom-control-inline">
+														<input type="checkbox" class="custom-control-input sentenceMainFormField editableField" id="doNotProcessChkBox" name="SOH_STATUS">
+														<label class="custom-control-label text-nowrap" for="doNotProcessChkBox" style="font-weight: 500;">Do Not Process</label>
+													</div>
+												</div>
+												<div class="d-flex align-items-center w-100 col-lg-2 pl-0 mt-2">
+													<button type="button" class="btn-primary btn btn-sm" disabled>Violation Details</button>
+												</div>
+											</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="panel-1" class="panel" style="min-height: 250px;">
+                                    <div class="panel-hdr">
+                                        <h2 style="font-size: 16px;">
+                                            Level Details
+                                            <span class="d-flex">								
+		                                        <button id="addNewLevelDetail" class="btn btn-success btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center sentenceMainFormField" 
+												data-toggle="tooltip" data-placement="top" data-original-title="Add Level Detail" data-class="nav-function-hidden">
+													<i class="fa fa-plus" aria-hidden="true"></i>
+												</button>
+											</span>
+                                        </h2>
+                                    </div>
+                                    <div class="panel-container show">
+                                        <div class="panel-content p-1">
+                                            <div id="js-checkbox-toggles">
+                                                <div id="levelDetailTable"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-end">
+									<button type="button" class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#caseNotesDocumentModal"> Case Notes/Documents </button>
+                                    <button type="button" class="btn btn-primary btn-sm mr-2" data-toggle="modal" data-target="#OffenderChangeOverModal"> Changeover </button>
+                                    <button type="button" class="btn btn-primary btn-sm mr-2"> Blue Sheet </button>
+                                    <button type="button" class="btn btn-primary btn-sm"> Status Sheet </button>
+								</div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="listofNewChargesModal" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+							<div class="modal-content">
+								<div class="modal-header pt-3 pb-2">
+									<h6 class="modal-title"> List of New Charges </h6>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true"><i class="fal fa-times"></i></span>
+									</button>
+								</div>
+								<div class="modal-body py-0">
+									<div id="listnewcharges-table"></div>
+								</div>
+								<div class="modal-footer">
+									<!--<button type="button" class="btn btn-secondary btn-sm" id="" data-dismiss="modal">De-Select All</button>-->
+									<button type="button" class="btn btn-primary btn-sm" id="">Non CJIS Cases</button>
+									<button type="button" class="btn btn-primary btn-sm" id="">Sentence Calc (Manual)</button>
+									<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn">Ok</button>
+									<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+				<!-- this overlay is activated only when mobile menu is triggered -->
+				<div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
+				<!-- END Page Content -->
+				<!-- Modal Large -->
+				<div class="modal fade" id="default-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Staff Name</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true"><i class="fal fa-times"></i></span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="form-group row">
+									<label for="staffSearch"
+										class="col-form-label col-12 col-lg-1 form-label">Search</label>
+									<div class="col-12 col-lg-11">
+										<input type="text" class="form-control" aria-label="staffSearch"
+											name="staffSearch" id="staffSearch" value="">
+									</div>
+
+								</div>
+								<div class="table-responsive-lg">
+									<table class="table table-bordered m-0">
+										<thead>
+											<tr>
+												<th>Last Name</th>
+												<th>First Name</th>
+												<th>MI</th>
+												<th>Suffix</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- BEGIN Shortcuts -->
+				<!-- modal shortcut -->
+				<div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog"
+					aria-labelledby="modal-shortcut" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-top modal-transparent" role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+								<ul class="app-list w-auto h-auto p-0 text-left">
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Home
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
+												<i class="ni ni-envelope icon-stack-1x text-white"></i>
+											</div>
+											<span class="app-list-name">
+												Inbox
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Add More
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div> <!-- END Shortcuts -->
+			</div>
+		</div>
+	</div>
+	<!-- END Page Wrapper -->
+	<!-- BEGIN Quick Menu -->
+	<!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
+	<nav class="shortcut-menu d-none d-sm-block">
+		<input type="checkbox" class="menu-open" name="menu-open" id="menu-open" aria-label="menu-open" value="" />
+		<label for="menu_open" class="menu-open-button ">
+			<span class="app-shortcut-icon d-block"></span>
+		</label>
+		<a href="#" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Scroll Top">
+			<i class="fal fa-arrow-up"></i>
+		</a>
+		<a href="page_login-alt.html" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Logout">
+			<i class="fal fa-sign-out"></i>
+		</a>
+		<a href="#" class="menu-item btn" data-action="app-fullscreen" data-toggle="tooltip" data-placement="left"
+			title="Full Screen">
+			<i class="fal fa-expand"></i>
+		</a>
+		<a href="#" class="menu-item btn" data-action="app-print" data-toggle="tooltip" data-placement="left"
+			title="Print page">
+			<i class="fal fa-print"></i>
+		</a>
+		<a href="#" class="menu-item btn" data-action="app-voice" data-toggle="tooltip" data-placement="left"
+			title="Voice command">
+			<i class="fal fa-microphone"></i>
+		</a>
+	</nav>
+	<!-- END Quick Menu -->
+	<!-- BEGIN Messenger -->
+	<div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right">
+			<div class="modal-content h-100">
+				<div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
+					<div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+						<span class="mr-2">
+							<span class="rounded-circle profile-image d-block"
+								style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+						</span>
+						<div class="info-card-text">
+							<a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white"
+								data-toggle="dropdown" aria-expanded="false">
+								Tracey Chang
+								<i class="fal fa-angle-down d-inline-block ml-1 text-white fs-md"></i>
+							</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">Send Email</a>
+								<a class="dropdown-item" href="#">Create Appointment</a>
+								<a class="dropdown-item" href="#">Block User</a>
+							</div>
+							<span class="text-truncate text-truncate-md opacity-80">IT Director</span>
+						</div>
+					</div>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0 h-100 d-flex">
+					<!-- BEGIN msgr-list -->
+					<div
+						class="msgr-list d-flex flex-column bg-faded border-faded border-top-0 border-right-0 border-bottom-0 position-absolute pos-top pos-bottom">
+						<div>
+							<div
+								class="height-4 width-3 h3 m-0 d-flex justify-content-center flex-column color-primary-500 pl-3 mt-2">
+								<i class="fal fa-search"></i>
+							</div>
+							<input type="text" class="form-control bg-white" id="msgr_listfilter_input"
+								name="msgr_listfilter_input" placeholder="Filter contacts" aria-label="FilterSearch"
+								value="" data-listfilter="#js-msgr-listfilter">
+						</div>
+						<div class="flex-1 h-100 custom-scroll">
+							<div class="w-100">
+								<ul id="js-msgr-listfilter" class="list-unstyled m-0">
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="tracey chang online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Tracey Chang
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="oliver kopyuv online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Oliver Kopyuv
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="dr john cook phd away">
+											<div class="d-table-cell align-middle status status-warning status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Dr. John Cook PhD
+													<small class="d-block font-italic fs-xs">
+														Away
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-g.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Ali Amdaney
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="sarah mcbrook online">
+											<div class="d-table-cell align-middle status status-success status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Sarah McBrook
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney busy">
+											<div class="d-table-cell align-middle status status-danger status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs text-danger">
+														Busy
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney inactive">
+											<div class="d-table-cell align-middle">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-m.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													+714651347790
+													<small class="d-block font-italic fs-xs opacity-50">
+														Missed Call
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+								<div class="filter-message js-filter-message"></div>
+							</div>
+						</div>
+						<div>
+							<a class="fs-xl d-flex align-items-center p-3">
+								<i class="fal fa-cogs"></i>
+							</a>
+						</div>
+					</div>
+					<!-- END msgr-list -->
+					<!-- BEGIN msgr -->
+					<div class="msgr d-flex h-100 flex-column bg-white">
+						<!-- BEGIN custom-scroll -->
+						<div class="custom-scroll flex-1 h-100">
+							<div id="chat_container" class="w-100 p-4">
+								<!-- start .chat-segment -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">
+										Jun 19
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent">
+									<div class="chat-message">
+										<p>
+											Hey Ching, did you get my files?
+										</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:00 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>
+											Hi
+										</p>
+										<p>
+											Sorry going through a busy time in office. Yes I analyzed the solution.
+										</p>
+										<p>
+											It will require some resource, which I could not manage.
+										</p>
+									</div>
+									<div class="fw-300 text-muted mt-1 fs-xs">
+										3:24 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-start">
+									<div class="chat-message">
+										<p>
+											Okay
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-end">
+									<div class="chat-message">
+										<p>
+											Sending you some dough today, you can allocate the resources to this
+											project.
+										</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:26 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-start">
+									<div class="chat-message">
+										<p>
+											Perfect. Thanks a lot!
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>
+											I will have them ready by tonight.
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-end">
+									<div class="chat-message">
+										<p>
+											Cheers
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment for timestamp -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">
+										Jun 20
+									</div>
+								</div>
+								<!--  end .chat-segment for timestamp -->
+							</div>
+						</div>
+						<!-- END custom-scroll  -->
+						<!-- BEGIN msgr__chatinput -->
+						<div class="d-flex flex-column">
+							<div
+								class="border-faded border-right-0 border-bottom-0 border-left-0 flex-1 mr-3 ml-3 position-relative shadow-top">
+								<div class="pt-3 pb-1 pr-0 pl-0 rounded-0" tabindex="-1">
+									<div id="msgr_input" contenteditable="true"
+										data-placeholder="Type your message here..."
+										class="height-10 form-content-editable"></div>
+								</div>
+							</div>
+							<div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1"
+									data-toggle="tooltip" data-original-title="More options" data-placement="top">
+									<i class="fal fa-ellipsis-v-alt color-fusion-300"></i>
+								</a>
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+									data-original-title="Attach files" data-placement="top">
+									<i class="fal fa-paperclip color-fusion-300"></i>
+								</a>
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+									data-original-title="Insert photo" data-placement="top">
+									<i class="fal fa-camera color-fusion-300"></i>
+								</a>
+								<div class="ml-auto">
+									<a href="javascript:void(0);" class="btn btn-info">Send</a>
+								</div>
+							</div>
+						</div>
+						<!-- END msgr__chatinput -->
+					</div>
+					<!-- END msgr -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Messenger -->
+	<!-- BEGIN Page Settings -->
+	<div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right modal-md">
+			<div class="modal-content">
+				<div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
+					<h4 class="m-0 text-center color-white">
+						Layout Settings
+						<small class="mb-0 opacity-80">User Interface Settings</small>
+					</h4>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0">
+					<div class="settings-panel">
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									App Layout
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="fh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="header-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Header</span>
+							<span class="onoffswitch-title-desc">header is in a fixed at all times</span>
+						</div>
+						<div class="list" id="nff">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Navigation</span>
+							<span class="onoffswitch-title-desc">left panel is fixed</span>
+						</div>
+						<div class="list" id="nfm">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-minify"></a>
+							<span class="onoffswitch-title">Minify Navigation</span>
+							<span class="onoffswitch-title-desc">Skew nav to maximize space</span>
+						</div>
+						<div class="list" id="nfh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-hidden"></a>
+							<span class="onoffswitch-title">Hide Navigation</span>
+							<span class="onoffswitch-title-desc">roll mouse on edge to reveal</span>
+						</div>
+						<div class="list" id="nft">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-top"></a>
+							<span class="onoffswitch-title">Top Navigation</span>
+							<span class="onoffswitch-title-desc">Relocate left pane to top</span>
+						</div>
+						<div class="list" id="mmb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-main-boxed"></a>
+							<span class="onoffswitch-title">Boxed Layout</span>
+							<span class="onoffswitch-title-desc">Encapsulates to a container</span>
+						</div>
+						<div class="expanded">
+							<ul class="">
+								<li>
+									<div class="bg-fusion-50" data-action="toggle" data-class="mod-bg-1"></div>
+								</li>
+								<li>
+									<div class="bg-warning-200" data-action="toggle" data-class="mod-bg-2"></div>
+								</li>
+								<li>
+									<div class="bg-primary-200" data-action="toggle" data-class="mod-bg-3"></div>
+								</li>
+								<li>
+									<div class="bg-success-300" data-action="toggle" data-class="mod-bg-4"></div>
+								</li>
+							</ul>
+							<div class="list" id="mbgf">
+								<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+									data-class="mod-fixed-bg"></a>
+								<span class="onoffswitch-title">Fixed Background</span>
+							</div>
+						</div>
+						<!-- <div class="mt-4 d-table w-100 px-5">
+	                            <div class="d-table-cell align-middle">
+	                                <h5 class="p-0">
+	                                    Mobile Menu
+	                                </h5>
+	                            </div>
+	                        </div>
+	                        <div class="list" id="nmp">
+	                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+	                                data-class="nav-mobile-push"></a>
+	                            <span class="onoffswitch-title">Push Content</span>
+	                            <span class="onoffswitch-title-desc">Content pushed on menu reveal</span>
+	                        </div>
+	                        <div class="list" id="nmno">
+	                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+	                                data-class="nav-mobile-no-overlay"></a>
+	                            <span class="onoffswitch-title">No Overlay</span>
+	                            <span class="onoffswitch-title-desc">Removes mesh on menu reveal</span>
+	                        </div>
+	                        <div class="list" id="sldo">
+	                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+	                                data-class="nav-mobile-slide-out"></a>
+	                            <span class="onoffswitch-title">Off-Canvas <sup>(beta)</sup></span>
+	                            <span class="onoffswitch-title-desc">Content overlaps menu</span>
+	                        </div> -->
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Accessibility
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mbf">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-bigger-font"></a>
+							<span class="onoffswitch-title">Bigger Content Font</span>
+							<span class="onoffswitch-title-desc">content fonts are bigger for readability</span>
+						</div>
+						<div class="list" id="mhc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-high-contrast"></a>
+							<span class="onoffswitch-title">High Contrast Text (WCAG 2 AA)</span>
+							<span class="onoffswitch-title-desc">4.5:1 text contrast ratio</span>
+						</div>
+						<div class="list" id="mcb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-color-blind"></a>
+							<span class="onoffswitch-title">Daltonism <sup>(beta)</sup> </span>
+							<span class="onoffswitch-title-desc">color vision deficiency</span>
+						</div>
+						<div class="list" id="mpc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-pace-custom"></a>
+							<span class="onoffswitch-title">Preloader Inside</span>
+							<span class="onoffswitch-title-desc">preloader will be inside content</span>
+						</div>
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Global Modifications
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mcbg">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-clean-page-bg"></a>
+							<span class="onoffswitch-title">Clean Page Background</span>
+							<span class="onoffswitch-title-desc">adds more whitespace</span>
+						</div>
+						<div class="list" id="mhni">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-nav-icons"></a>
+							<span class="onoffswitch-title">Hide Navigation Icons</span>
+							<span class="onoffswitch-title-desc">invisible navigation icons</span>
+						</div>
+						<div class="list" id="dan">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-disable-animation"></a>
+							<span class="onoffswitch-title">Disable CSS Animation</span>
+							<span class="onoffswitch-title-desc">Disables CSS based animations</span>
+						</div>
+						<div class="list" id="mhic">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-info-card"></a>
+							<span class="onoffswitch-title">Hide Info Card</span>
+							<span class="onoffswitch-title-desc">Hides info card from left panel</span>
+						</div>
+						<div class="list" id="mlph">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-lean-subheader"></a>
+							<span class="onoffswitch-title">Lean Subheader</span>
+							<span class="onoffswitch-title-desc">distinguished page header</span>
+						</div>
+						<div class="list" id="mnl">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-nav-link"></a>
+							<span class="onoffswitch-title">Hierarchical Navigation</span>
+							<span class="onoffswitch-title-desc">Clear breakdown of nav links</span>
+						</div>
+						<div class="list mt-1">
+							<span class="onoffswitch-title">Global Font Size <small>(RESETS ON REFRESH)</small> </span>
+							<div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
+								<label for="smRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-sm" data-target="html">
+									<input type="radio" aria-label="smRadio" name="smRadio" id="smRadio" value=""> SM
+								</label>
+								<label for="mdRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text" data-target="html">
+									<input type="radio" aria-label="mdRadio" name="mdRadio" id="mdRadio" value=""
+										checked=""> MD
+								</label>
+								<label for="lgRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-lg" data-target="html">
+									<input type="radio" aria-label="lgRadio" name="lgRadio" id="lgRadio" value=""> LG
+								</label>
+								<label for="xlRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-xl" data-target="html">
+									<input type="radio" aria-label="xlRadio" name="xlRadio" id="xlRadio" value=""> XL
+								</label>
+							</div>
+							<span class="onoffswitch-title-desc d-block mb-g">Change <strong>root</strong> font size to
+								effect rem values</span>
+						</div>
+						<div class="mt-2 d-table w-100 pl-5 pr-3">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Theme colors <small>(overlays base css)</small>
+								</h5>
+								<!-- <div class="fs-xs text-muted p-2 alert alert-warning mt-3 mb-0">
+	                                    <i class="fal fa-exclamation-triangle text-warning mr-2"></i>Due to network latency
+	                                    and CPU utilization, you may experience a brief flickering effect on page load which
+	                                    may show the intial applied theme for a split second. Setting the prefered
+	                                    style/theme in the header will prevent this from happening.
+	                                </div> -->
+							</div>
+						</div>
+						<div class="expanded theme-colors pl-5 pr-3">
+							<ul class="m-0">
+								<li><a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme=""
+										data-toggle="tooltip" data-placement="top" title="Wisteria (base css)"
+										data-original-title="Wisteria (base css)"></a></li>
+								<li><a href="#" id="myapp-1" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip" data-placement="top"
+										title="Tapestry" data-original-title="Tapestry"></a></li>
+								<li><a href="#" id="myapp-2" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip" data-placement="top"
+										title="Atlantis" data-original-title="Atlantis"></a></li>
+								<li><a href="#" id="myapp-3" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip" data-placement="top"
+										title="Indigo" data-original-title="Indigo"></a></li>
+								<li><a href="#" id="myapp-4" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip" data-placement="top"
+										title="Dodger Blue" data-original-title="Dodger Blue"></a>
+								</li>
+								<li><a href="#" id="myapp-5" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip" data-placement="top"
+										title="Tradewind" data-original-title="Tradewind"></a></li>
+								<li><a href="#" id="myapp-6" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip" data-placement="top"
+										title="Cranberry" data-original-title="Cranberry"></a></li>
+								<li><a href="#" id="myapp-7" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip" data-placement="top"
+										title="Oslo Gray" data-original-title="Oslo Gray"></a></li>
+								<li><a href="#" id="myapp-8" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip" data-placement="top"
+										title="Chetwode Blue" data-original-title="Chetwode Blue"></a></li>
+								<li><a href="#" id="myapp-9" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip" data-placement="top"
+										title="Apricot" data-original-title="Apricot"></a></li>
+								<li><a href="#" id="myapp-10" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip" data-placement="top"
+										title="Blue Smoke" data-original-title="Blue Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-11" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip" data-placement="top"
+										title="Green Smoke" data-original-title="Green Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-12" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip" data-placement="top"
+										title="Wild Blue Yonder" data-original-title="Wild Blue Yonder"></a></li>
+								<li><a href="#" id="myapp-13" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip" data-placement="top"
+										title="Emerald" data-original-title="Emerald"></a></li>
+							</ul>
+						</div>
+						<hr class="mb-0 mt-4">
+						<div class="pl-5 pr-3 py-3 bg-faded">
+							<div class="row no-gutters">
+								<div class="col-6 pr-1">
+									<a href="#" class="btn btn-outline-danger fw-500 btn-block"
+										data-action="app-reset">Reset Settings</a>
+								</div>
+								<div class="col-6 pl-1">
+									<a href="#" class="btn btn-danger fw-500 btn-block" data-action="factory-reset">Factory
+										Reset</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<span id="saving"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Page Settings -->
+	 <!-- BEGIN NewCharges Modal -->
+	<div class="modal fade" id="newChargesListModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+			<div class="modal-content">
+				<div class="modal-header pt-3 pb-2">
+					<h6 class="modal-title"> List of New Charges </h6>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body py-0">
+					<div id="listNewChargesTable"></div>
+				</div>
+				<div class="modal-footer justify-content-between">
+					<div class="d-flex align-items-center mr-2">
+						<!--<button type="button" class="btn btn-primary btn-sm" id="">De-Select All</button>-->
+					</div>
+					<div class="d-flex align-items-center mr-2">
+						<button type="button" class="btn btn-primary btn-sm mr-1" id="">Sentence Calc (Manual)</button>
+						<button type="button" class="btn btn-primary btn-sm mr-1" id="newSentence-Ok-btn"  data-dismiss="modal">Ok</button>
+						<button type="button" class="btn btn-secondary btn-sm mr-1" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END NewCharges Modal -->
+	<!-- BEGIN Edit/Modify Modal -->
+	<div class="modal fade" id="sentenceOrderDetailModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+			<div class="modal-content">
+				<div class="modal-header pt-3 pb-2">
+					<h6 class="modal-title"> Sentence Order Details </h6>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body py-0">
+					<div id="sentenceOrdrDetlTbl"></div>
+				</div>
+				<div class="modal-footer">
+					<div class="d-flex align-items-center mr-2">
+						<div class="highlightBox mr-1" style="background-color: #c0ff80;"></div>
+						<p class="mb-0" style="font-size: 12px;">Approved</p>
+					</div>
+					<div class="d-flex align-items-center mr-2">
+						<div class="highlightBox mr-1" style="background-color: #f00;"></div>
+						<p class="mb-0" style="font-size: 12px;">Pending Approval</p>
+					</div>
+					<!--<button type="button" class="btn btn-primary btn-sm" id="" data-dismiss="modal">De-Select All</button>-->
+					<button type="button" class="btn btn-primary btn-sm" id="modifySentence-Ok-btn" data-dismiss="modal">Ok</button>
+					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Edit/Modify Modal -->
+	<!-- BEGIN View Order Modal -->
+	<div class="modal fade" id="viewOrderDetailModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+			<div class="modal-content">
+				<div class="modal-header pt-3 pb-2">
+					<h6 class="modal-title"> Sentence Order Details [View Order] </h6>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body py-0">
+					<div id="sentenceOrdrViewTbl"></div>
+				</div>
+				<div class="modal-footer">
+					<div class="d-flex align-items-center mr-2">
+						<div class="highlightBox mr-1" style="background-color: #c0ff80;"></div>
+						<p class="mb-0" style="font-size: 12px;">Approved</p>
+					</div>
+					<div class="d-flex align-items-center mr-2">
+						<div class="highlightBox mr-1" style="background-color: #f00;"></div>
+						<p class="mb-0" style="font-size: 12px;">Pending Approval</p>
+					</div>
+					<div class="d-flex align-items-center mr-2">
+						<div class="highlightBox mr-1" style="background-color: #ffffc0;"></div>
+						<p class="mb-0" style="font-size: 12px;">Cancelled</p>
+					</div>
+					<div class="d-flex align-items-center mr-2">
+						<div class="highlightBox mr-1" style="background-color: #c0ffe0;"></div>
+						<p class="mb-0" style="font-size: 12px;">Calculated Using Old Screen</p>
+					</div>
+					<!--<button type="button" class="btn btn-primary btn-sm" id="" data-dismiss="modal">De-Select All</button>-->
+					<button type="button" class="btn btn-primary btn-sm" id="viewSentence-Ok-btn"  data-dismiss="modal">Ok</button>
+					<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END View Order Modal  -->
+	<!-- Statute Modal Start -->
+	<div class="modal fade" id="statuteModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header pt-3 pb-2">
+					<h6 class="modal-title" id="peopleModalTitle">Statute Information</h6>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body py-0">
+					<!-- Modern Fixed Container Layout -->
+					<div class="statute-search-container">
+						<div class="statute-search-controls">
+							<!-- Search Mode Dropdown -->
+							<div class="search-mode-selector">
+								<select id="search-mode" class="form-control">
+									<option value="keyword">Keyword</option>
+									<option value="others">Advanced</option>
+								</select>
+							</div>
+							
+							<!-- Fixed Search Input Area -->
+							<div class="search-input-wrapper">
+								<!-- Keyword Search (active by default) -->
+								<div class="keyword-search-mode active">
+									<input id="keyword-input" type="text" class="form-control" 
+										placeholder="Search by keyword..." autocomplete="off">
+								</div>
+								
+								<!-- Multi-field Search (hidden by default) -->
+								<div class="multi-field-search-mode">
+									<div class="multi-field-grid">
+										<input id="filter-title" type="text" class="form-control" 
+											placeholder="Title" autocomplete="off">
+										<input id="filter-sec" type="text" class="form-control" 
+											placeholder="Section" autocomplete="off">
+										<input id="filter-subsec" type="text" class="form-control" 
+											placeholder="Sub-section" autocomplete="off">
+										<input id="filter-type" type="text" class="form-control" 
+											placeholder="Type" autocomplete="off">
+										<input id="filter-class" type="text" class="form-control" 
+											placeholder="Class" autocomplete="off">
+									</div>
+								</div>
+							</div>
+							
+							<!-- Search Button (fixed position) -->
+							<div class="search-button-wrapper">
+								<button type="button" class="btn btn-primary btn-sm" id="statuteSearchBtn">
+									<i class="fa fa-search mr-1"></i>Search
+								</button>
+							</div>
+						</div>
+					</div>
+					
+					<!-- Results Table -->
+					<div id="table-container">
+						<div class="tableFixHead">
+							<div id="statuteModalTbl" class="w-100"></div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="courtModalCancelBtn" class="btn btn-secondary btn-sm"
+					data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Statute Modal End -->
+	<!-- Judge Modal Start -->
+	
+	<div class="modal fade" id="judgeModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header pt-3 pb-2">
+					<h6 class="modal-title" id="peopleModalTitle">Judge</h6>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body py-0">
+					<div class="d-flex align-items-center mb-2">
+						<label for="searchJudgeInp" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+						<input type="text" class="form-control mr-1" aria-label="searchJudgeInp" name="searchJudgeInp"
+							id="searchJudgeInp" placeholder="Search..." autocomplete="nope">
+						<button type="button" class="btn btn-primary btn-sm"
+							id="searchJudgeBtn">Find</button>
+					</div>
+					<div id="table-container" style="/*height: 700px;*/">
+						<div class="tableFixHead">
+							<div id="searchJudgeModalTbl" class="w-100"></div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="searchJudgeCancelBtn" class="btn btn-secondary btn-sm"
+					data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Judge Modal End -->
+	<!-- Court Modal Start -->
+	<div class="modal fade" id="courtModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header pt-3 pb-2">
+					<h6 class="modal-title" id="peopleModalTitle">Court</h6>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body py-0">
+					<div class="d-flex align-items-center mb-2">
+						<label for="searchCourt" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+						<input type="text" class="form-control mr-1" aria-label="searchCourt" name="searchCourtInp"
+							id="searchCourtInp" placeholder="Search..." autocomplete="nope">
+						<button type="button" class="btn btn-primary btn-sm"
+							id="searchCourtBtn">Find</button>
+					</div>
+					<div id="table-container">
+						<div class="tableFixHead">
+							<div id="courtModalTbl" class="w-100"></div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<!--<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Ok</button>-->
+					<button type="button" id="courtModalCancelBtn" class="btn btn-secondary btn-sm"
+					data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Court Modal End -->
+	<!-- Money Modal Start -->
+	<div class="modal fade" id="costFinesModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header pt-3 pb-2">
+					<h6 class="modal-title" id="peopleModalTitle">Cost & Fines</h6>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body py-0" style="padding: 30px !important;">
+					<div class="d-flex align-items-center mb-2">
+						<label for="searchCourt" class="form-label mb-0 mr-2 text-nowrap">Charge</label>
+						<input type="text" class="form-control mr-1" aria-label="chargeViewModal" name="chargeViewModal"
+							id="chargeViewModal" placeholder="Search..." autocomplete="nope" value="0406023320" disabled style="width: 150px;">
+						<input type="text" class="form-control mr-1" aria-label="chargeViewModal2" name="chargeViewModal2"
+							id="chargeViewModal2" placeholder="Search..." autocomplete="nope" value="OFF TOUCHING" disabled>
+					</div>
+					<hr class="mt-0 mb-2">
+					<div id="costFinesModal-container" class="row">
+						<div class="col-md-6">
+							<div class="pl-0 floatingFields mt-1">																	
+								<input type="text" class="form-control floatingLable sentenceMainFormField" aria-label="modalFine" placeholder="" name="modalFine" id="modalFine" value="">
+								<label for="modalFine" class="form-label mr-2 mb-0 text-nowrap">Fine $</label>
+							</div>
+							<div class="pl-0 floatingFields mt-1">																	
+								<input type="text" class="form-control floatingLable sentenceMainFormField" aria-label="modalRestitution" placeholder="" name="modalRestitution" id="modalRestitution" value="">
+								<label for="modalRestitution" class="form-label mr-2 mb-0 text-nowrap">Restitution $</label>
+							</div>
+							<div class="pl-0 floatingFields mt-1">																	
+								<input type="text" class="form-control floatingLable sentenceMainFormField" aria-label="modalVictim" placeholder="" name="modalVictim" id="modalVictim" value="">
+								<label for="modalVictim" class="form-label mr-2 mb-0 text-nowrap">Victim/VCF $</label>
+							</div>
+							<div class="pl-0 floatingFields mt-1">																	
+								<input type="text" class="form-control floatingLable sentenceMainFormField" aria-label="modalPayPerMonth" placeholder="" name="modalPayPerMonth" id="modalPayPerMonth" value="">
+								<label for="modalPayPerMonth" class="form-label mr-2 mb-0 text-nowrap">Pay / Month $</label>
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="pl-0 floatingFields mt-1">																	
+								<input type="text" class="form-control floatingLable sentenceMainFormField" aria-label="modalCost" placeholder="" name="modalCost" id="modalCost" value="">
+								<label for="modalCost" class="form-label mr-2 mb-0 text-nowrap">Cost $</label>
+							</div>
+							<div class="pl-0 floatingFields mt-1">																	
+								<input type="text" class="form-control floatingLable sentenceMainFormField" aria-label="modalDrug" placeholder="" name="modalDrug" id="modalDrug" value="">
+								<label for="modalDrug" class="form-label mr-2 mb-0 text-nowrap">Drug/DRETF $</label>
+							</div>
+							<div class="pl-0 floatingFields mt-1">																	
+								<input type="text" class="form-control floatingLable sentenceMainFormField" aria-label="modalCivil" placeholder="" name="modalCivil" id="modalCivil" value="">
+								<label for="modalCivil" class="form-label mr-2 mb-0 text-nowrap">Civil $</label>
+							</div>
+							<div class="pl-0 floatingFields mt-1">																	
+								<input type="text" class="form-control floatingLable sentenceMainFormField" aria-label="modalPayDue" placeholder="" name="modalPayDue" id="modalPayDue" value="">
+								<label for="modalPayDue" class="form-label mr-2 mb-0 text-nowrap">First Payment Due Date</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary btn-sm" id="moneyModalOkBtn" >Ok</button>
+					<button type="button" id="moneyModalCancelBtn" class="btn btn-secondary btn-sm"
+					data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Money Modal End -->
+	
+	<style>
+		label{
+			font-weight: 500;
+		}
+		.tabulator .tabulator-tableholder{
+			overflow-x: hidden;	
+		}
+		
+		.headerBlock{
+			background: #7a59ad;
+			color: #fff;
+			padding: 5px;
+			border: 1px solid #ccc;
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+		
+		.highlightBox{
+			width: 40px;
+		    height: 15px;
+		    border: 1px solid #000;
+		}
+		
+		.tabulator-cell input{
+			border: 0 !important;
+		}
+		
+		.tabuletor-chkbox{
+			position: absolute;
+			left: 0;
+			z-index: -1;
+			width: 1.125rem;
+			height: 1.1596875rem;
+		}
+
+		.row-highlight {
+			border: 2px solid #007bff; /* or any custom style */
+		}
+
+
+		.floatingFields input:not(:placeholder-shown) + label {
+		    background: #fff !important;
+		}
+
+		/** Custom Radio Btn Style */
+		.checkbox-style {
+			display: flex;
+			align-items: center;
+			gap: 0.75rem;
+			margin-bottom: 1rem;
+			cursor: pointer;
+			user-select: none;
+			font-size: 1rem;
+			color: #444;
+		}
+
+		/* Hide the native radio */
+		.checkbox-style input[type="radio"] {
+			position: absolute;
+			opacity: 0;
+			width: 0;
+			height: 0;
+		}
+
+		/* Custom box that looks like a checkbox */
+		.checkbox-style .custom-box {
+			width: 20px;
+			height: 20px;
+			border: 2px solid #777;
+			border-radius: 4px;
+			background-color: white;
+			box-sizing: border-box;
+			transition: border-color 0.2s ease, background-color 0.2s ease;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		/* Checkmark shape */
+		.checkbox-style .custom-box::after {
+			content: "";
+			width: 10px;
+			height: 10px;
+			display: block;
+			background-color: #2a9d8f;
+			border-radius: 2px;
+			opacity: 0;
+			transform: scale(0.7);
+			transition: opacity 0.15s ease, transform 0.15s ease;
+		}
+
+		/* Show checkmark if checked */
+		.checkbox-style input[type="radio"]:checked + .custom-box::after {
+			opacity: 1;
+			transform: scale(1);
+		}
+
+		/* On focus show outline */
+		.checkbox-style input[type="radio"]:focus + .custom-box {
+			outline: 2px solid #264653;
+			outline-offset: 2px;
+		}
+
+		/*.select2{
+			width: 50px !important;
+		}*/
+		
+		/* ========================================
+		   Modern Statute Search Container Styles
+		   ======================================== */
+		
+		.statute-search-container {
+			background: #ffffff;
+			/*border-radius: 8px;
+			box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+			padding: 16px;
+			border: 1px solid #e5e7eb;*/
+		}
+		
+		.statute-search-controls {
+			display: grid;
+			grid-template-columns: 140px 1fr auto;
+			gap: 12px;
+			align-items: start;
+		}
+		
+		/* Search Mode Dropdown */
+		.search-mode-selector select {
+			height: 25px;
+			/*border: 1px solid #9b7cca;
+			border-radius: 6px;*/
+			font-size: 14px;
+			font-weight: 500;
+			transition: all 0.2s ease;
+		}
+		
+		/*.search-mode-selector select:focus {
+			border-color: #7c3aed;
+			box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+		}*/
+		
+		/* Fixed Search Input Wrapper */
+		.search-input-wrapper {
+			position: relative;
+			min-height: 38px;
+			background: #ffffff;
+		}
+		
+		/* Both search modes */
+		.keyword-search-mode,
+		.multi-field-search-mode {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity 0.3s ease, visibility 0.3s ease;
+			pointer-events: none;
+		}
+		
+		/* Active mode */
+		.keyword-search-mode.active,
+		.multi-field-search-mode.active {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
+			position: relative;
+		}
+		
+		/* Keyword Search Input */
+		.keyword-search-mode input {
+			width: 100%;
+			height: 25px;
+			/*border: 1px solid #9b7cca;
+			border-radius: 6px;*/
+			padding: 8px 12px;
+			font-size: 14px;
+			transition: all 0.2s ease;
+		}
+		
+		.keyword-search-mode input:focus {
+			outline: none;
+			/*border-color: #7c3aed;
+			box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);*/
+		}
+		
+		.keyword-search-mode input::placeholder {
+			color: #9ca3af;
+		}
+		
+		/* Multi-field Grid */
+		.multi-field-grid {
+			display: grid;
+			grid-template-columns: repeat(5, 1fr);
+			gap: 8px;
+		}
+		
+		.multi-field-grid input {
+			height: 25px;
+			/*border: 1px solid #9b7cca;*/
+			border-radius: 6px;
+			padding: 8px 10px;
+			font-size: 13px;
+			transition: all 0.2s ease;
+		}
+		
+		.multi-field-grid input:focus {
+			outline: none;
+			/*border-color: #7c3aed;
+			box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);*/
+		}
+		
+		.multi-field-grid input::placeholder {
+			color: #9ca3af;
+			font-size: 12px;
+		}
+		
+		/* Search Button */
+		.search-button-wrapper button {
+			
+			border: none;
+			
+			/*white-space: nowrap;*/
+			
+		}
+		
+		/*.search-button-wrapper button:hover:not(:disabled) {
+			background: #6d28d9;
+			box-shadow: 0 2px 6px rgba(124, 58, 237, 0.4);
+			transform: translateY(-1px);
+		}*/
+		
+		/*.search-button-wrapper button:active:not(:disabled) {
+			transform: translateY(0);
+			box-shadow: 0 1px 2px rgba(124, 58, 237, 0.3);
+		}
+		
+		.search-button-wrapper button:disabled {
+			background: #9ca3af;
+			cursor: not-allowed;
+			opacity: 0.6;
+		}
+		
+		.search-button-wrapper button i {
+			margin-right: 6px;
+		}*/
+		
+		/* Responsive Design */
+		@media (max-width: 992px) {
+			.statute-search-controls {
+				grid-template-columns: 1fr;
+				gap: 12px;
+			}
+			
+			.search-mode-selector select {
+				width: 100%;
+				max-width: 200px;
+			}
+			
+			.multi-field-grid {
+				grid-template-columns: repeat(3, 1fr);
+			}
+			
+			.search-button-wrapper {
+				display: flex;
+				justify-content: flex-end;
+			}
+			
+			.search-button-wrapper button {
+				width: auto;
+			}
+		}
+		
+		@media (max-width: 576px) {
+			.multi-field-grid {
+				grid-template-columns: repeat(2, 1fr);
+			}
+			
+			.statute-search-container {
+				padding: 12px;
+			}
+		}
+	</style>
+
+	<div th:replace="~{fragments/script :: script}"></div>
+	<script src="js/script.js"></script>
+	<script src="js/staticjs.js"></script>
+	<script th:inline="javascript">
+		$(document).ready(function () {
+			$(function () {
+				$('.select2').select2();
+
+				$(".select2-placeholder-multiple").select2(
+					{
+						placeholder: "Select State"
+					});
+				$(".js-hide-search").select2(
+					{
+						minimumResultsForSearch: 1 / 0
+					});
+				$(".js-max-length").select2(
+					{
+						maximumSelectionLength: 2,
+						placeholder: "Select maximum 2 items"
+					});
+				$(".select2-placeholder").select2(
+					{
+						placeholder: "Select a state",
+						allowClear: true
+					});
+
+
+
+				$(".js-select2-icons").select2(
+					{
+						minimumResultsForSearch: 1 / 0,
+						templateResult: icon,
+						templateSelection: icon,
+						escapeMarkup: function (elm) {
+							return elm
+						}
+					});
+
+				function icon(elm) {
+					elm.element;
+					return elm.id ? "<i class='" + $(elm.element).data("icon") + " mr-2'></i>" + elm.text : elm.text
+				}
+
+				$(".js-data-example-ajax").select2(
+					{
+						ajax:
+						{
+							url: "https://api.github.com/search/repositories",
+							dataType: 'json',
+							delay: 250,
+							data: function (params) {
+								return {
+									q: params.term, // search term
+									page: params.page
+								};
+							},
+							processResults: function (data, params) {
+								// parse the results into the format expected by Select2
+								// since we are using custom formatting functions we do not need to
+								// alter the remote JSON data, except to indicate that infinite
+								// scrolling can be used
+								params.page = params.page || 1;
+
+								return {
+									results: data.items,
+									pagination:
+									{
+										more: (params.page * 30) < data.total_count
+									}
+								};
+							},
+							cache: true
+						},
+						placeholder: 'Search for a repository',
+						escapeMarkup: function (markup) {
+							return markup;
+						}, // let our custom formatter work
+						minimumInputLength: 1,
+						templateResult: formatRepo,
+						templateSelection: formatRepoSelection
+					});
+
+				function formatRepo(repo) {
+					if (repo.loading) {
+						return repo.text;
+					}
+
+					var markup = "<div class='select2-result-repository clearfix d-flex'>" +
+						"<div class='select2-result-repository__avatar mr-2'><img src='" + repo.owner.avatar_url + "' class='width-2 height-2 mt-1 rounded' /></div>" +
+						"<div class='select2-result-repository__meta'>" +
+						"<div class='select2-result-repository__title fs-lg fw-500'>" + repo.full_name + "</div>";
+
+					if (repo.description) {
+						markup += "<div class='select2-result-repository__description fs-xs opacity-80 mb-1'>" + repo.description + "</div>";
+					}
+
+					markup += "<div class='select2-result-repository__statistics d-flex fs-sm'>" +
+						"<div class='select2-result-repository__forks mr-2'><i class='fal fa-lightbulb'></i> " + repo.forks_count + " Forks</div>" +
+						"<div class='select2-result-repository__stargazers mr-2'><i class='fal fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+						"<div class='select2-result-repository__watchers mr-2'><i class='fal fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+						"</div>" +
+						"</div></div>";
+
+					return markup;
+				}
+
+				function formatRepoSelection(repo) {
+					return repo.full_name || repo.text;
+				}
+
+			});
+		});
+		
+		/*$(tabledataleveldetail[0].checkbox).html("<input type='checkbox'>");
+		$(tabledatalistnewcharges[0].checkbox).html("<input type='checkbox'>");*/
+		function downloadIcon(cell) {
+            return `<i class="fa fa-times" style="position: absolute; right: 5px; top: 5px; margin-right: 5px;"></i>`; // HTML with the icon and the age
+        }
+
+		// Arrow key nav for inp fields
+		function enableArrowKeyNavigation(selector) {
+		  // Utility function to get focusable elements under the selector
+		  function getFocusableElements(sel) {
+		    return Array.from(document.querySelectorAll(sel)).filter(el => {
+		      if (el.tagName === 'INPUT') {
+		        return !el.disabled;
+		      }
+		      if (el.tagName === 'A') {
+		        return el.hasAttribute('tabindex') && el.tabIndex >= 0;
+		      }
+			  if (el.tagName === 'TEXTAREA') {
+			  	return !el.disabled;
+			  }
+			  if (el.tagName === 'SELECT') {
+			  	return !el.disabled;
+			  }
+		      return false;
+		    });
+		  }
+		  const focusableElements = getFocusableElements(selector);
+		  let counter = 0;
+		  focusableElements.forEach((el, idx) => {
+			counter++;
+		    el.addEventListener('keydown', (e) => {
+				if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+				        e.preventDefault();
+
+				        // If current element is a .date-input, close its datepicker
+				        if (el.classList && el.classList.contains('date-input1')) {
+				          $(el).datepicker('hide');
+				        }
+
+				        let newIndex = (e.key === 'ArrowDown') ? (idx + 1) % focusableElements.length : (idx - 1 + focusableElements.length) % focusableElements.length;
+				        console.log(newIndex +", "+ idx);
+						if (newIndex >= 0 && newIndex < focusableElements.length) {
+				          focusableElements[newIndex].focus();
+				        }
+				      }
+		      
+		    });
+		  });
+		  console.log(counter);
+		}
+
+		// *** To get active element - document.activeElement.checked = true
+		// *** can be used to mark chebox dynamically on press 'Enter'(coz it's not working)
+
+		// to reset radio buttons
+		//$('input[name=Choose]').prop('checked',false);
+
+		/** Disable fields */
+		let disabledState = true;
+		let enabledState = false;
+		function disableAllInputs(selector) {
+			const elements = document.querySelectorAll(selector);
+			elements.forEach(el => {
+				if (['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON'].includes(el.tagName)) {
+					el.disabled = true;
+				}
+				/*if (!el.classList.contains('never-disable')) {
+					el.disabled = true;
+				}*/
+			});
+			$('select').prop('disabled', true);
+			
+			// Disable #levelDetailTable when in view mode
+			if (sntcLevelDetailsTbl) {
+				// Disable editing for all columns
+				sntcLevelDetailsTbl.getColumns().forEach(column => {
+					if (column.getDefinition().editor) {
+						column.updateDefinition({editable: false});
+					}
+				});
+				
+				// Disable checkboxes in the table
+				const tableElement = document.getElementById('levelDetailTable');
+				if (tableElement) {
+					const checkboxes = tableElement.querySelectorAll('input[type="checkbox"]');
+					checkboxes.forEach(checkbox => {
+						checkbox.disabled = true;
+					});
+				}
+				
+				// Disable the delete buttons (cross buttons)
+				const deleteButtons = document.querySelectorAll('#levelDetailTable .tabulator-cell[tabulator-field=""] button');
+				deleteButtons.forEach(btn => {
+					btn.disabled = true;
+					btn.style.opacity = '0.5';
+					btn.style.cursor = 'not-allowed';
+				});
+			}
+			
+			disabledState = true;
+			enabledState = false;
+		}
+		/** Enable fields */
+		function enableAllInputs(selector) {
+			const elements = document.querySelectorAll(selector);
+			elements.forEach(el => {
+				if (['INPUT', 'TEXTAREA', 'SELECT', 'BUTTON', 'A'].includes(el.tagName) && 
+				!el.classList.contains("pickerField")) {
+					el.disabled = false;
+				}
+			});
+			$('select').prop('disabled', false);
+			
+			// Enable #levelDetailTable when in modify mode
+			if (sntcLevelDetailsTbl) {
+				// Enable editing for all columns that should be editable
+				sntcLevelDetailsTbl.getColumns().forEach(column => {
+					const colDef = column.getDefinition();
+					if (colDef.editor && colDef.field !== 'CB_SELECT') {
+						column.updateDefinition({editable: true});
+					}
+				});
+				
+				// Enable checkboxes in the table
+				const tableElement = document.getElementById('levelDetailTable');
+				if (tableElement) {
+					const checkboxes = tableElement.querySelectorAll('input[type="checkbox"]');
+					checkboxes.forEach(checkbox => {
+						checkbox.disabled = false;
+					});
+				}
+				
+				// Enable the delete buttons (cross buttons)
+				const deleteButtons = document.querySelectorAll('#levelDetailTable .tabulator-cell[tabulator-field=""] button');
+				deleteButtons.forEach(btn => {
+					btn.disabled = false;
+					btn.style.opacity = '1';
+					btn.style.cursor = 'pointer';
+				});
+			}
+			disabledState = false;
+			enabledState = true;
+		}
+		/** Usage */
+		//disableAllInputs('body *');
+		//disableAllInputs('.sentenceMainFormField');
+		//enableAllInputs('.sentenceMainFormField');
+
+
+		function formatDate(dateString) {
+			if (dateString) {
+				// Create a Date object from the ISO 8601 date string
+				var date = new Date(dateString);
+
+					// Check if the date is valid
+					if (!isNaN(date.getTime())) {
+						// Format the date to MM/DD/YYYY
+						return (
+							(date.getMonth() + 1).toString().padStart(2, '0') + '/' +
+							date.getDate().toString().padStart(2, '0') + '/' +
+							date.getFullYear()
+						);
+					} else {
+						console.error("Invalid date string:", dateString);
+						return ''; // Return an empty string for invalid dates
+					}
+				}
+			return '';
+		}
+
+		var newChargesList = [];
+		var newChargesTable = new Tabulator("#listNewChargesTable", {
+			layout: "fitColumns",
+			placeholder:"No Data Available",
+			data: newChargesList,
+			minHeight: 80,
+			maxHeight: 311,
+			virtualDom: false,
+			//height: '320px',
+			columns: [
+				{
+					title: "Select",
+					field: "CASE_NUM",
+					headerSort:false,
+					formatter: (cell) => {
+						const value = cell.getValue();
+						return `
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<label class="custom-control-label" for="listNewChkBox-${value}"
+									style="font-weight: 500;"></label>
+								<input type="radio" class="tabuletor-chkbox" name="newSentence"
+									id="listNewChkBox-${value}" value="${value}">
+							</div>
+						`;
+					},
+					width: 50
+				},
+				{
+					title: "Case#",
+					field: "CASE_NUM",
+					headerSort:false
+				},
+				{
+					title: "Charge Num",
+					field: "CHARGE_NUM",
+					headerSort:false
+				},
+				{
+					title: "Charge Seq Num",
+					field: "seqNum",
+					headerSort:false
+				},
+				{
+					title: "Short Description",
+					field: "chargeDesc",
+					headerSort:false
+				},
+				{
+					title: "Jurisdiction",
+					field: "SOH_STATUTE_JURISDICTION",
+					headerSort:false
+				},
+				{
+					title: "Title",
+					field: "SOH_STATUTE_TITLE",
+					headerSort:false
+				},
+				{
+					title: "Sub Section",
+					field: "SOH_STATUTE_SUBSECTION",
+					headerSort:false
+				},
+				{
+					title: "Section",
+					field: "SOH_STATUTE_SECTION",
+					headerSort:false
+				},
+				{
+					title: "Type",
+					field: "SOH_STATUTE_TYPE",
+					headerSort:false
+				},
+				{
+					title: "Class",
+					field: "SOH_STATUTE_CLASS",
+					headerSort:false
+				}
+			],
+			rowFormatter: function(row) {
+        		var data = row.getData();
+        		// Check a condition and set the background color
+        		if (data.APRV_FLAG == 'Y') {
+            		row.getElement().style.backgroundColor = "#c0ff80";
+        		}
+    		}
+		});
+		newChargesTable.on("rowClick", function(e, row) {
+			row.getTable().getRows().forEach(r => r.getElement().classList.remove("row-highlight"));
+    		row.getElement().classList.add("row-highlight");
+			
+			//const rowEl = row.getElement();
+			const radio = row.getElement().querySelector('input[type="radio"]');
+			if (radio) radio.checked = true;
+			document.getElementById("newSentence-Ok-btn").focus();
+		});
+		
+		var sentenceOrdrDetls = [];
+
+		var orderDetailsTable = new Tabulator("#sentenceOrdrDetlTbl", {
+			layout: "fitColumns",
+			placeholder:"No Data Available",
+			data: sentenceOrdrDetls,
+			virtualDom: false,
+			height: '100%',
+			rowHeight: 33,
+			columns: [
+				{
+					title: "Select",
+					field: "SOH_SEQ_NUM",
+					headerSort:false,
+					formatter: (cell) => {
+						const value = cell.getValue();
+						return `
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<label class="custom-control-label" for="modifyOrdrChkBox-${value}"
+									style="font-weight: 500;"></label>
+								<input type="radio" class="tabuletor-chkbox" name="modifySentence"
+									id="modifyOrdrChkBox-${value}" value="${value}">
+							</div>
+						`;
+					},
+					width: 50,
+				},
+				{
+					title: "Case#",
+					field: "CASE_NUM",
+					headerSort:false
+				},
+				{
+					title: "Charge#",
+					field: "CHARGE_NUM",
+					headerSort:false
+				},
+				{
+					title: "Short Description",
+					field: "SHORT_DESC",
+					headerSort:false
+				},
+				{
+					title: "SENTAC Level",
+					field: "SOH_SNTC_LVL_CD",
+					headerSort:false
+				},
+				{
+					title: "Sentence Type",
+					field: "SENTENCE_TYPE",
+					headerSort:false
+				},
+				{
+					title: "TIS/NITS",
+					field: "TIS_NTIS",
+					headerSort:false
+				},
+				{
+					title: "Effective Date",
+					field: "EFFECTIVE_DATE",
+					headerSort:false,
+					formatter: (cell) => {
+						const value = cell.getValue();
+						return `${formatDate(value)}`;
+					}
+				},
+				{
+					title: "Reason",
+					field: "REASON_CODE",
+					headerSort:false,
+					editor: "list",
+					editable: true,
+					/*formatter: (cell) => {
+						const value = cell.getValue();
+						return reasonsDropDwnObj[value] || value || "";
+					}*/
+				}
+			],
+			rowFormatter: function(row) {
+				// Get the row data
+				var data = row.getData();
+				// Check a condition and set the background color
+				if (data.SPRV_DECISION == 'A') {
+					row.getElement().style.backgroundColor = "#c0ff80";
+				}
+				else {
+					row.getElement().style.backgroundColor = "##f00";
+				}
+    		}
+		});
+		orderDetailsTable.on("rowClick", function(e, row) {
+			row.getTable().getRows().forEach(r => r.getElement().classList.remove("row-highlight"));
+    		row.getElement().classList.add("row-highlight");
+
+			//const rowEl = row.getElement();
+			const radio = row.getElement().querySelector('input[type="radio"]');
+			if (radio) radio.checked = true;
+			document.getElementById("modifySentence-Ok-btn").focus();
+		});
+				
+		var sentenceOrdrViewDetls = [];
+		var viewOrderDetailsTable = new Tabulator("#sentenceOrdrViewTbl", {
+			layout: "fitColumns",
+			placeholder:"No Data Available",
+			data: sentenceOrdrViewDetls,
+			//selectableRows:1,
+			maxHeight: 311,
+			virtualDom: false,
+			rowHeight: 66,
+			columns: [
+				{
+					title: "Select",
+					field: "SOH_SEQ_NUM",
+					headerSort:false,
+					formatter: (cell) => {
+						const value = cell.getValue();
+						return `
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<label class="custom-control-label" for="modifyOrdrChkBox-${value}"
+									style="font-weight: 500;"></label>
+								<input type="radio" class="tabuletor-chkbox" name="viewSentence"
+									id="modifyOrdrChkBox-${value}" value="${value}">
+							</div>
+						`;
+					},
+					width: 50
+				},
+				{
+					title: "Order Type",
+					field: "ORDER_TYPE_DESC",
+					headerSort:false,
+					width: 150
+				},
+				{
+					title: "Calculated By / Date / Time",
+					field: "CASE_NUM",
+					headerSort:false,
+					formatter: (cell) => {
+						//const value = cell.getValue();
+						const data = cell.getData();
+						const userId = data.SPRV_USER_ID;
+						const placeholderId = `sprv-${userId}-${cell.getRow().getPosition()}`;
+						getUserNameCached(userId)
+							.then(userName => {
+								const input = document.getElementById(placeholderId);
+								if (input) input.value = userName || 'Unknown';
+							})
+							.catch(err => {
+								console.error('Error fetching user name:', err);
+							});
+						return `
+							<input type="text" class="form-control" id="${placeholderId}" value=""
+								 disabled>
+							<div class="d-flex mt-1">
+								<input type="text" class="form-control mr-2"
+									value="${data.SPRV_DATE ? formatDate(data.SPRV_DATE) : ''}" disabled>
+								<input type="text" class="form-control"
+									value="${data.SPRV_TIME ?? ''}" disabled>
+							</div>
+						`;
+					},
+					width: 250
+				},
+				{
+					title: "Approved By / Date / Time",
+					field: "CASE_NUM",
+					headerSort:false,
+					formatter: (cell) => {
+						//const value = cell.getValue();
+						const data = cell.getData();
+						const userId = data.APRV_USER_ID;
+						const placeholderId = `aprv-${userId}-${cell.getRow().getPosition()}`;
+
+						getUserNameCached(userId)
+						    .then(userName => {
+						      const input = document.getElementById(placeholderId);
+						      if (input) input.value = userName || 'Unknown';
+						    })
+						    .catch(err => {
+						      console.error('Error fetching user name:', err);
+						    });
+						return `
+							<input type="text" class="form-control" id="${placeholderId}" value=""
+								 disabled>
+							<div class="d-flex mt-1">
+								<input type="text" class="form-control mr-2"
+									value="${data.APRV_DATE ? formatDate(data.APRV_DATE) : ''}" disabled>
+								<input type="text" class="form-control"
+									value="${data.APRV_TIME ?? ''}" disabled>
+							</div>
+						`;
+					},
+					width: 250
+				},
+				{
+					title: "Case#/ Charge#/ Charge Desc/ Level/ Type/ Eff. Date",
+					field: "SOH_CASE_NUM",
+					headerSort:false,
+					formatter: (cell) => {
+						//const value = cell.getValue();
+						const data = cell.getData();
+						return `
+							<div style="padding: 4px; line-height: 1.4; font-size: 13px;">
+				<div>${data.CASE_NUM ?? ''} / ${data.CHARGE_NUM ?? ''} / ${data.SHORT_DESC ?? ''} / </div>
+				<div>Level-${data.SOH_SNTC_LVL_CD ?? ''} / ${data.SOH_SNTC_TP_CD ?? ''} / ${data.TIS_NTIS ?? ''} / ${data.EFFECTIVE_DATE ? formatDate(data.EFFECTIVE_DATE) : ''}</div>
+			</div>
+						`;
+					}
+				}
+			],
+			rowFormatter: function(row) {
+        		var data = row.getData();
+        		// Check a condition and set the background color
+        		if (data.APRV_FLAG == 'Y') {
+            		row.getElement().style.backgroundColor = "#c0ff80";
+        		}
+    		}
+		});
+		viewOrderDetailsTable.on("rowClick", function(e, row) {
+			row.getTable().getRows().forEach(r => r.getElement().classList.remove("row-highlight"));
+    		row.getElement().classList.add("row-highlight");
+
+			//const rowEl = row.getElement();
+			const radio = row.getElement().querySelector('input[type="radio"]');
+			if (radio) radio.checked = true;
+			document.getElementById("viewSentence-Ok-btn").focus();
+		});
+
+		let sntcLevelDetailsData = [];
+		var sntcLevelDetailsTbl = new Tabulator("#levelDetailTable", {
+		  	layout: "fitColumns",
+			placeholder: "No Level Details Available",
+			/*placeholder: `<button id="addNewLevelDetail2" class="btn btn-success btn-sm p-1 ml-1 sentenceMainFormField" onclick="addNewLevelDetailRow();" disabled>
+							<i class="fa fa-plus" aria-hidden="true"></i> Add Level Detail</button>`,*/
+		  	data: sntcLevelDetailsData,
+		  	//height: '250px',
+			maxHeight: 211,
+			virtualDom: true,
+			printAsHtml: true,
+			printStyled: true,
+			responsiveLayout: "collapse",
+			resizableColumnFit: true,
+		  	headerSort:false,
+		  	resizableColumns: false,
+
+		  	/*cellNavigation: true, 
+			editorActivate: "dblclick",
+			//enable range selection
+    		selectableRange:1,
+    		selectableRangeColumns:true,
+    		selectableRangeRows:true,
+    		selectableRangeClearCells:true,
+			tabNavigation: true,*/
+
+		  	columns: [
+			{
+				title: "ID",
+				field: "SOCC_SEQ_NUM",
+				visible: false
+			},
+			/*{
+				title: "SohSeq",
+				field: "SOH_SEQ_NUM",
+				visible: false
+			},*/
+			{
+				field: "STATUS",
+				visible: false
+			},
+			{
+			    title: "Select",
+			    field: "CB_SELECT",
+			    headerSort: false,
+			    resizable: false,
+			    width: 50,
+
+			    formatter: (cell) => {
+			        const value = cell.getValue();
+			        const checked = value === 'Y' ? 'checked' : '';
+			        return `<input type="checkbox" ${checked} />`;
+			    },
+
+			    cellClick: function (e, cell) {
+			        // Toggle the checkbox manually
+			        const current = cell.getValue();
+			        const newValue = current === 'Y' ? 'N' : 'Y';
+
+			        // Update the cell value and row data
+			        cell.setValue(newValue);
+			    },
+			},
+			{
+				title: "Condition",
+				field: "CONDITION_CODE",
+				headerSort:false,
+				resizable:false				
+				/*editor: "select", 
+	            editorParams: {
+	                values: {
+	                    "test": "test",
+	                    "test1": "test1",
+	                    "tes2": "test2"
+	                }
+	            }*/
+			},
+			{
+				title: "Treatment",
+				field: "TREATMENT",
+				headerSort:false,
+				resizable:false,
+				//editor: "list",
+				//editable: true,
+				/*editor: "select", 
+	            editorParams: {
+	                values: {
+	                    "test": "test",
+	                    "test1": "test1",
+	                    "tes2": "test2"
+	                }
+	            }*/
+			},
+		  	{
+				title: "Y (Length)",
+				field: "LENGTH_YY",
+				headerSort:false,
+				resizable:false,
+				
+				editor: "input",
+				hozAlign:"right",
+				width: 100,
+				cellEdited: function(cell){
+					console.log("Len YY: "+cell.getValue());
+					cell.getRow().getData().isEdited = true;
+						/*const row = cell.getRow();
+						row.update({
+							...row.getData(),
+						isEdited: true
+					});*/
+				}
+			},
+			{
+				title: "M (Length)",
+				field: "LENGTH_MM",
+				headerSort:false,
+				resizable:false,
+				
+				editor: "input",
+				hozAlign:"right",
+				width: 100,
+				cellEdited: function(cell){
+					console.log("Len MM: "+cell.getValue());
+						const row = cell.getRow();
+						row.update({
+							...row.getData(),
+						isEdited: true
+					});
+				}
+				
+			},
+			{
+				title: "D (Length)",
+				field: "LENGTH_DD",
+				headerSort:false,
+				resizable:false,
+				
+				editor: "input",
+				hozAlign:"right",
+				width: 100,
+				cellEdited: function(cell){
+					console.log("Len DD: "+cell.getValue());
+						const row = cell.getRow();
+						row.update({
+							...row.getData(),
+						isEdited: true
+					});
+				}
+			},
+			{
+				title: "Level",
+				field: "SENTENCE_LEVEL",
+				headerSort:false,
+				resizable:false
+				/*editor: "select", 
+	            editorParams: {
+	                values: {
+	                    "test": "test",
+	                    "test1": "test1",
+	                    "tes2": "test2"
+	                }
+	            }*/
+			},
+			{
+				title: "Held At",
+				field: "HELD_AT",
+				headerSort:false,
+				resizable:false
+				//formatter: cell => heldAtOptions[cell.getValue()] || cell.getValue()
+				/*editor: "select", 
+	            editorParams: {
+	                values: {
+	                    "test": "test",
+	                    "test1": "test1",
+	                    "tes2": "test2"
+	                }
+	            }*/
+			},
+			{
+				title: "Operator",
+				field: "SOCC_OPERATOR",
+				headerSort:false,
+				resizable:false,
+				/*editor: "select", 
+	            editorParams: {
+	                values: {
+	                    "test": "test",
+	                    "test1": "test1",
+	                    "tes2": "test2"
+	                }
+	            }*/
+			},
+			{
+				title: "",
+				field: "",
+				headerSort:false,
+				resizable:false,
+				formatter: "buttonCross",
+  				width: 40,
+  				hozAlign: "center",
+				cellClick: function (e, cell) {
+					if (!disabledState) {
+					deleteSntcLvlDetails(e, cell);
+				}
+				}
+				//width:20,
+			}
+		  ]
+		});
+		
+		function deleteSntcLvlDetails(e, cell){
+			//document.getElementById("confirm_btn").focus();
+			confirmation("Are you sure you want to delete this sentence level detail? This action cannot be undone.", function () {
+				var row = cell.getRow();
+				var recordsToDelete = [];
+				recordsToDelete.push(row.getData());
+				console.log("Deleting Level Detail");
+				
+				apiRequest('DELETE', 'deleteSentenceLvlDetail', recordsToDelete).then(res => {
+					//cell.getRow().delete();
+					cell.getRow().delete();
+					console.info("Level detail deleted successfully");
+				});
+			});
+		}
+
+		/** Popup Tables */
+		/** Court Modal */
+		const pageSize = 500;
+		var courtTable = new Tabulator("#courtModalTbl", {
+			layout: "fitColumns",
+			placeholder:"No Data Available",
+			selectableRows:1,
+			virtualDom: false,
+			height: '200px',
+			headerSort: false,
+			progressiveLoad: "scroll",
+			ajaxProgressiveLoadScrollMargin: 300,
+			columns: [
+				{ title: "Court Code", field: "courtCode", visible: false },
+				{ title: "Court Name", field: "courtName", headerSort: true }
+			]
+		});
+		let courtTableObj = {currPage: 0, totalPages: 0, currSrch: "", loading: false}
+
+		fetchAJAXTableData('getCourts?courtName='+courtTableObj.currSrch+'&page='+courtTableObj.currPage+'&size='+pageSize, courtTable, courtTableObj);
+		
+		function fetchAJAXTableData(url, thisTabl, thisTablObj){
+			thisTablObj.loading = true;
+
+			return apiRequest('GET', url)
+				.then(data => {
+					if (thisTablObj.currPage == 0){
+						thisTabl.setData(data.content);
+					}else{
+						thisTabl.addData(data.content);
+					}
+					thisTablObj.totalPages = data.totalPages;
+					thisTablObj.currPage++;
+					thisTablObj.loading = false;
+				});
+		}
+
+		courtTable.on("scrollVertical", function () {
+			if(!courtTableObj.loading && courtTableObj.currPage < courtTableObj.totalPages){
+				fetchAJAXTableData('getCourts?courtName='+courtTableObj.currSrch+'&page='+courtTableObj.currPage+'&size='+pageSize, courtTable, courtTableObj);
+				
+			}
+		});
+
+		$('#searchCourtInp').on('keyup', function (e) {
+			courtTableObj.currSrch = $(this).val().trim();
+			
+			if (e.keyCode == 13) {
+				$('#searchCourtBtn').trigger('click');
+			}
+		});
+		$("#searchCourtBtn").on("click", function () {
+			courtTableObj.currPage = 0;
+			fetchAJAXTableData('getCourts?courtName='+courtTableObj.currSrch+'&page='+courtTableObj.currPage+'&size='+pageSize, courtTable, courtTableObj);
+			
+		});
+		
+		var judgeTable = new Tabulator("#searchJudgeModalTbl", {
+			layout: "fitColumns",
+			placeholder:"No Data Available",
+			selectableRows:1,
+			virtualDom: false,
+			height: '200px',
+			progressiveLoad: "scroll",
+			ajaxProgressiveLoadScrollMargin: 300,
+			columns: [
+				{ title: "Judge Code", field: "judgeCode", visible: false },
+				{ title: "Last Name", field: "judgeLName" },
+				{ title: "First Name", field: "judgeFName" },
+				{ title: "Middle Name", field: "judgeMName" },
+				{ title: "Suffix Name", field: "judgeSName" }
+			]
+		});
+		let judgeTableObj = {currPage: 0, totalPages: 0, currSrch: "", loading: false};
+
+		fetchAJAXTableData('getJudges?search='+judgeTableObj.currSrch+'&page='+judgeTableObj.currPage+'&size='+pageSize, judgeTable, judgeTableObj);
+		
+		// Statute Modal Table
+		var statuteTable = new Tabulator("#statuteModalTbl", {
+			layout: "fitColumns",
+			placeholder: "No Data Available",
+			selectableRows: 1,
+			virtualDom: false,
+			height: '400px',
+			progressiveLoad: "scroll",
+			ajaxProgressiveLoadScrollMargin: 300,
+			minHeight: 50,
+			maxHeight: 311,
+			columns: [
+				{ title: "Jurisdiction", field: "statuteJurisdiction", width: 100 },
+				{ title: "Title", field: "statuteTitle", width: 80 },
+				{ title: "Section", field: "statuteSection", width: 90 },
+				{ title: "Sub-section", field: "statuteSubsection", width: 100 },
+				{ title: "Type", field: "statuteType", width: 80 },
+				{ title: "Class", field: "statuteClass", width: 80 },
+				{ 
+					title: "Description", 
+					field: "statuteDesc", 
+					minWidth: 200,
+					tooltip:true
+				}
+			]
+		});
+		let statuteTableObj = {
+			currPage: 0, 
+			totalPages: 0, 
+			searchMode: 'keyword',
+			keyword: '',
+			title: '',
+			sec: '',
+			subSec: '',
+			type: '',
+			statuteClass: '',
+			loading: false
+		};
+		
+		judgeTable.on("scrollVertical", function (top) {
+			if(!judgeTableObj.loading && judgeTableObj.currPage < judgeTableObj.totalPages){
+				fetchAJAXTableData('getJudges?search='+judgeTableObj.currSrch+'&page='+judgeTableObj.currPage+'&size='+pageSize, judgeTable, judgeTableObj);
+			}
+		});
+
+		$('#searchJudgeInp').on('keyup', function (e) {
+			judgeTableObj.currSrch = $(this).val().trim();
+			
+			if (e.keyCode == 13) {
+				$('#searchJudgeBtn').trigger('click');
+			}
+		});
+		$("#searchJudgeBtn").on("click", function () {
+			judgeTableObj.currPage = 0;
+			fetchAJAXTableData('getJudges?search='+judgeTableObj.currSrch+'&page='+judgeTableObj.currPage+'&size='+pageSize, judgeTable, judgeTableObj);
+		});
+		
+		// Statute Modal Functions
+		function fetchStatuteData() {
+			if (statuteTableObj.loading) {
+				console.log("Already loading, skipping request");
+				return;
+			}
+			
+			statuteTableObj.loading = true;
+			
+			// Show loading in table and disable search button
+			if (statuteTableObj.currPage === 0) {
+				statuteTable.setData([]);
+			}
+			//statuteTable.showLoader();
+			$('#statuteSearchBtn').prop('disabled', true);
+			
+			let url = 'getStatutes?page=' + statuteTableObj.currPage + '&size=' + pageSize;
+			
+			// Build query based on search mode
+			if (statuteTableObj.searchMode === 'keyword' && statuteTableObj.keyword) {
+				url += '&keyword=' + encodeURIComponent(statuteTableObj.keyword);
+			} else if (statuteTableObj.searchMode === 'others') {
+				if (statuteTableObj.title) url += '&title=' + encodeURIComponent(statuteTableObj.title);
+				if (statuteTableObj.sec) url += '&sec=' + encodeURIComponent(statuteTableObj.sec);
+				if (statuteTableObj.subSec) url += '&subSec=' + encodeURIComponent(statuteTableObj.subSec);
+				if (statuteTableObj.type) url += '&type=' + encodeURIComponent(statuteTableObj.type);
+				if (statuteTableObj.statuteClass) url += '&statuteClass=' + encodeURIComponent(statuteTableObj.statuteClass);
+			}
+			
+			console.log("Fetching statute data from:", url);
+			
+			return apiRequest('GET', url)
+				.then(data => {
+					console.log("Statute data received:", data);
+					if (statuteTableObj.currPage === 0) {
+						statuteTable.setData(data.content);
+					} else {
+						statuteTable.addData(data.content);
+					}
+					statuteTableObj.totalPages = data.totalPages;
+					statuteTableObj.currPage++;
+					statuteTableObj.loading = false;
+					
+					// Hide loader and enable search button
+					//statuteTable.hideLoader();
+					$('#statuteSearchBtn').prop('disabled', false);
+				})
+				.catch(err => {
+					console.error('Error fetching statute data:', err);
+					statuteTableObj.loading = false;
+					//statuteTable.hideLoader();
+					$('#statuteSearchBtn').prop('disabled', false);
+				});
+		}
+		
+		// Statute scroll handler
+		statuteTable.on("scrollVertical", function () {
+			if (!statuteTableObj.loading && statuteTableObj.currPage < statuteTableObj.totalPages) {
+				fetchStatuteData();
+			}
+		});
+		
+		// Statute search mode toggle - with field clearing and smooth transition
+		$('#search-mode').on('change', function() {
+			const newMode = $(this).val();
+			
+			// Clear ALL fields first, before switching
+			$('#keyword-input').val('');
+			$('#filter-title').val('');
+			$('#filter-sec').val('');
+			$('#filter-subsec').val('');
+			$('#filter-type').val('');
+			$('#filter-class').val('');
+			
+			// Clear all search parameters
+			statuteTableObj.keyword = '';
+			statuteTableObj.title = '';
+			statuteTableObj.sec = '';
+			statuteTableObj.subSec = '';
+			statuteTableObj.type = '';
+			statuteTableObj.statuteClass = '';
+			
+			// Now switch the mode with smooth CSS transition
+			statuteTableObj.searchMode = newMode;
+			
+			if (newMode === 'keyword') {
+				// Switch to keyword mode
+				$('.keyword-search-mode').addClass('active');
+				$('.multi-field-search-mode').removeClass('active');
+				// Focus on keyword input after transition
+				setTimeout(() => $('#keyword-input').focus(), 350);
+			} else {
+				// Switch to multi-field mode
+				$('.keyword-search-mode').removeClass('active');
+				$('.multi-field-search-mode').addClass('active');
+				// Focus on first field after transition
+				setTimeout(() => $('#filter-title').focus(), 350);
+			}
+			
+			// Clear table data and reset pagination
+			statuteTable.setData([]);
+			statuteTableObj.currPage = 0;
+			statuteTableObj.totalPages = 0;
+			statuteTableObj.loading = false;
+		});
+		
+		// Statute keyword search - trigger on Enter key
+		$('#keyword-input').on('keyup', function (e) {
+			if (e.keyCode === 13) {
+				performStatuteSearch();
+			}
+		});
+		
+		// Multi-field search inputs - trigger on Enter key
+		$('#filter-title, #filter-sec, #filter-subsec, #filter-type, #filter-class').on('keyup', function (e) {
+			if (e.keyCode === 13) {
+				performStatuteSearch();
+			}
+		});
+		
+		// Search button click handler
+		$('#statuteSearchBtn').on('click', function() {
+			performStatuteSearch();
+		});
+		
+		// Function to perform statute search
+		function performStatuteSearch() {
+			console.log("performStatuteSearch called");
+			console.log("Current search mode:", statuteTableObj.searchMode);
+			
+			statuteTableObj.currPage = 0;
+			
+			if (statuteTableObj.searchMode === 'keyword') {
+				statuteTableObj.keyword = $('#keyword-input').val().trim();
+				console.log("Keyword search:", statuteTableObj.keyword);
+				// Clear multi-field values
+				statuteTableObj.title = '';
+				statuteTableObj.sec = '';
+				statuteTableObj.subSec = '';
+				statuteTableObj.type = '';
+				statuteTableObj.statuteClass = '';
+			} else {
+				// Get multi-field values
+				statuteTableObj.title = $('#filter-title').val().trim();
+				statuteTableObj.sec = $('#filter-sec').val().trim();
+				statuteTableObj.subSec = $('#filter-subsec').val().trim();
+				statuteTableObj.type = $('#filter-type').val().trim();
+				statuteTableObj.statuteClass = $('#filter-class').val().trim();
+				console.log("Multi-field search - Title:", statuteTableObj.title, "Sec:", statuteTableObj.sec);
+				// Clear keyword
+				statuteTableObj.keyword = '';
+			}
+			
+			console.log("Calling fetchStatuteData...");
+			fetchStatuteData();
+		}
+		
+		// Statute row click handler
+		statuteTable.on("rowClick", function (e, row) {
+			const data = row.getData();
+			
+			// Format statute value as: jurisdiction-title-section-subsection-type-class
+			const statuteValue = [
+				data.statuteJurisdiction || '',
+				data.statuteTitle || '',
+				data.statuteSection || '',
+				data.statuteSubsection || '',
+				data.statuteType || '',
+				data.statuteClass || ''
+			].filter(Boolean).join('-');
+			
+			// Populate the statute input field
+			$('#statute').val(statuteValue);
+			
+			// Update the current record with statute values
+			if (currentRecordId && currentRecordType) {
+				const key = `${currentRecordType}_${currentRecordId}`;
+				const modifiedRecord = modifiedRecords.get(key);
+				if (modifiedRecord) {
+					modifiedRecord.SOH_STATUTE_JURISDICTION = data.statuteJurisdiction || '';
+					modifiedRecord.SOH_STATUTE_TITLE = data.statuteTitle || '';
+					modifiedRecord.SOH_STATUTE_SECTION = data.statuteSection || '';
+					modifiedRecord.SOH_STATUTE_SUBSECTION = data.statuteSubsection || '';
+					modifiedRecord.SOH_STATUTE_TYPE = data.statuteType || '';
+					modifiedRecord.SOH_STATUTE_CLASS = data.statuteClass || '';
+				}
+			}
+			
+			// Close the modal
+			$('#statuteModal').modal('hide');
+			document.querySelectorAll('.modal-backdrop.fade.show').forEach(el => el.remove());
+			row.deselect();
+		});
+		
+		// Statute modal open handler - load initial data
+		$('#statuteModal').on('shown.bs.modal', function () {
+			// Only load data if table is empty
+			if (statuteTable.getData().length === 0) {
+				fetchStatuteData();
+			}
+			// Focus on keyword input
+			$('#keyword-input').focus();
+		});
+		
+		var currCommitNo = null;
+		let currSohSeqNum = null;
+		let heldAtOptions = [];
+		let sentenceToOptions = [];
+		let sentenceTypeOptions = [];
+		let reasonsOptions = [];
+		let conditionOptions = [];
+		let treatmentOptions = [];
+		let operatorOptions = [{label: "AND", value: "AND"}, {label: "OR", value: "OR"}];
+		
+		// Change tracking system for sentence records
+		let modifiedRecords = new Map(); // Map to store modified copies of records by their unique ID
+		let currentRecordId = null; // Currently selected record ID
+		let currentRecordType = null; // Type of current record ('modify', 'view', 'new')
+		
+		// Helper function to create deep copy of an object
+		function deepCopy(obj) {
+			if (obj === null || typeof obj !== "object") return obj;
+			if (obj instanceof Date) return new Date(obj.getTime());
+			if (obj instanceof Array) return obj.map(item => deepCopy(item));
+			if (typeof obj === "object") {
+				const copy = {};
+				Object.keys(obj).forEach(key => {
+					copy[key] = deepCopy(obj[key]);
+				});
+				return copy;
+			}
+		}
+		
+		// Function to get or create a modified copy of a record
+		function getModifiedRecord(recordId, originalData, recordType) {
+			const key = `${recordType}_${recordId}`;
+			if (!modifiedRecords.has(key)) {
+				// Create a deep copy to avoid modifying the original
+				modifiedRecords.set(key, deepCopy(originalData));
+			}
+			return modifiedRecords.get(key);
+		}
+		
+		// Function to capture form changes and update the modified record
+		function captureFormChanges() {
+			if (!currentRecordId || !currentRecordType) return;
+			
+			const key = `${currentRecordType}_${currentRecordId}`;
+			const modifiedRecord = modifiedRecords.get(key);
+			if (!modifiedRecord) return;
+			
+			// Capture all form field values
+			const formFields = document.querySelectorAll('.editableField');
+			formFields.forEach(field => {
+				const fieldName = field.getAttribute('name') || field.id;
+				if (!fieldName) return;
+				
+				let value;
+				if (field.type === 'checkbox') {
+					value = field.checked;
+				} else if (field.type === 'radio') {
+					if (field.checked) {
+						value = field.value;
+					} else {
+						return; // Skip unchecked radio buttons
+					}
+				} else {
+					value = field.value;
+				}
+				
+				// Update the modified record
+				modifiedRecord[fieldName] = value;
+			});
+			
+			// Capture select2 dropdowns
+			$('.editableField').each(function() {
+				const fieldName = $(this).attr('name') || $(this).attr('id');
+				if (fieldName && $(this).hasClass('select2-hidden-accessible')) {
+					modifiedRecord[fieldName] = $(this).val();
+				}
+			});
+		}
+		$(document).ready(function () {
+			$('#exit').on('click', function () {
+				message('B', 0, function () {
+						history.back();
+				});
+			});
+			/*document.querySelectorAll('.select2').forEach(el => {
+				el.classList.add('sentenceMainFormField');
+			});*/
+
+			/** Set Arrow key nav for inp fields */
+			enableArrowKeyNavigation('.sentenceMainFormField');
+			//enableArrowKeyNavigation('.tabulator-editing');
+			
+			$('#previousstay-table').on('change', function(){
+				var selectedCommitNo = localStorage.getItem('selectedCommitNo', selectedCommitNo);
+				if (selectedCommitNo && selectedCommitNo != null){
+					currCommitNo = selectedCommitNo;
+					getSentenceOrder();
+					//console.log(selectedCommitNo);
+				}
+			});
+
+			/** Popup Search */
+			// Judge Popup
+			$('#searchJudgeInp').on('keyup', function (e) {
+				if (e.keyCode == 13) {
+					$('#searchJudgeBtn').trigger('click');
+				}
+			});
+			$("#searchJudgeBtn").on("click", function () {
+				judgeSrchStr = this.value;
+				judgeTable.clearData();
+				judgeTable.setData();
+			});
+
+			document.getElementById("viewSentence-Ok-btn").addEventListener("click", function () {
+				// Get the selected radio button
+				const selectedRadio = document.querySelector('input[name="viewSentence"]:checked');
+				if (selectedRadio) {
+					const selectedId = selectedRadio.value;
+
+					// Find the matching row using the unique field value
+					const selectedRow = viewOrderDetailsTable.getData().find(row => String(row.SOH_SEQ_NUM) === selectedId);
+
+					if (selectedRow) {
+						// Set current record tracking
+						currentRecordId = selectedId;
+						currentRecordType = 'view';
+						
+						// Get or create modified record (for view mode, we still track but disable editing)
+						const modifiedRecord = getModifiedRecord(selectedId, selectedRow, 'view');
+						
+						disableAllInputs('.sentenceMainFormField');
+						//document.getElementById("addNewLevelDetail2").disabled = true;
+						// Populate with modified data if available, otherwise original
+						populateFields(modifiedRecord);
+						// reset radio btns again
+						$('input[name="viewSentence"]').prop('checked',false);
+					}
+				}
+			});
+			document.getElementById("newSentence-Ok-btn").addEventListener("click", function () {
+				const selectedRadio = document.querySelector('input[name="newSentence"]:checked');
+				if(selectedRadio){
+					const selectedId = selectedRadio.value;
+					const selectedRow = newChargesTable.getData().find(row => String(row.CASE_NUM) === selectedId);
+					if (selectedRow){
+						// Set current record tracking
+						currentRecordId = selectedId;
+						currentRecordType = 'new';
+						
+						// Get or create modified record
+						const modifiedRecord = getModifiedRecord(selectedId, selectedRow, 'new');
+						
+						enableAllInputs('.sentenceMainFormField');
+						//document.getElementById("addNewLevelDetail2").disabled = false;
+						// Populate with modified data if available, otherwise original
+						currSohSeqNum = 0;
+						populateFields(modifiedRecord);
+						$('input[name="newSentence"]').prop('checked',false);
+						document.getElementById("addNewLevelDetail").disabled = true;
+					}
+				}
+			});
+
+			document.getElementById("modifySentence-Ok-btn").addEventListener("click", function () {
+				// Get the selected radio button
+				const selectedRadio = document.querySelector('input[name="modifySentence"]:checked');
+				if (selectedRadio) {
+					const selectedId = selectedRadio.value;
+
+					// Find the matching row using the unique field value
+					const selectedRow = orderDetailsTable.getData().find(row => String(row.SOH_SEQ_NUM) === selectedId);
+
+					if (selectedRow) {
+						// Set current record tracking
+						currentRecordId = selectedId;
+						currentRecordType = 'modify';
+						
+						// Get or create modified record
+						const modifiedRecord = getModifiedRecord(selectedId, selectedRow, 'modify');
+						
+						enableAllInputs('.sentenceMainFormField');
+						//document.getElementById("addNewLevelDetail2").disabled = false;
+						
+						// Populate with modified data if available, otherwise original
+						populateFields(modifiedRecord);
+						// reset radio btns again
+						$('input[name="modifySentence"]').prop('checked',false);
+						//orderDetailsTable.deselectRow(); // Deselects all rows in the table
+					}
+				}
+			});
+			
+			/** Set Dropdowns */
+			
+			
+			apiRequest('GET', 'getSentenceType').then(types => {
+				//console.log(types);
+				const $select = $("#sentType-DrpDwn");
+				$select.empty().append(`<option value="null"></option>`);
+
+				$.each(types, function (index, item) {
+					$select.append(new Option(item.SENTENCE_TYPE_DESC, item.SENTENCE_TYPE_CODE));
+					sentenceTypeOptions.push({label: item.SENTENCE_TYPE_DESC, value: item.SENTENCE_TYPE_CODE})
+				});
+
+				$select.select2({
+					placeholder: "Sentence Type"
+				});
+
+				
+			});
+			
+			apiRequest('GET', 'getSentenceTo').then(sntnceTo => {
+				//console.log(sntnceTo);
+				const $select = $("#sentTo-DrpDwn");
+				$select.empty().append(`<option value="null"></option>`);
+
+				$.each(sntnceTo, function (index, item) {
+					$select.append(new Option(item.SNTC_LVL_DESC, item.SNTC_LVL_CD));
+					sentenceToOptions.push({label: item.SNTC_LVL_DESC, value: item.SNTC_LVL_CD});
+				});
+
+				$select.select2({
+					placeholder: "Sentence To"
+				});
+			});
+
+			apiRequest('GET', 'getHeldAt').then(heldAt => {
+				//console.log(heldAt);
+				const $select = $("#heldAt-DrpDwn");
+				$select.empty().append(`<option value="null"></option>`);
+
+				$.each(heldAt, function (index, item) {
+					$select.append(new Option(item.SNTC_LVL_DESC, item.SNTC_LVL_CD));
+					//heldAtOptions[item.SNTC_LVL_CD] = item.SNTC_LVL_DESC;
+					/*heldAtOptions.push({
+						label: `${item.SNTC_LVL_DESC}`,
+						value: `${item.SNTC_LVL_CD}`
+					});*/
+					heldAtOptions.push({ label: item.SNTC_LVL_DESC, value: item.SNTC_LVL_CD });
+				});
+
+				$select.select2({
+					placeholder: "Held At"
+				});
+			});
+			
+			apiRequest('POST', 'getFacilityhousing', 'B').then(res => {
+				const facilities = res.facility;
+				const $select = $("#facility-DrpDwn");
+				$select.empty().append(`<option value="null"></option>`);
+
+				$.each(facilities, function (index, item) {
+					let firstSpaceIndex = item[0].indexOf(' ');
+					//let truncatedText = firstSpaceIndex === -1 ? item[0] : item[0].substring(0, firstSpaceIndex);
+					$select.append(new Option(firstSpaceIndex === -1 ? item[0] : item[0].substring(0, firstSpaceIndex), item[1]));
+				});
+
+				$select.select2({
+					placeholder: "Facility"
+				});
+			});
+
+			
+			apiRequest('GET', 'getReasons').then(reasons => {
+				$.each(reasons, function(index, item) {
+					reasonsOptions.push({label: item.REF_VALUE_DESC, value: item.REF_VALUE_CODE})
+				});
+			});
+			
+			apiRequest('GET', 'getTreatments').then(treatments => {
+				$.each(treatments, function(index, item) {
+					treatmentOptions.push({label: item.TREATMENT, value: item.TREATMENTCODE})
+				});
+			});
+			
+			apiRequest('GET', 'getConditions').then(conditions => {
+				$.each(conditions, function(index, item) {
+					conditionOptions.push({label: item.CONDITION, value: item.CONDITIONCODE})
+				});
+			});
+
+			/** Set Date Pickers */
+			/*$(".date-input-withMax").datepicker({
+			    dateFormat: "mm/dd/yy",
+			    changeMonth: true,
+			    changeYear: true,
+			    yearRange: "1900:2050",
+				maxDate: 0	// 0 means today - Max date is today
+			});
+
+			$(".date-input-withoutMax").datepicker({
+			    dateFormat: "mm/dd/yy",
+			    changeMonth: true,
+			    changeYear: true,
+			    yearRange: "1900:2050"
+			});*/
+
+			judgeTable.on("rowClick", function (e, row) {
+				let name = nullHandler(row.getData().judgeLName) + ' ' + nullHandler(row.getData().judgeFName) + ' ';
+					name += nullHandler(row.getData().judgeMName) + ' ' + nullHandler(row.getData().judgeSName);
+				let judgeCode = nullHandler(row.getData().judgeCode);
+				$('#judgeModal').modal('hide');
+				document.querySelectorAll('.modal-backdrop.fade.show').forEach(el => el.remove());
+				row.deselect();
+				$('#judge').val(name.trim());
+				$('#judgeCodeHdn').val(judgeCode.trim());
+
+				if (currentRecordId && currentRecordType) {
+					const key = `${currentRecordType}_${currentRecordId}`;
+					const modifiedRecord = modifiedRecords.get(key);
+					if (modifiedRecord) {
+						modifiedRecord.JUDGE_NAME = name;
+						modifiedRecord.JUDGE_CODE = judgeCode;
+					}
+				}
+			});
+			courtTable.on("rowClick", function (e, row) {
+				let name = nullHandler(row.getData().courtName);
+				let courtCode = nullHandler(row.getData().courtCode);
+				//console.log(name +", "+ courtCode);
+				$('#courtModal').modal('hide');
+				document.querySelectorAll('.modal-backdrop.fade.show').forEach(el => el.remove());
+				row.deselect();
+				$('#court').val(name.trim());
+				$('#courtCodeHdn').val(courtCode.trim());
+				
+				// Update the current record with Court_Name and Court_Code values
+				if (currentRecordId && currentRecordType) {
+					const key = `${currentRecordType}_${currentRecordId}`;
+					const modifiedRecord = modifiedRecords.get(key);
+					if (modifiedRecord) {
+						modifiedRecord.COURT_NAME = name.trim();
+						modifiedRecord.COURT_CODE = courtCode;
+					}
+				}
+			});
+			/**Statute Modal Search*/
+			// Toggle multi-field search based on dropdown
+			$('#search-mode').on('change', function() {
+			if ($(this).val() === 'others') {
+			$('#keyword-input').addClass('d-none');
+			$('#multi-field-search').removeClass('d-none');
+			} else {
+			$('#keyword-input').removeClass('d-none');
+			$('#multi-field-search').addClass('d-none');
+			}
+			});
+			
+			//$('#addNewLevelDetail2').on('click', addNewLevelDetailRow);
+			
+			
+			
+			/** Set table dropdowns */
+			if(orderDetailsTable){
+				orderDetailsTable.getColumn("REASON_CODE").updateDefinition({
+			        editorParams: {
+			            autocomplete: true,
+			            allowEmpty: true,
+			            listOnEmpty: true,
+			            values: reasonsOptions
+			        },
+					formatter: cell => {
+						const found = reasonsOptions.find(opt => opt.value === cell.getValue());
+						return found ? found.label : cell.getValue();
+					}
+				});
+			}
+			if(sntcLevelDetailsTbl){
+				sntcLevelDetailsTbl.getColumn("HELD_AT").updateDefinition({
+					editor: "list",
+					editable: true,
+			        editorParams: {
+			            autocomplete: true,
+			            allowEmpty: true,
+			            listOnEmpty: true,
+			            values: heldAtOptions
+			        },
+					formatter: cell => {
+						const found = heldAtOptions.find(opt => opt.value === cell.getValue());
+						return found ? found.label : cell.getValue();
+					},
+					cellEdited: function(cell){
+						console.log("Held at: "+cell.getValue());
+						const row = cell.getRow();
+						row.update({
+							...row.getData(),
+							isEdited: true
+						});
+					}
+				});
+				sntcLevelDetailsTbl.getColumn("SENTENCE_LEVEL").updateDefinition({
+					editor: "list",
+					editable: true,
+			        editorParams: {
+			            autocomplete: true,
+			            allowEmpty: true,
+			            listOnEmpty: true,
+			            values: sentenceToOptions
+			        },
+					formatter: cell => {
+						const found = sentenceToOptions.find(opt => opt.value === cell.getValue());
+						return found ? found.label : cell.getValue();
+					},
+					cellEdited: function(cell){
+						console.log("Sentence Level: "+cell.getValue());
+						const row = cell.getRow();
+						row.update({
+							...row.getData(),
+							isEdited: true
+						});
+					}
+				});
+				sntcLevelDetailsTbl.getColumn("CONDITION_CODE").updateDefinition({
+					editor: "list",
+					editable: true,
+			        editorParams: {
+			            autocomplete: true,
+			            allowEmpty: true,
+			            listOnEmpty: true,
+			            values: conditionOptions
+			        },
+					formatter: cell => {
+						const found = conditionOptions.find(opt => opt.value === cell.getValue());
+						console.log(found, cell.getValue());
+						return found ? found.label : cell.getValue();
+					},
+					cellEdited: function(cell){
+						console.log("Condition code: "+cell.getValue());
+						const row = cell.getRow();
+						row.update({
+							...row.getData(),
+							isEdited: true
+						});
+					}
+				});
+				sntcLevelDetailsTbl.getColumn("TREATMENT").updateDefinition({
+					editor: "list",
+					editable: true,
+			        editorParams: {
+			            autocomplete: true,
+			            allowEmpty: true,
+			            listOnEmpty: true,
+			            values: treatmentOptions
+			        },
+					formatter: cell => {
+						const found = treatmentOptions.find(opt => opt.value === cell.getValue());
+						return found ? found.label : cell.getValue();
+					},
+					cellEdited: function(cell){
+						console.log("Treatement: "+cell.getValue());
+						const row = cell.getRow();
+						row.update({
+							...row.getData(),
+							isEdited: true
+						});
+					}
+				});
+				sntcLevelDetailsTbl.getColumn("SOCC_OPERATOR").updateDefinition({
+					editor: "list",
+					editable: true,
+					editorParams: {
+						autocomplete: true,
+						allowEmpty: true,
+						listOnEmpty: true,
+						values: operatorOptions
+					},
+					formatter: cell => {
+						const found = operatorOptions.find(opt => opt.value === cell.getValue());
+						return found ? found.label : cell.getValue();
+					},
+					cellEdited: function(cell){
+						console.log("Operator: "+cell.getValue());
+						const row = cell.getRow();
+						row.update({
+							...row.getData(),
+							isEdited: true
+						});
+					}
+				});
+			}
+			
+			$('#addNewLevelDetail').on('click', addNewLevelDetailRow);			
+
+			document.getElementById("saveBtn").addEventListener("click", function () {
+				console.log("saving...");
+				// Capture any pending changes before saving
+				captureFormChanges();
+				
+				const modifiedList = [];
+				const newList = [];
+				
+				modifiedRecords.forEach((modifiedRecord, key) => {
+					if (key.startsWith('modify_')) {
+						modifiedList.push(modifiedRecord);
+					} else if (key.startsWith('new_')) {
+						newList.push(modifiedRecord);
+					}
+				});
+
+				// Check for changes in sntcLevelDetailsTbl
+				let levelDetails = [];
+				if (sntcLevelDetailsTbl) {
+					var allRows = sntcLevelDetailsTbl.getData();
+					var newLvlDetails = allRows.filter(row => row.isNew);
+					var updatedLvlDetails = allRows.filter(row => row.isEdited && !row.isNew);
+					
+					// Combine new and updated level details
+					levelDetails = [...newLvlDetails, ...updatedLvlDetails];
+				}
+				
+				// Prepare data to save
+				const hasMainChanges = modifiedList.length > 0 || newList.length > 0;
+				const hasLevelChanges = levelDetails.length > 0;
+				
+				if (hasMainChanges || hasLevelChanges) {
+					const recordsToSave = {
+						modify: modifiedList,
+						new: newList,
+						levelDetails: levelDetails
+					};
+					console.log("Saving records:", recordsToSave);
+
+					apiRequest('POST', 'insUpdSentenceOrder', recordsToSave).then(res => {
+						console.log("Save response:", res);
+						
+						// Extract generated sequence numbers from response
+						const generatedSeqNums = res.generatedSeqNums || [];
+						console.log("Generated sequence numbers:", generatedSeqNums);
+						
+						// Update modified records map with generated sequence numbers
+						let seqNumIndex = 0;
+						for (const [key, value] of [...modifiedRecords]) {
+						    if (key.startsWith('new_')) {
+						        // Get the generated sequence number for this new record
+						        if (seqNumIndex < generatedSeqNums.length) {
+						            const generatedSeqNum = generatedSeqNums[seqNumIndex];
+						            console.log(`Updating new record ${key} with SOH_SEQ_NUM: ${generatedSeqNum}`);
+						            
+						            // Update the record with the generated sequence number
+						            value.SOH_SEQ_NUM = generatedSeqNum;
+						            
+						            // Update currSohSeqNum if this is the current record
+						            if (currentRecordId && key === `new_${currentRecordId}`) {
+						                currSohSeqNum = generatedSeqNum;
+						                console.log(`Updated currSohSeqNum to: ${currSohSeqNum}`);
+						                
+						                // Enable the addNewLevelDetail button now that we have a valid soh_seq_num
+						                document.getElementById("addNewLevelDetail").disabled = false;
+						            }
+						            
+						            seqNumIndex++;
+						        }
+						        
+						        // Rename the key from 'new_' to 'modify_'
+						        const newKey = key.replace(/^new_/, 'modify_');
+						        
+						        // Only rename if newKey doesn't already exist
+						        if (!modifiedRecords.has(newKey)) {
+						            modifiedRecords.set(newKey, value);
+						            modifiedRecords.delete(key);
+						            
+						            // Update currentRecordType if this is the current record
+						            if (currentRecordId && key === `new_${currentRecordId}`) {
+						                currentRecordType = 'modify';
+						                console.log(`Updated currentRecordType to: ${currentRecordType}`);
+						            }
+						        }
+						    }
+						}
+						
+						// Refresh the data
+						getSentenceOrder();
+						getSentenceOrderViewDetails();
+						getSentenceLvlDetails();
+						
+						console.log("Records saved successfully");
+						custom_msg('CUS', 'Changes have been saved successfully to OMNet.');
+					}).catch(err => {
+					    // failure path
+					    console.error("Save failed:", err.message);
+					    custom_msg('CUW', 'Failed to save changes to OMNet.');
+					});
+				} else {
+					console.log("No modified records to save");
+				}
+			});
+
+			// Add event listeners to capture form changes
+			$(document).on('change', '.editableField', function() {
+				captureFormChanges();
+			});
+			
+			// Also capture changes on select2 dropdowns
+			$('.editableField').on('select2:select', function (e) {
+			    captureFormChanges();
+			});
+
+			$(document).on('change', '.editableField[type=radio]', function () {
+			    console.log('Radio changed: ', this.value);
+			    captureFormChanges();
+			});
+			
+			$('#cancel').on('click', function () {
+				clearSentenceCalcScreen();
+			});
+			
+			enableRowNavigation("#sentenceOrderDetailModal", orderDetailsTable, "#modifySentence-Ok-btn");
+			enableRowNavigation("#viewOrderDetailModal", viewOrderDetailsTable, "#viewSentence-Ok-btn");
+			enableRowNavigation("#newChargesListModal", newChargesTable, "#newSentence-Ok-btn");
+			
+			/** On Modal open focus event handlers */
+			$('#myModal').on('shown.bs.modal', function () {
+			  document.getElementById("confirm_btn").focus();
+			});
+			$('#judgeModal').on('shown.bs.modal', function () {
+				document.getElementById("searchJudgeInp").focus();
+			});
+			$('#courtModal').on('shown.bs.modal', function () {
+				document.getElementById("searchCourtInp").focus();
+			});
+			
+			disableAllInputs('.sentenceMainFormField');
+			
+		});
+
+		function nullHandler(x) {
+			if (x == null) {
+				x = '';
+			}
+			return x;
+		}
+
+		function getSentenceLvlDetails(){
+			if(currSohSeqNum == 0 || currSohSeqNum == null){
+				sntcLevelDetailsTbl.setData([]);
+			}else{
+			apiRequest('GET', 'getSentenceLevelDetails?sohSeqNum='+currSohSeqNum).then(lvlDetails => {
+				sntcLevelDetailsData = lvlDetails.resultset;
+				//if (sntcLevelDetailsData.length) sntcLevelDetailsData.forEach(o => o.SOH_SEQ_NUM = currSohSeqNum);
+				sntcLevelDetailsTbl.setData(sntcLevelDetailsData);
+			});}
+		}
+
+		// Populate Fields
+		function populateFields(data){
+			// First Section
+			document.getElementById("caseNum").value = data.CASE_NUM ? data.CASE_NUM : '';
+			document.getElementById("craNum").value = data.CRA_NUM ? data.CRA_NUM : '';
+			document.getElementById("chargeDesc").value = data.SHORT_DESC ? data.SHORT_DESC : '';
+			document.getElementById("offenceDate").value = data.OFFENSE_DATE ? formatDate(data.OFFENSE_DATE) : '';
+			document.getElementById("sentDate").value = data.SOH_SENT_DATE ? formatDate(data.SOH_SENT_DATE) : '';
+
+			const courtInput = document.getElementById("court");
+			(data.COURT_CODE)
+			? getCourtById(data.COURT_CODE).then(c => courtInput.value = c.courtName)
+			: courtInput.value = data.COURT_CODE || '';
+			//document.getElementById("court").value = data.COURT_CODE ? data.COURT_CODE : '';
+
+			const judgeInput = document.getElementById("judge");
+			(data.JUDGE_CODE)
+			? getJudgeById(data.JUDGE_CODE).then(j => judgeInput.value = [j.judgeLName, j.judgeFName, j.judgeMName, j.judgeSName].filter(Boolean).join(' '))
+			: judgeInput.value = data.JUDGE_CODE || '';
+			//document.getElementById("judge").value = data.JUDGE_CODE ? data.JUDGE_CODE : '';
+			document.getElementById("statute").value = (data.SOH_STATUTE_JURISDICTION ? data.SOH_STATUTE_JURISDICTION : "") +
+				(data.SOH_STATUTE_TITLE ? "-" + data.SOH_STATUTE_TITLE : "") +
+				(data.SOH_STATUTE_SECTION ? "-" + data.SOH_STATUTE_SECTION : "") +
+				(data.SOH_STATUTE_SUBSECTION ?  "-" + data.SOH_STATUTE_SUBSECTION : "") +
+				(data.SOH_STATUTE_TYPE ? "-" + data.SOH_STATUTE_TYPE : "") +
+				(data.SOH_STATUTE_CLASS ? "-" + data.SOH_STATUTE_CLASS : "");
+
+			document.getElementById("4204K").checked = (String(data.FLAG_4204K).toUpperCase() === 'Y');
+
+			// Second Section
+			document.getElementById("effDate").value = data.EFFECTIVE_DATE ? formatDate(data.EFFECTIVE_DATE) : '';
+			$('#sentType-DrpDwn')
+				  .val(data.SENTENCE_TYPE).trigger('change.select2');
+			// TIS / NTIS
+			$('#sentTo-DrpDwn')
+				  .val(data.SOH_SNTC_LVL_CD).trigger('change.select2');
+			$('#heldAt-DrpDwn')
+				  .val(data.HELD_AT).trigger('change.select2');
+			$('#facility-DrpDwn')
+				  .val(data.FACILITY).trigger('change.select2');
+
+			document.getElementById("lenY").value = data.LENGTH_YY ? data.LENGTH_YY : '';
+			document.getElementById("lenM").value = data.LENGTH_MM ? data.LENGTH_MM : '';
+			document.getElementById("lenD").value = data.LENGTH_DD ? data.LENGTH_DD : '';
+			document.getElementById("jailY").value = data.JAIL_CREDIT_YY ? data.JAIL_CREDIT_YY : '';
+			document.getElementById("jailM").value = data.JAIL_CREDIT_MM ? data.JAIL_CREDIT_MM : '';
+			document.getElementById("jailD").value = data.JAIL_CREDIT_DD ? data.JAIL_CREDIT_DD : '';
+			document.getElementById("minMandY").value = data.MIN_MAND_YY ? data.MIN_MAND_YY : '';
+			document.getElementById("minMandM").value = data.MIN_MAND_MM ? data.MIN_MAND_MM : '';
+			document.getElementById("minMandD").value = data.MIN_MAND_DD ? data.MIN_MAND_DD : '';
+			document.getElementById("absLenY").value = data.ABS_LEN_YY ? data.ABS_LEN_YY : '';
+			document.getElementById("absLenM").value = data.ABS_LEN_MM ? data.ABS_LEN_MM : '';
+			document.getElementById("absLenD").value = data.ABS_LEN_DD ? data.ABS_LEN_DD : '';
+
+			document.getElementById("defStDate").value = data.DEFERRED_DATE ? formatDate(data.DEFERRED_DATE) : '';
+			document.getElementById("relDate").value = data.SOH_RELEASE_DATE ? formatDate(data.SOH_RELEASE_DATE) : '';
+			document.getElementById("time").value = data.SOH_RELEASE_TIME ? data.SOH_RELEASE_TIME : '';
+
+			document.getElementById("daysEarned").value = data.SOH_MERIT_DAYS ? data.SOH_MERIT_DAYS : '';
+			document.getElementById("daysPerWeekToServe").value = data.SOH_WEEKENDER_DAYS ? data.SOH_WEEKENDER_DAYS : '';
+
+			//document.querySelector('input[name="NTISRadios"][value="'+data.TIS_NTIS+'"]').checked = true;
+			if (data.TIS_NTIS) {
+			    // Select and check the matching one
+			    const el = document.querySelector(`input[name="NTISRadios"][value="${data.TIS_NTIS}"]`);
+			    if (el) el.checked = true;
+			} else {
+			    // Clear any previously checked radios
+			    document.querySelectorAll('input[name="NTISRadios"]').forEach(r => r.checked = false);
+			}
+			if(data.CONS_CONC_FLAG) document.querySelector('input[name="CONS_CONC_FLAG"][value="'+data.CONS_CONC_FLAG+'"]').checked = true;
+
+			document.getElementById("indefiniteChkBox").checked = (String(data.SOH_INDEFINITE_FLAG).toUpperCase() === 'Y');
+			document.getElementById("deferredChkBox").checked = (String(data.DEFERRED_FLAG).toUpperCase() === 'Y');
+			document.getElementById("eligParolChkBox").checked = (String(data.ELIGIBLE_FR_PAROLE_FLAG).toUpperCase() === 'Y');
+			document.getElementById("eligGdtmChkBox").checked = (String(data.SOH_GDTM_CALC_FLAG).toUpperCase() === 'Y');
+			document.getElementById("docDiscretionChkBox").checked = (String(data.SOH_DOC_DISCRETION).toUpperCase() === 'Y');
+
+			//document.getElementById("susTimeSrvd").checked = data.DEFERRED_FLAG ? data.DEFERRED_FLAG : false;
+			//document.getElementById("doNotProcessChkBox").checked = data.ELIGIBLE_FR_PAROLE_FLAG ? data.ELIGIBLE_FR_PAROLE_FLAG : false;
+			
+			currSohSeqNum = data.SOH_SEQ_NUM;
+			getSentenceLvlDetails();
+		}
+		
+		function addNewLevelDetailRow(){
+			const sbiNoInput = $('#sbiNumberInput').val().trim();
+
+			if (!sbiNoInput) {
+				message('CUW', "SBI# must be entered", 0);
+				return;
+			}
+
+			sntcLevelDetailsTbl.addRow({
+				isNew: true,
+				SOH_SEQ_NUM: currSohSeqNum,
+				SOCC_SEQ_NUM: null,
+				LENGTH_YY: "",
+				LENGTH_MM: "",
+				LENGTH_DD: "",
+				STATUS: "A",
+				CONDITION_CODE: "",
+				TREATMENT: "",
+				SENTENCE_LEVEL: "",
+				HELD_AT: "",
+				SOCC_OPERATOR: "",
+				CB_SELECT: "N",
+			}, true);
+		}
+		
+		$(document).ajaxComplete(function(event, xhr, settings) {
+			if (settings.url.includes('checkSbiNoAndLocation') && xhr.status === 200) {
+				console.log("Getting AJAX Complete.....");
+				$.ajax({
+					method: "GET",
+					url: contextPath + "getDocketsCommitNo",
+					data: {
+						sbiNo: $('#sbiNumberInput').val()
+					},
+					success: function(response) {
+						if(response){
+							currCommitNo = response;
+							getNewChargesList();
+							getSentenceOrder();
+							getSentenceOrderViewDetails();
+							//console.log(response);
+							loader(0);
+							//document.getElementById("commonPerloader").style.display="none";
+						}
+					},
+					error: function (xhr, status, error) {
+						console.error("Error occured when fetching commit number: ", error);
+					}
+				});
+			}
+		});
+
+		function getNewChargesList(){
+			$.ajax({
+				method: "GET",
+				url: contextPath + "getNewChargesList",
+				data: {
+					commitNo: currCommitNo
+				},
+				success: function(response) {
+					if(response){
+						newChargesList = response;
+						newChargesTable.setData(newChargesList);
+						loader(0);
+						//document.getElementById("commonPerloader").style.display="none";
+					}
+				},
+				error: function (xhr, status, error) {
+					console.error("Error occured when fetching commit number: ", error);
+				}
+			});
+		}
+		
+		function getSentenceOrder(){
+			$.ajax({
+				method: "GET",
+				url: contextPath + "getSentenceOrderModifyDetails",
+				data: {
+					commitNo: currCommitNo
+				},
+				success: function(response) {
+					if(response){
+						sentenceOrdrDetls = response.resultset;
+						orderDetailsTable.setData(sentenceOrdrDetls);
+						
+						loader(0);
+						//document.getElementById("commonPerloader").style.display="none";
+					}
+				},
+				error: function (xhr, status, error) {
+					console.error("Error occured when fetching commit number: ", error);
+				}
+			});
+		}
+
+		function getSentenceOrderViewDetails(){
+			$.ajax({
+				method: "GET",
+				url: contextPath + "getSentenceOrderViewDetails",
+				data: {
+					commitNo: currCommitNo
+				},
+				success: function(response) {
+					if(response){
+						sentenceOrdrViewDetls = response;
+						viewOrderDetailsTable.setData(sentenceOrdrViewDetls);
+
+						loader(0);
+						//document.getElementById("commonPerloader").style.display="none";
+					}
+				},
+				error: function (xhr, status, error) {
+					console.error("Error occured when fetching view details: ", error);
+					//document.getElementById("commonPerloader").style.display="none";
+					loader(0);
+				}
+			});
+		}
+		
+		function getUserFullName(userId){
+			$.ajax({
+				url: contextPath + 'getUserFullName',
+				type: 'GET',
+				data: {
+					userId: userId
+				},
+				success: function (res) {
+					$("#returnedByItemsInp").val(res ? res : '');
+				}
+			});
+		}
+		
+		/*function clearSentenceCalcScreen(){
+			$('#sbiNumberInput').val("");
+			currCommitNo = null;
+			
+			clearFormHeaderData();
+		}*/
+
+		function clearSentenceCalcScreen(){
+			// 1. Clear SBI input
+			$('#sbiNumberInput').val("");
+			
+			// 2. Reset global variables
+			currCommitNo = null;
+			currSohSeqNum = null;
+			currentRecordId = null;
+			currentRecordType = null;
+			modifiedRecords.clear();
+			
+			// 3. Clear all tables
+			newChargesTable.clearData();
+			orderDetailsTable.clearData();
+			viewOrderDetailsTable.clearData();
+			sntcLevelDetailsTbl.clearData();
+			courtTable.clearData();
+			judgeTable.clearData();
+			statuteTable.clearData();
+			
+			// 4. Reset table state objects
+			courtTableObj = {currPage: 0, totalPages: 0, currSrch: "", loading: false};
+			judgeTableObj = {currPage: 0, totalPages: 0, currSrch: "", loading: false};
+			statuteTableObj = {
+				currPage: 0, 
+				totalPages: 0, 
+				searchMode: 'keyword',
+				keyword: '',
+				title: '',
+				sec: '',
+				subSec: '',
+				type: '',
+				statuteClass: '',
+				loading: false
+			};
+			
+			// 5. Clear all form fields
+			$('.sentenceMainFormField').val('');
+			$('.editableField').val('');
+			$('#courtCodeHdn').val('');
+			$('#judgeCodeHdn').val('');
+			
+			// 6. Clear checkboxes and radios
+			$('.sentenceMainFormField[type="checkbox"]').prop('checked', false);
+			$('.editableField[type="checkbox"]').prop('checked', false);
+			$('.sentenceMainFormField[type="radio"]').prop('checked', false);
+			$('.editableField[type="radio"]').prop('checked', false);
+			
+			// 7. Reset select2 dropdowns
+			$('#sentType-DrpDwn').val(null).trigger('change');
+			$('#sentTo-DrpDwn').val(null).trigger('change');
+			$('#heldAt-DrpDwn').val(null).trigger('change');
+			$('#facility-DrpDwn').val(null).trigger('change');
+			
+			// 8. Reset statute modal
+			$('#search-mode').val('keyword');
+			$('.keyword-search-mode').addClass('active');
+			$('.multi-field-search-mode').removeClass('active');
+			$('#keyword-input').val('');
+			$('#filter-title').val('');
+			$('#filter-sec').val('');
+			$('#filter-subsec').val('');
+			$('#filter-type').val('');
+			$('#filter-class').val('');
+			
+			// 9. Disable add level detail button
+			$('#addNewLevelDetail').prop('disabled', true);
+			
+			// 10. Disable all fields
+			disableAllInputs('.sentenceMainFormField');
+			
+			// 11. Call any existing clear function
+			clearFormHeaderData();
+			
+			// 12. Focus back to SBI input
+			$('#sbiNumberInput').focus();
+		}
+
+		
+		async function apiRequest(method, url, data = null) {
+		  try {
+		    const options = {
+		      method: method.toUpperCase(),
+		      headers: { 'Content-Type': 'application/json' },
+		      ...(data && { body: typeof data === 'string' ? data : JSON.stringify(data) })
+		    };
+
+		    const res = await fetch(contextPath + url, options);
+		    const contentType = res.headers.get('content-type');
+
+		    const response = contentType && contentType.includes('application/json')
+		      ? await res.json()
+		      : await res.text();
+
+		    if (!res.ok) {
+		      const message = response?.message || res.statusText || 'Unknown error';
+		      console.error('Fetch failed:', message);
+		      throw new Error(message);
+		    }
+
+			loader(0);
+			//document.getElementById("commonPerloader").style.display="none";
+		    return response;
+		  } catch (err) {
+		    console.error('Fetch failed:', err.message || err);
+		    throw new Error(err.message);
+		  }
+		}
+		
+		const userCache = {};
+		const judgeCache = {};
+		const courtCache = {}
+
+		function getUserNameCached(userId) {
+		  if (userCache[userId]) return Promise.resolve(userCache[userId]);
+		  return apiRequest('GET', 'getUserFullName?userId=' + userId).then(name => {
+		    userCache[userId] = name;
+		    return name;
+		  });
+		}
+		function getJudgeById(judgeId){
+			if(judgeCache[judgeId]) return Promise.resolve(judgeCache[judgeId]);
+			return apiRequest('GET', 'getJudges/' + judgeId).then(name => {
+		    	judgeCache[judgeId] = name;
+		    	return name;
+		  	});
+		}
+		function getCourtById(courtId){
+			if(courtCache[courtId]) return Promise.resolve(courtCache[courtId]);
+			return apiRequest('GET', 'getCourts/' + courtId).then(name => {
+		    	courtCache[courtId] = name;
+		    	return name;
+		  	});
+		}
+
+		function enableRowNavigation(popupSelector, table, okButtonSelector) {
+  let currentIndex = 0;
+
+  function handleArrowNav(e) {
+    let rows = table.getRows();
+    if (!rows.length) return;
+
+    if (e.key === "ArrowDown") {
+      if (currentIndex < rows.length - 1) currentIndex++;
+      highlightRow(rows, currentIndex);
+      e.preventDefault();
+    } else if (e.key === "ArrowUp") {
+      if (currentIndex > 0) currentIndex--;
+      highlightRow(rows, currentIndex);
+      e.preventDefault();
+    } else if (e.key === "Enter") {
+      if (rows[currentIndex]) {
+        triggerRowClick(rows[currentIndex]);
+        e.preventDefault();
+      }
+    }
+  }
+
+  function highlightRow(rows, index) {
+    rows.forEach(r => r.getElement().classList.remove("row-highlight"));
+    if (rows[index]) {
+      rows[index].getElement().classList.add("row-highlight");
+      rows[index].getElement().scrollIntoView({block: "nearest"});
+	  //table.selectRow(index);
+    }
+  }
+
+  function triggerRowClick(row) {
+    const rowEl = row.getElement();
+    const radio = rowEl.querySelector('input[type="radio"]');
+    if (radio) radio.checked = true;
+
+    // dynamically focus the OK button for this modal
+    if (okButtonSelector) {
+      const btn = document.querySelector(okButtonSelector);
+      if (btn) {
+		btn.focus();
+	  	btn.click();
+	  } 
+    }
+
+    // optional: call Tabulator's rowClick callback
+    row.getTable().options.rowClick?.(null, row);
+  }
+
+  $(popupSelector).on("shown.bs.modal", () => {
+    currentIndex = 0;
+    let rows = table.getRows();
+    if (rows.length) highlightRow(rows, currentIndex);
+
+    document.addEventListener("keydown", handleArrowNav);
+  });
+
+  $(popupSelector).on("hidden.bs.modal", () => {
+    document.removeEventListener("keydown", handleArrowNav);
+  });
+}
+
+
+
+		
+		// To "disable"
+		    //$0.classList.add('disabled-link');
+
+		    // To "enable"
+		    //$0.classList.remove('disabled-link')
+	/*
+	.disabled-link {
+	      pointer-events: none;
+	      cursor: default;
+	      opacity: 0.6;
+	    }
+	*/
+
+	</script>
+	
+	
+	<!--<script src="js/../script.js"></script>-->
+	
+		<div th:replace="~{fragments/reusable :: reusable}"></div>
+		<div th:replace="~{fragments/msgBox :: msgBox}"></div>
+		<script type="text/javascript">
+			$('#js-page-content').smartPanel();
+			// Auto-load data if SBI number is present on page load
+if($('#sbiNumberInput').val()){
+    $('#searchButton').click();
+}
+
+			//if($('#sbiNumberInput').val()){$("#searchButton").click();}
+		</script>
+	</body>
+</html>

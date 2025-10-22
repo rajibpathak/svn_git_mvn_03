@@ -1,0 +1,3135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+	<title>Omnet Desktop</title>
+	<div th:replace="~{fragments/head :: head}"></div>
+	
+	<link rel="stylesheet" media="screen, print" href="css/datagrid/datatables/datatables.bundle.css">	
+    <link rel="stylesheet" media="screen, print" href="css/formplugins/ion-rangeslider/ion-rangeslider.css">
+    <link rel="stylesheet" media="screen, print" href="css/statistics/chartist/chartist.css">
+    <link rel="stylesheet" media="screen, print" href="css/statistics/apexcharts/apexcharts.css">
+
+
+<body class="mod-bg-1 nav-function-top header-function-fixed">
+	<!-- BEGIN Page Wrapper -->
+	<!-- BEGIN Page Header -->
+		<div th:replace="~{fragments/header :: header}"></div>
+		<div th:replace="~{fragments/navmenus :: navmenus}"></div>
+	<!-- END Page Header -->
+	<div class="page-wrapper">
+		<div class="page-inner">
+			<!-- BEGIN Left Aside -->
+		<!-- 	<div th:replace="~{fragments/sidebar :: sidebar}"></div> -->
+			<!-- END Left Aside -->
+			<div class="page-content-wrapper">
+				<!-- BEGIN Page Content -->
+				<!-- the #js-page-content id is needed for some plugins to initialize -->
+				<main id="js-page-content" role="main" class="page-content">
+				<!-- <ol class="breadcrumb page-breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">SmartAdmin</a></li>
+                            <li class="breadcrumb-item">category_1</li>
+                            <li class="breadcrumb-item">category_2</li>
+                            <li class="breadcrumb-item active">Page Titile</li>
+                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        </ol> -->
+				<div class="subheader ml-2 mb-0 desktopSubhead">
+					<!--<h1 class="subheader-title">
+
+						<i class='subheader-icon fal fa-window'></i> OMNET DESKTOP</span>
+
+						<div class="d-flex align-items-center">
+
+							<i class='subheader-icon fal fa-window'></i>
+
+							<a href="OmnetDesktop" class="btn btn-sm ml-2 active text-nowrap" id="omnetDesktop" style="min-width: 105px!important;">Omnet Desktop</button>
+
+							<a href="adminDashboard" class="btn btn-sm ml-2 text-nowrap" id="administrationScreen" style="min-width: 105px!important;">Administration</a>
+
+						</div>
+
+						<li class="position-absolute d-none d-sm-block" style="font-size: 10px;right: 10px;top: 10px;"></li>
+
+					</h1>-->
+					<!--<div class="demo">
+						<div class="btn-group headingIconsBlock" style="margin: 0 !important;">
+							<div class="col-12 pr-0">
+								<div class="js-get-date">[your date here]</div>
+							</div>
+						</div>
+					</div>-->
+					
+<!-- 				<div class="frame-wrap">
+							<a href="javascript:void(0);"
+								class="btn btn-primary btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="tooltip" data-placement="top"
+								data-original-title="Add"> <i class="fal fa-plus"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-warning btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="tooltip" data-placement="top"
+								data-original-title="Print"> <i class="fal fa-print"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="tooltip" data-placement="top"
+								data-original-title="Clear"> <i class="fal fa-times"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-success btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="tooltip" data-placement="top"
+								data-original-title="OK/Save"> <i class="fal fa-save"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-danger btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="tooltip" data-placement="top"
+								data-original-title="Cancel/Exit"> <i
+								class="fal fa-sign-out"></i>
+							</a> id="Notification"
+</div> -->
+				</div>
+				<div class="panel bg-transparent mb-0" style="border: 0;box-shadow: unset;">				
+					<div class="panel-content">
+						<div class="d-flex align-items-center">							
+		                    <ul class="nav nav-tabs w-100 ml-3" role="tablist">
+		                        <li class="nav-item"><a class="nav-link active" data-toggle="tab"
+		                                href="#omnet_Desktop" role="tab">Omnet Desktop</a></li>
+		                        <li class="nav-item"><a class="nav-link" data-toggle="tab"
+		                                href="#adminDashboard_Tab" role="tab">Commissioner/Administrator Dashboard</a></li>
+		                    </ul>
+		                    <div class="w-100">
+								<div class="col-12 d-flex justify-content-end">
+									<div class="js-get-date">[your date here]</div>
+								</div>
+							</div>
+						</div>
+	                    <div class="tab-content p-2">
+	                        <div class="tab-pane fade show active" id="omnet_Desktop" role="tabpanel">
+								<div class="row mb-0 mx-2">
+									<div class="col-lg-12 col-xl-12 px-0">
+										<div class="d-flex" style="margin: 0 0px;">
+											<div class="w-100 mb-4">
+												<div>									
+													<div class="summaryMain row">
+														<div class="col-lg-3 col-md-6">	
+															<div class="col-lg-12 col-md-12 d-flex p-3 sumaryBlock" id="populationCountBlock" style="background: #a38cc6;">												
+																<div class="text-left">
+																	<h6 id="PopulationCountvalues" class="summaryText mb-0" value=""></h6><!-- 2,025 -->
+																	<p class="mb-0">Population Count</p>
+																</div>
+																<div> <i class="fa fa-users" aria-hidden="true"></i> </div>
+															</div>								
+														</div>
+														<div class="col-lg-3 col-md-6 admissionCountBlock">	
+															<div class="col-lg-12 col-md-12 d-flex p-3 sumaryBlock" id="populationCountBlock" style="background: #ffca5b;">											
+																<div class="text-left">
+																	<h6 id="AdmissionCountvalues" class="summaryText mb-0" value=""></h6> <!-- 2,333 -->
+																	<p class="mb-0">Admission Count</p>
+																</div>
+																<div> <i class="fa fa-address-card" aria-hidden="true"></i> </div>
+															</div>								
+														</div>
+														<div class="col-lg-3 col-md-6 releaseCountBlock">		
+															<div class="col-lg-12 col-md-12 d-flex p-3 sumaryBlock" id="populationCountBlock" style="background: #4de5d5;">												
+																<div class="text-left">
+																	<h6 id="ReleaseCountvalues" class="summaryText mb-0" value=""></h6> <!-- 1,999 -->
+																	<p class="mb-0">Release Count</p>
+																</div>
+																<div> <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> </div>
+															</div>							
+														</div>
+														<div class="col-lg-3 col-md-6 bedOccupancyBlock">	
+															<div class="col-lg-12 col-md-12 d-flex p-3 sumaryBlock" id="populationCountBlock" style="background: #6ab8f7;">													
+																<div class="text-left">
+																	<h6 id="BedOccupancyCountvalues" class="summaryText mb-0" value=""></h6> <!-- 2,005 -->
+																	<p class="mb-0">Bed Occupancy Count</p>
+																</div>
+																<div> <i class="fa fa-bed" aria-hidden="true"></i> </div>
+															</div>								
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-md-12 col-lg-7 col-xl-8 pl-0">
+				                        <div id="notificationPanel" class="panel mb-0">
+				                            <div class="panel-hdr">
+				                                <h2 style="display: flex;justify-content: space-between;"> Notification
+				                                </h2>  
+				                             </div>
+				                            <div class="panel-container show">
+				                                <div class="panel-content">
+				                                    <div  class="panel mb-0" style="background: unset; border: 0; box-shadow: unset;">
+						                              	<div class="panel-container show">
+															<div  id="NotificationToday"  class="panel mb-0 panelContentBlock" style="height: calc(100vh - 430px);overflow-y: auto; border:0;">
+															<!-- 	<div class="d-flex profileBlockMain">
+																	<div class="profileImg mr-3">
+																		<img src="img/demo/avatars/lowe.jpg" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+																		<span class="profileName">PM</span>
+																	</div>
+																	<div class="profile content w-100">
+																		<div class="d-flex justify-content-end align-items-center">														
+																			<p class="mb-0 TitleContent w-100">Patterson Matt</p>
+																			<p class="mb-0 dateTime mr-2 text-nowrap">01/06/2025 <span class="ml-3">11:19AM</span></p>
+																			<span class="profileNoti"></span>
+																		</div>
+																		<p class="mb-0 DescContent">Approval needed for good time attendance correction sheet</p>
+																	</div>
+																</div>
+																<div class="d-flex profileBlockMain mt-2">
+																	<div class="profileImg mr-3">
+																		<span class="profileName">CG</span>
+																	</div>
+																	<div class="profile content w-100">
+																		<div class="d-flex justify-content-end align-items-center">														
+																			<p class="mb-0 TitleContent w-100">Charles George</p>
+																			<p class="mb-0 dateTime text-nowrap mr-2">01/06/2025 <span class="ml-3">11:37AM</span></p>
+																			<span class="profileNoti"></span>
+																		</div>
+																		<p class="mb-0 DescContent">Administrative Commitment</p>
+																	</div>
+																</div>
+																<div class="d-flex profileBlockMain mt-2">
+																	<div class="profileImg mr-3">
+																		<img src="img/demo/avatars/lowe.jpg" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+																	</div>
+																	<div class="profile content w-100">
+																		<div class="d-flex justify-content-end align-items-center">														
+																			<p class="mb-0 TitleContent w-100">Administrative DACS</p>
+																			<p class="mb-0 dateTime text-nowrap mr-2">01/06/2025 <span class="ml-3">11:12AM</span></p>
+																		</div>
+																		<p class="mb-0 DescContent">Supervision Fee has not been sent to CJIS</p>
+																	</div>
+																</div>
+																<div class="d-flex profileBlockMain mt-2">
+																	<div class="profileImg mr-3">
+																		<img src="img/demo/avatars/lowe.jpg" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+																	</div>
+																	 <div class="profile content w-100">
+																		<div class="d-flex justify-content-end align-items-center">														
+																			<p class="mb-0 TitleContent w-100">Administrative DACS</p>
+																			<p class="mb-0 dateTime text-nowrap mr-2">01/06/2025 <span class="ml-3">11:12AM</span></p>
+																		</div>
+																		<p class="mb-0 DescContent">Supervision Fee has not been sent to CJIS</p>
+																	</div>
+																</div>
+																<div class="d-flex profileBlockMain mt-2">
+																	<div class="profileImg mr-3">
+																		<img src="img/demo/avatars/lowe.jpg" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+																	</div>
+																	<div class="profile content w-100">
+																		<div class="d-flex justify-content-end align-items-center">														
+																			<p class="mb-0 TitleContent w-100">Administrative DACS</p>
+																			<p class="mb-0 dateTime text-nowrap mr-2">01/06/2025 <span class="ml-3">11:12AM</span></p>
+																		</div>
+																		<p class="mb-0 DescContent">Supervision Fee has not been sent to CJIS</p>
+																	</div>
+																</div>
+																<div class="d-flex profileBlockMain mt-2">
+																	<div class="profileImg mr-3">
+																		<img src="img/demo/avatars/lowe.jpg" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+																	</div>
+																	<div class="profile content w-100">
+																		<div class="d-flex justify-content-end align-items-center">														
+																			<p class="mb-0 TitleContent w-100">Administrative DACS</p>
+																			<p class="mb-0 dateTime text-nowrap mr-2">01/06/2025 <span class="ml-3">11:12AM</span></p>
+																		</div>
+																		<p class="mb-0 DescContent">Supervision Fee has not been sent to CJIS</p>
+																	</div>
+																</div>
+																<div class="d-flex profileBlockMain mt-2">
+																	<div class="profileImg mr-3">
+																		<img src="img/demo/avatars/lowe.jpg" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+																	</div>
+																	<div class="profile content w-100">
+																		<div class="d-flex justify-content-end align-items-center">														
+																			<p class="mb-0 TitleContent w-100">Administrative DACS</p>
+																			<p class="mb-0 dateTime text-nowrap mr-2">01/06/2025 <span class="ml-3">11:12AM</span></p>
+																		</div>
+																		<p class="mb-0 DescContent">Supervision Fee has not been sent to CJIS</p>
+																	</div>
+																</div>
+																<div class="d-flex profileBlockMain mt-2">
+																	<div class="profileImg mr-3">
+																		<img src="img/demo/avatars/lowe.jpg" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+																	</div>
+																	<div class="profile content w-100">
+																		<div class="d-flex justify-content-end align-items-center">														
+																			<p class="mb-0 TitleContent w-100">Administrative DACS</p>
+																			<p class="mb-0 dateTime text-nowrap mr-2">01/06/2025 <span class="ml-3">11:12AM</span></p>
+																		</div>
+																		<p class="mb-0 DescContent">Supervision Fee has not been sent to CJIS</p>
+																	</div>
+																</div> -->
+															</div>
+						                                </div>
+						                            </div>
+				                                </div>
+				                            </div>
+				                        </div>
+				                    </div>
+				                    <div class="col-md-12 col-lg-5 col-xl-4 pr-0 lastAccessedScreen">
+				                        <div id="lastaccessedPanel" class="panel mb-0">
+				                            <div class="panel-hdr">
+												<h2 class="text-nowrap" style="display: flex;justify-content: space-between;"> Last Accessed Offender Records
+				                                    <div class="panel-toolbar" role="menu">
+														<a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse" data-toggle="tooltip" data-original-title="Collapse"></a>
+														<a href="#" class="btn btn-panel hover-effect-dot js-panel-fullscreen" data-toggle="tooltip" data-original-title="Fullscreen"></a>
+														<a href="#" class="btn btn-panel hover-effect-dot js-panel-close" data-toggle="tooltip" data-original-title="Close"></a>
+													</div>
+				                                </h2>
+				                            </div>
+				                            <div class="panel-container show">
+				                                <div class="panel-content">
+				                                	<div  id="Inmatesearched" class="panel mb-0 panelContentBlock" style="height: calc(100vh - 430px);overflow-y: auto;border:0">
+														<!-- <div class="d-flex profileBlockMain">
+															<div class="profileImg mr-3">
+																<img src="img/demo/avatars/lowe.jpg" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+															</div>
+															<div class="profile content w-100">
+																<div class="d-flex justify-content-end">	
+																	<div class="w-100">															
+																		<p class="mb-0 TitleContent w-100">Vital Statistics</p>
+																		<p class="mb-0 w-100">Boedernlon Kirt A</p>
+																	</div>													
+																	<p class="mb-0 dateTime mr-2 text-nowrap">01/06/2025 <span class="ml-3">11:19AM</span></p>
+																</div>
+																<p class="mb-0 DescContent"> <span style="font-weight: 500;">ID</span> 00460722</p>
+															</div>
+														</div>
+														<div class="d-flex profileBlockMain mt-2">
+															<div class="profileImg mr-3">
+																<span class="profileName" style="background: #7aa600;">SR</span>
+															</div>
+															<div class="profile content w-100">
+																<div class="d-flex justify-content-end">
+																	<div class="w-100">	
+																		<p class="mb-0 TitleContent w-100">Demographics</p>
+																		<p class="mb-0 w-100">Smith Ralph Z</p>														
+																	</div>														
+																	<p class="mb-0 dateTime mr-2 text-nowrap">01/06/2025 <span class="ml-3">11:40AM</span></p>
+																</div>
+																<p class="mb-0 DescContent"> <span style="font-weight: 500;">ID</span> 00249414</p>
+															</div>
+														</div>
+														<div class="d-flex profileBlockMain mt-2">
+															<div class="profileImg mr-3">
+																<img src="img/demo/avatars/lowe.jpg" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+															</div>
+															<div class="profile content w-100">
+																<div class="d-flex justify-content-end">	
+																	<div class="w-100">															
+																		<p class="mb-0 TitleContent w-100">Scars Marks</p>
+																		<p class="mb-0 w-100">Boedernlon A</p>
+																	</div>													
+																	<p class="mb-0 dateTime mr-2 text-nowrap">01/06/2025 <span class="ml-3">11:19AM</span></p>
+																</div>
+																<p class="mb-0 DescContent"> <span style="font-weight: 500;">ID</span> 00460722</p>
+															</div>
+														</div>
+														<div class="d-flex profileBlockMain mt-2">
+															<div class="profileImg mr-3">
+																<img src="img/demo/avatars/lowe.jpg" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+															</div>
+															<div class="profile content w-100">
+																<div class="d-flex justify-content-end">	
+																	<div class="w-100">															
+																		<p class="mb-0 TitleContent w-100">Case Notes</p>
+																		<p class="mb-0 w-100">Kramer Edward</p>
+																	</div>													
+																	<p class="mb-0 dateTime mr-2 text-nowrap">01/06/2025 <span class="ml-3">11:19AM</span></p>
+																</div>
+																<p class="mb-0 DescContent"> <span style="font-weight: 500;">ID</span> 00439936</p>
+															</div>
+														</div>
+														<div class="d-flex profileBlockMain mt-2">
+															<div class="profileImg mr-3">
+																<img src="img/demo/avatars/lowe.jpg" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+															</div>
+															<div class="profile content w-100">
+																<div class="d-flex justify-content-end">	
+																	<div class="w-100">															
+																		<p class="mb-0 TitleContent w-100">Scars Marks</p>
+																		<p class="mb-0 w-100">Boedernlon A</p>
+																	</div>													
+																	<p class="mb-0 dateTime mr-2 text-nowrap">01/06/2025 <span class="ml-3">11:19AM</span></p>
+																</div>
+																<p class="mb-0 DescContent"> <span style="font-weight: 500;">ID</span> 00460722</p>
+															</div>
+														</div>
+														<div class="d-flex profileBlockMain mt-2">
+															<div class="profileImg mr-3">
+																<img src="img/demo/avatars/lowe.jpg" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+															</div>
+															<div class="profile content w-100">
+																<div class="d-flex justify-content-end">	
+																	<div class="w-100">															
+																		<p class="mb-0 TitleContent w-100">Scars Marks</p>
+																		<p class="mb-0 w-100">Boedernlon A</p>
+																	</div>													
+																	<p class="mb-0 dateTime mr-2 text-nowrap">01/06/2025 <span class="ml-3">11:19AM</span></p>
+																</div>
+																<p class="mb-0 DescContent"> <span style="font-weight: 500;">ID</span> 00460722</p>
+															</div>
+														</div>
+														<div class="d-flex profileBlockMain mt-2">
+															<div class="profileImg mr-3">
+																<img src="img/demo/avatars/lowe.jpg" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+															</div>
+															<div class="profile content w-100">
+																<div class="d-flex justify-content-end">	
+																	<div class="w-100">															
+																		<p class="mb-0 TitleContent w-100">Scars Marks</p>
+																		<p class="mb-0 w-100">Boedernlon A</p>
+																	</div>													
+																	<p class="mb-0 dateTime mr-2 text-nowrap">01/06/2025 <span class="ml-3">11:19AM</span></p>
+																</div>
+																<p class="mb-0 DescContent"> <span style="font-weight: 500;">ID</span> 00460722</p>
+															</div>
+														</div>
+														<div class="d-flex profileBlockMain mt-2">
+															<div class="profileImg mr-3">
+																<img src="img/demo/avatars/lowe.jpg" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+															</div>
+															<div class="profile content w-100">
+																<div class="d-flex justify-content-end">	
+																	<div class="w-100">															
+																		<p class="mb-0 TitleContent w-100">Scars Marks</p>
+																		<p class="mb-0 w-100">Boedernlon A</p>
+																	</div>													
+																	<p class="mb-0 dateTime mr-2 text-nowrap">01/06/2025 <span class="ml-3">11:19AM</span></p>
+																</div>
+																<p class="mb-0 DescContent"> <span style="font-weight: 500;">ID</span> 00460722</p>
+															</div>
+														</div>
+													</div> -->
+				                                </div>
+				                            </div>
+				                        </div>
+				                    </div>
+									</div>
+								</div>
+	                        </div>
+	                         <div class="tab-pane fade" id="adminDashboard_Tab" role="tabpanel">
+								 <style>
+						
+						
+    .p-3:hover {
+      transform: translateY(-5px);
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+    }</style>
+
+						<div class="row">
+                            <!--<div class="col-sm-12 col-xl-3">
+								<span class="irs irs--flat js-irs-7 irs-with-grid"><span class="irs"><span class="irs-line" tabindex="0"></span><span class="irs-min" style="visibility: visible;">0</span><span class="irs-max" style="visibility: visible;">1 000</span><span class="irs-from" style="visibility: hidden;">0</span><span class="irs-to" style="visibility: hidden;">0</span><span class="irs-single" style="left: 48.6882%;">500</span></span><span class="irs-grid" style="width: 98.6159%; left: 0.592041%;"><span class="irs-grid-pol" style="left: 0%"></span><span class="irs-grid-text js-grid-text-0" style="left: 0%; margin-left: -0.48051%;">0</span><span class="irs-grid-pol small" style="left: 20%"></span><span class="irs-grid-pol small" style="left: 15%"></span><span class="irs-grid-pol small" style="left: 10%"></span><span class="irs-grid-pol small" style="left: 5%"></span><span class="irs-grid-pol" style="left: 25%"></span><span class="irs-grid-text js-grid-text-1" style="left: 25%; visibility: visible; margin-left: -0.922158%;">250</span><span class="irs-grid-pol small" style="left: 45%"></span><span class="irs-grid-pol small" style="left: 40%"></span><span class="irs-grid-pol small" style="left: 35%"></span><span class="irs-grid-pol small" style="left: 30%"></span><span class="irs-grid-pol" style="left: 50%"></span><span class="irs-grid-text js-grid-text-2" style="left: 50%; visibility: visible; margin-left: -0.922158%;">500</span><span class="irs-grid-pol small" style="left: 70%"></span><span class="irs-grid-pol small" style="left: 65%"></span><span class="irs-grid-pol small" style="left: 60%"></span><span class="irs-grid-pol small" style="left: 55%"></span><span class="irs-grid-pol" style="left: 75%"></span><span class="irs-grid-text js-grid-text-3" style="left: 75%; visibility: visible; margin-left: -0.922158%;">750</span><span class="irs-grid-pol small" style="left: 95%"></span><span class="irs-grid-pol small" style="left: 90%"></span><span class="irs-grid-pol small" style="left: 85%"></span><span class="irs-grid-pol small" style="left: 80%"></span><span class="irs-grid-pol" style="left: 100%"></span><span class="irs-grid-text js-grid-text-4" style="left: 100%; margin-left: -1.25534%;">1 000</span></span><span class="irs-bar irs-bar--single" style="left: 0px; width: 50%;"></span><span class="irs-shadow shadow-single" style="display: block; left: 25.346%; width: 49.308%;"></span><span class="irs-handle single" style="left: 49.308%;"><i></i><i></i><i></i></span></span>
+							</div>-->
+							
+							<div class="col-xl-12">
+								<div id="panel-8" class="panel">
+									
+									<div class="panel-container show">
+										<div class="panel-content">
+											<b>No. Of Days</b>
+											<input id="demo_8" type="text" value="" class="d-none" tabindex="-1" readonly="">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+						  <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+							<div class="p-3 bg-primary-300 rounded overflow-hidden position-relative text-white mb-g">
+							  
+								<h3 class="display-4 text-center m-0 fw-500" style="font-weight: 700;">210</h3>
+								<div class="d-flex justify-content-between mt-2">
+								  <div class="text-center">
+									<h2>15</h2>
+									<span class="badge badge-pill badge-fusion">New Admission</span>
+								  </div>
+								  <div class="text-center">
+									<h2>5</h2>
+									<span class="badge badge-pill badge-fusion">Releases</span>
+								  </div>
+								</div>
+								<h3 class="mt-3 facilityName">ABC Correctional Facility</h3>
+								<div class="progress mt-2">
+								  <div class="progress-bar" role="progressbar" style="width: 40%;">40%</div>
+								</div>
+								<div class="green-light light"></div>							
+							</div>
+							
+						  </div>
+						  <!-- John Smith Prison -->
+						  <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+							<div class="p-3 bg-warning-400 rounded overflow-hidden position-relative text-white mb-g">
+							  <div>
+								<h3 class="display-4 text-center fw-500 m-0" style="font-weight: 700;">1,203</h3>
+								<div class="d-flex justify-content-between mt-2">
+								  <div class="text-center">
+									<h2>12</h2>
+									<span class="badge badge-pill badge-fusion">New Admission</span>
+								  </div>
+								  <div class="text-center">
+									<h2>8</h2>
+									<span class="badge badge-pill badge-fusion">Releases</span>
+								  </div>
+								</div>
+								<h3 class="mt-3 facilityName">John Smith Prison</h3>
+								<div class="progress mt-2">
+								  <div class="progress-bar" role="progressbar" style="width: 91%;" aria-valuenow="91" aria-valuemin="0" aria-valuemax="100">91%</div>
+								</div>
+							  </div>							  
+								<div class="red-light"></div>
+							</div>
+						  </div>
+
+						  <!-- Summit Juvenile Facility -->
+						  <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+							<div class="p-3 bg-fusion-400 rounded overflow-hidden position-relative text-white mb-g">
+							  <div>
+								<h3 class="display-4 text-center fw-500 m-0" style="font-weight: 700;">103</h3>
+								<div class="d-flex justify-content-between mt-2">
+								  <div class="text-center">
+									<h2>3</h2>
+									<span class="badge badge-pill badge-fusion">New Admission</span>
+								  </div>
+								  <div class="text-center">
+									<h2>2</h2>
+									<span class="badge badge-pill badge-fusion">Releases</span>
+								  </div>
+								</div>
+								<h3 class="mt-3 facilityName">Summit Juvenile Facility</h3>
+								<div class="progress mt-2">
+								  <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">25%</div>
+								</div>
+							  </div>
+							  <div class="green-light"></div>
+							</div>							
+						  </div>
+
+						  <!-- Lakeside Detention Center -->
+						  <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3">
+							<div class="p-3 bg-info-400 rounded overflow-hidden position-relative text-white mb-g">
+							  <div>
+								<h3 class="display-4 fw-500 m-0 text-center" style="font-weight: 700;">400</h3>
+								<div class="d-flex justify-content-between mt-2">
+								  <div class="text-center">
+									<h2>23</h2>
+									<span class="badge badge-pill badge-fusion">New Admission</span>
+								  </div>
+								  <div class="text-center">
+									<h2>5</h2>
+									<span class="badge badge-pill badge-fusion">Releases</span>
+								  </div>
+								</div>
+								<h3 class="mt-3 facilityName">Lakeside Detention Center</h3>
+								<div class="progress mt-2">
+								  <div class="progress-bar" role="progressbar" style="width: 70%;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+								</div>
+							  </div>
+							  <div class="yellow-light"></div>
+							</div>							
+						  </div>
+
+						  <style>
+							  .facilityName{
+								  font-weight: 600;
+    							  font-size: 22px;
+							  }
+							  .badge{
+									font-size: 110%;
+							  }
+						  /* General Light Style */
+						  .yellow-light, .green-light, .red-light {
+							position: absolute;
+							top: 10px;
+							right: 10px;
+							width: 30px;
+							height: 30px;
+							border-radius: 50%;
+							z-index: 10;
+							animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1); /* Smooth pulse with cubic-bezier for modern feel */
+						  }
+
+						  /* Yellow Light (Attention) */
+						  .yellow-light {
+							background: radial-gradient(circle, rgba(255, 255, 204, 1) 30%, rgba(255, 223, 0, 0.8) 70%, rgba(255, 223, 0, 0) 100%);
+							box-shadow: 0 0 25px rgba(255, 223, 0, 0.9), 0 0 50px rgba(255, 223, 0, 0.5);
+						  }
+
+						  /* Green Light (Safe) */
+						  .green-light {
+							background: radial-gradient(circle, rgba(173, 255, 181, 1) 30%, rgba(97, 176, 72, 0.8) 70%, rgba(97, 176, 72, 0) 100%);
+							box-shadow: 0 0 25px rgba(97, 176, 72, 0.9), 0 0 50px rgba(97, 176, 72, 0.5);
+						  }
+
+						  /* Red Light (Critical) */
+						  .red-light {
+							background: radial-gradient(circle, rgba(255, 102, 102, 1) 30%, rgba(255, 0, 0, 0.8) 70%, rgba(255, 0, 0, 0) 100%);
+							box-shadow: 0 0 25px rgba(255, 0, 0, 0.9), 0 0 50px rgba(255, 0, 0, 0.5);
+						  }
+
+						  /* Pulsing Animation */
+						  @keyframes pulse {
+							0% {
+							  transform: scale(1);
+							  box-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 50px rgba(255, 255, 255, 0.5);
+							}
+							50% {
+							  transform: scale(1.3); /* Subtle scaling */
+							  box-shadow: 0 0 35px rgba(255, 255, 255, 1), 0 0 70px rgba(255, 255, 255, 0.7);
+							}
+							100% {
+							  transform: scale(1);
+							  box-shadow: 0 0 25px rgba(255, 255, 255, 0.8), 0 0 50px rgba(255, 255, 255, 0.5);
+							}
+						  }
+						  .lastAccessedScreen .panel-fullscreen #Inmatesearched{
+							  height: calc(100vh - 120px)!important;
+						  }
+						  .panel-fullscreen #NotificationToday{
+							  height: calc(100vh - 120px)!important;
+						  }
+						</style>
+
+						</div>
+
+
+
+						
+						<!--<div class="row">
+							<div class="col-xl-6">
+                                <div id="panel-1" class="panel">
+                                    <div class="panel-hdr">
+                                        <h2>
+                                            Total Inmate Population by Facility <span class="fw-300"><i></i></span>
+                                        </h2>
+                                    </div>
+                                    <div class="panel-container show">
+                                        <div class="panel-content">
+                                            <div id="listofInmatePopulation-table"></div>
+                                        </div>
+                                    </div>
+                                </div>
+							</div>
+							<div class="col-xl-6">
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="p-3 bg-info-100 rounded overflow-hidden position-relative text-white mb-g">
+											<div class="">
+												<h3 class="display-4 d-block l-h-n m-0 fw-500">
+													10
+													<h3 class="m-0 l-h-n">New Admission												
+													</h3>											
+												</h3>
+											</div>
+											<i class="fal fa-building position-absolute pos-right pos-bottom opacity-15 mb-n2 mr-n2" style="font-size:6rem"></i>
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="p-3 bg-fusion-400 rounded overflow-hidden position-relative text-white mb-g">
+											<div class="">
+												<h3 class="display-4 d-block l-h-n m-0 fw-500">
+													30
+													<h3 class="m-0 l-h-n">Released Offenders
+														
+													</h3>
+												</h3>
+											</div>
+											<i class="fal fa-building position-absolute pos-right pos-bottom opacity-15 mb-n2 mr-n2" style="font-size:6rem"></i>
+										</div>
+									</div>
+									
+									<div class="col-sm-3">
+										<div class="p-3 bg-warning-500 rounded overflow-hidden position-relative text-white mb-g">
+											<div class="">
+												<h3 class="display-4 d-block l-h-n m-0 fw-500">
+													4
+													<h3 class="m-0 l-h-n">ABC Correctional Facility									
+													</h3>											
+												</h3>
+											</div>
+											<i class="fal fa-building position-absolute pos-right pos-bottom opacity-15 mb-n2 mr-n2" style="font-size:6rem"></i>
+										</div>
+									</div>
+									<div class="col-sm-3 col-xl-3">
+										<div class="p-3 bg-success-400 rounded overflow-hidden position-relative text-white mb-g">
+											<div class="">
+												<h3 class="display-4 d-block l-h-n m-0 fw-500">
+													7
+													<h3 class="m-0 l-h-n">John Smith Prison 
+														
+													</h3>
+												</h3>
+											</div>
+											<i class="fal fa-building position-absolute pos-right pos-bottom opacity-15 mb-n2 mr-n2" style="font-size:6rem"></i>
+										</div>
+									</div>
+									
+									<div class="col-sm-3 col-xl-3">
+										<div class="p-3 bg-success-500 rounded overflow-hidden position-relative text-white mb-g">
+											<div class="">
+												<h3 class="display-4 d-block l-h-n m-0 fw-500">
+													5
+													<h3 class="m-0 l-h-n">Summit Juvenile Facility									
+													</h3>											
+												</h3>
+											</div>
+											<i class="fal fa-building position-absolute pos-right pos-bottom opacity-15 mb-n2 mr-n2" style="font-size:6rem"></i>
+										</div>
+									</div>
+									<div class="col-sm-3 col-xl-3">
+										<div class="p-3 bg-danger-900 rounded overflow-hidden position-relative text-white mb-g">
+											<div class="">
+												<h3 class="display-4 d-block l-h-n m-0 fw-500">
+													9
+													<h3 class="m-0 l-h-n">Lakeside Detention Center
+														
+													</h3>
+												</h3>
+											</div>
+											<i class="fal fa-building position-absolute pos-right pos-bottom opacity-15 mb-n2 mr-n2" style="font-size:6rem"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							                         
+                        </div>-->
+						
+
+						<div class="row">
+							<div class="col-md-6 col-lg-4 col-xl-3">
+							  <div class="p-3 alert-danger rounded overflow-hidden position-relative text-white mb-g" onclick="toggleTable('table-criticalincident')">
+								<div>
+								  <h3 class="display-4 d-block l-h-n m-0 fw-500">
+									4
+									<h3 class="m-0 l-h-n">Critical Incidents in the last 48 Hrs</h3>
+								  </h3>
+								</div>
+								<i class="fal fa-bolt lightning-icon position-absolute pos-right pos-bottom opacity-75 mb-n2 mr-n2"></i>
+							  </div>
+							</div>
+
+							<style>
+							  /* Lightning Icon Animation */
+							  .lightning-icon {
+								font-size: 6rem; /* Large size for emphasis */
+								color: #ffdf00; /* Bright yellow for lightning */
+								text-shadow: 0 0 15px #ffdf00, 0 0 30px #ffa500; /* Glow effect */
+								animation: flicker 1.5s infinite; /* Flickering effect */
+							  }
+
+							  /* Flickering Animation */
+							  @keyframes flicker {
+								0%, 100% {
+								  opacity: 1;
+								  text-shadow: 0 0 15px #ffdf00, 0 0 30px #ffa500;
+								}
+								50% {
+								  opacity: 0.8;
+								  text-shadow: 0 0 20px #ffd700, 0 0 40px #ffa500;
+								}
+								80% {
+								  opacity: 1;
+								  text-shadow: 0 0 25px #ffd700, 0 0 50px #ff8c00;
+								}
+							  }
+							</style>
+							<div class="col-md-6 col-lg-4 col-xl-3">
+							  <div class="p-3 alert-danger rounded overflow-hidden position-relative text-white mb-g" onclick="toggleTable('table-redflag')">
+								<div>
+								  <h3 class="display-4 d-block l-h-n m-0 fw-500">
+									3
+									<h3 class="m-0 l-h-n">Red Flagged Offenders</h3>
+								  </h3>
+								</div>
+								<i class="fal fa-exclamation-triangle position-absolute pos-right pos-bottom opacity-15 mb-n2 mr-n2" style="font-size:6rem"></i>
+							  </div>
+							</div>
+						</div>
+						<div id="table-criticalincident" style="display: none; margin-top: 15px;">
+							<div id="panel-1" class="panel">
+								<div class="panel-hdr">
+									<h2>
+										Critical Incidents in the last 48 Hrs <span class="fw-300"><i></i></span>
+									</h2>
+								</div>
+								<div class="panel-container show">
+									<div class="panel-content">
+										<div id="listofCriticalIncidents-table"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="table-redflag" style="display: none; margin-top: 15px;">   
+							<div id="panel-1" class="panel">
+								<div class="panel-hdr">
+									<h2>
+										Red Flagged Offenders <span class="fw-300"><i></i></span>
+									</h2>
+								</div>
+								<div class="panel-container show">
+									<div class="panel-content">
+										<div id="listofRedFlag-table"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+
+						<script>
+						  function toggleTable(tableId) {
+							const table = document.getElementById(tableId);
+							table.style.display = (table.style.display === 'none') ? 'block' : 'none';
+						  }
+						</script>
+						<style>
+							  /* Yellow Light */
+							  .yellow-light {
+								position: absolute;
+								top: 10px;
+								right: 10px;
+								width: 20px;
+								height: 20px;
+								background-color: yellow;
+								border-radius: 50%;
+								box-shadow: 0 0 15px 5px yellow;
+								z-index: 10;
+							  }
+
+							  /* Red-Flagged Offenders */
+							  .red-flag {
+								border: 2px solid red;
+								background-color: #ffe6e6; /* Light red background for readability */
+								padding: 10px;
+								border-radius: 5px;
+								margin: 10px 0;
+							  }
+
+							  .red-badge {
+								color: white;
+								background-color: red;
+								padding: 5px 10px;
+								border-radius: 3px;
+							  }
+
+							  .alert-danger {
+								color: white;
+								background-color: #dc3545;
+								padding: 10px;
+								border-radius: 3px;
+							  }
+							</style>
+						<!--<div class="row">
+							<div class="col-xl-9">
+                                <div id="panel-1" class="panel">
+                                    <div class="panel-hdr" >
+										
+                                        <h2><span style="color: red;">🚩</span>
+                                            Red Flagged Offenders <span class="fw-300"><i></i></span>
+                                        </h2>
+                                    </div>
+                                    <div class="panel-container show">
+                                        <div class="panel-content">
+												<div class="alert alert-danger">
+													<strong>Total Red-Flagged Offenders:</strong> 3
+												</div>
+                                            <div class="row">
+												<div class="col-sm-3 col-xl-3">
+												  <div class="offender-card red-flag">
+													<h3>John Doe</h3>
+													<p>Offense: Multiple escape attempts</p>
+													<p>Status: <span class="badge red-badge">Red-flagged</span></p>
+												  </div>
+												</div>
+												<div class="col-sm-3 col-xl-3">
+												  <div class="offender-card red-flag">
+													<h3>Jane Smith</h3>
+													<p>Offense: Suspected leader of inmate gang</p>
+													<p>Status: <span class="badge red-badge">Red-flagged</span></p>
+												  </div>
+												</div>
+												<div class="col-sm-3 col-xl-3">
+												  <div class="offender-card red-flag">
+													<h3>John Smith</h3>
+													<p>Offense: History of assaults on staff and inmates</p>
+													<p>Status: <span class="badge red-badge">Red-flagged</span></p>
+												  </div>
+												</div>
+											</div>
+											
+                                        </div>
+                                    </div>
+                                </div>
+							</div>
+							<div class="col-xl-3">
+								<div id="panel-8" class="panel">
+									<div class="panel-hdr">
+										<h2>
+											Population by Gender</span>
+										</h2>
+									</div>
+									<div class="panel-container show">
+										<div class="panel-content">
+											<div id="pieChart">
+												<canvas style="width:100%; height:240px;"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>	-->				
+						
+
+
+						<div class="row">						
+							<div class="col-md-12 col-lg-4 col-xl-6">
+                                <!-- basic area chart -->
+                                <div id="panel-1" class="panel">
+                                    <div class="panel-hdr">
+                                        <h2>
+                                            Population by Age<span class="fw-300"><i>Graph</i></span>
+                                        </h2>
+                                    </div>
+                                    <div class="panel-container show">
+                                        <div class="panel-content">
+                                            <div id="basicLineChartap1" style="width:100%; height:160px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+							</div>
+							<div class="col-md-6 col-lg-4 col-xl-3">
+								<div id="panel-8" class="panel">
+									<div class="panel-hdr">
+										<h2>
+											Population by Gender</span>
+										</h2>
+									</div>
+									<div class="panel-container show">
+										<div class="panel-content">
+											<div id="pieChart">
+												<canvas style="width:100%; height:160px;"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6 col-lg-4 col-xl-3">
+								<div id="panel-8" class="panel">
+									<div class="panel-hdr">
+										<h2>
+											Population by Ethinicity</span>
+										</h2>
+									</div>
+									<div class="panel-container show">
+										<div class="panel-content">
+											<div id="pieChart_RaceEthinicity">
+												<canvas style="width:100%; height:160px;"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="col-md-8 col-lg-8 col-xl-8">
+								<div id="panel-8" class="panel">
+									<div class="panel-hdr">
+										<h2>
+											Population Growth over five years
+										</h2>
+									</div>
+									<div class="panel-container show">
+										<div class="panel-content">
+											<div class="slider-container">
+												<label for="yearRange">Select Range of Years: <span id="yearRangeLabel">2020-2030</span></label><br>
+												<input id="yearRange" type="range" min="1" max="10" step="1" value="5">
+											</div>
+											
+											<div id="lineGraph_populationGrowthChart">
+												<canvas id="populationGrowthChart" width="400" height="120"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>								
+							</div>
+							<div class="col-md-4 col-lg-4 col-xl-4">
+								<div id="panel-8" class="panel">
+									<div class="panel-hdr">
+										<h2>
+											High Risk Population %</span>
+										</h2>
+									</div>
+									<div class="panel-container show">
+										<div class="panel-content">
+											<div id="lineGraph_highRiskPopulationChart">
+												<canvas id="highRiskPopulationChart" width="400" height="300"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-7 col-lg-8 col-xl-8">
+								<div id="panel-8" class="panel">
+									<div class="panel-hdr">
+										<h2>
+											Forecasted Population Growth</span>
+										</h2>
+									</div>
+									<div class="panel-container show">
+										<div class="panel-content">
+											<div id="lineGraph_forecastedPopulationChart">
+												<canvas id="forecastedPopulationChart" width="400" height="100"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-5 col-lg-4 col-xl-4">
+								<div id="panel-8" class="panel">									
+									<div class="panel-hdr">
+										<h2>
+											Population by Race</span>
+										</h2>
+									</div>
+									<div class="panel-container show">
+										<div class="panel-content">
+											<div id="lineGraph_racePieChart">
+												<canvas id="racePieChart" style="width:100%; height:350px;"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+							</div>
+	                    </div>
+	                </div>
+				</div>
+			</main>
+				<!-- this overlay is activated only when mobile menu is triggered -->
+				<div class="page-content-overlay" data-action="toggle"
+					data-class="mobile-nav-on"></div>
+				<!-- END Page Content -->
+				
+				<!-- BEGIN Shortcuts -->
+				<!-- modal shortcut -->
+				<div class="modal fade modal-backdrop-transparent"
+					id="modal-shortcut" tabindex="-1" role="dialog"
+					aria-labelledby="modal-shortcut" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-top modal-transparent"
+						role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+								<ul class="app-list w-auto h-auto p-0 text-left">
+									<li><a href="intel_introduction.html"
+										class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i
+													class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
+												<i
+													class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
+											</div> <span class="app-list-name"> Home </span>
+									</a></li>
+									<li><a href="page_inbox_general.html"
+										class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i
+													class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
+												<i
+													class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
+												<i class="ni ni-envelope icon-stack-1x text-white"></i>
+											</div> <span class="app-list-name"> Inbox </span>
+									</a></li>
+									<li><a href="intel_introduction.html"
+										class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i
+													class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
+											</div> <span class="app-list-name"> Add More </span>
+									</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- END Shortcuts -->
+			</div>
+		</div>
+	</div>
+	<!-- END Page Wrapper -->
+	<!-- BEGIN Quick Menu -->
+	<!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
+	<nav class="shortcut-menu d-none d-sm-block"> <input
+		type="checkbox" class="menu-open" name="menu-open" id="menu_open" />
+	<label for="menu_open" class="menu-open-button "> <span
+		class="app-shortcut-icon d-block"></span>
+	</label> <a href="#" class="menu-item btn" data-toggle="tooltip"
+		data-placement="left" title="Scroll Top"> <i
+		class="fal fa-arrow-up"></i>
+	</a> <a href="page_login-alt.html" class="menu-item btn"
+		data-toggle="tooltip" data-placement="left" title="Logout"> <i
+		class="fal fa-sign-out"></i>
+	</a> <a href="#" class="menu-item btn" data-action="app-fullscreen"
+		data-toggle="tooltip" data-placement="left" title="Full Screen"> <i
+		class="fal fa-expand"></i>
+	</a> <a href="#" class="menu-item btn" data-action="app-print"
+		data-toggle="tooltip" data-placement="left" title="Print page"> <i
+		class="fal fa-print"></i>
+	</a> <a href="#" class="menu-item btn" data-action="app-voice"
+		data-toggle="tooltip" data-placement="left" title="Voice command">
+		<i class="fal fa-microphone"></i>
+	</a> </nav>
+	<!-- END Quick Menu -->
+	<!-- BEGIN Messenger -->
+	<div class="modal fade js-modal-messenger modal-backdrop-transparent"
+		tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right">
+			<div class="modal-content h-100">
+				<div
+					class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
+					<div
+						class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+						<span class="mr-2"> <span
+							class="rounded-circle profile-image d-block"
+							style="background-image: url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+						</span>
+						<div class="info-card-text">
+							<a href="javascript:void(0);"
+								class="fs-lg text-truncate text-truncate-lg text-white"
+								data-toggle="dropdown" aria-expanded="false"> Tracey Chang <i
+								class="fal fa-angle-down d-inline-block ml-1 text-white fs-md"></i>
+							</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">Send Email</a> <a
+									class="dropdown-item" href="#">Create Appointment</a> <a
+									class="dropdown-item" href="#">Block User</a>
+							</div>
+							<span class="text-truncate text-truncate-md opacity-80">IT
+								Director</span>
+						</div>
+					</div>
+					<button type="button"
+						class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0 h-100 d-flex">
+					<!-- BEGIN msgr-list -->
+					<div
+						class="msgr-list d-flex flex-column bg-faded border-faded border-top-0 border-right-0 border-bottom-0 position-absolute pos-top pos-bottom">
+						<div>
+							<div
+								class="height-4 width-3 h3 m-0 d-flex justify-content-center flex-column color-primary-500 pl-3 mt-2">
+								<i class="fal fa-search"></i>
+							</div>
+							<input type="text" class="form-control bg-white"
+								id="msgr_listfilter_input" placeholder="Filter contacts"
+								aria-label="FriendSearch" data-listfilter="#js-msgr-listfilter">
+						</div>
+						<div class="flex-1 h-100 custom-scroll">
+							<div class="w-100">
+								<ul id="js-msgr-listfilter" class="list-unstyled m-0">
+									<li><a href="#"
+										class="d-table w-100 px-2 py-2 text-dark hover-white"
+										data-filter-tags="tracey chang online">
+											<div
+												class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image: url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Tracey Chang <small
+														class="d-block font-italic text-success fs-xs">
+														Online </small>
+												</div>
+											</div>
+									</a></li>
+									<li><a href="#"
+										class="d-table w-100 px-2 py-2 text-dark hover-white"
+										data-filter-tags="oliver kopyuv online">
+											<div
+												class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image: url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Oliver Kopyuv <small
+														class="d-block font-italic text-success fs-xs">
+														Online </small>
+												</div>
+											</div>
+									</a></li>
+									<li><a href="#"
+										class="d-table w-100 px-2 py-2 text-dark hover-white"
+										data-filter-tags="dr john cook phd away">
+											<div class="d-table-cell align-middle status status-warning status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image: url('img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Dr. John Cook PhD <small class="d-block font-italic fs-xs">
+														Away </small>
+												</div>
+											</div>
+									</a></li>
+									<li><a href="#"
+										class="d-table w-100 px-2 py-2 text-dark hover-white"
+										data-filter-tags="ali amdaney online">
+											<div
+												class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image: url('img/demo/avatars/avatar-g.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Ali Amdaney <small
+														class="d-block font-italic fs-xs text-success">
+														Online </small>
+												</div>
+											</div>
+									</a></li>
+									<li><a href="#"
+										class="d-table w-100 px-2 py-2 text-dark hover-white"
+										data-filter-tags="sarah mcbrook online">
+											<div
+												class="d-table-cell align-middle status status-success status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image: url('img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Sarah McBrook <small
+														class="d-block font-italic fs-xs text-success">
+														Online </small>
+												</div>
+											</div>
+									</a></li>
+									<li><a href="#"
+										class="d-table w-100 px-2 py-2 text-dark hover-white"
+										data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image: url('img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com <small
+														class="d-block font-italic fs-xs"> Offline </small>
+												</div>
+											</div>
+									</a></li>
+									<li><a href="#"
+										class="d-table w-100 px-2 py-2 text-dark hover-white"
+										data-filter-tags="ali amdaney busy">
+											<div
+												class="d-table-cell align-middle status status-danger status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image: url('img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com <small
+														class="d-block font-italic fs-xs text-danger">
+														Busy </small>
+												</div>
+											</div>
+									</a></li>
+									<li><a href="#"
+										class="d-table w-100 px-2 py-2 text-dark hover-white"
+										data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image: url('img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com <small
+														class="d-block font-italic fs-xs"> Offline </small>
+												</div>
+											</div>
+									</a></li>
+									<li><a href="#"
+										class="d-table w-100 px-2 py-2 text-dark hover-white"
+										data-filter-tags="ali amdaney inactive">
+											<div class="d-table-cell align-middle">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image: url('img/demo/avatars/avatar-m.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													+714651347790 <small
+														class="d-block font-italic fs-xs opacity-50">
+														Missed Call </small>
+												</div>
+											</div>
+									</a></li>
+								</ul>
+								<div class="filter-message js-filter-message"></div>
+							</div>
+						</div>
+						<div>
+							<a class="fs-xl d-flex align-items-center p-3"> <i
+								class="fal fa-cogs"></i>
+							</a>
+						</div>
+					</div>
+					<!-- END msgr-list -->
+					<!-- BEGIN msgr -->
+					<div class="msgr d-flex h-100 flex-column bg-white">
+						<!-- BEGIN custom-scroll -->
+						<div class="custom-scroll flex-1 h-100">
+							<div id="chat_container" class="w-100 p-4">
+								<!-- start .chat-segment -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">Jun 19</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent">
+									<div class="chat-message">
+										<p>Hey Ching, did you get my files?</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:00 pm</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>Hi</p>
+										<p>Sorry going through a busy time in office. Yes I
+											analyzed the solution.</p>
+										<p>It will require some resource, which I could not
+											manage.</p>
+									</div>
+									<div class="fw-300 text-muted mt-1 fs-xs">3:24 pm</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-start">
+									<div class="chat-message">
+										<p>Okay</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-end">
+									<div class="chat-message">
+										<p>Sending you some dough today, you can allocate the
+											resources to this project.</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:26 pm</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-start">
+									<div class="chat-message">
+										<p>Perfect. Thanks a lot!</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>I will have them ready by tonight.</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-end">
+									<div class="chat-message">
+										<p>Cheers</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment for timestamp -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">Jun 20</div>
+								</div>
+								<!--  end .chat-segment for timestamp -->
+							</div>
+						</div>
+						<!-- END custom-scroll  -->
+						<!-- BEGIN msgr__chatinput -->
+						<div class="d-flex flex-column">
+							<div
+								class="border-faded border-right-0 border-bottom-0 border-left-0 flex-1 mr-3 ml-3 position-relative shadow-top">
+								<div class="pt-3 pb-1 pr-0 pl-0 rounded-0" tabindex="-1">
+									<div id="msgr_input" contenteditable="true"
+										data-placeholder="Type your message here..."
+										class="height-10 form-content-editable"></div>
+								</div>
+							</div>
+							<div
+								class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
+								<a href="javascript:void(0);"
+									class="btn btn-icon fs-xl width-1 mr-1" data-toggle="tooltip"
+									data-original-title="More options" data-placement="top"> <i
+									class="fal fa-ellipsis-v-alt color-fusion-300"></i>
+								</a> <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1"
+									data-toggle="tooltip" data-original-title="Attach files"
+									data-placement="top"> <i
+									class="fal fa-paperclip color-fusion-300"></i>
+								</a> <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1"
+									data-toggle="tooltip" data-original-title="Insert photo"
+									data-placement="top"> <i
+									class="fal fa-camera color-fusion-300"></i>
+								</a>
+								<div class="ml-auto">
+									<a href="javascript:void(0);" class="btn btn-info">Send</a>
+								</div>
+							</div>
+						</div>
+						<!-- END msgr__chatinput -->
+					</div>
+					<!-- END msgr -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Messenger -->
+	<!-- BEGIN Page Settings -->
+	<div class="modal fade js-modal-settings modal-backdrop-transparent"
+		tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right modal-md">
+			<div class="modal-content">
+				<div
+					class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
+					<h4 class="m-0 text-center color-white">
+						Layout Settings <small class="mb-0 opacity-80">User
+							Interface Settings</small>
+					</h4>
+					<button type="button"
+						class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0">
+					<div class="settings-panel">
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">App Layout</h5>
+							</div>
+						</div>
+						<div class="list" id="fh">
+							<a href="#" onclick="return false;" class="btn btn-switch"
+								data-action="toggle" data-class="header-function-fixed"></a> <span
+								class="onoffswitch-title">Fixed Header</span> <span
+								class="onoffswitch-title-desc">header is in a fixed at
+								all times</span>
+						</div>
+						<div class="list" id="nff">
+							<a href="#" onclick="return false;" class="btn btn-switch"
+								data-action="toggle" data-class="nav-function-fixed"></a> <span
+								class="onoffswitch-title">Fixed Navigation</span> <span
+								class="onoffswitch-title-desc">left panel is fixed</span>
+						</div>
+						<div class="list" id="nfm">
+							<a href="#" onclick="return false;" class="btn btn-switch"
+								data-action="toggle" data-class="nav-function-minify"></a> <span
+								class="onoffswitch-title">Minify Navigation</span> <span
+								class="onoffswitch-title-desc">Skew nav to maximize space</span>
+						</div>
+						<div class="list" id="nfh">
+							<a href="#" onclick="return false;" class="btn btn-switch"
+								data-action="toggle" data-class="nav-function-hidden"></a> <span
+								class="onoffswitch-title">Hide Navigation</span> <span
+								class="onoffswitch-title-desc">roll mouse on edge to
+								reveal</span>
+						</div>
+						<div class="list" id="nft">
+							<a href="#" onclick="return false;" class="btn btn-switch"
+								data-action="toggle" data-class="nav-function-top"></a> <span
+								class="onoffswitch-title">Top Navigation</span> <span
+								class="onoffswitch-title-desc">Relocate left pane to top</span>
+						</div>
+						<div class="list" id="mmb">
+							<a href="#" onclick="return false;" class="btn btn-switch"
+								data-action="toggle" data-class="mod-main-boxed"></a> <span
+								class="onoffswitch-title">Boxed Layout</span> <span
+								class="onoffswitch-title-desc">Encapsulates to a
+								container</span>
+						</div>
+						<div class="expanded">
+							<ul class="">
+								<li>
+									<div class="bg-fusion-50" data-action="toggle"
+										data-class="mod-bg-1"></div>
+								</li>
+								<li>
+									<div class="bg-warning-200" data-action="toggle"
+										data-class="mod-bg-2"></div>
+								</li>
+								<li>
+									<div class="bg-primary-200" data-action="toggle"
+										data-class="mod-bg-3"></div>
+								</li>
+								<li>
+									<div class="bg-success-300" data-action="toggle"
+										data-class="mod-bg-4"></div>
+								</li>
+							</ul>
+							<div class="list" id="mbgf">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="mod-fixed-bg"></a> <span
+									class="onoffswitch-title">Fixed Background</span>
+							</div>
+						</div>
+						<!-- <div class="mt-4 d-table w-100 px-5">
+                            <div class="d-table-cell align-middle">
+                                <h5 class="p-0">
+                                    Mobile Menu
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="list" id="nmp">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-push"></a>
+                            <span class="onoffswitch-title">Push Content</span>
+                            <span class="onoffswitch-title-desc">Content pushed on menu reveal</span>
+                        </div>
+                        <div class="list" id="nmno">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-no-overlay"></a>
+                            <span class="onoffswitch-title">No Overlay</span>
+                            <span class="onoffswitch-title-desc">Removes mesh on menu reveal</span>
+                        </div>
+                        <div class="list" id="sldo">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-slide-out"></a>
+                            <span class="onoffswitch-title">Off-Canvas <sup>(beta)</sup></span>
+                            <span class="onoffswitch-title-desc">Content overlaps menu</span>
+                        </div> -->
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">Accessibility</h5>
+							</div>
+						</div>
+						<div class="list" id="mbf">
+							<a href="#" onclick="return false;" class="btn btn-switch"
+								data-action="toggle" data-class="mod-bigger-font"></a> <span
+								class="onoffswitch-title">Bigger Content Font</span> <span
+								class="onoffswitch-title-desc">content fonts are bigger
+								for readability</span>
+						</div>
+						<div class="list" id="mhc">
+							<a href="#" onclick="return false;" class="btn btn-switch"
+								data-action="toggle" data-class="mod-high-contrast"></a> <span
+								class="onoffswitch-title">High Contrast Text (WCAG 2 AA)</span>
+							<span class="onoffswitch-title-desc">4.5:1 text contrast
+								ratio</span>
+						</div>
+						<div class="list" id="mcb">
+							<a href="#" onclick="return false;" class="btn btn-switch"
+								data-action="toggle" data-class="mod-color-blind"></a> <span
+								class="onoffswitch-title">Daltonism <sup>(beta)</sup>
+							</span> <span class="onoffswitch-title-desc">color vision
+								deficiency</span>
+						</div>
+						<div class="list" id="mpc">
+							<a href="#" onclick="return false;" class="btn btn-switch"
+								data-action="toggle" data-class="mod-pace-custom"></a> <span
+								class="onoffswitch-title">Preloader Inside</span> <span
+								class="onoffswitch-title-desc">preloader will be inside
+								content</span>
+						</div>
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">Global Modifications</h5>
+							</div>
+						</div>
+						<div class="list" id="mcbg">
+							<a href="#" onclick="return false;" class="btn btn-switch"
+								data-action="toggle" data-class="mod-clean-page-bg"></a> <span
+								class="onoffswitch-title">Clean Page Background</span> <span
+								class="onoffswitch-title-desc">adds more whitespace</span>
+						</div>
+						<div class="list" id="mhni">
+							<a href="#" onclick="return false;" class="btn btn-switch"
+								data-action="toggle" data-class="mod-hide-nav-icons"></a> <span
+								class="onoffswitch-title">Hide Navigation Icons</span> <span
+								class="onoffswitch-title-desc">invisible navigation icons</span>
+						</div>
+						<div class="list" id="dan">
+							<a href="#" onclick="return false;" class="btn btn-switch"
+								data-action="toggle" data-class="mod-disable-animation"></a> <span
+								class="onoffswitch-title">Disable CSS Animation</span> <span
+								class="onoffswitch-title-desc">Disables CSS based
+								animations</span>
+						</div>
+						<div class="list" id="mhic">
+							<a href="#" onclick="return false;" class="btn btn-switch"
+								data-action="toggle" data-class="mod-hide-info-card"></a> <span
+								class="onoffswitch-title">Hide Info Card</span> <span
+								class="onoffswitch-title-desc">Hides info card from left
+								panel</span>
+						</div>
+						<div class="list" id="mlph">
+							<a href="#" onclick="return false;" class="btn btn-switch"
+								data-action="toggle" data-class="mod-lean-subheader"></a> <span
+								class="onoffswitch-title">Lean Subheader</span> <span
+								class="onoffswitch-title-desc">distinguished page header</span>
+						</div>
+						<div class="list" id="mnl">
+							<a href="#" onclick="return false;" class="btn btn-switch"
+								data-action="toggle" data-class="mod-nav-link"></a> <span
+								class="onoffswitch-title">Hierarchical Navigation</span> <span
+								class="onoffswitch-title-desc">Clear breakdown of nav
+								links</span>
+						</div>
+						<div class="list mt-1">
+							<span class="onoffswitch-title">Global Font Size <small>(RESETS
+									ON REFRESH)</small>
+							</span>
+							<div class="btn-group btn-group-sm btn-group-toggle my-2"
+								data-toggle="buttons">
+								<label class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-sm" data-target="html"> <input
+									type="radio" name="changeFrontSize"> SM </label> <label
+									class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text" data-target="html"> <input
+									type="radio" name="changeFrontSize" checked=""> MD </label> <label
+									class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-lg" data-target="html"> <input
+									type="radio" name="changeFrontSize"> LG </label> <label
+									class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-xl" data-target="html"> <input
+									type="radio" name="changeFrontSize"> XL </label>
+							</div>
+							<span class="onoffswitch-title-desc d-block mb-g">Change <strong>root</strong>
+								font size to effect rem values
+							</span>
+						</div>
+						<div class="mt-2 d-table w-100 pl-5 pr-3">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Theme colors <small>(overlays base css)</small>
+								</h5>
+								<!-- <div class="fs-xs text-muted p-2 alert alert-warning mt-3 mb-0">
+                                    <i class="fal fa-exclamation-triangle text-warning mr-2"></i>Due to network latency
+                                    and CPU utilization, you may experience a brief flickering effect on page load which
+                                    may show the intial applied theme for a split second. Setting the prefered
+                                    style/theme in the header will prevent this from happening.
+                                </div> -->
+							</div>
+						</div>
+						<div class="expanded theme-colors pl-5 pr-3">
+							<ul class="m-0">
+								<li><a href="#" id="myapp-0" data-action="theme-update"
+									data-themesave data-theme="" data-toggle="tooltip"
+									data-placement="top" title="Wisteria (base css)"
+									data-original-title="Wisteria (base css)"></a></li>
+								<li><a href="#" id="myapp-1" data-action="theme-update"
+									data-themesave data-theme="css/themes/cust-theme-1.css"
+									data-toggle="tooltip" data-placement="top" title="Tapestry"
+									data-original-title="Tapestry"></a></li>
+								<li><a href="#" id="myapp-2" data-action="theme-update"
+									data-themesave data-theme="css/themes/cust-theme-2.css"
+									data-toggle="tooltip" data-placement="top" title="Atlantis"
+									data-original-title="Atlantis"></a></li>
+								<li><a href="#" id="myapp-3" data-action="theme-update"
+									data-themesave data-theme="css/themes/cust-theme-3.css"
+									data-toggle="tooltip" data-placement="top" title="Indigo"
+									data-original-title="Indigo"></a></li>
+								<li><a href="#" id="myapp-4" data-action="theme-update"
+									data-themesave data-theme="css/themes/cust-theme-4.css"
+									data-toggle="tooltip" data-placement="top" title="Dodger Blue"
+									data-original-title="Dodger Blue"></a></li>
+								<li><a href="#" id="myapp-5" data-action="theme-update"
+									data-themesave data-theme="css/themes/cust-theme-5.css"
+									data-toggle="tooltip" data-placement="top" title="Tradewind"
+									data-original-title="Tradewind"></a></li>
+								<li><a href="#" id="myapp-6" data-action="theme-update"
+									data-themesave data-theme="css/themes/cust-theme-6.css"
+									data-toggle="tooltip" data-placement="top" title="Cranberry"
+									data-original-title="Cranberry"></a></li>
+								<li><a href="#" id="myapp-7" data-action="theme-update"
+									data-themesave data-theme="css/themes/cust-theme-7.css"
+									data-toggle="tooltip" data-placement="top" title="Oslo Gray"
+									data-original-title="Oslo Gray"></a></li>
+								<li><a href="#" id="myapp-8" data-action="theme-update"
+									data-themesave data-theme="css/themes/cust-theme-8.css"
+									data-toggle="tooltip" data-placement="top"
+									title="Chetwode Blue" data-original-title="Chetwode Blue"></a></li>
+								<li><a href="#" id="myapp-9" data-action="theme-update"
+									data-themesave data-theme="css/themes/cust-theme-9.css"
+									data-toggle="tooltip" data-placement="top" title="Apricot"
+									data-original-title="Apricot"></a></li>
+								<li><a href="#" id="myapp-10" data-action="theme-update"
+									data-themesave data-theme="css/themes/cust-theme-10.css"
+									data-toggle="tooltip" data-placement="top" title="Blue Smoke"
+									data-original-title="Blue Smoke"></a></li>
+								<li><a href="#" id="myapp-11" data-action="theme-update"
+									data-themesave data-theme="css/themes/cust-theme-11.css"
+									data-toggle="tooltip" data-placement="top" title="Green Smoke"
+									data-original-title="Green Smoke"></a></li>
+								<li><a href="#" id="myapp-12" data-action="theme-update"
+									data-themesave data-theme="css/themes/cust-theme-12.css"
+									data-toggle="tooltip" data-placement="top"
+									title="Wild Blue Yonder" data-original-title="Wild Blue Yonder"></a></li>
+								<li><a href="#" id="myapp-13" data-action="theme-update"
+									data-themesave data-theme="css/themes/cust-theme-13.css"
+									data-toggle="tooltip" data-placement="top" title="Emerald"
+									data-original-title="Emerald"></a></li>
+							</ul>
+						</div>
+						<hr class="mb-0 mt-4">
+							<div class="pl-5 pr-3 py-3 bg-faded">
+								<div class="row no-gutters">
+									<div class="col-6 pr-1">
+										<a href="#" class="btn btn-outline-danger fw-500 btn-block"
+											data-action="app-reset">Reset Settings</a>
+									</div>
+									<div class="col-6 pl-1">
+										<a href="#" class="btn btn-danger fw-500 btn-block"
+											data-action="factory-reset">Factory Reset</a>
+									</div>
+								</div>
+							</div>
+					</div>
+					<span id="saving"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Page Settings -->
+	
+	<style>
+		#pieChart_RaceEthinicity canva{
+			height: 160px;
+		}
+		#pieChart canva{
+			height: 160px;
+		}
+		.IncidentHeader{
+			font-size: 16px;
+		    white-space: nowrap;
+		    width: 264px;
+		}
+		
+		.IncidentHeaderLable{
+			font-size: 14px;
+		}
+		.profileNoti{
+			min-width: 8px;
+		    height: 8px;
+		    display: flex;
+		    background: #9b7cca;
+		    border-radius: 50px;
+		}
+		.profileBlockMain{
+			background-color: #fff;
+		    box-shadow: 0px 0px 13px 0px rgba(62, 44, 90, 0.08);
+		    border: 1px solid rgba(0, 0, 0, 0.09);
+		    border-radius: 4px;
+		    align-items: center;
+		    padding: 5px;
+		    margin-top: 7px!important;
+		    color: #000;
+		}
+		.profileBlockMain:first-child{
+			margin-top: 0!important;
+		}
+		.profileName{
+			width: 50px;
+		    height: 50px;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    background: #008ea6;
+		    color: #fff;
+		    font-size: 25px;
+		    border-radius: 50px;
+		}
+		#usersetupdetails_info{
+			 margin-top: 0;
+   			 padding-top: 5px;
+		}
+		.TitleContent{
+			font-weight: 500;
+		}
+		.DescContent, .dateTime{
+			font-size: 11px;
+		}
+		.dateTime{
+			color: #504f4f;
+		}
+		
+		.lablehead{
+			color: #7a59ae;
+		}
+		#OmnetDesktopTable_wrapper .row:first-child{
+			margin-bottom: 0px !important;
+		}
+		#OmnetDesktopTable_info	{
+			display: none;
+		}
+		.read .name{
+			font-weight: 700!important;
+		}
+		.dataTables_empty{
+		    padding-bottom: 17% !important;
+		}
+		.summaryText{
+		    font-size: 40px;
+    		font-weight: 500;
+		}
+		.summaryMain i{
+			font-size: 55px;
+    		color: #ffffff99;
+		}
+		.sumaryBlock{
+			border-radius: 5px;
+		    color: #fff;
+		    justify-content: space-between;
+		    align-items: center;
+		}
+	tr[target="A"] {
+	 font-weight: 700;
+	}
+	tr[target="A"] .name{
+		font-weight: 700!important;
+	}
+	
+	.noticationBlock .name {
+	    color: #000;
+	}
+	
+	.noticationBlock .name:hover {
+	    color: #000;
+	}
+	
+	#OmnetDesktopTable a{
+		color: #000;
+	}
+	#OmnetDesktopTable a:hover{
+		color: #000;
+	}
+	
+	.dataTables_empty{
+		text-align: center;
+		width:100%;
+	}
+	.desktopSubhead{
+	display: none !important;
+	}
+	
+	.dataTable tbody td, .table td{
+
+line-height: 1;
+
+}
+
+.headerBlock{
+
+background: #7a59ad;
+
+color: #fff;
+
+padding: 5px;
+
+border: 1px solid #ccc;
+
+margin-left: 5px;
+
+margin-right: 5px;
+text-align: center;
+
+}
+
+.panelContentBlock{
+
+border: 1px solid #7a58ac;
+
+border-radius: 5px!important;
+
+}
+
+.dataTables_scroll{
+
+border: 1px solid #7a59ad;
+
+border-top: 0;
+
+}
+
+#usersetupdetails_wrapper .row:nth-child(1){
+
+margin-bottom: 0px !important;
+
+}
+	@media screen and (max-width: 825px) {
+		#panel-8 .ui-sortable-handle{
+			font-size: 14.2px;
+		}	
+	}
+	@media screen and (max-width: 956px) {
+	  .releaseCountBlock, .bedOccupancyBlock{
+		  margin-top: 10px;
+	  }
+	  .lastAccessedScreen{
+		padding-right: 12px !important;
+	  }
+	}
+	@media screen and (max-width: 765px) {
+	  .admissionCountBlock{
+		  margin-top: 10px;
+	  }
+	}
+	
+	.page-content-wrapper{
+		overflow: auto;
+	    height: calc(100vh - 165px);
+	    overflow-x: hidden;
+	}
+	body{
+		overflow: hidden;
+	}
+	.page-footer{
+		z-index: 9999;
+	    position: fixed;
+	    bottom: 0;
+	    width: 100%;
+	}
+	.nav-function-top .page-content-wrapper{
+		margin-top: 4rem;
+	}
+	
+	.NotificationNorecords{
+	width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: red;
+	}
+	
+	#listofRedFlag-table .tabulator-row .tabulator-cell:first-child::after{
+		content: " 🚩";
+	    color: red;
+	    font-weight: bold;
+	}
+	
+	
+	
+	@media screen and (max-width: 1355px) {
+		#clientname{
+			font-size: 23px;
+		}
+	}
+	@media screen and (max-width: 1024px) {
+		#omnetImage{
+			padding-left: 5px;
+		}
+		.page-header{
+			display: block;
+			height: 132px;
+			padding-left: 0 !important;
+			padding-right: 0 !important;
+		}
+		#clientname {
+        	font-size: 40px;
+    	}
+    	.headerUserBlock{
+			width: 100%!important;
+			margin-left: unset!important;
+			justify-content: end;
+		}
+		.usernameBlockHeader{
+			width: 270px !important;
+		}
+		.staticMenus{
+			top: 136px;	
+		}
+		.page-content-wrapper {
+		    margin-top: 0!important;
+		    height: calc(100vh - 250px) !important;
+		}
+		.navleftArrow{
+			top: 130px;
+			background: #fff;
+		}
+		#navleftArrow, #navRightArrow{
+			height: 73px !important;
+		}
+	}
+	@media screen and (max-width: 993px) {
+		.hidden-lg-up{
+			display: none;
+		}
+		#clientname {
+	        font-size: 31px;
+	    }
+	    .releaseCountBlock, .bedOccupancyBlock{
+			margin-top: 15px;
+		}
+		.notificationBlockMain{
+			padding-right: 0!important;
+		}
+		.lastAccessedScreen{
+			padding-left: 0 !important;
+	        margin-top: 20px;
+		}
+		.page-content-wrapper{
+			height: calc(100vh - 250px)!important;
+		}
+		.nav-function-top .page-content-wrapper{
+			margin-top: 4rem!important;
+		}
+	}
+	
+	@media screen and (max-width: 768px) and (max-width: 1024px) {
+		.page-content-wrapper{
+			height: calc(100vh - 300px)!important;
+		}
+	}
+
+	</style>
+
+	<div th:replace="~{fragments/script :: script}"></div>
+	
+
+	
+    
+    
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$(function() {
+								$('.select2').select2();
+
+								$(".select2-placeholder-multiple").select2({
+									placeholder : "Select State"
+								});
+								$(".js-hide-search").select2({
+									minimumResultsForSearch : 1 / 0
+								});
+								$(".js-max-length").select2({
+									maximumSelectionLength : 2,
+									placeholder : "Select maximum 2 items"
+								});
+								$(".select2-placeholder").select2({
+									placeholder : "Select a state",
+									allowClear : true
+								});
+
+								$(".js-select2-icons").select2({
+									minimumResultsForSearch : 1 / 0,
+									templateResult : icon,
+									templateSelection : icon,
+									escapeMarkup : function(elm) {
+										return elm
+									}
+								});
+
+								function icon(elm) {
+									elm.element;
+									return elm.id ? "<i class='"
+											+ $(elm.element).data("icon")
+											+ " mr-2'></i>" + elm.text
+											: elm.text
+								}
+
+								$(".js-data-example-ajax")
+										.select2(
+												{
+													ajax : {
+														url : "https://api.github.com/search/repositories",
+														dataType : 'json',
+														delay : 250,
+														data : function(params) {
+															return {
+																q : params.term, // search term
+																page : params.page
+															};
+														},
+														processResults : function(
+																data, params) {
+															// parse the results into the format expected by Select2
+															// since we are using custom formatting functions we do not need to
+															// alter the remote JSON data, except to indicate that infinite
+															// scrolling can be used
+															params.page = params.page || 1;
+
+															return {
+																results : data.items,
+																pagination : {
+																	more : (params.page * 30) < data.total_count
+																}
+															};
+														},
+														cache : true
+													},
+													placeholder : 'Search for a repository',
+													escapeMarkup : function(
+															markup) {
+														return markup;
+													}, // let our custom formatter work
+													minimumInputLength : 1,
+													templateResult : formatRepo,
+													templateSelection : formatRepoSelection
+												});
+
+								function formatRepo(repo) {
+									if (repo.loading) {
+										return repo.text;
+									}
+
+									var markup = "<div class='select2-result-repository clearfix d-flex'>"
+											+ "<div class='select2-result-repository__avatar mr-2'><img src='" + repo.owner.avatar_url + "' class='width-2 height-2 mt-1 rounded' /></div>"
+											+ "<div class='select2-result-repository__meta'>"
+											+ "<div class='select2-result-repository__title fs-lg fw-500'>"
+											+ repo.full_name + "</div>";
+
+									if (repo.description) {
+										markup += "<div class='select2-result-repository__description fs-xs opacity-80 mb-1'>"
+												+ repo.description + "</div>";
+									}
+
+									markup += "<div class='select2-result-repository__statistics d-flex fs-sm'>"
+											+ "<div class='select2-result-repository__forks mr-2'><i class='fal fa-lightbulb'></i> "
+											+ repo.forks_count
+											+ " Forks</div>"
+											+ "<div class='select2-result-repository__stargazers mr-2'><i class='fal fa-star'></i> "
+											+ repo.stargazers_count
+											+ " Stars</div>"
+											+ "<div class='select2-result-repository__watchers mr-2'><i class='fal fa-eye'></i> "
+											+ repo.watchers_count
+											+ " Watchers</div>"
+											+ "</div>"
+											+ "</div></div>";
+
+									return markup;
+								}
+
+								function formatRepoSelection(repo) {
+									return repo.full_name || repo.text;
+								}
+
+							});
+						});
+	
+		
+		$(document).ready(function() {
+			// initialize datatable
+			$('#OmnetDesktopTable').dataTable({
+				scrollCollapse: true,
+				scrollY: '218px',
+				paging: false,
+				searching : false,
+				ordering: false,
+				info: false,
+			})
+		});
+		
+	</script>
+	
+	<!-- The order of scripts is irrelevant. Please check out the plugin pages for more details about these plugins below: -->
+    <script src="js/statistics/peity/peity.bundle.js"></script>
+    <script src="js/statistics/flot/flot.bundle.js"></script>
+    <script src="js/statistics/easypiechart/easypiechart.bundle.js"></script>
+    <script src="js/datagrid/datatables/datatables.bundle.js"></script>
+	<script src="js/formplugins/ion-rangeslider/ion-rangeslider.js"></script>
+    <script src="js/statistics/chartjs/chartjs.bundle.js"></script>
+	<script src="js/dependency/moment/moment.js"></script>
+    <script src="js/statistics/demo-data/apexcharts-irregular-data-series.js"></script>
+    <script src="js/statistics/apexcharts/apexcharts.bundle.js"></script>
+    <script src="js/statistics/chartist/chartist.js"></script>
+	
+	<script>
+		
+	
+			
+			/* distributed series */
+            var distributedSeries = function()
+            {
+                new Chartist.Bar('#distributedSeries',
+                {
+                    labels: ["Sentenced", "Pretrial", "Hold", "Parole", "ion Violation"],
+                    series: [20, 60, 120, 200, 180]
+                },
+                {
+                    distributeSeries: true
+                });
+            }
+            /* distributed series -- end */
+			
+			
+			/* pie chart Population by Gender */
+            var pieChart = function()
+            {
+                var config = {
+                    type: 'pie',
+                    data:
+                    {
+                        datasets: [
+                        {
+                            data: [
+                                370, 300
+                            ],
+                            backgroundColor: [
+                               '#fd52a3', '#51adf6' //color.info._300,  color.danger._400
+                            ],
+                            label: 'My dataset' // for legend
+                        }],
+                        labels: [
+                            "Male",
+                            "Female",
+                        ]
+                    },
+                    options:
+                    {
+                        responsive: true,
+                        legend:
+                        {
+                            display: true,
+                            position: 'bottom',
+                        }
+                    }
+                };
+                new Chart($("#pieChart > canvas").get(0).getContext("2d"), config);
+            }
+            /* pie chart -- end */
+			
+			/* pie chart population by race/ethinicity*/
+            var pieChart_RaceEthinicity = function() {
+			var config = {
+				type: 'pie',
+				data: {
+					datasets: [
+						{
+							data: [
+								200,  // Non Hispanic
+								133,  // Hispanic or Latino
+							],
+							backgroundColor: [							
+								"#FFCE56",  // Color for Hispanic or Latino
+								"#4BC0C0",  // Color for Non Hispanic
+							],
+							label: 'Offender Population' // for legend
+						}
+					],
+					labels: [
+						"Hispanic",
+						"Non Hispanic"
+					]
+				},
+				options: {
+					responsive: true,
+					legend: {
+						display: true,
+						position: 'bottom',
+					}
+				}
+			};
+			new Chart($("#pieChart_RaceEthinicity > canvas").get(0).getContext("2d"), config);
+		}
+            /* pie chart -- end */
+		
+		
+			
+			
+			
+			/* basic line chart */
+            var basicLineChartOptions = {
+                series: [
+                {
+                    name: "Offender",
+                    data: [51, 49, 62, 69, 91, 148]
+                }],
+                chart:
+                {
+                    height: 350,
+                    type: 'line',
+                    zoom:
+                    {
+                        enabled: false
+                    },
+                },
+                tooltip:
+                {
+                    theme: 'dark',
+                },
+                dataLabels:
+                {
+                    enabled: false
+                },
+                stroke:
+                {
+                    curve: 'straight'
+                },
+                title:
+                {
+                    text: 'Next Six Months',
+                    align: 'left'
+                },
+                colors: ['#51adf6'],
+                grid:
+                {
+                    row:
+                    {
+                        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                        opacity: 0.5
+                    },
+                },
+                xaxis:
+                {
+                    categories: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+                }
+            };
+
+            var basicLineChart = new ApexCharts(document.querySelector("#basicLineChartap"), basicLineChartOptions);
+            /* basic line chart -- end */
+			
+			/* basic line chart1 */
+            var basicLineChartOptions1 = {
+                series: [
+                {
+                    name: "OffenderCount",
+                    data: [25, 42, 52, 60, 63, 62,60, 49, 29, 19, 13, 3]
+                }],
+                chart:
+                {
+                    height: 160,
+                    type: 'line',
+                    zoom:
+                    {
+                        enabled: false
+                    },
+                },
+                tooltip:
+                {
+                    theme: 'dark',
+                },
+                dataLabels:
+                {
+                    enabled: false
+                },
+                stroke:
+                {
+                    curve: 'straight'
+                },
+                colors: ['#0a6ebd'],
+                grid:
+                {
+                    row:
+                    {
+                        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                        opacity: 0.5
+                    },
+                },
+                xaxis:
+                {
+                    categories: ['20', '25', '30', '35', '40', '45','50','55','60','65','70','75'],
+                }
+            };
+
+	        var basicLineChart1 = new ApexCharts(document.querySelector("#basicLineChartap1"), basicLineChartOptions1);
+            /* basic line chart1 -- end */
+			
+			// Full 10 years data
+			const allYears = ['2020', '2021', '2022', '2023', '2024', '2025', '2026', '2027', '2028', '2029', '2030'];
+			const allData = [1000, 1100, 1300, 1600, 1800, 2000, 2200, 2400, 2600, 2800, 3000];
+
+			// DOM Elements
+			const yearRange = document.getElementById('yearRange');
+			const yearRangeLabel = document.getElementById('yearRangeLabel');
+			const ctx = document.getElementById('populationGrowthChart').getContext('2d');
+
+			// Initial chart setup
+			let chart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: allYears,
+					datasets: [{
+						label: 'Population Growth',
+						data: allData,
+						borderColor: 'rgba(75, 192, 192, 1)',
+						backgroundColor: 'rgba(75, 192, 192, 0.2)',
+						borderWidth: 2,
+						tension: 0.4
+					}]
+				},
+				options: {
+					responsive: true,
+					plugins: {
+						legend: {
+							display: true,
+							position: 'top'
+						}
+					},
+					scales: {
+						x: {
+							title: {
+								display: true,
+								text: 'Year'
+							}
+						},
+						y: {
+							title: {
+								display: true,
+								text: 'Population'
+							},
+							beginAtZero: true
+						}
+					}
+				}
+			});
+
+			// Update chart data based on slider
+			function updateChart(range) {
+				const updatedYears = allYears.slice(0, range);
+				const updatedData = allData.slice(0, range);
+				chart.data.labels = updatedYears;
+				chart.data.datasets[0].data = updatedData;
+				chart.update();
+				yearRangeLabel.innerText = `${updatedYears[0]}-${updatedYears[updatedYears.length - 1]}`;
+			}
+
+			// Event listener for slider
+			yearRange.addEventListener('input', (event) => {
+				updateChart(event.target.value);
+			});
+
+			// Initialize chart with the full range
+			updateChart(yearRange.value);			
+		
+			var ctx_highRisk = document.getElementById('highRiskPopulationChart').getContext('2d');
+			var highRiskPopulationChart = new Chart(ctx_highRisk, {
+				type: 'pie', // Pie chart type
+				data: {
+					datasets: [{
+						data: [
+							40,  // % Chronic Illness
+							35,  // % Behavioral Health Issues
+							25   // % Security Risks
+						],
+						backgroundColor: [
+							"#FF6384", // Color for Chronic Illness
+							"#36A2EB", // Color for Behavioral Health Issues
+							"#FFCE56"  // Color for Security Risks
+						],
+						hoverBackgroundColor: [
+							"#FF6384",
+							"#36A2EB",
+							"#FFCE56"
+						]
+					}],
+					labels: [
+						"Chronic Illness",
+						"Behavioral Health Issues",
+						"Security Risks"
+					]
+				},
+				options: {
+					responsive: true,
+					plugins: {
+						legend: {
+							display: true,
+							position: 'bottom'
+						},
+						tooltip: {
+							callbacks: {
+								label: function(tooltipItem) {
+									const value = tooltipItem.raw;
+									return value + "%"; // Display percentage
+								}
+							}
+						}
+					}
+				}
+			});
+			
+			var ctx_forecastedPopulation = document.getElementById('forecastedPopulationChart').getContext('2d');
+			var forecastedPopulationChart = new Chart(ctx_forecastedPopulation, {
+				type: 'line', // Line graph
+				data: {
+					labels: ['2020', '2021', '2022', '2023', '2024', '2025'], // X-axis: Years
+					datasets: [
+						{
+							label: 'Historical Population',
+							data: [1000, 1200, 1500, 1800], // Data for 2020 to 2023
+							borderColor: 'rgba(75, 192, 192, 1)',
+							backgroundColor: 'rgba(75, 192, 192, 0.2)',
+							borderWidth: 2,
+							tension: 0.4 // Smooth curve
+						},
+						{
+							label: 'Forecasted Population',
+							data: [null, null, null, null, 2000, 2200], // Skip 2020 to 2023
+							borderColor: 'rgba(255, 99, 132, 1)',
+							backgroundColor: 'rgba(255, 99, 132, 0.2)',
+							borderDash: [5, 5], // Dashed line style
+							borderWidth: 2,
+							tension: 0.4 // Smooth curve
+						}
+					]
+				},
+				options: {
+					responsive: true,
+					plugins: {
+						legend: {
+							display: true,
+							position: 'top' // Display legend on top
+						}
+					},
+					scales: {
+						x: {
+							title: {
+								display: true,
+								text: 'Year'
+							}
+						},
+						y: {
+							title: {
+								display: true,
+								text: 'Population'
+							},
+							beginAtZero: true // Start Y-axis at zero
+						}
+					}
+				}
+			});
+			
+            $(document).ready(function()
+            {
+				
+				
+				
+				/** table 1 - inmated population by facility **/
+				// Define inmated population by facility data
+				var tabledatalistoffCriticalIncidents = [
+				  {
+					"IncidentID": "12345",
+					"DateTime": "03/28/2025 10:35 AM",
+					"IncidentType": "Fight/Assault",
+					"InmateID": 87654321,
+					"Location": "Cell Block C",
+					"Description": "Physical altercation between two inmates. Injuries reported.",
+					"ReportedBy": "Officer Johnson",
+					"Status": "Under Review"
+				  },
+				  {
+					"IncidentID": "12346",
+					"DateTime": "03/28/2025 02:15 PM",
+					"IncidentType": "Contraband Discovery",
+					"InmateID": 12345678,
+					"Location": "Visitation Room",
+					"Description": "Illegal substance found during routine search.",
+					"ReportedBy": "Officer Smith",
+					"Status": "Resolved"
+				  },
+				  {
+					"IncidentID": "12347",
+					"DateTime": "03/30/2025 08:45 AM",
+					"IncidentType": "Medical Emergency",
+					"InmateID": 23456789,
+					"Location": "Yard Area",
+					"Description": "Inmate collapsed during outdoor activity. Sent to infirmary.",
+					"ReportedBy": "Nurse Williams",
+					"Status": "Resolved"
+				  },
+				  {
+					"IncidentID": "12348",
+					"DateTime": "03/30/2025 09:00 AM",
+					"IncidentType": "Attempted Escape",
+					"InmateID": 34567890,
+					"Location": "Perimeter Fence",
+					"Description": "Inmate attempted to climb the fence. Incident thwarted.",
+					"ReportedBy": "Officer Adams",
+					"Status": "Under Investigation"
+				  }
+				];
+
+				//Define Table
+				var CriticalIncidentsTable = new Tabulator("#listofCriticalIncidents-table", {
+				  layout: "fitColumns",
+				  data: tabledatalistoffCriticalIncidents,
+				  height: 'auto',
+				  printAsHtml: true,
+				  printStyled: true,
+				  columns: [
+					{
+						title: "IncidentID#",
+						field: "IncidentID",
+						width: 120,
+						
+					},
+					{
+						title: "Date&Time",
+						field: "DateTime",
+						width: 150,
+					},
+					{
+						title: "Incident Type",
+						field: "IncidentType",
+						width: 150,
+					},
+					{
+						title: "InmateID#",
+						field: "InmateID",
+						width: 100,
+					},
+					{
+						title: "Location",
+						field: "Location",
+						width: 150,
+					},
+					{
+						title: "Description",
+						field: "Description",
+					},
+					{
+						title: "ReportedBy",
+						field: "ReportedBy",
+						width: 120,
+					},
+					{
+						title: "Status",
+						field: "Status",
+						width: 140,
+					}
+				  ]
+				});
+				/** end of table 1 **/
+				
+				/** table 3 - inmated population by facility **/
+				// Define inmated population by facility data
+				var tabledatalistofOffender_RedFlag = [
+				  {
+					"OffenderID":"87654321",
+					"Name": "John Doe",
+					"Age": 35,
+					"OffenseType": "Violent",
+					"RedFlagReason": "History of assaults on staff and inmates",
+					"LastIncidentDate": "03/25/2025",
+					"RiskLevel": "High",
+					"ActionsTaken": ["Increased surveillance", "Restricted access to common areas"]
+				  },
+				  {
+					"OffenderID":  "12345678",
+					"Name": "Jane Smith",
+					"Age": 28,
+					"OffenseType": "Contraband",
+					"RedFlagReason": "Frequent contraband smuggling attempts",
+					"LastIncidentDate": "03/27/2025",
+					"RiskLevel": "Medium",
+					"ActionsTaken": ["Regular cell searches", "Limited visitation privileges"]
+				  },
+				  {
+					"OffenderID": "23456789",
+					"Name": "Robert Johnson",
+					"Age": 42,
+					"OffenseType": "Escape Attempt",
+					"RedFlagReason": "Multiple escape attempts",
+					"LastIncidentDate": "03/29/2025",
+					"RiskLevel": "Critical",
+					"ActionsTaken": ["Solitary confinement", "24/7 monitoring"]
+				  },
+				];
+				//Define Table
+				var RedFlag_OffTable = new Tabulator("#listofRedFlag-table", {
+				  layout: "fitColumns",
+				  data: tabledatalistofOffender_RedFlag,
+				  height: 'auto',
+				  printAsHtml: true,
+				  printStyled: true,
+				  columns: [
+					{
+						title: "ID#",
+						field: "OffenderID",
+						width: 100,
+						
+					},
+					{
+						title: "Offender Name",
+						field: "Name",
+						width: 150,
+					},
+					{
+						title: "Offense Type",
+						field: "OffenseType",
+						width: 150,
+					},
+					{
+						title: "RedFlagReason",
+						field: "RedFlagReason",
+					},
+					{
+						title: "LastIncident Date",
+						field: "LastIncidentDate",
+						width: 150,
+					},
+					{
+						title: "Risk Level",
+						field: "RiskLevel",
+						width: 100,
+					},
+					{
+						title: "ActionsTaken",
+						field: "ActionsTaken",
+					}
+				  ]
+				});
+				/** end of table 3 **/
+				distributedSeries();              
+				pieChart();
+				        
+				pieChart_RaceEthinicity();
+				
+				basicLineChart.render();
+				basicLineChart1.render();
+                
+				var ionskin = "flat";
+			
+			
+                $('input[type=radio][name=skinchange]').change(function()
+                {
+                    $('.irs').removeClassPrefix('irs--').addClass(this.value);
+                });
+			//Lock and restrict handles
+                $("#demo_8").ionRangeSlider(
+                {
+                    skin: ionskin,
+                    type: "single",
+                    min: 0,
+                    max: 30,
+                    from: 15,
+                    grid: true,
+                    from_min: 1, // set min position for FROM handle (replace FROM to TO to change handle)
+                    from_max: 30, // set max position for FROM handle
+                    from_shadow: true // highlight restriction for FROM handle
+                });
+
+               
+
+
+            });
+
+			const ctx_Race = document.getElementById('racePieChart').getContext('2d');
+
+			// Example dataset for races
+			const data = {
+			  labels: ['White', 'Black or African American', 'Asian', 'Native American', 'Other'],
+			  datasets: [{
+				label: 'Offender Race Distribution',
+				data: [45, 30, 15, 5, 5], // Example data: replace with your system's data
+				backgroundColor: [
+				  'rgba(54, 162, 235, 0.8)',  // Blue
+				  'rgba(255, 99, 132, 0.8)',  // Red
+				  'rgba(75, 192, 192, 0.8)',  // Green
+				  'rgba(255, 206, 86, 0.8)',  // Yellow
+				  'rgba(153, 102, 255, 0.8)'  // Purple
+				],
+				borderColor: [
+				  'rgba(54, 162, 235, 1)',
+				  'rgba(255, 99, 132, 1)',
+				  'rgba(75, 192, 192, 1)',
+				  'rgba(255, 206, 86, 1)',
+				  'rgba(153, 102, 255, 1)'
+				],
+				borderWidth: 1
+			  }]
+			};
+
+			const config = {
+			  type: 'pie',
+			  data: data,
+			  options: {
+				responsive: true,
+				plugins: {
+				  legend: {
+					position: 'top',
+				  },
+				  title: {
+					display: true,
+					text: 'Race Distribution in Offender Management System'
+				  }
+				}
+			  }
+			};
+
+			new Chart(ctx_Race, config);
+        </script>
+        
+	<script>
+
+
+var imageNotFound="R0lGODlhoACgAPcAAAAAAAAICAgICAgIEAgQEBAQEBAQGBAYGBgYGBgYIRghISEhISEhKSEpKSkpKSkpMSkxMTExOTE5OTE5Qjk5QjlCQjlCSkJCSkJKSkJKUkpKUkpSUkpSWkpaWlJaWlJaY1JjY1pjY1pja1pra1prc2Nrc2Nzc2Nze2tze2t7hHN7hHOEjHuEjHuElHuMlISMlISMnISUnIyUnIyUpYycpZScrZSlrZSltZyltZyttZytvaWtvaW1vaW1xqW9xq29xq29zq3GzrXGzrXG1rXO1r3O1r3O3r3W3sbGxsbGzsbOzsbW3s7OztbW1tbW3t7e3ufn5+/v7+/v9+/39/f39////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ywAAAAAoACgAAAI/gCpRJESZWBBggYTIlx4sKFChwwfSoxIEaLFiRcrYtyosaPDKFVCiqwSBYiQIUJOpkSpsiXLlytjupQJc6bNmjhp6ry5MyfPnz6DxvQhZWTIkkKKKB1iZKlSI0OUFmHqtAhUqVSnPo26tKlW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"
+$(document).ready(function(){
+	
+	function convertLocalTimeToUTC_AMPM(timeString) {
+	    if (!timeString) return;
+
+	    // Split the input time string
+	    const [hours, minutes, seconds] = timeString.split(':').map(Number);
+
+	    // Create a local Date object with the provided time
+	    const now = new Date();
+	    const localDate = new Date(
+	        now.getFullYear(),
+	        now.getMonth(),
+	        now.getDate(),
+	        hours,
+	        minutes,
+	        seconds
+	    );
+
+	    // Get UTC hours and minutes
+	    const utcHours = localDate.getUTCHours();
+	    const utcMinutes = localDate.getUTCMinutes();
+
+	    // Convert to 12-hour format
+	    const formattedHour = (utcHours % 12 || 12).toString().padStart(2, '0');
+	    const formattedMinute = utcMinutes.toString().padStart(2, '0');
+	    const amPm = utcHours < 12 ? 'AM' : 'PM';
+
+	    return `${formattedHour}:${formattedMinute} ${amPm}`;
+	}
+
+	// ✅ Example:
+	const inputTime = "06:28:24"; // local time
+	const utcAMPM = convertLocalTimeToUTC_AMPM(inputTime);
+	console.log("UTC Time in AM/PM format:", utcAMPM);
+
+
+	function convertToMMDDYYYY(dateString) {
+		if (dateString) {
+		var date = new Date(dateString);
+		var formattedMonth = (date.getMonth() + 1).toString().padStart(2, '0');
+		var formattedDay = date.getDate().toString().padStart(2, '0');
+		var formattedYear = date.getFullYear().toString();
+		var formattedDate = formattedMonth + '/' + formattedDay + '/' + formattedYear;
+		return formattedDate;
+		}
+		return '';
+		}
+	
+	
+	function convertTimeToAMPM(timeString) {
+	    if (timeString) {
+	        var date = new Date('1970-01-01T' + timeString + 'Z'); // Assuming the time is in HH:mm:ss format
+
+	        var hour = date.getHours();
+	        var formattedHour = (hour % 12 || 12).toString().padStart(2, '0');
+	        var amPm = hour < 12 ? 'AM' : 'PM';
+	        var formattedMinute = date.getMinutes().toString().padStart(2, '0');
+
+	        var formattedTime = formattedHour + ':' + formattedMinute + ' ' + amPm;
+
+	        return formattedTime;
+	    }
+	}
+
+	
+////////////////////////////////////////////////////////////////////////////////////////
+
+
+ function getRandomColor() {
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+  }
+
+  // Apply random background to all elements with class 'profileName'
+  /* document.querySelectorAll('.profileName').forEach(function(element) {
+    element.style.background = getRandomColor();
+    console.log("color try")
+  }); */
+ 
+///////////////////////////////////////////////////////////////////////////////////////
+
+ 		   $.ajax({
+               url: "Desktop",  
+               type: "GET",
+               success: function (response) {
+            	  
+            	   if (response.length === 0 ) {
+        			   $('#Inmatesearched').append(`
+        			   <div class="NotificationNorecords">
+        					   <span> No Last Accessed Offender Records Found </span>
+        			   </div>
+        			   `);
+        			  }else{
+                  
+                       response.forEach(function(inmate, index) {
+							
+                    	    if(inmate.mug_shot===imageNotFound){
+                    		
+                    	   }
+						const randomColor = getRandomColor();
+						var ConvertedName = formatName(inmate.inmate_FULL_NAME);
+                        var Date=convertToMMDDYYYY(inmate.access_date_time);
+                        var Time=convertTimeToAMPM(inmate.access_TIME);
+
+                        if(inmate.mug_shot===imageNotFound){
+                        	$('#Inmatesearched').append(`
+                                    <a href="${inmate.screen_URL}" class="d-flex profileBlockMain mt-2 sbi-link" data-sbi="${inmate.sbi_no}" data-url="${inmate.screen_URL}" >
+									<div class="profileImg mr-3">
+										<span class="profileName" style="background: ${randomColor};">${inmate.name_PREFIX}</span>
+									</div>
+									<div class="profile content w-100">
+										<div class="d-flex justify-content-end">
+											<div class="w-100">	
+												<p class="mb-0 TitleContent w-100">${inmate.screen_name}</p>
+												<p class="mb-0 w-100">${ConvertedName}</p>														
+											</div>														
+											<p class="mb-0 dateTime mr-2 text-nowrap"> ${Date} <span class="ml-3">${Time}</span></p>
+										</div>
+										<p class="mb-0 DescContent"> <span style="font-weight: 500;">ID </span>${inmate.sbi_no}</p>
+									</div>
+								</a>
+							`);
+                 	   }
+                        else{
+                           if (inmate.mug_shot) {
+                               let mugShotBase64;
+
+                               
+                               if (typeof inmate.mug_shot === "string") {
+                                   mugShotBase64 = inmate.mug_shot;
+                               } 
+                               
+                                else if (Array.isArray(inmate.mug_shot)) {
+                                   let binary = '';
+                                   let bytes = new Uint8Array(inmate.mug_shot);
+                                   bytes.forEach((b) => binary += String.fromCharCode(b));
+                                   mugShotBase64 = btoa(binary);
+                               }  else {
+                                   console.warn("Invalid mug_shot format for inmate");
+                                   return;
+                               }
+
+                    
+                               var imgElement ='data:image/jpeg;base64,'+ mugShotBase64;
+								$('#Inmatesearched').append(`
+			        		 
+									<a href="${inmate.screen_URL}" class="d-flex profileBlockMain sbi-link"  data-sbi="${inmate.sbi_no}" data-url="${inmate.screen_URL}">
+									<div class="profileImg mr-3">
+										<img src="${imgElement}" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+									</div>
+									<div class="profile content w-100">
+										<div class="d-flex justify-content-end">	
+											<div class="w-100">															
+												<p class="mb-0 TitleContent w-100">${inmate.screen_name}</p>
+												<p class="mb-0 w-100">${ConvertedName}</p>
+											</div>													
+											<p class="mb-0 dateTime mr-2 text-nowrap">${Date} <span class="ml-3">${Time}</span></p>
+										</div>
+										<p class="mb-0 DescContent"> <span class="sbi-clickable" data-sbi="${inmate.sbi_no}" style="font-weight: 500;">ID </span>${inmate.sbi_no}</p>
+									</div>
+								</a>
+	                          `);
+                               
+                           } else {
+                              
+								$('#Inmatesearched').append(`
+                                            <a href="${inmate.screen_URL}"  class="d-flex profileBlockMain mt-2 sbi-link" data-sbi="${inmate.sbi_no}" data-url="${inmate.screen_URL}" >
+											<div class="profileImg mr-3">
+												<span class="profileName" style="background: ${randomColor};">${inmate.name_PREFIX}</span>
+											</div>
+											<div class="profile content w-100">
+												<div class="d-flex justify-content-end">
+													<div class="w-100">	
+														<p class="mb-0 TitleContent w-100">${inmate.screen_name}</p>
+														<p class="mb-0 w-100">${ConvertedName}</p>														
+													</div>														
+													<p class="mb-0 dateTime mr-2 text-nowrap"> ${Date} <span class="ml-3">${Time}</span></p>
+												</div>
+												<p class="mb-0 DescContent"> <span style="font-weight: 500;">ID </span>${inmate.sbi_no}</p>
+											</div>
+										</a>
+									`);
+                              
+                           }
+                       } 
+                       });
+        			  }
+               },
+               error: function (error) {
+                   console.error('Error fetching mug shots:', error);
+               }
+           });
+		   
+ 		  
+ 			$(document).on('click', '.sbi-link', function (e) {
+			    e.preventDefault();
+
+			    const sbi = this.getAttribute('data-sbi');
+		            const url = this.getAttribute('data-url');
+
+		            if (sbi && url) {
+		                sessionStorage.setItem('sbiOmnetDesktop', sbi);
+		                window.location.href = url;
+		            } else {
+		                console.warn("Missing data-sbi or data-url on the clicked element.");
+		            }
+			}); 
+		    
+		   
+/////////////////////////////////////////////////////////////////////////////////
+$.ajax({
+	url: 'notifiaction', 
+	type: 'GET',
+	success: function(data) {
+		if (data.length === 0 ) {
+			   $('#NotificationToday').append(`
+			   <div class="NotificationNorecords">
+					   <span> No Notifications Received </span>
+			   </div>
+			   `);
+			  }else{
+	  $.each(data, function(index, notify) {
+		var Date=convertToMMDDYYYY(notify.date_time_sent);
+		var Time=convertTimeToAMPM(notify.access_time);
+
+		   console.log()
+		   $('#NotificationToday').append(`
+				   
+				<a href="${notify.screen_url}" class="d-flex profileBlockMain mt-2">
+													<div class="profileImg mr-3">
+														<span class="profileName">${notify.name_prefix}</span>
+													</div>
+													<div class="profile content w-100">
+														<div class="d-flex justify-content-end align-items-center">														
+															<p class="mb-0 TitleContent w-100">${notify.created_user_name}</p>
+															<p class="mb-0 dateTime text-nowrap mr-2">${Date}<span class="ml-3">${Time}</span></p>
+														</div>
+														<p class="mb-0 DescContent">${notify.short_message} - ${notify.message_text}</p>
+													</div>
+												</a>
+				   
+		`);
+		   
+		
+		
+	  });
+			  }
+	},
+	error: function(xhr, status, error) {
+	  console.error('Error fetching data:', error);
+	}
+  });
+
+$.ajax({
+	url: "DesktopCountValues",  
+    type: "GET",
+    success: function(Response) {
+    	
+    	
+    	
+    	$('#BedOccupancyCountvalues').text(Response.Bedcount);
+    	$('#PopulationCountvalues').text(Response.Population);
+    	$('#AdmissionCountvalues').text(Response.Admission);
+    	$('#ReleaseCountvalues').text(Response.Release);
+        
+    },
+    error: function(error) {
+        console.error("Error fetching inmate image: ", error);
+    }
+});
+	/* 
+		    $.ajax({
+		      url: 'notifiaction', 
+		      type: 'GET',
+		      success: function(data) {
+		    	  if (data.length === 0 ) {
+			        	 $('#Notification').append(`
+			        	 <tr class='odd'>
+			        	 	<td valign="top" colspan="4" class="dataTables_empty">  No notification</td>
+			        	 </tr>
+			        	 `);
+				        }else{
+		    
+		    	  console.log('Value updated in the database.');
+		        $.each(data, function(index, notify) {
+			         var formattedDate = convertToMMDDYYYY(notify.date_time_sent);
+			         console.log(formattedDate);
+
+			         
+			         $('#Notification').append(`
+			        		 
+			        			<tr class="notification-link noticationBlock" id="${notify.user_mess_seq_num}" target="${notify.message_Read}">
+								<td style="width:160px;"> <a href="" class="name"> ${notify.created_user_name}</a></td>
+								<td> <a href="${notify.screen_url}" class="name d-flex"  title="${notify.message_text}"><span style="height: 26px; overflow: hidden;">${notify.message_text}</span></a></td>
+								<td>${formattedDate}</td>
+							</tr>
+			        		 
+		          `);
+			         
+		          
+		          
+		        });
+				        }
+		      },
+		      error: function(xhr, status, error) {
+		        console.error('Error fetching data:', error);
+		      }
+		    });
+		    
+		    $('#Notification').on('click', '.notification-link', function(e) {
+		    	e.preventDefault();
+		    	var $row = $(this).closest('tr');
+		    	 var userMessSeqNum = $(this).attr('id');
+		        console.log(userMessSeqNum+' message in click');
+		        var removeValue = $row.attr('target');
+		        var user_mess_seq_num;
+		    	if (removeValue === 'I') {
+		            return;
+		        }
+		    	
+		    	
+
+		        
+
+		        if (removeValue === 'A') 
+		           
+		        	$row.attr('target', 'I');
+		            $.ajax({
+		                url: 'Changedvalue',
+		                type: 'POST', 
+		                data: { user_mess_seq_num: userMessSeqNum },
+		                success: function(response) {
+		                    console.log('Remove updated successfully in the database ');
+		                },
+		            });
+		        
+		    });
+		    */
+
+		  
+		  
+		     
+		});
+		
+		
+
+		
+
+
+</script>
+	<script src="js/script.js"></script> 
+	<script>
+		$(document).ready(function () {
+			
+		});
+	</script>-->
+	<script type="text/javascript">
+		$('#js-page-content').smartPanel();
+	</script>
+</body>
+	<!-- BEGIN Page Footer -->
+		<div th:replace="~{fragments/footer :: footer}"></div>
+	<!-- END Page Footer -->
+</html>

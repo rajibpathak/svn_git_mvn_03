@@ -1,0 +1,3261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <meta charset="utf-8">
+        <title  class="DocketsSidebar">InmateChargesDockets</title>
+        <div th:replace="~{fragments/head :: head}"></div> 
+
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+
+
+        <body class="mod-bg-1 mod-nav-link">
+
+            <!-- BEGIN Page Wrapper -->
+            <div th:replace="~{fragments/header :: header}"></div>
+            <div th:replace="~{fragments/navmenus :: navmenus}"></div>
+            <div class="page-wrapper">
+                <div class="page-inner">
+                    <!-- BEGIN Left Aside -->
+                    <div th:replace="~{fragments/sidebar :: sidebar}"></div>
+                    <!-- END Left Aside --> 
+                    <div class="page-content-wrapper">
+
+                        <!-- BEGIN Page Content -->
+                        <!-- the #js-page-content id is needed for some plugins to initialize -->
+                        <main id="js-page-content" role="main" class="page-content">
+                     
+                            <div class="subheader mb-1">
+                                <h1 class="subheader-title">
+                                    <div th:replace="~{fragments/toggleMenu :: toggleMenu}"></div>
+									<i class='subheader-icon fal fa-'></i> <span id="screenNameHolder" th:data-name="${screenCode}" th:text="${screenName}"></span></span>
+                                    <!--<i class='subheader-icon fal fa-'></i> Inmate Charges/Dockets </span> -->
+                                </h1>
+                                <div class="frame-wrap bg-transparent">
+                                    <div class="btn-group">
+										<div class="col-12 pr-0">
+                      <div class="js-get-date">[your date here]</div>
+                              </div>
+                                        <div class="mr-2">
+                                            <div class="input-append date position-relative w-100">
+                                                    <span class="add-on"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <a href="javascript:void(0);"
+                                       class="btn btn-primary btn-sm btn-icon waves-effect waves-themed"
+                                       data-toggle="tooltip" data-placement="top" data-original-title="Add" id="add-card">
+                                        <i class="fal fa-plus"></i>
+                                    </a> <a href="javascript:void(0);"
+                                            class="btn btn-warning btn-sm btn-icon waves-effect waves-themed disabled"
+                                            data-toggle="tooltip" data-placement="top" data-original-title="Print"> <i
+                                            class="fal fa-print"></i>
+                                    </a> <a href="javascript:void(0);"
+                                            class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed"
+                                            data-toggle="tooltip" data-placement="top"id="clear-button" data-original-title="Clear"> <i
+                                            class="fal fa-times"></i>
+                                    </a> <a href="javascript:void(0);"
+                                            class="btn btn-success btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+                                            data-placement="top" id="savebtn" data-original-title="OK/Save"> <i class="fal fa-save"></i>
+                                    </a> <a href="javascript:void(0);"
+                                            class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+                                            data-placement="top" data-original-title="Cancel/Exit" id="exitButton"> <i class="fal fa-sign-out"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">						
+                                    <div th:replace="~{fragments/formheader :: formheader}"></div>
+									<input type="hidden" name="screenCode" id="screenCode" value="SEN_DOCK" />
+                                    <div class="d-flex mainBlock">
+                                        <div class="d-flex leftSidebarMain h-100vh">
+                                            <div class="ArrowBlockmain">
+                                                <button class="arrowBtn" id="leftSidebarIcon"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+                                            </div>
+                                            <div class="contain d-flex pl-0" id="contain">
+                                                <div class="leftSideBar p-2 mr-0 mt-2 h-100" style="height: calc(100% - 95px);">
+                                                    <h6 class="mx-0 mb-0 text-nowrap headerBlock text-center position-relative" style="font-weight: 600;top: -20px;">Search Criteria</h6>
+                                                    <div class="d-flex justify-content-end position-absolute" style="right: 5px;top: 5px;">										  
+                                                        <span class="d-flex" data-toggle="modal" data-target="" >
+                                                            <a href="#" id="pinButton" style="height: fit-content;" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center" data-class="nav-function-hidden">
+                                                                <i class="fa fa-thumb-tack" style="font-size: 15px;"></i>
+                                                            </a>
+                                                        </span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <div class="panel mb-0 panelContentBlock p-1 headerBlockNew border-0" style="background: unset;box-shadow: unset;padding-top: 0 !important;">
+                                                                <div class="row form-group">
+                                                                    <div class="col-lg-12 selectFloatingLabel">
+                                                                        <label class="form-label mr-2 mb-0 control-label selectFloating" for="selectCtrlcase">Case</label>
+                                                                        <select class="custom-select form-control typecontact d-block mb-1 floatingLableClick rawField" id="selectCtrlcase" data-fld = "selectCtrlcase_fld" data-lbl = "Case">
+                                                                            <option value=""><span style="color:red;">Case</span></option> 
+
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-lg-12 selectFloatingLabel mt-2">
+                                                                        <label class="form-label mr-2 mb-0 control-label selectFloating" for="selectCtrl">Court</label>
+                                                                        <select class="custom-select form-control typecontact d-block mb-1 floatingLableClick rawField" id="selectCtrl"  data-fld = "selectCtrl_fld" data-lbl = "Court">
+                                                                            <option value="">Select Court</option> 
+
+                                                                        </select>
+                                                                    </div>
+                                                                    <div class="col-lg-12 selectFloatingLabel mt-2">
+                                                                        <label class="form-label mr-2 mb-0 control-label selectFloating" for="selectCtrljudge">Judge</label>
+                                                                        <select class="custom-select form-control typecontact d-block mb-1 floatingLableClick rawField" id="selectCtrljudge" data-fld = "selectCtrljudge_fld" data-lbl = "Judge">
+                                                                            <option  value="">Judge</option> 
+                                                                        </select>
+                                                                    </div>
+                                                                    <div id="mdPicker" class="col-12 col-lg-7 pr-0 floatingFields mt-2 mb-1">
+                                                                        <input type="text" class="form-control w-100 floatingLable rawField" aria-label="" id="createfrom" name="createfrom" value="" placeholder="" data-fld = "createfrom_fld" data-lbl = "Created Date From">
+                                                                            <label for="createfrom" class="form-label mr-1 text-nowrap mb-0">Created Date From</label>
+                                                                    </div>
+                                                                    <div id="mdPicker" class="col-12 col-lg-5 floatingFields mt-2 mb-1">
+                                                                        <input type="text" class="form-control w-100 floatingLable rawField" aria-label="" id="createto" name="createto" value="" placeholder="" data-fld = "createto_fld" data-lbl = "To">
+                                                                            <label for="createto" class="form-label mr-1 text-nowrap mb-0">To</label>
+                                                                    </div>
+                                                                    <div class="col-12 col-lg-12 floatingFields mt-2">
+                                                                        <input type="text" class="form-control w-100 floatingLable rawField" aria-label="" id="cranum" name="cranum" value="" placeholder="" data-fld = "cranum_fld" data-lbl = "CRA#">
+                                                                            <label for="cranum" class="form-label mr-1 text-nowrap mb-0">CRA#</label>
+                                                                    </div>
+                                                                    <div class="d-flex ml-3 mt-2">												
+                                                                        <div class="custom-control custom-checkbox custom-control-inline mr-3">
+                                                                            <input type="checkbox" class="custom-control-input rawField" id="active" data-fld = "active_fld" data-lbl = "Active Charges">
+                                                                                <label class="custom-control-label text-nowrap form-label" for="active">Active Charges</label>
+                                                                        </div>
+                                                                        <div class="custom-control custom-checkbox custom-control-inline mr-1">
+                                                                            <input type="checkbox" class="custom-control-input rawField" id="disposition" data-fld = "disposition_fld" data-lbl = "Disposition">
+                                                                                <label class="custom-control-label text-nowrap form-label" for="disposition">Disposition</label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="d-flex justify-content-end mt-1 w-100 mr-3 mt-2">
+                                                                        <button id="SelectButton" type="button" class="btn btn-primary btn-sm">Search</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row px-3 pt-2 mainScreenBlock" style="width: calc(100% - 25px);margin-left: 0 !important;height: fit-content;">
+											<div class="d-flex align-items-center text-nowrap w-100">
+												<div id="innavleftArrow" style="display:none;">
+													<i class="fa fa-angle-left btn px-1"aria-hidden="true" style="font-size:25px;"></i>
+												</div>
+												<div class="d-flex form-group innavBlockMain w-100" id="caseFileMain"> 
+													<div class="position-relative mr-3 casefileBlock caseFile1">
+														<div class="position-absolute caseNumber" style="background: #4de5d5;">
+															<div class="d-flex align-items-center pl-0 ">
+															<label for="case1" class="form-label mr-1 text-nowrap mb-0">Case#</label>
+																<input type="text" class="form-control w-100  mx-1 case-click rawField" style="background: #fff;" aria-label="" id="case1" data-fld = "case1_fld" data-lbl = "Case#" name="case1" value="" placeholder="Enter Case#"  data-case-id="1" autocomplete="off">
+																	
+															</div>
+														</div>
+														<div style="border: 5px solid #4de5d5;border-radius: 0px 15px 15px 15px;" class="p-1 mt-5 caseCardBlock">	
+															<div id="mdPicker" class="d-flex align-itens-center mt-2 pl-0 floatingFields w-100 input-append date">
+																<input class="span2 form-control w-100 floatingLable rawField" size="16" type="text" aria-label="" name="cdate1" id="cdate1" data-fld = "cdate1_fld" data-lbl = "Created Date" value="" placeholder="" autocomplete="off">
+																	<label for="cdate1" class="form-label mr-2 text-nowrap mb-0">Created Date</label>
+																	<span class="add-on"></span>
+															</div>
+															<div class="d-flex align-items-center pl-0 floatingFields mt-3">
+																	<input type="text" class="form-control w-100 floatingLable rawField" aria-label="" id="judge1" data-fld = "judge1_fld" data-lbl = "Judge" name="judge1" value="" placeholder="" autocomplete="off" readonly>
+																	<label for="judge1" class="form-label mr-1 text-nowrap mb-0">Judge</label>
+																<input type="hidden" class="form-control w-100 floatingLable" aria-label="" id="judgecode1"  name="judgecode1" value="" placeholder="">
+																	<span class="d-flex" data-toggle="modal" style="width: 30px; position: relative; top: -12px; right: -10px;">														
+																		<a href="javascript:void(0);"
+																		class="btn btn-primary btn-sm btn-icon waves-effect waves-themed remove-card position-absolute" style="right: 10px; top: -1px;"
+																		data-toggle="tooltip" data-placement="top" data-original-title="Select Judge" id="add-card"   onclick="openJudgeModal(this)">
+																			<i class="fal fa-users"></i>
+																		</a>
+																	</span>
+															</div>
+															<div class="selectFloatingLabel mt-3 d-flex align-items-center">
+																<label for="selectCtrl1" class="form-label mr-2 mb-0 control-label selectFloating">Court</label>
+																<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick rawField" id="selectCtrl1" data-fld = "selectCtrl1_fld" data-lbl = "Court">
+																	<option value=""> Court</option> 
+	
+																</select>
+															</div>
+														</div>
+													</div>
+													<div class="position-relative mr-3 casefileBlock caseFile2">
+														<div class="position-absolute caseNumber" style="background: #6ab8f7;">
+															<div class="d-flex align-items-center pl-0 ">
+															<label for="case2" class="form-label mr-1 text-nowrap mb-0 ">Case#</label>
+																<input type="text" class="form-control w-100  mx-1  case-click rawField" style="background: #fff;" aria-label="" id="case2" data-fld = "case2_fld" data-lbl = "Case#" name="case2" value="" placeholder="Enter Case#" data-case-id="2" autocomplete="off">
+																
+															</div>
+														</div>
+														<div style="border: 5px solid #6ab8f7;border-radius: 0px 15px 15px 15px;" class="p-1 mt-5 caseCardBlock">	
+															<div id="mdPicker" class="d-flex align-itens-center mt-2 pl-0 floatingFields w-100 input-append date">
+																<input class="span2 form-control w-100 floatingLable rawField" size="16" type="text" aria-label="" name="cdate2" id="cdate2" data-fld = "cdate2_fld" data-lbl = "Created Date" value="" placeholder="" autocomplete="off">
+																	<label for="cdate2" class="form-label mr-2 text-nowrap mb-0">Created Date</label>
+																	<span class="add-on"></span>
+															</div>
+															<div class="d-flex align-items-center pl-0 floatingFields mt-3">
+																<input type="text" class="form-control w-100 floatingLable rawField" aria-label="" id="judge2" data-fld = "judge2_fld" data-lbl = "Judge" name="judge2" value="" placeholder="" autocomplete="off" readonly>
+																<label for="judge2" class="form-label mr-1 text-nowrap mb-0">Judge</label>
+																<input type="hidden" class="form-control w-100 floatingLable" aria-label="" id="judgecode2" name="judgecode2" value="" placeholder="">
+																	<span class="d-flex" data-toggle="modal"  style="width: 30px; position: relative; top: -12px; right: -10px;">														
+																		<a href="javascript:void(0);"
+																		class="btn btn-primary btn-sm btn-icon waves-effect waves-themed remove-card position-absolute" style="right: 10px; top: -1px;"
+																		data-toggle="tooltip" data-placement="top" data-original-title="Select Judge" id="add-card"  onclick="openJudgeModal(this)">
+																			<i class="fal fa-users"></i>
+																		</a>
+																	</span>
+															</div>
+															<div class="selectFloatingLabel mt-3 d-flex align-items-center">
+																<label class="form-label mr-2 mb-0 control-label selectFloating" for="selectCtrl2">Court</label>
+																<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick rawField" id="selectCtrl2" data-fld = "selectCtrl2_fld" data-lbl = "Court">
+																	<option>Court</option> 
+	
+																</select>
+															</div>
+														</div>
+													</div>
+													<div class="position-relative mr-3 casefileBlock caseFile3">
+														<div class="position-absolute caseNumber" style="background: #ffaed4;">
+															<div class="d-flex align-items-center pl-0 ">
+															<label for="case3" class="form-label mr-1 text-nowrap mb-0">Case#</label>
+																<input type="text" class="form-control w-100  mx-1 case-click rawField" style="background: #fff;" aria-label="" id="case3" data-fld = "case3_fld" data-lbl = "Case#" name="case3" value="" placeholder="Enter Case#" data-case-id="3" autocomplete="off">
+																
+															</div>
+														</div>
+														<div style="border: 5px solid #ffaed4;border-radius: 0px 15px 15px 15px;" class="p-1 mt-5 caseCardBlock">	
+															<div id="mdPicker" class="d-flex align-itens-center mt-2 pl-0 floatingFields w-100 input-append date">
+																<input class="span2 form-control w-100 floatingLable rawField" size="16" type="text" aria-label="" name="cdate3" id="cdate3" data-fld = "cdate3_fld" data-lbl = "Created Date" value="" placeholder="" autocomplete="off">
+																	<label for="cdate3" class="form-label mr-2 text-nowrap mb-0">Created Date</label>
+																	<span class="add-on"></span>
+															</div>
+															<div class="d-flex align-items-center pl-0 floatingFields mt-3">
+																<input type="text" class="form-control w-100 floatingLable rawField" aria-label="" id="judge3" data-fld = "judge3_fld" data-lbl = "Judge" name="judge3" value="" placeholder="" autocomplete="off" readonly>
+																<label for="judge3" class="form-label mr-1 text-nowrap mb-0">Judge</label>
+																<input type="hidden" class="form-control w-100 floatingLable" aria-label="" id="judgecode3" name="judgecode3" value="" placeholder="">
+																	<span class="d-flex" data-toggle="modal" style="width: 30px; position: relative; top: -12px; right: -10px;">														
+																		<a href="javascript:void(0);"
+																		class="btn btn-primary btn-sm btn-icon waves-effect waves-themed remove-card position-absolute" style="right: 10px; top: -1px;"
+																		data-toggle="tooltip" data-placement="top" data-original-title="Select Judge" id="add-card" onclick="openJudgeModal(this)">
+																			<i class="fal fa-users"></i>
+																		</a>
+																	</span>
+															</div>
+															<div class="selectFloatingLabel mt-3 d-flex align-items-center">
+																<label class="form-label mr-2 mb-0 control-label selectFloating " for="selectCtrl3">Court</label>
+																<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick rawField" id="selectCtrl3" data-fld = "selectCtrl3_fld" data-lbl = "Court">
+																	<option>Court</option> 
+	
+																</select>
+															</div>
+														</div>
+													</div>
+													<div class="position-relative mr-3 casefileBlock caseFile4">
+														<div class="d-flex caseFile">
+															<div class="position-absolute caseNumber" style="background: #4de5d5;">
+																<div class="d-flex align-items-center pl-0 ">
+																<label for="case4" class="form-label mr-1 text-nowrap mb-0">Case#</label>
+																	<input type="text" class="form-control w-100  mx-1 case-click rawField" style="background: #fff;" aria-label="" id="case4" data-fld = "case4_fld" data-lbl = "Case#" name="case4" value="" placeholder="Enter Case#" data-case-id="4" autocomplete="off">
+																		
+																</div>
+															</div>
+															<div style="border: 5px solid #4de5d5;border-radius: 0px 15px 15px 15px;" class="p-1 mt-5 w-100 caseCardBlock">	
+																<div id="mdPicker" class="d-flex align-itens-center mt-2 pl-0 floatingFields w-100 input-append date">
+																	<input class="span2 form-control w-100 floatingLable rawField" size="16" type="text" aria-label="" name="cdate4" id="cdate4" data-fld = "cdate4_fld" data-lbl = "Created Date" value="" placeholder="" autocomplete="off">
+																		<label for="cdate4" class="form-label mr-2 text-nowrap mb-0">Created Date</label>
+																		<span class="add-on"></span>
+																</div>
+																<div class="d-flex align-items-center pl-0 floatingFields mt-3">
+																	<input type="text" class="form-control w-100 floatingLable rawField" aria-label="" id="judge4" name="judge4" data-fld = "judge4_fld" data-lbl = "Judge" value="" placeholder="" autocomplete="off" readonly>
+																		<label for="judge4" class="form-label mr-1 text-nowrap mb-0">Judge</label>
+																		<input type="hidden" class="form-control w-100 floatingLable" aria-label="" id="judgecode4"  name="judgecode4" value="" placeholder="">
+																		<span class="d-flex" data-toggle="modal"  style="width: 30px; position: relative; top: -12px; right: -10px;">														
+																			<a href="javascript:void(0);"
+																			class="btn btn-primary btn-sm btn-icon waves-effect waves-themed remove-card position-absolute" style="right: 10px; top: -1px;"
+																			data-toggle="tooltip" data-placement="top" data-original-title="Select Judge" id="add-card" onclick="openJudgeModal(this)">
+																				<i class="fal fa-users"></i>
+																			</a>
+																		</span>
+																</div>
+																<div class="selectFloatingLabel mt-3 d-flex align-items-center">
+																	<label class="form-label mr-2 mb-0 control-label selectFloating" for="selectCtrl4">Court</label>
+																	<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick rawField" id="selectCtrl4" data-fld = "selectCtrl4_fld" data-lbl = "Court">
+																		<option>Court</option> 
+	
+																	</select>
+																	<input type="hidden" class="form-control w-100 floatingLable" aria-label="" id="Courtcode4" name="Courtcode4" value="" placeholder=""> 
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div id="innavRightArrow">
+													<i class="fa fa-angle-right btn px-1"aria-hidden="true" style="font-size:25px;"></i> 
+												</div>
+											</div>
+                                            <div class="col-lg-12 p-0 mt-3">
+                                                <div id="panel-1" class="panel mb-0">
+                                                    <div class="panel-hdr">
+                                                        <h2 style="display: flex;justify-content: space-between;"> Charge Details</h2>
+										     <div>
+															<a href="javascript:void(0);"
+						                                       class="btn btn-primary btn-sm btn-icon waves-effect waves-themed"
+						                                       data-toggle="tooltip" data-placement="top" data-original-title="Add" id="charge-Add">
+						                                        <i class="fal fa-plus"></i>
+						                                    </a>
+														</div>
+									              			  <!--<div class="panel-toolbar" role="menu">
+										
+                                                                <a href="#" class="btn btn-panel hover-effect-dot js-panel-collapse" data-toggle="tooltip" data-original-title="Collapse"></a>
+                                                                <a href="#" class="btn btn-panel hover-effect-dot js-panel-fullscreen" data-toggle="tooltip" data-original-title="Fullscreen"></a>
+                                                                <a href="#" class="btn btn-panel hover-effect-dot js-panel-close" data-toggle="tooltip" data-original-title="Close"></a>
+                                                            </div>-->
+                                         
+                                           
+                                                    </div>
+                                                    <div class="panel-container show">
+                                                        <div class="panel-content">
+                                                            <div id="js-checkbox-toggles" class="d-flex mb-0 w-100">
+                                                                <div id="dockets-table" class="w-100"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" id="judgeDetailModal" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header pt-3 pb-2">
+                                                            <h6 class="modal-title">Judge details</h6>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body py-0">
+                                                            <div class="d-flex align-items-center mb-2">
+                                                                <label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+                                                                <input type="text" class="form-control" aria-label="dob" name="Find" id="Find" value="">
+                                                            </div>
+                                                            <div id="judgeDetail-table"></div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <!--	<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtnjudge" >Find</button>-->
+                                                            <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal"  id="fetchDataBtnjudge" >Ok</button>
+                                                            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+                                                        </div>
+                                                    </div> 
+                                                </div>			
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+							
+							<div id="custom-tooltip" style="position: fixed; display: none; padding: 5px; background-color:white; color: black; border:1px solid black; z-index: 10000; pointer-events: none;"></div>
+								
+							<div class="modal fade" id="statuteInfoModal" tabindex="-1" role="dialog" aria-hidden="true">
+							    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+							        <div class="modal-content">
+							            <div class="modal-header pt-3 pb-2">
+							                <h5 class="modal-title">Statute Information</h5>
+							                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+							                </button>
+							            </div>
+							            <div class="modal-body py-2">
+							                <!-- Search Criteria Section -->
+											<div class="panel mb-2 p-2 border">
+											    <div class="d-flex align-items-center row">
+											        <!-- Keyword Input -->
+											        <div class="col-lg-3">
+											            <div class="floatingFields">
+											                <input type="text" id="statuteKeyword" class="form-control form-control-sm" placeholder="">
+											                <label for="statuteKeyword" class="form-label mb-0">Keyword</label>
+											            </div>
+											        </div>
+											        <div class="col-auto px-2">
+											            <strong class="text-muted">OR</strong>
+											        </div>
+											        <!-- Detailed Search Inputs -->
+											        <div class="col-lg-6"> <!-- <-- MODIFIED from col-lg-7 -->
+											            <div class="d-flex align-items-center">
+											                <div class="floatingFields mr-2" style="width: 90px;">
+											                    <input type="text" id="statuteTitle" class="form-control form-control-sm" placeholder="">
+											                    <label for="statuteTitle" class="form-label mb-0">Title</label>
+											                </div>
+											                <div class="floatingFields mr-2" style="width: 90px;">
+											                    <input type="text" id="statuteSec" class="form-control form-control-sm" placeholder="">
+											                    <label for="statuteSec" class="form-label mb-0">Sec</label>
+											                </div>
+											                <div class="floatingFields mr-2" style="width: 90px;">
+											                    <input type="text" id="statuteSubSec" class="form-control form-control-sm" placeholder="">
+											                    <label for="statuteSubSec" class="form-label mb-0">Sub-Sec</label>
+											                </div>
+											                <div class="floatingFields mr-2" style="width: 90px;">
+											                    <input type="text" id="statuteType" class="form-control form-control-sm" placeholder="">
+											                    <label for="statuteType" class="form-label mb-0">Type</label>
+											                </div>
+											                <div class="floatingFields" style="width: 90px;">
+											                    <input type="text" id="statuteClass" class="form-control form-control-sm" placeholder="">
+											                    <label for="statuteClass" class="form-label mb-0">Class</label>
+											                </div>
+											            </div>
+											        </div>
+											        <div class="col-lg-2 ml-auto text-right"> <!-- <-- MODIFIED from col-lg-1 -->
+											            <button id="statuteSearchBtn" class="btn btn-primary btn-sm">Search</button>
+											        </div>
+											    </div>
+											</div>
+
+							                <!-- Results Grid -->
+							                <h6 class="fw-500 mb-1 mt-3">Matches Found in CJIS</h6>
+							                <div id="statute-info-table"></div>
+
+							                <!-- Assigned Statute Section -->
+							                <h6 class="fw-500 mb-1 mt-3">Statute Assigned To Charge</h6>
+							                <div class="panel p-2 border bg-light">
+							                    <div class="row">
+							                        <div class="col-lg-2">
+							                            <div class="floatingFields">
+							                                <input type="text" id="assignedJurisdiction" class="form-control form-control-sm" placeholder="" readonly>
+							                                <label for="assignedJurisdiction" class="form-label mb-0">Jurisdiction</label>
+							                            </div>
+							                        </div>
+							                        <div class="col-lg-2">
+							                            <div class="floatingFields">
+							                                <input type="text" id="assignedTitle" class="form-control form-control-sm" placeholder="" readonly>
+							                                <label for="assignedTitle" class="form-label mb-0">Title</label>
+							                            </div>
+							                        </div>
+							                        <div class="col-lg-2">
+							                             <div class="floatingFields">
+							                                <input type="text" id="assignedSection" class="form-control form-control-sm" placeholder="" readonly>
+							                                <label for="assignedSection" class="form-label mb-0">Section</label>
+							                            </div>
+							                        </div>
+							                        <div class="col-lg-2">
+							                             <div class="floatingFields">
+							                                <input type="text" id="assignedSubsection" class="form-control form-control-sm" placeholder="" readonly>
+							                                <label for="assignedSubsection" class="form-label mb-0">Subsection</label>
+							                            </div>
+							                        </div>
+							                        <div class="col-lg-2">
+							                             <div class="floatingFields">
+							                                <input type="text" id="assignedType" class="form-control form-control-sm" placeholder="" readonly>
+							                                <label for="assignedType" class="form-label mb-0">Type</label>
+							                            </div>
+							                        </div>
+							                        <div class="col-lg-2">
+							                             <div class="floatingFields">
+							                                <input type="text" id="assignedClass" class="form-control form-control-sm" placeholder="" readonly>
+							                                <label for="assignedClass" class="form-label mb-0">Class</label>
+							                            </div>
+							                        </div>
+							                    </div>
+							                </div>
+							            </div>
+							            <div class="modal-footer">
+							                <button type="button" class="btn btn-secondary btn-sm" id="statuteClearBtn">Clear</button>
+							                <button type="button" class="btn btn-primary btn-sm" id="statuteOkBtn">Ok</button>
+							                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+							            </div>
+							        </div>
+							    </div>
+							</div>
+                        </main>
+                        <!-- this overlay is activated only when mobile menu is triggered -->
+                        <div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
+                        <!-- END Page Content -->
+                        <!-- Modal Large -->
+                        <div class="modal fade" id="default-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Staff Name</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group row">
+                                            <label for="staffSearch"
+                                                   class="col-form-label col-12 col-lg-1 form-label">Search</label>
+                                            <div class="col-12 col-lg-11">
+                                                <input type="text" class="form-control" aria-label="staffSearch"
+                                                       name="staffSearch" id="staffSearch" value="">
+                                            </div>
+
+                                        </div>
+                                        <div class="table-responsive-lg">
+                                            <table class="table table-bordered m-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Last Name</th>
+                                                        <th>First Name</th>
+                                                        <th>MI</th>
+                                                        <th>Suffix</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>14</td>
+                                                        <td>Staff</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>14</td>
+                                                        <td>Staff</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>14</td>
+                                                        <td>Staff</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>14</td>
+                                                        <td>Staff</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>14</td>
+                                                        <td>Staff</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- BEGIN Shortcuts -->
+                        <!-- modal shortcut -->
+                        <div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog"
+                             aria-labelledby="modal-shortcut" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-top modal-transparent" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <ul class="app-list w-auto h-auto p-0 text-left">
+                                            <li>
+                                                <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+                                                    <div class="icon-stack">
+                                                        <i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
+                                                        <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+                                                        <i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
+                                                    </div>
+                                                    <span class="app-list-name">
+                                                        Home
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
+                                                    <div class="icon-stack">
+                                                        <i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
+                                                        <i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
+                                                        <i class="ni ni-envelope icon-stack-1x text-white"></i>
+                                                    </div>
+                                                    <span class="app-list-name">
+                                                        Inbox
+                                                    </span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+                                                    <div class="icon-stack">
+                                                        <i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+                                                        <i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
+                                                    </div>
+                                                    <span class="app-list-name">
+                                                        Add More
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- END Shortcuts -->
+                    </div>
+                </div>
+            </div>
+            <!-- END Page Wrapper -->
+            <!-- BEGIN Quick Menu -->
+            <!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
+            <nav class="shortcut-menu d-none d-sm-block"> <input
+	type="checkbox" class="menu-open" name="menu-open" id="menu_open" />
+	<label for="menu_open" class="menu-open-button "> <span
+	class="app-shortcut-icon d-block"></span>
+	</label> <a href="#" class="menu-item btn" data-toggle="tooltip"
+	data-placement="left" title="Scroll Top"> <i
+	class="fal fa-arrow-up"></i>
+	</a> <a href="page_login-alt.html" class="menu-item btn"
+	data-toggle="tooltip" data-placement="left" title="Logout"> <i
+	class="fal fa-sign-out"></i>
+	</a> <a href="#" class="menu-item btn" data-action="app-fullscreen"
+	data-toggle="tooltip" data-placement="left" title="Full Screen"> <i
+	class="fal fa-expand"></i>
+	</a> <a href="#" class="menu-item btn" data-action="app-print"
+	data-toggle="tooltip" data-placement="left" title="Print page"> <i
+	class="fal fa-print"></i>
+	</a> <a href="#" class="menu-item btn" data-action="app-voice"
+	data-toggle="tooltip" data-placement="left" title="Voice command">
+	<i class="fal fa-microphone"></i>
+	</a> </nav>
+            <!-- END Quick Menu -->
+            <!-- BEGIN Messenger -->
+            <div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog"
+                 aria-hidden="true">
+                <div class="modal-dialog modal-dialog-right">
+                    <div class="modal-content h-100">
+                        <div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
+                            <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+                                <span class="mr-2">
+                                    <span class="rounded-circle profile-image d-block"
+                                          style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+                                </span>
+                                <div class="info-card-text">
+                                    <a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white"
+                                       data-toggle="dropdown" aria-expanded="false">
+                                        Tracey Chang
+                                        <i class="fal fa-angle-down d-inline-block ml-1 text-white fs-md"></i>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">Send Email</a>
+                                        <a class="dropdown-item" href="#">Create Appointment</a>
+                                        <a class="dropdown-item" href="#">Block User</a>
+                                    </div>
+                                    <span class="text-truncate text-truncate-md opacity-80">IT Director</span>
+                                </div>
+                            </div>
+                            <button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+                                    data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                            </button>
+                        </div>
+                        <div class="modal-body p-0 h-100 d-flex">
+                            <!-- BEGIN msgr-list -->
+                            <div
+                                class="msgr-list d-flex flex-column bg-faded border-faded border-top-0 border-right-0 border-bottom-0 position-absolute pos-top pos-bottom">
+                                <div>
+                                    <div
+                                        class="height-4 width-3 h3 m-0 d-flex justify-content-center flex-column color-primary-500 pl-3 mt-2">
+                                        <i class="fal fa-search"></i>
+                                    </div>
+                                    <input type="text" class="form-control bg-white" id="msgr_listfilter_input"
+                                           name="msgr_listfilter_input" placeholder="Filter contacts" aria-label="FilterSearch"
+                                           value="" data-listfilter="#js-msgr-listfilter">
+                                </div>
+                                <div class="flex-1 h-100 custom-scroll">
+                                    <div class="w-100">
+                                        <ul id="js-msgr-listfilter" class="list-unstyled m-0">
+                                            <li>
+                                                <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+                                                   data-filter-tags="tracey chang online">
+                                                    <div class="d-table-cell align-middle status status-success status-sm ">
+                                                        <span class="profile-image-md rounded-circle d-block"
+                                                              style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+                                                    </div>
+                                                    <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                        <div class="text-truncate text-truncate-md">
+                                                            Tracey Chang
+                                                            <small class="d-block font-italic text-success fs-xs">
+                                                                Online
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+                                                   data-filter-tags="oliver kopyuv online">
+                                                    <div class="d-table-cell align-middle status status-success status-sm ">
+                                                        <span class="profile-image-md rounded-circle d-block"
+                                                              style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+                                                    </div>
+                                                    <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                        <div class="text-truncate text-truncate-md">
+                                                            Oliver Kopyuv
+                                                            <small class="d-block font-italic text-success fs-xs">
+                                                                Online
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+                                                   data-filter-tags="dr john cook phd away">
+                                                    <div class="d-table-cell align-middle status status-warning status-sm ">
+                                                        <span class="profile-image-md rounded-circle d-block"
+                                                              style="background-image:url('img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+                                                    </div>
+                                                    <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                        <div class="text-truncate text-truncate-md">
+                                                            Dr. John Cook PhD
+                                                            <small class="d-block font-italic fs-xs">
+                                                                Away
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+                                                   data-filter-tags="ali amdaney online">
+                                                    <div class="d-table-cell align-middle status status-success status-sm ">
+                                                        <span class="profile-image-md rounded-circle d-block"
+                                                              style="background-image:url('img/demo/avatars/avatar-g.png'); background-size: cover;"></span>
+                                                    </div>
+                                                    <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                        <div class="text-truncate text-truncate-md">
+                                                            Ali Amdaney
+                                                            <small class="d-block font-italic fs-xs text-success">
+                                                                Online
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+                                                   data-filter-tags="sarah mcbrook online">
+                                                    <div class="d-table-cell align-middle status status-success status-sm">
+                                                        <span class="profile-image-md rounded-circle d-block"
+                                                              style="background-image:url('img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+                                                    </div>
+                                                    <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                        <div class="text-truncate text-truncate-md">
+                                                            Sarah McBrook
+                                                            <small class="d-block font-italic fs-xs text-success">
+                                                                Online
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+                                                   data-filter-tags="ali amdaney offline">
+                                                    <div class="d-table-cell align-middle status status-sm">
+                                                        <span class="profile-image-md rounded-circle d-block"
+                                                              style="background-image:url('img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+                                                    </div>
+                                                    <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                        <div class="text-truncate text-truncate-md">
+                                                            oliver.kopyuv@gotbootstrap.com
+                                                            <small class="d-block font-italic fs-xs">
+                                                                Offline
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+                                                   data-filter-tags="ali amdaney busy">
+                                                    <div class="d-table-cell align-middle status status-danger status-sm">
+                                                        <span class="profile-image-md rounded-circle d-block"
+                                                              style="background-image:url('img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
+                                                    </div>
+                                                    <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                        <div class="text-truncate text-truncate-md">
+                                                            oliver.kopyuv@gotbootstrap.com
+                                                            <small class="d-block font-italic fs-xs text-danger">
+                                                                Busy
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+                                                   data-filter-tags="ali amdaney offline">
+                                                    <div class="d-table-cell align-middle status status-sm">
+                                                        <span class="profile-image-md rounded-circle d-block"
+                                                              style="background-image:url('img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+                                                    </div>
+                                                    <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                        <div class="text-truncate text-truncate-md">
+                                                            oliver.kopyuv@gotbootstrap.com
+                                                            <small class="d-block font-italic fs-xs">
+                                                                Offline
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+                                                   data-filter-tags="ali amdaney inactive">
+                                                    <div class="d-table-cell align-middle">
+                                                        <span class="profile-image-md rounded-circle d-block"
+                                                              style="background-image:url('img/demo/avatars/avatar-m.png'); background-size: cover;"></span>
+                                                    </div>
+                                                    <div class="d-table-cell w-100 align-middle pl-2 pr-2">
+                                                        <div class="text-truncate text-truncate-md">
+                                                            +714651347790
+                                                            <small class="d-block font-italic fs-xs opacity-50">
+                                                                Missed Call
+                                                            </small>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <div class="filter-message js-filter-message"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <a class="fs-xl d-flex align-items-center p-3">
+                                        <i class="fal fa-cogs"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- END msgr-list -->
+                            <!-- BEGIN msgr -->
+                            <div class="msgr d-flex h-100 flex-column bg-white">
+                                <!-- BEGIN custom-scroll -->
+                                <div class="custom-scroll flex-1 h-100">
+                                    <div id="chat_container" class="w-100 p-4">
+                                        <!-- start .chat-segment -->
+                                        <div class="chat-segment">
+                                            <div class="time-stamp text-center mb-2 fw-400">
+                                                Jun 19
+                                            </div>
+                                        </div>
+                                        <!--  end .chat-segment -->
+                                        <!-- start .chat-segment -->
+                                        <div class="chat-segment chat-segment-sent">
+                                            <div class="chat-message">
+                                                <p>
+                                                    Hey Ching, did you get my files?
+                                                </p>
+                                            </div>
+                                            <div class="text-right fw-300 text-muted mt-1 fs-xs">
+                                                3:00 pm
+                                            </div>
+                                        </div>
+                                        <!--  end .chat-segment -->
+                                        <!-- start .chat-segment -->
+                                        <div class="chat-segment chat-segment-get">
+                                            <div class="chat-message">
+                                                <p>
+                                                    Hi
+                                                </p>
+                                                <p>
+                                                    Sorry going through a busy time in office. Yes I analyzed the solution.
+                                                </p>
+                                                <p>
+                                                    It will require some resource, which I could not manage.
+                                                </p>
+                                            </div>
+                                            <div class="fw-300 text-muted mt-1 fs-xs">
+                                                3:24 pm
+                                            </div>
+                                        </div>
+                                        <!--  end .chat-segment -->
+                                        <!-- start .chat-segment -->
+                                        <div class="chat-segment chat-segment-sent chat-start">
+                                            <div class="chat-message">
+                                                <p>
+                                                    Okay
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--  end .chat-segment -->
+                                        <!-- start .chat-segment -->
+                                        <div class="chat-segment chat-segment-sent chat-end">
+                                            <div class="chat-message">
+                                                <p>
+                                                    Sending you some dough today, you can allocate the resources to this
+                                                    project.
+                                                </p>
+                                            </div>
+                                            <div class="text-right fw-300 text-muted mt-1 fs-xs">
+                                                3:26 pm
+                                            </div>
+                                        </div>
+                                        <!--  end .chat-segment -->
+                                        <!-- start .chat-segment -->
+                                        <div class="chat-segment chat-segment-get chat-start">
+                                            <div class="chat-message">
+                                                <p>
+                                                    Perfect. Thanks a lot!
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--  end .chat-segment -->
+                                        <!-- start .chat-segment -->
+                                        <div class="chat-segment chat-segment-get">
+                                            <div class="chat-message">
+                                                <p>
+                                                    I will have them ready by tonight.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--  end .chat-segment -->
+                                        <!-- start .chat-segment -->
+                                        <div class="chat-segment chat-segment-get chat-end">
+                                            <div class="chat-message">
+                                                <p>
+                                                    Cheers
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!--  end .chat-segment -->
+                                        <!-- start .chat-segment for timestamp -->
+                                        <div class="chat-segment">
+                                            <div class="time-stamp text-center mb-2 fw-400">
+                                                Jun 20
+                                            </div>
+                                        </div>
+                                        <!--  end .chat-segment for timestamp -->
+                                    </div>
+                                </div>
+                                <!-- END custom-scroll  -->
+                                <!-- BEGIN msgr__chatinput -->
+                                <div class="d-flex flex-column">
+                                    <div
+                                        class="border-faded border-right-0 border-bottom-0 border-left-0 flex-1 mr-3 ml-3 position-relative shadow-top">
+                                        <div class="pt-3 pb-1 pr-0 pl-0 rounded-0" tabindex="-1">
+                                            <div id="msgr_input" contenteditable="true"
+                                                 data-placeholder="Type your message here..."
+                                                 class="height-10 form-content-editable"></div>
+                                        </div>
+                                    </div>
+                                    <div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
+                                        <a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1"
+                                           data-toggle="tooltip" data-original-title="More options" data-placement="top">
+                                            <i class="fal fa-ellipsis-v-alt color-fusion-300"></i>
+                                        </a>
+                                        <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+                                           data-original-title="Attach files" data-placement="top">
+                                            <i class="fal fa-paperclip color-fusion-300"></i>
+                                        </a>
+                                        <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+                                           data-original-title="Insert photo" data-placement="top">
+                                            <i class="fal fa-camera color-fusion-300"></i>
+                                        </a>
+                                        <div class="ml-auto">
+                                            <a href="javascript:void(0);" class="btn btn-info">Send</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END msgr__chatinput -->
+                            </div>
+                            <!-- END msgr -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END Messenger -->
+            <!-- BEGIN Page Settings -->
+            <div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-right modal-md">
+                    <div class="modal-content">
+                        <div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
+                            <h4 class="m-0 text-center color-white">
+                                Layout Settings
+                                <small class="mb-0 opacity-80">User Interface Settings</small>
+                            </h4>
+                            <button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+                                    data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                            </button>
+                        </div>
+                        <div class="modal-body p-0">
+                            <div class="settings-panel">
+                                <div class="mt-4 d-table w-100 px-5">
+                                    <div class="d-table-cell align-middle">
+                                        <h5 class="p-0">
+                                            App Layout
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="list" id="fh">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                       data-class="header-function-fixed"></a>
+                                    <span class="onoffswitch-title">Fixed Header</span>
+                                    <span class="onoffswitch-title-desc">header is in a fixed at all times</span>
+                                </div>
+                                <div class="list" id="nff">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                       data-class="nav-function-fixed"></a>
+                                    <span class="onoffswitch-title">Fixed Navigation</span>
+                                    <span class="onoffswitch-title-desc">left panel is fixed</span>
+                                </div>
+                                <div class="list" id="nfm">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                       data-class="nav-function-minify"></a>
+                                    <span class="onoffswitch-title">Minify Navigation</span>
+                                    <span class="onoffswitch-title-desc">Skew nav to maximize space</span>
+                                </div>
+                                <div class="list" id="nfh">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                       data-class="nav-function-hidden"></a>
+                                    <span class="onoffswitch-title">Hide Navigation</span>
+                                    <span class="onoffswitch-title-desc">roll mouse on edge to reveal</span>
+                                </div>
+                                <div class="list" id="nft">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                       data-class="nav-function-top"></a>
+                                    <span class="onoffswitch-title">Top Navigation</span>
+                                    <span class="onoffswitch-title-desc">Relocate left pane to top</span>
+                                </div>
+                                <div class="list" id="mmb">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                       data-class="mod-main-boxed"></a>
+                                    <span class="onoffswitch-title">Boxed Layout</span>
+                                    <span class="onoffswitch-title-desc">Encapsulates to a container</span>
+                                </div>
+                                <div class="expanded">
+                                    <ul class="">
+                                        <li>
+                                            <div class="bg-fusion-50" data-action="toggle" data-class="mod-bg-1"></div>
+                                        </li>
+                                        <li>
+                                            <div class="bg-warning-200" data-action="toggle" data-class="mod-bg-2"></div>
+                                        </li>
+                                        <li>
+                                            <div class="bg-primary-200" data-action="toggle" data-class="mod-bg-3"></div>
+                                        </li>
+                                        <li>
+                                            <div class="bg-success-300" data-action="toggle" data-class="mod-bg-4"></div>
+                                        </li>
+                                    </ul>
+                                    <div class="list" id="mbgf">
+                                        <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                           data-class="mod-fixed-bg"></a>
+                                        <span class="onoffswitch-title">Fixed Background</span>
+                                    </div>
+                                </div>
+                                <!-- <div class="mt-4 d-table w-100 px-5">
+            <div class="d-table-cell align-middle">
+                <h5 class="p-0">
+                    Mobile Menu
+                </h5>
+            </div>
+        </div>
+        <div class="list" id="nmp">
+            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                data-class="nav-mobile-push"></a>
+            <span class="onoffswitch-title">Push Content</span>
+            <span class="onoffswitch-title-desc">Content pushed on menu reveal</span>
+        </div>
+        <div class="list" id="nmno">
+            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                data-class="nav-mobile-no-overlay"></a>
+            <span class="onoffswitch-title">No Overlay</span>
+            <span class="onoffswitch-title-desc">Removes mesh on menu reveal</span>
+        </div>
+        <div class="list" id="sldo">
+            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                data-class="nav-mobile-slide-out"></a>
+            <span class="onoffswitch-title">Off-Canvas <sup>(beta)</sup></span>
+            <span class="onoffswitch-title-desc">Content overlaps menu</span>
+        </div> -->
+                                <div class="mt-4 d-table w-100 px-5">
+                                    <div class="d-table-cell align-middle">
+                                        <h5 class="p-0">
+                                            Accessibility
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="list" id="mbf">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                       data-class="mod-bigger-font"></a>
+                                    <span class="onoffswitch-title">Bigger Content Font</span>
+                                    <span class="onoffswitch-title-desc">content fonts are bigger for readability</span>
+                                </div>
+                                <div class="list" id="mhc">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                       data-class="mod-high-contrast"></a>
+                                    <span class="onoffswitch-title">High Contrast Text (WCAG 2 AA)</span>
+                                    <span class="onoffswitch-title-desc">4.5:1 text contrast ratio</span>
+                                </div>
+                                <div class="list" id="mcb">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                       data-class="mod-color-blind"></a>
+                                    <span class="onoffswitch-title">Daltonism <sup>(beta)</sup> </span>
+                                    <span class="onoffswitch-title-desc">color vision deficiency</span>
+                                </div>
+                                <div class="list" id="mpc">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                       data-class="mod-pace-custom"></a>
+                                    <span class="onoffswitch-title">Preloader Inside</span>
+                                    <span class="onoffswitch-title-desc">preloader will be inside content</span>
+                                </div>
+                                <div class="mt-4 d-table w-100 px-5">
+                                    <div class="d-table-cell align-middle">
+                                        <h5 class="p-0">
+                                            Global Modifications
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="list" id="mcbg">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                       data-class="mod-clean-page-bg"></a>
+                                    <span class="onoffswitch-title">Clean Page Background</span>
+                                    <span class="onoffswitch-title-desc">adds more whitespace</span>
+                                </div>
+                                <div class="list" id="mhni">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                       data-class="mod-hide-nav-icons"></a>
+                                    <span class="onoffswitch-title">Hide Navigation Icons</span>
+                                    <span class="onoffswitch-title-desc">invisible navigation icons</span>
+                                </div>
+                                <div class="list" id="dan">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                       data-class="mod-disable-animation"></a>
+                                    <span class="onoffswitch-title">Disable CSS Animation</span>
+                                    <span class="onoffswitch-title-desc">Disables CSS based animations</span>
+                                </div>
+                                <div class="list" id="mhic">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                       data-class="mod-hide-info-card"></a>
+                                    <span class="onoffswitch-title">Hide Info Card</span>
+                                    <span class="onoffswitch-title-desc">Hides info card from left panel</span>
+                                </div>
+                                <div class="list" id="mlph">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                       data-class="mod-lean-subheader"></a>
+                                    <span class="onoffswitch-title">Lean Subheader</span>
+                                    <span class="onoffswitch-title-desc">distinguished page header</span>
+                                </div>
+                                <div class="list" id="mnl">
+                                    <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                       data-class="mod-nav-link"></a>
+                                    <span class="onoffswitch-title">Hierarchical Navigation</span>
+                                    <span class="onoffswitch-title-desc">Clear breakdown of nav links</span>
+                                </div>
+                                <div class="list mt-1">
+                                    <span class="onoffswitch-title">Global Font Size <small>(RESETS ON REFRESH)</small> </span>
+                                    <div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
+                                        <label for="smRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+                                               data-class="root-text-sm" data-target="html">
+                                            <input type="radio" aria-label="smRadio" name="smRadio" id="smRadio" value=""> SM
+                                        </label>
+                                        <label for="mdRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+                                               data-class="root-text" data-target="html">
+                                            <input type="radio" aria-label="mdRadio" name="mdRadio" id="mdRadio" value=""
+                                                   checked=""> MD
+                                        </label>
+                                        <label for="lgRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+                                               data-class="root-text-lg" data-target="html">
+                                            <input type="radio" aria-label="lgRadio" name="lgRadio" id="lgRadio" value=""> LG
+                                        </label>
+                                        <label for="xlRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+                                               data-class="root-text-xl" data-target="html">
+                                            <input type="radio" aria-label="xlRadio" name="xlRadio" id="xlRadio" value=""> XL
+                                        </label>
+                                    </div>
+                                    <span class="onoffswitch-title-desc d-block mb-g">Change <strong>root</strong> font size to
+                                        effect rem values</span>
+                                </div>
+                                <div class="mt-2 d-table w-100 pl-5 pr-3">
+                                    <div class="d-table-cell align-middle">
+                                        <h5 class="p-0">
+                                            Theme colors <small>(overlays base css)</small>
+                                        </h5>
+                                        <!-- <div class="fs-xs text-muted p-2 alert alert-warning mt-3 mb-0">
+            <i class="fal fa-exclamation-triangle text-warning mr-2"></i>Due to network latency
+            and CPU utilization, you may experience a brief flickering effect on page load which
+            may show the intial applied theme for a split second. Setting the prefered
+            style/theme in the header will prevent this from happening.
+        </div> -->
+                                    </div>
+                                </div>
+                                <div class="expanded theme-colors pl-5 pr-3">
+                                    <ul class="m-0">
+                                        <li><a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme=""
+                                               data-toggle="tooltip" data-placement="top" title="Wisteria (base css)"
+                                               data-original-title="Wisteria (base css)"></a></li>
+                                        <li><a href="#" id="myapp-1" data-action="theme-update" data-themesave
+                                               data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip"
+                                               data-placement="top" title="Tapestry" data-original-title="Tapestry"></a></li>
+                                        <li><a href="#" id="myapp-2" data-action="theme-update" data-themesave
+                                               data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip"
+                                               data-placement="top" title="Atlantis" data-original-title="Atlantis"></a></li>
+                                        <li><a href="#" id="myapp-3" data-action="theme-update" data-themesave
+                                               data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip"
+                                               data-placement="top" title="Indigo" data-original-title="Indigo"></a></li>
+                                        <li><a href="#" id="myapp-4" data-action="theme-update" data-themesave
+                                               data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip"
+                                               data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a>
+                                        </li>
+                                        <li><a href="#" id="myapp-5" data-action="theme-update" data-themesave 
+                                               data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip"
+                                               data-placement="top" title="Tradewind" data-original-title="Tradewind"></a></li>
+                                        <li><a href="#" id="myapp-6" data-action="theme-update" data-themesave
+                                               data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip"
+                                               data-placement="top" title="Cranberry" data-original-title="Cranberry"></a></li>
+                                        <li><a href="#" id="myapp-7" data-action="theme-update" data-themesave
+                                               data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip"
+                                               data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a></li>
+                                        <li><a href="#" id="myapp-8" data-action="theme-update" data-themesave
+                                               data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip"
+                                               data-placement="top" title="Chetwode Blue"
+                                               data-original-title="Chetwode Blue"></a></li>
+                                        <li><a href="#" id="myapp-9" data-action="theme-update" data-themesave
+                                               data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip"
+                                               data-placement="top" title="Apricot" data-original-title="Apricot"></a></li>
+                                        <li><a href="#" id="myapp-10" data-action="theme-update" data-themesave
+                                               data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip"
+                                               data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a>
+                                        </li>
+                                        <li><a href="#" id="myapp-11" data-action="theme-update" data-themesave
+                                               data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip"
+                                               data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a>
+                                        </li>
+                                        <li><a href="#" id="myapp-12" data-action="theme-update" data-themesave
+                                               data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip"
+                                               data-placement="top" title="Wild Blue Yonder"
+                                               data-original-title="Wild Blue Yonder"></a></li>
+                                        <li><a href="#" id="myapp-13" data-action="theme-update" data-themesave
+                                               data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip"
+                                               data-placement="top" title="Emerald" data-original-title="Emerald"></a></li>
+                                    </ul>
+                                </div>
+                                <hr class="mb-0 mt-4">
+                                    <div class="pl-5 pr-3 py-3 bg-faded">
+                                        <div class="row no-gutters">
+                                            <div class="col-6 pr-1">
+                                                <a href="#" class="btn btn-outline-danger fw-500 btn-block"
+                                                   data-action="app-reset">Reset Settings</a>
+                                            </div>
+                                            <div class="col-6 pl-1">
+                                                <a href="#" class="btn btn-danger fw-500 btn-block"
+                                                   data-action="factory-reset">Factory Reset</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <span id="saving"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END Page Settings -->
+
+            <style>
+				#innavleftArrow, #innavRightArrow{
+									height: 100%;
+								    display: flex;
+								    align-items: center;
+								    background: #fff!important;
+								    position: relative;
+								    z-index:999;
+								}
+								::placeholder {
+								  color: #7a59ad!important;
+								}
+								/*.leftSide{
+									transform: translateX(0) !important;
+								}
+								.rightSide{
+									transform: translateX(-257px) !important;
+								}*/
+								.innavBlockMain{
+									padding: 5px;
+									transition: all .3s;
+									overflow: auto;
+								    overflow-y: hidden;
+								    overflow-x: hidden;
+								}
+				                .mainScreenBlock .floatingFields input:not(:placeholder-shown) + label{
+				                    background: #fff!important;
+				                }
+				                .mainScreenBlock .form-group.focused .selectFloating{
+				                    background: #fff!important;
+				                    left: 0px;
+				                }
+				                .MainBlockSection .mainScreenBlock{
+				                    padding-left: 10px !important;
+				                }
+				                .casefileBlock, .casecard{
+				                    min-width: 290px;
+				                }
+				                .casecard{
+				                    border: 0;
+				                    margin-right: 10px;
+				                }
+				                #caseFileMain .casefileBlock:nth-child(4) .caseNumber{
+				                    background: #6ab8f7;
+				                }
+				                #caseFileMain .casefileBlock:nth-child(4) .caseBlock{
+				                    border-color: #6ab8f7;
+				                }
+				                #caseFileMain .casefileBlock:nth-child(5) .caseNumber{
+				                    background: #ffaed4;
+				                }
+				                #caseFileMain .casefileBlock:nth-child(5) .caseBlock{
+				                    border-color: #ffaed4;
+				                }
+				                #caseFileMain .casefileBlock:nth-child(6) .caseNumber{
+				                    background: #4de5d5;
+				                }
+				                #caseFileMain .casefileBlock:nth-child(6) .caseBlock{
+				                    border-color: #4de5d5;
+				                }
+				                .leftSideBar .floatingFields label{
+				                    left: 20px;
+				                }
+				                .floatingFields label{
+				                    left: 10px;
+				                }
+				                .leftSideBar .floatingFields input:focus + label{
+				                    background-color: #ece0ff;
+				                }
+				                .floatingFields input:focus + label{
+				                    background-color: #fff;
+				                    font-size: 15px;
+				                }
+				                label{
+				                    font-weight: 500;
+				                }
+				                .leftSideBar{
+				                    transition: unset;
+				                }
+								#caseFileMain .floatingFields input:focus + label,
+								#caseFileMain .floatingFields input:not(:placeholder-shown) + label {
+								    top: 1px;                 
+								    font-size: 16px !important;            
+								    background: #fff;           
+								    height: fit-content;        
+								    padding: 0 2px !important;              
+								    padding-top: 0;  
+									line-height: 1.2;            
+								}
+				                .caseNumber{
+				                    top: 3px;
+				                    left: 0px;
+				                    width: 145px;
+				                    height: 29px;
+				                    background: #ece0ff;
+				                    border-radius: 5px 5px 0px 0px;
+				                    display: flex;
+				                    align-items: center;
+				                    justify-content: center;
+				                    font-weight: 600;
+				                    font-size: 15px;
+				                    color: #5b5b5b;
+				                }
+				                .checkboxBlock .custom-checkbox{
+				                    width: 70px;
+				                }
+				                .levelStatusCheckbox .custom-checkbox{
+				                    width: 95px;
+				                }
+				                .dataTables_info{
+				                    position: absolute;
+				                }
+				                .panelContentBlock{
+				                    border: 1px solid #7a58ac;
+				                    border-radius: 5px!important;
+				                }
+				                
+				               .caseNumber .form-label,
+				                .caseNumber .case-click {
+				                    color: black !important;
+				                    /*font-weight: 600 !important;*/
+				                }
+				                .highlighted-card .caseNumber,
+				                .highlighted-card .caseNumber .case-click {
+				                    background: #9b7cca !important;
+				                }
+				                .highlighted-card .caseNumber .form-label,
+				                .highlighted-card .caseNumber .case-click {
+				                    color: white !important;
+									font-weight: 600 !important;
+				                }
+				                .highlighted-card .p-1.mt-5 {
+				                    border-color: #9b7cca !important;
+				                    box-shadow: 0 0 30px rgba(155, 124, 202, 0.7);
+				                }
+				                .caseNumber .d-flex.align-items-center {
+				                    padding-left: 8px !important;
+				                }
+				                .casefileBlock{
+									transition: all .3sec;
+								}
+				                .casefileBlock:hover .caseNumber{
+									box-shadow: 1px -1px 7px 1px rgb(84 75 126), 2px 6px 16px 4px rgb(236 224 255);
+								}
+								.casefileBlock:hover .caseCardBlock{
+									box-shadow: 1px 1px 7px 1px rgb(84 75 126), 2px 6px 16px 4px rgb(236 224 255);
+								}
+								
+								.modal .floatingFields input:focus + label,
+								.modal .floatingFields input:not(:placeholder-shown) + label {
+								    line-height: 1;      /* This is the key change: it makes the background height fit the text */
+								    padding-top: 0;      /* Explicitly remove any top padding */
+								    padding-bottom: 0;   /* Explicitly remove any bottom padding */
+								    height: auto;        /* Let the height be determined by the content and line-height */
+								}
+								
+								
+				                
+
+            </style>
+
+            <div th:replace="~{fragments/script :: script}"></div>
+			<script src="js/staticjs.js"></script>
+			
+			<script>
+			  // Function to toggle arrow visibility based on number of cards
+			  function toggleArrows() {
+			    const inelementNavMain = document.querySelector(".innavBlockMain");
+			    const totalCards = inelementNavMain.children.length;
+			    const leftArrow = document.getElementById("innavleftArrow");
+			    const rightArrow = document.getElementById("innavRightArrow");
+			    if (totalCards > 4) {
+			      leftArrow.style.display = 'flex';
+			      rightArrow.style.display = 'flex';
+			    } else {
+			      leftArrow.style.display = 'none';
+			      rightArrow.style.display = 'none';
+			    }
+			  }
+			
+			  // Initialize arrow visibility on DOM load
+			  document.addEventListener("DOMContentLoaded", function() {
+			    toggleArrows();
+			
+			    // Attach click events to arrows
+			    const inelementleftArrow = document.getElementById("innavleftArrow");
+			    const inelementRightArrow = document.getElementById("innavRightArrow");
+			    const inelementNavMain = document.querySelector(".innavBlockMain");
+			
+			    inelementleftArrow.addEventListener("click", function() {
+			      inelementNavMain.classList.add('leftSide');
+			      inelementNavMain.classList.remove('rightSide');
+			      inelementNavMain.scrollBy({
+			        left: -200,
+			        behavior: 'smooth'
+			      });
+			    });
+			
+			    inelementRightArrow.addEventListener("click", function() {
+			      inelementNavMain.classList.add('rightSide');
+			      inelementNavMain.classList.remove('leftSide');
+			      inelementNavMain.scrollBy({
+			        left: 200,
+			        behavior: 'smooth'
+			      });
+			    });
+			  });
+			</script>
+							
+            <script>
+	
+				var contextPath = /*[[@{/}]]*/'';
+                let globalInmateCommitNo = null;
+
+                /**
+                 * Validates if a string is a valid date in MM/DD/YYYY format.
+                 * @param {string} dateString The date string to validate.
+                 * @returns {boolean} True if the date is valid, false otherwise.
+                 */
+                function isValidDate(dateString) {
+                    // Matches MM/DD/YYYY format.
+                    if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
+                        return false;
+
+                    // Parse the date parts to integers.
+                    var parts = dateString.split("/");
+                    var month = parseInt(parts[0], 10);
+                    var day = parseInt(parts[1], 10);
+                    var year = parseInt(parts[2], 10);
+
+                    // Check the ranges of month and year.
+                    if (year < 1000 || year > 3000 || month === 0 || month > 12)
+                        return false;
+
+                    var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+                    // Adjust for leap years.
+                    if (year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0))
+                        monthLength[1] = 29;
+
+                    // Check the range of the day.
+                    return day > 0 && day <= monthLength[month - 1];
+                }
+
+                /**
+                 * Initializes a custom jQuery UI datepicker on given elements.
+                 * @param {string} selector A jQuery selector for the input fields.
+                 */
+                function initializeEnhancedDatepicker(selector) {
+                    $(selector).each(function() {
+                        // Destroy any existing datepicker to avoid conflicts.
+                        if ($(this).hasClass('hasDatepicker')) {
+                            try {
+                                $(this).datepicker('destroy');
+                            } catch (e) {
+                                console.error("Error destroying datepicker:", e);
+                            }
+                        }
+
+                        const self = $(this);
+
+                        self.attr('type', 'text').addClass('date-input').attr('maxlength', '10');
+
+                        // Auto-format input to MM/DD/YYYY as the user types.
+                        self.off('input.datepicker').on('input.datepicker', function() {
+                            let value = self.val().replace(/\D/g, "");
+                            if (value.length > 2) value = value.slice(0, 2) + "/" + value.slice(2);
+                            if (value.length > 5) value = value.slice(0, 5) + "/" + value.slice(5, 9);
+                            self.val(value);
+                        });
+                        
+                        const validateDateField = (field) => {
+                            if ($(field).val() && !isValidDate($(field).val())) {
+                                if (typeof message === 'function') {
+                                    message('CUW', 'Please enter a valid date in MM/DD/YYYY format.', 0);
+                                }
+                                $(field).val(''); // Clear invalid field
+                            }
+                        };
+
+                        // On change, validate the date and handle floating label class.
+                        self.off('change.datepicker').on('change.datepicker', function() {
+                            validateDateField(this);
+                            if ($(this).val()) {
+                                $(this).addClass('has-value');
+                            } else {
+                                $(this).removeClass('has-value');
+                            }
+                        });
+
+                        // Initialize the datepicker with custom "Today" and "Clear" buttons.
+                        self.datepicker({
+                            dateFormat: "mm/dd/yy",
+                            changeMonth: true,
+                            changeYear: true,
+                            yearRange: (function() {
+                                var currentYear = new Date().getFullYear();
+                                return (currentYear - 20) + ":" + (currentYear + 20);
+                            })(),
+                            maxDate: 0, // Prevent future dates
+                            onSelect: function(dateText) {
+                                self.trigger('change');
+                            },
+                            beforeShow: function(input, inst) {
+                                setTimeout(function() {
+                                    const $datepickerDiv = $('#ui-datepicker-div');
+                                    if ($datepickerDiv.find('.custom-btn-wrapper').length === 0) {
+                                        const $wrapper = $('<div>', {
+                                            class: 'custom-btn-wrapper',
+                                            css: {
+                                                display: 'flex',
+                                                gap: '4px',
+                                                marginTop: '2px',
+                                                marginBottom: '2px',
+                                                justifyContent: 'space-between'
+                                            }
+                                        });
+                                        const $todayBtn = $('<button>', {
+                                            text: "Today",
+                                            class: 'custom-today-btn',
+                                            css: {
+                                                flex: 1,
+                                                padding: '2px',
+                                                cursor: 'pointer',
+                                                background: '#ece0ff',
+                                                border: 'none'
+                                            }
+                                        });
+                                        $todayBtn.on('click', function(e) {
+                                            e.preventDefault();
+                                            const today = $.datepicker.formatDate("mm/dd/yy", new Date());
+                                            $(input).val(today).trigger('change').datepicker("hide");
+                                        });
+                                        const $clearBtn = $('<button>', {
+                                            text: "Clear",
+                                            class: 'custom-clear-btn',
+                                            css: {
+                                                flex: 1,
+                                                padding: '2px',
+                                                cursor: 'pointer',
+                                                background: '#ece0ff',
+                                                border: 'none'
+                                            }
+                                        });
+                                        $clearBtn.on('click', function(e) {
+                                            e.preventDefault();
+                                            $(input).val('').trigger('change').datepicker("hide");
+                                        });
+                                        $wrapper.append($todayBtn, $clearBtn);
+                                        $datepickerDiv.append($wrapper);
+                                    }
+                                }, 10);
+                            }
+                        });
+
+                        // Trigger change on load to set initial state
+                        self.trigger('change');
+                    });
+                }
+
+				var dateEditor = function(cell, onRendered, success, cancel) {
+				    var editor = document.createElement("input");
+				    editor.setAttribute("type", "text");
+				    editor.setAttribute("maxlength", "10");
+				    var cellValue = cell.getValue();
+				    editor.value = cellValue || "";
+
+				    var committed = false; // Guard flag to prevent double commits
+
+				    // Central function to commit the value to Tabulator
+				    function commit() {
+				        if (!committed) {
+				            committed = true;
+				            const dateVal = editor.value;
+				            if (dateVal && !isValidDate(dateVal)) {
+				                if (typeof message === 'function') {
+				                    message('CUW', 'Please enter a valid date in MM/DD/YYYY format.', 0);
+				                }
+				                success(""); // Commit empty string for invalid dates
+				            } else {
+				                success(dateVal); // Commit the valid date
+				            }
+				        }
+				    }
+				    
+				    function cancelAction() {
+				        if(!committed){
+				            committed = true;
+				            cancel();
+				        }
+				    }
+
+				    // Auto-format input as user types
+				    $(editor).on('input', function() {
+				        let value = $(this).val().replace(/\D/g, "");
+				        if (value.length > 2) value = value.slice(0, 2) + '/' + value.slice(2);
+				        if (value.length > 5) value = value.slice(0, 5) + '/' + value.slice(5, 9);
+				        $(this).val(value);
+				    });
+
+				    // Handle manual entry completion on blur
+				    editor.addEventListener("blur", function(e) {
+				        // Only commit on blur if the datepicker widget isn't the cause of the blur
+				        if (!$(e.target).datepicker("widget").is(":visible")) {
+				            commit();
+				        }
+				    });
+
+				    // Handle Enter/Escape keys
+				    editor.addEventListener("keydown", function(e) {
+				        if (e.key === "Enter") {
+				            commit();
+				        } else if (e.key === "Escape") {
+				            cancelAction();
+				        }
+				    });
+
+				    // Initialize datepicker
+				    $(editor).datepicker({
+				        dateFormat: "mm/dd/yy",
+				        changeMonth: true,
+				        changeYear: true,
+				        yearRange: (() => {
+				            var currentYear = new Date().getFullYear();
+				            return (currentYear - 20) + ":" + (currentYear + 20);
+				        })(),
+				        maxDate: 0,
+				        // *** NEW onSelect HANDLER ***
+				        // This event fires when a date is selected from the calendar.
+				        onSelect: function(dateText, inst) {
+				            // Explicitly hide the datepicker. This will trigger the onClose event.
+				            $(this).datepicker("hide");
+				        },
+				        // onClose is the definitive event for all datepicker interactions
+				        onClose: function(dateText, inst) {
+				            commit();
+				        },
+				        beforeShow: function(input, inst) {
+				            setTimeout(function() {
+				                const $datepickerDiv = $('#ui-datepicker-div');
+				                if (!$datepickerDiv.find('.custom-btn-wrapper').length) {
+				                    const $wrapper = $('<div>', {
+				                        class: 'custom-btn-wrapper',
+				                        css: { display: 'flex', gap: '4px', marginTop: '2px', marginBottom: '2px', justifyContent: 'space-between' }
+				                    });
+				                    const $todayBtn = $('<button>', {
+				                        text: "Today",
+				                        class: 'custom-today-btn',
+				                        css: { flex: 1, padding: '2px', cursor: 'pointer', background: '#ece0ff', border: 'none' },
+				                        click: function(e) {
+				                            e.preventDefault();
+				                            const today = $.datepicker.formatDate("mm/dd/yy", new Date());
+				                            $(input).val(today).datepicker("hide");
+				                        }
+				                    });
+				                    const $clearBtn = $('<button>', {
+				                        text: "Clear",
+				                        class: 'custom-clear-btn',
+				                        css: { flex: 1, padding: '2px', cursor: 'pointer', background: '#ece0ff', border: 'none' },
+				                        click: function(e) {
+				                            e.preventDefault();
+				                            $(input).val("").datepicker("hide");
+				                        }
+				                    });
+				                    $wrapper.append($todayBtn, $clearBtn);
+				                    $datepickerDiv.append($wrapper);
+				                }
+				            }, 10);
+				        }
+				    }).css({
+				        position: "relative",
+				        zIndex: 9999
+				    });
+
+				    onRendered(function() {
+				        editor.focus();
+				    });
+
+				    return editor;
+				};
+			
+			$('input[type="text"], textarea').attr({
+		        'autocomplete': 'off',
+		        'autocorrect': 'off',
+		        'autocapitalize': 'off',
+		        'spellcheck': false
+		    });
+			
+			$('#exitButton').click(function(event){
+			    event.preventDefault();
+			    window.location.href = 'sentenceSummary.html';
+			});
+
+            var sbiNumberInput = $('#sbiNumberInput').val();
+            var screenName = document.getElementById('screenNameHolder').textContent;
+            var screenCode = document.getElementById('screenNameHolder').dataset.name;  
+            console.log(screenName,screenCode)
+            insertSBISearch(screenCode,screenName,sbiNumberInput); 
+				          
+				                      
+            $(document).ready(function () {
+                $(function () {
+                    $('.select2').select2();
+
+                    $(".select2-placeholder-multiple").select2(
+                            {
+                                placeholder: "Select State"
+                            });
+                    $(".js-hide-search").select2(
+                            {
+                                minimumResultsForSearch: 1 / 0
+                            });
+                    $(".js-max-length").select2(
+                            {
+                                maximumSelectionLength: 2,
+                                placeholder: "Select maximum 2 items"
+                            });
+                    $(".select2-placeholder").select2(
+                            {
+                                placeholder: "Select a state",
+                                allowClear: true
+                            });
+
+
+
+                    $(".js-select2-icons").select2(
+                            {
+                                minimumResultsForSearch: 1 / 0,
+                                templateResult: icon,
+                                templateSelection: icon,
+                                escapeMarkup: function (elm) {
+                                    return elm
+                                }
+                            });
+
+                    function icon(elm) {
+                        elm.element;
+                        return elm.id ? "<i class='" + $(elm.element).data("icon") + " mr-2'></i>" + elm.text : elm.text
+                    }
+
+                    $(".js-data-example-ajax").select2(
+                            {
+                                ajax:
+                                        {
+                                            url: "https://api.github.com/search/repositories",
+                                            dataType: 'json',
+                                            delay: 250,
+                                            data: function (params) {
+                                                return {
+                                                    q: params.term, // search term
+                                                    page: params.page
+                                                };
+                                            },
+                                            processResults: function (data, params) {
+                                                
+                                                params.page = params.page || 1;
+
+                                                return {
+                                                    results: data.items,
+                                                    pagination:
+                                                            {
+                                                                more: (params.page * 30) < data.total_count
+                                                            }
+                                                };
+                                            },
+                                            cache: true
+                                        },
+                                placeholder: 'Search for a repository',
+                                escapeMarkup: function (markup) {
+                                    return markup;
+                                }, // let our custom formatter work
+                                minimumInputLength: 1,
+                                templateResult: formatRepo,
+                                templateSelection: formatRepoSelection
+                            });
+
+                    function formatRepo(repo) {
+                        if (repo.loading) {
+                            return repo.text;
+                        }
+
+                        var markup = "<div class='select2-result-repository clearfix d-flex'>" +
+                                "<div class='select2-result-repository__avatar mr-2'><img src='" + repo.owner.avatar_url + "' class='width-2 height-2 mt-1 rounded' /></div>" +
+                                "<div class='select2-result-repository__meta'>" +
+                                "<div class='select2-result-repository__title fs-lg fw-500'>" + repo.full_name + "</div>";
+
+                        if (repo.description) {
+                            markup += "<div class='select2-result-repository__description fs-xs opacity-80 mb-1'>" + repo.description + "</div>";
+                        }
+
+                        markup += "<div class='select2-result-repository__statistics d-flex fs-sm'>" +
+                                "<div class='select2-result-repository__forks mr-2'><i class='fal fa-lightbulb'></i> " + repo.forks_count + " Forks</div>" +
+                                "<div class='select2-result-repository__stargazers mr-2'><i class='fal fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+                                "<div class='select2-result-repository__watchers mr-2'><i class='fal fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+                                "</div>" +
+                                "</div></div>";
+
+                        return markup;
+                    }
+
+                    function formatRepoSelection(repo) {
+                        return repo.full_name || repo.text;
+                    }
+
+                });
+            }); 
+									
+            $(document).ready(function () {
+				
+				loader(0);
+				
+				$(document).on('blur', 'input[id^="judge"]', function() {
+				                var trimmedValue = $(this).val().trim();
+				                $(this).val(trimmedValue);
+				            });
+                // Initialize all date fields on the page with the enhanced datepicker
+                initializeEnhancedDatepicker('#createfrom, #createto, .input-append.date input');
+
+                $('#PrintStatusSheetCase').dataTable({
+                    scrollY: "585px",
+                    scrollCollapse: true,
+                    paging: false,
+                    searching: false,
+                    ordering: false,
+                    showNEntries: false,
+                    info: false,
+                });
+
+                var table;
+                var selectedJudge = "";
+            });
+                let globalCaseNum = null;
+                let globalCommitNo = null;
+                let globaljudecode=null;
+                let globalcourtcode=null;
+                let globalCaseDate = null;
+				
+				
+				$(document).on('input', 'input.case-click', function() {
+	                if (this.value.length > 15) {
+	                    if (typeof message === 'function') {
+							
+	                        message('CUW', 'Case# cannot exceed 15 characters.', 0);
+	                    }
+						this.value = this.value.substring(0, 15);
+	                }
+	            });
+                                            
+
+				$(document).on('click', '.case-click', function () {
+								        if ($(this).closest('.casefileBlock, .casecard').hasClass('highlighted-card') && tabledetails.getData().length > 1) {
+								             const hasContent = tabledetails.getData().some(row => row.CHARGE_DESCRIPTION);
+								            if(hasContent) return;
+								        }
+
+								        clearHighlights();
+								        const cardElement = $(this).closest('.casefileBlock, .casecard');
+								        cardElement.addClass('highlighted-card');
+
+								        const caseId = $(this).data('case-id');
+								        const casenumber = $("#case" + caseId).val();
+								        const date = $("#cdate" + caseId).val();
+								        const sbiNumber = $("#sbiNumberInput").val();
+								        const judecode = $("#judgecode" + caseId).val();
+								        const courtcode = $("#selectCtrl" + caseId).val();
+								        
+								        let formattedDate = null; 
+										
+										 if (date && isValidDate(date)) {
+								            const dateObj = new Date(date);
+								            const day = dateObj.getDate().toString().padStart(2, '0');
+								            const month = dateObj.toLocaleString('default', { month: 'short' }).toUpperCase();
+								            const year = dateObj.getFullYear().toString().slice(-2);
+								            formattedDate = day + '-' + month + '-' + year;
+								        }
+
+								        globalCaseDate = formattedDate; 
+										console.log("caseId :",caseId," casenumber : ",casenumber," CaseDate : ",globalCaseDate);
+								        
+								        $.ajax({
+								            type: "POST",
+								            url: contextPath + "getinmateChargesdetails",
+								            data: { 
+								                caseNumber: casenumber, 
+								                date: formattedDate, 
+								                sbiNumber: sbiNumber,
+								                _: new Date().getTime()
+								            },
+								            dataType: "json",
+								            success: function (response) {
+								                globalCaseNum = casenumber;
+								                globalCommitNo = (response && response.length > 0 && response[0].COMMIT_NO) ? response[0].COMMIT_NO : globalInmateCommitNo;
+								                globaljudecode = judecode;
+								                globalcourtcode = courtcode;
+												
+												console.log(" globalCaseNum : ",globalCaseNum , " globalCommitNo : ",globalCommitNo, " globaljudecode : ",globaljudecode);
+								                
+								                if (!globalInmateCommitNo && globalCommitNo) {
+								                    globalInmateCommitNo = globalCommitNo;
+								                }
+
+								                const emptyRowTemplate = {
+								                    CONSOLIDATED_CRA_NUM: "", CHARGE_DESCRIPTION: "", START_DATE: "", END_DATE: "",
+								                    BAIL_AMOUNT: "", BAIL_TYPE: "", DISPOSITION_CODE: ""
+								                };
+								                const totalRows = 12;
+								                const finalData = [];
+								                const receivedData = Array.isArray(response) ? response : [];
+								                for (let i = 0; i < totalRows; i++) {
+								                    if (i < receivedData.length) {
+								                        finalData.push(receivedData[i]);
+								                    } else {
+								                        finalData.push({ ...emptyRowTemplate });
+								                    }
+								                }
+								                tabledetails.setData(finalData);
+								            },
+								            error: function (xhr, status, error) {
+								                console.error("Error fetching charge details: " + status + ", " + error);
+								                tabledetails.setData(docketsTable); // Clear table on error
+								            }
+								        });
+								    });
+                           
+            let bailTypeValues = {};
+            let bailTypeMap = {};
+            let dispositionValues = {};
+            let dispositionMap = {};
+
+  // Fetch Bail Types and Disposition Codes before building table
+            function preloadDropdowns(callback) {
+                Promise.all([
+                fetch('/OmnetTest/charges/getbailtype', { method: "POST" }).then(response => response.json()),
+                fetch('/OmnetTest/charges/getdisposition', { method: "POST" }).then(response => response.json())
+                ])
+                .then(([bailData, dispoData]) => {
+                    bailData.forEach(item => {
+                        //alert(item.BAIL_TP_DESC);
+                    bailTypeValues[item.BAIL_TP_CD] = item.BAIL_TP_DESC;
+                    bailTypeMap[item.BAIL_TP_CD] = item.BAIL_TP_DESC;
+            });
+
+            dispoData.forEach(item => {
+            dispositionValues[item.DISPOSITION_CODE] = item.DISPOSITION_DESC;
+            dispositionMap[item.DISPOSITION_CODE] = item.DISPOSITION_DESC;
+            });
+
+            callback();
+            })
+            .catch(err => {
+                console.error("Error loading dropdown data:", err);
+                callback(); // Proceed even if error
+            });
+            }
+            
+            function customSorter(a, b, aRow, bRow, column, dir) {
+                const emptyA = (a === null || a === undefined || a === "");
+                const emptyB = (b === null || b === undefined || b === "");
+                if (emptyA && emptyB) return 0;
+                    if (emptyA) return dir === "asc" ? 1 : -1;
+                    if (emptyB) return dir === "asc" ? -1 : 1;
+                    if (typeof a === "boolean" && typeof b === "boolean") {
+                    return a === b ? 0 : a ? 1 : -1;
+                    }
+                    if (!isNaN(a) && !isNaN(b)) {
+                    return Number(a) - Number(b);
+                    }
+                    return String(a).localeCompare(String(b));
+            }	
+							
+            function showCustomTooltip(e, cell, html) {
+                const tooltip = document.getElementById("custom-tooltip");
+                tooltip.innerHTML = html;
+                tooltip.style.display = "block";
+                tooltip.style.top = (e.clientY + 15) + "px";
+                tooltip.style.left = (e.clientX + 15) + "px";
+            }
+
+            function moveCustomTooltip(e) {
+                const tooltip = document.getElementById("custom-tooltip");
+                tooltip.style.top = (e.clientY + 15) + "px";
+                tooltip.style.left = (e.clientX + 15) + "px";
+            }
+            
+            function hideCustomTooltip() {
+                const tooltip = document.getElementById("custom-tooltip");
+                tooltip.style.display = "none";
+            }
+										  
+            var docketsTable = Array.from({ length: 12 }, () => ({
+                CONSOLIDATED_CRA_NUM: "",
+                CHARGE_DESCRIPTION: "",
+                START_DATE: "",
+                END_DATE: "",
+                BAIL_AMOUNT: "",
+                BAIL_TYPE: "",
+                DISPOSITION_CODE: ""
+            }));
+
+			var tabledetails;
+            const editedRowIds = new Map();
+                  
+			preloadDropdowns(() => {
+			    tabledetails = new Tabulator("#dockets-table", {
+			        layout: "fitColumns",
+			        data: docketsTable,
+			        height: "100%",
+			        printAsHtml: true,
+			        printStyled: true,
+			        // The rowFormatter function has been removed from here.
+			        columns: [
+			            { title: "id", field: "id", visible: false },
+			            { title: "upd", field: "upd", visible: false },
+			            { title: "seqno", field: "seqno", visible: false },
+			            {
+			                titleFormatter: (column) => setTitleDesc(column, 'tbl_CONSOLIDATED_CRA_NUM', 'CRA#'),
+			                field: "CONSOLIDATED_CRA_NUM",
+			                headerTooltip:"CRA#",
+			                headerSort: true,
+			                sorter: customSorter,
+			                width: 200,
+			                editor: "input",
+			                // This function controls if the cell can be edited.
+			                editable: function(cell) {
+			                    var data = cell.getRow().getData();
+			                    return data.isNewRow || (data.CHARGE_SEQ_NUM && data.CHARGE_SEQ_NUM > 0);
+			                },
+			                mutatorEdit: function(value, data, type, params, component){ 
+			                    if(value && value.length > 15){
+			                        if (typeof message === 'function') {
+			                            message('CUW', 'CRA# cannot exceed 15 characters.', 0);
+			                        }
+			                        return ""; 
+			                    }
+			                    return value; 
+			                },
+			                cellMouseOver: function (e, cell) {
+			                    const data = cell.getRow().getData();
+			                    if (data.CONSOLIDATED_CRA_NUM) {
+			                        showCustomTooltip(e, cell, data.CONSOLIDATED_CRA_NUM);
+			                    }
+			                },
+			                cellMouseMove: moveCustomTooltip,
+			                cellMouseOut: hideCustomTooltip
+			            },
+			            {
+			                titleFormatter: (column) => setTitleDesc(column, 'tbl_CHARGE_DESCRIPTION', 'Description'),
+			                field: "CHARGE_DESCRIPTION",
+			                headerTooltip:"Description",
+			                headerSort: true,
+			                sorter: customSorter,
+			                editor: "input",
+			                editable: function(cell) {
+			                    var data = cell.getRow().getData();
+			                    return data.isNewRow || (data.CHARGE_SEQ_NUM && data.CHARGE_SEQ_NUM > 0);
+			                },
+			                mutator: function (value) {
+			                    return value ? value.toUpperCase() : value;
+			                },
+			                mutatorEdit: function(value, data, type, params, component){ 
+			                    if(value && value.length > 100){
+			                        if (typeof message === 'function') {
+			                            message('CUW', 'Description cannot exceed 100 characters', 0);
+			                        }
+			                        return value.substring(0, 100); 
+			                    }
+			                    return value; 
+			                },
+			                cellMouseOver: function (e, cell) {
+			                    const data = cell.getRow().getData();
+			                    if (data.CHARGE_DESCRIPTION) {
+			                        showCustomTooltip(e, cell, data.CHARGE_DESCRIPTION);
+			                    }
+			                },
+			                cellMouseMove: moveCustomTooltip,
+			                cellMouseOut: hideCustomTooltip
+			            },
+						{
+						    titleFormatter: (column) => setTitleDesc(column, 'tbl_hammerAction', ''),
+						    field: "hammerAction",
+						    headerSort: false,
+						    hozAlign: "center",
+						    formatter: hammerIcon,
+						    width: 40,
+						    cellClick: function(e, cell) {
+						        var row = cell.getRow();
+						        var data = row.getData();
+
+						        // Check if the row is editable (not a placeholder) before opening the modal
+						        var isRowEditable = data.isNewRow || (data.CHARGE_SEQ_NUM && data.CHARGE_SEQ_NUM > 0);
+						        if (!isRowEditable) {
+						            message('CUW', 'Please add charge details before assigning a statute.', 0);
+						            return;
+						        }
+
+						        currentChargeRow = row; // Store the row component for later use
+						        console.log("Opening statute modal for charge row:", data);
+						        $('#statuteInfoModal').modal('show');
+						    }
+						},
+			            {
+			                titleFormatter: (column) => setTitleDesc(column, 'tbl_START_DATE', 'Start Date'),
+			                field: "START_DATE",
+			                width: 120,
+			                headerTooltip:"Start Date",
+			                headerSort: true,
+			                sorter: customSorter,
+			                editor: dateEditor,
+			                editable: function(cell) {
+			                    var data = cell.getRow().getData();
+			                    return data.isNewRow || (data.CHARGE_SEQ_NUM && data.CHARGE_SEQ_NUM > 0);
+			                },
+			                formatter: function (cell) {
+			                    var dateValue = cell.getValue();
+			                    if (!dateValue) return "";
+			                    var date = new Date(dateValue);
+			                    var month = String(date.getMonth() + 1).padStart(2, "0");
+			                    var day = String(date.getDate()).padStart(2, "0");
+			                    var year = date.getFullYear();
+			                    return `${month}/${day}/${year}`;
+			                },
+			            },
+			            {
+			                titleFormatter: (column) => setTitleDesc(column, 'tbl_END_DATE', 'End Date'),
+			                field: "END_DATE",
+			                width: 120,
+			                headerTooltip:"End Date",
+			                headerSort: true,
+			                sorter: customSorter,
+			                editor: dateEditor,
+			                editable: function(cell) {
+			                    var data = cell.getRow().getData();
+			                    return data.isNewRow || (data.CHARGE_SEQ_NUM && data.CHARGE_SEQ_NUM > 0);
+			                },
+			                formatter: function (cell) {
+			                    var dateValue = cell.getValue();
+			                    if (!dateValue) return "";
+			                    var date = new Date(dateValue);
+			                    var month = String(date.getMonth() + 1).padStart(2, "0");
+			                    var day = String(date.getDate()).padStart(2, "0");
+			                    var year = date.getFullYear();
+			                    return `${month}/${day}/${year}`;
+			                },
+			            },
+			            {
+			                titleFormatter: (column) => setTitleDesc(column, 'tbl_BAIL_AMOUNT', 'Bail Amount'),
+			                field: "BAIL_AMOUNT",
+			                width: 120,
+			                headerTooltip:"Bail Amount",
+			                headerSort: true,
+			                sorter: customSorter,
+			                editor: "input",
+			                editable: function(cell) {
+			                    var data = cell.getRow().getData();
+			                    return data.isNewRow || (data.CHARGE_SEQ_NUM && data.CHARGE_SEQ_NUM > 0);
+			                },
+			                mutatorEdit: function(value, data, type, params, component){
+			                    if(value === null || value === "" || typeof value === "undefined"){
+			                        return value; 
+			                    }
+			                    if(!/^\d{1,10}(\.\d{1,2})?$/.test(value)){
+			                        if (typeof message === 'function') {
+			                            message('CUW', 'Please enter valid Bail Amount.', 0);
+			                        }
+			                        return "";
+			                    }
+			                    return value; 
+			                },
+			                formatter: function(cell) {
+			                    let val = cell.getValue();
+			                    return (val !== null && val !== "" && typeof val !== "undefined") ? "$" + parseFloat(val).toFixed(2) : "";
+			                }
+			            },
+			            {
+			                titleFormatter: (column) => setTitleDesc(column, 'tbl_BAIL_TYPE', 'Bail Type'),
+			                field: "BAIL_TYPE",
+			                headerTooltip:"Bail Type",
+			                headerSort: true,
+			                sorter: customSorter,
+			                width: 200,
+			                editor:"list",
+			                editable: function(cell) {
+			                    var data = cell.getRow().getData();
+			                    return data.isNewRow || (data.CHARGE_SEQ_NUM && data.CHARGE_SEQ_NUM > 0);
+			                },
+			                editorParams: {
+			                    allowEmpty: true,
+			                    showListOnEmpty: true,
+			                    values: bailTypeMap,
+			                },
+			                formatter: function(cell) {
+			                    return bailTypeMap[cell.getValue()] || cell.getValue() || "";
+			                },
+			                cellMouseOver: function (e, cell) {
+			                    const fullText = bailTypeMap[cell.getValue()] || cell.getValue();
+			                    if (fullText) {
+			                        showCustomTooltip(e, cell, fullText);
+			                    }
+			                },
+			                cellMouseMove: moveCustomTooltip,
+			                cellMouseOut: hideCustomTooltip
+			            },
+			            {
+			                titleFormatter: (column) => setTitleDesc(column, 'tbl_DISPOSITION_CODE', 'Disposition Code'),
+			                field: "DISPOSITION_CODE",
+			                headerTooltip:"Disposition Code",
+			                headerSort: true,
+			                sorter: customSorter,
+			                editor: "list",
+			                editable: function(cell) {
+			                    var data = cell.getRow().getData();
+			                    return data.isNewRow || (data.CHARGE_SEQ_NUM && data.CHARGE_SEQ_NUM > 0);
+			                },
+			                editorParams: {
+			                    allowEmpty: true,
+			                    showListOnEmpty: true,
+			                    values: dispositionValues,
+			                },
+			                formatter: function(cell) {
+			                    return dispositionMap[cell.getValue()] || cell.getValue() || "";
+			                },
+			                cellMouseOver: function (e, cell) {
+			                    const fullText = dispositionMap[cell.getValue()] || cell.getValue();
+			                    if (fullText) {
+			                        showCustomTooltip(e, cell, fullText);
+			                    }
+			                },
+			                cellMouseMove: moveCustomTooltip,
+			                cellMouseOut: hideCustomTooltip
+			            },
+			        ]
+			    });
+			    
+			    tabulatorRegistry["dockets-table"] = {
+			                    varName: "tabledetails",
+			                    instance: tabledetails
+			                };
+			                                                         
+			                                          
+			    tabledetails.on("dataLoaded", function() {
+			        tabledetails.setHeight("calc(100vh - 570px)"); 
+			    });                        
+
+			    tabledetails.on("cellEdited", function(cell) {
+			        const row = cell.getRow();
+			        const rowData = row.getData();
+
+			        if (!editedRowIds.has(row)) {
+			            const isExistingRecord = rowData.CHARGE_SEQ_NUM && rowData.CHARGE_SEQ_NUM > 0;
+			            editedRowIds.set(row, {
+			                data: rowData,
+			                isNew: !isExistingRecord
+			            });
+			        } else {
+			            const editInfo = editedRowIds.get(row);
+			            editInfo.data = rowData;
+			        }
+			    });
+			});
+								   
+                                         
+            let selectedJudge = null;
+            let currentJudgeInputId = null;
+            let judgeCodevalue = null;
+
+            function openJudgeModal(element) {
+                const inputField = $(element).closest(".floatingFields").find("input[type='text']");
+                if (inputField.length > 0) {
+                    currentJudgeInputId = inputField.attr("id");
+                    $("#judgeDetailModal").modal("show");
+                } else {
+                    console.warn("No input field found near icon.");
+                }
+            }
+
+            $('#judgeDetailModal').on('shown.bs.modal', function() {
+                setTimeout(function() {
+                    $('#Find').val('').focus();
+                }, 1000);
+                selectedJudge = null;
+                judgeCodevalue = null;
+                judgeTable.deselectRow();
+            });
+
+            var judgeTable = new Tabulator("#judgeDetail-table", {
+                layout: "fitColumns",
+                height: '250px',
+                selectable: 1,
+                initialSort: [
+                    { column: "JUDGE_LNAME", dir: "asc" }, 
+                ],
+                columns: [
+                    { title: "Judge Code", field: "JUDGE_CODE", visible: false },
+                    { title: "Last Name", field: "JUDGE_LNAME" },
+                    { title: "First Name", field: "JUDGE_FNAME" }
+                ],
+                rowClick: function(e, row) {
+                    const data = row.getData();
+                    selectedJudge = data.JUDGE_LNAME + ", " + data.JUDGE_FNAME;
+                    judgeCodevalue = data.JUDGE_CODE;
+                    $("#fetchDataBtnjudge").trigger('click');
+                }
+            });
+
+            $("#Find").on("keyup", function(e) {
+                let searchValue = $(this).val();
+                judgeTable.setFilter([
+                    [
+                        { field: "JUDGE_LNAME", type: "like", value: searchValue },
+                        { field: "JUDGE_FNAME", type: "like", value: searchValue }
+                    ]
+                ]);
+            });
+
+            $("#fetchDataBtnjudge").on("click", function() {
+                if (selectedJudge && currentJudgeInputId) {
+                    $("#" + currentJudgeInputId).val(selectedJudge);
+                    const judgeCodeInputId = currentJudgeInputId.replace("judge", "judgecode");
+                    $("#" + judgeCodeInputId).val(judgeCodevalue).trigger('change');
+                    $('#judgeDetailModal').modal('hide');
+                } else {
+                    message('CUI', 'Please select a judge first!', 0);
+                }
+            });
+
+			$.ajax({
+                type: "POST",
+                url: contextPath + 'getJudge',
+                dataType: "json",
+                success: function(response) {
+                    var items = "<option value=''>Select Judge</option>";
+                    $.each(response, function(index, item) {
+                        items += "<option value='" + item.JUDGE_CODE + "'>" + item.JUDGE_LNAME + " " + item.JUDGE_FNAME + "</option>";
+                    });
+                    $("#selectCtrljudge").html(items);
+                    judgeTable.setData(response);
+                },
+                error: function() {
+                    console.error("Failed to fetch judge data.");
+                }
+            });
+
+            $(document).on('click', '#judgeDetail-table .tabulator-row', function() {
+                const row = judgeTable.getRow(this);
+                if (row) {
+                    const data = row.getData();
+                    selectedJudge = data.JUDGE_LNAME + ", " + data.JUDGE_FNAME;
+                    judgeCodevalue = data.JUDGE_CODE;
+                
+                    if (currentJudgeInputId) {
+                        $("#" + currentJudgeInputId).val(selectedJudge);
+                        const judgeCodeInputId = currentJudgeInputId.replace("judge", "judgecode");
+                        $("#" + judgeCodeInputId).val(judgeCodevalue);
+                        $('#judgeDetailModal').modal('hide');
+                    }
+                }
+            });
+					
+            let courtList = [];
+            function loadCourtDropdowns(callback) {
+                    $.ajax({
+                        type: "POST",
+                        url: contextPath + "getCourtName",
+                        dataType: "json",
+                        success: function (response) {
+                            courtList = response;
+                
+                            let options = '<option value="">Select</option>';
+                            response.forEach(item => {
+                                options += `<option value='${item.COURT_CODE}'>${item.COURT_NAME}</option>`;
+                            });
+                
+                            // Append to all selects
+                            for (let i = 0; i <= 4; i++) {
+                                $("#selectCtrl" + (i === 0 ? "" : i)).html(options);
+                            }
+                
+                            if (callback) {
+                                callback(); 
+                            }
+                        },
+                        error: function () {
+                            console.log("Court list loading failed.");
+                        }
+                    });
+            }
+            
+            //console.log(courtList);
+
+            function hammerIcon(cell) {
+                return `<i class="fa fa-gavel" style="cursor: pointer;"></i>`;
+            }
+
+
+            const cardContainer = document.getElementById('caseFileMain');
+            const addCardButton = document.getElementById('add-card');
+            const colors = ['#6ab8f7', '#ffaed4', '#4de5d5'];
+            addCardButton.addEventListener('click', () => {
+                //let caseIndex = document.querySelectorAll("#caseFileMain .casecard").length + 1;
+                const existingCards = document.querySelectorAll("[data-case-id]");
+                const caseIndex = existingCards.length + 1;
+				const color = colors[caseIndex % colors.length];
+                    const caseNum = `CASE${caseIndex}`;
+                    const formattedDate = new Date().toLocaleDateString("en-CA"); // YYYY-MM-DD
+                    const judge = ""; // Add logic if prefilled
+                    const courtOptions = getCourtOptions("", courtList); // Empty means no preselected
+                
+                    const newCard = document.createElement("div");
+                    newCard.classList.add("casecard");
+                    newCard.innerHTML = `
+                        <div class="position-relative mr-3 casefileBlock">
+                            <div class="d-flex caseFile">
+                                <div class="position-absolute caseNumber" style="background: ${color};">
+                                    <div class="d-flex align-items-center pl-0 ">
+                                        <label class="form-label mr-1 text-nowrap mb-0">Case#</label>
+                                        <input type="text" class="form-control w-100 mx-1 case-click" 
+                                                style="background: #fff;" id="case${caseIndex}" name="case${caseIndex}" 
+                                                value="" data-case-id="${caseIndex}" autocomplete="off" placeholder="Enter Case#">
+                                    </div>
+                                </div>
+                                <div style="border: 5px solid ${color}; border-radius: 0px 15px 15px 15px;" class="p-1 mt-5 w-100 caseCardBlock">	
+                                    <div class="d-flex align-itens-center mt-2 pl-0 floatingFields w-100 input-append date">
+                                        <input class="form-control w-100 floatingLable" type="text" 
+                                                name="cdate${caseIndex}" id="cdate${caseIndex}" value="" placeholder="Enter Case#" autocomplete="off">
+                                        <label class="form-label mr-2 text-nowrap mb-0">Created Date</label>
+                                    </div>
+                                    <div class="d-flex align-items-center pl-0 floatingFields mt-3">
+                                        <input type="text" class="form-control w-100 floatingLable" 
+                                                id="judge${caseIndex}" name="judge${caseIndex}" value="${judge}" placeholder="Enter Case#"" autocomplete="off" readonly>
+                                        <label class="form-label mr-1 text-nowrap mb-0">Judge</label>
+                                        <input type="hidden" id="judgecode${caseIndex}" name="judgecode${caseIndex}" value="">
+                                        <span class="d-flex" data-toggle="modal" style="width: 30px; position: relative; top: 0px; right: -3px;">														 
+                                            <a href="javascript:void(0);"
+                                                class="btn btn-primary btn-sm btn-icon waves-effect waves-themed"
+                                                onclick="openJudgeModal(this)" data-toggle="tooltip" data-placement="top" data-original-title="Select Judge">
+                                                <i class="fal fa-users"></i>
+                                            </a>
+                                        </span>
+                                    </div>
+                                    <div class="selectFloatingLabel mt-3 d-flex align-items-center">
+                                        <label class="form-label mr-2 mb-0 control-label selectFloating">Court</label>
+                                        <select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" 
+                                                id="selectCtrl${caseIndex}">
+                                            ${courtOptions}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="javascript:void(0);" class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed remove-card position-absolute" style="right: 10px; top: 0px;">
+                                <i class="fal fa-times"></i>
+                            </a>
+                        </div>
+                    `;
+                
+                    document.getElementById("caseFileMain").appendChild(newCard);
+                    toggleArrows();
+                    
+                    // Initialize the new datepicker with the enhanced function
+                    initializeEnhancedDatepicker(`#cdate${caseIndex}`);
+                
+                    caseIndex++;
+                    
+            });                                   
+
+                                   
+            function getCourtOptions(selectedCode, courtList) {
+                let options = "<option value=''>Select Court</option>";
+                courtList.forEach(court => {
+                const isSelected = court.COURT_CODE === selectedCode ? "selected" : "";
+                options += `<option value="${court.COURT_CODE}" ${isSelected}>${court.COURT_NAME}</option>`;
+                        console.log("options"+options);
+                });
+                return options;   
+            }
+						
+           $('#clear-button').on('click', function () {
+                clearHighlights();
+                $('.casefileBlock, .casecard').show(); 
+                clearFormHeaderData();
+                if (tabledetails) {
+                    tabledetails.setData(docketsTable);
+                }
+				
+				$("#selectCtrlcase").html('<option value="">Case</option>').trigger('change');;
+                $("#selectCtrlcase").val('');
+                $("#selectCtrl").val('').trigger('change');
+                $("#selectCtrljudge").val('').trigger('change');
+                $("#createfrom").val('');
+                $("#createto").val('');
+                $("#cranum").val('');
+                $("#active").prop('checked', false);
+                $("#disposition").prop('checked', false);
+                $("#case1, #cdate1, #judge1, #judgecode1").val('');
+                $("#selectCtrl1").val('').trigger('change');
+                $("#case2, #cdate2, #judge2, #judgecode2").val('');
+                $("#selectCtrl2").val('').trigger('change');
+                $("#case3, #cdate3, #judge3, #judgecode3").val('');
+                $("#selectCtrl3").val('').trigger('change');
+                $("#case4, #cdate4, #judge4, #judgecode4").val('');
+                $("#selectCtrl4").val('').trigger('change');
+                $("#caseFileMain .casecard").remove();
+            });
+
+
+			function clearHighlights() {
+                $('.casefileBlock, .casecard').removeClass('highlighted-card');
+                if (tabledetails) {
+                    tabledetails.setData(docketsTable); // Reset the charge details table
+                }
+               globalCaseNum = null;
+                globalCommitNo = null;
+                globaljudecode = null;
+                globalcourtcode = null;
+                globalCaseDate = null;
+           }
+            
+		   $("#SelectButton").on("click", function () {
+                clearHighlights(); 
+                const allCards = $(".casefileBlock, .casecard");
+
+                const searchCaseNum = $("#selectCtrlcase").val()?.trim();
+                const searchCourtCode = $("#selectCtrl").val()?.trim();
+                const searchJudgeCode = $("#selectCtrljudge").val()?.trim();
+                const searchFromDateStr = $("#createfrom").val();
+                const searchToDateStr = $("#createto").val();
+
+                let searchFromDate = null;
+                if (searchFromDateStr && isValidDate(searchFromDateStr)) {
+                    searchFromDate = new Date(searchFromDateStr);
+                    searchFromDate.setHours(0, 0, 0, 0);
+                }
+                let searchToDate = null;
+                if (searchToDateStr && isValidDate(searchToDateStr)) {
+                    searchToDate = new Date(searchToDateStr);
+                    searchToDate.setHours(23, 59, 59, 999);
+                }
+                
+                let criteriaCount = 0;
+                if (searchCaseNum) criteriaCount++;
+                if (searchCourtCode) criteriaCount++;
+                if (searchJudgeCode) criteriaCount++;
+                if (searchFromDate || searchToDate) criteriaCount++; 
+                
+                if (criteriaCount === 0) {
+                    allCards.show();
+                    return;
+                }
+
+                let matchingCards = [];
+                allCards.each(function () {
+                    const card = $(this);
+                    const caseId = card.find('.case-click').data('case-id');
+                    if (!caseId) return;
+
+                    const cardCaseNum = card.find(`#case${caseId}`).val()?.trim();
+                    const cardCourtCode = card.find(`#selectCtrl${caseId}`).val()?.trim();
+                    const cardJudgeCode = card.find(`#judgecode${caseId}`).val()?.trim();
+                    const cardDateStr = card.find(`#cdate${caseId}`).val();
+                    let cardDate = null;
+                    if (cardDateStr && isValidDate(cardDateStr)) {
+                        cardDate = new Date(cardDateStr);
+                    }
+
+                    let cardMatches = true;
+                    if (searchCaseNum && (!cardCaseNum || cardCaseNum.toUpperCase() !== searchCaseNum.toUpperCase())) cardMatches = false;
+                    if (searchCourtCode && cardCourtCode !== searchCourtCode) cardMatches = false;
+                    if (searchJudgeCode && cardJudgeCode !== searchJudgeCode) cardMatches = false;
+                    if (searchFromDate && (!cardDate || cardDate < searchFromDate)) cardMatches = false;
+                    if (searchToDate && (!cardDate || cardDate > searchToDate)) cardMatches = false;
+                    
+                    if (cardMatches) {
+                        matchingCards.push(this); 
+                    }
+                });
+
+                if (matchingCards.length === 0) {
+                    message('CUW', 'No matching case found.', 0);
+                    allCards.show(); 
+                    return;
+                }
+
+                allCards.hide();
+                $(matchingCards).show();
+
+                if (criteriaCount === 1) {
+                    let oldestCardInfo = { element: null, date: new Date() }; 
+
+                    $(matchingCards).each(function() {
+                        const card = $(this);
+                        const caseId = card.find('.case-click').data('case-id');
+                        const cardDateStr = card.find(`#cdate${caseId}`).val();
+                        
+                        if (cardDateStr && isValidDate(cardDateStr)) {
+                            const cardDate = new Date(cardDateStr);
+                            if (cardDate < oldestCardInfo.date) {
+                                oldestCardInfo = { element: card, date: cardDate };
+                            }
+                        }
+                    });
+
+                    if (oldestCardInfo.element) {
+                        const winningCard = oldestCardInfo.element;
+                        winningCard.addClass('highlighted-card');
+                        const innavContainer = $(".innavBlockMain");
+                        innavContainer.animate({
+                            scrollLeft: winningCard.offset().left - innavContainer.offset().left + innavContainer.scrollLeft() - 10
+                        }, 500);
+                        winningCard.find('.case-click').first().trigger('click');
+                    }
+                } 
+                else if (criteriaCount > 1) {
+                    let bestMatch = { score: -1, element: null, date: new Date(0) };
+
+                    $(matchingCards).each(function () {
+                        const card = $(this);
+                        const caseId = card.find('.case-click').data('case-id');
+                        const cardDateStr = card.find(`#cdate${caseId}`).val();
+                        let cardDate = null;
+                        if (cardDateStr && isValidDate(cardDateStr)) {
+                            cardDate = new Date(cardDateStr);
+                        }
+                        
+                        let currentScore = 0;
+                        const cardCaseNum = card.find(`#case${caseId}`).val()?.trim();
+                        const cardCourtCode = card.find(`#selectCtrl${caseId}`).val()?.trim();
+                        const cardJudgeCode = card.find(`#judgecode${caseId}`).val()?.trim();
+
+                        if (searchCaseNum && cardCaseNum.toUpperCase() === searchCaseNum.toUpperCase()) currentScore += 8;
+                        if (searchCourtCode && cardCourtCode === searchCourtCode) currentScore += 4;
+                        if (searchJudgeCode && cardJudgeCode === searchJudgeCode) currentScore += 2;
+                        
+                        if (currentScore > bestMatch.score) {
+                            bestMatch = { score: currentScore, element: card, date: cardDate };
+                        } else if (currentScore === bestMatch.score && cardDate && cardDate > bestMatch.date) {
+                            bestMatch = { score: currentScore, element: card, date: cardDate };
+                        }
+                    });
+
+                    if (bestMatch.element) {
+                        const winningCard = bestMatch.element;
+                        winningCard.addClass('highlighted-card');
+                        const innavContainer = $(".innavBlockMain");
+                        innavContainer.animate({
+                            scrollLeft: winningCard.offset().left - innavContainer.offset().left + innavContainer.scrollLeft() - 10
+                        }, 500);
+                        winningCard.find('.case-click').first().trigger('click');
+                    }
+                }
+            });
+
+			var sbiNumber = $("#sbiNumberInput").val();
+            loadCourtDropdowns(() => {
+                if (sbiNumber) {
+                    loadInmateChargesDockets(sbiNumber); // <- your existing logic
+                }
+            });
+																	
+            $("#sbiNumberInput").change(function () {
+                loadInmateChargesDockets($(this).val());
+            });
+							
+			function loadInmateChargesDockets(sbiNumber) {
+			    clearHighlights();
+			    if (!sbiNumber) return;
+
+			    $.ajax({
+			        type: "GET", 
+			        url: contextPath + "charges/getCommitNoBySbi", 
+			        data: { sbiNumber: sbiNumber },
+			        dataType: "json",
+			        success: function(response) {
+			            if (response && response.commitNo) {
+			                globalInmateCommitNo = response.commitNo;
+			                console.log("Fetched and stored master Commit No:", globalInmateCommitNo);
+			            } else {
+			                globalInmateCommitNo = null;
+			                console.warn("Could not fetch a master Commit No for SBI:", sbiNumber);
+			            }
+			        },
+			        error: function(xhr) {
+			            globalInmateCommitNo = null;
+			            console.error("Error fetching master Commit No:", xhr.responseText);
+			        }
+			    });
+			    
+			    // Clear existing data
+			    for (let i = 1; i <= 4; i++) {
+			        $(`#case${i}, #cdate${i}, #judge${i}, #judgecode${i}, #selectCtrl${i}`).val('');
+			    }
+			    $("#caseFileMain .casecard").remove();
+			    $("#selectCtrlcase").empty();
+			    
+			    $.ajax({
+			        type: "POST",
+			        url: contextPath + "getinmateChargesdockets",
+			        data: { 
+			            sbiNumber: sbiNumber,
+			            _: new Date().getTime() 
+			        },
+			        dataType: "json",
+			        success: function (response) {
+			            let existingCases = new Set();
+			            const colors = ['#6ab8f7', '#ffaed4', '#4de5d5'];
+
+			            response.forEach((data, i) => {
+			                const caseNum = data.CASE_NUM;
+			                const judge = data.JUDGE_NAME?.trim() || '';
+			                const judgeCode = data.JUDGE_CODE || '';
+			                const courtCode = data.COURT_CODE?.trim() || '';
+			                const courtName = data.COURT_NAME?.trim() || '';
+
+			                let formattedDate = "";
+			                if (data.START_DATE) {
+			                    const dateObj = new Date(data.START_DATE);
+			                    formattedDate = `${(dateObj.getMonth() + 1).toString().padStart(2, '0')}/${dateObj.getDate().toString().padStart(2, '0')}/${dateObj.getFullYear()}`;
+			                }
+			                
+			                const $select = $("#selectCtrlcase");
+			            
+			                if ($select.find("option[value='']").length === 0) {
+			                    $select.append(`<option value="">-- Select Case --</option>`);
+			                }
+			                
+			                const trimmedCaseNum = caseNum.trim();
+			                if (trimmedCaseNum && !existingCases.has(trimmedCaseNum)) {
+			                    existingCases.add(trimmedCaseNum);
+			                    $select.append(`<option value="${trimmedCaseNum}">${trimmedCaseNum}</option>`);
+			                }
+
+			                if (i < 4) {
+			                    // Populate the first 4 static cards
+			                    const j = i + 1;
+			                    $(`#case${j}`).val(caseNum);
+			                    $(`#cdate${j}`).val(formattedDate);
+			                    $(`#judge${j}`).val(judge);
+			                    $(`#judgecode${j}`).val(judgeCode);
+			                    if (courtCode) $(`#selectCtrl${j}`).val(courtCode).trigger('change');
+			                    
+			                    // NEW: Auto-highlight and load charges for the first case card
+			                    if (i === 0 && caseNum) {
+			                        setTimeout(function() {
+			                            const firstCaseCard = $(`#case${j}`).closest('.casefileBlock');
+			                            firstCaseCard.addClass('highlighted-card');
+			                            
+			                            // Trigger the click event to load charges
+			                            $(`#case${j}`).trigger('click');
+			                        }, 100);
+			                    }
+			                } else {
+			                    const color = colors[i % colors.length];
+			                    
+			                    const cardHtml = `
+			                        <div class="position-relative mr-3 casefileBlock casecard">
+			                            <div class="d-flex caseFile">
+			                                <div class="position-absolute caseNumber" style="background: ${color};">
+			                                    <div class="d-flex align-items-center pl-0 ">
+			                                        <label class="form-label mr-1 text-nowrap mb-0">Case#</label>
+			                                        <input type="text" class="form-control w-100 mx-1 case-click" style="background: #fff;" id="case${i+1}" name="case${i+1}" value="${caseNum}" placeholder="Enter Case#" data-case-id="${i+1}" autocomplete="off">
+			                                    </div>
+			                                </div>
+			                                <div style="border: 5px solid ${color};border-radius: 0px 15px 15px 15px;" class="p-1 mt-5 w-100 caseCardBlock">	
+			                                    <div class="d-flex mt-2 pl-0 floatingFields w-100 input-append date">
+			                                        <input class="form-control w-100 floatingLable" type="text" name="cdate${i+1}" id="cdate${i+1}" value="${formattedDate}" autocomplete="off">
+			                                        <label class="form-label mr-2 text-nowrap mb-0">Created Date</label>
+			                                        <span class="add-on"></span>
+			                                    </div>
+			                                    <div class="d-flex align-items-center pl-0 floatingFields mt-3">
+			                                        <input type="text" class="form-control w-100 floatingLable" id="judge${i+1}" name="judge${i+1}" value="${judge}">
+			                                        <input type="hidden" class="form-control w-100 floatingLable" id="judgecode${i+1}" name="judgecode${i+1}" value="${judgeCode}" autocomplete="off" readonly>
+			                                        <label class="form-label mr-1 text-nowrap mb-0">Judge</label>
+			                                        <span class="d-flex" style="width: 30px; position: relative; top: -12px; right: -10px;">
+			                                            <a href="javascript:void(0);" class="btn btn-primary btn-sm btn-icon waves-effect waves-themed" style="right: 10px; top: -1px;" onclick="openJudgeModal(this)">
+			                                                <i class="fal fa-users"></i>
+			                                            </a>
+			                                        </span>
+			                                    </div>
+			                                    <div class="selectFloatingLabel mt-3 d-flex align-items-center">
+			                                        <label class="form-label mr-2 mb-0 control-label selectFloating">Court</label>
+			                                        <select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="selectCtrl${i+1}">
+			                                            ${getCourtOptions(courtCode, courtList)}
+			                                        </select>
+			                                    </div>
+			                                </div>
+			                            </div>
+			                        </div>`;
+			                    $("#caseFileMain").append(cardHtml);
+			                    initializeEnhancedDatepicker(`#cdate${i+1}`);
+			                    
+			                    // NEW: Auto-highlight and load charges for the first dynamic case card if it's the first one
+			                    if (i === 4) { // First dynamic card (index 4 corresponds to the 5th card)
+			                        setTimeout(function() {
+			                            const firstDynamicCard = $(`#case${i+1}`).closest('.casefileBlock');
+			                            firstDynamicCard.addClass('highlighted-card');
+			                            
+			                            // Trigger the click event to load charges
+			                            $(`#case${i+1}`).trigger('click');
+			                        }, 150);
+			                    }
+			                }
+			            });
+			            
+			            if (response.length === 0) {
+			                setTimeout(function() {
+			                    const firstCaseCard = $('#case1').closest('.casefileBlock');
+			                    if (firstCaseCard.length > 0) {
+			                        firstCaseCard.addClass('highlighted-card');
+			                    }
+			                }, 100);
+			            }
+			        },
+			        error: function () {
+			            console.log("Failed to fetch case data.");
+			        }
+			    }).always(function() {
+			        
+			    });
+			}
+		            
+        
+            $(document).on("click", ".remove-card", function () {
+                $(this).closest(".casecard").remove();
+                toggleArrows();
+            });
+
+			const button = document.getElementById('charge-Add');
+			button.addEventListener('click', function() {
+			    var rowCount = tabledetails.getData().length;				
+			    const newRowData = {
+			        id: rowCount,
+			        isNewRow: true,
+			        COMMIT_NO: globalCommitNo ?? null,
+			        CASE_NUM: globalCaseNum ?? null,
+			        CONSOLIDATED_CRA_NUM: null,
+			        CHARGE_DESCRIPTION: "",
+			        START_DATE: null,
+			        END_DATE: null,
+			        BAIL_AMOUNT: null,
+			        BAIL_TYPE: null,
+			        DISPOSITION_CODE: null,
+			        ACTIVE_FLAG: "Y",
+			        CHARGE_NUM: null,
+			        CHARGE_SEQ_NUM: 0,
+			        JUDGE_CODE:  globaljudecode,
+			        COURT_CODE:  globalcourtcode,
+			        CHARGE_JURISDICTION: null,
+			        STATUE_TITLE: null,
+			        STATUE_SECTION: null,
+			        STATUE_SUBSECTION: null,
+			        STATUE_TYPE: null,
+			        STATUE_CLASS: null,
+			        COMMENTS: null,
+			        NCIC_CODE: null,
+			        SENTAC_CATEGORY: null
+			    };
+
+			    tabledetails.addData([newRowData], true).then((rows) => {
+			        if (rows && rows.length > 0) {
+			            // rows[0] is the newly added row
+			            rows[0].getCell("CONSOLIDATED_CRA_NUM").edit();
+			        }
+			    });
+			});
+                    
+		document.addEventListener("DOMContentLoaded", function () {
+		    const saveBtn = document.getElementById("savebtn");
+		    if (saveBtn) {
+		        saveBtn.addEventListener("click", function () {
+		            if (!checkMandatory()) {
+		                return;
+		            }
+		            
+		            const highlightedCard = $('.highlighted-card');
+		            
+		            if (highlightedCard.length === 0) {
+		                message('CUW', 'Please select a case card before saving charges.', 0);
+		                return;
+		            }
+
+		            const caseInput = highlightedCard.find('.case-click');
+		            if (caseInput.length === 0) {
+		                console.error("Could not find the case number input field in the highlighted card.");
+		                message('CUE', 'An unexpected error occurred. Could not find case input.', 0);
+		                return;
+		            }
+		            
+		            const activeCaseNum = caseInput.val();
+		            const caseId = caseInput.data('case-id');
+
+		            if (!activeCaseNum || activeCaseNum.trim() === '') {
+		                message('CUW', 'The selected case card must have a Case Number.', 0);
+		                return;
+		            }
+
+		            const activeJudgeCode = highlightedCard.find(`#judgecode${caseId}`).val();
+		            const activeCourtCode = highlightedCard.find(`#selectCtrl${caseId}`).val();
+
+		            const finalEdits = new Map();
+		            editedRowIds.forEach((editInfo, row) => {
+		                const rowData = editInfo.data;
+		                const uniqueKey = rowData.COCH_DTL_ROWID || row;
+		                finalEdits.set(uniqueKey, editInfo);
+		            });
+
+		            const insertRows = [];
+		            const updateRows = [];
+
+		            finalEdits.forEach((editInfo, key) => {
+		                if (editInfo.isNew) {
+		                    if (editInfo.data.CONSOLIDATED_CRA_NUM || editInfo.data.CHARGE_DESCRIPTION) {
+		                        const newRowPayload = {
+		                            ...editInfo.data,
+		                            COMMIT_NO: globalInmateCommitNo,
+		                            CASE_NUM: activeCaseNum,
+		                            JUDGE_CODE: activeJudgeCode,
+		                            COURT_CODE: activeCourtCode,
+		                            ACTIVE_FLAG: "Y",
+		                            CHARGE_SEQ_NUM: 0
+		                        };
+		                        insertRows.push(newRowPayload);
+		                    }
+		                } else {
+		                    updateRows.push(editInfo.data);
+		                }
+		            });
+
+		            // *** UPDATED VALIDATION LOGIC FOR TABULATOR ***
+		            const allRowsToValidate = [...insertRows, ...updateRows];
+		            for (const rowData of allRowsToValidate) {
+		                // First, determine if the row is "active" (i.e., has any data entered by the user).
+		                const isRowActive = 
+		                    (rowData.CONSOLIDATED_CRA_NUM && rowData.CONSOLIDATED_CRA_NUM.trim() !== '') ||
+		                    (rowData.CHARGE_DESCRIPTION && rowData.CHARGE_DESCRIPTION.trim() !== '') ||
+		                    (rowData.START_DATE) ||
+		                    (rowData.END_DATE) ||
+		                    (rowData.BAIL_AMOUNT !== null && rowData.BAIL_AMOUNT !== '' && typeof rowData.BAIL_AMOUNT !== 'undefined') ||
+		                    (rowData.BAIL_TYPE) ||
+		                    (rowData.DISPOSITION_CODE);
+
+		                // If the row is active, then enforce all mandatory fields for that row.
+		                if (isRowActive) {
+		                    if (!rowData.CHARGE_DESCRIPTION || rowData.CHARGE_DESCRIPTION.trim() === '') {
+		                        message('CUW', 'Description is mandatory for active charges.', 0);
+		                        return; // Stop the save process
+		                    }
+		                    if (!rowData.START_DATE) {
+		                        message('CUW', 'Start Date is mandatory for active charges.', 0);
+		                        return;
+		                    }
+		                    // A bail amount of 0 is valid, so check specifically for null/undefined/empty string.
+		                    if (rowData.BAIL_AMOUNT === null || rowData.BAIL_AMOUNT === '' || typeof rowData.BAIL_AMOUNT === 'undefined') {
+		                        message('CUW', 'Bail Amount is mandatory for active charges.', 0);
+		                        return;
+		                    }
+		                    if (!rowData.BAIL_TYPE) {
+		                        message('CUW', 'Bail Type is mandatory for active charges.', 0);
+		                        return;
+		                    }
+		                    if (!rowData.DISPOSITION_CODE) {
+		                        message('CUW', 'Disposition Code is mandatory for active charges.', 0);
+		                        return;
+		                    }
+		                }
+		            }
+		            // *** END OF UPDATED VALIDATION LOGIC ***
+		            
+		            if (insertRows.length === 0 && updateRows.length === 0) {
+		                const hasExistingCharges = tabledetails.getData().some(
+		                    row => (row.CHARGE_DESCRIPTION && row.CHARGE_DESCRIPTION.trim() !== "") || 
+		                           (row.CONSOLIDATED_CRA_NUM && row.CONSOLIDATED_CRA_NUM.trim() !== "")
+		                );
+		                if (hasExistingCharges) {
+		                    message('CUW', 'No changes to save.', 0);
+		                } else {
+		                    message('CUW', 'Please enter charges to save.', 0);
+		                }
+		                return;
+		            }
+
+		            function sendRows(url, method, rows, label) {
+		                if (rows.length === 0) return Promise.resolve();
+		                return fetch(url, {
+		                    method: method,
+		                    headers: { "Content-Type": "application/json" },
+		                    body: JSON.stringify(rows)
+		                }).then(response => {
+		                    if (!response.ok) throw new Error(`${label} failed`);
+		                });
+		            }
+
+		            Promise.all([
+		                sendRows("/OmnetTest/charges/insert", "POST", insertRows, "Insert"),
+		                sendRows("/OmnetTest/charges/update", "PUT", updateRows, "Update")
+		            ])
+		            .then(() => {
+		                message('CUS', 'Saved Successfully', 0);
+		                editedRowIds.clear();
+		                
+		                const currentCaseNum = activeCaseNum; 
+		                const currentCaseDate = highlightedCard.find(`#cdate${caseId}`).val();
+		                
+		                if (!currentCaseNum) {
+		                    tabledetails.setData(docketsTable);
+		                    return;
+		                }
+		                
+		                let formattedDate = null;
+		                if(currentCaseDate && isValidDate(currentCaseDate)){
+		                     const dateObj = new Date(currentCaseDate);
+		                     const day = dateObj.getDate().toString().padStart(2, '0');
+		                     const month = dateObj.toLocaleString('default', { month: 'short' }).toUpperCase();
+		                     const year = dateObj.getFullYear().toString().slice(-2);
+		                     formattedDate = day + '-' + month + '-' + year;
+		                }
+		                
+		                setTimeout(function() {
+		                    $.ajax({
+		                        type: "POST",
+		                        url: contextPath + "getinmateChargesdetails",
+		                        data: {
+		                            caseNumber: currentCaseNum,
+		                            date: formattedDate,
+		                            sbiNumber: $("#sbiNumberInput").val(),
+		                            _: new Date().getTime() 
+		                        },
+		                        dataType: "json",
+		                        success: function (updatedChargeData) {
+		                            const emptyRowTemplate = {
+		                                CONSOLIDATED_CRA_NUM: "", CHARGE_DESCRIPTION: "", START_DATE: "", END_DATE: "",
+		                                BAIL_AMOUNT: "", BAIL_TYPE: "", DISPOSITION_CODE: ""
+		                            };
+		                            const actualDataCount = updatedChargeData.length;
+		                            const displayRowCount = Math.max(12, actualDataCount);
+		                            const finalDisplayData = [];
+		                            for (let i = 0; i < displayRowCount; i++) {
+		                                if (i < actualDataCount) {
+		                                    finalDisplayData.push(updatedChargeData[i]);
+		                                } else {
+		                                    finalDisplayData.push({ ...emptyRowTemplate });
+		                                }
+		                            }
+		                            tabledetails.setData(finalDisplayData);
+		                        },
+		                        error: function (xhr, status, error) {
+		                            console.error("Failed to re-fetch charges after save:", error);
+		                        }
+		                    });
+		                }, 250);
+
+		            })
+		            .catch(error => {
+		                console.error("Error during save:", error);
+		            });
+		        });
+		    } else {
+		        console.error("Save button with ID #savebtn not found.");
+		    }
+		});
+		
+		var statuteInfoTable;
+		let currentChargeRow = null; 
+
+		$(document).ready(function() {
+			
+			var statuteTableData = Array.from({ length: 10 }, () => ({
+			    JURISDICTION: "",
+			    TITLE: "",
+			    SECTION: "",
+			    SUBSECTION: "",
+			    TYPE: "",
+			    CLASS: "",
+			    SHORT_LITERAL: "",
+			    STAT_LITERAL: ""
+			}));
+
+			
+			statuteInfoTable = new Tabulator("#statute-info-table", {
+			        height: 250,
+			        layout: "fitColumns",
+			        selectable: 1,
+			        placeholder: "No Results Found",
+			        data: statuteTableData,
+			        columns: [
+			            { 
+			                title: "Select", // <-- MODIFIED: This now displays the text title
+			                formatter: "rowSelection", 
+			                hozAlign: "center", 
+			                headerSort: false, 
+			                width: 70, 
+			                cellClick:function(e, cell){ cell.getRow().toggleSelect(); },
+			                headerTooltip: "Select a statute" // <-- ADDED
+			                // titleFormatter property has been removed to prevent the header checkbox
+			            },
+			            { 
+			                title: "Jurisdiction", 
+			                field: "JURISDICTION",
+			                headerSort: true, // <-- ADDED
+			                sorter: customSorter, // <-- ADDED
+			                headerTooltip: "Jurisdiction" // <-- ADDED
+			            },
+			            { 
+			                title: "Title", 
+			                field: "TITLE",
+			                headerSort: true, // <-- ADDED
+			                sorter: customSorter, // <-- ADDED
+			                headerTooltip: "Title" // <-- ADDED
+			            },
+			            { 
+			                title: "Section", 
+			                field: "SECTION",
+			                headerSort: true, // <-- ADDED
+			                sorter: customSorter, // <-- ADDED
+			                headerTooltip: "Section" // <-- ADDED
+			            },
+			            { 
+			                title: "Subsection", 
+			                field: "SUBSECTION",
+			                headerSort: true, // <-- ADDED
+			                sorter: customSorter, // <-- ADDED
+			                headerTooltip: "Subsection" // <-- ADDED
+			            },
+			            { 
+			                title: "Type", 
+			                field: "TYPE",
+			                headerSort: true, // <-- ADDED
+			                sorter: customSorter, // <-- ADDED
+			                headerTooltip: "Type" // <-- ADDED
+			            },
+			            { 
+			                title: "Class", 
+			                field: "CLASS",
+			                headerSort: true, // <-- ADDED
+			                sorter: customSorter, // <-- ADDED
+			                headerTooltip: "Class" // <-- ADDED
+			            },
+			            { 
+			                title: "Short Literal", 
+			                field: "SHORT_LITERAL", 
+			                width: 200,
+			                headerSort: true, // <-- ADDED
+			                sorter: customSorter, // <-- ADDED
+			                headerTooltip: "Short Literal" // <-- ADDED
+			            },
+			            { 
+			                title: "Stat-Literal", 
+			                field: "STAT_LITERAL", 
+			                width: 200,
+			                headerSort: true, // <-- ADDED
+			                sorter: customSorter, // <-- ADDED
+			                headerTooltip: "Stat-Literal" // <-- ADDED
+			            },
+			        ],
+			        rowSelectionChanged: function(data, rows){
+			            if (data.length > 0) {
+			                $("#assignedJurisdiction").val(data[0].JURISDICTION || '');
+			                $("#assignedTitle").val(data[0].TITLE || '');
+			                $("#assignedSection").val(data[0].SECTION || '');
+			                $("#assignedSubsection").val(data[0].SUBSECTION || '');
+			                $("#assignedType").val(data[0].TYPE || '');
+			                $("#assignedClass").val(data[0].CLASS || '');
+			            } else {
+			                 $("#assignedJurisdiction, #assignedTitle, #assignedSection, #assignedSubsection, #assignedType, #assignedClass").val('');
+			            }
+			        }
+			    });
+			    
+			    $("#statuteSearchBtn").on("click", function() {
+			        var sampleData = [
+			            {JURISDICTION: 'STATE', TITLE: '2C', SECTION: '39', SUBSECTION: '4A', TYPE: 'C', CLASS: '4', SHORT_LITERAL: 'POSS WEAPN UNLWF PURP', STAT_LITERAL: 'POSSESSION OF WEAPONS FOR UNLAWFUL PURPOSES'},
+			            {JURISDICTION: 'STATE', TITLE: '2C', SECTION: '12', SUBSECTION: '1A1', TYPE: 'C', CLASS: 'DP', SHORT_LITERAL: 'SIMPLE ASSAULT', STAT_LITERAL: 'SIMPLE ASSAULT'},
+			            {JURISDICTION: 'STATE', TITLE: '39', SECTION: '4', SUBSECTION: '50', TYPE: 'T', CLASS: '', SHORT_LITERAL: 'DWI', STAT_LITERAL: 'DRIVING WHILE INTOXICATED'},
+			        ];
+			        message('CUI', 'Search functionality is for demonstration.', 0);
+			        statuteInfoTable.setData(sampleData);
+			    });
+
+			    $("#statuteClearBtn").on("click", function() {
+			        $("#statuteKeyword, #statuteTitle, #statuteSec, #statuteSubSec, #statuteType, #statuteClass").val('');
+			        $("#assignedJurisdiction, #assignedTitle, #assignedSection, #assignedSubsection, #assignedType, #assignedClass").val('');
+			        statuteInfoTable.setData(statuteTableData);
+			        statuteInfoTable.deselectRow();
+			    });
+
+			    $("#statuteOkBtn").on("click", function() {
+			        var selectedData = statuteInfoTable.getSelectedData();
+			        if (selectedData.length === 0) {
+			            message('CUW', 'Please select a statute to assign.', 0);
+			            return;
+			        }
+			        if (currentChargeRow) {
+			            console.log("Assigning statute:", selectedData[0], "to charge row:", currentChargeRow.getData());
+			            message('CUS', 'Statute assigned (see console log).', 0);
+			            $('#statuteInfoModal').modal('hide');
+			        }
+			    });
+
+			    $('#statuteInfoModal').on('hidden.bs.modal', function () {
+			        $("#statuteClearBtn").trigger('click');
+			        currentChargeRow = null;
+			    });
+			});
+     
+	 </script>
+           
+            <script type="text/javascript">
+                $('#js-page-content').smartPanel();
+
+            </script>
+            <div th:replace="~{fragments/msgBox :: msgBox}"></div>
+        </body>
+        <!-- BEGIN Page Footer -->
+        <div th:replace="~{fragments/footer :: footer}"></div>
+        <!-- END Page Footer -->
+</html>

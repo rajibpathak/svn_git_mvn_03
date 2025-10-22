@@ -1,0 +1,608 @@
+<div th:fragment="PretrialSupervisionChargeTab" th:remove="tag">
+	<div class="row m-1"> 
+		<div class="col-lg-12 px-0">
+			<div id="table-container" class="mb-2">
+				<div class="tableFixHead" style="max-height: 350px;overflow-x: auto;border: 1px solid #7a59ad;">
+				 	<table id="" class="table table-striped table-bordered table-sm" style="margin-bottom:0">
+						<thead>
+							<tr>
+								<th style="min-width: 50px;">Select</th>
+								<th style="min-width: 100px;">Case#</th>
+								<th style="min-width: 100px;">Charge#</th>
+								<th style="min-width: 200px;">Charge Description</th>
+								<th style="min-width: 100px;">Start Date <span class="text-danger">*</span> </th>
+								<th style="min-width: 100px;">End Date</th>
+								<th style="min-width: 150px;">Bail Amount <span class="text-danger">*</span> </th>
+								<th style="min-width: 300px;">Bail Type</th>
+								<th style="min-width: 200px;">Court <span class="text-danger">*</span></th>
+								<th style="min-width: 200px;">Judge <span class="text-danger">*</span></th>
+								<th style="min-width: 200px;">Disposition Code</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="min-width: 50px;">
+									<div class="custom-control custom-checkbox custom-control-inline mr-3">
+										<input type="checkbox" class="custom-control-input" id="SelectCheck">
+										<label class="custom-control-label text-nowrap" for="SelectCheck"></label> 
+									</div>
+								</td>
+								<td style="min-width: 100px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 100px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 200px;">
+									<div class="d-flex">										
+										<input type="text" class="form-control" aria-label="" value="">
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-gavel" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 100px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 100px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 150px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 300px;">
+									<div class="d-flex">										
+										<input type="text" class="form-control" aria-label="" value="">
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-download" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 200px;">
+									<select class="custom-select form-control typecontact">
+										<option></option>
+										<option value="Option 1"> </option>
+										<option value="Option 2"> </option>
+									</select>
+								</td>
+								<td style="min-width: 200px;">
+									<div class="d-flex">
+										<select class="custom-select form-control typecontact">
+											<option></option>
+											<option value="Option 1"> </option>
+											<option value="Option 2"> </option>
+										</select>
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-download" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 200px;">
+									<select class="custom-select form-control typecontact">
+										<option></option>
+										<option value="Option 1"> </option>
+										<option value="Option 2"> </option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td style="min-width: 50px;" class="disabletd">
+									<div class="custom-control custom-checkbox custom-control-inline mr-3">
+										<input type="checkbox" class="custom-control-input" id="SelectCheck">
+										<label class="custom-control-label text-nowrap" for="SelectCheck"></label> 
+									</div>
+								</td>
+								<td style="min-width: 100px;" class="disabletd">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 100px;" class="disabletd">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<div class="d-flex">										
+										<input type="text" class="form-control" aria-label="" value="">
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-gavel" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 100px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 100px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 150px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 300px;" class="disabletd">
+									<div class="d-flex">										
+										<input type="text" class="form-control" aria-label="" value="">
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-download" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<select class="custom-select form-control typecontact">
+										<option></option>
+										<option value="Option 1"> </option>
+										<option value="Option 2"> </option>
+									</select>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<div class="d-flex">
+										<select class="custom-select form-control typecontact">
+											<option></option>
+											<option value="Option 1"> </option>
+											<option value="Option 2"> </option>
+										</select>
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-download" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<select class="custom-select form-control typecontact">
+										<option></option>
+										<option value="Option 1"> </option>
+										<option value="Option 2"> </option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td style="min-width: 50px;" class="disabletd">
+									<div class="custom-control custom-checkbox custom-control-inline mr-3">
+										<input type="checkbox" class="custom-control-input" id="SelectCheck">
+										<label class="custom-control-label text-nowrap" for="SelectCheck"></label> 
+									</div>
+								</td>
+								<td style="min-width: 100px;" class="disabletd">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 100px;" class="disabletd">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<div class="d-flex">										
+										<input type="text" class="form-control" aria-label="" value="">
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-gavel" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 100px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 100px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 150px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 300px;" class="disabletd">
+									<div class="d-flex">										
+										<input type="text" class="form-control" aria-label="" value="">
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-download" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<select class="custom-select form-control typecontact">
+										<option></option>
+										<option value="Option 1"> </option>
+										<option value="Option 2"> </option>
+									</select>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<div class="d-flex">
+										<select class="custom-select form-control typecontact">
+											<option></option>
+											<option value="Option 1"> </option>
+											<option value="Option 2"> </option>
+										</select>
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-download" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<select class="custom-select form-control typecontact">
+										<option></option>
+										<option value="Option 1"> </option>
+										<option value="Option 2"> </option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td style="min-width: 50px;" class="disabletd">
+									<div class="custom-control custom-checkbox custom-control-inline mr-3">
+										<input type="checkbox" class="custom-control-input" id="SelectCheck">
+										<label class="custom-control-label text-nowrap" for="SelectCheck"></label> 
+									</div>
+								</td>
+								<td style="min-width: 100px;" class="disabletd">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 100px;" class="disabletd">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<div class="d-flex">										
+										<input type="text" class="form-control" aria-label="" value="">
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-gavel" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 100px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 100px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 150px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 300px;" class="disabletd">
+									<div class="d-flex">										
+										<input type="text" class="form-control" aria-label="" value="">
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-download" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<select class="custom-select form-control typecontact">
+										<option></option>
+										<option value="Option 1"> </option>
+										<option value="Option 2"> </option>
+									</select>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<div class="d-flex">
+										<select class="custom-select form-control typecontact">
+											<option></option>
+											<option value="Option 1"> </option>
+											<option value="Option 2"> </option>
+										</select>
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-download" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<select class="custom-select form-control typecontact">
+										<option></option>
+										<option value="Option 1"> </option>
+										<option value="Option 2"> </option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td style="min-width: 50px;" class="disabletd">
+									<div class="custom-control custom-checkbox custom-control-inline mr-3">
+										<input type="checkbox" class="custom-control-input" id="SelectCheck">
+										<label class="custom-control-label text-nowrap" for="SelectCheck"></label> 
+									</div>
+								</td>
+								<td style="min-width: 100px;" class="disabletd">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 100px;" class="disabletd">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<div class="d-flex">										
+										<input type="text" class="form-control" aria-label="" value="">
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-gavel" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 100px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 100px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 150px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 300px;" class="disabletd">
+									<div class="d-flex">										
+										<input type="text" class="form-control" aria-label="" value="">
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-download" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<select class="custom-select form-control typecontact">
+										<option></option>
+										<option value="Option 1"> </option>
+										<option value="Option 2"> </option>
+									</select>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<div class="d-flex">
+										<select class="custom-select form-control typecontact">
+											<option></option>
+											<option value="Option 1"> </option>
+											<option value="Option 2"> </option>
+										</select>
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-download" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<select class="custom-select form-control typecontact">
+										<option></option>
+										<option value="Option 1"> </option>
+										<option value="Option 2"> </option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td style="min-width: 50px;" class="disabletd">
+									<div class="custom-control custom-checkbox custom-control-inline mr-3">
+										<input type="checkbox" class="custom-control-input" id="SelectCheck">
+										<label class="custom-control-label text-nowrap" for="SelectCheck"></label> 
+									</div>
+								</td>
+								<td style="min-width: 100px;" class="disabletd">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 100px;" class="disabletd">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<div class="d-flex">										
+										<input type="text" class="form-control" aria-label="" value="">
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-gavel" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 100px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 100px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 150px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 300px;" class="disabletd">
+									<div class="d-flex">										
+										<input type="text" class="form-control" aria-label="" value="">
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-download" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<select class="custom-select form-control typecontact">
+										<option></option>
+										<option value="Option 1"> </option>
+										<option value="Option 2"> </option>
+									</select>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<div class="d-flex">
+										<select class="custom-select form-control typecontact">
+											<option></option>
+											<option value="Option 1"> </option>
+											<option value="Option 2"> </option>
+										</select>
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-download" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<select class="custom-select form-control typecontact">
+										<option></option>
+										<option value="Option 1"> </option>
+										<option value="Option 2"> </option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<td style="min-width: 50px;" class="disabletd">
+									<div class="custom-control custom-checkbox custom-control-inline mr-3">
+										<input type="checkbox" class="custom-control-input" id="SelectCheck">
+										<label class="custom-control-label text-nowrap" for="SelectCheck"></label> 
+									</div>
+								</td>
+								<td style="min-width: 100px;" class="disabletd">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 100px;" class="disabletd">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<div class="d-flex">										
+										<input type="text" class="form-control" aria-label="" value="">
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-gavel" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 100px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 100px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 150px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td style="min-width: 300px;" class="disabletd">
+									<div class="d-flex">										
+										<input type="text" class="form-control" aria-label="" value="">
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-download" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<select class="custom-select form-control typecontact">
+										<option></option>
+										<option value="Option 1"> </option>
+										<option value="Option 2"> </option>
+									</select>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<div class="d-flex">
+										<select class="custom-select form-control typecontact">
+											<option></option>
+											<option value="Option 1"> </option>
+											<option value="Option 2"> </option>
+										</select>
+										<span data-toggle="modal" data-target="#">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+												<i class="fa fa-download" aria-hidden="true"></i>
+											</a>
+										</span>
+									</div>
+								</td>
+								<td style="min-width: 200px;" class="disabletd">
+									<select class="custom-select form-control typecontact">
+										<option></option>
+										<option value="Option 1"> </option>
+										<option value="Option 2"> </option>
+									</select>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-12 px-0">		
+			<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">
+				<div class="d-flex align-items-center">
+					<span class="w-100 text-center">CONDITIONS OF RELEASE</span>
+					<span class="d-flex ml-2">								
+	                    <a href="#"  id="" class="btn btn-success btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center" data-class="nav-function-hidden">
+							<i class="fa fa-arrow-left" aria-hidden="true"></i>
+						</a>
+					</span>
+					<span class="d-flex">								
+	                    <a href="#"  id="" class="btn btn-success btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center" data-toggle="modal" data-target="#CourtConditionsModal" data-class="nav-function-hidden">
+							<i class="fa fa-plus" aria-hidden="true"></i>
+						</a>
+					</span>
+				</div>
+			</h6>
+			<div id="table-container" class="mb-2">
+				<div class="tableFixHead" style="max-height: 350px;overflow-x: auto;border: 1px solid #7a59ad;">
+				 	<table id="" class="table table-striped table-bordered table-sm" style="margin-bottom:0">
+						<thead>
+							<tr>
+								<th style="width: 30px;">Select</th>
+								<th style="width: 300px;">Condition Code</th>
+								<th>Description</th>
+								<th>Other Description</th>
+								<th style="min-width: 30px;"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="width: 30px;">
+									<div class="custom-control custom-checkbox custom-control-inline">
+										<input type="checkbox" class="custom-control-input" id="SelectCheck">
+										<label class="custom-control-label text-nowrap" for="SelectCheck"></label> 
+									</div>
+								</td>
+								<td style="width: 300px;">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td class="disabletd">
+									<textarea class="form-control" disabled id="addComments" placeholder="" rows="1" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+								</td>
+								<td>
+									<textarea class="form-control" id="addComments" placeholder="" rows="1" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+								</td>
+								<td style="width: 30px;">
+									<span data-toggle="modal" data-target="#" class="d-flex">
+										<a href="#" class="btn btn-danger btn-sm p-1 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+											<i class="fa fa-times" aria-hidden="true"></i>
+										</a>
+									</span>
+								</td>
+							</tr>
+							<tr>
+								<td style="width: 30px;" class="disabletd">
+									<div class="custom-control custom-checkbox custom-control-inline">
+										<input type="checkbox" class="custom-control-input" id="SelectCheck">
+										<label class="custom-control-label text-nowrap" for="SelectCheck"></label> 
+									</div>
+								</td>
+								<td style="width: 300px;" class="disabletd">
+									<input type="text" class="form-control" aria-label="" value="">
+								</td>
+								<td class="disabletd">
+									<textarea class="form-control" id="addComments" disabled placeholder="" rows="1" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+								</td>
+								<td>
+									<textarea class="form-control" id="addComments" placeholder="" rows="1" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+								</td>
+								<td style="width: 30px;" class="disabletd">
+									<span data-toggle="modal" data-target="#" class="d-flex">
+										<a href="#" class="btn btn-danger btn-sm p-1 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+											<i class="fa fa-times" aria-hidden="true"></i>
+										</a>
+									</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

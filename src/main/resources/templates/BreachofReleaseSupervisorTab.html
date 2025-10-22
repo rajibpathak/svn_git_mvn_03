@@ -1,0 +1,37 @@
+<div th:fragment="BreachofReleaseSupervisorTab" th:remove="tag">
+	<div class="row">
+		<div class="col-lg-12">
+			<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">DECISION INFORMATION</h6>
+			<div class="panel panelContentBlock p-1 mb-1">
+				<div class="row mb-2">
+					<div class="col-12 col-lg-3 pr-0 d-flex align-items-center">
+						<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Approval</label>																					
+						<select class="custom-select form-control typecontact">
+							<option></option>
+							<option value="Option 1">test</option>
+							<option value="Option 2">test1</option>
+						</select>
+					</div>
+					<div class="col-12 col-lg-3 pr-0 d-flex align-items-center">
+						<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Date</label>																					
+						<input type="text" class="form-control w-100" aria-label="weight" name="weight" id="weight" value="" disabled>
+						<label for="weight" class="form-label mb-0 mx-2 text-nowrap">Time</label>																					
+						<input type="text" class="form-control w-100" aria-label="weight" name="weight" id="weight" value="" disabled>
+					</div>
+					<div class="col-12 col-lg-4 pr-0 d-flex align-items-center">
+						<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Supervisor's Name</label>																					
+						<input type="text" class="form-control w-100" aria-label="weight" name="weight" id="weight" value="" disabled>
+						<div class="custom-control custom-checkbox custom-control-inline ml-2">
+							<input type="checkbox" class="custom-control-input" id="ServiceRequestedCheck">
+							<label class="custom-control-label text-nowrap" for="ServiceRequestedCheck">Cancel <span class="text-danger">*</span> </label>
+						</div>
+					</div>
+					<div class="col-12 col-lg-12 mt-1">
+						<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Comments</label>																					
+						<textarea class="form-control" placeholder="" id="addComments" rows="12" name="Comments" aria-label="Comments" style="resize:none;" disabled value=""></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

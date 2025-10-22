@@ -1,0 +1,578 @@
+<div th:fragment="TransitionDashboardTab" th:remove="tag">
+	<div class="row">
+		<div class="col-lg-12"> 
+			 <h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">MY DASHBOARD</h6>
+			  <div class="panel panelContentBlock mb-2 p-1">		
+				<div class="row">
+					<div class="col-12 col-lg-12">
+						<div class="row"> 
+							<div class="col-12 col-lg-4 pr-0 d-flex align-items-center">							
+								<div class="custom-control custom-radio mr-2">
+	                                <input type="radio" class="custom-control-input" id="AllActiveRadio" name="AllActiveRadio" checked="">
+	                                <label class="custom-control-label" for="AllActiveRadio">All Active Offenders</label>
+	                            </div>
+	                            <div class="custom-control custom-radio mr-2">
+	                                <input type="radio" class="custom-control-input" id="MyCaseloadRadio" name="MyCaseloadRadio">
+	                                <label class="custom-control-label" for="MyCaseloadRadio">My Caseload</label>
+	                            </div>
+	                            <div class="custom-control custom-radio mr-2">
+	                                <input type="radio" class="custom-control-input" id="SelectedRadio" name="SelectedRadio">
+	                                <label class="custom-control-label" for="SelectedRadio">Selected Officer</label>
+	                            </div>
+							</div>
+							<div class="col-12 col-lg-4 pl-0 pr-0 d-flex align-items-center">
+								<button type="button" class="btn btn-primary btn-sm mr-2 text-nowrap" id="">Export to Excel</button>
+								<button type="button" class="btn btn-primary btn-sm mr-2 text-nowrap" id="">Dynamic Report</button>
+								<button type="button" class="btn btn-primary btn-sm mr-2 text-nowrap" id="">Show Details</button>
+								<button type="button" class="btn btn-primary btn-sm mr-2 text-nowrap" id="">Refresh</button>
+							</div>
+							<div class="col-12 col-lg-4 d-flex align-items-center">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Officer</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value=" ">
+								<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Release MethodModal" data-class="nav-function-hidden">
+		                            <i class="fa fa-edit"></i>
+		                         </a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-6 pr-0">
+					<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">CLASSIFICATION-DUE LIST</h6>
+					<div class="row">
+						 <div class="col-12 col-lg-4 d-flex align-items-center pr-0">
+							<label for="Security" class="form-label mr-1 mb-0 text-nowrap">Category</label>
+							<select class="custom-select form-control typecontact">
+								<option> </option>
+								<option value="Option 1">test</option>
+								<option value="Option 2">test1</option>
+							</select>
+						</div>
+						<div class="col-12 col-lg-6 d-flex align-items-center pr-0">
+							<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Start Date</label>
+							<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+							<label for="weight" class="form-label mb-0 mx-2 text-nowrap">End Date</label>
+							<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+						</div>
+						<div class="col-12 col-lg-2 d-flex align-items-center pr-0">
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" class="custom-control-input" id="Printcheckbox1">
+								<label class="custom-control-label" for="Printcheckbox1" style="font-weight: 500;">Print</label>
+							</div>
+						</div>
+					</div>
+					<div id="table-container" style="border: 1px solid #7a59ad; border-top: 0;" class="mb-1 mb-2">
+						<div class="tableFixHead" style="max-height: 370px;">
+							<table id="" class="table table-striped table-bordered table-sm" style="margin-bottom:0;">
+						  		<thead class="text-nowrap">
+								    <tr>
+										<th style="width: 50px;">Select</th>
+										<th style="width: 100px;">SBI#</th>
+										<th>Offender Name</th>
+										<th style="width: 50px;">Location</th>
+										<th style="width: 100px;">Type</th>
+										<th style="width: 100px;">Due Date</th>
+									</tr>
+							    </thead>
+							    <tbody>
+									<tr>
+										<td style="width: 50px;">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<input type="checkbox" class="custom-control-input" id="Selectcheckbox1">
+												<label class="custom-control-label" for="Selectcheckbox1" style="font-weight: 500;"></label>
+											</div>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 50px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+									</tr>
+									<tr class="disabletd">
+										<td style="width: 50px;">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<input type="checkbox" class="custom-control-input" id="Selectcheckbox1">
+												<label class="custom-control-label" for="Selectcheckbox1" style="font-weight: 500;"></label>
+											</div>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 50px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+									</tr>
+									<tr class="disabletd">
+										<td style="width: 50px;">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<input type="checkbox" class="custom-control-input" id="Selectcheckbox1">
+												<label class="custom-control-label" for="Selectcheckbox1" style="font-weight: 500;"></label>
+											</div>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 50px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+									</tr>
+									<tr class="disabletd">
+										<td style="width: 50px;">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<input type="checkbox" class="custom-control-input" id="Selectcheckbox1">
+												<label class="custom-control-label" for="Selectcheckbox1" style="font-weight: 500;"></label>
+											</div>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 50px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="row my-2">
+						 <div class="col-12 col-lg-4 d-flex align-items-center pr-0">
+							<label for="Security" class="form-label mr-1 mb-0 text-nowrap">Category</label>
+							<select class="custom-select form-control typecontact">
+								<option> </option>
+								<option value="Option 1">test</option>
+								<option value="Option 2">test1</option>
+							</select>
+						</div>
+						<div class="col-12 col-lg-6 d-flex align-items-center pr-0">
+							<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Start Date</label>
+							<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+							<label for="weight" class="form-label mb-0 mx-2 text-nowrap">End Date</label>
+							<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+						</div>
+						<div class="col-12 col-lg-2 d-flex align-items-center pr-0">
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" class="custom-control-input" id="Printcheckbox1">
+								<label class="custom-control-label" for="Printcheckbox1" style="font-weight: 500;">Print</label>
+							</div>
+						</div>
+					</div>
+					<div id="table-container" style="border: 1px solid #7a59ad; border-top: 0;" class="mb-1">
+						<div class="tableFixHead" style="max-height: 370px;">
+							<table id="" class="table table-striped table-bordered table-sm" style="margin-bottom:0;">
+						  		<thead class="text-nowrap">
+								    <tr>
+										<th style="width: 50px;">Select</th>
+										<th style="width: 100px;">SBI#</th>
+										<th>Offender Name</th>
+										<th style="width: 50px;">Location</th>
+										<th style="width: 100px;">Type</th>
+										<th style="width: 100px;">Due Date</th>
+									</tr>
+							    </thead>
+							    <tbody>
+									<tr>
+										<td style="width: 50px;">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<input type="checkbox" class="custom-control-input" id="Selectcheckbox1">
+												<label class="custom-control-label" for="Selectcheckbox1" style="font-weight: 500;"></label>
+											</div>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 50px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+									</tr>
+									<tr class="disabletd">
+										<td style="width: 50px;">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<input type="checkbox" class="custom-control-input" id="Selectcheckbox1">
+												<label class="custom-control-label" for="Selectcheckbox1" style="font-weight: 500;"></label>
+											</div>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 50px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+									</tr>
+									<tr class="disabletd">
+										<td style="width: 50px;">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<input type="checkbox" class="custom-control-input" id="Selectcheckbox1">
+												<label class="custom-control-label" for="Selectcheckbox1" style="font-weight: 500;"></label>
+											</div>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 50px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+									</tr>
+									<tr class="disabletd">
+										<td style="width: 50px;">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<input type="checkbox" class="custom-control-input" id="Selectcheckbox1">
+												<label class="custom-control-label" for="Selectcheckbox1" style="font-weight: 500;"></label>
+											</div>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 50px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">MY CASELOAD</h6>
+					<div class="row">
+						 <div class="col-12 col-lg-4 d-flex align-items-center pr-0">
+							<label for="Security" class="form-label mr-1 mb-0 text-nowrap">Category</label>
+							<select class="custom-select form-control typecontact">
+								<option> </option>
+								<option value="Option 1">test</option>
+								<option value="Option 2">test1</option>
+							</select>
+						</div>
+						<div class="col-12 col-lg-6 d-flex align-items-center pr-0">
+							<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Start Date</label>
+							<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+							<label for="weight" class="form-label mb-0 mx-2 text-nowrap">End Date</label>
+							<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+						</div>
+						<div class="col-12 col-lg-2 d-flex align-items-center pr-0">
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" class="custom-control-input" id="Printcheckbox1">
+								<label class="custom-control-label" for="Printcheckbox1" style="font-weight: 500;">Print</label>
+							</div>
+						</div>
+					</div>
+					<div id="table-container" style="border: 1px solid #7a59ad; border-top: 0;" class="mb-1 mb-2">
+						<div class="tableFixHead" style="max-height: 370px;">
+							<table id="" class="table table-striped table-bordered table-sm" style="margin-bottom:0;">
+						  		<thead class="text-nowrap">
+								    <tr>
+										<th style="width: 50px;">Select</th>
+										<th style="width: 100px;">SBI#</th>
+										<th>Offender Name</th>
+										<th style="width: 50px;">Location</th>
+										<th style="width: 100px;">Sentac</th>
+										<th style="width: 100px;">Exp Release Dt.</th>
+									</tr>
+							    </thead>
+							    <tbody>
+									<tr>
+										<td style="width: 50px;">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<input type="checkbox" class="custom-control-input" id="Selectcheckbox1">
+												<label class="custom-control-label" for="Selectcheckbox1" style="font-weight: 500;"></label>
+											</div>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 50px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+									</tr>
+									<tr class="disabletd">
+										<td style="width: 50px;">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<input type="checkbox" class="custom-control-input" id="Selectcheckbox1">
+												<label class="custom-control-label" for="Selectcheckbox1" style="font-weight: 500;"></label>
+											</div>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 50px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+									</tr>
+									<tr class="disabletd">
+										<td style="width: 50px;">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<input type="checkbox" class="custom-control-input" id="Selectcheckbox1">
+												<label class="custom-control-label" for="Selectcheckbox1" style="font-weight: 500;"></label>
+											</div>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 50px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+									</tr>
+									<tr class="disabletd">
+										<td style="width: 50px;">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<input type="checkbox" class="custom-control-input" id="Selectcheckbox1">
+												<label class="custom-control-label" for="Selectcheckbox1" style="font-weight: 500;"></label>
+											</div>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 50px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="row my-2">
+						 <div class="col-12 col-lg-4 d-flex align-items-center pr-0">
+							<label for="Security" class="form-label mr-1 mb-0 text-nowrap">Category</label>
+							<select class="custom-select form-control typecontact">
+								<option> </option>
+								<option value="Option 1">test</option>
+								<option value="Option 2">test1</option>
+							</select>
+						</div>
+						<div class="col-12 col-lg-6 d-flex align-items-center pr-0">
+							<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Start Date</label>
+							<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+							<label for="weight" class="form-label mb-0 mx-2 text-nowrap">End Date</label>
+							<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+						</div>
+						<div class="col-12 col-lg-2 d-flex align-items-center pr-0">
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" class="custom-control-input" id="Printcheckbox1">
+								<label class="custom-control-label" for="Printcheckbox1" style="font-weight: 500;">Print</label>
+							</div>
+						</div>
+					</div>
+					<div id="table-container" style="border: 1px solid #7a59ad; border-top: 0;" class="mb-1">
+						<div class="tableFixHead" style="max-height: 370px;">
+							<table id="" class="table table-striped table-bordered table-sm" style="margin-bottom:0;">
+						  		<thead class="text-nowrap">
+								    <tr>
+										<th style="width: 50px;">Select</th>
+										<th style="width: 100px;">SBI#</th>
+										<th>Offender Name</th>
+										<th style="width: 50px;">Location</th>
+										<th style="width: 100px;">Type</th>
+										<th style="width: 100px;">Due Date</th>
+									</tr>
+							    </thead>
+							    <tbody>
+									<tr>
+										<td style="width: 50px;">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<input type="checkbox" class="custom-control-input" id="Selectcheckbox1">
+												<label class="custom-control-label" for="Selectcheckbox1" style="font-weight: 500;"></label>
+											</div>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 50px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+									</tr>
+									<tr class="disabletd">
+										<td style="width: 50px;">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<input type="checkbox" class="custom-control-input" id="Selectcheckbox1">
+												<label class="custom-control-label" for="Selectcheckbox1" style="font-weight: 500;"></label>
+											</div>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 50px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+									</tr>
+									<tr class="disabletd">
+										<td style="width: 50px;">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<input type="checkbox" class="custom-control-input" id="Selectcheckbox1">
+												<label class="custom-control-label" for="Selectcheckbox1" style="font-weight: 500;"></label>
+											</div>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 50px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+									</tr>
+									<tr class="disabletd">
+										<td style="width: 50px;">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<input type="checkbox" class="custom-control-input" id="Selectcheckbox1">
+												<label class="custom-control-label" for="Selectcheckbox1" style="font-weight: 500;"></label>
+											</div>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 50px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,503 @@
+<div th:fragment="IncidentInfoRefferalsTab" th:remove="tag">
+	<div class="row form-group">
+		<div class="col-lg-12">
+			<div id="enteredBy" class="panel mb-2">
+                <div class="panel-hdr">
+                    <h2>
+                        Entered By
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div id="js-checkbox-toggles">
+                            <div class="row">
+								 <div class="d-flex align-items-center col-md-4 col-lg-4 pr-0">
+									<input type="text" class="form-control rawField" aria-label="Security" placeholder="Entered By" name="Group" id="entered_name" value="" data-fld = "entered_name_fld" data-lbl = "" disabled>
+									<input type="hidden" id="entered_id">
+									<span>							
+										<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off myStaffPopup2" data-next="entered_id" data-title="Entered By" data-toggle="tooltip" data-placement="top" data-original-title="Entered By" data-class="nav-function-hidden">
+				                            <i class="fa fa-users"></i>
+				                         </a>
+									</span>
+								 </div>
+								 <div class="d-flex align-items-center col-md-3 col-lg-3 pr-0 selectFloatingLabel">
+									<label class="form-label mr-2 mb-0 control-label selectFloating">Title</label>
+									<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick titleFields rawField" id="entered_title" data-fld = "entered_title_fld" data-lbl = "Title">
+										<option>Title</option> 
+										<option value="Option 1">Pretrial Supervisor-Other</option>
+										<option value="Option 2">test1</option>
+									</select>
+								</div>
+								<div id="mdPicker" class="col-12 col-md-2 col-lg-2 pr-0 d-flex align-itens-center floatingFields mb-1 w-100 input-append date" style="top: 0;">
+									<input class="span2 form-control w-100 floatingLable dtfld rawField" size="16" type="text" aria-label="" name="" id="entered_dt" data-fld = "entered_dt_fld" data-lbl = "Date" value="" placeholder="">
+									<label for="Name" class="form-label mr-2 text-nowrap mb-0">Date</label>
+									<span class="add-on"></span>
+								</div>
+								<div class="d-flex align-items-center col-md-3 col-lg-3">
+									<div class="custom-control custom-checkbox custom-control-inline">
+										<input type="checkbox" class="custom-control-input rawField" id="entered_inc_comp" data-fld = "entered_inc_comp_fld" data-lbl = "Incident Completed">
+										<label class="custom-control-label text-nowrap" for="entered_inc_comp">Incident Completed <span class="text-danger">*</span></label>
+									</div>
+								</div>
+								<div class=" align-items-center col-lg-12 mt-1 px-0 floatingFieldsTextarea">					
+									<textarea class="form-control floatingLabletextarea rawField" placeholder="" id="entered_cmt" data-fld = "entered_cmt_fld" data-lbl = "Comments" rows="3" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+									<label for="" class="form-label mb-0">Comments</label><div class="charCount"><span id="enterdcmt">0</span>/2000 characters</div>
+								</div>
+							 </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			
+			<div id="docreporting" class="panel mb-2">
+                <div class="panel-hdr">
+                    <h2>
+                        DOC Reporting Officer/Source
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div id="js-checkbox-toggles">
+                            <div class="row">
+								 <div class="d-flex align-items-center col-lg-5 col-xl-5">
+									<input type="text" class="form-control rawField" aria-label="Security" placeholder="Reported By" name="Group" id="doc_name" data-fld = "doc_name_fld" data-lbl = "" value="" disabled>
+									<input type="hidden" id="doc_id">
+									<span>
+										<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off myStaffPopup2" data-next="doc_id" data-title="DOC Reporting Officer/Source" data-toggle="tooltip" data-placement="top" data-original-title="Reported By" data-class="nav-function-hidden">
+				                            <i class="fa fa-users"></i>
+				                         </a>
+				                    </span>
+								 </div>
+								 <div class="d-flex align-items-center col-lg-5 col-xl-5 pr-0 selectFloatingLabel">
+									<label class="form-label mr-2 mb-0 control-label selectFloating">Title</label>
+									<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick titleFields rawField" id="doc_title" data-fld = "doc_title_fld" data-lbl = "Title">
+										<option>Title</option> 
+										<option value="Option 1">test</option>
+										<option value="Option 2">test1</option>
+									</select>
+								</div>
+								<div class="d-flex align-items-center col-lg-2 col-xl-1">
+									<div id="mdPicker" class="d-flex align-itens-center floatingFields mb-1 w-100 input-append date">
+										<input class="span2 form-control w-100 floatingLable dtfld rawField" size="16" type="text" aria-label="" name="" id="doc_dt" data-fld = "doc_dt_fld" data-lbl = "Date" value="" placeholder="">
+										<label for="Name" class="form-label mr-2 text-nowrap mb-0" style="left: 10px;">Date</label>
+										<span class="add-on"></span>
+									</div>
+								</div>
+								<div class="d-flex align-items-center col-lg-12 col-xl-5 my-2 px-0">
+									<div class="custom-control custom-checkbox custom-control-inline ml-3">
+										<input type="checkbox" class="custom-control-input rawField" id="doc_check" data-fld = "doc_check" data-lbl = "External Source (see individuals involved section for add. details)">
+										<label class="custom-control-label text-nowrap" for="PREACheck">External Source (see individuals involved section for add. details)</label>
+									</div>
+								</div>
+								<div class=" align-items-center col-lg-12 mt-1 px-0 floatingFieldsTextarea">					
+									<textarea class="form-control floatingLabletextarea rawField" placeholder="" id="doc_cmt" data-fld = "doc_cmt_fld" data-lbl = "Comments" rows="3" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+									<label for="" class="form-label mb-0">Comments</label><div class="charCount"><span id="doccmts">0</span>/2000 characters</div>
+								</div>
+							 </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			 <div id="referredto" class="panel mb-2">
+                <div class="panel-hdr">
+                    <h2>
+                       Referred To
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div id="js-checkbox-toggles">
+                            <div class="row">
+								 <div class="d-flex align-items-center col-lg-4">
+									<input type="text" class="form-control rawField" aria-label="Security" placeholder="Referred To" name="Group" id="ref_name" data-fld = "ref_name_fld" data-lbl = "" value="" disabled>
+									<input type="hidden" id="ref_id">
+									<span>
+										<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off myStaffPopup2" data-next="ref_id" data-title="Referred To" data-toggle="tooltip" data-placement="top" data-original-title="Referred To" data-class="nav-function-hidden">
+				                            <i class="fa fa-users"></i>
+				                         </a>
+				                    </span>
+			                         <span class="position-relative pl-1 cursor-pointer" style="font-size: 20px;color: #00ab8d;" data-toggle="modal" data-target="#ReferredToHistory">
+										<i class="fa fa-header" aria-hidden="true"></i>
+									</span>
+								 </div>
+								 <div class="d-flex align-items-center col-lg-3 pr-0 selectFloatingLabel">
+									<label class="form-label mr-2 mb-0 control-label selectFloating">Title</label>
+									<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick titleFields rawField" id="ref_title" data-fld = "ref_title_fld" data-lbl = "Title">
+										<option>Title</option> 
+										<option value="Option 1">test</option>
+										<option value="Option 2">test1</option>
+									</select>
+								</div>
+								<div class="d-flex align-items-center col-lg-5">
+									<div id="mdPicker" class="d-flex align-itens-center floatingFields mb-1 w-100 input-append date">
+										<input class="span2 form-control w-100 floatingLable dtfld rawField" size="16" type="text" aria-label="" name="" id="ref_dt" data-fld = "ref_dt_fld" data-lbl = "Date" value="" placeholder="">
+										<label for="Name" class="form-label mr-2 text-nowrap mb-0" style="left: 10px;">Date</label>
+										<span class="add-on"></span>
+									</div>
+									<span data-toggle="modal" data-target="#assignMoreReviewers">										
+																			<button type="button" disabled class="btn btn-primary btn-sm mx-2 ref_btn" style="min-width: 160px;"> Assign More Reviewers </button>
+																		</span>
+									<button type="button" disabled class="btn btn-primary btn-sm ref_btn" style="min-width: 140px;"> Resend Notification </button>
+								</div>
+								<div class=" align-items-center col-lg-12 mt-1 px-0 floatingFieldsTextarea">					
+									<textarea class="form-control  floatingLabletextarea rawField" placeholder="" id="ref_cmt" data-fld = "ref_cmt_fld" data-lbl = "Comments" rows="3" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+									<label for="" class="form-label mb-0">Comments</label><div class="charCount"><span id="refcmts">0</span>/2000 characters</div>
+								</div>
+							 </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<div class="modal fade" id="EnteredByModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header pt-3 pb-2">
+						<h6 class="modal-title"> Entered By </h6>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"><i class="fal fa-times"></i></span>
+						</button>
+					</div>
+					<div class="modal-body py-0">
+						<div class="d-flex align-items-center mb-2">
+							<label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+							<input type="text" class="form-control" aria-label="dob" name="Find" id="Find" value="%">
+						</div>
+						<div id="table-container">
+							<div class="tableFixHead">
+							  <table id="" class="table table-striped table-bordered table-sm">
+							    <thead>
+								    <tr>
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th style="width: 40px;">MI</th>
+										<th style="width: 100px;">Suffix</th>
+									</tr>
+							    </thead>
+							   <tbody>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="STAFF" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="lname" name="lname" id="lname" value="14" disabled>
+										</td>
+										<td style="width: 40px;">
+											<input type="text" class="form-control" aria-label="MI" name="MI" id="MI" value="J" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="Suffix" name="Suffix" id="Suffix" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="DACS" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="lname" name="lname" id="lname" value="ADMINISTARTOR" disabled>
+										</td>
+										<td style="width: 40px;">
+											<input type="text" class="form-control" aria-label="MI" name="MI" id="MI" value="L" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="Suffix" name="Suffix" id="Suffix" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="ISEARCH" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="lname" name="lname" id="lname" value="ADMINISTARTOR" disabled>
+										</td>
+										<td style="width: 40px;">
+											<input type="text" class="form-control" aria-label="MI" name="MI" id="MI" value="J" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="Suffix" name="Suffix" id="Suffix" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="Olulade" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="lname" name="lname" id="lname" value="Abayode" disabled>
+										</td>
+										<td style="width: 40px;">
+											<input type="text" class="form-control" aria-label="MI" name="MI" id="MI" value="C" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="Suffix" name="Suffix" id="Suffix" value="" disabled>
+										</td>
+									</tr>
+								</tbody>
+							  </table>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Find</button>
+						<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Ok</button>
+						<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+					</div>
+				</div> 
+			</div>			
+		</div>
+		<div class="modal fade" id="ReportedByModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header pt-3 pb-2">
+						<h6 class="modal-title"> Reported By </h6>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"><i class="fal fa-times"></i></span>
+						</button>
+					</div>
+					<div class="modal-body py-0">
+						<div class="d-flex align-items-center mb-2">
+							<label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+							<input type="text" class="form-control" aria-label="dob" name="Find" id="Find" value="%">
+						</div>
+						<div id="table-container">
+							<div class="tableFixHead">
+							  <table id="" class="table table-striped table-bordered table-sm">
+							    <thead>
+								    <tr>
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th style="width: 40px;">MI</th>
+										<th style="width: 100px;">Suffix</th>
+									</tr>
+							    </thead>
+							   <tbody>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="STAFF" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="lname" name="lname" id="lname" value="14" disabled>
+										</td>
+										<td style="width: 40px;">
+											<input type="text" class="form-control" aria-label="MI" name="MI" id="MI" value="J" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="Suffix" name="Suffix" id="Suffix" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="DACS" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="lname" name="lname" id="lname" value="ADMINISTARTOR" disabled>
+										</td>
+										<td style="width: 40px;">
+											<input type="text" class="form-control" aria-label="MI" name="MI" id="MI" value="L" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="Suffix" name="Suffix" id="Suffix" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="ISEARCH" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="lname" name="lname" id="lname" value="ADMINISTARTOR" disabled>
+										</td>
+										<td style="width: 40px;">
+											<input type="text" class="form-control" aria-label="MI" name="MI" id="MI" value="J" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="Suffix" name="Suffix" id="Suffix" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="Olulade" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="lname" name="lname" id="lname" value="Abayode" disabled>
+										</td>
+										<td style="width: 40px;">
+											<input type="text" class="form-control" aria-label="MI" name="MI" id="MI" value="C" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="Suffix" name="Suffix" id="Suffix" value="" disabled>
+										</td>
+									</tr>
+								</tbody>
+							  </table>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Find</button>
+						<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Ok</button>
+						<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+					</div>
+				</div> 
+			</div>			
+		</div>
+		<div class="modal fade" id="ReferredToModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header pt-3 pb-2">
+						<h6 class="modal-title"> Referred To</h6>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"><i class="fal fa-times"></i></span>
+						</button>
+					</div>
+					<div class="modal-body py-0">
+						<div class="d-flex align-items-center mb-2">
+							<label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+							<input type="text" class="form-control" aria-label="dob" name="Find" id="Find" value="%">
+						</div>
+						<div id="table-container">
+							<div class="tableFixHead">
+							  <table id="" class="table table-striped table-bordered table-sm">
+							    <thead>
+								    <tr>
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th style="width: 40px;">MI</th>
+										<th style="width: 100px;">Suffix</th>
+									</tr>
+							    </thead>
+							   <tbody>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="STAFF" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="lname" name="lname" id="lname" value="14" disabled>
+										</td>
+										<td style="width: 40px;">
+											<input type="text" class="form-control" aria-label="MI" name="MI" id="MI" value="J" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="Suffix" name="Suffix" id="Suffix" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="DACS" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="lname" name="lname" id="lname" value="ADMINISTARTOR" disabled>
+										</td>
+										<td style="width: 40px;">
+											<input type="text" class="form-control" aria-label="MI" name="MI" id="MI" value="L" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="Suffix" name="Suffix" id="Suffix" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="ISEARCH" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="lname" name="lname" id="lname" value="ADMINISTARTOR" disabled>
+										</td>
+										<td style="width: 40px;">
+											<input type="text" class="form-control" aria-label="MI" name="MI" id="MI" value="J" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="Suffix" name="Suffix" id="Suffix" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="Olulade" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="lname" name="lname" id="lname" value="Abayode" disabled>
+										</td>
+										<td style="width: 40px;">
+											<input type="text" class="form-control" aria-label="MI" name="MI" id="MI" value="C" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="Suffix" name="Suffix" id="Suffix" value="" disabled>
+										</td>
+									</tr>
+								</tbody>
+							  </table>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Find</button>
+						<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Ok</button>
+						<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+					</div>
+				</div> 
+			</div>			
+		</div>
+		<div class="modal fade" id="ReferredToHistory" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header pt-3 pb-2">
+								<h6 class="modal-title"> Incident Refer to History </h6>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true"><i class="fal fa-times"></i></span>
+								</button>
+							</div>
+							<div class="modal-body py-0">
+								<div id="inciReferredHistory-table"></div>
+																	<div class="my-1">
+																		<textarea class="form-control rawField" placeholder="Comments" id="addComments" data-fld = "addComments_fld" data-lbl = "" rows="2" name="Comments" aria-label="Comments" style="resize:none;" value="" disabled></textarea>
+																	</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Ok</button>
+							</div>
+						</div> 
+					</div>			
+				</div>
+				<div class="modal fade" id="assignMoreReviewers" tabindex="-1" role="dialog" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+								<div class="modal-content">
+									<div class="modal-header pt-3 pb-2">
+										<h6 class="modal-title">Reviewing Officer</h6>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true"><i class="fal fa-times"></i></span>
+										</button>
+									</div>
+									<div class="modal-body py-0">
+										<div id="assignMoreReviewers-table"> </div>
+									</div>
+									<div class="modal-footer">
+										<!--<button type="button" class="btn btn-primary btn-sm" id="newAsnOfc" >New</button>-->
+										<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" >Ok</button>
+										<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+									</div>
+								</div> 
+							</div>			
+						</div>
+						<div class="modal fade" id="officeInformation" tabindex="-1" role="dialog" aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+										<div class="modal-content">
+											<div class="modal-header pt-3 pb-2">
+												<h6 class="modal-title">Officer Information</h6>
+												<button type="button" class="close" data-dismiss="modal" id="closeAsnOfc" aria-label="Close">
+													<span aria-hidden="true"><i class="fal fa-times"></i></span>
+												</button>
+											</div>
+											<div class="modal-body py-0">
+												<div class="d-flex align-items-center mb-2">
+													<label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+													<input type="text" class="form-control" aria-label="dob" name="Find" id="Find" value="" placeholder="%">
+													<button type="button" class="btn btn-primary btn-sm ml-2" id="fetchDataBtn" >Find</button>
+												</div>
+												<div id="officerInfoModal-table"> </div>
+											</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Ok</button>
+												<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+											</div>
+										</div> 
+									</div>			
+								</div>
+	</div>
+</div>

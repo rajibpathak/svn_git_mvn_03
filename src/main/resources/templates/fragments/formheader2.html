@@ -1,0 +1,587 @@
+<div th:fragment="formheader" th:remove="tag">
+	<div class="row">
+		<div class="col-lg-10 pr-0 formHeaderBlock">
+			<div class="panel mb-2">
+				<div class="panel-container show">
+					<div class="panel-content py-2 pl-2 position-relative" style="padding-right: 25px; z-index: 9;">
+						<div id="search-form">
+							<div class="form-group row">
+
+								<div class="col-12 col-lg-2 d-flex align-items-center pr-0 position-relative">
+									<span id="errorNAME" class="position-absolute text-nowrap"
+										style="opacity:0;top: -23px; color:red;"></span>
+									<label class="form-label mr-1 mb-0" for="ID#">ID#<span class="text-danger">*</span>
+									</label>
+									<div class="d-flex w-100">
+										<input type="text" class="form-control key_val" aria-label="ID#"
+											name="sbiNumberInput" id="sbiNumberInput" value="" placeholder=""
+											style="font-size: 11.8px;">
+										<input type="hidden" class="primary_val">
+										<input type="hidden" class="default_val">
+										<button id="search_data"
+											class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off"
+											data-toggle="tooltip" data-placement="top" data-original-title="Search"
+											data-class="nav-function-hidden">
+											<i id="searchButton" class="fa fa-search" style="font-size: 10px;"></i>
+										</button>
+										<span class="d-flex" data-toggle="modal" data-target="">
+											<a href="#" id="historyButton"
+												class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center"
+												data-toggle="tooltip" data-placement="top"
+												data-original-title="Stay History" data-action="toggle"
+												data-class="nav-function-hidden">
+												<i class="fa fa-history" style="font-size: 10px;"></i>
+											</a>
+										</span>
+									</div>
+								</div>
+								<div class="col-12 col-lg-3 pl-2 pr-2">
+									<div class="input-group input-group-multi-transition">
+										<div class="d-flex align-items-center w-100">
+											<label for="Name" class="form-label mr-1 text-nowrap mb-0"
+												style="width: 120px;">Name (F,L,M,S)</label>
+											<input type="text" class="form-control w-100" style="pointer-events: none;"
+												aria-label="FirstName" id="FirstName" name="FirstName" value=""
+												placeholder="">
+										</div>
+
+									</div>
+								</div>
+								<div class="col-lg-2 d-flex align-items-center px-0">
+									<label for="DOB" class="form-label mb-0 mr-1">DOB </label>
+									<div class="input-append date position-relative w-100" id="mdPicker">
+										<input class="span2 form-control bg-light w-100" size="16" type="text"
+											style="pointer-events: none;" aria-label="dateofbirth" name="dateofbirth"
+											id="dateofbirth" value="" readonly>
+										<span class="add-on"></span>
+									</div>
+								</div>
+								<div class="col-lg-1 d-flex align-items-center px-2">
+									<label for="Race" class="form-label mb-0 mr-1">Sex</label>
+									<input type="text" class="form-control" aria-label="race" name="Sex" id="Sex"
+										value="" placeholder="" style="pointer-events: none;">
+								</div>
+								<div class="col-12 col-lg-2 d-flex align-items-center px-0">
+									<label for="Sex" class="form-label mb-0 mr-2">Race</label>
+									<input type="text" class="form-control w-100" aria-label="Sex" name="race" id="race"
+										value="" placeholder="" style="pointer-events: none;">
+								</div>
+								<div class="col-12 col-lg-1 d-flex align-items-center text-nowrap pr-0"
+									style="pointer-events: none;">
+									<div class="custom-control custom-checkbox custom-control-inline mr-0">
+										<input type="checkbox" class="custom-control-input formheadercheckbox"
+											id="stgCheckbox">
+										<label class="custom-control-label" for="stgCheckbox"
+											style="font-weight: 500;"></label>
+									</div>
+									<span class="mb-0" style="font-weight: 500;">STG </span>
+								</div>
+								<div class="col-12 col-lg-1 d-flex align-items-center text-nowrap pl-0"
+									style="pointer-events: none;">
+									<div class="custom-control custom-checkbox custom-control-inline mr-0">
+										<input type="checkbox" class="custom-control-input formheadercheckbox"
+											id="headmultiStatus">
+										<label class="custom-control-label" for="headmultiStatus"
+											style="font-weight: 500;"></label>
+									</div>
+									<span class="mb-0" style="font-weight: 500;">
+										<span>Multi</span>
+										<span>Status</span>
+									</span>
+								</div>
+							</div>
+							<div class="form-group row">
+								<div class="col-12 col-lg-6 d-flex pr-0" style="height: fit-content;">
+									<div class="col-12 col-lg-4 d-flex align-items-center pl-0 pr-2 mt-1">
+										<label for="Location1" class="form-label mb-0 mr-1 text-nowrap">Location
+											1</label>
+										<input type="text" class="form-control" aria-label="Location1" name="Location1"
+											id="Location1" value="" placeholder="" style="pointer-events: none;">
+									</div>
+									<div class="col-12 col-lg-3 d-flex align-items-center pr-2 pl-0 mt-1">
+										<label for="Security" class="form-label mb-0 mr-1">Security</label>
+										<input type="text" class="form-control" aria-label="Security" name="Security1"
+											id="Security1" value="" style="pointer-events: none; min-width: 75px;">
+									</div>
+									<div class="col-12 col-lg-5 d-flex align-items-center px-0 mt-1">
+										<label for="AssignedOfficer" class="form-label mb-0 mr-1 text-nowrap"
+											style="width: 165px;">Assigned Officer</label>
+										<input type="text" class="form-control" aria-label="AssignedOfficer"
+											placeholder=" " name="AssignedOfficer1" id="AssignedOfficer1" value=""
+											style="pointer-events: none;">
+									</div>
+								</div>
+								<div class="col-12 col-lg-6 d-flex pr-0" style="height: fit-content;">
+									<div class="col-12 col-lg-4 d-flex align-items-center px-0 mt-1">
+										<label for="Location2" class="form-label mb-0 mr-1 text-nowrap">Location
+											2</label>
+										<input type="text" class="form-control" aria-label="Location2" name="Location2"
+											id="Location2" placeholder="" value="" style="pointer-events: none;">
+									</div>
+									<div class="col-12 col-lg-3 d-flex align-items-center pl-2 pr-0 mt-1">
+										<label for="Security" class="form-label mb-0 mr-1">Security</label>
+										<input type="text" class="form-control" aria-label="Security" name="Security2"
+											id="Security2" value="" style="pointer-events: none; min-width: 73px;">
+									</div>
+									<div class="col-12 col-lg-5 d-flex align-items-center pr-0 mt-1">
+										<label for="AssignedOfficer" class="form-label mb-0 mr-1 text-nowrap">Assigned
+											Officer</label>
+										<input type="text" class="form-control" aria-label="AssignedOfficer2"
+											placeholder=" " name="AssignedOfficer2" id="AssignedOfficer2" value=""
+											style="pointer-events: none;">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-2">
+			<div class="panel mb-2">
+				<div class="panel-container show">
+					<div class="panel-content row p-2">
+						<div class="col-12 col-lg-3 pr-2 pl-2">
+							<img class="mt-1" th:src=" @{/images/DACSLogo}" id="imageContainer" alt="Inmate" width="45"
+								height="45">
+						</div>
+						<div class="col-12 col-lg-9 pl-2">
+							<textarea class="form-control h-100" placeholder="" rows="2"
+								style="resize: none;line-height: 1;" name="offenderCondition" id="offenderCondition">
+
+                                               </textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="StayHistoryModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header pt-3 pb-2">
+					<h4 class="modal-title"> List of Previous stays </h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body py-0">
+					<div class="d-flex w-100">
+						<span class="w-50">
+							<label for="sbiNumberDisplay" class="form-label">ID#</label>
+							<input type="text" class="form-control" aria-label="ID#" name="sbiNumberDisplay"
+								id="sbiNumberDisplay" value="" disabled="">
+						</span>
+						<span class="w-100 ml-3">
+							<label for="ResidenceCategoryComments" class="form-label">Offender Name:</label>
+							<input type="text" class="form-control" aria-label="ID#" name="offendernameDisplay"
+								id="offendernameDisplay" value="" disabled="">
+						</span>
+					</div>
+					<h6 class="my-1" style="font-weight: 500;">Offender stays (descending order)</h6>
+					<table id="stayHistoryTable" class="table table-bordered table-striped w-100 mb-0">
+						<thead class="bg-primary-600 text-nowrap">
+							<tr>
+								<th class="">Select</th>
+								<th>Stay#</th>
+								<th>Facility</th>
+								<th>Offender Type</th>
+								<th>Admitted</th>
+								<th>Time</th>
+								<th>Released</th>
+								<th>Time</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<div class="custom-control custom-checkbox custom-control-inline">
+										<input type="checkbox" class="custom-control-input stayhistory" id="checkbox1">
+										<label class="custom-control-label" for="checkbox1"
+											style="font-weight: 500;"></label>
+									</div>
+								</td>
+								<td>
+									<input type="text" class="form-control" aria-label="stay" name="stay" id="stay"
+										value="" disabled>
+								</td>
+								<td>
+									<input type="text" class="form-control" aria-label="Facility" name="Facility"
+										id="Facility" value=" " disabled>
+								</td>
+								<td>
+									<input type="text" class="form-control" aria-label="Offender" name="Offender"
+										id="Offender" value=" " disabled>
+								</td>
+								<td>
+									<input type="text" class="form-control" aria-label="Admitted" name="Admitted"
+										id="Admitted" value=" " disabled>
+								</td>
+								<td>
+									<input type="text" class="form-control" aria-label="time" name="time" id="time"
+										value=" " disabled>
+								</td>
+								<td>
+									<input type="text" class="form-control" aria-label="Realesed" name="Realesed"
+										id="Realesed" value=" " disabled>
+								</td>
+								<td>
+									<input type="text" class="form-control" aria-label="time" name="time" id="time"
+										value=" " disabled>
+								</td>
+							</tr>
+
+
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="fetchDataBtn">Ok</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+			<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+			<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+			<script src="js/vendors.bundle.js"></script>
+			<script src="js/app.bundle.js"></script>
+
+		</div>
+	</div>
+	<style>
+		.formHeaderBlock::before {
+
+			content: "";
+
+			position: absolute;
+
+			width: 118.2%;
+
+			height: 66px;
+
+			top: 0;
+
+			left: 13px;
+
+			z-index: 9;
+
+			border: 1px solid #7a59ad;
+
+			border-radius: 5px;
+
+		}
+	</style>
+	<script>
+
+		$(document).ready(function () {
+
+			var previousCheckbox = null;
+
+			$(document).on('change', '.custom-control-input.stayhistory', function () {
+				if (previousCheckbox !== null && previousCheckbox !== this) {
+					$(previousCheckbox).prop('checked', false);
+				}
+				previousCheckbox = this;
+			});
+
+			/*$('#searchButton').on('click', function () {
+				if ($('#sbiNumberInput').val() == '') {
+					$('#errorNAME').html('<span style="color: red;">Please enter ID number</span>');
+					$('#errorNAME').css('opacity', '1');
+					$('#username').focus();
+					return;
+				}
+
+				var sbiNumberInput = $('#sbiNumberInput').val();
+				console.log("heloo" + sbiNumberInput);
+				console.log("Data being sent:", {parameter: sbiNumberInput});
+				$.ajax({
+					method: "POST",
+					url: contextPath + 'checkSbiNoAndLocation',
+
+					data: {
+						parameter: sbiNumberInput
+					},
+
+					success: function (response, textStatus, jqXHR) {
+						if (response.locationDetails && response.inmateList && response.offenderCondition) {
+							var locationDetails = response.locationDetails;
+							var offenderCondition = response.offenderCondition;
+							console.log("Offender Condition:", offenderCondition);
+							var inmateList = response.inmateList;
+							console.log(inmateList);
+							// Populate the input fields with inmate's information
+							$("#FirstName").val(inmateList[0][0]);
+							$("#dateofbirth").val(convertToMMDDYYYY(inmateList[0][5])); // Date of birth
+							$("#Sex").val(inmateList[0][6]);
+							$("#offenderCondition").val(offenderCondition);
+							$("#Location1").val(locationDetails['ovc_location1']);
+							$("#Security1").val(locationDetails['ovc_security_lvl1']);
+							$("#AssignedOfficer1").val(locationDetails['ovc_assigned_officer1']);
+							$("#Location2").val(locationDetails['ovc_location2']);
+							$("#Security2").val(locationDetails['ovc_security_lvl2']);
+							$("#AssignedOfficer2").val(locationDetails['ovc_assigned_officer2']);
+
+
+							if (locationDetails['ovc_location1'] && locationDetails['ovc_location2']) {
+								$("#headmultiStatus").prop('checked', true);
+							}
+
+							$.ajax({
+								method: "GET",
+								url: contextPath + "inmateimage/" + sbiNumberInput,
+								success: function (imageResponse, textStatus, xhr) {
+									var imageUrl = contextPath + "inmateimage/" + sbiNumberInput;
+									$('#imageContainer').attr('src', imageUrl);
+									console.log("Image URL:", imageUrl);
+								},
+								error: function (error) {
+									console.error("Error fetching inmate image: ", error);
+								}
+							});
+							console.log("Inmate List:", inmateList);
+
+							console.log("Form updated with location details: " + locationDetails);
+						} else if (response === "SBI Number is not valid") {
+							$("#errorNAME").html("ID is not valid");
+							$('#errorNAME').css('opacity', '1');
+							$('#sbiNumberInput').focus();
+						}
+					},
+					error: function (error) {
+						$('#errorNAME').text('ID is not valid');
+						$('#errorNAME').css('opacity', '1');
+						$('#sbiNumberInput').focus();
+					}
+				});
+			});*/
+			$('#sbiNumberInput').on('keydown', function (event) {
+				if (event.keyCode === 9) {
+					$('#searchButton').trigger('click');
+				}
+			});
+
+			var changedCommitNumber;
+
+			/*$('#historyButton').on('click', function () {
+				console.log("History button clicked");
+
+				if ($('#sbiNumberInput').val() == '') {
+					$('#errorNAME').html('<span style="color: red;">Please enter ID number</span>');
+					$('#errorNAME').css('opacity', '1');
+					$('#sbiNumberInput').focus();
+					return;
+				}
+				var sbiNumberInput = $('#sbiNumberInput').val();
+				console.log(sbiNumberInput);
+
+				$.ajax({
+					method: "POST",
+					url: contextPath + 'HistorySbiNo',
+					data: {
+						parameter: sbiNumberInput,
+					},
+					success: function (response, textStatus, jqXHR) {
+						$('#errorNAME').hide();
+						var OffenderList = response.OffenderList;
+						if (OffenderList && OffenderList.length > 0) {
+							var fullName = OffenderList[0].join(' ');
+							sessionStorage.setItem('fullName', fullName);
+							sessionStorage.setItem('sbiInput', sbiNumberInput);
+							var HistoryList = response.HistoryList;
+							console.log(HistoryList);
+							var result = processHistoryList(HistoryList);
+							var modifiedHistoryList = result.modifiedHistoryList;
+							console.log("Changed commit number6676:", modifiedHistoryList);
+							changedCommitNumber = result.changedCommitNumber;
+							sessionStorage.setItem('changedCommitNumber', changedCommitNumber);
+							console.log("Changed commit number123:", changedCommitNumber);
+
+							if (modifiedHistoryList && modifiedHistoryList.length > 0) {
+								var tableBody = $('#stayHistoryTable tbody');
+								tableBody.empty();
+
+								modifiedHistoryList.forEach(function (item, index) {
+									var row = $('<tr></tr>');
+									var checkboxId = 'checkbox_' + index;
+
+									row.append($('<td></td>').html(`
+          		                        		<div class="custom-control custom-checkbox custom-control-inline">
+       		                                <input type="checkbox" class="custom-control-input stayhistory" id="${checkboxId}">
+       		                                <label class="custom-control-label" for="${checkboxId}" style="font-weight: 500;"></label>
+       		                            </div>
+          		                        `));
+
+									// Check for null values and display blank space instead
+									for (var i = 0; i < item.length; i++) {
+										if (item[i] === null) {
+											item[i] = ''; // Replace null with empty string
+										}
+									}
+									row.append($('<td></td>').html(`<input type="text" class="form-control" aria-label="stay" name="stay" id="stay" value="${item[0]}" disabled>`));
+									row.append($('<td></td>').html(`<input type="text" class="form-control" aria-label="Facility" name="Facility" id="Facility" value="${item[1]}" disabled>`));
+									row.append($('<td></td>').html(`<input type="text" class="form-control" aria-label="Offender" name="Offender" id="Offender" value="${item[2]}" disabled>`));
+									row.append($('<td></td>').html(`<input type="text" class="form-control" aria-label="Admitted" name="Admitted" id="Admitted" value="${convertToMMDDYYYY(item[3])}" disabled>`));
+									row.append($('<td></td>').html(`<input type="text" class="form-control" aria-label="time" name="time" id="time" value="${item[4]}" disabled>`));
+									row.append($('<td></td>').html(`<input type="text" class="form-control" aria-label="Realesed" name="Realesed" id="Realesed" value="${convertToMMDDYYYY(item[5])}" disabled>`));
+									row.append($('<td></td>').html(`<input type="text" class="form-control" aria-label="time" name="time" id="time" value="${item[6]}" disabled>`));
+
+									tableBody.append(row);
+								});
+
+
+								$('#StayHistoryModal').modal('show');
+
+							} else {
+								$("#errorNAME").html("No data found for this ID");
+								$('#errorNAME').css('opacity', '1');
+								$('#sbiNumberInput').focus();
+							}
+						}
+
+
+					},
+					error: function (error) {
+						$("#errorNAME").html("Id is not valid");
+						$('#errorNAME').css('opacity', '1');
+						$('#sbiNumberInput').focus();
+					}
+				});
+
+			});*/
+
+			function processHistoryList(HistoryList) {
+				var modifiedHistoryList = [];
+				var changedCommitNumber;
+
+				for (var i = 0; i < HistoryList.length; i++) {
+					var record = HistoryList[i];
+
+					if (record[0] === record[1]) {
+						changedCommitNumber = record[1];
+						record[1] = "current";
+					}
+					var modifiedRecord = [record[1], record[3], record[4], record[5], record[6], record[7], record[8], record[9]];
+					modifiedHistoryList.push(modifiedRecord);
+				}
+				console.log("Changed commit number444:", changedCommitNumber);
+				console.log("Modified history list:", modifiedHistoryList);
+
+				return {
+					modifiedHistoryList: modifiedHistoryList,
+					changedCommitNumber: changedCommitNumber
+				};
+			}
+
+			$('#fetchDataBtn').on('click', function () {
+
+				var selectedCommit = '';
+
+				var sbiNumberInput = $('#sbiNumberInput').val();
+				var selectedCheckbox = $('.custom-control-input.stayhistory:checked');
+				if (selectedCheckbox.length > 0) {
+					var row = selectedCheckbox.closest('tr');
+					selectedCommit = row.find('#stay').val();
+				}
+				console.log("selectedCommit number:", selectedCommit);
+				if (selectedCommit === "current") {
+					console.log("sunandhhaaa");
+					selectedCommit = changedCommitNumber;
+					console.log("Changed commit number555:", changedCommitNumber);
+				}
+
+
+				$.ajax({
+					url: contextPath + 'stayhistory',
+					method: 'GET',
+					data: {
+						commit: selectedCommit,
+						parameter: sbiNumberInput
+					},
+
+					success: function (response) {
+						$('#errorNAME').hide();
+						var locationDetails = response.locationDetails;
+						var offenderCondition = response.offenderCondition;
+						console.log("Offender Condition:", offenderCondition);
+						var inmateList = response.inmateList;
+						dob = inmateList[0][4];
+
+						$("#offenderCondition").val(offenderCondition);
+						$("#Location1").val(locationDetails['ovc_location1']);
+						$("#Security1").val(locationDetails['ovc_security_lvl1']);
+						$("#AssignedOfficer1").val(locationDetails['ovc_assigned_officer1']);
+						$("#Location2").val(locationDetails['ovc_location2']);
+						$("#Security2").val(locationDetails['ovc_security_lvl2']);
+						$("#AssignedOfficer2").val(locationDetails['ovc_assigned_officer2']);
+						$("#FirstName").val(inmateList[0][0]);
+						$("#dateofbirth").val(convertToMMDDYYYY(inmateList[0][5]));
+						$("#Sex").val(inmateList[0][6]);
+
+						if (locationDetails['ovc_location1'] && locationDetails['ovc_location2']) {
+							$("#headmultiStatus").prop('checked', true);
+						}
+
+						$.ajax({
+							method: "GET",
+							url: contextPath + "inmateimage/" + sbiNumberInput,
+							success: function (imageResponse, textStatus, xhr) {
+								var imageUrl = contextPath + "inmateimage/" + sbiNumberInput;
+								$('#imageContainer').attr('src', imageUrl);
+								console.log("Image URL:", imageUrl);
+							},
+							error: function (error) {
+								console.error("Error fetching inmate image: ", error);
+							}
+
+						});
+						$('#StayHistoryModal').modal('hide');
+					},
+					error: function (xhr, status, error) {
+						$("#errorNAME").html("Id is not valid");
+						$('#errorNAME').css('opacity', '1');
+						$('#sbiNumberInput').focus();
+					}
+
+				});
+			});
+
+			function convertToMMDDYYYY(dateString) {
+				if (dateString) {
+					var date = new Date(dateString);
+					var formattedMonth = (date.getMonth() + 1).toString().padStart(2, '0');
+					var formattedDay = date.getDate().toString().padStart(2, '0');
+					var formattedYear = date.getFullYear().toString();
+					var formattedDate = formattedMonth + '/' + formattedDay + '/' + formattedYear;
+					return formattedDate;
+				}
+				return '';
+			}
+
+			const currentDate = new Date().toDateString();
+			const formattedCurrentDate = convertToMMDDYYYY(currentDate);
+			document.getElementById('exampledate').value = formattedCurrentDate;
+
+
+
+			$('#StayHistoryModal').on('shown.bs.modal', function () {
+				var sbiNumberInput = sessionStorage.getItem('sbiInput');
+				var offendername = sessionStorage.getItem('fullName');
+				console.log("output:" + sbiNumberInput);
+				$('#offendernameDisplay').val(offendername);
+				$('#sbiNumberDisplay').val(sbiNumberInput);
+			});
+
+
+			$('#stayHistoryTable').dataTable({
+				/* scrollY: '25vh', */
+				scrollCollapse: true,
+				paging: false,
+				searching: false,
+				ordering: false,
+				showNEntries: false
+			});
+
+		});        
+	</script>
+</div>

@@ -1,0 +1,253 @@
+<div th:fragment="OffenderSummaryEducationtab" th:remove="tag">
+	<div class="row">
+		<div class="col-lg-12">
+			<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">EDUCATION</h6>
+			<div class="row mb-1">
+				<div class="col-12 col-lg-12">
+					<div class="panel panelContentBlock mb-2 p-1">
+						<div class="row">
+							<div class="col-lg-6 pr-0 d-flex align-items-center">
+								<label for="" class="form-label mr-2 mb-0 text-nowrap">Highest Level of Education Completed</label>
+								<select class="custom-select form-control typecontact">
+									<option>Senior College</option>
+									<option value="Option 1">test</option>
+									<option value="Option 2">test1</option>
+								</select>
+							</div>
+							<div class="col-lg-4 pr-0 d-flex align-items-center">
+								<label for="" class="form-label mr-2 mb-0 text-nowrap">Source</label>
+								<select class="custom-select form-control typecontact">
+									<option>Police</option>
+									<option value="Option 1">test</option>
+									<option value="Option 2">test1</option>
+								</select>
+							</div>
+							<div class="col-lg-2 d-flex align-items-center">
+								<label for="" class="form-label mr-2 mb-0 text-nowrap">Date Reported</label>
+								 <input type="text" class="form-control" aria-label=" " name="ContactDate" id="" value="06/24/2024">
+							</div>
+							<div class="col-lg-12 mt-1">
+								<textarea class="form-control mt-1" id="addComments" placeholder="Comments" rows="2" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="panel panelContentBlock mb-2 p-1">	
+						<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">
+							<div class="d-flex align-items-center">
+								<span class="w-100 text-center">VOCATIONAL TRAINING COMPLETED</span>
+								<span class="d-flex">								
+			                        <a href="OffenderSummaryfamilytab" class="btn-success btn btn-sm">New</a>
+								</span>
+							</div>
+						</h6>
+						<div class="row">
+							<div class="col-lg-6 pr-0"> 
+								<div id="table-container" class="mb-1">
+									<div class="tableFixHead" style="max-height: 370px;">
+										<table id="" class="table table-striped table-bordered table-sm" style="margin-bottom:0;">
+											<thead>
+												<th>Vocational Training/Interests</th>
+												<th style="width: 300px;">Source</th> 
+												<th style="width: 120px;" class="text-nowrap">Date Reported</th> 
+												
+											</thead>
+										    <tbody>
+												<tr>
+													<td>
+														<select class="custom-select form-control typecontact">
+															<option>CARPENTRY</option>
+															<option value="Option 1">test</option>
+															<option value="Option 2">test1</option>
+														</select>
+													</td>
+													<td style="width: 300px;">
+														<select class="custom-select form-control typecontact">
+															<option>Secret Service</option>
+															<option value="Option 1">test</option>
+															<option value="Option 2">test1</option>
+														</select>
+													</td>
+													<td style="width: 120px;">
+														<input type="text" class="form-control" aria-label=" " name="ContactDate" id="" value="06/24/2024">
+													</td>
+												</tr>
+												<tr class="disabletd">
+													<td>
+														<select class="custom-select form-control typecontact">
+															<option> </option>
+															<option value="Option 1">test</option>
+															<option value="Option 2">test1</option>
+														</select>
+													</td>
+													<td style="width: 300px;">
+														<select class="custom-select form-control typecontact">
+															<option></option>
+															<option value="Option 1">test</option>
+															<option value="Option 2">test1</option>
+														</select>
+													</td>
+													<td style="width: 120px;">
+														<input type="text" class="form-control" aria-label=" " name="ContactDate" id="" value="">
+													</td>
+												</tr>
+												<tr class="disabletd">
+													<td>
+														<select class="custom-select form-control typecontact">
+															<option> </option>
+															<option value="Option 1">test</option>
+															<option value="Option 2">test1</option>
+														</select>
+													</td>
+													<td style="width: 300px;">
+														<select class="custom-select form-control typecontact">
+															<option></option>
+															<option value="Option 1">test</option>
+															<option value="Option 2">test1</option>
+														</select>
+													</td>
+													<td style="width: 120px;">
+														<input type="text" class="form-control" aria-label=" " name="ContactDate" id="" value="">
+													</td>
+												</tr>
+												<tr class="disabletd">
+													<td>
+														<select class="custom-select form-control typecontact">
+															<option> </option>
+															<option value="Option 1">test</option>
+															<option value="Option 2">test1</option>
+														</select>
+													</td>
+													<td style="width: 300px;">
+														<select class="custom-select form-control typecontact">
+															<option></option>
+															<option value="Option 1">test</option>
+															<option value="Option 2">test1</option>
+														</select>
+													</td>
+													<td style="width: 120px;">
+														<input type="text" class="form-control" aria-label=" " name="ContactDate" id="" value="">
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<textarea class="form-control mt-1" id="addComments" placeholder="Comments" rows="8" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+							</div>
+						</div>
+					</div>
+					<div class="panel panelContentBlock mb-2 p-1">	
+						<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">
+							<div class="d-flex align-items-center">
+								<span class="w-100 text-center">DEGREES COMPLETED</span>
+								<span class="d-flex">								
+			                        <a href="" class="btn-success btn btn-sm mr-2">New</a>
+			                        <a href="OffenderSummaryeduactionDetails" class="btn-success btn btn-sm">Details</a>
+								</span>
+							</div>
+						</h6>
+						<div class="row">
+							<div class="col-lg-6 pr-0"> 
+								<div id="table-container" class="mb-1">
+									<div class="tableFixHead" style="max-height: 370px;">
+										<table id="" class="table table-striped table-bordered table-sm" style="margin-bottom:0;">
+											<thead>
+												<th>Degree</th>
+												<th style="width: 300px;">Source</th> 
+												<th style="width: 120px;" class="text-nowrap">Date Reported</th> 
+												
+											</thead>
+										    <tbody>
+												<tr>
+													<td>
+														<select class="custom-select form-control typecontact">
+															<option>Masters</option>
+															<option value="Option 1">test</option>
+															<option value="Option 2">test1</option>
+														</select>
+													</td>
+													<td style="width: 300px;">
+														<select class="custom-select form-control typecontact">
+															<option>Probation & Parole</option>
+															<option value="Option 1">test</option>
+															<option value="Option 2">test1</option>
+														</select>
+													</td>
+													<td style="width: 120px;">
+														<input type="text" class="form-control" aria-label=" " name="ContactDate" id="" value="06/24/2024">
+													</td>
+												</tr>
+												<tr class="disabletd">
+													<td>
+														<select class="custom-select form-control typecontact">
+															<option> </option>
+															<option value="Option 1">test</option>
+															<option value="Option 2">test1</option>
+														</select>
+													</td>
+													<td style="width: 300px;">
+														<select class="custom-select form-control typecontact">
+															<option></option>
+															<option value="Option 1">test</option>
+															<option value="Option 2">test1</option>
+														</select>
+													</td>
+													<td style="width: 120px;">
+														<input type="text" class="form-control" aria-label=" " name="ContactDate" id="" value="">
+													</td>
+												</tr>
+												<tr class="disabletd">
+													<td>
+														<select class="custom-select form-control typecontact">
+															<option> </option>
+															<option value="Option 1">test</option>
+															<option value="Option 2">test1</option>
+														</select>
+													</td>
+													<td style="width: 300px;">
+														<select class="custom-select form-control typecontact">
+															<option></option>
+															<option value="Option 1">test</option>
+															<option value="Option 2">test1</option>
+														</select>
+													</td>
+													<td style="width: 120px;">
+														<input type="text" class="form-control" aria-label=" " name="ContactDate" id="" value="">
+													</td>
+												</tr>
+												<tr class="disabletd">
+													<td>
+														<select class="custom-select form-control typecontact">
+															<option> </option>
+															<option value="Option 1">test</option>
+															<option value="Option 2">test1</option>
+														</select>
+													</td>
+													<td style="width: 300px;">
+														<select class="custom-select form-control typecontact">
+															<option></option>
+															<option value="Option 1">test</option>
+															<option value="Option 2">test1</option>
+														</select>
+													</td>
+													<td style="width: 120px;">
+														<input type="text" class="form-control" aria-label=" " name="ContactDate" id="" value="">
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<textarea class="form-control mt-1" id="addComments" placeholder="Comments" rows="8" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

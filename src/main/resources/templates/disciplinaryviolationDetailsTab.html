@@ -1,0 +1,126 @@
+<div th:fragment="disciplinaryviolationDetailsTab" th:remove="tag">
+	<div class="row">
+		<div class="col-lg-6 pr-0">
+			<div id="witnestableblock" class="panel mb-0">
+                <div class="panel-hdr">
+                    <h2>
+                        Witness Names
+                    </h2>
+                    <div class="d-flex align-items-center justify-content-end">
+						<span class="d-flex ml-2">
+	                        <a href="javascript:void(0);" class="btn btn-primary btn-sm btn-icon waves-effect waves-themed headingIconsBlock mr-1" data-toggle="tooltip" data-placement="top" data-original-title="New"> <i class="fa-solid fa-plus"></i>
+							</a>						
+						</span>
+						<span class="d-flex">
+	                        <a href="javascript:void(0);" class="btn btn-danger btn-sm btn-icon waves-effect waves-themed headingIconsBlock mr-1" data-toggle="tooltip" data-placement="top" data-original-title="Delete"> <i class="fa-solid fa-trash"></i>
+							</a>					
+						</span>
+					</div>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div id="js-checkbox-toggles">
+                            <div id="witness-table"> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<div class="col-lg-6">
+			<div id="staffAssault" class="panel mb-0">
+                <div class="panel-hdr">
+                    <h2>
+                        Details
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div id="js-checkbox-toggles">
+                            <div class="row form-group w-100">
+								<div class="d-flex align-items-center col-lg-3 pr-0">
+									<div class="custom-control custom-checkbox custom-control-inline w-100">
+										<input type="checkbox" class="custom-control-input" id="Staff">
+										<label class="custom-control-label text-nowrap text-nowrap" for="WarrantCheck">Staff Assault</label>
+									</div>
+								</div>
+								<div class="d-flex align-items-center col-lg-3 pr-0">
+									<div class="custom-control custom-checkbox custom-control-inline w-100">
+										<input type="checkbox" class="custom-control-input" id="Sex">
+										<label class="custom-control-label text-nowrap text-nowrap" for="WarrantCheck">Sex Related</label>
+									</div>
+								</div>
+								<div class="d-flex align-items-center col-lg-3 pr-0">
+									<div class="custom-control custom-checkbox custom-control-inline w-100">
+										<input type="checkbox" class="custom-control-input" id="IA">
+										<label class="custom-control-label text-nowrap text-nowrap" for="WarrantCheck">IA</label>
+									</div>
+								</div>
+								<div class="d-flex align-items-center col-lg-3">
+									<div class="custom-control custom-checkbox custom-control-inline w-100">
+										<input type="checkbox" class="custom-control-input" id="Result">
+										<label class="custom-control-label text-nowrap text-nowrap" for="WarrantCheck">Result of Incident</label>
+									</div>
+								</div>
+								<div class="d-flex align-items-center col-lg-3 pr-0 mt-2">
+									<div class="custom-control custom-checkbox custom-control-inline w-100">
+										<input type="checkbox" class="custom-control-input" id="Staff">
+										<label class="custom-control-label text-nowrap text-nowrap" for="WarrantCheck">Staff Injuries</label>
+									</div>
+								</div>
+								<div class="d-flex align-items-center col-lg-3 pr-0 mt-2">
+									<div class="custom-control custom-checkbox custom-control-inline w-100">
+										<input type="checkbox" class="custom-control-input" id="Sex">
+										<label class="custom-control-label text-nowrap text-nowrap" for="WarrantCheck">STG Related</label>
+									</div>
+								</div>
+								<div class="d-flex align-items-center col-lg-3 pr-0 mt-2">
+									<div class="custom-control custom-checkbox custom-control-inline w-100">
+										<input type="checkbox" class="custom-control-input" id="IA">
+										<label class="custom-control-label text-nowrap text-nowrap" for="WarrantCheck">Inmate Assault</label>
+									</div>
+								</div>
+								<div class="d-flex align-items-center col-lg-3 mt-2">
+									<div class="custom-control custom-checkbox custom-control-inline w-100">
+										<input type="checkbox" class="custom-control-input" id="Result">
+										<label class="custom-control-label text-nowrap text-nowrap" for="WarrantCheck">Result of Search</label>
+									</div>
+								</div>
+								<div class="d-flex align-items-center col-lg-6 pr-0 selectFloatingLabel mt-2">
+									<label class="form-label mr-2 mb-0 control-label selectFloating">Assault</label>
+									<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="selectCtrl2">
+										<option>Assault</option> 
+										<option value="Option 1">test</option>
+										<option value="Option 2">test1</option>
+									</select>
+								</div>
+								<div class="d-flex align-items-center col-lg-6 selectFloatingLabel mt-2 pr-0">
+									<label class="form-label mr-2 mb-0 control-label selectFloating">Weapon Type</label>
+									<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="selectCtrl2">
+										<option>Assault</option> 
+										<option value="Option 1">test</option>
+										<option value="Option 2">test1</option>
+									</select>
+								</div>
+								<div class="d-flex align-items-center col-lg-12 pr-0 floatingFields mt-2">
+									<input type="text" class="form-control floatingLable" aria-label="" id="" name="" value="" placeholder="">
+									<label for="Name" class="form-label mr-1 text-nowrap mb-0">Weapon Note</label>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+	<div class="col-lg-12 mt-2 px-0">
+		<textarea class="form-control mt-1" placeholder="Disposition of Evidence" id="addComments" rows="4" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+		<div class="d-flex align-itens-center mt-3 ml-auto w-25">			
+			<div id="mdPicker" class="floatingFields w-100 input-append date">
+				<input class="span2 form-control w-100 floatingLable" size="16" type="text" aria-label="" name="" id="" value="" placeholder="">
+				<label for="Name" class="form-label mr-2 text-nowrap mb-0"  style="left: 10px;">Disposition Date</label>
+				<span class="add-on"></span>
+			</div>
+		</div>
+		<textarea class="form-control mt-3" placeholder="Immediate Action Taken" id="addComments" rows="4" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+	</div>
+</div>

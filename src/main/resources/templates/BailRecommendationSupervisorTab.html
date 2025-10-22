@@ -1,0 +1,52 @@
+<div th:fragment="BailRecommendationSupervisorTab" th:remove="tag">
+	<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">SUPERVISOR APPROVAL</h6>
+	<div class="row m-1"> 
+		<div class="panel mb-2 panelContentBlock p-1 w-100">
+			<div class="row m-1">
+				<div class="col-lg-4 pl-0 pr-0 d-flex align-items-center">
+					<div class="custom-control custom-checkbox custom-control-inline mr-2">
+						<input type="checkbox" class="custom-control-input" id="CompletedCheck">
+						<label class="custom-control-label text-nowrap" for="CompletedCheck">Completed</label>
+					</div>
+					<label for="Security" class="form-label mr-2 mb-0 text-nowrap text-nowrap">Completed By</label>
+					<input type="text" class="form-control w-100" aria-label="" value="" placeholder="" disabled>
+				</div>
+				<div class="col-lg-3 pr-0 d-flex align-items-center">
+					<label for="Security" class="form-label mr-2 mb-0 text-nowrap text-nowrap">Completed Date</label>
+					<input type="text" class="form-control w-100" aria-label="" value="" placeholder="" disabled>
+					<label for="Security" class="form-label mx-2 mb-0 text-nowrap text-nowrap">Time</label>
+					<input type="text" class="form-control w-100" aria-label="" value="" placeholder="" disabled>
+				</div>
+			</div>
+		</div>
+		<div class="panel mb-2 panelContentBlock p-1 w-100">
+			<div class="row m-1">
+				<div class="col-lg-3 pl-0 pr-0 d-flex align-items-center">
+					<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Approval</label>																					
+					<select class="custom-select form-control typecontact" disabled>
+						<option></option>
+						<option value="Option 1">test</option>
+						<option value="Option 2">test1</option>
+					</select>
+				</div>
+				<div class="col-lg-3 pr-0 d-flex align-items-center">
+					<label for="Security" class="form-label mr-2 mb-0 text-nowrap text-nowrap">Date</label>
+					<input type="text" class="form-control w-100" aria-label="" value="" placeholder="" disabled>
+					<label for="Security" class="form-label mx-2 mb-0 text-nowrap text-nowrap">Time</label>
+					<input type="text" class="form-control w-100" aria-label="" value="" placeholder="" disabled>
+				</div>
+				<div class="col-lg-6 pr-0 d-flex align-items-center">
+					<label for="Security" class="form-label mr-2 mb-0 text-nowrap text-nowrap">Supervisor</label>
+					<input type="text" class="form-control w-100" aria-label="" value="" placeholder="" disabled>
+					<div class="custom-control custom-checkbox custom-control-inline ml-2">
+						<input type="checkbox" class="custom-control-input" id="CancelFlagCheck">
+						<label class="custom-control-label text-nowrap" for="CancelFlagCheck">Cancel Flag</label>
+					</div>
+				</div>
+				<div class="col-lg-12 px-0 d-flex align-items-center mt-2">
+					<textarea class="form-control" id="addComments" placeholder="Comments" rows="11" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

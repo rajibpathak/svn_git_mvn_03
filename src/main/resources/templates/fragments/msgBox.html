@@ -1,0 +1,215 @@
+<div th:fragment="msgBox" th:remove="tag">
+
+	<button data-toggle="modal" data-target="#myModal" style="display:none;" id="openModal"></button>
+	<input type="hidden" id="focus_field">
+	<div class="modal fade" id="myModal" role="dialog" data-keyboard="false" data-backdrop="static">
+		<div class="modal-dialog d-flex align-items-center h-100">
+
+			<!-- Modal content-->
+			<div class="modal-content"
+				style="width: 500px;border:none; border-radius: 8px;box-shadow: 8px 3px 7px #888;">
+				<div class="modal-header" style="background: #886ab5;border-radius: 8px 8px 0px 0px;padding: 5px;">
+					<button type="button" style="display:none;" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title" id="modalTitle"
+						>Required
+					</h4>
+				</div>
+				<div class="modal-body" style="border: none;padding-top: 25px;">
+					<!--<p id="modalTxt"
+						style="font-size: 16px;text-align: center;font-weight: 600;color: #555;padding-top: 10px;">Please
+						enter userID</p>-->
+
+					<div style="width:100%;">
+						<div class="d-flex align-items-center">
+							<div class="mr-3">
+								<div class="msg_symbol msg_Success"
+									style="display:none;"><i
+										class="fa-solid fa-check"></i></div>
+								<div class="msg_symbol msg_Error"
+									style="display:none;"><i
+										class="fa-solid fa-xmark"></i></div>
+								<div class="msg_symbol msg_Warning"
+									style="display:none;"><i
+										style="position: relative;"
+										class="fa-solid fa-triangle-exclamation"></i></div>
+								<div class="msg_symbol msg_Question"
+									style="display:none;"><i
+										style="position: relative;left:4px;" class="fa-solid fa-question"></i></div>
+								<div class="msg_symbol msg_Info"
+									style="display:none;"><i
+										style="position: relative;"
+										class="fa-solid fa-info"></i></div>
+
+
+							</div>
+							<div>
+								<span id="modalTxt"></span>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer pb-0">
+					<!--<button id="ok_btn" style="font-size: 18px;background: #2f7c65;border: none;padding: 7px 18px;border-radius: 3px;color: #fff;" type="button" class="btn btn-default" data-dismiss="modal">OK</button>-->
+					<div style="width:100%">
+						<div class="msg_btn normal_alert">
+							<div class="d-flex justify-content-end" style="width:100%;padding:5px;border-radius: 0px 0px 8px 8px;border-top: 1px solid #ddd;">
+								<button class="btn btn-sm btn-primary" id="ok_btn" data-dismiss="modal">OK</button>
+							</div>
+							<!--<td style="width:50%;border-left:1px solid #ccc;"><p id="ok_btn" data-dismiss="modal" style="font-size: 18px;margin: 0;padding: 0;cursor: pointer;">OK</p></td>-->
+						</div>
+						<div class="msg_btn confirm_alert">
+							<div class="d-flex justify-content-end" style="width:100%;padding:5px;border-radius: 0px 0px 8px 8px;border-top: 1px solid #ddd;">
+								<button class="btn btn-sm btn-primary" id="confirm_btn" data-dismiss="modal">OK</button>&nbsp;
+								<button class="btn btn-sm btn-primary" id="cancel_btn" data-dismiss="modal">Cancel</button>
+							</div>
+							<!--<div
+								style="width:50%;padding:5px;border-radius: 0px 0px 8px 8px;border-top: 1px solid #ddd;border-right: 2px solid #ccc;">
+								<p data-dismiss="modal" id="cancel_btn"
+									style="font-size: 18px;margin: 0;padding: 0;cursor: pointer;">Cancel</p>
+							</div>
+							<div
+								style="width:50%;padding:5px;border-radius: 0px 0px 8px 8px;border-top: 1px solid #ddd;">
+								<p data-dismiss="modal" id="confirm_btn" style="font-size: 18px;margin: 0;padding: 0;cursor: pointer;">OK</p>
+							</div>
+							<input type="button" id="close_modal" data-dismiss="modal" style="display:none;">-->
+							<!--<td style="width:50%;border-left:1px solid #ccc;"><p id="ok_btn" data-dismiss="modal" style="font-size: 18px;margin: 0;padding: 0;cursor: pointer;">OK</p></td>-->
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<style>
+		.msg_symbol{
+			background: rgb(255, 165, 0);
+		    font-size: 20px;
+		    padding: 5px;
+		    border-radius: 50%;
+		    color: rgb(255, 255, 255);
+		    width: 30px;
+		    height: 30px;
+		    display: flex;
+		}
+		
+		.highlight-btn {
+    outline: none !important;
+    box-shadow: 0 0 5px 2px #563d7c; 
+    border: 2px solid  #563d7c;
+    transition: box-shadow 0.3s ease;
+}
+	</style>
+	<script>
+
+		function custom_msg(x, y) {
+			$('#modalTitle').text('OMNET Message');
+			$('#modalTxt').text(y);
+			$('.msg_symbol').hide();
+			$('.msg_btn').hide();
+			$('.normal_alert').show();
+			var typ = '';
+
+			if (x == '' || y == '') {
+				return false;
+			}
+
+			if (x == 'CUW') {
+				typ = 'Warning';
+			} else if (x == 'CUE') {
+				typ = 'Error';
+			} else if (x == 'CUS') {
+				typ = 'Success';
+			} else if (x == 'CUQ') {
+				typ = 'Question';
+			}
+
+			$('.msg_' + typ).show();
+			document.getElementById('openModal').click();
+		}
+
+		function message(x,y,z) {
+			console.log('here msg code ' + x);
+			
+			if(x.toLowerCase() == 'alert') {
+				confirmation(y,z);
+				return;
+			}
+			
+			var desc = '';
+			var type = '';
+			if (y == 0) {
+				$.ajax({
+					url: contextPath + 'getMsg',
+					method: 'POST',
+					dataType: "json",
+					async: false,
+					data: {no: x},
+					success: function (response) {
+						desc = response[0]['DESCRIPTION'];
+						type = response[0]['TYPE'];
+						if(type == 'Question') {
+							//alert_msg(desc, type);
+							question_call(desc,z);
+						} else {
+							alert_msg(desc, type);	
+						}
+					},
+					complete: function (response) {
+
+					},
+					error: function (error) {
+						//console.error("Error getting table names:", error);
+					}
+				});
+			} else if (y != '' && y != 0) {
+				custom_msg(x, y);
+			}
+		}
+		
+		function alert_msg(txt, type) {
+			$('#modalTitle').text('OMNET Message');
+			$('#modalTxt').text(txt);
+			$('.msg_symbol').hide();
+			$('.msg_' + type).show();
+			$('.msg_btn').hide();
+			$('.normal_alert').show();
+			
+			document.getElementById('openModal').click();
+		}
+		
+		function confirmation(txt, call) {
+			$('#modalTitle').text('OMNET Confirmation');
+			$('#modalTxt').text(txt);
+			$('.msg_symbol').hide();
+			$('.msg_Info').show();
+			$('.msg_btn').hide();
+			$('.confirm_alert').show();			
+			document.getElementById("confirm_btn").addEventListener("click", call);
+			document.getElementById('openModal').click();
+		}
+		
+		function question_call(txt, call) {
+			$('#modalTitle').text('OMNET Confirmation');
+			$('#modalTxt').text(txt);
+			$('.msg_symbol').hide();
+			$('.msg_Question').show();
+			$('.msg_btn').hide();
+			$('.confirm_alert').show();
+			 $('#ok_btn').focus().addClass('highlight-btn');
+			document.getElementById("confirm_btn").addEventListener("click", call);
+			document.getElementById('openModal').click();
+		}
+
+	    $(document).on('keydown', function(event) {
+	    	 $('#ok_btn').focus().addClass('highlight-btn'); 
+	        if (event.key === "Enter" || event.keyCode === 13) {			           
+	            if ($('#ok_btn').is(':visible')) {
+	                $('#ok_btn').click();          
+	                $('.modal-backdrop').remove();
+	            }
+	        }
+	    });
+	</script>
+
+</div>

@@ -1,0 +1,79 @@
+  <div th:fragment="script" th:remove="tag">
+<!--   <script src="js/vendors.bundle.js"></script> -->
+    <script src="js/app.bundle.js"></script> 
+    <!-- <script src="js/formplugins/bootstrap-datepicker/bootstrap-datepicker.js"></script> -->
+     <script src="js/notifications/sweetalert2/sweetalert2.bundle.js"></script>
+     <script src="js/formplugins/select2/select2.bundle.js"></script>
+   <!--  <script src="js/datagrid/datatables/datatables.bundle.js"></script>
+    <script src="js/datagrid/datatables/datatables.export.js"></script> -->
+    <script src="js/formplugins/dropzone/dropzone.js"></script>
+    
+    <link rel="stylesheet" href="css/jquerydatepicker/jquery-ui.css">
+	<script type="text/javascript" src="css/jquerydatepicker/jquery-ui.js"></script>
+
+	<!-- <script src="https://code.jquery.com/jquery-3.6.0.js"></script> -->
+   
+	<script>	
+		document.addEventListener("DOMContentLoaded", function() {
+	    // Remove readonly on focus to allow user editing
+	    document.querySelectorAll('input, textarea').forEach(function(input) {
+	      input.addEventListener('focus', function() {
+			  input.setAttribute('autocomplete', 'off');
+	      });
+	    });
+	
+	    // Also, set autocomplete to a non-standard value
+	    document.querySelectorAll('input, textarea').forEach(function(input) {
+	      input.setAttribute('autocomplete', 'off');
+	    });
+	
+	    // Reinforce periodically
+		    setInterval(function() {
+		      document.querySelectorAll('input, textarea').forEach(function(input) {
+		        input.setAttribute('autocomplete', 'off');
+		      });
+		    },0);
+		  });
+	     $(document).ready(function(){
+	        $('.dropdown-toggle').dropdown()
+	    });
+	    
+	    /* Search criteria sidebar code */
+	    let sidebarSearchCriteria;
+	    document.addEventListener('DOMContentLoaded', () => {
+	    	sidebarSearchCriteria = document.getElementById('leftSidebarIcon');
+		  let element1 = document.getElementById('contain');
+		  let element2 = document.querySelector('.mainBlock');
+	      document.getElementById('leftSidebarIcon').addEventListener('mouseenter', (event) => {
+	        element1.classList.add('active');
+	        element2.classList.add('MainBlockSection');
+	      });
+	      
+		   let pinIcon = document.getElementById('pinButton');
+		   let isOpen = false;
+		  
+		  
+		  pinIcon.addEventListener('click', (event) => {
+			  isOpen = !isOpen;
+			  pinIcon.classList.toggle('Pinicon');
+		  });
+			
+			 document.addEventListener('click', (event) => {
+			  	if (!element1.contains (event.target) &&!isOpen) {
+				    element1.classList.remove('active');
+		        	element2.classList.remove('MainBlockSection');
+				  }
+			});
+	     
+	    });
+	    const contain = document.querySelector('.contain');
+		const mainBlock = document.querySelector('.mainBlock');
+		const toggleSidebar = () => {
+			contain.classList.toggle('active');
+			mainBlock.classList.toggle('MainBlockSection');
+		}
+		
+		
+	
+	</script>
+    </div>

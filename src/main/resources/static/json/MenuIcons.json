@@ -1,0 +1,71 @@
+
+    [
+        {
+            "MenuCODE": "MC001",
+            "MenuIcon": "icon-class9"
+        },
+        
+       {
+            "MenuCODE": "MC002",
+            "MenuIcon": "icon-class3"
+        },
+        
+       {
+            "MenuCODE": "MC003",
+            "MenuIcon": "icon-class1"
+        },
+       {
+            "MenuCODE": "MC004",
+            "MenuIcon": "icon-class8"
+        },
+        
+        {
+            "MenuCODE": "MC005",
+            "MenuIcon": "icon-class2"
+        },
+        
+        {
+            "MenuCODE": "MC006",
+            "MenuIcon": "icon-class5"
+        },
+        
+        {
+            "MenuCODE": "MC007",
+            "MenuIcon": "icon-class4"
+        },
+        
+        {
+            "MenuCODE": "MC008",
+            "MenuIcon": "icon-class6"
+        },
+        
+        {
+            "MenuCODE": "MC009",
+            "MenuIcon": "icon-class7"
+        },
+        
+        {
+            "MenuCODE": "MC010",
+            "MenuIcon": "icon-class"
+        },
+        {
+            "MenuCODE": "MPR1",
+            "MenuIcon": "icon-class"
+        },
+        {
+            "MenuCODE": "MenuCode",
+            "MenuIcon": "icon-class"
+        },
+        {
+            "MenuCODE": "MCTest1",
+            "MenuIcon": "icon-class"
+        },
+        {
+            "MenuCODE": "NEW_MENU",
+            "MenuIcon": "icon-class"
+        },
+        {
+            "MenuCODE": "MCTest",
+            "MenuIcon": "icon-class"
+        }
+    ]

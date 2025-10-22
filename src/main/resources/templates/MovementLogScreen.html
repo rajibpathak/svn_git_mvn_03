@@ -1,0 +1,2563 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<title class="MovementsSidebar">MovementLogScreen</title>
+<div th:replace="~{fragments/head :: head}"></div>
+
+
+<body class="mod-bg-1 mod-nav-link">
+	<div th:replace="~{fragments/header :: header}"></div>
+				<div th:replace="~{fragments/navmenus :: navmenus}"></div>
+	<!-- BEGIN Page Wrapper --> 
+	<div class="page-wrapper">
+		<div class="page-inner">
+			<!-- BEGIN Left Aside -->
+	 		<div th:replace="~{fragments/sidebar :: sidebar}"></div> 
+	  		<input type="hidden" name="screenCode" id="screenCode" value="MOV_LOSC"> 
+			<!-- END Left Aside --> 
+			<div class="page-content-wrapper">
+				<!-- BEGIN Page Header --> 
+				<!-- <div th:replace="~{fragments/header :: header}"></div> -->
+				<!-- END Page Header -->
+				<!-- BEGIN Page Content -->
+				<!-- the #js-page-content id is needed for some plugins to initialize -->
+				<main id="js-page-content" role="main" class="page-content">
+					<!-- <ol class="breadcrumb page-breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">SmartAdmin</a></li>
+                            <li class="breadcrumb-item">category_1</li>
+                            <li class="breadcrumb-item">category_2</li>
+                            <li class="breadcrumb-item active">Page Titile</li>
+                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        </ol> -->
+					<div class="subheader mb-1">
+						<h1 class="subheader-title">
+						<div th:replace="~{fragments/toggleMenu :: toggleMenu}"></div>
+							<i class='subheader-icon fal fa-'></i> <span th:text="${screenName}"></span></span> 
+						</h1>
+						<div class="frame-wrap bg-transparent">
+							<div class="btn-group">
+							<div class="col-12 pr-0">
+                      <div class="js-get-date">[your date here]</div>
+                              </div>
+								<div class="mr-2">
+									<div class="input-append date position-relative w-100">
+										<span class="add-on"></span>
+									</div>
+								</div>
+							</div>
+							<a href="javascript:void(0);"
+								class="btn btn-primary btn-sm btn-icon waves-effect waves-themed disabled"
+								data-toggle="tooltip" data-placement="top" data-original-title="Add"> <i
+									class="fal fa-plus"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-warning btn-sm btn-icon waves-effect waves-themed disabled"
+								data-toggle="tooltip" data-placement="top" data-original-title="Print"> <i
+									class="fal fa-print"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="tooltip" data-placement="top" data-original-title="Clear" id="clearButton"> <i
+									class="fal fa-times"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-success btn-sm btn-icon waves-effect waves-themed disabled" data-toggle="tooltip"
+								data-placement="top" data-original-title="OK/Save"> <i class="fal fa-save"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="Cancel/Exit"  onclick="history.back()"> <i class="fal fa-sign-out"></i>
+							</a>
+						</div>
+					</div>
+					<div class="d-flex mainBlock h-100">
+						<div class="d-flex h-100 leftSidebarMain">
+					    	<div class="ArrowBlockmain">
+					            <button class="arrowBtn" id="leftSidebarIcon"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+					        </div>
+					        <div class="contain d-flex pl-0" id="contain">
+						          <div class="leftSideBar p-2 mr-0 mt-2">
+							          <h6 class="mx-0 mb-0 text-nowrap headerBlock text-center position-relative" style="font-weight: 600;top: -20px;">Search Criteria</h6>
+									  <div class="d-flex justify-content-end position-absolute" style="right: 5px;top: 5px;">										  
+							          	<span class="d-flex" data-toggle="modal" data-target="" >
+											<a href="#" id="pinButton" style="height: fit-content;" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center" data-class="nav-function-hidden">
+												<i class="fa fa-thumb-tack" style="font-size: 15px;"></i>
+											</a>
+										</span>
+									  </div>
+							          	<div class="row">
+											<div class="col-lg-12 criteriaSidebar">
+												<div class="panel mb-0 panelContentBlock p-1 headerBlockNew border-0" style="background: unset;box-shadow: unset;padding-top: 0 !important;">
+													<div class="row mx-1 form-group" id="focusingTheValue" value="" data-focusNumber="">
+														<div class="col-lg-6 floatingFields px-0"> 
+															<input type="text" class="form-control MoveMentLogvalueclear rawField floatingLable" data-fld="ID" data-lbl="ID"	aria-label="Security" placeholder="" name="Group" id="SBINUMBER"   value="" autofocus>
+															<label for="SBINUMBER" class="form-label mr-1 mb-0 text-nowrap criteriaSidebarlabel">ID#</label>
+														</div>
+														<div class="col-lg-12 mt-3 selectFloatingLabel px-0">
+															<label for="ActivityTypeValues" class="form-label mr-1 mb-0 text-nowrap text-nowrap selectFloating criteriaSidebarlabel">Activity Type</label>
+															<select id="ActivityTypeValues" class="custom-select form-control typecontact MoveMentLogvalueclear rawField floatingLableClick" data-fld="Activity_Type" data-lbl="Activity Type">
+																<option value="">Activity Type</option>
+															</select>
+														</div>
+														<div class="col-lg-6 mt-3 pl-0 floatingFields"> 
+															<input type="text" class="form-control MoveMentLogvalueclear date-input rawField floatingLable" data-fld="Date_From" data-lbl="Date From" aria-label="Security" placeholder="" name="Group" id="DateFromvalue" value="">
+															<label for="DateFromvalue" class="form-label mr-2 mb-0 text-nowrap criteriaSidebarlabel">Date From</label>
+														</div>
+														<div class="col-lg-6 mt-3 px-0 floatingFields">
+															<input type="text" class="form-control MoveMentLogvalueclear date-input rawField floatingLable" data-fld="Date_To" data-lbl="Date To" aria-label="Security" placeholder="" name="Group" id="DateTovalue" value="">											
+															<label for="DateTovalue" class="form-label mr-2 mb-0 text-nowrap criteriaSidebarlabel">Date To</label>
+														</div>
+														<div class="col-lg-6 pl-0 mt-3 floatingFields">
+															<input type="text" class="form-control MoveMentLogvalueclear datetime-input rawField floatingLable" data-fld="Time_From" data-lbl="Time From" aria-label="Security" placeholder="" name="Group" id="TimeFromvalue" value="">
+															<label for="TimeFromvalue" class="form-label mr-2 mb-0 text-nowrap criteriaSidebarlabel">Time From</label>
+														</div>
+														<div class="col-lg-6 p-0 mt-3 floatingFields">
+															<input type="text" class="form-control MoveMentLogvalueclear datetime-input rawField floatingLable" data-fld="Time_To" data-lbl="Time To" aria-label="Security" placeholder="" name="Group" id="TimeTovalue" value="">
+															<label for="TimeTovalue" class="form-label mr-2 mr-2 mb-0 text-nowrap criteriaSidebarlabel">Time To</label>
+														</div>
+														<div class="col-lg-12 mt-3 px-0 selectFloatingLabel">
+															<label for="Facility" class="form-label mr-1 mb-0 text-nowrap text-nowrap selectFloating criteriaSidebarlabel">Facility</label>
+															<select id="Facility" class="custom-select form-control typecontact w-100 MoveMentLogvalueclear rawField floatingLableClick" data-fld="Facility" data-lbl="Facility">
+																<option value="">Facility</option>
+															</select>
+														</div>
+														<div class="col-lg-12 mt-3 px-0 selectFloatingLabel">
+															<label for="OriginatingLocationValues" class="form-label mr-2 mb-0 text-nowrap text-nowrap selectFloating criteriaSidebarlabel">Originating Location</label>
+															<select id="OriginatingLocationValues" class="custom-select form-control typecontact OriginatingLocationValues DropdownDisable rawField floatingLableClick" data-fld="Originating_Location" data-lbl="Originating Location">
+																<option value="">Originating Location</option>
+															</select>
+														</div>
+														<div class="col-lg-12 mt-3 px-0 selectFloatingLabel">
+															<label for="DestinationValues" class="form-label mr-1 mb-0 text-nowrap text-nowrap selectFloating criteriaSidebarlabel">Destination</label>
+															<select id="DestinationValues" class="custom-select form-control typecontact OriginatingLocationValues DropdownDisable rawField floatingLableClick" data-fld="Destination" data-lbl="Destination">
+																<option value="">Destination</option>
+															</select>
+														</div>
+														<div class="d-flex justify-content-end mt-1 w-100 mt-2">
+															<button id="SelectButton" type="button" class="btn btn-primary btn-sm rawField" data-fld="Search" data-lbl="Search">Search</button>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+						          </div>
+						    </div>
+						</div>
+						 <div class="row bg-light mx-1 mainScreenBlock" style="width: calc(100% - 25px);margin-left: 0 !important;">
+							<div class="col-lg-12 p-0">
+								<div id="panel-1" class="panel">
+                                   <div class="panel-hdr">
+                                       <h2>
+                                           Movement Log
+                                       </h2>
+                                   </div>
+                                   <div class="panel-container show">
+                                       <div class="panel-content p-1"> 
+                                           <div id="js-checkbox-toggles">
+                                               <div class="">
+													<div class="mb-1" id="movementlog-table"></div> 
+												</div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+                               <div id="panel-1" class="panel">
+                                   <div class="panel-hdr">
+                                       <h2>
+                                           Offender Housing Details
+                                       </h2>
+                                   </div>
+                                   <div class="panel-container show">
+                                       <div class="panel-content p-1">
+                                           <div id="js-checkbox-toggles">
+                                               <div class="row mx-1"> 
+                                               		<div class="col-md-3 col-lg-3 col-xl-3 pl-0 floatingFields mt-3">
+														<input type="text" class="form-control w-100 floatingLable mov_losc_bld MoveMentLogvalueclear rawField" data-fld="Building" data-lbl="Building" aria-label="BuildingOHD" id="BuildingOHD" name="" value="" placeholder="" >
+														<label for="BuildingOHD" class="form-label mr-1 text-nowrap mb-0">Building</label>
+	                                                </div>
+	                                                <div class="col-md-3 col-lg-3 col-xl-3 pl-0 floatingFields mt-3">
+														<input type="text" class="form-control w-100 floatingLable mov_losc_unit MoveMentLogvalueclear rawField" data-fld="Unit" data-lbl="Unit" aria-label="UnitOHD" id="UnitOHD" name="" value="" placeholder="" >
+														<label for="UnitOHD" class="form-label mr-1 text-nowrap mb-0">Unit</label>
+	                                                </div>
+	                                                <div class="col-md-3 col-lg-3 col-xl-3 pl-0 floatingFields mt-3">
+														<input type="text" class="form-control w-100 floatingLable mov_losc_floor MoveMentLogvalueclear rawField" data-fld="Floor" data-lbl="Floor" aria-label="FloorOHD" id="FloorOHD" name="" value="" placeholder="" >
+														<label for="FloorOHD" class="form-label mr-1 text-nowrap mb-0">Floor</label>
+	                                                </div>
+													<div class="col-md-3 col-lg-3 col-xl-3 px-0 floatingFields mt-3">
+														<input type="text" class="form-control w-100 floatingLable mov_losc_tier MoveMentLogvalueclear rawField" data-fld="Tier" data-lbl="Tier" aria-label="TierOHD" id="TierOHD" name="" value="" placeholder="" >
+														<label for="TierOHD" class="form-label mr-1 text-nowrap mb-0">Tier</label>
+	                                                </div>
+													<div class="col-md-3 col-lg-3 col-xl-3 pl-0 floatingFields mt-3">
+														<input type="text" class="form-control w-100 floatingLable mov_losc_cell MoveMentLogvalueclear rawField" data-fld="Cell" data-lbl="Cell" aria-label="CellOHD" id="CellOHD" name="" value="" placeholder="" >
+														<label for="CellOHD" class="form-label mr-1 text-nowrap mb-0">Cell</label>
+	                                                </div>
+													<div class="col-md-3 col-lg-3 col-xl-3 pl-0 floatingFields mt-3">
+														<input type="text" class="form-control w-100 floatingLable mov_losc_bed MoveMentLogvalueclear rawField" data-fld="Bed" data-lbl="Bed" aria-label="BedOHD" id="BedOHD" name="" value="" placeholder="" >
+														<label for="BedOHD" class="form-label mr-1 text-nowrap mb-0">Bed</label>
+	                                                </div>
+													<div class="col-lg-12 px-0 mt-3 floatingFieldsTextarea">
+														<textarea class="form-control mt-1 MoveMentLogvalueclear rawField floatingLabletextarea" data-fld="Comments" data-lbl="Comments" id="addComments" placeholder="" rows="2" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+														<label for="addComments" class="form-label text-nowrap mb-0">Movement Comments</label>
+													</div>
+												</div>
+                                           </div>
+                                       </div>
+                                   </div>
+                               </div>
+							</div>
+						</div>
+						<div class="modal fade" id="listOfCaseChargeModal" tabindex="-1" role="dialog" aria-hidden="true">
+				            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+					              <div class="modal-content">
+						                 <div class="modal-header pt-3 pb-2">
+						                       <h6 class="modal-title">Movement Log Screen</h6>
+						                   		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							                     <span aria-hidden="true"><i class="fal fa-times"></i></span>
+							                   </button>
+						                  </div>
+						                   <div class="modal-body py-0">
+						                   </div>
+						                  <div class="modal-footer">
+						                  <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="fetchDataBtn" >Ok</button>               
+						               </div>
+					              </div>
+				             </div>
+			             </div>
+					</div>
+					
+				</main>
+				<!-- this overlay is activated only when mobile menu is triggered -->
+				<div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
+				<!-- END Page Content -->
+				<!-- BEGIN Page Footer -->
+			<!-- 	<div th:replace="~{fragments/footer :: footer}"></div> -->
+				<!-- END Page Footer -->
+				<!-- Modal Large -->
+				<div class="modal fade" id="default-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Staff Name</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true"><i class="fal fa-times"></i></span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="form-group row">
+									<label for="staffSearch"
+										class="col-form-label col-12 col-lg-1 form-label">Search</label>
+									<div class="col-12 col-lg-11">
+										<input type="text" class="form-control" aria-label="staffSearch"
+											name="staffSearch" id="staffSearch" value="">
+									</div>
+
+								</div>
+								<div class="table-responsive-lg">
+									<table class="table table-bordered m-0">
+										<thead>
+											<tr>
+												<th>Last Name</th>
+												<th>First Name</th>
+												<th>MI</th>
+												<th>Suffix</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- BEGIN Shortcuts -->
+				<!-- modal shortcut -->
+				<div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog"
+					aria-labelledby="modal-shortcut" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-top modal-transparent" role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+								<ul class="app-list w-auto h-auto p-0 text-left">
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Home
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
+												<i class="ni ni-envelope icon-stack-1x text-white"></i>
+											</div>
+											<span class="app-list-name">
+												Inbox
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Add More
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div> <!-- END Shortcuts -->
+			</div>
+		</div>
+	</div>
+	<!-- END Page Wrapper -->
+	<!-- BEGIN Quick Menu -->
+	<!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
+	<nav class="shortcut-menu d-none d-sm-block"> <input
+	type="checkbox" class="menu-open" name="menu-open" id="menu_open" />
+	<label for="menu_open" class="menu-open-button "> <span
+	class="app-shortcut-icon d-block"></span>
+	</label> <a href="#" class="menu-item btn" data-toggle="tooltip"
+	data-placement="left" title="Scroll Top"> <i
+	class="fal fa-arrow-up"></i>
+	</a> <a href="page_login-alt.html" class="menu-item btn"
+	data-toggle="tooltip" data-placement="left" title="Logout"> <i
+	class="fal fa-sign-out"></i>
+	</a> <a href="#" class="menu-item btn" data-action="app-fullscreen"
+	data-toggle="tooltip" data-placement="left" title="Full Screen"> <i
+	class="fal fa-expand"></i>
+	</a> <a href="#" class="menu-item btn" data-action="app-print"
+	data-toggle="tooltip" data-placement="left" title="Print page"> <i
+	class="fal fa-print"></i>
+	</a> <a href="#" class="menu-item btn" data-action="app-voice"
+	data-toggle="tooltip" data-placement="left" title="Voice command">
+	<i class="fal fa-microphone"></i>
+	</a> </nav>
+	<!-- END Quick Menu -->
+	<!-- BEGIN Messenger -->
+	<div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right">
+			<div class="modal-content h-100">
+				<div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
+					<div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+						<span class="mr-2">
+							<span class="rounded-circle profile-image d-block"
+								style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+						</span>
+						<div class="info-card-text">
+							<a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white"
+								data-toggle="dropdown" aria-expanded="false">
+								Tracey Chang
+								<i class="fal fa-angle-down d-inline-block ml-1 text-white fs-md"></i>
+							</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">Send Email</a>
+								<a class="dropdown-item" href="#">Create Appointment</a>
+								<a class="dropdown-item" href="#">Block User</a>
+							</div>
+							<span class="text-truncate text-truncate-md opacity-80">IT Director</span>
+						</div>
+					</div>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0 h-100 d-flex">
+					<!-- BEGIN msgr-list -->
+					<div
+						class="msgr-list d-flex flex-column bg-faded border-faded border-top-0 border-right-0 border-bottom-0 position-absolute pos-top pos-bottom">
+						<div>
+							<div
+								class="height-4 width-3 h3 m-0 d-flex justify-content-center flex-column color-primary-500 pl-3 mt-2">
+								<i class="fal fa-search"></i>
+							</div>
+							<input type="text" class="form-control bg-white" id="msgr_listfilter_input"
+								name="msgr_listfilter_input" placeholder="Filter contacts" aria-label="FilterSearch"
+								value="" data-listfilter="#js-msgr-listfilter">
+						</div>
+						<div class="flex-1 h-100 custom-scroll">
+							<div class="w-100">
+								<ul id="js-msgr-listfilter" class="list-unstyled m-0">
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="tracey chang online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Tracey Chang
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="oliver kopyuv online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Oliver Kopyuv
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="dr john cook phd away">
+											<div class="d-table-cell align-middle status status-warning status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Dr. John Cook PhD
+													<small class="d-block font-italic fs-xs">
+														Away
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-g.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Ali Amdaney
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="sarah mcbrook online">
+											<div class="d-table-cell align-middle status status-success status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Sarah McBrook
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney busy">
+											<div class="d-table-cell align-middle status status-danger status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs text-danger">
+														Busy
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney inactive">
+											<div class="d-table-cell align-middle">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-m.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													+714651347790
+													<small class="d-block font-italic fs-xs opacity-50">
+														Missed Call
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+								<div class="filter-message js-filter-message"></div>
+							</div>
+						</div>
+						<div>
+							<a class="fs-xl d-flex align-items-center p-3">
+								<i class="fal fa-cogs"></i>
+							</a>
+						</div>
+					</div>
+					<!-- END msgr-list -->
+					<!-- BEGIN msgr -->
+					<div class="msgr d-flex h-100 flex-column bg-white">
+						<!-- BEGIN custom-scroll -->
+						<div class="custom-scroll flex-1 h-100">
+							<div id="chat_container" class="w-100 p-4">
+								<!-- start .chat-segment -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">
+										Jun 19
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent">
+									<div class="chat-message">
+										<p>
+											Hey Ching, did you get my files?
+										</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:00 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>
+											Hi
+										</p>
+										<p>
+											Sorry going through a busy time in office. Yes I analyzed the solution.
+										</p>
+										<p>
+											It will require some resource, which I could not manage.
+										</p>
+									</div>
+									<div class="fw-300 text-muted mt-1 fs-xs">
+										3:24 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-start">
+									<div class="chat-message">
+										<p>
+											Okay
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-end">
+									<div class="chat-message">
+										<p>
+											Sending you some dough today, you can allocate the resources to this
+											project.
+										</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:26 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-start">
+									<div class="chat-message">
+										<p>
+											Perfect. Thanks a lot!
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>
+											I will have them ready by tonight.
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-end">
+									<div class="chat-message">
+										<p>
+											Cheers
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment for timestamp -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">
+										Jun 20
+									</div>
+								</div>
+								<!--  end .chat-segment for timestamp -->
+							</div>
+						</div>
+						<!-- END custom-scroll  -->
+						<!-- BEGIN msgr__chatinput -->
+						<div class="d-flex flex-column">
+							<div
+								class="border-faded border-right-0 border-bottom-0 border-left-0 flex-1 mr-3 ml-3 position-relative shadow-top">
+								<div class="pt-3 pb-1 pr-0 pl-0 rounded-0" tabindex="-1">
+									<div id="msgr_input" contenteditable="true"
+										data-placeholder="Type your message here..."
+										class="height-10 form-content-editable"></div>
+								</div>
+							</div>
+							<div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1"
+									data-toggle="tooltip" data-original-title="More options" data-placement="top">
+									<i class="fal fa-ellipsis-v-alt color-fusion-300"></i>
+								</a>
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+									data-original-title="Attach files" data-placement="top">
+									<i class="fal fa-paperclip color-fusion-300"></i>
+								</a>
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+									data-original-title="Insert photo" data-placement="top">
+									<i class="fal fa-camera color-fusion-300"></i>
+								</a>
+								<div class="ml-auto">
+									<a href="javascript:void(0);" class="btn btn-info">Send</a>
+								</div>
+							</div>
+						</div>
+						<!-- END msgr__chatinput -->
+					</div>
+					<!-- END msgr -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Messenger -->
+	<!-- BEGIN Page Settings -->
+	<div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right modal-md">
+			<div class="modal-content">
+				<div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
+					<h4 class="m-0 text-center color-white">
+						Layout Settings
+						<small class="mb-0 opacity-80">User Interface Settings</small>
+					</h4>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0">
+					<div class="settings-panel">
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									App Layout
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="fh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="header-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Header</span>
+							<span class="onoffswitch-title-desc">header is in a fixed at all times</span>
+						</div>
+						<div class="list" id="nff">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Navigation</span>
+							<span class="onoffswitch-title-desc">left panel is fixed</span>
+						</div>
+						<div class="list" id="nfm">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-minify"></a>
+							<span class="onoffswitch-title">Minify Navigation</span>
+							<span class="onoffswitch-title-desc">Skew nav to maximize space</span>
+						</div>
+						<div class="list" id="nfh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-hidden"></a>
+							<span class="onoffswitch-title">Hide Navigation</span>
+							<span class="onoffswitch-title-desc">roll mouse on edge to reveal</span>
+						</div>
+						<div class="list" id="nft">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-top"></a>
+							<span class="onoffswitch-title">Top Navigation</span>
+							<span class="onoffswitch-title-desc">Relocate left pane to top</span>
+						</div>
+						<div class="list" id="mmb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-main-boxed"></a>
+							<span class="onoffswitch-title">Boxed Layout</span>
+							<span class="onoffswitch-title-desc">Encapsulates to a container</span>
+						</div>
+						<div class="expanded">
+							<ul class="">
+								<li>
+									<div class="bg-fusion-50" data-action="toggle" data-class="mod-bg-1"></div>
+								</li>
+								<li>
+									<div class="bg-warning-200" data-action="toggle" data-class="mod-bg-2"></div>
+								</li>
+								<li>
+									<div class="bg-primary-200" data-action="toggle" data-class="mod-bg-3"></div>
+								</li>
+								<li>
+									<div class="bg-success-300" data-action="toggle" data-class="mod-bg-4"></div>
+								</li>
+							</ul>
+							<div class="list" id="mbgf">
+								<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+									data-class="mod-fixed-bg"></a>
+								<span class="onoffswitch-title">Fixed Background</span>
+							</div>
+						</div>
+						<!-- <div class="mt-4 d-table w-100 px-5">
+                            <div class="d-table-cell align-middle">
+                                <h5 class="p-0">
+                                    Mobile Menu
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="list" id="nmp">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-push"></a>
+                            <span class="onoffswitch-title">Push Content</span>
+                            <span class="onoffswitch-title-desc">Content pushed on menu reveal</span>
+                        </div>
+                        <div class="list" id="nmno">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-no-overlay"></a>
+                            <span class="onoffswitch-title">No Overlay</span>
+                            <span class="onoffswitch-title-desc">Removes mesh on menu reveal</span>
+                        </div>
+                        <div class="list" id="sldo">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-slide-out"></a>
+                            <span class="onoffswitch-title">Off-Canvas <sup>(beta)</sup></span>
+                            <span class="onoffswitch-title-desc">Content overlaps menu</span>
+                        </div> -->
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Accessibility
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mbf">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-bigger-font"></a>
+							<span class="onoffswitch-title">Bigger Content Font</span>
+							<span class="onoffswitch-title-desc">content fonts are bigger for readability</span>
+						</div>
+						<div class="list" id="mhc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-high-contrast"></a>
+							<span class="onoffswitch-title">High Contrast Text (WCAG 2 AA)</span>
+							<span class="onoffswitch-title-desc">4.5:1 text contrast ratio</span>
+						</div>
+						<div class="list" id="mcb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-color-blind"></a>
+							<span class="onoffswitch-title">Daltonism <sup>(beta)</sup> </span>
+							<span class="onoffswitch-title-desc">color vision deficiency</span>
+						</div>
+						<div class="list" id="mpc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-pace-custom"></a>
+							<span class="onoffswitch-title">Preloader Inside</span>
+							<span class="onoffswitch-title-desc">preloader will be inside content</span>
+						</div>
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Global Modifications
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mcbg">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-clean-page-bg"></a>
+							<span class="onoffswitch-title">Clean Page Background</span>
+							<span class="onoffswitch-title-desc">adds more whitespace</span>
+						</div>
+						<div class="list" id="mhni">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-nav-icons"></a>
+							<span class="onoffswitch-title">Hide Navigation Icons</span>
+							<span class="onoffswitch-title-desc">invisible navigation icons</span>
+						</div>
+						<div class="list" id="dan">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-disable-animation"></a>
+							<span class="onoffswitch-title">Disable CSS Animation</span>
+							<span class="onoffswitch-title-desc">Disables CSS based animations</span>
+						</div>
+						<div class="list" id="mhic">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-info-card"></a>
+							<span class="onoffswitch-title">Hide Info Card</span>
+							<span class="onoffswitch-title-desc">Hides info card from left panel</span>
+						</div>
+						<div class="list" id="mlph">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-lean-subheader"></a>
+							<span class="onoffswitch-title">Lean Subheader</span>
+							<span class="onoffswitch-title-desc">distinguished page header</span>
+						</div>
+						<div class="list" id="mnl">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-nav-link"></a>
+							<span class="onoffswitch-title">Hierarchical Navigation</span>
+							<span class="onoffswitch-title-desc">Clear breakdown of nav links</span>
+						</div>
+						<div class="list mt-1">
+							<span class="onoffswitch-title">Global Font Size <small>(RESETS ON REFRESH)</small> </span>
+							<div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
+								<label for="smRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-sm" data-target="html">
+									<input type="radio" aria-label="smRadio" name="smRadio" id="smRadio" value=""> SM
+								</label>
+								<label for="mdRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text" data-target="html">
+									<input type="radio" aria-label="mdRadio" name="mdRadio" id="mdRadio" value=""
+										checked=""> MD
+								</label>
+								<label for="lgRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-lg" data-target="html">
+									<input type="radio" aria-label="lgRadio" name="lgRadio" id="lgRadio" value=""> LG
+								</label>
+								<label for="xlRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-xl" data-target="html">
+									<input type="radio" aria-label="xlRadio" name="xlRadio" id="xlRadio" value=""> XL
+								</label>
+							</div>
+							<span class="onoffswitch-title-desc d-block mb-g">Change <strong>root</strong> font size to
+								effect rem values</span>
+						</div>
+						<div class="mt-2 d-table w-100 pl-5 pr-3">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Theme colors <small>(overlays base css)</small>
+								</h5>
+								<!-- <div class="fs-xs text-muted p-2 alert alert-warning mt-3 mb-0">
+                                    <i class="fal fa-exclamation-triangle text-warning mr-2"></i>Due to network latency
+                                    and CPU utilization, you may experience a brief flickering effect on page load which
+                                    may show the intial applied theme for a split second. Setting the prefered
+                                    style/theme in the header will prevent this from happening.
+                                </div> -->
+							</div>
+						</div>
+						<div class="expanded theme-colors pl-5 pr-3">
+							<ul class="m-0">
+								<li><a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme=""
+										data-toggle="tooltip" data-placement="top" title="Wisteria (base css)"
+										data-original-title="Wisteria (base css)"></a></li>
+								<li><a href="#" id="myapp-1" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip"
+										data-placement="top" title="Tapestry" data-original-title="Tapestry"></a></li>
+								<li><a href="#" id="myapp-2" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip"
+										data-placement="top" title="Atlantis" data-original-title="Atlantis"></a></li>
+								<li><a href="#" id="myapp-3" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip"
+										data-placement="top" title="Indigo" data-original-title="Indigo"></a></li>
+								<li><a href="#" id="myapp-4" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip"
+										data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a>
+								</li>
+								<li><a href="#" id="myapp-5" data-action="theme-update" data-themesave 
+										data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip"
+										data-placement="top" title="Tradewind" data-original-title="Tradewind"></a></li>
+								<li><a href="#" id="myapp-6" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip"
+										data-placement="top" title="Cranberry" data-original-title="Cranberry"></a></li>
+								<li><a href="#" id="myapp-7" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip"
+										data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a></li>
+								<li><a href="#" id="myapp-8" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip"
+										data-placement="top" title="Chetwode Blue"
+										data-original-title="Chetwode Blue"></a></li>
+								<li><a href="#" id="myapp-9" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip"
+										data-placement="top" title="Apricot" data-original-title="Apricot"></a></li>
+								<li><a href="#" id="myapp-10" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip"
+										data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-11" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip"
+										data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-12" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip"
+										data-placement="top" title="Wild Blue Yonder"
+										data-original-title="Wild Blue Yonder"></a></li>
+								<li><a href="#" id="myapp-13" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip"
+										data-placement="top" title="Emerald" data-original-title="Emerald"></a></li>
+							</ul>
+						</div>
+						<hr class="mb-0 mt-4">
+						<div class="pl-5 pr-3 py-3 bg-faded">
+							<div class="row no-gutters">
+								<div class="col-6 pr-1">
+									<a href="#" class="btn btn-outline-danger fw-500 btn-block"
+										data-action="app-reset">Reset Settings</a>
+								</div>
+								<div class="col-6 pl-1">
+									<a href="#" class="btn btn-danger fw-500 btn-block"
+										data-action="factory-reset">Factory Reset</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<span id="saving"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="custom-tooltip" class="custom-tooltip"></div>
+	<!-- END Page Settings -->
+	
+	<style>
+	label{
+
+			font-weight: 500;
+
+		}
+
+		.checkboxBlock .custom-checkbox{
+
+			width: 70px;
+
+		}
+
+		.levelStatusCheckbox .custom-checkbox{
+
+			width: 95px;
+
+		}
+
+		.dataTables_info{
+
+			position: absolute;
+
+		}
+
+		.panelContentBlock{
+
+			border: 1px solid #7a58ac;	
+
+			border-radius: 5px!important;
+
+		}
+
+		.headerBlock{
+
+			width: 250px;
+
+			text-align: left!important;
+
+		}
+
+		.tableFixHead thead th {
+
+			background: #ece0ff;
+
+    		color: #7a59ad;
+
+		}
+
+		.table-bordered th, .table-bordered td {
+		    border: 1px solid #c7c7c7;
+		}
+		
+		.caseNumhead::before {
+		  left:85px;
+		}
+		.caseNumhead::after {
+		  left:78px;
+		}
+		
+		#movementLogTable_wrapper tbody tr > :nth-child(1) {
+		  position: sticky;
+		  z-index:99;
+		  left:0;
+		}
+		
+		.tabulator .tabulator-header [tabulator-field="id"]{
+		  position: sticky;
+		  z-index:5;
+		  left:0;
+		}
+		.tabulator .tabulator-header [tabulator-field="lastName"]{ 
+		  position: sticky;
+		  z-index:5;
+		  left:70px;
+		}
+		.tabulator .tabulator-header [tabulator-field="firstName"]{ 
+		  position: sticky;
+		  z-index:5;
+		  left:190px;
+		}
+		.tabulator .tabulator-header [tabulator-field="mi"]{ 
+		  position: sticky;
+		  z-index:5;
+		  left:290px;
+		}
+		.tabulator .tabulator-header [tabulator-field="suffix"]{ 
+		  position: sticky;
+		  z-index:5;
+		  left:340px;
+		}
+		
+		.tabulator-header{
+			z-index: 2;
+		}
+		
+		.tabulator-row-odd [tabulator-field="id"]{
+			background-color: #fff;
+		}
+		.tabulator-row-odd [tabulator-field="lastName"]{
+			background-color: #fff;
+		}
+		.tabulator-row-odd [tabulator-field="firstName"]{
+			background-color: #fff;
+		}
+		.tabulator-row-odd [tabulator-field="mi"]{
+			background-color: #fff;
+		}
+		.tabulator-row-odd [tabulator-field="suffix"]{
+			background-color: #fff;
+		}
+		.tabulator-row-even [tabulator-field="id"]{
+			background-color: #f7f4fd;
+		}
+		.tabulator-row-even [tabulator-field="lastName"]{
+			background-color: #f7f4fd;
+		}
+		.tabulator-row-even [tabulator-field="firstName"]{
+			background-color: #f7f4fd;
+		}
+		.tabulator-row-even [tabulator-field="mi"]{
+			background-color: #f7f4fd;
+		}
+		.tabulator-row-even [tabulator-field="suffix"]{
+			background-color: #f7f4fd;
+		}
+		
+		.tabulator-row-odd:hover [tabulator-field="id"]{
+
+			background-color: #c9d3ff;
+
+		}
+
+		.tabulator-row-odd:hover [tabulator-field="lastName"]{
+
+			background-color: #c9d3ff;
+
+		}
+
+		.tabulator-row-odd:hover [tabulator-field="firstName"]{
+
+			background-color: #c9d3ff;
+
+		}
+
+		.tabulator-row-odd:hover [tabulator-field="mi"]{
+
+			background-color: #c9d3ff;
+
+		}
+
+		.tabulator-row-odd:hover [tabulator-field="suffix"]{
+
+			background-color: #c9d3ff;
+
+		}
+
+		.tabulator-row-even:hover [tabulator-field="id"]{
+
+			background-color: #c9d3ff;
+
+		}
+
+		.tabulator-row-even:hover [tabulator-field="lastName"]{
+
+			background-color: #c9d3ff;
+
+		}
+
+		.tabulator-row-even:hover [tabulator-field="firstName"]{
+
+			background-color: #c9d3ff;
+
+		}
+
+		.tabulator-row-even:hover [tabulator-field="mi"]{
+
+			background-color: #c9d3ff;
+
+		}
+
+		.tabulator-row-even:hover [tabulator-field="suffix"]{
+
+			background-color: #c9d3ff;
+
+		}
+		
+		
+		.tabulator-row-even [tabulator-field="id"]{
+
+			background-color: #ededed;
+
+		}
+
+		.tabulator-row-even [tabulator-field="lastName"]{
+
+			background-color: #ededed;
+
+		}
+
+		.tabulator-row-even [tabulator-field="firstName"]{
+
+			background-color: #ededed;
+
+		}
+
+		.tabulator-row-even [tabulator-field="mi"]{
+
+			background-color: #ededed;
+
+		}
+
+		.tabulator-row-even [tabulator-field="suffix"]{
+
+			background-color: #ededed;
+
+		}
+		
+		.tabulator-row [tabulator-field="id"]{
+			position: sticky;
+			z-index:5;
+			left:0;
+		}
+		
+		.tabulator-row [tabulator-field="lastName"]{
+			position: sticky;
+			z-index:5;
+			left:70px;
+		}
+		
+		.tabulator-row [tabulator-field="firstName"]{ 
+		  position: sticky;
+		  z-index:5;
+		  left:190px;
+		}
+		.tabulator-row [tabulator-field="mi"]{ 
+		  position: sticky;
+		  z-index:5;
+		  left:290px;
+		}
+		.tabulator-row [tabulator-field="suffix"]{ 
+		  position: sticky;
+		  z-index:5;
+		  left:340px;
+		}
+		
+		.tabulator-cell{
+			z-index: 2;
+		}
+		
+		#movementLogTable_wrapper .dataTables_scrollHead{
+			width: 101%!important;
+		}
+		
+
+		#movementLogTable_wrapper tbody tr > :nth-child(2) {
+		  background-color: #f3f3f3;
+		  position: sticky;
+		  z-index:99;
+		  left:100px;
+		  border-left: .5px solid #c7c7c7;
+		}
+		
+		.dataTables_scrollBody{
+			width: 102% !important;
+		}
+		.dataTables_scroll {
+			margin-right: 10px;
+		}
+		#movementLogTable_wrapper .row:first-child{
+			margin-bottom: 0!important;
+		}
+			 .HousingDetailsnone {
+  pointer-events: none;
+     }
+     
+     .tabulator-placeholder-contents{
+     	text-align: left !important;
+     	    left: -100px;
+          position: relative;
+     }
+     
+     .floatingFields .form-control:disabled, .form-control[readonly] {
+    color: #000;
+	}
+	
+	  .custom-tooltip {
+      position: absolute;
+      background-color: #fff;
+      border: 1px solid #8f8f8f;
+      color: #000;
+      padding: 5px;
+      border-radius: 0px;
+      font-size: 12px;
+      white-space: nowrap;
+      pointer-events: none;
+      display: none;
+      z-index: 9999;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+    
+    .criteriaSidebar .floatingFields input:focus + .criteriaSidebarlabel, .floatingFields input:not(:placeholder-shown) + .criteriaSidebarlabel{
+		background: #ece0ff!important;
+	}
+	
+	.form-group.focused .selectFloating{
+		background: #ece0ff!important;
+		left: -5px;
+	}
+	
+	@media screen and (max-width: 1024px) {
+	    .page-content-wrapper {
+	        margin-top: 0 !important;
+	    }
+	}
+    
+	</style>
+
+	<div th:replace="~{fragments/script :: script}"></div>
+	<script>
+		$(document).ready(function () {
+			
+			
+			
+			$(function () {
+				$('.select2').select2();
+
+				$(".select2-placeholder-multiple").select2(
+					{
+						placeholder: "Select State"
+					});
+				$(".js-hide-search").select2(
+					{
+						minimumResultsForSearch: 1 / 0
+					});
+				$(".js-max-length").select2(
+					{
+						maximumSelectionLength: 2,
+						placeholder: "Select maximum 2 items"
+					});
+				$(".select2-placeholder").select2(
+					{
+						placeholder: "Select a state",
+						allowClear: true
+					});
+
+
+
+				$(".js-select2-icons").select2(
+					{
+						minimumResultsForSearch: 1 / 0,
+						templateResult: icon,
+						templateSelection: icon,
+						escapeMarkup: function (elm) {
+							return elm
+						}
+					});
+
+				function icon(elm) {
+					elm.element;
+					return elm.id ? "<i class='" + $(elm.element).data("icon") + " mr-2'></i>" + elm.text : elm.text
+				}
+
+				$(".js-data-example-ajax").select2(
+					{
+						ajax:
+						{
+							url: "https://api.github.com/search/repositories",
+							dataType: 'json',
+							delay: 250,
+							data: function (params) {
+								return {
+									q: params.term, // search term
+									page: params.page
+								};
+							},
+							processResults: function (data, params) {
+								// parse the results into the format expected by Select2
+								// since we are using custom formatting functions we do not need to
+								// alter the remote JSON data, except to indicate that infinite
+								// scrolling can be used
+								params.page = params.page || 1;
+
+								return {
+									results: data.items,
+									pagination:
+									{
+										more: (params.page * 30) < data.total_count
+									}
+								};
+							},
+							cache: true
+						},
+						placeholder: 'Search for a repository',
+						escapeMarkup: function (markup) {
+							return markup;
+						}, // let our custom formatter work
+						minimumInputLength: 1,
+						templateResult: formatRepo,
+						templateSelection: formatRepoSelection
+					});
+
+				function formatRepo(repo) {
+					if (repo.loading) {
+						return repo.text;
+					}
+
+					var markup = "<div class='select2-result-repository clearfix d-flex'>" +
+						"<div class='select2-result-repository__avatar mr-2'><img src='" + repo.owner.avatar_url + "' class='width-2 height-2 mt-1 rounded' /></div>" +
+						"<div class='select2-result-repository__meta'>" +
+						"<div class='select2-result-repository__title fs-lg fw-500'>" + repo.full_name + "</div>";
+
+					if (repo.description) {
+						markup += "<div class='select2-result-repository__description fs-xs opacity-80 mb-1'>" + repo.description + "</div>";
+					}
+
+					markup += "<div class='select2-result-repository__statistics d-flex fs-sm'>" +
+						"<div class='select2-result-repository__forks mr-2'><i class='fal fa-lightbulb'></i> " + repo.forks_count + " Forks</div>" +
+						"<div class='select2-result-repository__stargazers mr-2'><i class='fal fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+						"<div class='select2-result-repository__watchers mr-2'><i class='fal fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+						"</div>" +
+						"</div></div>";
+
+					return markup;
+				}
+
+				function formatRepoSelection(repo) {
+					return repo.full_name || repo.text;
+				}
+
+			});
+		});
+		
+		
+		$(document).ready(function() {
+			/* var input = document.getElementById('SBINUMBER');
+			input.focus();
+			input.select(); */
+			/* autoSelectValue();
+			$(function autoSelectValue() {
+				  $('#SBINUMBER').focus().select();
+				}); */
+				
+				
+				
+			   $('#SBINUMBER').on('input', function() {
+      	    	 this.value = this.value.replace(/[^a-zA-Z0-9]/g, '').substring(0, 8);
+      	    	 console.log('SBI INput');
+      	    }); 
+			   
+			   
+			
+			var date = new Date();
+			  var Todaysdate = convertToMMDDYYYY(date);
+			  console.log("Today date"+Todaysdate);
+			  $('#TodayDate').val(Todaysdate);
+
+	
+
+			  function convertToMMDDYYYY(dateString) {
+				  if (dateString) {
+				    const date = new Date(dateString);
+				    const formattedMonth = String(date.getUTCMonth() + 1).padStart(2, '0');
+				    const formattedDay = String(date.getUTCDate()).padStart(2, '0');
+				    const formattedYear = date.getUTCFullYear();
+				    return `${formattedMonth}/${formattedDay}/${formattedYear}`;
+				  }
+				  return '';
+				}
+			
+			$.ajax({
+		        url: 'Facility',
+		        method: 'GET', 
+		        success: function(response) {
+		        	
+		        	console.log('Facility='+response);
+		        	$.each(response, function(index, item) {
+		        		$('#Facility').append(`
+		        				<option data-value="${item.inst_NUM}">${item.inst_NAME}</option>
+		        		
+		        		`);
+		        	});
+		        	
+		        },
+		        
+		        error: function(xhr, status, error) {
+		            console.error('Error:', error);
+		          }
+		       });
+			
+			  $('#Facility').on('change', function() {
+		            const selectedOption = $(this).find(':selected');
+		            const instNum = selectedOption.data('value');
+		            console.log('selectedOption='+selectedOption);
+		            $('label[for="Facility"]').show();
+		            console.log('instNum='+instNum);
+		            Location(instNum);
+		            
+		        }); 
+			
+			$.ajax({
+		        url: 'MOV_LOSC_Activity_Type',
+		        method: 'GET', 
+		        success: function(response) {
+		        	
+		        	console.log('ActivityType='+response);
+		        	$.each(response, function(index, item) {
+		        		console.log('InstName'+item.inst_NAME)
+		        		$('#ActivityTypeValues').append(`
+		        				<option data-value="${item.activity_TYPE_CODE}">${item.activity_TYPE_DESC}</option>
+		        		
+		        		`);
+		        	});
+		        	
+		        },
+		        
+		        error: function(xhr, status, error) {
+		            console.error('Error:', error);
+		          }
+		       });
+			
+			$('#ActivityTypeValues').on('change', function() {
+	            $('label[for="ActivityTypeValues"]').show();
+	        }); 
+			
+			function Location(instNum){
+			$.ajax({
+		        url: 'MOV_LOSC_Originating_Location',
+		        method: 'GET', 
+		        data: {
+		        	instNum: instNum
+				},
+		        success: function(response) {
+		        	 $('.DropdownDisable').empty();
+		        	 $('#OriginatingLocationValues').append(`
+		        				<option data-value="">Originating Location</option>
+		        		
+		        		`);
+					 $('#DestinationValues').append(`
+		        				<option data-value="">Destination</option>
+		        		
+		        		`);
+		        	$.each(response, function(index, item) {
+		        		
+		        		$('.OriginatingLocationValues').append(`
+		        				<option data-value="${item.count_LOC_CODE}">${item.count_LOC_DESC}</option>
+		        		
+		        		`);
+		        	});
+		        	
+		        },
+		        
+		        error: function(xhr, status, error) {
+		            console.error('Error:', error);
+		          }
+		       });
+			}
+			
+			$('#OriginatingLocationValues').on('change', function() {
+	            $('label[for="OriginatingLocationValues"]').show();
+	        }); 
+			
+			$('#DestinationValues').on('change', function() {
+	            $('label[for="DestinationValues"]').show();
+	        }); 
+			
+			function OffenderHousingDetails(SbiNumber,InstNum){
+				$.ajax({
+			        url: 'MOV_LOSC_OFFENDER_HOUSING_DETAILS',
+			        method: 'GET', 
+			        data: {
+			        	SBi: SbiNumber,
+			        	ivc_inst_num: InstNum
+					},
+			        success: function(response) {
+			        
+			        	
+			        	$('#BuildingOHD').val(response.ovc_bld);
+			        	$('#UnitOHD').val(response.ovc_unit);
+			        	$('#FloorOHD').val(response.ovc_floor);
+			        	$('#TierOHD').val(response.ovc_tier);
+			        	$('#CellOHD').val(response.ovc_cell);
+			        	$('#BedOHD').val(response.ovc_bed);
+			        	
+			        },
+			        
+			        error: function(xhr, status, error) {
+			            console.error('Error:', error);
+			          }
+			       });
+			}
+			
+			 $(document).on('click', '#ok_btn', function (e) {
+				 var valueFocus=$('#focusingTheValue').val();
+			 	 var valueFousNumber=document.querySelector('#focusingTheValue').getAttribute('data-focusNumber');
+				 if(valueFousNumber==2){
+					 document.getElementById(valueFocus).value = "";
+					 document.getElementById(valueFocus).focus();
+					 console.log("valueFocusifpart="+valueFocus+' '+valueFousNumber);
+				 }else if(valueFousNumber==1){
+					 document.getElementById(valueFocus).focus(); 
+					 console.log("valueFocuselsepart="+valueFocus);
+			 }
+				}); 
+			
+			function MovementLogTable(SbiNumber,InstNum,ActivityNo,OriginatingLocation,Destination,FromDate,ToDate,FromTime,ToTime,NameORSbi,Order){
+
+				 $.ajax({
+								        url: 'MOV_LOSC_Tablec',
+								        method: 'GET', 
+								        data: {
+											IOVC_SBI_NO: SbiNumber,
+											IOVC_INST_NUM: InstNum,
+											IOVC_ACTVY_TYP_CD: ActivityNo,
+											IOVC_DEPART_LOC: OriginatingLocation,
+											IOVC_ARRIV_LOC: Destination,
+											IOVC_DATE_FROM: FromDate,
+											IOVC_DATE_TO: ToDate,
+											ivc_from_time: FromTime,
+											ivc_to_time: ToTime,
+											ivc_order_by: NameORSbi,
+											inu_asc_desc: Order
+										},
+										
+								        success: function(response) {
+								        	 var responsevalue=response[0];
+								        	 var responseValueValid=responsevalue.ValidSBI;
+								        	 var Responsevaluedata=responsevalue.data;
+								        	 var validsbi=responseValueValid.length
+								  
+								        	 function returnDataValues(){
+								        		  tabledatamovementlog=[];
+											       // 	console.log('Facility='+response.length);
+											        	$.each(Responsevaluedata, function(index, item) {
+											        		
+											        		var DepartedUser=item["A.USER_LAST_NAME||''||A.USER_FIRST_NAME||''||A.USER_MID_NAME||''||A.USER_SUFFIX_NAME"];
+											        		
+											        		var ActivityType=item["DECODE(IML.MOVEMENT_TYPE,'H','HOUSING','R','INSTITUTIONALRELEASE','O','OTHER','OTHER')"];
+											        		
+											        		var ArrivedUser=item["B.USER_LAST_NAME||''||B.USER_FIRST_NAME||''||B.USER_MID_NAME||''||B.USER_SUFFIX_NAME"];
+											        		
+											        		
+											        		
+											        		if(item.OFFENDER_SUFFIX_NAME===null){
+								                        		item.OFFENDER_SUFFIX_NAME="";
+								    				        	 
+								    				         }
+											        		if(item.OFFENDER_MI_NAME===null){
+								                        		item.OFFENDER_MI_NAME="";
+								    				        	 
+								    				         }
+											        		if(item.INST_NM===null){
+								                        		item.INST_NM="";
+								    				        	 
+								    				         }
+											        		if(item.OFFENDER_LAST_NAME===null){
+								                        		item.OFFENDER_LAST_NAME="";
+								    				        	 
+								    				         }
+											        		if(item.OFFENDER_FIRST_NAME===null){
+								                        		item.OFFENDER_FIRST_NAME="";
+								    				        	 
+								    				         }
+											        		if(item.SBI_NO===null){
+								                        		item.SBI_NO="";
+								    				        	 
+								    				         }
+											        		if(item.ORIG_LOC===null){
+								                        		item.ORIG_LOC="";
+								    				        	 
+								    				         }
+											        		if(item.ARRIV_TIME===null){
+								                        		item.ARRIV_TIME="";
+								    				        	 
+								    				         }
+											        		
+											        		if(ActivityType===null){
+											        			ActivityType="";
+								    				        	 
+								    				         }
+											        		
+											        		if(ArrivedUser===null){
+											        			ArrivedUser="";
+								    				        	 
+								    				         }
+											        		
+											        		if(item.COMMENTS===null){
+											        			item.COMMENTS="";
+								    				        	 
+								    				         }
+											        		
+											        		var DepartDate = convertToMMDDYYYY(item.DEPART_DATE)
+											        		var ArrivDate = convertToMMDDYYYY(item.ARRIV_DATE)
+											        		
+											        		if(DepartDate===null){
+											        			DepartDate="";
+								    				        	 
+								    				         }
+											        		
+											        		if(ArrivDate===null){
+											        			ArrivDate="";
+								    				        	 
+								    				         }
+											        		
+											        		if(DepartedUser===null){
+											        			DepartedUser="";
+								    				        	 
+								    				         }
+											        		if(item.DESTINATION===null){
+											        			item.DESTINATION="";
+								    				        	 
+								    				         }
+											        		
+											        		tabledatamovementlog.push({
+											        			id: item.SBI_NO,
+											        			lastName: item.OFFENDER_LAST_NAME,
+											        			firstName: item.OFFENDER_FIRST_NAME,
+											        			mi: item.OFFENDER_MI_NAME,
+											        			suffix: item.OFFENDER_SUFFIX_NAME,
+											        			originatingLocation: item.ORIG_LOC,
+											        			departedUser: formatName(DepartedUser),
+											        			departDate: DepartDate,
+											        			departtime: item.DEPART_TIME,
+											        			destination: item.DESTINATION,
+											        			arrivedUser: formatName(ArrivedUser),
+											        			activityType: ActivityType,
+											        			arrivedDate: ArrivDate,
+											        			arrivedtime: item.ARRIV_TIME,
+											        			facility: item.INST_NM,
+											        			COMMENTS: item.COMMENTS,
+											        			INST_NO: item.INST_NO
+											        		    });
+											        		
+											        	
+											    	   
+											        	});
+											        	
+											        	if(Responsevaluedata.length<=9){
+											        		var tabledatasearchExtra=[];
+											        		var Dlength=Responsevaluedata.length
+											        		var numRecords=9;
+											        		var extraRecord=numRecords-Dlength;
+											    	        var tabledatasearchExtra = Array.from({ length: extraRecord }, () => ({
+											    	        	lastName: "",
+											        		    firstName: "",
+											        		    mi: "",
+											        		    suffix: "",
+											        		    originatingLocation: "",
+											        		    departedUser: "",
+											        		    departDate: "",
+											        		    departtime: "",
+											        		    destination: "",
+											        		    arrivedUser: "",
+											        		    activityType: "",
+											        		    arrivedDate: "",
+											        		    arrivedtime: "",
+											        		    facility: "",
+											   		        }));
+											   		        	
+											    	        tabledatamovementlog=tabledatamovementlog.concat(tabledatasearchExtra); 
+											        	}
+											        	
+											        	   table.setData(tabledatamovementlog);
+								        	  }
+								   
+								        	   
+								        	   if(responseValueValid=='N'){
+								        		   $('#focusingTheValue').val('SBINUMBER');
+									        	   $('#focusingTheValue').attr('data-focusNumber', '2');
+								        	       message('CUW','Invalid SBI, enter the valid SBI.',0);
+								        		   returnDataValues();
+								        		  console.log("validsbi1="+validsbi);
+								        	 }else if(Responsevaluedata.length===0 && validsbi>2){
+								        		 $('#focusingTheValue').val('');
+									        	 $('#focusingTheValue').attr('data-focusNumber', '0');
+									        	 message('CUW','No records found.',0);
+								        		/*  $('#SBINUMBER').val(responseValueValid);
+								        		 message('CUW','The SBI #you entered has a hard SBI# '+responseValueValid+' Please make a note of it.',0); */
+								        		 returnDataValues();
+								        		 console.log("validsbi2="+validsbi);
+								        	 }else if(validsbi>2){
+								        		 $('#focusingTheValue').val('');
+									        	 $('#focusingTheValue').attr('data-focusNumber', '0');
+								        		 $('#SBINUMBER').val(responseValueValid);
+								        		 message('CUW','The SBI #you entered has a hard SBI# '+responseValueValid+' Please make a note of it.',0);
+								        		 returnDataValues();
+								        		 console.log("validsbi2="+validsbi);
+								        	 }else if(Responsevaluedata.length===0 && responseValueValid=='F'){
+								        		 $('#focusingTheValue').val('SBINUMBER');
+									        	 $('#focusingTheValue').attr('data-focusNumber', '1'); 
+									        	 message('CUW','No records found.',0);
+								        		 returnDataValues();
+								        		 console.log("validsbi6="+validsbi); 
+								        	 }else if(responseValueValid=='F'){
+								        		 returnDataValues();
+								        		 $('#focusingTheValue').val('');
+									        	 $('#focusingTheValue').attr('data-focusNumber', '0');
+								        		 console.log("validsbi3="+validsbi); 
+								        	 }else if(Responsevaluedata.length===0 && responseValueValid==='Y'){
+								        		 $('#focusingTheValue').val('SBINUMBER');
+									        	 $('#focusingTheValue').attr('data-focusNumber', '1'); 
+									        	 message('CUW','No records found.',0);
+								        		 returnDataValues();
+								        		 console.log("validsbi5="+Responsevaluedata.length);
+								        	 }else if(responseValueValid==='Y'){
+								        		 returnDataValues();
+								        		 $('#focusingTheValue').val('');
+									        	 $('#focusingTheValue').attr('data-focusNumber', '0');
+								        		 console.log("validsbi4="+validsbi);
+								        	 }
+								        		 
+								        	 
+								        	 
+								        	
+								        /* 	if(response.length<=9){
+								        		var tabledatasearchExtra=[];
+								        		var Dlength=response.length
+								        		var numRecords=9;
+								        		var extraRecord=numRecords-Dlength;
+								    	        var tabledatasearchExtra = Array.from({ length: extraRecord }, () => ({
+								    	        	lastName: "",
+								        		    firstName: "",
+								        		    mi: "",
+								        		    suffix: "",
+								        		    originatingLocation: "",
+								        		    departedUser: "",
+								        		    departDate: "",
+								        		    departtime: "",
+								        		    destination: "",
+								        		    arrivedUser: "",
+								        		    activityType: "",
+								        		    arrivedDate: "",
+								        		    arrivedtime: "",
+								        		    facility: "",
+								   		        }));
+								   		        	
+								    	        tabledatamovementlog=tabledatamovementlog.concat(tabledatasearchExtra); 
+								        	} */
+								    	     
+								        	//	MovementTablevalues(tabledatamovementlog);
+								        		
+								        	/* 	var firstBedRow = $('MovTableVal').first(); 
+								  		           if (firstBedRow.length > 0) {
+								  		               firstBedRow.trigger('click'); 
+								  		               console.log('Hi values clicked');
+								  		           } */
+								  		         
+								         //   }
+								        },
+								        complete: function (response){
+					       		        	setTimeout(function (){
+					       		        		loader(0);
+					       		        	},1500)
+					       		        },
+								        error: function(xhr, status, error) {
+								        	 loader(0);
+								        	console.error('Error:', error);
+								          }
+								       });  
+
+				                    }
+			
+			
+			 document.getElementById('clearButton').addEventListener('click', function() {
+				 
+				 document.querySelectorAll('.MoveMentLogvalueclear').forEach(function(element) {
+	        	        element.value = '';
+	        	    });
+				 
+				 $('.DropdownDisable').empty();
+				 $('.selectFloating').hide();
+				 $('#OriginatingLocationValues').append(`
+	        				<option data-value="">Originating Location</option>
+	        		
+	        		`);
+				 $('#DestinationValues').append(`
+	        				<option data-value="">Destination</option>
+	        		
+	        		`);
+				 tabledatamovementlog=[];
+				 var numRecords=9;
+				 tabledatamovementlog = Array.from({ length: numRecords }, () => ({
+	    	        	lastName: "",
+	        		    firstName: "",
+	        		    mi: "",
+	        		    suffix: "",
+	        		    originatingLocation: "",
+	        		    departedUser: "",
+	        		    departDate: "",
+	        		    departtime: "",
+	        		    destination: "",
+	        		    arrivedUser: "",
+	        		    activityType: "",
+	        		    arrivedDate: "",
+	        		    arrivedtime: "",
+	        		    facility: "",
+	   		        }));
+				 $('#SBINUMBER').focus();
+				 table.setData(tabledatamovementlog);
+	        
+				 
+			 });
+			 
+			 
+			 $('#SBINUMBER').on('keydown', function(event) {
+     	        if (event.keyCode === 13|| event.keyCode === 9) {	 
+     	            event.preventDefault();
+     	            $('#SelectButton').trigger('click');
+     	        }
+     	    });
+			 
+		/* 	 document.getElementById('DateTovalue').addEventListener('change', function() {
+				 var FromDate=$('#DateFromvalue').val()
+		            const selectedDate = new Date(this.value);
+		            const today = new Date();
+		            today.setHours(0, 0, 0, 0); 
+
+		            if (selectedDate > today) {
+		            	 message('CUW','Please Enter ID or Facility.',0);
+		            }
+		        }); */
+			 
+		        const today = new Date();
+		        const todayString = today.toISOString().split('T')[0]; // Format as YYYY-MM-DD
+
+		        document.getElementById('DateFromvalue').setAttribute('max', todayString);
+		        document.getElementById('DateTovalue').setAttribute('max', todayString);
+		        $(document).on('keydown', function(event) {
+		            if (event.key === "Enter" || event.keyCode === 13) {			           
+		                if ($('#ok_btn').is(':visible')) {
+		                    $('#ok_btn').click();
+		                }
+		            }
+		        });
+		        
+		        function convertDateFormat(dateString) {
+		    		// If the dateString is an array (multiple dates)
+		    		if (Array.isArray(dateString)) {
+		    			return dateString
+		    				.map(date => {
+		    					if (date.trim() === '') {
+		    						return '';  // Return empty string for empty date entries
+		    					}
+
+		    					const parts = date.split('/');
+		    					if (parts.length === 3) {
+		    						const [month, day, year] = parts;
+		    						return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+		    					}
+
+		    					return '';  // Return empty string if format is incorrect
+		    				})
+		    				.join(','); // Join multiple dates with a comma if needed
+		    		} 
+		    		// If it's a single date (comma-separated)
+		    		else {
+		    			const parts = dateString.split(',');
+		    			return parts
+		    				.map(date => {
+		    					if (date.trim() === '') {
+		    						return '';  // Return empty string for empty date entries
+		    					}
+
+		    					const [month, day, year] = date.split('/');
+		    					return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+		    				})
+		    				.join(','); // Join multiple dates with a comma if needed
+		    		}
+		    	}
+		        
+			 $('#SelectButton').on('click', function(e) {
+				 console.log('select buttons works')
+				 
+                 var SbiNumber=$('#SBINUMBER').val() || null;
+                 var FD=$('#DateFromvalue').val();
+                 var FD1=convertDateFormat(FD);
+                 var FromDate= FD1 || "1900-01-01";
+                 var TD= $('#DateTovalue').val();
+                 var TD1 = convertDateFormat(TD);
+                 var ToDate= TD1 || "3000-12-31";
+                 
+                 var FromTime=$('#TimeFromvalue').val() || null;
+                 
+                 var ToTime=$('#TimeTovalue').val() || null;
+				 
+				 var InstNum=$('#Facility').find(':selected').data('value') || null;
+				 
+				 var ActivityNo=$('#ActivityTypeValues').find(':selected').data('value') || null;
+				 
+				 var OriginatingLocation=$('#OriginatingLocationValues').find(':selected').data('value') || null;
+				 
+				 var Destination=$('#DestinationValues').find(':selected').data('value') || null;
+				 
+                 var NameORSbi=$('input[name="NameSBIRadio"]:checked').val();
+				 
+				 var Order=$('input[name="OrderinRadio"]:checked').val();
+				 
+				
+				 $('#SelectButton').prop('disabled', true);
+				  
+				  if(!SbiNumber && !InstNum){
+		                message('CUW','Please enter ID# or Facility.',0);
+		                $('#focusingTheValue').val('SBINUMBER');
+		        		$('#focusingTheValue').attr('data-focusNumber', '1'); 
+		                $('#SelectButton').prop('disabled', false);
+				 }
+				   else if(!SbiNumber && InstNum && ((FromDate=="1900-01-01")&&(ToDate=="3000-12-31"))){
+					   $('#focusingTheValue').val('SBINUMBER');
+		        		$('#focusingTheValue').attr('data-focusNumber', '1');    
+					   message('CUW','Please enter ID# or fill date .',0);
+			                $('#SelectButton').prop('disabled', false);
+			                
+					 } 
+				else{
+					  
+					loader(1);
+					 MovementLogTable(SbiNumber,InstNum,ActivityNo,OriginatingLocation,Destination,FromDate,ToDate,FromTime,ToTime,NameORSbi,Order)
+					  OffenderHousingDetails(SbiNumber,InstNum);
+					 $('#SelectButton').prop('disabled', false);
+					 
+				 }
+
+				
+			 });
+			
+			/* 	$(document).on('click', '.OFHI', function (e) {
+					
+					e.preventDefault();
+					var $row = $(this).closest('tr');
+					const SbiNumber = $row.attr('data-Sbi-type');
+					const InstNum = $row.attr('data-FacilityNo-type');
+					var Comments =$row.attr('data-COMMENTS-type');
+					
+					console.log('SbiNo='+Comments+' '+InstNum+' '+SbiNumber);
+			 
+					OffenderHousingDetails(SbiNumber,InstNum);
+					
+					$('#addComments').val(Comments);
+				
+				});  */
+			 $(document).on('click', '.MovTableVal', function (e) {
+				    e.preventDefault();
+
+				    var $div = $(this);
+		            
+				    var SbiNumber = $div.attr('data-Sbi-type');
+				    var InstNum = $div.attr('data-FacilityNo-type');
+					var Comments =$div.attr('data-COMMENTS-type');
+				    OffenderHousingDetails(SbiNumber,InstNum);
+		 		    $('#addComments').val(Comments);
+				    console.log('Message=' + SbiNumber);
+				});
+		});
+		
+		$(document).ready(function() {
+			// initialize datatable
+			$('#movementLogTable').dataTable({
+				scrollX: true,
+				scrollY: '300px',
+	            scrollCollapse: true,
+	            paging: false,
+	            searching: false,
+	            ordering: true,
+	            showNEntries: false,
+	            info: false,
+			});
+		});
+		
+	 	function customSorter(a, b, aRow, bRow, column, dir) {
+		      const emptyA = (a === null || a === undefined || a === "");
+		      const emptyB = (b === null || b === undefined || b === "");
+
+		      if (emptyA && emptyB) return 0;
+		      if (emptyA) return dir === "asc" ? 1 : -1;
+		      if (emptyB) return dir === "asc" ? -1 : 1;
+
+		      if (typeof a === "boolean" && typeof b === "boolean") {
+		        return a === b ? 0 : a ? 1 : -1;
+		      }
+
+		      if (!isNaN(a) && !isNaN(b)) {
+		        return Number(a) - Number(b);
+		      }
+
+		      return String(a).localeCompare(String(b));
+		    } 
+	 	
+	 	 function showCustomTooltip(e, cell, html) {
+	 	    const tooltip = document.getElementById("custom-tooltip");
+	 	    tooltip.innerHTML = html;
+	 	    tooltip.style.display = "block";
+	 	    tooltip.style.top = (e.clientY + 15) + "px";
+	 	    tooltip.style.left = (e.clientX + 15) + "px";
+	 	  }
+
+	 	  function moveCustomTooltip(e) {
+	 	    const tooltip = document.getElementById("custom-tooltip");
+	 	    tooltip.style.top = (e.clientY + 15) + "px";
+	 	    tooltip.style.left = (e.clientX + 15) + "px";
+	 	  }
+
+	 	  function hideCustomTooltip() {
+	 	    const tooltip = document.getElementById("custom-tooltip");
+	 	    tooltip.style.display = "none";
+	 	  }
+		
+		 var tabledatamovementlog = []; 
+		 var numRecords=9;
+		 tabledatamovementlog = Array.from({ length: numRecords }, () => ({
+	        	lastName: "",
+    		    firstName: "",
+    		    mi: "",
+    		    suffix: "",
+    		    originatingLocation: "",
+    		    departedUser: "",
+    		    departDate: "",
+    		    departtime: "",
+    		    destination: "",
+    		    arrivedUser: "",
+    		    activityType: "",
+    		    arrivedDate: "",
+    		    arrivedtime: "",
+    		    facility: "",
+		        }));
+	//	MovementTablevalues(tabledatamovementlog);
+		
+	//	function MovementTablevalues(tabledatamovementlog){
+		var table = new Tabulator("#movementlog-table", {
+		  layout: "fitColumns",
+		/*   placeholder: "No Data Available", */
+		  data: tabledatamovementlog,
+		  height: '250px',
+		  printAsHtml: true,
+		  printStyled: true,
+		  columns: [
+		  	{
+			titleFormatter: (column) => setTitleDesc(column, 'Table_ID', 'ID#'),
+			headerTooltip:"ID#",
+				field: "id",
+				sorter: customSorter,
+				cellMouseOver: function (e, cell) {
+			          const data = cell.getRow().getData();
+			          if (data.id) {
+			              showCustomTooltip(e, cell, `${data.id}`);
+			            }
+			        },
+			        cellMouseMove: moveCustomTooltip,
+			        cellMouseOut: hideCustomTooltip,
+				width:	70,
+			},
+			{
+				title: 'upd',
+				visible: false,
+				field: "upd",
+			},
+			{
+				title: 'rowid',
+				visible: false,
+				field: "rowid",
+			},
+			{
+				titleFormatter: (column) => setTitleDesc(column, 'Offender_Last_Name', 'Last Name'),
+				headerTooltip:"Last Name",
+				field: "lastName",
+				sorter: customSorter,
+				cellMouseOver: function (e, cell) {
+			          const data = cell.getRow().getData();
+			          if (data.lastName) {
+			              showCustomTooltip(e, cell, `${data.lastName}`);
+			            }
+			        },
+			        cellMouseMove: moveCustomTooltip,
+			        cellMouseOut: hideCustomTooltip,
+				width:	120,
+			},
+			{
+				titleFormatter: (column) => setTitleDesc(column, 'First_Name', 'First Name'),
+				headerTooltip:"First Name",
+				field: "firstName",
+				sorter: customSorter,
+				cellMouseOver: function (e, cell) {
+			          const data = cell.getRow().getData();
+			          if (data.firstName) {
+			              showCustomTooltip(e, cell, `${data.firstName}`);
+			            }
+			        },
+			        cellMouseMove: moveCustomTooltip,
+			        cellMouseOut: hideCustomTooltip,
+				width:	100,
+			},
+			{
+				titleFormatter: (column) => setTitleDesc(column, 'MI', 'MI'),
+				headerTooltip:"MI",
+				field: "mi",
+				sorter: customSorter,
+				cellMouseOver: function (e, cell) {
+			          const data = cell.getRow().getData();
+			          if (data.mi) {
+			              showCustomTooltip(e, cell, `${data.mi}`);
+			            }
+			        },
+			        cellMouseMove: moveCustomTooltip,
+			        cellMouseOut: hideCustomTooltip,
+				width:	50,
+			},
+			{
+				titleFormatter: (column) => setTitleDesc(column, 'Suffix', 'Suffix'),
+				headerTooltip:"Suffix",
+				field: "suffix",
+				sorter: customSorter,
+				cellMouseOver: function (e, cell) {
+			          const data = cell.getRow().getData();
+			          if (data.suffix) {
+			              showCustomTooltip(e, cell, `${data.suffix}`);
+			            }
+			        },
+			        cellMouseMove: moveCustomTooltip,
+			        cellMouseOut: hideCustomTooltip,
+				width:	70,
+			},
+			{
+				titleFormatter: (column) => setTitleDesc(column, 'Originating_Location', 'Originating Location'),
+				headerTooltip:"Originating Location",
+				field: "originatingLocation",
+				sorter: customSorter,
+				cellMouseOver: function (e, cell) {
+			          const data = cell.getRow().getData();
+			          if (data.originatingLocation) {
+			              showCustomTooltip(e, cell, `${data.originatingLocation}`);
+			            }
+			        },
+			        cellMouseMove: moveCustomTooltip,
+			        cellMouseOut: hideCustomTooltip,
+				width:	150,
+			},
+			{
+				titleFormatter: (column) => setTitleDesc(column, 'Departed_User', 'Departed User'),
+				headerTooltip:"Departed User",
+				field: "departedUser",
+				sorter: customSorter,
+				cellMouseOver: function (e, cell) {
+			          const data = cell.getRow().getData();
+			          if (data.departedUser) {
+			              showCustomTooltip(e, cell, `${data.departedUser}`);
+			            }
+			        },
+			        cellMouseMove: moveCustomTooltip,
+			        cellMouseOut: hideCustomTooltip,
+				width:	150,
+			},
+			{
+				titleFormatter: (column) => setTitleDesc(column, 'Depart_Date', 'Depart Date'),
+				headerTooltip:"Depart Date",
+				field: "departDate",
+				sorter: customSorter,
+				cellMouseOver: function (e, cell) {
+			          const data = cell.getRow().getData();
+			          if (data.departDate) {
+			              showCustomTooltip(e, cell, `${data.departDate}`);
+			            }
+			        },
+			        cellMouseMove: moveCustomTooltip,
+			        cellMouseOut: hideCustomTooltip,
+				width:	95,
+			},
+			{
+				titleFormatter: (column) => setTitleDesc(column, 'Depart_Time', 'Depart Time'),
+				headerTooltip:"Depart Time",
+				field: "departtime",
+				sorter: customSorter,
+				cellMouseOver: function (e, cell) {
+			          const data = cell.getRow().getData();
+			          if (data.departtime) {
+			              showCustomTooltip(e, cell, `${data.departtime}`);
+			            }
+			        },
+			        cellMouseMove: moveCustomTooltip,
+			        cellMouseOut: hideCustomTooltip,
+				width:	100,
+			},
+			{
+				titleFormatter: (column) => setTitleDesc(column, 'Destination', 'Destination'),
+				headerTooltip:"Destination",
+				field: "destination",
+				sorter: customSorter,
+				cellMouseOver: function (e, cell) {
+			          const data = cell.getRow().getData();
+			          if (data.destination) {
+			              showCustomTooltip(e, cell, `${data.destination}`);
+			            }
+			        },
+			        cellMouseMove: moveCustomTooltip,
+			        cellMouseOut: hideCustomTooltip,
+				width:	150,
+			},
+			{
+				titleFormatter: (column) => setTitleDesc(column, 'Arrived_User', 'Arrived User'),
+				headerTooltip:"Arrived User",
+				field: "arrivedUser",
+				sorter: customSorter,
+				cellMouseOver: function (e, cell) {
+			          const data = cell.getRow().getData();
+			          if (data.arrivedUser) {
+			              showCustomTooltip(e, cell, `${data.arrivedUser}`);
+			            }
+			        },
+			        cellMouseMove: moveCustomTooltip,
+			        cellMouseOut: hideCustomTooltip,
+				width:	150,
+			},
+			{
+				titleFormatter: (column) => setTitleDesc(column, 'Activity_Type', 'Activity Type'),
+				headerTooltip:"Activity Type",
+				field: "activityType",
+				sorter: customSorter,
+				cellMouseOver: function (e, cell) {
+			          const data = cell.getRow().getData();
+			          if (data.activityType) {
+			              showCustomTooltip(e, cell, `${data.activityType}`);
+			            }
+			        },
+			        cellMouseMove: moveCustomTooltip,
+			        cellMouseOut: hideCustomTooltip,
+				width:	120,
+			},
+			{
+				titleFormatter: (column) => setTitleDesc(column, 'Arrived_Date', 'Arrived Date'),
+				headerTooltip:"Arrived Date",
+				field: "arrivedDate",
+				sorter: customSorter,
+				cellMouseOver: function (e, cell) {
+			          const data = cell.getRow().getData();
+			          if (data.arrivedDate) {
+			              showCustomTooltip(e, cell, `${data.arrivedDate}`);
+			            }
+			        },
+			        cellMouseMove: moveCustomTooltip,
+			        cellMouseOut: hideCustomTooltip,
+				width:	100,
+			},
+			{
+				titleFormatter: (column) => setTitleDesc(column, 'Arrived_Time', 'Arrived Time'),
+				headerTooltip:"Arrived Time",
+				field: "arrivedtime",
+				sorter: customSorter,
+				cellMouseOver: function (e, cell) {
+			          const data = cell.getRow().getData();
+			          if (data.arrivedtime) {
+			              showCustomTooltip(e, cell, `${data.arrivedtime}`);
+			            }
+			        },
+			        cellMouseMove: moveCustomTooltip,
+			        cellMouseOut: hideCustomTooltip,
+				width:	100,
+			},
+			{
+				titleFormatter: (column) => setTitleDesc(column, 'Facility', 'Facility'),
+				headerTooltip:"Facility",
+				field: "facility",
+				sorter: customSorter,
+				cellMouseOver: function (e, cell) {
+			          const data = cell.getRow().getData();
+			          if (data.id) {
+			              showCustomTooltip(e, cell, `${data.facility}`);
+			            }
+			        },
+			        cellMouseMove: moveCustomTooltip,
+			        cellMouseOut: hideCustomTooltip,
+				width:	250,
+			},
+		  ],
+		  rowFormatter: function(row) {
+			   var rowData = row.getData();  
+	            var SbiNo = rowData.id || ""; 
+	            var InstNo = rowData.INST_NO || ""; 
+	            var COMMENTS = rowData.COMMENTS	 || ""; 
+	            var addClass ='MovTableVal' ;
+	            var rowElement = row.getElement(); 
+	            rowElement.classList.add(addClass);
+	            rowElement.setAttribute('data-Sbi-type', SbiNo); 
+	            rowElement.setAttribute('data-FacilityNo-type', InstNo);
+	            rowElement.setAttribute('data-COMMENTS-type', COMMENTS);
+	        }
+		});
+		
+		document.getElementById('movementlog-table').style.maxHeight = "calc(100vh - 280px)";
+		
+		tabulatorRegistry["movementlog-table"] = {
+				varName: "table",
+				instance: table
+			};
+		
+	//	}
+		
+		 function makeTimeInput(input) {
+		      input.setAttribute("maxlength", "5");
+		      input.placeholder = "HH:MM";
+		      input.addEventListener("keydown", function (e) {
+		        const key = e.key;
+		        if (["Backspace", "ArrowLeft", "ArrowRight", "Tab", "Delete"].includes(key)) return;
+		        if (!/^[0-9]$/.test(key)) {
+		          e.preventDefault();
+		          return;
+		        }
+		        const raw = input.value.replace(/[^0-9]/g, "");
+		        const pos = raw.length;
+		        if (pos === 0 && !/[0-2]/.test(key)) {
+		          e.preventDefault();
+		        } else if (pos === 1 && raw[0] === "2" && !/[0-3]/.test(key)) {
+		          e.preventDefault();
+		        } else if (pos === 2 && !/[0-5]/.test(key)) {
+		          e.preventDefault();
+		        } else if (pos === 3 && !/[0-9]/.test(key)) {
+		          e.preventDefault();
+		        } else if (pos >= 4) {
+		          e.preventDefault();
+		        }
+		      });
+		      input.addEventListener("input", function () {
+		        let val = input.value.replace(/[^0-9]/g, "");
+		        if (val.length > 2) {
+		          val = val.slice(0, 2) + ":" + val.slice(2, 4);
+		        }
+		        input.value = val.slice(0, 5);
+		      });
+		      input.addEventListener("blur", function () {
+		        let value = input.value;
+		        const regex = /^([01]\d|2[0-3]):([0-5]\d)$/;
+		        if (value.trim() === "") {
+		          input.value = "00:00";
+		          return;
+		        }
+		        let raw = value.replace(/[^0-9]/g, "");
+		        while (raw.length < 4) {
+		          raw += "0";
+		        }
+		        const hh = raw.slice(0, 2);
+		        const mm = raw.slice(2, 4);
+		        const formatted = `${hh}:${mm}`;
+		        if (regex.test(formatted)) {
+		          input.value = formatted;
+		        } else {
+		          input.value = "00:00";
+		        }
+		      });
+		    } 
+		
+		  
+		const timeInput = document.getElementById("TimeFromvalue");
+		const timeInput2 = document.getElementById("TimeTovalue");
+	     makeTimeInput(timeInput);
+	    makeTimeInput(timeInput2); 
+		//.date-input
+		$(".date-input").attr("maxlength", "10").datepicker({
+	    dateFormat: "mm/dd/yy",
+	    changeMonth: true,
+	    changeYear: true,
+	    yearRange: function () {
+	        var currentYear = new Date().getFullYear();
+	        return (currentYear - 20) + ":" + (currentYear + 20);
+	    }(),
+	    onSelect: function (dateText, inst) {
+	        $(this).datepicker("hide");
+	    },
+		beforeShow: function(input, inst) {
+	        setTimeout(function() {
+	            const $datepickerDiv = $('#ui-datepicker-div');
+
+	            // Avoid adding multiple times
+	            if (!$datepickerDiv.find('.custom-btn-wrapper').length) {
+	                const $wrapper = $('<div>', {
+	                    class: 'custom-btn-wrapper',
+	                    css: {
+	                        display: 'flex',
+	                        gap: '4px',
+	                        marginTop: '2px',
+							marginBottom: '2px',
+	                        justifyContent: 'space-between'
+	                    }
+	                });
+
+	                const $todayBtn = $('<button>', {
+	                    text: "Today",
+	                    class: 'custom-today-btn',
+	                    css: {
+	                        flex: 1,
+	                        padding: '2px',
+	                        cursor: 'pointer',
+							background: '#ece0ff', 
+							border: 'none'
+	                    },
+	                    click: function(e) {
+	                        e.preventDefault();
+	                        const today = $.datepicker.formatDate("mm/dd/yy", new Date());
+	                        $(input).val(today).trigger('change').datepicker("hide");
+	                    }
+	                });
+
+	                const $clearBtn = $('<button>', {
+	                    text: "Clear",
+	                    class: 'custom-clear-btn',
+	                    css: {
+	                        flex: 1,
+	                        padding: '2px',
+	                        cursor: 'pointer',
+							background: '#ece0ff',
+							border: 'none'
+	                    },
+	                    click: function(e) {
+	                        e.preventDefault();
+	                        $(input).val('').trigger('change');
+	                    }
+	                });
+
+	                $wrapper.append($todayBtn, $clearBtn);
+	                $datepickerDiv.append($wrapper);
+	            }
+	        }, 10);
+	    }
+}).on("input", function () {
+
+let value = $(this).val().replace(/\D/g, ""); 
+if (value.length >= 3 && value.length <= 4) {
+value = value.slice(0, 2) + "/" + value.slice(2);
+} else if (value.length > 4 && value.length <= 8) {
+value = value.slice(0, 2) + "/" + value.slice(2, 4) + "/" + value.slice(4);
+}
+$(this).val(value);
+
+if ($(this).val().length === 10) {
+$(this).datepicker("hide");
+}
+});
+
+	</script>
+	<script src="js/staticjs.js"></script>
+	<script src="js/script.js"></script> 
+     
+	<!--<script src="js/../script.js"></script>
+	<script>
+		$(document).ready(function () {
+			
+		});
+	</script>-->
+	<div th:replace="~{fragments/msgBox :: msgBox}"></div>
+	
+		<script type="text/javascript">
+			$('#js-page-content').smartPanel();
+		</script>
+</body>
+
+</html>

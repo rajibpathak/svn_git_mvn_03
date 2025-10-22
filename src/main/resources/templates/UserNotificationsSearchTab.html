@@ -1,0 +1,1117 @@
+<div th:fragment="UserNotificationsSearchTab" th:remove="tag">
+	<div class="d-flex mainBlock h-100">
+		<div class="d-flex leftSidebarMain" style="height: calc(100vh - 290px);">
+	    	<div class="ArrowBlockmain">
+	            <button class="arrowBtn" id="leftSidebarIcon"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+	        </div>
+	        <div class="contain d-flex pl-0" id="contain">
+		          <div class="leftSideBar p-2 mr-0 mt-2">
+			          <h6 class="mx-0 mb-0 text-nowrap headerBlock text-center position-relative" style="font-weight: 600;top: -20px;">Search Criteria</h6>
+					  <div class="d-flex justify-content-end position-absolute" style="right: 5px;top: 5px;">										  
+			          	<span class="d-flex" data-toggle="modal" data-target="" >
+							<a href="#" id="pinButton" style="height: fit-content;" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center" data-class="nav-function-hidden">
+								<i class="fa fa-thumb-tack" style="font-size: 15px;"></i>
+							</a>
+						</span>
+					  </div>
+			          	<div class="form-group row">
+							<div class="col-lg-12 pr-0">
+								<div class="panel mb-0 panelContentBlock p-1 headerBlockNew border-0 criteriaSidebar" style="background: unset;box-shadow: unset;padding-top: 0 !important;">
+									<div class="row mx-1 criteriaSidebarContentBlock">
+										<div class="col-lg-6 floatingFields pl-0">
+											<input type="text" class="form-control MoveMentLogvalueclear emptyvalueinsearchTab rawField floatingLable" data-fld="ID_SearchTab" data-lbl="ID#" aria-label="Security" placeholder="" name="Group" id="SBINUMBER"   value="">
+											<label for="SBINUMBER" class="form-label mr-1 mb-0 text-nowrap criteriaSidebarlabel">ID#</label>
+										</div>
+										<div class="col-lg-12 mt-1 pr-0 floatingFields pl-0 mt-3">
+											<input type="text" class="form-control MoveMentLogvalueclear emptyvalueinsearchTab rawField floatingLable" data-fld="Last_Name_SearchTab" data-lbl="Last Name" aria-label="Security" placeholder="" name="Group" id="lastnameSearch"   value="">
+											<label for="lastnameSearch" class="form-label mr-1 mb-0 text-nowrap criteriaSidebarlabel">Last Name</label>
+										</div>
+										<div class="col-lg-12 mt-2 pl-0">
+											<div class="custom-control custom-checkbox custom-control-inline">
+												<label class="custom-control-label text-nowrap mt-1" for="Gettingvaluesofuniquedata" style="font-weight: 500;font-size: 13px;">Include Undeleted Notifications</label>
+												<input type="checkbox" class="custom-control-input emptyvalueinsearchTab rawField" data-fld="ID_Undeleted_Notifications" data-lbl="Include Undeleted Notifications" id="Gettingvaluesofuniquedata">
+											</div>
+										</div>
+										<div class="col-lg-12 mt-2 pl-0 pr-0 selectFloatingLabel">
+											<label for="CatDropdown" class="form-label mr-1 mb-0 text-nowrap text-nowrap selectFloating criteriaSidebarlabel">Category</label>
+											<select id="CatDropdown" class="custom-select form-control typecontact DropdownDisable emptyvalueinsearchTab rawField floatingLableClick" data-fld="Category_SearchTab" data-lbl="Category">
+												<option value="">Category</option>
+											</select>
+										</div>
+										<div class="col-lg-6 mt-3 floatingFields pl-0">
+											<input type="text" class="form-control MoveMentLogvalueclear emptyvalueinsearchTab rawField floatingLable date-input1" data-fld="Date_Received_SearchTab" data-lbl="Date From" aria-label="DateFrom" placeholder="" name="Group" id="DateFrom" value="">											
+											<label for="DateFrom" class="form-label mb-0 text-nowrap criteriaSidebarlabel">Date From</label>
+										</div>
+										<div class="col-lg-6 mt-3 px-0 floatingFields">
+											<input type="text" class="form-control MoveMentLogvalueclear emptyvalueinsearchTab rawField floatingLable date-input1" data-fld="To_SearchTab" data-lbl="To" aria-label="DateTo" placeholder="" name="Group" id="DateTo" value="">											
+											<label for="DateTo" class="form-label mb-0 text-nowrap criteriaSidebarlabel">To</label>
+										</div>
+										<div class="col-lg-12 mt-3 px-0 floatingFields d-flex align-items-center">
+											<input type="text" class="form-control w-100 SentBYuserNamedata emptyvalueinsearchTab rawField floatingLable" data-fld="Sent_By_SearchTab" data-lbl="Sent By" aria-label="SentBYuserName" name="SentBYuserName" id="SentBYuserName" value="" placeholder="">
+											<label for="SentBYuserName" class="form-label mb-0 mr-2 text-nowrap criteriaSidebarlabel" id="useridSentby" value="">Sent By</label>
+											<span class="d-flex" data-toggle="modal" data-target="#helpOnOfficer" >
+												<a href="#" id="" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center rawField" data-fld="Sent_By_Popup_SearchTab" data-lbl="" data-toggle="tooltip" data-placement="top" data-original-title="Sent By" data-action="toggle" data-class="nav-function-hidden">
+													<i class="fa fa-download" style="font-size: 10px;"></i>
+												</a>
+											</span>																			
+										</div>
+										<div class="col-lg-12 pr-0 pl-0 mt-2">
+											<div class="panel mb-2 panelContentBlock p-1" style="background: unset;">
+												<div class="mx-0 mb-0" style="font-weight: 600; border-bottom: 1px solid #9b7cca;">Check for New Arrest/Warrant in CJIS</div>
+												<div class="row mt-2">				
+													<div class="col-lg-12 mr-1">
+														<div class="d-flex align-items-center floatingFields mt-2">
+															<input type="text" class="form-control w-100 emptyvalueinsearchTab rawField floatingLable" data-fld="EntertheSearchdate_SearchTab" data-lbl="Enter the Search date" aria-label="weight" name="weight" id="weight" value="" placeholder="">
+															<label for="weight" class="form-label mb-0 text-nowrap criteriaSidebarlabel">Enter the Search date</label>																					
+														</div>
+														<button id="historyButton" class="btn btn-sm p-1 mt-2 btn js-waves-off d-flex align-items-center rawField" data-fld="New_Arrest/Warrant_SearchTab" data-lbl="Check for New Arrest/Warrant" style="border: 1px solid #886ab5;">Check for New Arrest/Warrant</button>
+													</div>
+												</div>	
+											</div>	
+										</div >
+										<div class="d-flex justify-content-end mt-1 w-100 mr-1 mt-2">
+											<button id="SelectButton" type="button" class="btn btn-primary btn-sm rawField" data-fld="Search_SearchTab" data-lbl="Search">Search</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+		          </div>
+		    </div>
+		</div>
+		<div class="row bg-light mx-1 mainScreenBlock h-100" style="width: calc(100% - 25px);margin-left: 0 !important;">
+			<div class="col-lg-12 pl-0 pr-1">
+				<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">Search Results</h6>
+				<div id="userNotificationSearch-table"></div>
+			</div>
+			<div class="col-lg-12 mt-3 pl-0 pr-1 floatingFieldsTextarea">
+				<textarea class="form-control emptyvalueinsearchTab rawField floatingLabletextarea" data-fld="Message Text_SearchTab" data-lbl="Message Text" placeholder="" id="addCommentsfortheMessage" rows="3" name="addCommentsfortheMessage" aria-label="addCommentsfortheMessage" style="resize:none;"  value=""></textarea>
+				<label for="addCommentsfortheMessage" class="form-label mb-0 mr-2 text-nowrap" >Message Text</label>																				
+			</div>
+			<div class="col-lg-5 pl-0 mb-2">
+				<div class="d-flex align-items-center mt-2">
+					<div class="d-flex align-items-center mr-2 mt-2 floatingFields">
+						<input type="text" class="form-control w-100 emptyvalueinsearchTab rawField floatingLable" placeholder="" data-fld="Total_Categories_SearchTab" data-lbl="Total Categories" aria-label="CategoryTotal3" name="CategoryTotal3" id="CategoryTotal3" value="">
+						<label for="CategoryTotal3" class="form-label mb-0 text-nowrap">Total Categories:</label>																					
+					</div>
+					<div class="d-flex align-items-center mt-2 mr-2 floatingFields">
+						<input type="text" class="form-control w-100 emptyvalueinsearchTab rawField floatingLable" placeholder="" data-fld="Total_Count_SearchTab" data-lbl="Total Count" aria-label="Totalcountsearch" name="Totalcountsearch" id="Totalcountsearch" value="">
+						<label for="Totalcountsearch" class="form-label mb-0 text-nowrap">Total Count:</label>																					
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="helpOnOfficer" tabindex="-1" role="dialog" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header pt-3 pb-2">
+							<h6 class="modal-title">Help on Officer</h6>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true"><i class="fal fa-times"></i></span>
+							</button>
+						</div>
+						<div class="modal-body py-0">
+							<div class="d-flex align-items-center mb-2">
+								<label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+								<input type="text" class="form-control SentBYuserNamedata emptyvalueinsearchTab" aria-label="dob" name="Find" id="Find" value="">
+							</div>
+							<div id="helponofficer-table"></div>
+						</div>
+						<div class="modal-footer">
+						<!-- 	<button type="button" class="btn btn-primary btn-sm" id="fetchData" >Find</button> -->
+							<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" data-dismiss="modal">Ok</button>
+							<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+						</div>
+					</div> 
+				</div>			
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="modal fade" id="listOfCaseChargeModal" tabindex="-1" role="dialog" aria-hidden="true">
+				            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+					              <div class="modal-content">
+						                 <div class="modal-header pt-3 pb-2">
+						                       <h6 class="modal-title">Movement Log Screen</h6>
+						                   		<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							                     <span aria-hidden="true"><i class="fal fa-times"></i></span>
+							                   </button>
+						                  </div>
+						                   <div class="modal-body py-0">
+						                   </div>
+						                  <div class="modal-footer">
+						                  <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="fetchDataBtn1" >Ok</button>               
+						               </div>
+					              </div>
+				             </div>
+			             </div>
+	
+	<style>
+		@media screen and (max-width: 1370px) {
+		    #userNotificationSearch-table{
+				height: 200px!important;
+			}
+			.criteriaSidebarContentBlock{
+				height: calc(100vh - 330px);
+			    overflow: auto;
+			    overflow-x: hidden;
+			}
+		}
+		.custom-control-input{
+			opacity: 1;
+		    left: 3px;
+		    z-index: 9;
+		    top: 3px;
+		}
+		.custom-checkbox .custom-control-label::before{
+			border: 0;
+    		background: unset;
+		}
+		.criteriaSidebar .floatingFields input:focus + .criteriaSidebarlabel, .floatingFields input:not(:placeholder-shown) + .criteriaSidebarlabel{
+			background: #ece0ff!important;
+		}
+		
+	</style>
+	<script>
+	
+	
+	
+	$(document).on('click', '#ClearButton', function (e) {
+	    e.preventDefault();
+	    document.querySelectorAll('.emptyvalueinsearchTab').forEach(function(element) {
+	        element.value = '';
+	        
+	        var tabledatasearch = [
+	  		  {
+	  		    id: 1,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"N",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		  {
+	  		    id: 2,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		  {
+	  		    id: 3,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		  {
+	  		    id: 4,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		  {
+	  		    id: 5,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		  {
+	  		    id: 6,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		  {
+	  		    id: 7,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		  {
+	  		    id: 8,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		  {
+	  		    id: 9,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		  {
+	  		    id: 10,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		  {
+	  		    id: 11,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		  {
+	  		    id: 12,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		  {
+	  		    id: 13,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		  {
+	  		    id: 14,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		   {
+	  		    id: 15,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		   {
+	  		    id: 16,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		   {
+	  		    id: 17,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		   {
+	  		    id: 18,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		   {
+	  			  date_time_sent: "",
+	  			    sbi_no: "",
+	  			    offender_full_name: "",
+	  			    sent_by_user_name: "",
+	  			    no_of_days: "",
+	  			    removed_flag:"checkbox",
+	  			    short_message: "",
+	  			    message_description: "",
+	  		  },
+	  		  {
+	  		    id: 20,
+	  		    date_time_sent: "",
+	  		    sbi_no: "",
+	  		    offender_full_name: "",
+	  		    sent_by_user_name: "",
+	  		    no_of_days: "",
+	  		    removed_flag:"checkbox",
+	  		    short_message: "",
+	  		    message_description: "",
+	  		  },
+	  		];
+	        
+	        tablesearchdata(tabledatasearch);
+	        
+	    });
+	    
+	});
+	
+
+      
+	
+	function convertToMMDDYYYY(dateString) {
+		if (dateString) {
+		var date = new Date(dateString);
+		var formattedMonth = (date.getMonth() + 1).toString().padStart(2, '0');
+		var formattedDay = date.getDate().toString().padStart(2, '0');
+		var formattedYear = date.getFullYear().toString();
+		var formattedDate = formattedMonth + '/' + formattedDay + '/' + formattedYear;
+		return formattedDate;
+		}
+		return '';
+		}
+ 
+	$('.SentBYuserNamedata').on('keyup', function (event) {
+	    // Check if the backspace key is pressed
+	    if (event.key === "Backspace" || event.keyCode === 8) {
+	        // Set fullName to an empty string
+	        let fullName =null;
+	        let SentbyUserId=null;
+	        $('.SentBYuserNamedata').val(fullName);
+	        $('#useridSentby').val(SentbyUserId);
+	        console.log('Checking the  sent by user eraseing');
+	    }
+	});
+	
+	function convertDateFormat(dateString) {
+		// If the dateString is an array (multiple dates)
+		if (Array.isArray(dateString)) {
+			return dateString
+				.map(date => {
+					if (date.trim() === '') {
+						return '';  // Return empty string for empty date entries
+					}
+
+					const parts = date.split('/');
+					if (parts.length === 3) {
+						const [month, day, year] = parts;
+						return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+					}
+
+					return '';  // Return empty string if format is incorrect
+				})
+				.join(','); // Join multiple dates with a comma if needed
+		} 
+		// If it's a single date (comma-separated)
+		else {
+			const parts = dateString.split(',');
+			return parts
+				.map(date => {
+					if (date.trim() === '') {
+						return '';  // Return empty string for empty date entries
+					}
+
+					const [month, day, year] = date.split('/');
+					return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+				})
+				.join(','); // Join multiple dates with a comma if needed
+		}
+	}
+	
+	$.ajax({
+	    url: 'CBI_NOTI_Category',
+	    method: 'GET',
+	     data: {
+	        
+	    }, 
+	    success: function(data) {
+	    	$.each(data, function(index, item) {
+        		$('#CatDropdown').append(`
+        				<option data-value="${item.short_message}">${item.message_description}</option>
+        		
+        		`);
+        	});
+	          }, 
+	    
+	    error: function(xhr, status, error) {
+	        console.error('Error:', error);
+	      }
+	   });
+	
+	
+ 	$.ajax({
+	    url: 'CBI_NOTI_SentByUser',
+	    method: 'GET', 
+	    success: function(data) {
+	    	tabledatahelpofficer=[];
+	    	tabledatahelpofficer=data;
+	    	tabledatahelpofficerdata(tabledatahelpofficer);
+  
+	          }, 
+	    
+	    error: function(xhr, status, error) {
+	        console.error('Error:', error);
+	      }
+	   }); 
+ 	
+ 	 $('#SBINUMBER').on('input', function() {
+	    	 this.value = this.value.replace(/[^a-zA-Z0-9]/g, '').substring(0, 8);
+	    	 console.log('SBI ');
+	    }); 
+ 	
+
+ 	 $('#SBINUMBER').on('keydown', function(event) {
+ 		     	        if (event.keyCode === 13 || event.keyCode === 9) {	 
+ 		     	            event.preventDefault();
+ 		     	            $('#SelectButton').trigger('click');
+ 		     	        }
+ 		     	    });
+ 	 
+ 	 
+ 	$('#SelectButton').on('click', function() {
+ 		
+ 		var sortby=5;
+ 		var sorttp=null;
+ 		var Sentby= $('#useridSentby').val();
+ 		var noti="DACS";
+ 		var LastName=$('#lastnameSearch').val() || null;
+ 		var datefrom=$('#DateFrom').val() || null;
+ 		var dateto=$('#DateTo').val() || null;
+  		var datefrom1=convertDateFormat(datefrom);
+ 		var dateto1=convertDateFormat(dateto); 
+ 		var checkbox = $('#Gettingvaluesofuniquedata').is(':checked') ? 'Y' : 'N';
+ 		var SbiNumber=$('#SBINUMBER').val() || null;
+ 		var Category=$('#CatDropdown').find(':selected').data('value') || null;
+ //		var UserId='BADMMRP';
+ 	
+ 		
+ 	///////////////////////////////////	
+ 		 var SentbyUserId = localStorage.getItem("SentbyUserId"); 
+ 		//console.log('SentbyUserId='+Sentby);
+ 		
+ 		const from = new Date(datefrom);
+        const to = new Date(dateto);
+    
+    // Calculate the difference in years
+    const yearDifference = to.getFullYear() - from.getFullYear();
+ 		console.log('yearD='+yearDifference);
+ 		 const monthDifference = to.getMonth() - from.getMonth();
+	        const dayDifference = to.getDate() - from.getDate();
+ 		 if(!datefrom && !dateto){
+			 //$('#listOfCaseChargeModal .modal-body').html('<p>Please Enter both the From dare and to Date </p>');
+                //$('#listOfCaseChargeModal').modal('show');
+                message('CUW','Please Enter both the From date and to Date',0);
+           //     $('#SelectButton').prop('disabled', false);
+		 }else if(yearDifference > 1){
+			 message('CUW','The date range you have entered exceeds one year. Please enter a date range with a length of less than one year.',0);
+		 }
+		 else if(yearDifference === 1 && monthDifference > 0 || (yearDifference === 1 && monthDifference === 0 && dayDifference > 0)){
+			 const monthDifference = to.getMonth() - from.getMonth();
+		        const dayDifference = to.getDate() - from.getDate();
+
+		        // If the ToDate is after the 1-year mark (e.g. 12/07/2024 is after 12/06/2024), return "More than a year"
+		 //       if (monthDifference > 0 || (monthDifference === 0 && dayDifference > 0)) {
+		        	message('CUW','The date range you have entered exceeds one year. Please enter a date range with a length of less than one year.',0);
+		//        }
+			 
+		 }
+ 		 else{
+ 	 	  $.ajax({
+ 		        url: 'CBI_NOTI_Search',
+ 		        method: 'GET',
+ 		        data:{
+ 		        	p_sbi_no: SbiNumber,
+ 		        	p_last_name: LastName,
+ 		        	p_date_frm: datefrom1,
+ 					p_date_to: dateto1,
+ 					p_sort_by: sortby,
+ 					p_sort_tp: sorttp,
+ 					p_all_flg: checkbox,
+ 					P_Short_msg: Category,
+ 					p_sent_by: Sentby,
+ 					ivc_noti_env: noti,
+ 	//				p_user_id: UserId
+ 		        },
+ 		        success: function(data) {
+ 		        	var VALUES=data.USN;
+ 		        	var SBIVALIDATE=data.Result;
+ 		        	var HARDSBI=data.Hard_SBI_NO;
+ 		        	if(SBIVALIDATE=='N'&&SbiNumber!=null){
+ 		        		console.log('SBIINPUT'+SbiNumber);
+			                message('CUE','Invalid ID. Please enter valid ID',0);
+			                
+		        	}else if(HARDSBI!=null){
+		        		
+		        		 message('CUW','The SBI #you entered has a hard SBI#:'+HARDSBI+'. Please make a note of it.',0);
+		        		
+		        		$('#SBINUMBER').val(HARDSBI);
+		        	 	$('#Totalcountsearch').val(VALUES.length);
+	 		        	var messageCountMap = {};
+	 		        	tabledatasearch=[];
+	 		        	$.each(VALUES, function(index, item) {
+	 		        		var Date=convertToMMDDYYYY(item.date_time_sent);
+	 		        		var SBI=item.sbi_no;
+	 		        		var OFFENDERNAME=formatName(item.offender_full_name);
+	 		        		var sentbyuser=formatName(item.sent_by_user_name);
+	 		        		var Days=item.no_of_days;
+	 		        		var Remove=item.removed_flag;
+	 		        		var Smessage=item.message_description;
+	 		        		var Message=item.message_text;
+	 		        		if (Smessage) {
+	 		                   // If the message is already present in the map, ignore it (we just want to count it once)
+	 		                   if (!messageCountMap[Smessage]) {
+	 		                       messageCountMap[Smessage] = 1;  // Mark the message with count 1
+	 		                   }
+	 		               }
+	 		        		
+	 		        		tabledatasearch.push({
+	 		        			 date_time_sent: Date,
+	 		        			sbi_no: SBI,
+	 		        			offender_full_name: OFFENDERNAME,
+	 		        			  sent_by_user_name: sentbyuser,
+	 		        			 no_of_days: Days,
+	 		        			removed_flag: Remove === "Y" ? true : false,
+	 		        			short_message: Smessage,
+	 		        			message_description: Message
+	 		        			});
+	 		        		
+	 		        	})
+	        const objectCount = Object.keys(messageCountMap).length;
+	        
+	        $('#CategoryTotal3').val(objectCount);
+	 		        	
+	        if(VALUES.length<=12){
+	 		        	var numRecords = 12;
+	 		        	var Dlength=VALUES.length;
+	        		 	var extraRecord=numRecords-Dlength;
+	 		        var tabledatasearchExtra = Array.from({ length: extraRecord }, () => ({
+	 		          date_time_sent: "",
+	 		          sbi_no: "",
+	 		          offender_full_name: "",
+	 		          sent_by_user_name: "",
+	 		          no_of_days: "",
+	 		          removed_flag: false,
+	 		          short_message: "",
+	 		          message_description: "",
+	 		        }));
+	 		        	
+	 		        	tabledatasearch=tabledatasearch.concat(tabledatasearchExtra);
+	        }
+	        table5.setData(tabledatasearch);
+	 		        	
+	 		        	console.log('Searchvalues');
+	 		        	
+	 		        	var firstBedRow = $('.Message-Text3').first(); 
+	  		           if (firstBedRow.length > 0) {
+	  		               firstBedRow.trigger('click'); 
+	  		           }
+	  		           
+		        	}
+ 		        	else{
+ 		        		
+ 		        	$('#Totalcountsearch').val(VALUES.length);
+ 		        	var messageCountMap = {};
+ 		        	tabledatasearch=[];
+ 		        	$.each(VALUES, function(index, item) {
+ 		        		var Date=convertToMMDDYYYY(item.date_time_sent);
+ 		        		var SBI=item.sbi_no;
+ 		        		var OFFENDERNAME=formatName(item.offender_full_name);
+ 		        		var sentbyuser=formatName(item.sent_by_user_name);
+ 		        		var Days=item.no_of_days;
+ 		        		var Remove=item.removed_flag;
+ 		        		var Smessage=item.message_description;
+ 		        		var Message=item.message_text;
+ 		        		
+ 		        		if (Smessage) {
+ 		                   // If the message is already present in the map, ignore it (we just want to count it once)
+ 		                   if (!messageCountMap[Smessage]) {
+ 		                       messageCountMap[Smessage] = 1;  // Mark the message with count 1
+ 		                   }
+ 		               }
+ 		        		
+ 		        		tabledatasearch.push({
+ 		        			 date_time_sent: Date,
+ 		        			sbi_no: SBI,
+ 		        			offender_full_name: OFFENDERNAME,
+ 		        			  sent_by_user_name: sentbyuser,
+ 		        			 no_of_days: Days,
+ 		        			removed_flag: Remove === "Y" ? true : false,
+ 		        			short_message: Smessage,
+ 		        			message_description: Message
+ 		        			});
+ 		        		
+ 		        	})
+        const objectCount = Object.keys(messageCountMap).length;
+        
+        $('#CategoryTotal3').val(objectCount);
+ 		        	console.log('Unique Messages:', messageCountMap+'count='+objectCount);
+ 		        	
+ 		        	 if(VALUES.length<=12){
+ 	 		        	var numRecords = 12;
+ 	 		        	var Dlength=VALUES.length;
+ 	        		 	var extraRecord=numRecords-Dlength;
+ 	        		 	console.log('Length='+extraRecord+' '+Dlength)
+ 	 		        var tabledatasearchExtra = Array.from({ length: extraRecord }, () => ({
+ 	 		          date_time_sent: "",
+ 	 		          sbi_no: "",
+ 	 		          offender_full_name: "",
+ 	 		          sent_by_user_name: "",
+ 	 		          no_of_days: "",
+ 	 		          removed_flag: false,
+ 	 		          short_message: "",
+ 	 		          message_description: "",
+ 	 		        }));
+ 	 		        	
+ 	 		        	tabledatasearch=tabledatasearch.concat(tabledatasearchExtra);
+ 	 		        	console.log('TableLength='+tabledatasearch.length)
+ 	        }
+ 		        	
+ 		        	
+ 		   //     	tablesearchdata(tabledatasearch);
+ 		        	table5.setData(tabledatasearch);
+ 		        	console.log('Searchvalues');
+ 		        	
+ 		        	var firstBedRow = $('.Message-Text3').first(); 
+  		           if (firstBedRow.length > 0) {
+  		               firstBedRow.trigger('click'); 
+  		           }
+		        	}
+ 		              }, 
+ 		        
+ 		        error: function(xhr, status, error) {
+ 		            console.error('Error:', error);
+ 		          }
+ 		       });  
+		 }
+ 		 
+	});
+
+	
+		// Define Test Data
+		var tabledatasearch = [];
+		var tableNum = 12;
+		tabledatasearch = Array.from({ length: tableNum }, () => ({
+			    id: "",
+			    date_time_sent: "",
+			    sbi_no: "",
+			    offender_full_name: "",
+			    sent_by_user_name: "",
+			    no_of_days: "",
+			    removed_flag: false,
+			    short_message: "",
+			    message_description: "",
+		        }));
+		
+	//	tablesearchdata(tabledatasearch);
+		
+	//	function tablesearchdata(tabledatasearch){
+		
+		  var checkboxEditorfield2 = function(cell, onRendered, success, cancel) {
+			    var input = document.createElement("input");
+			    input.type = "checkbox";
+			    input.checked = !!cell.getValue();
+			    input.classList.add("ActionRequiredcheckbox1");
+		/* 	    
+			    var CN=cell.getData().DATE_TIME_SENT;
+		 	    var ID=cell.getData().NO_OF_DAYS;
+			    
+			    console.log('Just print'+CN+' '+ID);
+			    
+			     if (CN === '' && ID === '') { */
+			        input.classList.add("disable-pointer");
+			        // Optional: Disable editing logic too
+			        input.disabled = true;
+			        return input; // Prevent adding event listeners
+		//	      }  
+			    
+			    input.addEventListener("change", function () {
+			      success(input.checked);
+			    });
+
+			    input.addEventListener("keydown", function (e) {
+			      if (e.key === "Enter") {
+			        e.preventDefault();
+			        input.checked = !input.checked;
+			        success(input.checked);
+			      } else if (e.key === "Escape") {
+			        cancel();
+			      }
+			    });
+
+			    onRendered(function () {
+			      input.focus({ preventScroll: true });
+			    });
+
+			    return input;
+			  };
+			  
+				  
+		   function checkboxFormatter2(cell) {
+				 	const checked = !!cell.getValue();
+			    return `<input class="ActionRequiredcheckbox checkboxclick"  type="checkbox" ${checked ? "checked" : ""} />`; 
+			  } 
+		
+		var table5 = new Tabulator("#userNotificationSearch-table", {
+		  layout: "fitColumns",
+		  height: "330px",
+		  data: tabledatasearch,
+		  printAsHtml: true,
+		  printStyled: true,
+		  columns: [ 
+			    {
+					title: "id",
+					field: "id",
+					visible: false,
+				},
+				{
+					title: 'upd',
+					visible: false,
+					field: "upd",
+				},
+				{
+					title: 'rowid',
+					visible: false,
+					field: "rowid",
+				},
+			 {
+				title: "Date",
+				titleFormatter: (column) => setTitleDesc(column, 'Date_Table_SearchTab', 'Date'),
+				headerTooltip:"Date",
+				field: "date_time_sent",
+				width: 120,
+				sorter: customSorter
+			},
+		    {
+		      title: "ID#",
+		      titleFormatter: (column) => setTitleDesc(column, 'ID_Table_SearchTab', 'ID#'),
+		      headerTooltip:"ID#",
+		      field: "sbi_no",
+		      width: 90,
+		      sorter: customSorter
+		    },
+		    {
+		      title: "Offender Name (L, F, M, S)",
+		      titleFormatter: (column) => setTitleDesc(column, 'OffenderName(F,L,M,S)_Table_SearchTab', 'Offender Name (L, F, M, S)'),
+		      headerTooltip:"Offender Name (L, F, M, S)",
+		      field: "offender_full_name",
+		      sorter: customSorter,
+		       width: 250,
+		    },
+		    {
+		      title: "Sent By (L, F, M, S)",
+		      titleFormatter: (column) => setTitleDesc(column, 'SentBy(F,L,M,S)_Table_SearchTab', 'Sent By (L, F, M, S)'),
+		      headerTooltip:"Sent By (L, F, M, S)",
+		      field: "sent_by_user_name",
+		      sorter: customSorter,
+		      width: 250,
+		    },
+		    {
+		      title: "Days#",
+		      titleFormatter: (column) => setTitleDesc(column, 'Days_Table_SearchTab', 'Days#'),
+		      headerTooltip:"Days#",
+		      field: "no_of_days",
+		      sorter: customSorter,
+		      width: 120,
+		    },
+		    {
+		      title: "Removed",
+		      titleFormatter: (column) => setTitleDesc(column, 'Removed_Table_SearchTab', 'Removed'),
+		      headerTooltip:"Removed",
+		      field: "removed_flag",
+		      width: 90,
+		      formatter: checkboxFormatter2, 
+			  editor: checkboxEditorfield2, 
+		/* 		formatter: (cell) => {
+		            const value = cell.getValue();
+		            if (value) {
+		                return `
+		                    <input type="checkbox" ${value === 'Y' ? 'checked' : 'N'} />
+		                    <label>${value}</label>
+		                `;
+		            }
+		        }, */
+		    },
+		    {
+		      titleFormatter: (column) => setTitleDesc(column, 'Category_Table_SearchTab', 'Category'),
+		      headerTooltip:"Category",
+		      field: "short_message",
+		    },
+		  ],
+		  rowFormatter: function(row) {
+			    var rowData = row.getData();  
+			     var MessageText3 = rowData.message_description || ''; 
+			     var colorClass ='Message-Text3' ;
+			     var rowElement = row.getElement(); 
+			     rowElement.classList.add(colorClass);
+			     rowElement.setAttribute('data-MessageSearch-type', MessageText3); 
+			 }
+		});
+		
+		tabulatorRegistry["userNotificationSearch-table"] = {
+				varName: "table5",
+				instance: table5
+			};
+		
+//		}
+		
+		
+	 	$(document).on('click', '.Message-Text3', function (e) {
+		    e.preventDefault();
+
+		    var $div = $(this);
+
+		    const Message3 = $div.attr('data-MessageSearch-type'); 
+		    
+		    $('#addCommentsfortheMessage').val(Message3);
+		    console.log('Message=' + Message3);
+		});
+		
+		// Define Test Data
+		var tabledatahelpofficer = [
+		  {
+		    id: 1,
+		    user_id:"",
+		    userFirstName:"",
+		    userLastName:"",
+		    userMidName:"",
+		    userSuffixName:"",
+		  },
+		  {
+		    id: 2,
+		    user_id:"",
+		    userFirstName:"",
+		    userLastName:"",
+		    userMidName:"",
+		    userSuffixName:"",
+		  },
+		  {
+		    id: 3,
+		    user_id:"",
+		    userFirstName:"",
+		    userLastName:"",
+		    userMidName:"",
+		    userSuffixName:"",
+		  },
+		  {
+		    id: 4,
+		    user_id:"",
+		    userFirstName:"",
+		    userLastName:"",
+		    userMidName:"",
+		    userSuffixName:"",
+		  },
+		  {
+		    id: 5,
+		    user_id:"",
+		    userFirstName:"",
+		    userLastName:"",
+		    userMidName:"",
+		    userSuffixName:"",
+		  },
+		  {
+		    id: 6,
+		    user_id:"",
+		    userFirstName:"",
+		    userLastName:"",
+		    userMidName:"",
+		    userSuffixName:"",
+		  },
+		  {
+		    id: 7,
+		    user_id:"",
+		    userFirstName:"",
+		    userLastName:"",
+		    userMidName:"",
+		    userSuffixName:"",
+		  },
+		  {
+		    id: 8,
+		    user_id:"",
+		    userFirstName:"",
+		    userLastName:"",
+		    userMidName:"",
+		    userSuffixName:"",
+		  },
+		  {
+		    id: 9,
+		    user_id:"",
+		    userFirstName:"",
+		    userLastName:"",
+		    userMidName:"",
+		    userSuffixName:"",
+		  },
+		  {
+		    id: 10,
+		    user_id:"",
+		    userFirstName:"",
+		    userLastName:"",
+		    userMidName:"",
+		    userSuffixName:"",
+		  },
+		];
+		
+		tabledatahelpofficerdata(tabledatahelpofficer);
+		
+		var selectedRowData = null;
+		var table;
+		function tabledatahelpofficerdata(tabledatahelpofficer){
+		 table = new Tabulator("#helponofficer-table", {
+		  layout: "fitColumns",
+		  data: tabledatahelpofficer,
+		  height: '250px',
+		  printAsHtml: true,
+		  printStyled: true,
+		  columns: [ 
+		    {
+				title: "First Name",
+				field: "userFirstName",
+				width: 120,
+			},
+		    {
+		      title: "Last Name",
+		      field: "userLastName",
+		    },
+		    {
+		      title: "Mi",
+		      field: "userMidName",
+		      width: 70,
+		    },
+		    {
+		      title: "Suffix",
+		      field: "userSuffixName",
+		      width: 120,
+		    },
+		  ],
+		  
+		   rowFormatter: function(row) {
+			   var rowData = row.getData();  
+	            var Sentbyuseridvalue = rowData.user_id; 
+	            var sentbyuserClass ='Sentbyuserinput' ;
+	            var rowElement = row.getElement(); 
+	            rowElement.classList.add(sentbyuserClass);
+	            rowElement.setAttribute('data-Sentbyuseridvalue-type', Sentbyuseridvalue); 
+	        },
+			  
+		});
+		 table.on("rowClick", function (e, row) {
+		        selectedRowData = row.getData();
+		        console.log("Selected Row Data:", selectedRowData);
+		    });
+		}
+		
+		document.getElementById("Find").addEventListener("input", function () {
+		    var searchValue = this.value.trim().toLowerCase(); 
+		  
+		    if (searchValue) {
+		      
+		      table.setFilter([
+		        [
+		          { field: "userFirstName", type: "like", value: searchValue },
+		          { field: "userLastName", type: "like", value: searchValue },
+		          { field: "userMidName", type: "like", value: searchValue },
+		          { field: "userSuffixName", type: "like", value: searchValue },
+		        ],
+		      ]);
+		    } else {
+		      
+		      table.clearFilter();
+		    }
+		  });
+		
+		document.getElementById("fetchDataBtn").addEventListener("click", function () {
+			  if (selectedRowData) {
+			    var SentbyUserId = selectedRowData.user_id;
+			    var fullName =selectedRowData.userFirstName +
+			      " " +
+			      (selectedRowData.userMidName || "") +
+			      " " +
+			      selectedRowData.userLastName +
+			      " " +
+			      (selectedRowData.userSuffixName || "");
+			    console.log("fullName="+fullName);
+			    $('.SentBYuserNamedata').val(fullName);
+			    $('#useridSentby').val(SentbyUserId);
+			   
+			  }
+			 /*  else if(!selectedRowData){
+				  var fullName ='';
+				  $('#SentBYuserName').val(fullName);
+				  console.log('unseleected')
+			  } */
+
+			});
+		
+		
+		const element = document.querySelector(".searchTab > .active");
+		const parentElement = document.querySelector('.panel-content');
+		const tabs = document.querySelectorAll('.nav-item');
+		
+		
+		if (element) {
+		    // Assuming you want to add the 'active' class to the parent of 'element'
+		    const parentElement = element.parentElement; 
+		    parentElement.classList.add('active');
+		}
+		
+		const tabIndex = 2;
+		
+		tabs[tabIndex].classList.add('active1');
+		
+		
+
+		$(tabledatasearch[0].checkbox).html("<input type='checkbox'>");
+	</script>
+</div>

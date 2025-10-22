@@ -1,0 +1,239 @@
+  <div th:fragment="navmenus" th:remove="tag">   
+	<div class="navleftArrow d-flex align-items-center text-nowrap w-100">
+		<div class="position-relative leftSideArrow align-items-center" id="navleftArrow" style="z-index: 999;top: 0px;background: #fff;height: 62px;">
+			<i class="fa fa-angle-left btn"aria-hidden="true" style="font-size:25px;"></i>
+		</div>
+	
+		<div class="d-flex staticMenus justify-content-between" id="navBlockMain">	
+			<a href="OmnetDesktop" class="btn border-0" type="button" data-toggle="">
+				<img src="img/demo/menuicons/desktop.png" id=""class="" alt="home_icon">
+				 <span class="d-block">Home</span> 
+			 </a>
+			 <a href="Booking" class="btn border-0" type="button" data-toggle="">
+				<img src="img/demo/menuicons/Registration.png" id=""class="" alt="registration_icon">
+				 <span class="d-block">Booking</span> 
+			 </a>
+			 <a href="sentenceSummary" class="btn border-0" type="button" data-toggle="">
+				<img src="img/demo/menuicons/DocketsCharges.png" id=""class="" alt="DocketsCharges_icon">
+				<span class="d-block">Dockets/Charges</span> 
+			 </a>
+			 <a href="caseManagementSummary" class="btn border-0" type="button" data-toggle="">
+				<img src="img/demo/menuicons/Case.png" id=""class="" alt="Case_icon">
+				 <span class="d-block">Case Management</span> 
+			 </a>
+			  <a href="ClassificationSummary" class="btn border-0" type="button" data-toggle="">
+				<img src="img/demo/menuicons/Senetnce.png" id=""class="" alt="Senetnce_icon">
+				 <span class="d-block">Classification</span> 
+			 </a>
+			  <a href="MovementsHousingsummary" class="btn border-0" type="button" data-toggle="">
+				<img src="img/demo/menuicons/Count.png" id=""class="" alt="Count_icon">
+				 <span class="d-block">Movements & Housing</span> 
+			 </a>
+			 <a href="IncidentSummary" class="btn border-0" type="button" data-toggle="">
+				<img src="img/demo/menuicons/Incident.png" id=""class="" alt="Incident_icon">
+				 <span class="d-block">Incidents/Disciplinary</span> 
+			 </a>
+			 <a href="GrievanceSummary" class="btn border-0" type="button" data-toggle="">
+				<img src="img/demo/menuicons/Grievance.png" id=""class="" alt="Grievance_icon">
+				 <span class="d-block">Grievance</span> 
+			 </a>
+			
+			 <a href="ProgramsSummary" class="btn border-0" type="button" data-toggle="">
+				<img src="img/demo/menuicons/Programs.png" id=""class="" alt="Programs_icon">
+				 <span class="d-block">Programs</span> 
+			 </a>
+			 <a href="reportsQueriesSummary" class="btn border-0" type="button" data-toggle="">
+				<img src="img/demo/menuicons/Reports.png" id=""class="" alt="Reports_icon">
+				 <span class="d-block">Reports & Queries</span> 
+			 </a>
+			 <a href="UserSetup" class="btn border-0" type="button" data-toggle="">
+				<img src="img/demo/menuicons/Admin.png" id=""class="" alt="Admin_icon">
+				 <span class="d-block">Administration</span> 
+			 </a>
+			 <a class="btn border-0 position-relative" type="button" data-toggle="" id="askCenticon">
+				<img src="img/demo/chatbot.png" id=""class="" alt="Reports_icon" style="border-radius: 50px;">
+				<span class="d-block">Ask Centi</span>
+			 </a>						
+		</div>
+		
+		<div class="navleftArrow position-relative rightSideArrow align-items-center" id="navRightArrow" style="z-index: 999;right: 0px;top: 0px;transform: translateX(0);background: #fff;">
+			<i class="fa fa-angle-right btn"aria-hidden="true" style="font-size:25px;"></i>
+		</div>
+	</div> 
+    <!-- END PRIMARY NAVIGATION -->
+    <!-- NAV FOOTER -->
+    <div class="nav-footer shadow-top">
+        <a href="#" onclick="return false;" data-action="toggle" data-class="nav-function-minify"
+            class="hidden-md-down">
+            <i class="ni ni-chevron-right"></i>
+            <i class="ni ni-chevron-right"></i>
+        </a>
+        <ul class="list-table m-auto nav-footer-buttons">
+            <li>
+                <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Chat logs">
+                    <i class="fal fa-comments"></i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                    title="Support Chat">
+                    <i class="fal fa-life-ring"></i>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top"
+                    title="Make a call">
+                    <i class="fal fa-phone"></i>
+                </a>
+            </li>
+        </ul>
+	</div>
+     <!-- END NAV FOOTER -->
+
+		 <style>
+			 .leftSideArrow, .rightSideArrow{
+				 display: none;
+			 }
+			 .navleftArrow{
+				position: sticky;
+			    top: 63px;
+			    z-index: 99; 
+			    overflow-x: auto;
+			 }
+				.leftScroll{
+					transform: translateX(0px)!important;
+					transition: all .3s;
+				}
+				.rightScroll{
+					transform: translateX(-250px)!important;
+					transition: all .3s;
+				}
+				.staticMenus a{
+					font-weight: 500;
+					white-space: nowrap;
+					min-width: fit-content;
+				}
+				.staticMenus a:hover{
+					background: linear-gradient(#ffffff, #ffffff 73%, #178ce61c);
+				}
+				.staticMenus{
+				    position: sticky;
+				    top: 65px;
+				    background: #fff;	
+				    z-index: 991;
+				    white-space:nowrap;
+				    width: 100%;
+				}
+				.navleftArrow{
+					overflow: hidden;
+				}
+				#navRightArrow{
+					height: 70px;
+				}
+				
+				/* Style your icon and bot container */
+		        #bot-icon {
+		            position: fixed;
+		            top: 20px; /* Adjust as needed */
+		            right: 20px; /* Adjust as needed */
+		            cursor: pointer;
+		            z-index: 1001; /* Ensure it's above other elements */
+		        }
+		        #df-messenger-container {
+		            position: fixed;
+		            bottom: 0;
+		            right: 0;
+		            width: 360px; /* Standard DF Messenger width */
+		            height: 600px; /* Standard DF Messenger height */
+		            display: none; /* Initially hidden */
+		            z-index: 1000; /* Ensure it's above most elements */
+		        }
+		        #df-messenger {
+		            width: 100%;
+		            height: 100%;
+		        }
+		
+		        /* Example top menu styling (replace with your existing menu styles) */
+		        #top-menu {
+		            background-color: #f0f0f0;
+		            padding: 10px;
+		            position: fixed;
+		            top: 0;
+		            left: 0;
+		            width: 100%;
+		            z-index: 1002; /* Ensure it's above both icon and bot */
+		        }
+		
+		        #top-menu #bot-icon-menu{
+		            cursor:pointer;
+		            display:inline-block;
+		            margin-left:20px;
+		        }
+				
+				df-messenger {
+					z-index: 999;
+					position: fixed;
+					--df-messenger-font-color: #000;
+					--df-messenger-font-family: Google Sans;
+					--df-messenger-chat-background: #f3f6fc;
+					--df-messenger-message-user-background: #d3e3fd;
+					--df-messenger-message-bot-background: #fff;
+					bottom: 50px;
+					right: 16px;
+				}
+				 df-messenger [project-id="ai-centi-dev"] {
+			        bottom: 50px;
+			        position: relative;
+			    }
+			    
+			    
+			    .asw-menu-btn{
+					bottom: 40px !important;
+				    width: 37px !important;
+				    height: 37px !important;
+				}
+			</style> 
+			
+			<!--<link rel="stylesheet" href="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/themes/df-messenger-default.css">
+			<script src="https://www.gstatic.com/dialogflow-console/fast/df-messenger/prod/v1/df-messenger.js"></script>-->
+			
+			<div id="chatbotBlock">
+				<df-messenger project-id="ai-centi-dev" agent-id="d18bb99f-afb6-49f1-b976-a21ed5e6c4d3" language-code="en" max-query-length="-1">
+					<df-messenger-chat-bubble
+						chat-title="AskCenti">
+					</df-messenger-chat-bubble>
+				</df-messenger>
+			</div>
+			
+			
+			
+			
+		
+			
+			<script>
+				const elementleftArrow = document.getElementById("navleftArrow");
+				const elementRightArrow = document.getElementById("navRightArrow");
+				const elementNavMain = document.getElementById("navBlockMain");
+				elementleftArrow.addEventListener("click", function() {
+				  elementNavMain.classList.add("leftScroll");
+				  elementNavMain.classList.remove("rightScroll");
+				});
+				elementRightArrow.addEventListener("click", function() {
+				  elementNavMain.classList.add("rightScroll");
+				  elementNavMain.classList.remove("leftScroll");
+				});
+			</script>
+			
+			<!-- <div class="loader-overlay" id="commonPerloader">
+			  <div class="loading-title">Loading...</div>
+			  <div class="loadprogress-container">
+			    <div class="loadprogress-bar" id="commonPerprogressBar">0%</div>
+			  </div>
+			</div>
+			
+			<div class="loader-main-content" id="loadermainContent">
+			</div> -->
+   </div>
+
+            
+           

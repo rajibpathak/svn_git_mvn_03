@@ -1,0 +1,438 @@
+<div th:fragment="PropertyTrackingDepartmentTab" th:remove="tag">
+	<div class="row">
+		<div class="col-lg-12" style="background: #f3eff4;"> 
+			<div id="departmentProperty" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Property
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content p-1">
+                        <div id="js-checkbox-toggles">
+                            <div class="row">
+								<div class="col-12 col-lg-12">
+									<div class="row mx-1">
+										<div class="col-12 col-md-2 col-lg-2 col-xl-2 pl-0 d-flex align-items-center mt-2">
+											<div class="money-container floatingFields w-100">
+												  <input type="number" min="0.00" step="0.01" class="form-control floatingLable PropertyTrackingDept_Tab_Hdr money-input formInputField-dept rawField" 
+												  tabindex="1" aria-label="moneyAmt-Dept" name="PROP_TRK_AMT" id="moneyAmt-Dept" data-max-int="9" data-max-dec="2" data-fld="moneyAmt-Dept" data-lbl="Money Amount" value="" placeholder="">
+												  <label for="moneyAmt-Dept" class="form-label mb-0 pl-2 text-nowrap">Money Amount</label>
+												  <span class="money-symbol">$</span>																					
+											</div>
+										</div>
+										<div class="col-12 col-md-5 col-lg-5 col-xl-3 pl-0 d-flex align-items-center mt-2 floatingFields">
+											<input type="text" class="form-control floatingLable rawField" aria-label="issuedByDeptInp" id="issuedByDeptInp" name="issuedByDeptInp" data-fld="issuedByDeptInp" data-lbl="Issued By" value="" placeholder="" disabled>
+											<label for="issuedByDeptInp" class="form-label mb-0 text-nowrap">Issued By</label>	
+											<span data-toggle="modal" data-target="#ObservingOfficer" class="ObservingOfficer" id="issuedByDept" modal-title="Issued By">
+												<a href="#" id="issuedByDept-a" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center formInputField-dept"
+												data-toggle="tooltip" data-placement="top" data-original-title="Issued By" tabindex="2">
+													<i class="fa fa-users" aria-hidden="true"></i>
+												</a>
+											</span>																				
+											<input type="hidden" class="PropertyTrackingItems_Tab_Hdr" aria-label="" name="" id="collectedByItemsHdn" value="" placeholder="">
+										</div>
+										<div class="col-12 col-md-5 col-lg-5 col-xl-3 pl-0 d-flex align-items-center mt-2 floatingFields">
+											<input type="text" class="form-control floatingLable rawField" aria-label="returnedToDeptInp" id="returnedToDeptInp" name="returnedToDeptInp" data-fld="returnedToDeptInp" data-lbl="Returned To" value="" placeholder="" disabled>
+											<label for="returnedToDeptInp" class="form-label mb-0 mr-1 text-nowrap">Returned To</label>	
+											<span data-toggle="modal" data-target="#ObservingOfficer" class="ObservingOfficer" id="returnedToDept" modal-title="Returned To">
+												<a href="#" id="returnedToDept-a" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center formInputField-dept"
+												data-toggle="tooltip" data-placement="top" data-original-title="Returned To" tabindex="3">
+													<i class="fa fa-users" aria-hidden="true"></i>
+												</a>
+											</span>	
+										</div>
+										<div class="col-12 col-md-2 mt-md-3 col-lg-2 mt-lg-3 col-xl-2 mt-xl-2 pl-0 d-flex align-items-center floatingFields">
+											<input class="form-control floatingLable  PropertyTrackingDept_Tab_Hdr date-input date-input2 formInputField-dept rawField" size="16" type="text" 
+											aria-label="dateIssued" name="PROP_TRK_DT" id="dateIssued" value="" placeholder="" data-fld="dateIssued" data-lbl="Date Issued" autocomplete="off" tabindex="4">
+											<label class="form-label mb-0 text-nowrap" for="dateIssued">Date Issued</label> 
+										</div>
+										<div class="col-12 col-md-2 mt-md-3 col-lg-2 mt-lg-3 col-xl-2 mt-xl-2 px-0 d-flex align-items-center floatingFields">
+											<input class="form-control floatingLable PropertyTrackingDept_Tab_Hdr date-input date-input2 formInputField-dept rawField" size="16" type="text" 
+											aria-label="dateReturned-Dept" name="PROP_RETN_DT" id="dateReturned-Dept" value="" placeholder="" data-fld="dateReturned-Dept" data-lbl="Date Returned" 
+											autocomplete="off" tabindex="5">
+											<label class="form-label mb-0 text-nowrap"  for="dateReturned-Dept">Date Returned</label> 
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div id="departPropertyDesc" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Property Description
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content p-1">
+                        <div id="js-checkbox-toggles">
+                            <div class="row mx-1">
+								<div class="col-12 col-md-5 col-lg-5 col-xl-4 pl-0">
+									<div id="departmentIssued-table"></div>
+								</div>
+								<div class="col-12 col-md-7 col-lg-7 col-xl-8 px-0">
+									<div class="row mx-1">
+										<div class="col-12 col-md-4 col-lg-4 col-xl-3 pl-0 d-flex align-items-center mt-2 floatingFields">
+											<input type="number" min="0" step="1" class="form-control floatingLable PropertyTrackingDept_Tab_Desc formInputField-dept numberInputField rawField"
+											 aria-label="deptIssdQty" name="PROP_DOC_ITM_QTY" id="deptIssdQty" data-fld="deptIssdQty" data-lbl="Qty" data-max-length="4" value=" " placeholder="">
+											<label for="deptIssdQty" class="form-label mb-0 text-nowrap">Qty</label>																					
+										</div>
+										<div class="col-12 col-lg-12 px-0 mt-2">
+											<textarea class="form-control PropertyTrackingDept_Tab_Desc formInputField-dept rawField" data-fld="deptIssdCmnts" data-lbl="Comments" id="deptIssdCmnts" placeholder="Comments" rows="7" maxlength="2000" name="PROP_DOC_ITM_DESC" aria-label="deptIssdCmnts" value=""></textarea>
+											<small class="text-muted" data-asw-org-font-size="13"><span id="deptIssdCmnts-count">0</span>/2000 characters</small>
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="d-flex justify-content-center align-items-center mb-2">
+				<button class="btn btn-sm btn-primary ml-1 align-items-center" id="prevPropertyBtn-Dept" data-toggle="tooltip" data-placement="top" data-original-title="Previous" disabled>
+					<i class="fa fa-arrow-left"></i>
+				</button>
+				<button class="btn btn-sm btn-primary ml-1 align-items-center"id="nextPropertyBtn-Dept" data-toggle="tooltip" data-placement="top" data-original-title="Next" disabled>
+					<i class="fa fa-arrow-right"></i>
+				</button>
+			</div>
+		</div>
+	</div>
+	<style>
+		#departmentIssued-table{
+			height: fit-content;
+			max-height: 220px;
+		}
+	</style>
+	<script>
+		var issdItemsHdrData = [];
+		var deptTableData = [];
+				var deptDescTable = new Tabulator("#departmentIssued-table", {
+										layout: "fitColumns",
+										placeholder:"No Data Available",
+										data: deptTableData,
+										selectableRows:1,
+										height: '320px',
+										sortable: false,
+										//headerSort: false,
+										virtualDom: false,
+										//printAsHtml: true,
+										//printStyled: true,
+										columns: [
+											{
+												//title: "Issued",
+												titleFormatter: (column) => setTitleDesc(column, 'issuedItms-dptTbl', 'Issued'),
+												field: "PROP_DOC_ITM_QTY",
+												headerSort:false,
+												formatter: (cell) => {
+													const value = cell.getValue();
+													const row = cell.getRow();
+													const index = row.getPosition();
+													return `
+														<input type="checkbox" class="deptItmsChkBox" ${value != null ? 'checked disabled' : ''} onclick="markIssdIssued(event, ${index-1})"/>
+													    <label>${value}</label>
+													`;
+												},
+												width: 100,
+											},
+											{
+												title: "Item",
+												titleFormatter: (column) => setTitleDesc(column, 'itemDesc-dptTbl', 'Item'),
+												field: "ITEM_DESC",
+												headerSort:false,
+											},
+											{
+												//title: "Returned",
+												titleFormatter: (column) => setTitleDesc(column, 'returnedItms-dptTbl', 'Returned'),
+												field: "PROP_DOC_ITM_RETN_QTY",
+												headerSort:false,
+												formatter: (cell) => {
+													const value = cell.getValue();
+													const row = cell.getRow();
+													//const data = row.getData();
+													const index = row.getPosition();
+													return `
+														<input type="checkbox" class="coltItmsChkBox" ${value != null ? 'checked disabled' : ''} onclick="markIssdRetrn(event, ${index-1})"/>
+													`;
+												},
+												width: 100,
+											},
+										]
+									});
+
+		tabulatorRegistry['departmentIssued-table']={varName: 'deptDescTable', instance: deptDescTable}
+
+		var currIssdPropIndx = 0;
+		var currIssdItemIndx = null;
+		var deptItmsUpdated = false;
+		var deptHdrUpdated = false;
+		var issdItmsPropSeqNo = null;
+		function getPropertyTrackingDeptTabHdr(commitNo) {
+			$.ajax({
+				url: contextPath + 'propertyTrackingHdr',
+				type: 'GET',
+				data: {
+					commitNo: commitNo,
+					propType: "ISS"
+				},
+				success: function (response) {
+
+					if (response) {
+						issdItemsHdrData = response.RESULTSET;
+						setPropertyTrackingDeptTabHdr();
+						//document.getElementById("commonPerloader").style.display="none";
+					}
+				}
+			});
+		}
+		
+		function clearDeptPropDescFields(){
+			$("#deptIssdQty").val('');
+			$("#deptIssdCmnts").val('');
+			updateCharCount("deptIssdCmnts");
+		}
+
+		function markIssdIssued(event, indx){
+			if(event.target.checked){
+				deptItmsUpdated = true;
+				updatedIssdItms.add(indx);
+			}
+			else{
+				updatedIssdItms.delete(indx);
+				const tableRow = deptTableData[indx];
+				tableRow.PROP_DOC_ITM_QTY = null;
+				if(updatedIssdItms.size === 0){ deptItmsUpdated=false;}
+			}
+		}
+		
+		var issdRetrndMrkd = false;
+		function markIssdRetrn(event, indx){
+			const tableRow = deptTableData[indx];
+			const checkbox = event.target;
+			
+			const receivedValue = tableRow.PROP_DOC_ITM_QTY;
+			const isReceivedChecked = receivedValue != null;
+
+			    // Check if the checkbox is checked
+			    const isChecked = checkbox.checked;
+
+			    if (isChecked) {
+					if (isReceivedChecked) {
+						tableRow.PROP_DOC_ITM_RETN_QTY = receivedValue;
+						deptItmsUpdated = true;
+						updatedIssdItms.add(indx);
+					}else {
+						 custom_msg('CUW', "Item cannot be marked as returned unless it is marked as received and a quantity is entered");
+					     checkbox.checked = false; // revert the action
+					 }
+			    } else {
+			        tableRow.PROP_DOC_ITM_RETN_QTY = null;
+					if (updatedIssdItms.size === 0) {
+					    deptItmsUpdated = false;
+					}
+			    }
+		}
+		
+		async function setPropertyTrackingDeptTabHdr(){
+			
+			if(issdItemsHdrData == [] || issdItemsHdrData.length == 0){
+				const obj = await createEmptyColtHdrObj(null, "ISS");
+				issdItemsHdrData.push(obj);
+			}
+													  
+			data = issdItemsHdrData[currIssdPropIndx];
+
+			$("#moneyAmt-Dept").val(data.PROP_TRK_AMT ? data.PROP_TRK_AMT : "");
+			$("#issuedByDeptInp").val(
+				(data.USER_LAST_NAME ? data.USER_LAST_NAME : "") +
+				(data.USER_FIRST_NAME ? ", "+data.USER_FIRST_NAME : "") +
+				(data.USER_MID_NAME ? " "+data.USER_MID_NAME : "") +
+				(data.USER_SUFFIX_NAME ? " "+data.USER_SUFFIX_NAME : "") /*+ " / " +
+				(data.USERS_USER_ID ? data.USERS_USER_ID : "")*/
+			);
+			$("#dateIssued").val(formatDate(data.PROP_TRK_DT ? data.PROP_TRK_DT : ''));
+			$("#dateReturned-Dept").val(formatDate(data.PROP_RETN_DT ? data.PROP_RETN_DT : ''));
+			
+			if(data.USERS_USER_ID_RETURN_BY != null && data.USERS_USER_ID_RETURN_BY != ''){
+				$.ajax({
+					url: contextPath + 'getUserFullName',
+					type: 'GET',
+					data: {
+						userId: data.USERS_USER_ID_RETURN_BY
+					},
+					success: function (res) {
+						$("#returnedToDeptInp").val(res ? res : '');
+					}
+				});
+			}else {
+				$("#returnedToDeptInp").val('');
+			}
+
+			issdItmsPropSeqNo = data.PROP_TRK_SEQ_NO;
+			setIssdItemsDesc(issdItmsPropSeqNo);
+			enableOrDisableIssdItmsMoveBtns();
+			loader(0);
+		}
+		
+		function setIssdItemsDesc(prpTrkSeq){
+			$.ajax({
+				url: contextPath + 'propertyTrackingItmsIssd',
+				type: 'GET',
+				data: {
+					propTrkSeq: prpTrkSeq
+				},
+				success: function (res) {
+					deptTableData = res.RESULTSET;
+					//deptDescTable.clearData();
+					deptDescTable.setData(deptTableData);
+					
+					// Select 1st row
+					currIssdItemIndx = 0;
+					populateDeptDescInpFields(deptTableData[0]); // Populate input fields
+					let firstRow = deptDescTable.getRows()[0];
+					if(firstRow){
+						firstRow.select();
+					}
+					$('#moneyAmt-Dept').focus();
+											
+					//document.getElementById("commonPerloader").style.display="none";
+					//deptDescTable.redraw();
+					/*if(currIssdItemIndx){
+						setTimeout(() => {
+							deptDescTable.getRowFromPosition(currIssdItemIndx+1).select();
+						}, 200);
+					}*/
+				}
+			});
+		}
+		
+		function enableOrDisableIssdItmsMoveBtns(){
+			// prev should go forward in the list
+			// next should go back in the list
+			const isAtStart = currIssdPropIndx === 0;
+			const isAtEnd = currIssdPropIndx === issdItemsHdrData.length - 1;
+			document.getElementById("nextPropertyBtn-Dept").disabled = isAtStart;
+			document.getElementById("prevPropertyBtn-Dept").disabled = isAtEnd;
+		}
+		
+		function populateDeptDescInpFields(rowData){
+			$("#deptIssdQty").val(rowData.PROP_DOC_ITM_QTY ? rowData.PROP_DOC_ITM_QTY : '');
+			$("#deptIssdCmnts").val(rowData.PROP_DOC_ITM_DESC ? rowData.PROP_DOC_ITM_DESC : '');
+			updateCharCount("deptIssdCmnts");
+			document.getElementById('deptIssdQty').focus();
+		}
+		
+		function resetIssdItmsTab(){
+			/** Issd items screen */
+			deptDescTable.setData([]);
+			issdItemsHdrData = [];
+			deptTableData = [];
+
+			updatedIssdItmsHdr = new Set();
+			updatedIssdItms = new Set();
+
+			issdItmsPropSeqNo = null;
+			currIssdItemIndx = null;
+			currIssdPropIndx = 0;
+			deptHdrUpdated = false;
+			deptItmsUpdated = false;
+			return;
+		}
+		
+		let updatedIssdItmsHdr = new Set();
+		let updatedIssdItms = new Set();
+		$(document).ready(function () {
+			$("#departmentIssued-table").on("click", ".tabulator-row", function (e) {
+				// Get the row component from the clicked element
+				const rowElement = this; // The clicked row element
+				const row = deptDescTable.getRow(rowElement); // Get the row component
+				if (row) {
+					const rowData = row.getData(); // Get the full data object
+					currIssdItemIndx = row.getPosition()-1;
+					populateDeptDescInpFields(rowData); // Populate input fields
+				}
+			});
+						
+			$("#prevPropertyBtn-Dept").on("click", function (e) {
+				
+				if(deptHdrUpdated || deptItmsUpdated){
+					custom_msg('CUW', "Please save your changes before moving to previous property.");
+					return;
+				}
+				currIssdPropIndx++;
+				setPropertyTrackingDeptTabHdr();
+				clearDeptPropDescFields();
+			});
+			$("#nextPropertyBtn-Dept").on("click", function (e) {
+				if(deptHdrUpdated || deptItmsUpdated){
+					custom_msg('CUW', "Please save your changes before moving to next property.");
+					return;
+				}
+				currIssdPropIndx--;
+				setPropertyTrackingDeptTabHdr();
+				clearDeptPropDescFields();
+			});
+			
+			$('.PropertyTrackingDept_Tab_Hdr').on('change', function() {
+				if(issdItemsHdrData.length > 0 && issdItemsHdrData != []){
+					const fieldName = $(this).attr('name');
+					issdItemsHdrData[currIssdPropIndx][fieldName] = $(this).val();
+					deptHdrUpdated = true;
+					updatedIssdItmsHdr.add(currIssdPropIndx);
+				}
+			});
+
+			$('.PropertyTrackingDept_Tab_Desc').on('change', function() {
+				if(currIssdItemIndx != null && deptTableData.length > 0 && deptTableData != []){
+					const fieldName = $(this).attr('name');
+					if(fieldName == "PROP_INMT_RETN_NAME"){return;}
+					// see how collected by is saved and store that in a hidden field.
+					deptTableData[currIssdItemIndx][fieldName] = $(this).val();
+					deptItmsUpdated = true;
+					updatedIssdItms.add(currIssdItemIndx);
+				}
+			});
+			
+			$(document).ajaxComplete(function(event, xhr, settings) {
+				if (settings.url.includes('checkSbiNoAndLocation') && xhr.status === 200) {
+					$.ajax({
+						method: "GET",
+						url: contextPath + "getPropertyCommitNo",
+						data: {
+							sbiNo: $('#sbiNumberInput').val()
+						},
+						success: function(response) {
+							if(response){
+								currCommitNo = response;
+								resetColtItmsTab();
+								resetIssdItmsTab();
+								getPropertyTrackingItemsTabHdr(response);
+								getPropertyTrackingDeptTabHdr(response);
+								
+								var sbiNumberInput = $('#sbiNumberInput').val();
+								var screenName = document.getElementById('screenNameHolder').textContent;
+								var screenCode = document.getElementById('screenNameHolder').dataset.name;
+								insertSBISearch(screenCode,screenName,sbiNumberInput);
+								loader(0);
+								//console.log("hiding loader");
+								//document.getElementById("commonPerloader").style.display="none";
+							}
+						}
+					});
+				}
+			});
+
+			$(function() {
+				if ($.trim($('#sbiNumberInput').val())) {
+					$('#moneyAmt-Items').focus();
+				} else {
+					$('#sbiNumberInput').focus();
+				}
+			});
+			
+		});
+	</script>
+</div>

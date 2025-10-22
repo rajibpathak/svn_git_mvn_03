@@ -1,0 +1,1789 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<title>OffenderHousingDetailsandHistory</title>
+<div th:replace="~{fragments/head :: head}"></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<body class="mod-bg-1 nav-function-top header-function-fixed">
+
+	<!-- BEGIN Page Wrapper -->
+	<div class="page-wrapper">
+		<div class="page-inner">
+			<!-- BEGIN Left Aside -->
+			<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+			<!-- END Left Aside --> 
+			<div class="page-content-wrapper">
+				<!-- BEGIN Page Header --> 
+				<div th:replace="~{fragments/header :: header}"></div>
+				<!-- END Page Header -->
+				<!-- BEGIN Page Content -->
+				<!-- the #js-page-content id is needed for some plugins to initialize -->
+				<main id="js-page-content" role="main" class="page-content">
+					<!-- <ol class="breadcrumb page-breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">SmartAdmin</a></li>
+                            <li class="breadcrumb-item">category_1</li>
+                            <li class="breadcrumb-item">category_2</li>
+                            <li class="breadcrumb-item active">Page Titile</li>
+                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        </ol> -->
+					<div class="subheader mb-1">
+						<h1 class="subheader-title">
+							<i class='subheader-icon fal fa-'></i> Offender Housing Details and History </span>
+						</h1>
+						<div class="frame-wrap">
+							<div class="btn-group">
+								<div class="mr-2">
+									<div class="input-append date position-relative w-100">
+										<input class="span2 form-control" placeholder="Today's Date" size="16" type="text" value=""
+											aria-label="todaysDate" name="todaysDate" id="exampledate" readonly
+											disabled>
+										<span class="add-on"></span>
+									</div>
+								</div>
+							</div>
+							<a href="javascript:void(0);"
+								class="btn btn-primary btn-sm btn-icon waves-effect waves-themed disabled"
+								data-toggle="tooltip" data-placement="top" data-original-title="Add"> <i
+									class="fal fa-plus"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-warning btn-sm btn-icon waves-effect waves-themed disabled"
+								data-toggle="tooltip" data-placement="top" data-original-title="Print"> <i
+									class="fal fa-print"></i>
+							</a> <a id="clear-btn" href="javascript:void(0);"
+								class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="tooltip" data-placement="top" data-original-title="Clear"> <i
+									class="fal fa-times"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-success btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="OK/Save"> <i class="fal fa-save"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="Cancel/Exit"> <i class="fal fa-sign-out"></i>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="col-12 col-xl-12">
+							<div th:replace="~{fragments/formheader :: formheader}"></div>
+							<div class="panel">
+								<div class="panel-content">
+									<ul class="nav nav-tabs position-relative" role="tablist">
+										<li class="nav-item"><a class="nav-link active" data-toggle="tab"
+												href="#Offender_Details" role="tab">Offender Details</a></li>
+										<li class="nav-item"><a class="nav-link" data-toggle="tab"
+												href="#Offender_History" role="tab">Offender History</a></li>
+									</ul>
+									<div class="tab-content px-1" style="padding-top: 5px!important;">
+										<div class="tab-pane fade show active" id="Offender_Details" role="tabpanel">
+												<div class="d-flex">
+													<div class="w-75 mr-2"> 
+														<h6 class="m-0 headerBlock text-center">CURRENT OFFENDER HOUSING</h6> 
+														<div class="panel w-100 panelContentBlock" style="height: fit-content;">
+															<div class="panel-container show">
+																<div class="panel-content py-2">
+																	<form action="">
+																		<div class="form-group row">
+																			<div class="col-lg-6 px-0 d-flex align-items-center">
+																				<label for="Security" class="form-label mr-1 mb-0" style="width: 80px;">Facility</label>
+																				<input id="institution" type="text" class="form-control" aria-label="Security" name="Security2" value="" disabled>
+																			</div>
+																			<div class="col-lg-6 pr-0 d-flex align-items-center">
+																				<label for="Security" class="form-label mr-1 mb-0" style="width: 75px;">Building</label>
+																				<input id="building" type="text" class="form-control" aria-label="Security" name="Security2" value="" disabled>
+																			</div>
+																		</div>
+																		<div class="form-group row mt-2">
+																			<div class="col-lg-6 px-0 d-flex align-items-center">
+																				<label for="Security" class="form-label mr-1 mb-0" style="width: 80px;">Wing/Unit</label>
+																				<input id="unit" type="text" class="form-control" aria-label="Security" name="Security2" value="" disabled>
+																			</div>
+																			<div class="col-lg-6 pr-0 d-flex align-items-center">
+																				<label for="Security" class="form-label mr-1 mb-0" style="width: 75px;">Floor</label>
+																				<input id="floor" type="text" class="form-control" aria-label="Security" name="Security2" value="" disabled>
+																			</div>
+																		</div>
+																		<div class="form-group row mt-2">
+																			<div class="col-lg-3 pl-0 d-flex align-items-center">
+																				<label for="Security" class="form-label mr-1 mb-0">Tier/Pod <span class="mr-2"> </span> </label>
+																				<input id="tier" type="text" class="form-control" aria-label="Security" name="Security2" value="" disabled>
+																			</div>
+																			<div class="col-lg-3 px-0 d-flex align-items-center">
+																				<label for="Security" class="form-label mr-1 position-relative mb-0">Cell</label>
+																				<input id="cell" type="text" class="form-control position-relative" aria-label="Security" name="Security2" value="" disabled>
+																			</div>
+																			<div class="col-lg-6 pr-0 d-flex align-items-center">
+																				<label for="Security" class="form-label mr-1 mb-0" style="width: 75px;">Bed</label>
+																				<input id="bed" type="text" class="form-control" aria-label="Security" name="Security2" value="" disabled>
+																			</div>
+																		</div>
+																	</form>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="w-100">
+														<h6 class="m-0 headerBlock text-center">OFFENDER DETAILS</h6> 
+														<div class="panel w-100 panelContentBlock">
+															<div class="panel-container show">
+																<div class="panel-content pt-1 pb-2">
+																	<form action="">
+																		<div class="form-group row align-items-center">
+																			<div class="col-lg-4 text-nowrap pl-1">
+																				<div class="custom-control custom-checkbox custom-control-inline">
+																					<input id="medical-restrictions" type="checkbox" class="custom-control-input">
+																					<label class="custom-control-label" for="MedicalRestrictions">Medical Restrictions</label>
+																				</div>
+																			</div>
+																			<div class="col-lg-3 text-nowrap position-relative" style="left: 13px;">
+																				<a id="medicalInformation" type="button" href="MedicalInformationESC_CRME" class="btn btn-sm btn-primary mr-2 disabling-link" >Medical Information</a>
+																			</div>
+																			<div class="col-lg-5 pl-2 pr-1 d-flex align-items-center text-nowrap">
+																				<label for="Security" class="form-label mr-1 mb-0">Other Restrictions</label>
+																				<input id="other-restrictions" type="text" class="form-control" aria-label="Security" name="Security2" value="" disabled>
+																			</div>
+																		</div>
+																		<div class="form-group row align-items-center">
+																			<div class="col-lg-4 text-nowrap pl-1">
+																				<div class="custom-control custom-checkbox custom-control-inline">
+																					<input id="orientation-complete" type="checkbox" class="custom-control-input">
+																					<label class="custom-control-label" for="MedicalRestrictions">Current Facility Orientation Complete</label>
+																				</div>
+																			</div>
+																			<div class="col-lg-3 text-nowrap position-relative" style="left: 13px;">
+																				<a id="orientationChecklist" type="button" href="OrientationChecklistCBI_ORTA" class="btn btn-sm btn-primary mr-2 disabling-link" >Orientation Checklist</a>
+																			</div>
+																			<div class="col-lg-5 d-flex align-items-center pl-2 pr-1">
+																				<div class="custom-control custom-checkbox custom-control-inline">
+																					<input id="family-incarcerated" type="checkbox" class="custom-control-input">
+																					<label class="custom-control-label" for="MedicalRestrictions">Family Member Incarcerated in Facility</label>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="form-group row align-items-center">
+																			<div class="col-lg-4 text-nowrap pl-1">
+																				<div class="custom-control custom-checkbox custom-control-inline">
+																					<input id="no-contacts" type="checkbox" class="custom-control-input">
+																					<label class="custom-control-label" for="MedicalRestrictions">No Contacts In Facility</label>
+																				</div>
+																			</div>
+																			<div class="col-lg-3 text-nowrap position-relative" style="left: 13px;">
+																				<a id="noContacts" type="button" href="NoContactsCBINOCT" class="btn btn-sm btn-primary mr-2 disabling-link" style="width: 140px;">No Contact</a>
+																			</div>
+																			<div class="col-lg-5 pl-2 pr-1 d-flex align-items-center">
+																				<label for="Security" class="form-label mr-1 text-nowrap">Current Facility In Date</label>
+																				<input id="current-inst-date" type="text" class="form-control" aria-label="Security" name="Security2" value="" disabled>
+																			</div>
+																		</div>
+																	</form>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											
+											<div class="d-flex">
+												<div class="w-100 mr-2">
+												<h6 class="m-0 text-center headerBlock">NO CONTACTS IN FACILITY</h6>
+												<div class="panel w-100">
+													<div class="panel-container show">
+														<div class="panel-content pt-1 pb-1">
+															<table id="no-contact" class="table table-striped table-bordered table-sm" cellspacing="0" width="100% font-size: 14px;">
+																<thead class="bg-primary-600 text-nowrap">
+																	<tr>
+																		<th class="text-nowrap no-sort">SBI #</th>
+																		<th data-sortable="true">First Name</th>
+																		<th data-sortable="false">Last Name</th>
+																		<th data-sortable="true">Cell</th>
+																		<th data-sortable="false">Claimed</th>
+																	</tr>
+																</thead>
+																<tbody>
+																</tbody>
+															</table>
+															<div class="modal fade" id="AddCmntModal" tabindex="-1" role="dialog" aria-hidden="true">
+				                                                <div class="modal-dialog modal-dialog-centered" role="document">
+					                                                    <div class="modal-content">
+					                                                        <div class="modal-header">
+					                                                            <h4 class="modal-title">
+					                                                                DOC - Caution [Case Notes - CSM_NOSC]
+					                                                            </h4>
+					                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					                                                                <span aria-hidden="true"><i class="fal fa-times"></i></span>
+					                                                            </button>
+					                                                        </div>
+					                                                        <div class="modal-body pt-0 pb-0">
+																				<div class="d-flex align-items-center">																				
+																					<i class="fa fa-exclamation-triangle mr-2" style="font-size: 30px; color: #ffaf1b; " aria-hidden="true"></i>
+						                                                            <p class="m-0">Do you want to add an amendment to this case note?</p>
+																				</div>
+					                                                        </div>
+					                                                        <div class="modal-footer">
+					                                                            <button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#AddCmntModal1" data-dismiss="modal">Yes</button>
+					                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+					                                                        </div>
+					                                                    </div>
+					                                                </div>
+		                                            			</div>
+		                                            			<div class="modal fade" id="AddCmntModal1" tabindex="-1" role="dialog" aria-hidden="true">
+				                                                	<div class="modal-dialog modal-dialog-centered" role="document">
+					                                                    <div class="modal-content">
+					                                                        <div class="modal-header pb-1">
+					                                                            <h4 class="modal-title">
+					                                                                Amendment to Case Notes
+					                                                            </h4>
+					                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					                                                                <span aria-hidden="true"><i class="fal fa-times"></i></span>
+					                                                            </button>
+					                                                        </div>
+					                                                        <div class="modal-body pt-0 pb-0">			
+																				<lable for="addCmntVal"></lable>
+					                                                            <textarea class="form-control" id="addComments" rows="5" name="Comments" aria-label="Comments"value=""></textarea>
+					                                                        </div>
+					                                                        <div class="modal-footer">
+																				<button type="button" class="btn btn-secondary">Spell Check</button>
+					                                                            <button type="button" id="addCmntValBtn" class="btn btn-primary" data-dismiss="modal">Ok</button>
+					                                                            <button type="button" class="btn btn-secondary" id="addCmntValClear">Clear</button>
+					                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Exit</button>
+					                                                        </div>
+					                                                    </div>
+					                                                </div>
+		                                            			</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="w-50">
+												<h6 class="m-0 text-center headerBlock">COMMENTS</h6>
+												<div class="panel w-100 panelContentBlock">
+													<div class="panel-container show">
+														<div class="panel-content pt-1 pb-1">
+															<div class="d-flex align-items-center position-relative" style="left: -19px;">
+																<div class="custom-control custom-radio pt-2 ml-2 pb-1">
+							                                        <input type="radio" class="custom-control-input" id="Admissions" name="Admissions" checked>
+							                                        <label class="custom-control-label" for="Admissions">Admissions</label>
+							                                    </div>
+							                                    <div class="custom-control custom-radio pt-2 ml-2 pb-1">
+							                                        <input type="radio" class="custom-control-input" id="MedicalRadio" name="MedicalRadio">
+							                                        <label class="custom-control-label" for="MedicalRadio">Medical</label>
+							                                    </div>
+							                                    <div class="custom-control custom-radio pt-2 ml-2 pb-1">
+							                                        <input type="radio" class="custom-control-input" id="HousingAssessment" name="HousingAssessment">
+							                                        <label class="custom-control-label" for="HousingAssessment">Housing Assessment</label>
+							                                    </div>
+															</div>
+															<div class="row mt-1">
+																<div class="col-12 col-lg-12 p-0">
+																	<textarea class="form-control"
+																		id="addCmntValShow" rows="11" placeholder="Comments"
+																		name="residenceCategory" style="resize: none;"
+																		aria-label="residenceCategory"
+																		value=""></textarea>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											</div>
+										</div>
+								<div class="tab-pane fade" id="Offender_History" role="tabpanel">
+									<div class="d-flex align-items-center mb-1">
+										<div class="d-flex align-items-center">
+											<label class="form-label m-0 ml-1">Date Range:</label>
+											<span class="d-flex align-items-center">
+												<label for="race" class="form-label mb-0 mx-2">From</label>
+												<div class="input-append date position-relative">
+												    <input class="span2 form-control bg-light" size="16" type="text" id="fromDate" value="" placeholder="mm/dd/yyyy">
+												    <span class="add-on"><i class="fal fa-calendar-alt position-absolute"></i></span>
+												</div>
+											</span>
+											<span class="d-flex align-items-center">
+												<label for="race" class="form-label mb-0 mx-2">To</label>
+												<div class="input-append date position-relative">
+												    <input class="span2 form-control bg-light" size="16" type="text" id="toDate" value="" placeholder="mm/dd/yyyy">
+												    <span class="add-on"><i class="fal fa-calendar-alt position-absolute"></i></span>
+												</div>
+											</span>
+										</div>
+										<button id="history-selectbtn" type="button" class="btn btn-sm	 btn-primary ml-2">Select</button>
+										<span id="date-error-msg" class="text-danger ml-2"></span>
+									</div>
+									<div class="row">
+										<div class="col-lg-7">
+											<div class="panel">
+												<h6 class="m-0 text-center headerBlock">OFFENDER HOUSING HISTORY</h6>
+												<div class="panel-container show">
+													<div class="panel-content p-1">
+														<div id="table-container" class="mb-1">
+															<div class="tableFixHead" style="max-height: 305px; overflow-x: hidden;">
+																<table id="HousingHistoryTable" class="table table-striped table-bordered table-sm" style="margin-bottom:0;">
+																	<thead class="bg-primary-600 text-nowrap">
+																		<tr>
+																			<th style="min-width: 130px;">Bed</th>
+																			<th style="min-width: 130px;">Bed Type</th>
+																			<th>Date Entered</th>
+																			<th>Time Entered</th>
+																			<th>Date Departed</th>
+																			<th>Time Departed</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<!-- <tr>
+																			<td>
+																				<input type="text" class="form-control" aria-label="Bed" name="Bed" id="Bed" value="" disabled>
+																			</td>
+																			<td>
+																				<input type="text" class="form-control" aria-label="Bed" name="Bed" id="Bed" value="" disabled>
+																			</td>
+																			<td>
+																				<input type="text" class="form-control" aria-label="Bed" name="Bed" id="Bed" value="" disabled>
+																			</td>
+																			<td>
+																				<input type="text" class="form-control" aria-label="Bed" name="Bed" id="Bed" value="" disabled>
+																			</td>
+																			<td>
+																				<input type="text" class="form-control" aria-label="Bed" name="Bed" id="Bed" value="" disabled>
+																			</td>
+																			<td>
+																				<input type="text" class="form-control" aria-label="Bed" name="Bed" id="Bed" value="" disabled>
+																			</td>
+																		</tr> -->
+																	</tbody>
+																</table>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-5 pl-0">
+											<h6 class="m-0 text-center headerBlock">BED LOCATION</h6>
+											<div class="panel panelContentBlock">
+												<div class="panel-container show">
+													<div class="panel-content p-1 d-flex flex-wrap">
+														<div class="w-100 d-flex">
+															<div class="mr-3 w-100">															
+																<label for="Security" class="form-label">Facility</label>
+																<input type="text" class="form-control" aria-label="Security" name="Security2" id="hist-institution" value="" disabled>
+															</div>
+															<div class="mr-3 w-100">															
+																<label for="Security" class="form-label">Building</label>
+																<input type="text" class="form-control" aria-label="Security" name="Security2" id="hist-building" value="" disabled>
+															</div>
+															<div class="mr-0 w-100">															
+																<label for="Security" class="form-label">Wing/Unit</label>
+																<input type="text" class="form-control" aria-label="Security" name="Security2" id="hist-unit" value="" disabled>
+															</div>
+														</div>
+														<div class="w-100 d-flex mt-1">
+															<div class="mr-3 w-100"> 															
+																<label for="Security" class="form-label mr-1" style="width: 75px;">Floor</label>
+																<input type="text" class="form-control" aria-label="Security" name="Security2" id="hist-floor" value="" disabled>
+															</div>
+															<div class="mr-3 w-100">	 													
+																<label for="Security" class="form-label">Tier/Pod</label>
+																<input type="text" class="form-control" aria-label="Security" name="Security2" id="hist-tier" value="" disabled>
+															</div>
+															<div class="mr-0 w-100">															
+																<label for="Security" class="form-label">Cell</label>
+																<input type="text" class="form-control" aria-label="Security" name="Security2" id="hist-cell" value="" disabled>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-12 px-0">
+											<h6 class="m-0 text-center headerBlock">MOVEMENT COMMENTS</h6>
+											<div class="panel panelContentBlock">
+												<div class="panel-container show">
+													<div class="panel-content p-1">
+														<textarea class="form-control" id="addComments" rows="10" name="Comments" aria-label="Comments" value="" placeholder="Comments" style="resize: none;" disabled></textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</main>
+				<!-- this overlay is activated only when mobile menu is triggered -->
+				<div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
+				<!-- END Page Content -->
+				<!-- BEGIN Page Footer -->
+				<div th:replace="~{fragments/footer :: footer}"></div>
+				<!-- END Page Footer -->
+				<!-- Modal Large -->
+				<div class="modal fade" id="default-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Staff Name</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true"><i class="fal fa-times"></i></span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="form-group row">
+									<label for="staffSearch"
+										class="col-form-label col-12 col-lg-1 form-label">Search</label>
+									<div class="col-12 col-lg-11">
+										<input type="text" class="form-control" aria-label="staffSearch"
+											name="staffSearch" id="staffSearch" value="">
+									</div>
+
+								</div>
+								<div class="table-responsive-lg">
+									<table class="table table-bordered m-0">
+										<thead>
+											<tr>
+												<th>Last Name</th>
+												<th>First Name</th>
+												<th>MI</th>
+												<th>Suffix</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- BEGIN Shortcuts -->
+				<!-- modal shortcut -->
+				<div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog"
+					aria-labelledby="modal-shortcut" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-top modal-transparent" role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+								<ul class="app-list w-auto h-auto p-0 text-left">
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Home
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
+												<i class="ni ni-envelope icon-stack-1x text-white"></i>
+											</div>
+											<span class="app-list-name">
+												Inbox
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Add More
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div> <!-- END Shortcuts -->
+			</div>
+		</div>
+	</div>
+	<!-- END Page Wrapper -->
+	<!-- BEGIN Quick Menu -->
+	<!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
+	<nav class="shortcut-menu d-none d-sm-block">
+		<input type="checkbox" class="menu-open" name="menu-open" id="menu-open" aria-label="menu-open" value="" />
+		<label for="menu_open" class="menu-open-button ">
+			<span class="app-shortcut-icon d-block"></span>
+		</label>
+		<a href="#" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Scroll Top">
+			<i class="fal fa-arrow-up"></i>
+		</a>
+		<a href="page_login-alt.html" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Logout">
+			<i class="fal fa-sign-out"></i>
+		</a>
+		<a href="#" class="menu-item btn" data-action="app-fullscreen" data-toggle="tooltip" data-placement="left"
+			title="Full Screen">
+			<i class="fal fa-expand"></i>
+		</a>
+		<a href="#" class="menu-item btn" data-action="app-print" data-toggle="tooltip" data-placement="left"
+			title="Print page">
+			<i class="fal fa-print"></i>
+		</a>
+		<a href="#" class="menu-item btn" data-action="app-voice" data-toggle="tooltip" data-placement="left"
+			title="Voice command">
+			<i class="fal fa-microphone"></i>
+		</a>
+	</nav>
+	<!-- END Quick Menu -->
+	<!-- BEGIN Messenger -->
+	<div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right">
+			<div class="modal-content h-100">
+				<div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
+					<div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+						<span class="mr-2">
+							<span class="rounded-circle profile-image d-block"
+								style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+						</span>
+						<div class="info-card-text">
+							<a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white"
+								data-toggle="dropdown" aria-expanded="false">
+								Tracey Chang
+								<i class="fal fa-angle-down d-inline-block ml-1 text-white fs-md"></i>
+							</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">Send Email</a>
+								<a class="dropdown-item" href="#">Create Appointment</a>
+								<a class="dropdown-item" href="#">Block User</a>
+							</div>
+							<span class="text-truncate text-truncate-md opacity-80">IT Director</span>
+						</div>
+					</div>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0 h-100 d-flex">
+					<!-- BEGIN msgr-list -->
+					<div
+						class="msgr-list d-flex flex-column bg-faded border-faded border-top-0 border-right-0 border-bottom-0 position-absolute pos-top pos-bottom">
+						<div>
+							<div
+								class="height-4 width-3 h3 m-0 d-flex justify-content-center flex-column color-primary-500 pl-3 mt-2">
+								<i class="fal fa-search"></i>
+							</div>
+							<input type="text" class="form-control bg-white" id="msgr_listfilter_input"
+								name="msgr_listfilter_input" placeholder="Filter contacts" aria-label="FilterSearch"
+								value="" data-listfilter="#js-msgr-listfilter">
+						</div>
+						<div class="flex-1 h-100 custom-scroll">
+							<div class="w-100">
+								<ul id="js-msgr-listfilter" class="list-unstyled m-0">
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="tracey chang online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Tracey Chang
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="oliver kopyuv online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Oliver Kopyuv
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="dr john cook phd away">
+											<div class="d-table-cell align-middle status status-warning status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Dr. John Cook PhD
+													<small class="d-block font-italic fs-xs">
+														Away
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-g.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Ali Amdaney
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="sarah mcbrook online">
+											<div class="d-table-cell align-middle status status-success status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Sarah McBrook
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney busy">
+											<div class="d-table-cell align-middle status status-danger status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs text-danger">
+														Busy
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney inactive">
+											<div class="d-table-cell align-middle">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-m.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													+714651347790
+													<small class="d-block font-italic fs-xs opacity-50">
+														Missed Call
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+								<div class="filter-message js-filter-message"></div>
+							</div>
+						</div>
+						<div>
+							<a class="fs-xl d-flex align-items-center p-3">
+								<i class="fal fa-cogs"></i>
+							</a>
+						</div>
+					</div>
+					<!-- END msgr-list -->
+					<!-- BEGIN msgr -->
+					<div class="msgr d-flex h-100 flex-column bg-white">
+						<!-- BEGIN custom-scroll -->
+						<div class="custom-scroll flex-1 h-100">
+							<div id="chat_container" class="w-100 p-4">
+								<!-- start .chat-segment -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">
+										Jun 19
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent">
+									<div class="chat-message">
+										<p>
+											Hey Ching, did you get my files?
+										</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:00 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>
+											Hi
+										</p>
+										<p>
+											Sorry going through a busy time in office. Yes I analyzed the solution.
+										</p>
+										<p>
+											It will require some resource, which I could not manage.
+										</p>
+									</div>
+									<div class="fw-300 text-muted mt-1 fs-xs">
+										3:24 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-start">
+									<div class="chat-message">
+										<p>
+											Okay
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-end">
+									<div class="chat-message">
+										<p>
+											Sending you some dough today, you can allocate the resources to this
+											project.
+										</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:26 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-start">
+									<div class="chat-message">
+										<p>
+											Perfect. Thanks a lot!
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>
+											I will have them ready by tonight.
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-end">
+									<div class="chat-message">
+										<p>
+											Cheers
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment for timestamp -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">
+										Jun 20
+									</div>
+								</div>
+								<!--  end .chat-segment for timestamp -->
+							</div>
+						</div>
+						<!-- END custom-scroll  -->
+						<!-- BEGIN msgr__chatinput -->
+						<div class="d-flex flex-column">
+							<div
+								class="border-faded border-right-0 border-bottom-0 border-left-0 flex-1 mr-3 ml-3 position-relative shadow-top">
+								<div class="pt-3 pb-1 pr-0 pl-0 rounded-0" tabindex="-1">
+									<div id="msgr_input" contenteditable="true"
+										data-placeholder="Type your message here..."
+										class="height-10 form-content-editable"></div>
+								</div>
+							</div>
+							<div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1"
+									data-toggle="tooltip" data-original-title="More options" data-placement="top">
+									<i class="fal fa-ellipsis-v-alt color-fusion-300"></i>
+								</a>
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+									data-original-title="Attach files" data-placement="top">
+									<i class="fal fa-paperclip color-fusion-300"></i>
+								</a>
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+									data-original-title="Insert photo" data-placement="top">
+									<i class="fal fa-camera color-fusion-300"></i>
+								</a>
+								<div class="ml-auto">
+									<a href="javascript:void(0);" class="btn btn-info">Send</a>
+								</div>
+							</div>
+						</div>
+						<!-- END msgr__chatinput -->
+					</div>
+					<!-- END msgr -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Messenger -->
+	<!-- BEGIN Page Settings -->
+	<div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right modal-md">
+			<div class="modal-content">
+				<div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
+					<h4 class="m-0 text-center color-white">
+						Layout Settings
+						<small class="mb-0 opacity-80">User Interface Settings</small>
+					</h4>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0">
+					<div class="settings-panel">
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									App Layout
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="fh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="header-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Header</span>
+							<span class="onoffswitch-title-desc">header is in a fixed at all times</span>
+						</div>
+						<div class="list" id="nff">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Navigation</span>
+							<span class="onoffswitch-title-desc">left panel is fixed</span>
+						</div>
+						<div class="list" id="nfm">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-minify"></a>
+							<span class="onoffswitch-title">Minify Navigation</span>
+							<span class="onoffswitch-title-desc">Skew nav to maximize space</span>
+						</div>
+						<div class="list" id="nfh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-hidden"></a>
+							<span class="onoffswitch-title">Hide Navigation</span>
+							<span class="onoffswitch-title-desc">roll mouse on edge to reveal</span>
+						</div>
+						<div class="list" id="nft">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-top"></a>
+							<span class="onoffswitch-title">Top Navigation</span>
+							<span class="onoffswitch-title-desc">Relocate left pane to top</span>
+						</div>
+						<div class="list" id="mmb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-main-boxed"></a>
+							<span class="onoffswitch-title">Boxed Layout</span>
+							<span class="onoffswitch-title-desc">Encapsulates to a container</span>
+						</div>
+						<div class="expanded">
+							<ul class="">
+								<li>
+									<div class="bg-fusion-50" data-action="toggle" data-class="mod-bg-1"></div>
+								</li>
+								<li>
+									<div class="bg-warning-200" data-action="toggle" data-class="mod-bg-2"></div>
+								</li>
+								<li>
+									<div class="bg-primary-200" data-action="toggle" data-class="mod-bg-3"></div>
+								</li>
+								<li>
+									<div class="bg-success-300" data-action="toggle" data-class="mod-bg-4"></div>
+								</li>
+							</ul>
+							<div class="list" id="mbgf">
+								<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+									data-class="mod-fixed-bg"></a>
+								<span class="onoffswitch-title">Fixed Background</span>
+							</div>
+						</div>
+						<!-- <div class="mt-4 d-table w-100 px-5">
+                            <div class="d-table-cell align-middle">
+                                <h5 class="p-0">
+                                    Mobile Menu
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="list" id="nmp">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-push"></a>
+                            <span class="onoffswitch-title">Push Content</span>
+                            <span class="onoffswitch-title-desc">Content pushed on menu reveal</span>
+                        </div>
+                        <div class="list" id="nmno">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-no-overlay"></a>
+                            <span class="onoffswitch-title">No Overlay</span>
+                            <span class="onoffswitch-title-desc">Removes mesh on menu reveal</span>
+                        </div>
+                        <div class="list" id="sldo">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-slide-out"></a>
+                            <span class="onoffswitch-title">Off-Canvas <sup>(beta)</sup></span>
+                            <span class="onoffswitch-title-desc">Content overlaps menu</span>
+                        </div> -->
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Accessibility
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mbf">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-bigger-font"></a>
+							<span class="onoffswitch-title">Bigger Content Font</span>
+							<span class="onoffswitch-title-desc">content fonts are bigger for readability</span>
+						</div>
+						<div class="list" id="mhc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-high-contrast"></a>
+							<span class="onoffswitch-title">High Contrast Text (WCAG 2 AA)</span>
+							<span class="onoffswitch-title-desc">4.5:1 text contrast ratio</span>
+						</div>
+						<div class="list" id="mcb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-color-blind"></a>
+							<span class="onoffswitch-title">Daltonism <sup>(beta)</sup> </span>
+							<span class="onoffswitch-title-desc">color vision deficiency</span>
+						</div>
+						<div class="list" id="mpc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-pace-custom"></a>
+							<span class="onoffswitch-title">Preloader Inside</span>
+							<span class="onoffswitch-title-desc">preloader will be inside content</span>
+						</div>
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Global Modifications
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mcbg">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-clean-page-bg"></a>
+							<span class="onoffswitch-title">Clean Page Background</span>
+							<span class="onoffswitch-title-desc">adds more whitespace</span>
+						</div>
+						<div class="list" id="mhni">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-nav-icons"></a>
+							<span class="onoffswitch-title">Hide Navigation Icons</span>
+							<span class="onoffswitch-title-desc">invisible navigation icons</span>
+						</div>
+						<div class="list" id="dan">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-disable-animation"></a>
+							<span class="onoffswitch-title">Disable CSS Animation</span>
+							<span class="onoffswitch-title-desc">Disables CSS based animations</span>
+						</div>
+						<div class="list" id="mhic">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-info-card"></a>
+							<span class="onoffswitch-title">Hide Info Card</span>
+							<span class="onoffswitch-title-desc">Hides info card from left panel</span>
+						</div>
+						<div class="list" id="mlph">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-lean-subheader"></a>
+							<span class="onoffswitch-title">Lean Subheader</span>
+							<span class="onoffswitch-title-desc">distinguished page header</span>
+						</div>
+						<div class="list" id="mnl">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-nav-link"></a>
+							<span class="onoffswitch-title">Hierarchical Navigation</span>
+							<span class="onoffswitch-title-desc">Clear breakdown of nav links</span>
+						</div>
+						<div class="list mt-1">
+							<span class="onoffswitch-title">Global Font Size <small>(RESETS ON REFRESH)</small> </span>
+							<div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
+								<label for="smRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-sm" data-target="html">
+									<input type="radio" aria-label="smRadio" name="smRadio" id="smRadio" value=""> SM
+								</label>
+								<label for="mdRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text" data-target="html">
+									<input type="radio" aria-label="mdRadio" name="mdRadio" id="mdRadio" value=""
+										checked=""> MD
+								</label>
+								<label for="lgRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-lg" data-target="html">
+									<input type="radio" aria-label="lgRadio" name="lgRadio" id="lgRadio" value=""> LG
+								</label>
+								<label for="xlRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-xl" data-target="html">
+									<input type="radio" aria-label="xlRadio" name="xlRadio" id="xlRadio" value=""> XL
+								</label>
+							</div>
+							<span class="onoffswitch-title-desc d-block mb-g">Change <strong>root</strong> font size to
+								effect rem values</span>
+						</div>
+						<div class="mt-2 d-table w-100 pl-5 pr-3">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Theme colors <small>(overlays base css)</small>
+								</h5>
+								<!-- <div class="fs-xs text-muted p-2 alert alert-warning mt-3 mb-0">
+                                    <i class="fal fa-exclamation-triangle text-warning mr-2"></i>Due to network latency
+                                    and CPU utilization, you may experience a brief flickering effect on page load which
+                                    may show the intial applied theme for a split second. Setting the prefered
+                                    style/theme in the header will prevent this from happening.
+                                </div> -->
+							</div>
+						</div>
+						<div class="expanded theme-colors pl-5 pr-3">
+							<ul class="m-0">
+								<li><a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme=""
+										data-toggle="tooltip" data-placement="top" title="Wisteria (base css)"
+										data-original-title="Wisteria (base css)"></a></li>
+								<li><a href="#" id="myapp-1" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip"
+										data-placement="top" title="Tapestry" data-original-title="Tapestry"></a></li>
+								<li><a href="#" id="myapp-2" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip"
+										data-placement="top" title="Atlantis" data-original-title="Atlantis"></a></li>
+								<li><a href="#" id="myapp-3" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip"
+										data-placement="top" title="Indigo" data-original-title="Indigo"></a></li>
+								<li><a href="#" id="myapp-4" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip"
+										data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a>
+								</li>
+								<li><a href="#" id="myapp-5" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip"
+										data-placement="top" title="Tradewind" data-original-title="Tradewind"></a></li>
+								<li><a href="#" id="myapp-6" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip"
+										data-placement="top" title="Cranberry" data-original-title="Cranberry"></a></li>
+								<li><a href="#" id="myapp-7" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip"
+										data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a></li>
+								<li><a href="#" id="myapp-8" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip"
+										data-placement="top" title="Chetwode Blue"
+										data-original-title="Chetwode Blue"></a></li>
+								<li><a href="#" id="myapp-9" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip"
+										data-placement="top" title="Apricot" data-original-title="Apricot"></a></li>
+								<li><a href="#" id="myapp-10" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip"
+										data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-11" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip"
+										data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-12" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip"
+										data-placement="top" title="Wild Blue Yonder"
+										data-original-title="Wild Blue Yonder"></a></li>
+								<li><a href="#" id="myapp-13" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip"
+										data-placement="top" title="Emerald" data-original-title="Emerald"></a></li>
+							</ul>
+						</div>
+						<hr class="mb-0 mt-4">
+						<div class="pl-5 pr-3 py-3 bg-faded">
+							<div class="row no-gutters">
+								<div class="col-6 pr-1">
+									<a href="#" class="btn btn-outline-danger fw-500 btn-block"
+										data-action="app-reset">Reset Settings</a>
+								</div>
+								<div class="col-6 pl-1">
+									<a href="#" class="btn btn-danger fw-500 btn-block"
+										data-action="factory-reset">Factory Reset</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<span id="saving"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Page Settings -->
+	
+	<style>
+		h6{
+			color: #7a59ad;
+			font-weight: 500;
+		}
+		#no-contact	 tr{
+			white-space: nowrap;
+		}
+		#no-contact .sorting_asc:first-child::before{
+			display: none;
+		}
+		#no-contact .sorting_asc:first-child::after{
+			display: none;
+		}
+		#no-contact_wrapper div:first-child{
+			margin: 0!important;
+			padding-top: 0;
+		}
+		#no-contact_wrapper .col-sm-12{
+			padding: 0;
+		}
+		.dataTables_info{
+			margin-left: 12px;
+    		padding-top: 0;
+		}
+		#no-contact	{
+			margin-bottom: 5px !important;
+		}
+		.panel{
+			margin-bottom: 8px !important;
+		}
+		.dataTables_scrollHeadInner{
+			width: 100%!important;
+	    	white-space: nowrap;
+		}
+		#initiatelfms .dataTables_wrapper .row:nth-child(1){
+			margin-bottom: 5px !important;
+		} 
+		#initiatelfms .dataTables_info{
+			margin-left: 0px!important;
+		}
+		.headerBtnGroup .dropdown-item{
+			padding: .2rem 1.5rem;
+		}
+		.select2-container--open .select2-dropdown--below {
+			z-index: 9999;
+		}
+		label{
+			font-weight: 500;
+		}
+		#HousingHistoryTable_wrapper .row:first-child{
+			margin-bottom: 0!important;
+		}
+		#HousingHistoryTable_info{
+			margin-left: 0;
+    		padding-top: 4px;
+		}
+		.headerBlock{
+			background: #7a59ad;
+			color: #fff;
+			padding: 5px;
+			border: 1px solid #ccc;
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+		.panelContentBlock{
+			border: 1px solid #7a58ac;	
+			border-radius: 5px!important;
+		}
+		.dataTables_scroll{
+			border: 1px solid #7a59ad;
+    		border-top: 0;
+		}
+		.nav-tabs{
+			border: 1px solid #7a59ad;
+    		border-radius: 5px 5px 5px 0px;
+		}
+		.disabling-link {
+            pointer-events: none; /* Prevents clicks */ 
+            color: white;
+            background-color: rgb(152, 138, 174); /* Change background color */
+            border-color: rgb(152, 138, 174); /* Set border color to lighter shade */
+            text-decoration: none; /* Remove underline */
+        }
+	</style>
+
+	<div th:replace="~{fragments/script :: script}"></div>
+	<script src="js/staticjs.js"></script>
+	<script>
+		$(document).ready(function () {
+			$(function () {
+				$('.select2').select2();
+
+				$(".select2-placeholder-multiple").select2(
+					{
+						placeholder: "Select State"
+					});
+				$(".js-hide-search").select2(
+					{
+						minimumResultsForSearch: 1 / 0
+					});
+				$(".js-max-length").select2(
+					{
+						maximumSelectionLength: 2,
+						placeholder: "Select maximum 2 items"
+					});
+				$(".select2-placeholder").select2(
+					{
+						placeholder: "Select a state",
+						allowClear: true
+					});
+
+
+
+				$(".js-select2-icons").select2(
+					{
+						minimumResultsForSearch: 1 / 0,
+						templateResult: icon,
+						templateSelection: icon,
+						escapeMarkup: function (elm) {
+							return elm
+						}
+					});
+
+				function icon(elm) {
+					elm.element;
+					return elm.id ? "<i class='" + $(elm.element).data("icon") + " mr-2'></i>" + elm.text : elm.text
+				}
+
+				$(".js-data-example-ajax").select2(
+					{
+						ajax:
+						{
+							url: "https://api.github.com/search/repositories",
+							dataType: 'json',
+							delay: 250,
+							data: function (params) {
+								return {
+									q: params.term, // search term
+									page: params.page
+								};
+							},
+							processResults: function (data, params) {
+								// parse the results into the format expected by Select2
+								// since we are using custom formatting functions we do not need to
+								// alter the remote JSON data, except to indicate that infinite
+								// scrolling can be used
+								params.page = params.page || 1;
+
+								return {
+									results: data.items,
+									pagination:
+									{
+										more: (params.page * 30) < data.total_count
+									}
+								};
+							},
+							cache: true
+						},
+						placeholder: 'Search for a repository',
+						escapeMarkup: function (markup) {
+							return markup;
+						}, // let our custom formatter work
+						minimumInputLength: 1,
+						templateResult: formatRepo,
+						templateSelection: formatRepoSelection
+					});
+
+				function formatRepo(repo) {
+					if (repo.loading) {
+						return repo.text;
+					}
+
+					var markup = "<div class='select2-result-repository clearfix d-flex'>" +
+						"<div class='select2-result-repository__avatar mr-2'><img src='" + repo.owner.avatar_url + "' class='width-2 height-2 mt-1 rounded' /></div>" +
+						"<div class='select2-result-repository__meta'>" +
+						"<div class='select2-result-repository__title fs-lg fw-500'>" + repo.full_name + "</div>";
+
+					if (repo.description) {
+						markup += "<div class='select2-result-repository__description fs-xs opacity-80 mb-1'>" + repo.description + "</div>";
+					}
+
+					markup += "<div class='select2-result-repository__statistics d-flex fs-sm'>" +
+						"<div class='select2-result-repository__forks mr-2'><i class='fal fa-lightbulb'></i> " + repo.forks_count + " Forks</div>" +
+						"<div class='select2-result-repository__stargazers mr-2'><i class='fal fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+						"<div class='select2-result-repository__watchers mr-2'><i class='fal fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+						"</div>" +
+						"</div></div>";
+
+					return markup;
+				}
+
+				function formatRepoSelection(repo) {
+					return repo.full_name || repo.text;
+				}
+
+			});
+		});
+		$(document).ready(function() {
+			// initialize datatable
+			$('#no-contact').dataTable({
+				scrollY: "220px",
+	            scrollCollapse: true,
+	            paging: false,
+	            searching: false,
+	            ordering: false,
+				info: false
+			});
+
+		});
+		$(document).ready(function() {
+			// initialize datatable
+			$('#HousingHistoryTable').dataTable({
+	            paging: false,
+	            searching: false,
+	            ordering: false,
+	            info: false
+			});
+
+		});
+	const addCmntText = document.getElementById('addComments');
+	const addCmntclickBtn = document.getElementById('addCmntValBtn');
+	const addCmntshowVal = document.getElementById('addCmntValShow');
+	const addCmntClear = document.getElementById('addCmntValClear');
+	
+	function addcmtfun(){
+		addCmntshowVal.innerHTML = addCmntText.value;
+	}
+	
+	addCmntclickBtn.addEventListener('click', addcmtfun);
+	addCmntClear.addEventListener('click', ()=> {
+			addCmntshowVal.innerHTML = addCmntText.value = '';
+	});
+	
+	//Rest Api functions
+	$(document).ready(function() {
+		
+		/*<![CDATA[*/
+			var contextPath = /*[[@{/}]]*/ '';
+		/*]]>*/
+		
+		//Setting up a trigger to check if the header is populated			
+		$(document).ajaxComplete(function(event, jqxhr, settings) {
+			if (settings.url.includes('checkSbiNoAndLocation')) {
+				if (jqxhr.status === 200) {
+				   $(document).trigger('apiCallSuccess');
+				} else {
+				   $(document).trigger('apiCallFailure');
+				}
+			}
+		});
+		
+		$('#searchButton').on('click', function() {
+			var sbiNumber = $('#sbiNumberInput').val();
+			offenderHousingDetails(sbiNumber);
+			noContactInFacility(sbiNumber);
+		});
+		
+		// Function to return negative reason table values
+			function offenderHousingDetails(sbiNumber) {
+			    $.ajax({
+			        method: "POST",
+			        url: contextPath + 'offenderHousingDetails',
+			        data: sbiNumber, 
+			        contentType: 'application/json',
+			        success: function(response) {
+			           if (response && response.housingDetails && response.housingDetails.length > 0) {
+			                populateHousingDetails(response.housingDetails[0]);
+			            }
+			        },
+			        error: function(error) {
+			            console.error('Error:', error);
+			            console.log(error.responseText);
+			        }
+			    });
+			}
+			
+			//Function to populate current offender housing  
+			function populateHousingDetails(details) {
+			    $('#institution').val(details.institutionName || '');
+			    $('#building').val(details.buildingName || '');
+			    $('#unit').val(details.unitDescription || '');
+			    $('#floor').val(details.floorDescription || '');
+			    $('#tier').val(details.tierDescription || '');
+			    $('#cell').val(details.cellDescription || '');
+			    $('#bed').val(details.bedDescription || '');
+			    
+			    $('#other-restrictions').val(details.otherRestrictions || '');
+			    $('#current-inst-date').val(details.currentInstDate || '');
+			    
+			    // Checkboxes and hrefs
+			    toggleCheckboxAndButton('medical-restrictions', details.medicalProviderFlag);
+			    toggleCheckboxAndButton('orientation-complete', details.orientationCheckFlag);
+			    toggleCheckboxAndButton('family-incarcerated', details.familyIncarceratedFlag);
+			    toggleCheckboxAndButton('no-contacts', details.noctInstitutionFlag);
+			}
+			
+			// Function to return negative reason table values
+			function noContactInFacility(sbiNumber) {
+			    $.ajax({
+			        method: "POST",
+			        url: contextPath + 'noContactInFacility',
+			        data: sbiNumber, 
+			        contentType: 'application/json',
+			        success: function(response) {
+			           if (response.enemyDetails) {
+			                populatenoContactInFacility(response.enemyDetails);
+			            }
+			        },
+			        error: function(error) {
+			            console.error('Error:', error);
+			            console.log(error.responseText);
+			        }
+			    });
+			}
+			
+			function populatenoContactInFacility(enemyDetails) {
+			    var table = $('#no-contact').DataTable();
+			
+			    table.clear();
+			
+			    enemyDetails.forEach(function(detail) {
+			        var sbiNo = detail.sbiNo || '';
+			        var enemyNameFirst = detail.enemyNameFirst || '';
+			        var enemyNameLast = detail.enemyNameLast || '';
+			        var claimDesc = detail.claimDesc || '';
+			        var cellDesc = detail.cellDesc || '';
+			        
+			        // Add row data to the DataTable and store additional data attributes
+			        var rowNode = table.row.add([
+			            sbiNo,
+			            enemyNameFirst,
+			            enemyNameLast,
+			            cellDesc,
+			            claimDesc
+			        ]).draw(false).node();
+			    });
+			 }
+			
+			// Function to enable/disable checkboxes and corresponding buttons based on flag
+			function toggleCheckboxAndButton(checkBoxId, flag) {
+			    var buttonIdMap = {
+			        'medical-restrictions': '#medicalInformation',
+			        'orientation-complete': '#orientationChecklist',
+			        'no-contacts': '#noContacts',
+			        'family-incarcerated': '' 
+			    };
+			    
+			    var checkBox = $('#' + checkBoxId);
+			    var buttonId = buttonIdMap[checkBoxId];
+			    
+			    if (flag === 'Y') {
+			        checkBox.prop('checked', true);
+			        if (buttonId) {
+			            $(buttonId).removeClass('disabling-link');
+			            $(buttonId).css('pointer-events', 'auto');
+			        }
+			    } else {
+			        checkBox.prop('checked', false);
+			        if (buttonId) {
+			            $(buttonId).addClass('disabling-link');
+			            $(buttonId).css('pointer-events', 'none');
+			        }
+			    }
+			}
+			
+			$('#fromDate').on('input', function() {
+	            var input = $(this);
+	            var value = input.val();
+	            
+	            // Remove any non-numeric and non-slash characters
+	            value = value.replace(/[^0-9\/]/g, '');
+	
+	            // Enforce format mm/dd/yyyy
+	            if (value.length > 10) {
+	                value = value.slice(0, 10);
+	            }
+	
+	            var parts = value.split('/');
+	            if (parts.length > 0 && parts[0].length > 2) {
+	                parts[0] = parts[0].slice(0, 2);
+	            }
+	            if (parts.length > 1 && parts[1].length > 2) {
+	                parts[1] = parts[1].slice(0, 2);
+	            }
+	            if (parts.length > 2 && parts[2].length > 4) {
+	                parts[2] = parts[2].slice(0, 4);
+	            }
+	
+	            input.val(parts.join('/'));
+	
+	            // Validate the date
+	            validateDate(input);
+	        });
+	        
+	        $('#toDate').on('input', function() {
+	            var input = $(this);
+	            var value = input.val();
+	            
+	            // Remove any non-numeric and non-slash characters
+	            value = value.replace(/[^0-9\/]/g, '');
+	
+	            // Enforce format mm/dd/yyyy
+	            if (value.length > 10) {
+	                value = value.slice(0, 10);
+	            }
+	
+	            var parts = value.split('/');
+	            if (parts.length > 0 && parts[0].length > 2) {
+	                parts[0] = parts[0].slice(0, 2);
+	            }
+	            if (parts.length > 1 && parts[1].length > 2) {
+	                parts[1] = parts[1].slice(0, 2);
+	            }
+	            if (parts.length > 2 && parts[2].length > 4) {
+	                parts[2] = parts[2].slice(0, 4);
+	            }
+	
+	            input.val(parts.join('/'));
+	
+	            // Validate the date
+	            validateDate(input);
+	        });
+
+	        function validateDate(input) {
+	            const regex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/;
+	            if (!regex.test(input.val())) {
+	                input[0].setCustomValidity('Invalid date format. Please use mm/dd/yyyy.');
+	            } else {
+	                input[0].setCustomValidity('');
+	            }
+	        }
+	        
+	        $('#history-selectbtn').on('click', function() {
+			    var sbiNoIp = $('#sbiNumberInput').val();
+			    var dateFromIp = $('#fromDate').val();
+			    var dateToIp = $('#toDate').val();
+			    var errorMsg = '';
+			
+			    function isValidDate(dateString) {
+			        // Check if the date is in MM/DD/YYYY format
+			        var regex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/\d{4}$/;
+			        return regex.test(dateString);
+			    }
+			
+			    if (!dateFromIp || !dateToIp) {
+			        errorMsg = 'Please enter both date fields';
+			    } else if (!isValidDate(dateFromIp) || !isValidDate(dateToIp)) {
+			        errorMsg = 'Please check the date format';
+			    }
+			
+			    if (errorMsg) {
+			        $('#date-error-msg').text(errorMsg);
+			    } else {
+			        $('#date-error-msg').text(''); // Clear any previous error message
+			        var historyParams = {
+			            sbiNo: sbiNoIp,
+			            dateFrom: dateFromIp,
+			            dateTo: dateToIp
+			        };
+			
+			        if (historyParams) {
+			            offenderHousingHistory(historyParams);
+			        }
+			    }
+			});
+			
+			// Function to return offender housing history
+			function offenderHousingHistory(historyParams) {
+			    $.ajax({
+			        method: "POST",
+			        url: contextPath + 'offenderHousingHistory',
+			        data: JSON.stringify(historyParams),
+			        contentType: 'application/json',
+			        success: function(response) {
+			            console.log(response);
+			            if (response.housingDetailsHistory) {
+			                populateHousingHistoryTable(response.housingDetailsHistory);
+			            }
+			        },
+			        error: function(error) {
+			            console.error('Error:', error);
+			            console.log(error.responseText);
+			        }
+			    });
+			}
+			
+			function populateHousingHistoryTable(housingDetailsHistory) {
+			    var table = $('#HousingHistoryTable').DataTable();
+			
+			    table.clear();
+			
+			    housingDetailsHistory.forEach(function(detail) {
+			        var bedDescription = detail.bedDescription || '';
+			        var bedType = detail.bedType || '';
+			        var stayStartDate = formatDate(detail.stayStartDate);
+			        var stayEndDate = formatDate(detail.stayEndDate);
+			        var timeEnter = detail.timeEnter || '';
+			        var timeDepart = detail.timeDepart || '';
+			        
+			        // Add row data to the DataTable and store additional data attributes
+			        var rowNode = table.row.add([
+			            bedDescription,
+			            bedType,
+			            stayStartDate,
+			            timeEnter,
+			            stayEndDate,
+			            timeDepart
+			        ]).draw(false).node();
+			
+			        $(rowNode).data({
+			            'institution-name': detail.institutionName || '',
+			            'building-name': detail.buildingName || '',
+			            'unit-description': detail.unitDescription || '',
+			            'floor-description': detail.floorDescription || '',
+			            'tier-description': detail.tierDescription || '',
+			            'cell-description': detail.cellDescription || '',
+			            'movement-comments': detail.housingUnitComment || ''
+			        });
+			    });
+			
+			    // Add row click functionality
+			    $('#HousingHistoryTable tbody').off('click').on('click', 'tr', function () {
+			        $('#HousingHistoryTable tbody tr').each(function() {
+			            $(this).find('td').css('background-color', '');
+			        });
+			        $(this).find('td').css('background-color', '#1dc9b7');
+			        
+			        // Populate fields with data attributes
+			        var data = $(this).data();
+			        $('#hist-institution').val(data['institutionName']);
+			        $('#hist-building').val(data['buildingName']);
+			        $('#hist-unit').val(data['unitDescription']);
+			        $('#hist-floor').val(data['floorDescription']);
+			        $('#hist-tier').val(data['tierDescription']);
+			        $('#hist-cell').val(data['cellDescription']);
+			    });
+			}
+
+			//function to format date as MM/DD/YYYY
+			function formatDate(dateStr) {
+			    if (!dateStr) return '';
+			    var date = new Date(dateStr);
+			    return (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
+			}
+			
+			$('#clear-btn').on('click',function(){
+				$('#institution').val('');
+			    $('#building').val('');
+			    $('#unit').val('');
+			    $('#floor').val('');
+			    $('#tier').val('');
+			    $('#cell').val('');
+			    $('#bed').val('');
+			    
+			    $('#other-restrictions').val('');
+			    $('#current-inst-date').val('');
+			    
+			    toggleCheckboxAndButton('medical-restrictions', 'N');
+			    toggleCheckboxAndButton('orientation-complete', 'N');
+			    toggleCheckboxAndButton('family-incarcerated', 'N');
+			    toggleCheckboxAndButton('no-contacts', 'N');
+			    
+			    $('#HousingHistoryTable').DataTable().clear().draw();
+			    $('#no-contact').DataTable().clear().draw();
+			    
+			    $('#fromDate').val('');
+			    $('#toDate').val('');
+			    
+			    $('#hist-institution').val('');
+			    $('#hist-building').val('');
+			    $('#hist-unit').val('');
+			    $('#hist-floor').val('');
+			    $('#hist-tier').val('');
+			    $('#hist-cell').val('');
+			    
+			    clearFormHeaderData(); //The function declaration for this function is in form Header inside the static/js/staticjs.js
+			});
+
+	});
+	
+	</script>
+</body>
+
+</html>

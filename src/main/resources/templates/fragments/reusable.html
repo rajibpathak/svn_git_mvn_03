@@ -1,0 +1,2015 @@
+<!--
+Created by Muhammad Asif on 2024-05-15.
+-->
+<div th:fragment="reusable" th:remove="tag">
+	<p style="display:none;" id="current_url" th:text="${#request.requestURL}">
+	<p>
+		<script>
+
+			/*const maxLength = 2000;
+			const textarea = document.getElementById('addCmntValShow');
+			const charCount = document.getElementById('charCount');
+			let previousLength = 0;
+			// Function to update the character count
+			function updateCharCount1() {
+				const currentLength = textarea.value.length;
+
+				if (currentLength > maxLength) {
+					textarea.value = textarea.value.substring(0, maxLength);
+					message('CUW', "Maximum character limit reached. You cannot paste or type additional text.", 0);
+					if (previousLength < maxLength) {
+						showMaxLengthAlert();
+					}
+				}
+
+				charCount.textContent = `${textarea.value.length}/4000 characters`;
+				previousLength = textarea.value.length;
+			}
+
+			// Add event listener to update character count on each input
+			textarea.addEventListener('input', updateCharCount1);
+
+			textarea.addEventListener('paste', function (e) {
+				let pastedText = e.clipboardData.getData('text');
+				if (pastedText.length + textarea.value.length > maxLength) {
+					console.log('textarea.value.length=' + textarea.value.length);
+					e.preventDefault();
+					message('CUW', "Maximum character length reached! You cannot paste more text or You cannot able to type.", 0);
+				}
+			});*/
+
+			$(function () {
+
+				var current_url = $('#current_url').text();
+
+				current_url = current_url.split("/");
+				current_url = current_url[current_url.length - 1];
+				//alert('current_url is ' + current_url);
+
+				//getScreenNo(current_url);
+
+				function getScreenNo(current_url) {
+					$.ajax({
+						url: contextPath + 'getScreenNo',
+						method: 'POST',
+						dataType: "json",
+						data: {url: current_url},
+						success: function (response) {
+							//alert(response[0]['SCREEN_CODE']);
+							$('#screenCode').val(response[0]['SCREEN_CODE']);
+						}
+					});
+				}
+
+				$('#sbiNumberInput').addClass('key_val');
+				$('#errorNAME').remove();
+
+				/*var success_msg = msg('10');
+				
+				setTimeout(function() {
+					alert(success_msg);	
+				},2000);*/
+
+
+				$('#dynamic_form').html('<form id="entryForm"></form>');
+
+				//init_load();
+
+				function init_load() {
+					var form_content = '';
+
+					//form_content += '<input type="text" name="screenCode" id="screenCode">';
+					form_content += '<input type="text" name="current_commit" id="current_commit">';
+					form_content += '<input type="text" name="stay_no" id="stay_no">';
+					form_content += '<input type="text" name="stay_index" id="stay_index">';
+					form_content += '<input type="text" name="current_row" id="current_row">';
+					form_content += '<input type="text" name="mandatory_fld" id="mandatory_fld">';
+
+					for (var i = 0; i < $('.permissible').length; i++) {
+
+						var cls_name = $('.permissible').eq(i).attr('specific');
+						var allow_type = $('.permissible').eq(i).attr('allow-type');
+
+						var tab_id = $('.permissible').eq(i).parents('.tabulator').prop('id');
+
+						//console.log("test 123 : " + cls_name + " | " + allow_type + " | " + tab_id);
+
+						form_content += '<input type="text" class="entry-fld" id="' + cls_name + '" name="' + cls_name + '">';
+
+						$('#' + tab_id).find('.tabulator-cell').addClass('mytd');
+
+						if ($('.permissible').eq(i).attr('tag') == 'head') {
+
+							var tab_fld = $('#' + tab_id + ' .tabulator-cell:eq(' + (i) + ')').attr('tabulator-field');
+							//alert('tab_fld : ' + tab_fld);
+
+							/*if(tab_fld.includes('_picker')) {
+								i++;
+								tab_fld = $('#' + tab_id + ' .tabulator-cell:eq(' + (i) + ')').attr('tabulator-field');
+							}*/
+
+							table.getRows().forEach(row => {
+								const cell = row.getCell(tab_fld); // Get the cell in the specified column
+								if (cell) {
+									const cellElement = cell.getElement(); // Get the cell's DOM element
+
+									/*if (allow_type == 'time') {
+	
+										const inputElement = cellElement.querySelector('input'); // Find the input element within the cell
+										if (inputElement) {
+											inputElement.classList.add(cls_name); // Add the class to the input element
+											inputElement.classList.add('form-fld'); // Add the class to the input element
+											inputElement.setAttribute('data-fld', cls_name); // Add a custom attribute
+	
+										}
+	
+									} else {*/
+
+									cellElement.classList.add(cls_name);
+									cellElement.classList.add('form-fld');
+									cellElement.setAttribute('data-fld', cls_name); // Add a custom attribute
+									if (allow_type == 'dropdown') {
+										cellElement.classList.add('dropdown_vals');
+									}
+									//}
+
+
+								}
+							});
+
+							/*if (allow_type == 'time') {
+								$('#' + tab_id + ' .tabulator-cell:eq(' + (i - 1) + ')').find('input').addClass(cls_name);
+								$('#' + tab_id + ' .tabulator-cell:eq(' + (i - 1) + ')').find('input').addClass('form-fld');
+								$('#' + tab_id + ' .tabulator-cell:eq(' + (i - 1) + ')').find('input').attr('data-fld', cls_name);
+							} else {
+								console.log('init setting : ' + (i-1));
+								console.log('init setting cls : ' + cls_name);
+								$('#' + tab_id + ' .tabulator-cell:eq(' + (i - 1) + ')').addClass(cls_name);
+								$('#' + tab_id + ' .tabulator-cell:eq(' + (i - 1) + ')').addClass('form-fld');
+								$('#' + tab_id + ' .tabulator-cell:eq(' + (i - 1) + ')').attr('data-fld', cls_name);
+								if (allow_type == 'dropdown') {
+									$('#' + tab_id + ' .tabulator-cell:eq(' + (i - 1) + ')').addClass('dropdown_vals');
+								}
+							}*/
+						}
+
+					}
+
+					$('#entryForm').html(form_content);
+					//$('#screenCode').val($('.screenCode').val());
+				}
+
+				var updatable_rows = [];
+
+				/*$(document.body).on('click', '.mytd', function () {
+					var idx = $(this).parents('tr').index();
+					$('#current_fld').val(idx);
+					$('#addMedications').val($('.drugdna_med').eq(idx).val());
+					$('#addComments').val($('.drugdna_add_cmt').eq(idx).val());
+				});*/
+
+				$(document.body).on('change', '.form-fld', function () {
+					var row_index = $(this).parents('tr').index();
+
+					var col = $(this).parents('tr').children('td');
+
+					var allowable = false;
+					for (var i = 1; i < col.length; i++) {
+						if (col.eq(i).children().val().trim() != '') {
+							allowable = true;
+						}
+					}
+
+					if (allowable) {
+						if (!updatable_rows.includes(row_index)) {
+							updatable_rows.push(row_index);
+						}
+					} else {
+						updatable_rows = updatable_rows.filter(x => x !== row_index);
+					}
+
+					updatable_rows.sort();
+
+					//console.log(updatable_rows);
+				});
+
+				$('#exit').on('click', function () {
+					message('B', 0, function () {
+						history.back();
+					});
+				});
+
+				//$('.tab_body').find('.form-control').attr('disabled',true);
+				$('.tab_body').find('.form-control').addClass('disable_fld');
+				$('.disable_fld').attr('disabled', true);
+
+				$('#searchButton').on('click', function () {
+					var key_val = $('#sbiNumberInput').val();
+
+					if (key_val == '') {
+						//message('W',0,0);
+						message('CUW', 'Need to enter ID', 0);
+						return;
+					}
+
+					$('#searchButton').removeClass('fa-search');
+					$('#searchButton').addClass('fa-spinner');
+
+					//alert($('.form-control').length);
+
+					for (var i = 0; i < $('.form-control').length; i++) {
+						if (!$('.form-control').eq(i).hasClass('key_val')) {
+							console.log('here inside');
+							$('.form-control').eq(i).val('');
+						}
+					}
+
+					$('.sbichk').prop('checked', false);
+
+					$('.primary_val').val('');
+
+					$.ajax({
+						type: "POST",
+						url: contextPath + "getInmateData",
+						dataType: "json",
+						data: {primaryVal: key_val},
+						success: function (response) {
+
+							if (response.length == 0) {
+								$('#searchButton').addClass('fa-search');
+								$('#searchButton').removeClass('fa-spinner');
+								$('.tab_body').find('.form-control').addClass('disable_fld');
+								$('.disable_fld').attr('disabled', true);
+								return;
+							}
+
+							//$('.disable_fld').removeAttr('disabled');
+							//$('.form-control').removeClass('disable_fld');
+							//console.log('here disable 123');
+							$('#current_commit').val(response[0]['COMMIT_NO']);
+							$('.primary_val').val(response[0]['COMMIT_NO']);
+							fetchData();
+
+							$('#searchButton').addClass('fa-search');
+							$('#searchButton').removeClass('fa-spinner');
+
+						},
+						error: function () {
+							$('#searchButton').addClass('fa-search');
+							$('#searchButton').removeClass('fa-spinner');
+							$('.tab_body').find('.form-control').addClass('disable_fld');
+							$('.disable_fld').attr('disabled', true);
+							return;
+						}
+					});
+				});
+
+				$('#clear').on('click', function () {
+					if ($('.allow_update').length > 0) {
+						message("alert", "You have unsaved changes. Are you sure you want to clear the screen?", function () {
+							clear_func();
+						});
+					} else {
+						clear_func();
+					}
+				});
+
+				function clear_func() {
+					$('.form-control').val('');
+					var idx = 0;
+					$('#no_of_rec').val(idx);
+					$('.tabulator-row').removeClass('allow_update');
+					$('.tabulator-row').removeAttr('allow_id');
+					table.getRows().forEach(function (row) {
+						// Iterate through each field in the row
+						Object.keys(row.getData()).forEach(function (field) {
+							// Check if the field is not in the fieldsToKeep array
+							if (field != 'id') {
+								// Set the cell value to an empty string
+								if (field == 'seq') {
+									row.update({[field]: "0"}); // or use null if you prefer
+								} else {
+									row.update({[field]: ""}); // or use null if you prefer	
+								}
+
+							} else {
+								row.update({[field]: idx}); // or use null if you prefer
+								idx++;
+							}
+							row.getElement().classList.add('mydisabled');
+						});
+					});
+
+
+					$("#headmultiStatus").prop('checked', false);
+					$('#defaultInline3').prop('checked', false);
+
+					$('.imageContainerPhoto').attr('src', 'img/demo/avatars/avatar-admin-lg.png');
+
+					$('#current_fld').val('');
+					clearSBI();
+
+					table.setData(sampleData);
+					addClassToRows("mydisabled");
+					
+					$('#sbiNumberInput').focus();
+
+					/*setTimeout(function () {
+
+						const selectedRows = table.getSelectedRows();
+						selectedRows.forEach(row => {
+							row.deselect();
+						});
+
+						var screenCode = $('#screenCode').val();
+
+						// Focus on the first row and first column
+						var firstRow = table.getRow(0); // Get the first row (ID 1)
+
+						if (screenCode == 'CBI_URNE') {
+							var firstCell = firstRow.getCell("TYPETEST"); // Get the first cell (ID column)
+						}
+
+						if (screenCode == 'CBI_ORTA') {
+							var firstCell = firstRow.getCell("ORIENTATIONDATE");
+						}
+
+						firstCell.getElement().focus();
+					}, 1000);*/
+				}
+
+				$(document.body).on('change', '.stayhistory', function () {
+					if ($(this).prop('checked')) {
+						var idx = $(this).index('.stayhistory');
+						$('#stay_no').val($('.stay_no').eq(idx).val());
+						$('#stay_index').val(idx);
+					} else {
+						$('#stay_no').val('');
+						$('#stay_index').val('');
+					}
+
+					//alert('staty_no is ' + $('#stay_no').val());
+				});
+
+				$('#fetchDataBtn').on('click', function () {
+					if ($('#stay_no').val() != '' && $('#stay_no').val() != 'current') {
+						$('.primary_val').val($('#stay_no').val());
+					} else {
+						$('.primary_val').val($('#current_commit').val());
+					}
+					//alert($('.primary_val').val());
+					fetchData();
+				});
+
+				function emptyHandler(v) {
+					if (v == '') {
+						v = '{e}';
+					} else if (v == 'null') {
+						v = '{e}';
+					} else if (v == null) {
+						v = '{e}';
+					}
+					return v;
+				}
+
+				function getCellVal(rowId, field) {
+					// Get the row by its ID
+					var row = table.getRow(rowId);
+
+					// Check if the row exists
+					if (row) {
+						// Get the cell value
+						var cell = row.getCell(field);
+						return cell ? cell.getValue() : ''; // Return the cell value or null if the cell doesn't exist
+					} else {
+						console.error("Row not found");
+						return null; // Return null if the row doesn't exist
+					}
+				}
+
+				function getValueFromEditor(rowNumber, field) {
+					// Get the row for the specified row number
+					//alert('rowNumber is ' + rowNumber);
+					const row = table.getRow(rowNumber); // +1 because getRow uses 1-based index
+
+					if (row) {
+						//alert('row exist');
+						// Get the cell for the specified field
+						const cell = row.getCell(field);
+						if (cell) {
+							//alert('cell exist');
+							// Get the editor input element
+							//alert(cell.getValue());
+							//alert(cell.getText());
+							const editorElement = cell.getElement().querySelector("input");
+							if (editorElement) {
+								//alert('editorElement exist');
+								return editorElement.value; // Return the value from the input field
+							} else {
+								//alert('editorElement not exist');
+								console.log("No editor input found for this cell.");
+								return null;
+							}
+						} else {
+							//alert('cell not exist');
+							console.log("Cell not found.");
+							return null;
+						}
+					} else {
+						//alert('row not exist');
+						console.log("Row not found.");
+						return null;
+					}
+				}
+
+				$('#saveData').on('click', function () {
+					if ($('#sbiNumberInput').val().trim() == '') {
+						setFocusField('id!!sbiNumberInput');
+						message('W', 0, 0);
+						return;
+					}
+
+					var key_val = $('.primary_val').val();
+
+					if (key_val == '') {
+						message('W', 0, 0);
+						return;
+					}
+
+					if (!checkMandatory()) {
+						return;
+					}
+
+					loader(1);
+
+					var screenCode = $('#screenCode').val();
+
+					var row_count_plus = 0;
+
+
+
+					var tableData = table.getData();
+					var filteredData = tableData.filter(function (row) {
+						if (row.upd === "Y") {
+							row_count_plus++;
+
+							if (screenCode == 'CBI_MARK') {
+								// Transform specific country values
+								var dynamic_Array = JSON.parse($('#vals_SMTLOCATION').val());
+								if (row.SMTLOCATION != '') {
+									const selectedVal = dynamic_Array.find(myval => myval.label === row.SMTLOCATION);
+									//alert('selectedVal.value : ' + selectedVal.value);
+									row.SMTLOCATION = selectedVal.value;
+								}
+
+								row.SMT_ID = key_val;
+							}
+
+							if (screenCode == 'CBI_ORTA') {
+								// Transform specific country values
+								if (row.INSTITUTION != '') {
+									var dynamic_Array = JSON.parse($('#vals_INSTITUTION').val());
+									const selectedVal = dynamic_Array.find(myval => myval.label === row.INSTITUTION);
+									row.INSTITUTION = selectedVal.value;
+								}
+
+								if (row.TYPE != '') {
+									var dynamic_Array = JSON.parse($('#vals_TYPE').val());
+									const selectedVal1 = dynamic_Array.find(myval => myval.label === row.TYPE);
+									row.TYPE = selectedVal1.value;
+								}
+
+								row.ORNT_ID = key_val;
+							}
+
+							if (screenCode == 'CBI_URNE') {
+								// Transform specific country values
+								if (row.TYPETEST != '') {
+									var dynamic_Array = JSON.parse($('#vals_TYPETEST').val());
+									const selectedVal = dynamic_Array.find(myval => myval.label === row.TYPETEST);
+									row.TYPETEST = selectedVal.value;
+								}
+
+
+								if (row.LOCATION != '') {
+									var dynamic_Array = JSON.parse($('#vals_LOCATION').val());
+									const selectedVal1 = dynamic_Array.find(myval => myval.label === row.LOCATION);
+									row.LOCATION = selectedVal1.value;
+								}
+
+								row.URNE_ID = key_val;
+							}
+
+							return true;
+						}
+						return false;
+					});
+					var jsonData = JSON.stringify(filteredData);
+					console.log('hear my xyz ' + jsonData);
+
+					$('#dynamic_form').html('<form id="myNewForm"></form>');
+
+					$('#myNewForm').append('<input type="hidden" id="myScreenCode" name="screenCode">');
+
+					$('#myScreenCode').val(screenCode);
+
+					const dataObject = filteredData[0];
+
+					for (const key in dataObject) {
+						$('#myNewForm').append('<input type="hidden" class="' + key + ' entry-fld" name="' + key + '">');
+					}
+
+					filteredData.forEach((obj, index) => {
+						console.log(`\nObject ${index + 1}:`);
+
+						// Loop through each key-value pair
+						Object.entries(obj).forEach(([key, value]) => {
+							console.log(`${key}: ${value}`);
+							value = emptyHandler(value);
+							$('.' + key).val($('.' + key).val() + '!@#!' + value);
+						});
+					});
+
+					//alert($('.COMMENTS').val());
+
+					for (var i = 0; i < $('.entry-fld').length; i++) {
+						$('.entry-fld').eq(i).val($('.entry-fld').eq(i).val().substring(4));
+					}
+
+					$('#myNewForm').append('<input type="text" name="row_cnt1" id="row_cnt1">');
+					$('#row_cnt1').val(row_count_plus);
+
+					$.ajax({
+						type: "POST",
+						url: contextPath + "saveData",
+						data: $('#myNewForm').serialize(),
+						success: function (response) {
+							//alert('data sent');
+							//loader(0);
+							//custom_msg('CUS','Data saved successfully');	
+							fetchData();
+							message('S', 0, 0);
+						},
+						error: function () {
+							loader(0);
+							message('E', 0, 0);
+							//custom_msg('CUE','Error found when saving the data');
+						}
+					});
+
+				});
+
+				$('#save').on('click', function () {
+
+					if ($('#sbiNumberInput').val().trim() == '') {
+						message('W', 0, 0);
+						return;
+					}
+
+					var key_val = $('.primary_val').val();
+
+					if (key_val == '') {
+						message('W', 0, 0);
+						return;
+					}
+
+					//const columns = table.getColumns(); // Get all column definitions
+					//const columnNames = columns.map(col => col.getField()); // Get field names
+
+					//var data = table.getData();
+
+					// Log all cell values
+					/*console.log("All cell values:");
+					data.forEach(function (row) {
+						console.log('here my rows ' + row);
+					});*/
+
+					//alert('x1 : ' + getCellVal(0, 'collectedDate'));
+					//alert('x2 : ' + getCellVal(1, 'collectedDate'));
+					//alert('x3 : ' + getValueFromEditor('observingOfficer', 0).getValue());
+					//alert('x4 : ' + getValueFromEditor('observingOfficer', 1).getValue());
+
+					/*console.log('columnNames : ' + columnNames); // Log the field names to the console
+	
+					//const rowId = 1; // ID of the row you want to access
+					const rowIndex = 1;
+					const columnField = "typeTest"; // Field name of the column you want to access
+	
+					const allRows = table.getRows(); // Get all rows
+					const allCellValues = []; // Array to hold all cell values
+	
+					allRows.forEach(row => {
+						const cells = row.getCells(); // Get all cells in the row
+						cells.forEach(cell => {
+							allCellValues.push(cell.getValue()); // Get the value from the cell and add it to the array
+						});
+					});*/
+
+					//console.log(allCellValues);
+
+					/*const allData = table.getData();
+					allData.forEach(row => {
+						console.log(`ID: ${row.id}, typeTest: ${row.typeTest}`);
+					});*/
+
+					/*for (var a = 0; a < 5; a++) {
+						const rows = table.getRows();
+						const row = rows[a]; // Get the specific row by index
+						const cell = row.getCell(columnField); // Get the specific row by ID
+						alert(cell.getValue() + ' for ' + a);
+					}*/
+
+					/*if (row) {
+						const cell = row.getCell(columnField); // Get the cell in the specified column
+						if (cell) {
+							const value = cell.getValue(); // Get the value from the cell
+							alert(value);
+							//console.log(`Value from Row ${rowId}, Column "${columnField}": ${value}`); // Log the value
+						} else {
+							console.error(`Cell not found for column "${columnField}"`);
+						}
+					} else {
+						//console.error(`Row with ID ${rowId} not found`);
+					}*/
+
+					//return;
+
+					// Optionally, you can also get the titles
+					/*const columnTitles = columns.map(col => col.getTitle()); // Get display titles
+					console.log('columnTitles : ' + columnTitles);*/
+
+					//return;
+
+
+					/*const allData = table.getData(); // Get all data from the table
+					allData.forEach(row => {
+						console.log(`ID: ${row.id}, Location: ${row.smtLocation}, Comments: ${row.comments}`); // Log each row's data
+					});*/
+
+					//return;
+
+					/*check_row = [];
+					for (var a = 0; a < $('.tab_body').length; a++) {
+						var thistab = $('.tab_body').eq(a);
+						for (var b = 0; b < thistab.find('tr').length; b++) {
+							var thisrow = thistab.find('tr').eq(b);
+							var getfirst = false;
+							for (var c = 0; c < thisrow.find('td').length; c++) {
+								thisdata = thisrow.find('td').eq(c);
+								if (thisdata.css('display') != 'none') {
+									if (thisdata.find('.form-control').val() != '' && thisdata.find('.form-control').val() != undefined && !getfirst) {
+										getfirst = true;
+									} else if (thisdata.find('.chk_cls').val() == 'Y' && !getfirst) {
+										getfirst = true;
+									}
+								}
+	
+							}
+	
+							if (getfirst) {
+								check_row.push(a + '%%' + b);
+							}
+						}
+					}
+	
+					for (var d = 0; d < check_row.length; d++) {
+						//alert(check_row[d]);
+						var tab = check_row[d].split('%%')[0];
+						var row = check_row[d].split('%%')[1];
+	
+						var must_fld = $('.tab_body').eq(tab).children('tr').eq(row).find('.mandatory');
+	
+						//alert(must_fld.length + ' for ' + check_row[d]);
+	
+						for (var e = 0; e < must_fld.length; e++) {
+	
+							if (must_fld.eq(e).val() == '') {
+								var fld = must_fld.eq(e).attr('data-fld');
+								var lbl = $(".permissible[specific=" + fld + "]").text().split('*').join('');
+								//Swal.fire('Alert', lbl + ' is mandatory', 'warning');
+								message('CUW', lbl + ' is mandatory', 0);
+								return;
+							}
+	
+						}
+					}*/
+
+					$('.entry-fld').val('');
+
+					var screenCode = $('#screenCode').val();
+					var cls_list = [];
+
+					if (screenCode == '19') {
+						cls_list = ['drugdna_seq', 'drugdna_tsttyp', 'drugdna_loc', 'drugdna_offr', 'drugdna_col_dt', 'drugdna_col_tm', 'drugdna_req', 'drugdna_conf', 'result_desc', 'drugdna_res', 'drugdna_med', 'drugdna_add_cmt', 'user_full_name'];
+					}
+
+					if (screenCode == 'CBI_MARK') {
+						cls_list = ['SMT_SEQ', 'SMTLOCATION', 'COMMENTS'];
+					}
+
+					if (screenCode == '38') {
+						cls_list = ['ornt_seq', 'ornt_date', 'ornt_inst', 'ornt_type', 'ornt_userid'];
+					}
+
+					var primary_id = $('.primary_fld').attr('specific');
+					var row_count_plus = 0;
+
+					for (var i = 0; i < $('.allow_update').length; i++) {
+						var ide = $('.allow_update').eq(i).attr('allow_id');
+						//alert('ide is ' + ide);
+						//var selectedChildren = $('.tabulator-row[allow_id="' + ide + '"]').find('.' + cls_list[1]);
+						//console.log('ide is ' + ide);
+						//if ($('.' + cls_list[1]).eq(ide).text().trim() != '') {
+						//if (selectedChildren.text().trim() != '') {
+						row_count_plus++;
+						//alert($('.' + cls_list[1]).eq(i).text().trim());
+						//alert(selectedChildren.text().trim());
+						for (var j = 0; j < cls_list.length; j++) {
+							var cls = cls_list[j];
+							//var val = $('.' + cls).eq(i).text().trim();
+							//var tab_fld = $('.' + cls).eq(ide).attr('tabulator-field');
+							var tab_fld = $('.tabulator-row[allow_id="' + ide + '"]').find('.' + cls).attr('tabulator-field');
+							console.log('here asif : ' + tab_fld);
+							var val = getCellVal(ide, tab_fld);
+
+							console.log('now x1t2: ' + checkCellClass(ide, tab_fld, 'dropdown_vals') + ' for ' + ide + ' and ' + tab_fld);
+
+							if (checkCellClass(ide, tab_fld, 'mandatory')) {
+								//alert('get in');
+								if (val.trim() == '') {
+									var lbl = trimHtmlContent(getFieldTitle(tab_fld));
+									focusField(ide, tab_fld);
+									message('CUW', lbl + ' is mandatory', 0);
+									return;
+								}
+							}
+
+							if (checkCellClass(ide, tab_fld, 'dropdown_vals')) {
+								//alert($('#vals_' + tab_fld).val());
+								//alert('final value is ' + val);
+								var dynamic_Array = JSON.parse($('#vals_' + tab_fld).val());
+								const selectedVal = dynamic_Array.find(myval => myval.label === val);
+								//alert('selectedVal.value : ' + selectedVal.value);
+								val = selectedVal.value;
+							}
+
+							val = emptyHandler(val);
+							//var dynamic_Array = JSON.parse($('#vals_' + tab_fld).val());
+							//const selectedOption = dynamic_Array.find(option => option.value === item[key]);
+
+							console.log('step 0 ' + tab_fld);
+
+							//const row = table.getRow(i);
+
+							//var row = table.getRow(i);
+							//const cell = row.getCell(tab_fld);
+							//const cell = table.get.getCell(i, tab_fld);
+
+							/*const row = table.getRow(i+1);
+							const rowData = row.getData();
+							const val = rowData[tab_fld];*/
+							//const cell = row.getCell(tab_fld);
+							//const val = cell.getValue();
+
+							$('#' + cls).val($('#' + cls).val() + '!@#!' + val);
+						}
+						$('#' + primary_id).val($('#' + primary_id).val() + '!@#!' + $('.primary_val').val());
+						//}
+						/*for(var j=0;j<cls_list.length;j++) {
+							
+						}*/
+					}
+
+
+					//for (var i = 0; i < updatable_rows.length; i++) {
+					//var cols = $('.tab_body').children('tr').eq(updatable_rows[i]).children('td');
+					/*for (var j = 0; j < cols.length; j++) {
+	
+						//console.log('here tag is ' + $(cols).eq(j).children().prop('tagName'));
+	
+						if ($(cols).eq(j).children().prop('tagName') == 'DIV') {
+							var cls = $(cols).eq(j).children().children().attr('data-fld');
+							var val = emptyHandler($(cols).eq(j).children().children().val());
+						} else {
+							var cls = $(cols).eq(j).children().attr('data-fld');
+							var val = emptyHandler($(cols).eq(j).children().val());
+						}
+						//alert(val);
+						$('#' + cls).val($('#' + cls).val() + '!@#!' + val);
+						console.log($('#' + cls).val());
+					}*/
+					//$('#' + primary_id).val($('#' + primary_id).val() + '!@#!' + $('.primary_val').val());
+					//}
+
+					for (var i = 0; i < $('.entry-fld').length; i++) {
+						$('.entry-fld').eq(i).val($('.entry-fld').eq(i).val().substring(4));
+						//alert($('.entry-fld').eq(i).val());
+					}
+
+					//return;
+
+					$('#entryForm').append('<input type="text" name="row_cnt1" id="row_cnt1">');
+					//$('#row_cnt1').val(updatable_rows.length);
+					$('#row_cnt1').val(row_count_plus);
+
+
+					/*alert('1 for ' + $('#row_cnt1').val());
+					alert('2 for ' + $('#row_cnt2').val());
+					alert('3 for ' + $('#row_cnt3').val());
+					alert('4 for ' + $('#row_cnt4').val());
+					
+					return;*/
+
+					//alert(contextPath + "saveData");
+					$.ajax({
+						type: "POST",
+						url: contextPath + "saveData",
+						data: $('#entryForm').serialize(),
+						success: function (response) {
+							message('S', 0, 0);
+							//custom_msg('CUS','Data saved successfully');	
+							fetchData();
+						},
+						error: function () {
+							message('E', 0, 0);
+							//custom_msg('CUE','Error found when saving the data');
+						}
+					});
+				});
+
+				function trimHtmlContent(htmlString) {
+					// Remove HTML tags using a regular expression
+					const textOnly = htmlString.replace(/<[^>]*>/g, '');
+
+					// Trim leading and trailing whitespace
+					return textOnly.trim();
+				}
+
+				function focusField(rowId, field) {
+					var row = table.getRow(rowId); // Get the row by ID
+					if (row) {
+						var cell = row.getCell(field); // Get the cell from the row
+						if (cell) {
+							cell.edit(); // Open the editor for the cell
+						} else {
+							console.error("Cell not found for field:", field);
+						}
+					} else {
+						console.error("Row not found for rowId:", rowId);
+					}
+				}
+
+				function getFieldTitle(fieldName) {
+					const column = table.getColumn(fieldName);
+					if (column) {
+						return column.getDefinition().title;
+					} else {
+						return null; // Return null if the column does not exist
+					}
+				}
+
+				// Function to check if a specific class exists in a cell
+				function checkCellClass(rowId, fieldName, className) {
+					// Get the row using rowId
+					var row = table.getRow(rowId);
+
+					// Check if the row exists
+					if (row) {
+						// Get the cell from the row
+						var cell = row.getCell(fieldName);
+
+						// Check if the cell exists
+						if (cell) {
+							// Check if the cell has the specific class
+							return cell.getElement().classList.contains(className);
+						} else {
+							console.log("Cell not found");
+							return false;
+						}
+					} else {
+						console.log("Row not found");
+						return false;
+					}
+				}
+
+				function setValueForRowAndColumn(rowNumber, columnField, valueToSet) {
+					// Get the row by its index (rowNumber - 1 because rowNumber is 1-based)
+
+					//console.log('Here final check : ' + rowNumber + ' || ' + columnField + ' || ' + valueToSet);
+
+					if (valueToSet == null) {
+						valueToSet = '';
+					}
+
+					var row = table.getRow(rowNumber);
+
+					// Check if the row exists
+					if (row) {
+						// Update the specific field in the row
+						row.update({[columnField]: valueToSet});
+					} else {
+						console.error("Row not found");
+					}
+				}
+
+				$('#clr').on('click', function () {
+					message('U', 0, function () {
+						//$('#no_of_rec').val('0');
+						$('.form-control').val('');
+						fetchData();
+						/*table.getRows().forEach(function (row) {
+							// Iterate through each field in the row
+							Object.keys(row.getData()).forEach(function (field) {
+								// Check if the field is not in the fieldsToKeep array
+								if (field != 'id') {
+									// Set the cell value to an empty string
+									if (field == 'seq') {
+										row.update({[field]: "0"}); // or use null if you prefer
+									} else {
+										row.update({[field]: ""}); // or use null if you prefer	
+									}
+	
+								}
+							});
+						});*/
+					});
+				});
+
+				function genRows(screen, length) {
+					//alert('screen is ' + screen + ' and length is ' + length);
+					if (screen == 'CBI_URNE') {
+						var rowCount = table.getData().length;
+						//alert('rowCount is ' + rowCount);
+						//alert(rowCount < length);
+						if (rowCount < length) { //(9 < 12)
+							for (var i = rowCount; i < length; i++) {
+								//alert('i is ' + i);
+								const newRowData = {
+									id: i,
+									seq: "0",
+									upd: "Y",
+									TYPETEST: "",
+									LOCATION: "",
+									OBSERVINGOFFICER: "",
+									namepick: "",
+									COLLECTED_DATE: "",
+									COLLECTED_TIME: "",
+									REQUESTED: "",
+									CONFIRMED: "",
+									RESULTS: "",
+									resultpick: "",
+									RES: "",
+									MED: "",
+									CMT: "",
+									isNewRow: true,
+								}; // Example new row data
+								table.addData(newRowData, false); // true for adding at the top*/
+								//load_class();
+
+							}
+						}
+					}
+
+					if (screen == 'CBI_MARK') {
+						var rowCount = table.getData().length;
+						//alert('rowCount is ' + rowCount);
+						//alert(rowCount < length);
+						if (rowCount < length) { //(9 < 12)
+							for (var i = rowCount; i < length; i++) {
+								//alert('i is ' + i);
+								const newRowData = {
+									id: i,
+									upd: "Y",
+									seq: "0",
+									SMT_ID: "",
+									SMT_SEQ: "",
+									SMTLOCATION: "",
+									COMMENTS: "",
+									isNewRow: true,
+								}; // Example new row data
+								table.addData(newRowData, false); // true for adding at the top*/
+								//load_class();
+
+							}
+						}
+					}
+
+					if (screen == 'CBI_ORTA') {
+						var rowCount = table.getData().length;
+						//alert('rowCount is ' + rowCount);
+						//alert(rowCount < length);
+						if (rowCount < length) { //(9 < 12)
+							for (var i = rowCount; i < length; i++) {
+								//alert('i is ' + i);
+								const newRowData = {
+									id: i,
+									upd: "Y",
+									seq: "0",
+									ORNT_ID: "",
+									ORNT_SEQ: "",
+									ORIENTATIONDATE: "",
+									INSTITUTION: "",
+									TYPE: "",
+									OBSERVINGOFFICER: "",
+									userFullName: "",
+									isNewRow: true,
+								}; // Example new row data
+								table.addData(newRowData, false); // true for adding at the top*/
+								//load_class();
+
+							}
+						}
+					}
+				}
+
+				function removeFocusFromCells() {
+					// Get the currently focused element
+					const focusedElement = document.activeElement;
+
+					// Check if the focused element is a cell
+					if (focusedElement && focusedElement.classList.contains("tabulator-cell")) {
+						// Blur the focused cell
+						focusedElement.blur();
+					}
+
+					// Optionally, set focus to the button or another element
+					document.getElementById("remove-focus-button").focus();
+				}
+
+				$('#call_fetch').on('click', function () {
+					fetchData();
+				});
+
+				function fetchData() {
+
+					//if($('#commonPerprogressBar').text() == '0%') {
+					loader(1);
+					//}
+
+					/*if(!initLoad) {
+						loader(1);
+					}*/
+
+					//if(loaderprogress == 0) {	
+					//}
+					//setValueForRowAndColumn(0, "typeTest", "DNA");
+					//setValueForRowAndColumn(1, "typeTest", "Blood");
+					//return;
+					var key_val = $('.primary_val').val();
+					var screenCode = $('#screenCode').val();
+					//removeFocusFromCells();
+					//refreshTable();
+					//table.clearData();
+					//table.setData(tabledatadrugdna);
+					//return;
+
+					//alert(screenCode);
+
+					var idx = 0;
+					$('.tabulator-row').removeClass('allow_update');
+					$('.tabulator-row').removeAttr('allow_id');
+					table.getRows().forEach(function (row) {
+						row.getElement().classList.add('mydisabled');
+						// Iterate through each field in the row
+						Object.keys(row.getData()).forEach(function (field) {
+							// Check if the field is not in the fieldsToKeep array
+							if (field != 'id') {
+								// Set the cell value to an empty string
+								if (field == 'seq') {
+									row.update({[field]: "0"}); // or use null if you prefer
+								} else {
+									row.update({[field]: ""}); // or use null if you prefer	
+								}
+
+							} else {
+								row.update({[field]: idx}); // or use null if you prefer
+								idx++;
+							}
+						});
+					});
+
+					//alert(tabledatadrugdna.length);
+
+					//table.setData(tabledatadrugdna);
+					//return;
+
+					//alert($('.permissible_code').attr('specific'));
+
+					/*$('.tab_body').find('input[type=text]').val('');
+					$('.tab_body').find('input[type=checkbox]').prop('checked', false);
+					$('.tab_body').find('select').val('');
+					$('.tab_body').find('textarea').val('');*/
+
+					$('.comments').val('');
+
+					$('#medCount').text('0');
+					$('#cmtCount').text('0');
+
+					$('.' + $('.permissible_code').attr('specific')).val('0');
+					updatable_rows = [];
+					/*$('.chk_cls').val('N');*/
+					console.log('key_val : ' + key_val + ' and screenCode : ' + screenCode);
+					$.ajax({
+						type: "POST",
+						url: contextPath + "fetchDetails",
+						dataType: "json",
+						data: {primaryVal: key_val, screenCode: screenCode},
+						success: function (response) {
+
+							//alert(response.length);
+
+							genRows(screenCode, response.length);
+							$('#no_of_rec').val(response.length);
+							$('#current_row').val(response.length);
+							jQuery.each(response, function (index, item) {
+								for (var key in item) {
+									//alert(key + ' : ' + item[key]);
+									console.log('test start : ' + index);
+									console.log('key is ' + key + ' & value is ' + item[key]);
+
+									//alert('A:' + item[key].toString());
+									//alert('B:' + item[key].toString().search('dx$dt='));
+
+									var tab_fld = $('.' + key.toLowerCase()).eq(index).attr('tabulator-field');
+
+									//alert(key);
+
+									if (key.toLowerCase().includes('dtfld_')) {
+										//tab_fld = $('.' + key.toLowerCase().split('dtfld_')[1]).eq(index).attr('tabulator-field');
+										key = key.split('DTFLD_')[1];
+										var dt = item['DTFLD_' + key];
+
+										//alert('dt is ' + dt);
+										if (dt != '' && dt != null) {
+											dt = dt.split("T")[0];
+											dt = dt.split('-')[1] + '/' + dt.split('-')[2] + '/' + dt.split('-')[0];
+										}
+										//$('.' + key.toLowerCase().split('dtfld_')[1]).eq(index).text(dt);
+										setValueForRowAndColumn(index, key, dt);
+									} else {
+										if (key.toLowerCase().includes('dropfld_')) {
+											key = key.split('DROPFLD_')[1];
+											//const row = table.getRow(index);
+											//const cell = row.getCell(tab_fld);
+											//alert(key + ' from x');
+
+											//alert($('#vals_' + key).val());
+
+											if (item['DROPFLD_' + key] != null && item['DROPFLD_' + key].toString() != '') {
+												var dynamic_Array = JSON.parse($('#vals_' + key).val());
+
+												//alert(item['DROPFLD_' + key]);
+
+												const selectedOption = dynamic_Array.find(option => option.value === item['DROPFLD_' + key].toString()); // Find the corresponding option
+
+												//alert(selectedOption.label);
+
+												//cell.setValue(selectedOption.label);
+												//$('.' + key.toLowerCase()).eq(index).text(selectedOption.label);
+												setValueForRowAndColumn(index, key, selectedOption.label);
+											}
+										} else if (key == 'USER_FULL_NAME') {
+											setValueForRowAndColumn(index, 'userFullName', commaName(item[key]));
+										} else if (key == 'RESULT_DESC') {
+											setValueForRowAndColumn(index, 'RESULTS', item[key]);
+										} else if (key == 'MED' && index == 0) {
+											setValueForRowAndColumn(index, key, item[key]);
+											if (item[key] != null) {
+												$('#addMedications').val(item[key]);
+												$('#medCount').text(item[key].length);
+											}
+										} else if (key == 'CMT' && index == 0) {
+											setValueForRowAndColumn(index, key, item[key]);
+											if (item[key] != null) {
+												$('#addComments').val(item[key]);
+												$('#cmtCount').text(item[key].length);
+											}
+										} else {
+											//$('.' + key.toLowerCase()).eq(index).text(item[key]);
+											setValueForRowAndColumn(index, key, item[key]);
+										}
+									}
+									console.log('test end : ' + index);
+
+									// Focus on the first row and first column
+									//var firstRow = table.getRow(0); // Get the first row (ID 1)
+
+									if (screenCode == 'CBI_URNE') {
+										$('#drugdna_table').find('.tabulator-row').eq(index).removeClass('mydisabled');
+										//var firstCell = firstRow.getCell("TYPETEST");
+									}
+
+									if (screenCode == 'CBI_MARK') {
+										$('#scarsmarks_table').find('.tabulator-row').eq(index).removeClass('mydisabled');
+									}
+
+									if (screenCode == 'CBI_ORTA') {
+										$('#orientationCheckist_table').find('.tabulator-row').eq(index).removeClass('mydisabled');
+										//var firstCell = firstRow.getCell("ORIENTATIONDATE");
+									}
+
+									//firstCell.getElement().focus();
+
+									//$('.tab_body').children('tr').eq(index).find('.form-control').removeClass('disable_fld');
+									//$('.tab_body').children('tr').eq(index).find('.form-control').removeAttr('disabled');
+								}
+							});
+
+							//loader(0);
+						},
+						complete: function (response) {
+							setTimeout(function () {
+								loader(0);
+							}, 1500);
+						},
+						error: function () {
+							alert("json not found");
+						}
+					});
+				}
+
+				/*function setValueForRowAndColumn(rowNumber, columnField, valueToSet) {
+					// Get the row by its index (rowNumber - 1 because rowNumber is 1-based)
+					console.log('here test' + rowNumber);
+					var row = table.getRow(rowNumber);
+	
+					// Check if the row exists
+					if (row) {
+						// Update the specific field in the row
+						row.update({[columnField]: valueToSet});
+					} else {
+						console.error("Row not found");
+					}
+				}*/
+
+
+
+				//getAttrModify();
+
+				function getAttrModify() {
+					var scrncode = $('#screenCode').val();
+					$.ajax({
+						type: "POST",
+						url: contextPath + "getAttr",
+						dataType: "json",
+						data: {screenCode: scrncode},
+						success: function (response) {
+							var mandatory_fld = '';
+							for (var i = 0; i < response.length; i++) {
+
+								//var ide = $("[name='" + response[i]['FIELD_NAME'] + "']").attr("id");
+
+								/*if (response[i]['READ_ONLY_FLAG'] == 'Y') {
+									$("." + response[i]['FIELD_NAME']).attr('readonly', true);
+									$("." + response[i]['FIELD_NAME']).css('pointer-events', 'none');
+								}*/
+
+								if (response[i]['MANDATORY_FLAG'] == 'Y') {
+									//alert(response[i]['FIELD_NAME']);
+									var tab_fld = $('.' + response[i]['FIELD_NAME']).attr('tabulator-field');
+									mandatory_fld += "[" + tab_fld + "]";
+									var cls = response[i]['FIELD_NAME'];
+									$('.' + cls).addClass('mandatory');
+									var lbl = $('.permissible[specific="' + cls + '"]').text();
+									//alert(lbl);
+									$('.permissible[specific="' + cls + '"]').html(lbl + "<span class='text-danger'>*</span>");
+									//alert(tab_fld);
+
+									//var txt = $("#lbl-" + response[i]['FIELD_NAME']).text();
+									//$("#lbl-" + response[i]['FIELD_NAME']).html(txt + "<span class='text-danger'>*</span>");
+
+									/*var txt = $(".permissible[specific=" + response[i]['FIELD_NAME'] + "]").text();
+									$(".permissible[specific=" + response[i]['FIELD_NAME'] + "]").html(txt + "<span class='text-danger'>*</span>");
+									$("." + response[i]['FIELD_NAME']).addClass('mandatory');*/
+								}
+
+								/*if (response[i]['MANDATORY_FLAG'] == 'Y') {
+									$('label[for="' + ide + '"]').html(response[i]['FIELD_LABEL'] + "<span style='color:#f00;'>*</span>");
+									$('#' + ide).addClass('mandatory');
+								} else {
+									$('label[for="' + ide + '"]').html(response[i]['FIELD_LABEL']);
+									$('#' + ide).removeClass('mandatory');
+								}*/
+
+
+							}
+
+							$('#mandatory_fld').val(mandatory_fld);
+
+						},
+						error: function () {
+							alert("json not found");
+						}
+					});
+				}
+
+				//setTimeout(function () {
+				//getLOV();
+				//}, 3000);
+
+
+				function getLOV() {
+					var scrncode = $('#screenCode').val();
+
+					console.log('scrncode is ' + scrncode);
+
+					$.ajax({
+						url: contextPath + 'getLOV',
+						method: 'POST',
+						dataType: "json",
+						data: {screenCode: scrncode},
+						success: function (response) {
+							for (var i = 0; i < response.length; i++) {
+								console.log(response[i]['ALGORITHM_QUERY'] + " for " + response[i]['FIELD_NAME']);
+
+								var cat = response[i]['ALGORITHM_QUERY'].split('::')[0];
+								var vals = response[i]['ALGORITHM_QUERY'].split('::')[1];
+
+								if (cat == 'hardcoded' && vals != '') {
+									vals = vals.split(',');
+
+									var jsonData = [];
+									var jsonData2 = [];
+									var entry = [];
+									for (var j = 0; j < vals.length; j++) {
+
+										//alert(vals[j].split(':')[0]);
+										//alert(vals[j].split(':')[1]);
+
+										entry = {
+											value: vals[j].split(':')[0],
+											label: vals[j].split(':')[1]
+										};
+
+										jsonData.push(vals[j].split(':')[1]);
+										jsonData2.push(entry);
+
+									}
+
+									var col_fld = $('.' + response[i]['FIELD_NAME']).attr('tabulator-field');
+
+									const statusColumn = table.getColumn(col_fld);
+									statusColumn.getDefinition().editorParams.values = jsonData; // Update the editorParams directly
+									//selectedOption = jsonData;
+									// Refresh the column to apply the new options
+									//statusColumn.updateEditorParams();
+
+									$('#entryForm').append('<input type="value" id="vals_' + col_fld + '">');
+
+									//alert(JSON.stringify(jsonData));
+
+									$('#vals_' + col_fld).val(JSON.stringify(jsonData2));
+
+
+									/*var content = '<option value="">Select ' + response[i]['FIELD_LABEL'] + '</option>';
+									for (var j = 0; j < vals.length; j++) {
+										content += '<option value="' + vals[j].split(':')[0] + '">' + vals[j].split(':')[1] + '</option>';
+									}
+	
+									$('.' + response[i]['FIELD_NAME']).html(content);*/
+								}
+
+								if (cat == 'query' && vals != '') {
+									setOption(vals, response[i]['FIELD_NAME'], response[i]['FIELD_LABEL']);
+								}
+
+								if (cat == 'json' && vals != '') {
+									setJSON(vals, response[i]['FIELD_NAME'], response[i]['FIELD_LABEL']);
+								}
+
+							}
+						},
+						error: function (error) {
+							//console.error("Error getting table names:", error);
+						}
+					});
+				}
+
+				//getValid();
+
+				function getValid() {
+					var scrncode = $('#screenCode').val();
+
+					console.log('scrncode is ' + scrncode);
+
+					$.ajax({
+						url: contextPath + 'getValid',
+						method: 'POST',
+						dataType: "json",
+						data: {screenCode: scrncode},
+						success: function (response) {
+
+							console.log('asif try 1');
+							console.log('response.length : ' + response.length);
+
+							for (var i = 0; i < response.length; i++) {
+								console.log(response[i]['VALIDATION_LOGIC'] + " for " + response[i]['FIELD_NAME']);
+
+								var typ = response[i]['VALIDATION_LOGIC'].split('::')[0];
+								var rul = response[i]['VALIDATION_LOGIC'].split('::')[1];
+								var len = response[i]['VALIDATION_LOGIC'].split('::')[2];
+
+								console.log('here typ : ' + typ);
+								console.log('here rul : ' + rul);
+								console.log('here len : ' + len);
+
+								if (typ == 'text') {
+									if (rul == 'Number') {
+										$('.' + response[i]['FIELD_NAME']).addClass('num');
+									}
+
+									if (rul == 'Email') {
+										$('.' + response[i]['FIELD_NAME']).addClass('mail');
+									}
+
+									if (len != 'X' && len > 0) {
+										$('.' + response[i]['FIELD_NAME']).prop('maxlength', len);
+									}
+								} else if (typ == 'date') {
+									var min = '';
+									var max = '';
+									var ddates = [];
+
+									if (rul != 'x') {
+										rules = rul.split(",");
+
+										for (var j = 0; j < rules.length; j++) {
+											var rule = rules[j].split(":")[0];
+											var value = rules[j].split(":")[1].split('|||')[0];
+											switch (rule) {
+												case 'mindt':
+													min = chkToday(value);
+													break;
+												case 'maxdt':
+													max = chkToday(value);
+													break;
+												case 'mindt+':
+													min = differDay(chkToday(value), 'N');
+													break;
+												case 'maxdt-':
+													max = differDay(chkToday(value), 'P');
+													break;
+												case 'not':
+													ddates.push(chkToday(value));
+													break;
+											}
+
+										}
+
+										//alert(response[i]['FIELD_NAME']);
+										var valid_info = min + '::' + max + '::' + ddates.join(',');
+										$('#' + response[i]['FIELD_NAME']).attr('data-valid', valid_info);
+										$('#' + response[i]['FIELD_NAME']).attr('data-check', rul);
+
+									}
+									applyRange(min, max, ddates, response[i]['FIELD_NAME']);
+								}
+
+
+
+								/*
+								if (cat == 'hardcoded' && vals != '') {
+									vals = vals.split(',');
+									var content = '<option value="">Select ' + response[i]['FIELD_LABEL'] + '</option>';
+									for (var j = 0; j < vals.length; j++) {
+										content += '<option value="' + vals[j].split(':')[0] + '">' + vals[j].split(':')[1] + '</option>';
+									}
+		
+									$('.' + response[i]['FIELD_NAME']).html(content);
+								}
+		
+								if (cat == 'query' && vals != '') {
+									setOption(vals, response[i]['FIELD_NAME'], response[i]['FIELD_LABEL']);
+								}
+								*/
+
+							}
+						},
+						error: function (error) {
+							//console.error("Error getting table names:", error);
+						}
+					});
+				}
+
+				function setOption(vals, field, label) {
+					$.ajax({
+						url: contextPath + 'getVals',
+						method: 'POST',
+						dataType: "json",
+						data: {vals: vals.split("[q]").join("'")},
+						success: function (response) {
+							var content = '<option value="">Select ' + label + '</option>';
+							var jsonData = [];
+							var jsonData2 = [];
+							var entry = [];
+							for (var i = 0; i < response.length; i++) {
+								if (response[i]['VAL'] != undefined) {
+									//content += '<option value="' + response[i]['VAL'] + '">' + response[i]['OPT'] + '</option>';
+									entry = {
+										value: response[i]['VAL'].trim(),
+										label: response[i]['OPT'].trim()
+									};
+								} else {
+									//content += '<option value="' + response[i]['OPT'] + '">' + response[i]['OPT'] + '</option>';
+									entry = {
+										value: response[i]['OPT'].trim(),
+										label: response[i]['OPT'].trim()
+									};
+								}
+
+								jsonData.push(response[i]['OPT'].trim());
+								jsonData2.push(entry);
+
+							}
+
+							var col_fld = $('.' + field).attr('tabulator-field');
+
+							const statusColumn = table.getColumn(col_fld);
+							statusColumn.getDefinition().editorParams.values = jsonData; // Update the editorParams directly
+							//selectedOption = jsonData;
+							// Refresh the column to apply the new options
+							//statusColumn.updateEditorParams();
+
+							$('#entryForm').append('<input type="value" id="vals_' + col_fld + '">');
+
+							//alert(JSON.stringify(jsonData));
+
+							$('#vals_' + col_fld).val(JSON.stringify(jsonData2));
+
+							/*let arrayName = col_fld + "_Array"; // The name of the array
+							window[arrayName] = []; // Create the array
+							window[arrayName] = jsonData;*/
+
+						},
+						error: function (error) {
+							//console.error("Error getting table names:", error);
+						}
+					});
+				}
+
+				function setJSON(vals, field, label) {
+					var valopt = vals.split('{')[1].split('}')[0].split(':');
+					var sampval = valopt[0];
+					var sampdsc = valopt[1];
+
+					$.ajax({
+						url: contextPath + 'json/' + vals.split('{')[0] + '.json',
+						method: 'GET',
+						dataType: "json",
+						success: function (response) {
+							var len = response.length;
+							var content = '<option value="">Select ' + label + '</option>';
+							for (var i = 0; i < len; i++) {
+								content += '<option value="' + response[i][sampval] + '">' + response[i][sampdsc] + '</option>';
+							}
+							$('.' + field).html(content);
+						},
+						error: function (error) {
+							//console.error("Error getting table names:", error);
+						}
+					});
+				}
+
+				function applyRange(min, max, ddates, cls) {
+
+					if (min == '') {
+						min = null;
+					}
+
+					if (max == '') {
+						max = null;
+					}
+
+					$("." + cls).datepicker({
+						dateFormat: "mm/dd/yy",
+						minDate: min,
+						maxDate: max,
+						beforeShowDay: function (date) {
+							var string = jQuery.datepicker.formatDate('mm/dd/yy', date);
+							return [ddates.indexOf(string) == -1];
+						}
+					});
+
+					$("." + cls).attr("autocomplete", "off");
+
+				}
+
+				function chkToday(str) {
+					if (str == 'today') {
+						const d = new Date();
+						let year = d.getFullYear();
+						let month = d.getMonth() + 1;
+						let date = d.getDate();
+						str = padDigits(month, 2) + "/" + padDigits(date, 2) + "/" + padDigits(year, 4);
+					}
+
+					console.log('str check ' + str);
+
+					return str;
+				}
+
+				function padDigits(number, digits) {
+					return Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number;
+				}
+
+				function differDay(dt, diff) {
+					var day = new Date(dt);
+
+					var nd = new Date(day);
+					if (diff == 'N') {
+						nd.setDate(day.getDate() + 1);
+					} else {
+						nd.setDate(day.getDate() - 1);
+					}
+
+					let year = nd.getFullYear();
+					let month = nd.getMonth() + 1;
+					let date = nd.getDate();
+					var str = padDigits(month, 2) + "/" + padDigits(date, 2) + "/" + padDigits(year, 4);
+					return str;
+				}
+
+				/*$(document).on('blur', '.hasDatepicker', function () {
+					var fld = $(this).attr('data-fld');
+					if ($(this).val() != '') {
+						var mydate = $(this).val();
+						if (!valDate(mydate)) {
+							$(this).val('');
+							//alert("Invalid Date");
+							//Swal.fire('Alert', 'Date is not valid', 'warning');
+							message('CUW', 'Date is not valid', 0);
+							/*setTimeout(function() {
+								message('CUW', 'Date is not valid', 0);	
+							},1000);*/
+				/*} else {
+					var newdt = padDigits(mydate.split("/")[0], 2) + "/" + padDigits(mydate.split("/")[1], 2) + "/" + mydate.split("/")[2];
+
+					if (dateCheck(newdt, fld) != '') {
+						$(this).val('');
+						var msg = dateCheck(newdt, fld);
+						//Swal.fire('Alert', msg, 'warning');
+						message('CUW', msg, 0);
+						return;
+					}
+
+					if (checkAvailable(newdt, fld)) {
+						$(this).val(newdt);
+					} else {
+
+						$(this).val('');
+
+						var date_check = $('#' + fld).attr('data-check');
+
+						date_rules = date_check.split(',');
+
+						for (var i = 0; i < date_rules.length; i++) {
+
+							if (!date_rules[i].includes('today')) {
+								//console.log('here some specific : ' + date_rules[i]);
+
+								if (date_rules[i].includes('not:')) {
+									var getdt = date_rules[i].split("not:")[1].split("|||")[0];
+									var getmsg = date_rules[i].split("not:")[1].split("|||")[1];
+									if (newdt == getdt) {
+										if (getmsg != '') {
+											//Swal.fire('Alert', getmsg, 'warning');
+											message('CUW', getmsg, 0);
+											return;
+										}
+									}
+								}
+
+								if (date_rules[i].includes('maxdt-:')) {
+									var getdt = date_rules[i].split("maxdt-:")[1].split("|||")[0];
+									var getmsg = date_rules[i].split("maxdt-:")[1].split("|||")[1];
+
+									var d1 = new Date(newdt.split('/')[2], newdt.split('/')[0] - 1, newdt.split('/')[1]);
+									var d2 = new Date(getdt.split('/')[2], getdt.split('/')[0] - 1, getdt.split('/')[1]);
+
+									if (newdt == getdt || d1 > d2) {
+										if (getmsg != '') {
+											//Swal.fire('Alert', getmsg, 'warning');
+											message('CUW', getmsg, 0);
+											return;
+										}
+									}
+								}
+
+								if (date_rules[i].includes('mindt+:')) {
+									var getdt = date_rules[i].split("mindt+:")[1].split("|||")[0];
+									var getmsg = date_rules[i].split("mindt+:")[1].split("|||")[1];
+
+									var d1 = new Date(newdt.split('/')[2], newdt.split('/')[0] - 1, newdt.split('/')[1]);
+									var d2 = new Date(getdt.split('/')[2], getdt.split('/')[0] - 1, getdt.split('/')[1]);
+
+									if (newdt == getdt || d1 < d2) {
+										if (getmsg != '') {
+											//Swal.fire('Alert', getmsg, 'warning');
+											message('CUW', getmsg, 0);
+											return;
+										}
+									}
+								}
+
+								if (date_rules[i].includes('maxdt:')) {
+									var getdt = date_rules[i].split("maxdt:")[1].split("|||")[0];
+									var getmsg = date_rules[i].split("maxdt:")[1].split("|||")[1];
+
+									var d1 = new Date(newdt.split('/')[2], newdt.split('/')[0] - 1, newdt.split('/')[1]);
+									var d2 = new Date(getdt.split('/')[2], getdt.split('/')[0] - 1, getdt.split('/')[1]);
+
+									if (d1 > d2) {
+										if (getmsg != '') {
+											//Swal.fire('Alert', getmsg, 'warning');
+											message('CUW', getmsg, 0);
+											return;
+										}
+									}
+								}
+
+								if (date_rules[i].includes('mindt:')) {
+									var getdt = date_rules[i].split("mindt:")[1].split("|||")[0];
+									var getmsg = date_rules[i].split("mindt:")[1].split("|||")[1];
+
+									console.log('test alpha : ' + newdt);
+									console.log('test beta : ' + getdt);
+
+									var d1 = new Date(newdt.split('/')[2], newdt.split('/')[0] - 1, newdt.split('/')[1]);
+									var d2 = new Date(getdt.split('/')[2], getdt.split('/')[0] - 1, getdt.split('/')[1]);
+
+									if (d1 < d2) {
+										if (getmsg != '') {
+											//Swal.fire('Alert', getmsg, 'warning');
+											message('CUW', getmsg, 0);
+											return;
+										}
+									}
+								}
+
+
+							}
+
+						}
+
+						//alert("Disabled Date Not Allowed");
+						//Swal.fire('Alert', 'You cannot enter this date ' + newdt, 'warning');
+						message('CUW', 'You cannot enter this date ' + newdt, 0);
+					}
+
+				}
+			}
+		});*/
+
+				function dateCheck(dt, fld) {
+					var date_check = $('#' + fld).attr('data-check');
+					var ret_msg = '';
+
+					const d = new Date();
+					let year = d.getFullYear();
+					let month = d.getMonth() + 1;
+					let date = d.getDate();
+					var today = padDigits(month, 2) + "/" + padDigits(date, 2) + "/" + padDigits(year, 4);
+
+					if (dt == today) {
+						/*if(date_check.includes('not:today') || date_check.includes('maxdt-:today') || date_check.includes('mindt+:today')) {
+							ret_msg = 'You cannot able to enter today date';
+						}*/
+
+						if (date_check.includes('not:today')) {
+
+							//console.log('Test: ' + date_check.split('not:today')[1].split(',')[0].split('|||')[1]);
+
+							if (date_check.split('not:today')[1].split(',')[0].split('|||')[1] != '') {
+								ret_msg = date_check.split('not:today')[1].split(',')[0].split('|||')[1];
+							} else {
+								ret_msg = 'You cannot able to enter today date';
+							}
+
+						} else if (date_check.includes('maxdt-:today')) {
+
+							if (date_check.split('maxdt-:today')[1].split(',')[0].split('|||')[1] != '') {
+								ret_msg = date_check.split('maxdt-:today')[1].split(',')[0].split('|||')[1];
+							} else {
+								ret_msg = 'You cannot able to enter today date';
+							}
+
+						} else if (date_check.includes('mindt+:today')) {
+
+							if (date_check.split('mindt+:today')[1].split(',')[0].split('|||')[1] != '') {
+								ret_msg = date_check.split('mindt+:today')[1].split(',')[0].split('|||')[1];
+							} else {
+								ret_msg = 'You cannot able to enter today date';
+							}
+
+						}
+
+					}
+
+					var d1 = new Date(dt.split('/')[2], dt.split('/')[0] - 1, dt.split('/')[1]);
+
+					if (d1 > d) {
+						/*if (date_check.includes('maxdt-:today') || date_check.includes('maxdt:today')) {
+							ret_msg = 'You cannot able to enter future date';
+						}*/
+
+						if (date_check.includes('maxdt-:today')) {
+
+							if (date_check.split('maxdt-:today')[1].split(',')[0].split('|||')[1] != '') {
+								ret_msg = date_check.split('maxdt-:today')[1].split(',')[0].split('|||')[1];
+							} else {
+								ret_msg = 'You cannot able to enter future date';
+							}
+
+						} else if (date_check.includes('maxdt:today')) {
+
+							if (date_check.split('maxdt:today')[1].split(',')[0].split('|||')[1] != '') {
+								ret_msg = date_check.split('maxdt:today')[1].split(',')[0].split('|||')[1];
+							} else {
+								ret_msg = 'You cannot able to enter future date';
+							}
+
+						}
+					}
+
+					if (d1 < d) {
+						/*if (date_check.includes('mindt+:today') || date_check.includes('mindt:today')) {
+							ret_msg = 'You cannot able to enter past date';
+						}*/
+
+						if (date_check.includes('mindt+:today')) {
+
+							if (date_check.split('mindt+:today')[1].split(',')[0].split('|||')[1] != '') {
+								ret_msg = date_check.split('mindt+:today')[1].split(',')[0].split('|||')[1];
+							} else {
+								ret_msg = 'You cannot able to enter past date';
+							}
+
+						} else if (date_check.includes('mindt:today')) {
+
+							if (date_check.split('mindt:today')[1].split(',')[0].split('|||')[1] != '') {
+								ret_msg = date_check.split('mindt:today')[1].split(',')[0].split('|||')[1];
+							} else {
+								ret_msg = 'You cannot able to enter past date';
+							}
+
+						}
+
+					}
+
+					return ret_msg;
+
+				}
+
+				function checkAvailable(dt, fld) {
+					var valid_dt = $('#' + fld).attr('data-valid');
+					var mindt = valid_dt.split('::')[0];
+					var maxdt = valid_dt.split('::')[1];
+					var ddates = valid_dt.split('::')[2].split(',');
+
+					if (mindt != '') {
+						var d1 = new Date(dt.split('/')[2], dt.split('/')[0] - 1, dt.split('/')[1]);
+						var d2 = new Date(mindt.split('/')[2], mindt.split('/')[0] - 1, mindt.split('/')[1]);
+
+						if (d1 < d2) {
+							return false;
+						}
+
+					}
+
+					if (maxdt != '') {
+						var d1 = new Date(dt.split('/')[2], dt.split('/')[0] - 1, dt.split('/')[1]);
+						var d2 = new Date(maxdt.split('/')[2], maxdt.split('/')[0] - 1, maxdt.split('/')[1]);
+
+						if (d1 > d2) {
+							return false;
+						}
+
+					}
+
+					for (var i = 0; i < ddates.length; i++) {
+						if (dt == ddates[i]) {
+							return false;
+						}
+					}
+
+					return true;
+
+				}
+
+				function valDate(mydate) {
+					var valid = true;
+					if (mydate.indexOf("/") == -1) {
+						valid = false;
+					}
+					if (mydate.split('/').length != 3) {
+						valid = false;
+					}
+					var mn = parseInt(mydate.split('/')[0]);
+					var dt = parseInt(mydate.split('/')[1]);
+					var yr = parseInt(mydate.split('/')[2]);
+					if (mn > 12 || mn < 1) {
+						valid = false;
+					}
+					if (mn == 1 || mn == 3 || mn == 5 || mn == 7 || mn == 8 || mn == 10 || mn == 12) {
+						if (dt > 31 || dt < 1) {
+							valid = false;
+						}
+					}
+					if (mn == 4 || mn == 6 || mn == 9 || mn == 11) {
+						if (dt > 30 || dt < 1) {
+							valid = false;
+						}
+					}
+					if (mn == 2) {
+						if (yr % 4 == 0) {
+							if (dt > 29 || dt < 1) {
+								valid = false;
+							}
+						} else {
+							if (dt > 28 || dt < 1) {
+								valid = false;
+							}
+						}
+					}
+					if (yr > 2100 || yr < 2000) {
+						valid = false;
+					}
+					return valid;
+				}
+
+				//setOfficer();
+
+				//alert('contextPath is ' + contextPath);
+
+				function setOfficer(srchkey) {
+					$.ajax({
+						url: contextPath + 'getOfficer',
+						method: 'POST',
+						dataType: "json",
+						data: {srchkey: srchkey},
+						success: function (response) {
+							var content = '';
+							var tab_content = '';
+							for (var i = 0; i < response.length; i++) {
+								content += '<option>' + nullHandler(response[i]['USER_LAST_NAME']) + ' ' + nullHandler(response[i]['USER_FIRST_NAME']) + ' ';
+								content += nullHandler(response[i]['USER_MID_NAME']) + ' ' + nullHandler(response[i]['USER_SUFFIX_NAME']) + '</option>';
+								tab_content += '<tr class="ofcr_tab_row" style="cursor:pointer;">';
+								tab_content += '<td class="ofcr_lname">' + nullHandler(response[i]['USER_LAST_NAME']) + '</td>';
+								tab_content += '<td class="ofcr_fname">' + nullHandler(response[i]['USER_FIRST_NAME']) + '</td>';
+								tab_content += '<td class="ofcr_mname">' + nullHandler(response[i]['USER_MID_NAME']) + '</td>';
+								tab_content += '<td class="ofcr_sname">' + nullHandler(response[i]['USER_SUFFIX_NAME']) + '</td>';
+								tab_content += '</tr>';
+							}
+							$('#user-list').html(content);
+							$('#officerTblBody').html(tab_content);
+						},
+						error: function (error) {
+							//console.error("Error getting table names:", error);
+						}
+					});
+				}
+
+				//alert(getUserName('JAGUAR25'));
+
+				function getUserName(userid) {
+					$.ajax({
+						url: contextPath + 'getFullName',
+						method: 'POST',
+						dataType: "json",
+						data: {userid: userid},
+						success: function (response) {
+							var username = nullHandler(response[0]['USER_LAST_NAME']) + ' ';
+							username += nullHandler(response[0]['USER_FIRST_NAME']) + ' ';
+							username += nullHandler(response[0]['USER_MID_NAME']) + ' ';
+							username += nullHandler(response[0]['USER_SUFFIX_NAME']) + ' ';
+
+							return username.trim();
+						},
+						error: function (error) {
+							//console.error("Error getting table names:", error);
+						}
+					});
+				}
+
+				function nullHandler(x) {
+					if (x == null) {
+						x = '';
+					}
+					return x;
+				}
+
+				$('#sbiNumberInput').focus();
+
+			});
+
+			function commaName(x) {
+				if (x != '' && x != undefined && x != null) {
+					x = x.trim();
+					x = x.split(' ').join(', ');
+				}
+				return x;
+			}
+		</script>
+	<div id="dynamic_form" style="display:none;"></div>
+	<input type="button" id="call_fetch" style="display: none;">
+</div>

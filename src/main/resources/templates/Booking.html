@@ -1,0 +1,3344 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+	<!-- DOC: nav menu layout change shortcut -->
+	<title class="Registrationsidebar">Booking</title>
+	<div th:replace="~{fragments/head :: head}"></div>
+    
+	<body class="mod-bg-1 mod-nav-link">
+		<!-- BEGIN Page Wrapper -->
+		<div th:replace="~{fragments/header :: header}"></div>
+		<div th:replace="~{fragments/navmenus :: navmenus}"></div>
+		<div class="page-wrapper">
+			<div class="page-inner">
+				<!-- BEGIN Left Aside -->
+				<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+				<!-- END Left Aside -->
+				<div class="page-content-wrapper">
+					<!-- BEGIN Page Header -->
+					
+					<!-- END Page Header -->
+					<!-- BEGIN Page Content -->
+					<!-- the #js-page-content id is needed for some plugins to initialize -->
+					<main id="js-page-content" role="main" class="page-content">
+					<script>
+						$('#js-page-content').smartPanel();
+					</script>
+					<!-- <ol class="breadcrumb page-breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">SmartAdmin</a></li>
+                            <li class="breadcrumb-item">category_1</li>
+                            <li class="breadcrumb-item">category_2</li>
+                            <li class="breadcrumb-item active">Page Titile</li>
+                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        </ol> -->
+					<div class="subheader position-relative mb-1">
+						<h1 class="subheader-title">
+							<div th:replace="~{fragments/toggleMenu :: toggleMenu}"></div>
+							<!--<i class="subheader-icon fal fa-"></i>Booking <span style="font-size:15px;"></span>-->
+							<i class='subheader-icon fal fa-'></i> <span id="screenNameHolder" th:data-name="${screenCode}" th:text="${screenName}"></span></span>							
+						</h1>
+						<div class="demo">
+							<div class="btn-group headingIconsBlock">
+							<div class="col-12 pr-0">
+								<div class="js-get-date">[your date here]</div>
+							</div>
+							</div>
+							<!--<a href="javascript:void(0);" class="btn btn-primary btn-sm btn-icon waves-effect waves-themed headingIconsBlock" data-toggle="tooltip" data-placement="top" data-original-title="Print Wristband"> <i class="fa-solid fa-hands-bound"></i>
+							</a>
+							<a href="javascript:void(0);" class="btn btn-primary btn-sm btn-icon waves-effect waves-themed headingIconsBlock" data-toggle="tooltip" data-placement="top" data-original-title="ID Card"> <i class="fa-solid fa-id-card"></i>
+							</a>
+							<a href="javascript:void(0);" class="btn btn-primary btn-sm btn-icon waves-effect waves-themed headingIconsBlock" data-toggle="tooltip" data-placement="top" data-original-title="Print" id="addButton"> <i class="fal fa-plus"></i>
+							</a>-->
+							<a href="javascript:void(0);" class="btn btn-primary btn-sm btn-icon waves-effect waves-themed headingIconsBlock" data-toggle="tooltip" data-placement="top" data-original-title="Print"> <i class="fal fa-print"></i>
+							</a>
+							 <a href="javascript:void(0);" class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed headingIconsBlock " data-toggle="tooltip" data-placement="top" data-original-title="Clear" id="clearButton" style="margin-bottom: 2px!important;"> <i class="fal fa-times"></i>
+							</a> 
+							<a href="javascript:void(0);" class="btn btn-success btn-sm btn-icon waves-effect waves-themed headingIconsBlock" data-toggle="tooltip" data-placement="top" data-original-title="OK/Save" id="saveInmateButton" style="margin-bottom: 2px!important;"> <i class="fal fa-save"></i>
+							</a> <a href="javascript:void(0);" class="btn btn-danger btn-sm btn-icon waves-effect waves-themed headingIconsBlock" data-toggle="tooltip" data-placement="top" data-original-title="Cancel/Exit" onclick="history.back()" style="margin-bottom: 2px!important;"> <i class="fal fa-sign-out"></i>
+							</a>
+						</div>
+					</div>
+
+					<div class="container-fluid mt-2 form-group px-0">
+							<div class="row registrationMainBlock">
+								
+								<input type="hidden" name="screenCode" id="screenCode" value="CBI_BOOK" />
+								<div class="col-lg-8 col-md-12 profileBlock">
+									<div id="headerBlock" class="panel">
+	                                    <div class="panel-container show">
+	                                        <div class="panel-content pb-0">
+	                                            <div class="row mx-1">
+													<div class="col-md-3">
+														<div class="position-relative mt-1" style="z-index: 9;">
+															<div class="floatingFields mb-1 d-flex align-items-center">
+															  <input type="text" class="form-control floatingLable rawField" aria-label="ID#" name="sbiNumberInput" id="sbiNumberInput" data-fld = "sbiNumberInput_fld" data-lbl = "ID#" value="" placeholder="" maxlength="8" style="width: 150px;" readonly>
+															  <label for="sbiNumberInput" style="color:#886ab5">ID#</label>
+															  <span data-toggle="modal" data-target="#securityThreatGroup" >															
+																	<a href="javascript:void(0);" class="btn btn-primary btn-sm btn-icon waves-effect waves-themed headingIconsBlock ml-1" id="lookup_icon" data-toggle="tooltip" data-placement="top" data-original-title="Lookup"> <i class="fa fa-eye"></i>
+																	</a>
+															   </span>
+															</div>
+															<div class="border-end mt-1">
+																<img src="" id="OffenderPhoto"class="" alt="Offender_Image" style="width: 175px;height: 175px;border-radius: 7px;">												
+															</div>
+														</div>														
+													</div><!-- end col -->
+													<div class="col-lg-9 col-md-9  pl-0">
+															<div class="row position-relative mt-1 pl-4 headerInputBlock" style="z-index: 9;">
+																<div class="col-12 col-lg-5 col-md-5 d-flex align-items-center pl-0 floatingFields mb-1">
+																	<input type="text" class="form-control w-100 floatingLable rawField" aria-label="LastName" id="LastName" data-fld = "LastName_fld" data-lbl = "Last Name" name="LastName" maxlength="20" value="" placeholder="">
+																	<label for="LastName" class="form-label mr-1 text-nowrap mb-0">Last Name</label>
+																</div>
+																<div class="col-12 col-lg-5 col-md-5 d-flex align-items-center pl-0 floatingFields mb-1">
+																	<input type="text" class="form-control w-100 floatingLable rawField" aria-label="FirstName" id="FirstName" data-fld = "FirstName_fld" data-lbl = "First Name" name="FirstName" maxlength="15" value="" placeholder="">
+																	<label for="FirstName" class="form-label mr-1 text-nowrap mb-0">First Name</label>
+																</div>
+																<div class="col-12 col-lg-2 col-md-2 d-flex align-items-center floatingFields mb-1 px-0">
+																	<input type="text" class="form-control floatingLable rawField" aria-label="MI" id="MI" data-fld = "MI_fld" data-lbl = "MI" name="MI" value="" maxlength="1" placeholder="">												
+																	<label for="MI" class="form-label mr-1 text-nowrap px-0">MI</label>
+																</div>
+																<div class="col-12 col-lg-3 col-md-3 d-flex align-items-center floatingFields mb-1 mt-2 pl-0">
+																	<input type="text" class="form-control floatingLable rawField" aria-label="Suffix" id="Suffix" data-fld = "Suffix_fld" data-lbl = "Suffix" name="Suffix" maxlength="5" value="" placeholder="">
+																	<label for="Suffix" class="form-label mr-1 text-nowrap">Suffix</label>
+																</div>
+																
+																
+																<div class="col-lg-3 col-md-3 d-flex align-items-center pl-0 mt-2 datePickerFloat mt-2 mb-1 pl-0">
+																		<!-- <div class="input-append date position-relative w-100 floatingFields" id="mdPicker"> -->
+																				<input class="form-control floatingLable rawField" size="16" type="date" aria-label="dateofbirth" name="dateofbirth" id="dateofbirth" data-fld = "dateofbirth_fld" data-lbl = "DOB" value="">
+																				<!--<span class="add-on"></span>-->
+																		<!-- </div>-->
+																		<label for="dateofbirth" class="form-label mr-1" >DOB</label>
+																</div>
+																<!--<div class="col-lg-3 col-md-3 d-flex align-items-center pl-0 mt-2 datePickerFloat mt-2 mb-1 pl-0">
+																    <input class="form-control floatingLable" type="date" aria-label="admissionDate" name="admissionDate" id="admissionDate" value="">
+																    <label for="admissionDate" class="form-label mr-1">Admission/Release Date</label>
+																</div>-->
+																
+																<div class="col-lg-3 col-md-3 d-flex align-items-center mt-2 mb-1 pl-0 floatingFields">
+																    <select class="form-control floatingLable rawField" aria-label="Sex" name="Sex" id="Sex" data-fld = "Sex_fld" data-lbl = "Gender">
+																        <option value=""></option>
+																        <option value="M">Male</option>
+																        <option value="F">Female</option>
+																        <option value="O">Other</option>
+																    </select>
+																    <label for="Sex" class="form-label mr-1" >Gender</label>
+																</div>
+																
+																
+																<div class="col-12 col-lg-3 col-md-3 d-flex align-items-center mt-2 mb-1 px-0 floatingFields">
+																    <select class="form-control floatingLable rawField" name="RaceOffender" id="RaceOffender" data-fld = "RaceOffender_fld" data-lbl = "Race">
+																        <option value=""></option>
+																    </select>
+																    <label for="RaceOffender" class="form-label mr-1">Race</label>
+																</div>
+																<div class="col-12 col-lg-12 col-md-12 d-flex align-items-center mt-2 mb-1 pr-0 floatingFields pl-0">
+																	<input type="text" class="form-control w-100 floatingLable rawField" aria-label="Address" id="Address1" data-fld = "Address1_fld" data-lbl = "Address 1" name="Address1" value="" placeholder="">
+																	<label for="Address1" class="form-label mr-1 text-nowrap mb-0">Address 1</label>
+																</div>													
+																<div class="col-12 col-lg-12 col-md-12 d-flex align-items-center mt-2 pr-0 mb-1 floatingFields pl-0">
+																	<input type="text" class="form-control w-100 floatingLable rawField" aria-label="Address" id="Address2" data-fld = "Address2_fld" data-lbl = "Address 2" name="Address2" value="" placeholder="">
+																	<label for="Address2" class="form-label mr-1 text-nowrap mb-0">Address 2</label>
+																</div>
+																<div class="col-12 col-lg-3 col-md-3 d-flex align-items-center mt-2 mb-1 floatingFields pl-0">
+																	<input type="text" class="form-control w-100 floatingLable rawField" aria-label="City" id="City" data-fld = "City_fld" data-lbl = "City" name="City" value="" placeholder="">
+																	<label for="City" class="form-label mr-1 text-nowrap mb-0">City</label>
+																</div>
+																
+															<!--	<div class="col-12 col-lg-3 col-md-3 d-flex align-items-center mt-2 mb-1 floatingFields pl-0">
+																    <select class="form-control floatingLable" aria-label="State" id="State" name="State" >
+																        <option value=""></option>
+																    </select>
+																    <label for="State" class="form-label mr-1 text-nowrap mb-0">State</label>
+																</div>
+																-->
+																<div class="col-12 col-lg-3 col-md-3 d-flex align-items-center mt-2 mb-1 floatingFields pl-0">
+																	<input type="text" class="form-control floatingLable rawField" aria-label="State" id="State" data-fld = "State_fld" data-lbl = "State" name="State" value="" placeholder="">														
+																	<label for="State" class="form-label mr-1 text-nowrap mb-0">State</label>
+																</div>
+											
+																
+																<div class="col-12 col-lg-3 col-md-3 d-flex align-items-center mt-2 mb-1 floatingFields pl-0">
+																	<input type="text" class="form-control floatingLable rawField" aria-label="Zip" id="Zip" data-fld = "Zip_fld" data-lbl = "Zip" name="Zip" value="" placeholder="">														
+																	<label for="Zip" class="form-label mr-1 text-nowrap mb-0">Zip</label>
+																</div>
+															<div class="col-12 col-lg-3 col-md-3 d-flex align-items-center px-0 mt-2 mb-1">
+																<span data-toggle="modal" data-target="#listModal">																
+					                                                <a href="#" class="btn btn-primary btn-icon btn-sm p-1 ml-1 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Choose List" data-class="nav-function-hidden" style="height: 25px;">
+											                            <i class="fa fa-list position-relative" style="top: -4px;"></i>
+											                        </a>
+																</span>
+															</div>
+															
+															<ul class="nav nav-tabs nav-tabs-clean" role="tablist">
+				                                                <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#tab-home" role="tab">Mugshot</a></li>
+				                                                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#tab-profile" role="tab">Finger Print</a></li>
+				                                            </ul>
+														</div>
+														
+													</div><!-- end col -->
+												</div><!-- end row -->
+	                                        </div>
+	                                    </div>
+	                                </div>
+									
+									<div class="tab-content">
+                                        <div class="tab-pane fade show active" id="tab-home" role="tabpanel" aria-labelledby="tab-home">
+											<div id="mugshotBlock" class="panel">
+			                                    <div class="panel-hdr">
+			                                        <h2 class="d-flex justify-content-between mr-0"> 
+														<div>
+															Mugshot
+														</div>
+														<button class="cursor-pointer btn-sm btn btn-primary" id="add-card">
+															<i class="fa fa-plus"></i>
+														</button>
+			                                        </h2>
+			                                    </div>
+			                                    <div class="panel-container show">
+			                                        <div class="tab-content p-1 mugshotBlock">
+														<div class="pl-1 mb-2 row d-flex" id="mugshotContainer-Main">
+															<div class="col-lg-4 col-md-6" id="project-items-1">
+																<div class="card mt-2">
+																	<div class="card-body p-2">
+																		<!--<div class="row ml-1" style="flex-wrap: unset;">-->
+																		<div class="imgUp position-relative">
+																			<label for="weight" class="form-label mb-1 mr-2 my-0 text-nowrap d-block">Face View</label>
+																			<div class="imagePreview "></div>
+																			<a href="javascript:void(0);" class="btn btn-primary waves-effect waves-themed js-capture-btn " style="padding:1px 5px 2px 5px;background-color: #0b5ed7;">
+																			    <i class="fa fa-camera"></i>
+																			</a>
+																		</div><!-- col-2 -->
+																		
+																	</div><!-- end cardbody -->
+																</div><!-- end card -->
+															</div><!-- end col -->
+															
+															<div class="col-lg-4 col-md-6" id="project-items-2">
+																<div class="card mt-2">
+																	<div class="card-body p-2">
+																		<div class="imgUp position-relative">
+																		   <label for="weight" class="form-label mb-1 mr-2 my-0 text-nowrap d-block">Left Side</label>	
+																			<div class="imagePreview"></div>
+																			<a href="javascript:void(0);" class="btn btn-primary waves-effect waves-themed js-capture-btn " style="padding:1px 5px 2px 5px;background-color: #0b5ed7;">
+																			    <i class="fa fa-camera"></i>
+																			</a>
+																		</div><!-- col-2 -->															
+													
+																	</div><!-- end cardbody -->
+																</div><!-- end card -->
+															</div><!-- end col -->
+															
+															<div class="col-lg-4 col-md-6 d-flex pr-1" id="project-items-3">
+																<div class="card mr-2 mt-2">
+																	<div class="card-body p-1">
+																		<div class="imgUp position-relative">	
+																		   <label for="weight" class="form-label mb-1 mr-2 my-0 text-nowrap d-block">Right Side</label>
+																			<div class="imagePreview"></div>
+																			<a href="javascript:void(0);" class="btn btn-primary waves-effect waves-themed js-capture-btn " style="padding:1px 5px 2px 5px;background-color: #0b5ed7;">
+																			    <i class="fa fa-camera"></i>
+																			</a>
+																		</div><!-- col-2 -->
+																		
+																	</div><!-- end cardbody -->
+																</div><!-- end card -->
+															</div><!-- end col -->
+														</div><!-- end row -->						
+													</div><!-- end tab -->
+			                                    </div>
+			                                </div>
+										</div>
+                                        <div class="tab-pane fade" id="tab-profile" role="tabpanel" aria-labelledby="tab-profile">
+											<div id="fingerPrintBlock" class="panel">
+			                                    <div class="panel-hdr">
+			                                        <h2 class="d-flex justify-content-between mr-0"> 
+														<div>
+															Finger Print
+														</div>
+														<button class="cursor-pointer btn-sm btn btn-primary" id="add-cardfinger">
+															<i class="fa fa-plus"></i>
+														</button>
+			                                        </h2>
+			                                    </div>
+			                                    <div class="panel-container show">
+			                                        <div class="tab-content">
+														<div class="p-2 mb-2 row d-flex" id="fingerContainer-Main">
+															<div class="col-lg-4 col-sm-6" id="project-items-1">
+																<div class="card">
+																	<div class="card-body p-2">
+																		<!--<div class="row ml-1" style="flex-wrap: unset;">-->
+																		<div class="imgUp position-relative">
+																			<label for="weight" class="form-label mb-1 mt-0 text-nowrap d-block">Left Thumb</label>
+																			<div class="imagePreview"></div>
+																			<a href="javascript:void(0);" class="btn btn-primary waves-effect waves-themed js-capture-btn " style="padding:1px 5px 2px 5px;background-color: #0b5ed7;">
+																			    <i class="fa fa-camera"></i>
+																			</a>
+																		</div><!-- col-2 -->
+																		
+																	</div><!-- end cardbody -->
+																</div><!-- end card -->
+															</div><!-- end col -->
+															
+															<div class="col-lg-4 col-sm-6" id="project-items-2">
+																<div class="card">
+																	<div class="card-body p-2">
+																		<div class="imgUp position-relative">
+																		   <label for="weight" class="form-label mb-1 mt-0 text-nowrap d-block">Right Thumb</label>	
+																			<div class="imagePreview"></div>
+																			<a href="javascript:void(0);" class="btn btn-primary waves-effect waves-themed js-capture-btn " style="padding:1px 5px 2px 5px;background-color: #0b5ed7;">
+																			    <i class="fa fa-camera"></i>
+																			</a>
+																		</div><!-- col-2 -->															
+													
+																	</div><!-- end cardbody -->
+																</div><!-- end card -->
+															</div><!-- end col -->
+															
+															<div class="col-lg-4 col-sm-6" id="project-items-3">
+																<div class="card">
+																	<div class="card-body p-2">
+																		<div class="imgUp position-relative">	
+																		   <label for="weight" class="form-label mb-1 mt-0 text-nowrap d-block ">Left Palm</label>
+																			<div class="imagePreview"></div>
+																			<a href="javascript:void(0);" class="btn btn-primary waves-effect waves-themed js-capture-btn " style="padding:1px 5px 2px 5px;background-color: #0b5ed7;">
+																			    <i class="fa fa-camera"></i>
+																			</a>
+																		</div><!-- col-2 -->
+																		
+																	</div><!-- end cardbody -->
+																</div><!-- end card -->
+															</div><!-- end col -->
+														</div><!-- end row -->
+													</div>
+												</div>
+											</div>
+										</div>
+                                    </div>
+								</div><!-- end col -->
+											
+								<div class="col-lg-4 col-md-12 releaseBlockMain">
+									<div id="admissionReleaseBlock" class="panel">
+										<div class="panel-hdr">
+	                                        <h2 class="d-flex justify-content-between">  Admission/Release Information
+												
+	                                        </h2>
+	                                    </div>
+	                                    <div class="panel-container show">
+	                                        <div class="panel-content">
+	                                            <div id="js-checkbox-toggles" class="d-flex">
+	                                                <div class="row px-3">
+														<div class="col-12 col-lg-12 d-flex align-itens-center px-0">
+															<div class="custom-control custom-checkbox custom-control-inline mr-1">
+															    <input type="checkbox" class="custom-control-input no_contact vitalcheckbox rawField" id="checkboxNewArrival" data-fld = "checkboxNewArrival_fld" data-lbl = "New Arrival"> 
+															    <label class="custom-control-label text-nowrap form-label" for="checkboxNewArrival">New Arrival</label>
+															</div>
+															<div class="custom-control custom-checkbox custom-control-inline mx-1">
+															    <input type="checkbox" class="custom-control-input no_contact vitalcheckbox rawField" id="checkboxTransfer" data-fld = "checkboxTransfer_fld" data-lbl = "Transfer"> 
+															    <label class="custom-control-label text-nowrap form-label" for="checkboxTransfer">Transfer</label>
+															</div>	
+															<div class="custom-control custom-checkbox custom-control-inline mx-1">
+															    <input type="checkbox" class="custom-control-input no_contact vitalcheckbox rawField" id="checkboxRelease" data-fld = "checkboxRelease_fld" data-lbl = "Release"> 
+															    <label class="custom-control-label text-nowrap form-label" for="checkboxRelease">Release</label>
+															</div>												
+														</div>
+														
+														<div class="col-12 col-lg-6 col-md-6 d-flex align-items-center pl-0 floatingFields mb-1 mt-3">
+														    <select class="form-control floatingLable rawField" name="AdmitCode" id="AdmitCode" data-fld = "AdmitCode_fld" data-lbl = "Admit Code">
+														        <option value=""></option>
+														    </select>
+														    <label for="AdmitCode" class="form-label mr-1">Admit Code</label>
+														</div>
+
+														
+														<div class="col-12 col-lg-6 col-md-6 d-flex align-items-center pl-0 pr-0 floatingFields mb-1 mt-3">
+														    <select class="form-control floatingLable rawField" name="OffenderType" id="OffenderType" data-fld = "OffenderType_fld" data-lbl = "Offender Type">
+														        <option value=""></option>
+      													    </select>
+														    <label for="OffenderType" class="form-label mr-1">Offender Type</label>
+														</div>
+														
+														
+														<div class="col-12 col-lg-6 col-md-6 d-flex align-items-center mt-2 pl-0 mb-1 datePickerFloat">
+														    <input class="form-control floatingLable rawField" type="date" aria-label="admissionDate" name="admissionDate" id="admissionDate" data-fld = "admissionDate_fld" data-lbl = "Admission/Release Date" value="">
+														    <label for="admissionDate" class="form-label mr-1">Admission/Release Date</label>
+														</div>
+
+														
+														<div class="col-12 col-lg-6 col-md-6 d-flex align-items-center mt-2 px-0 datePickerFloat mb-1">
+														    <input type="time" class="form-control floatingLable rawField" aria-label="admissionTime" name="admissionTime" id="admissionTime" data-fld = "admissionTime_fld" data-lbl = "Time" value="">
+														    <label for="admissionTime" class="form-label mr-1">Time</label>
+														</div>
+														
+														<div class="col-12 col-lg-6 col-md-6 d-flex align-items-center mt-2 pl-0 floatingFields mb-1">
+														    <select class="form-control floatingLable rawField" name="FromLocation" id="FromLocation" data-fld = "FromLocation_fld" data-lbl = "From Location">
+														        <option value=""></option>
+														    </select>
+														    <label for="FromLocation" class="form-label mr-1">From Location</label>
+														</div>
+
+														
+														<div class="col-12 col-lg-6 col-md-6 d-flex align-items-center mt-2 px-0 floatingFields mb-1 pr-0">
+														    <select class="form-control floatingLable rawField" name="ToLocation" id="ToLocation" data-fld = "ToLocation_fld" data-lbl = "To Location">
+														        <option value=""></option>
+														    </select>
+														    <label for="ToLocation" class="form-label mr-1">To Location</label>
+														</div>
+													</div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+									<div id="stayInfoBlock" class="panel">
+	                                    <div class="panel-hdr">
+	                                        <h2 class="d-flex justify-content-between"> 
+												Prior Incarceration
+	                                        </h2>
+	                                    </div>
+	                                    <div class="panel-container show">
+	                                        <div class="panel-content pb-0">
+	                                            <div id="js-checkbox-toggles" class="d-flex mb-3">
+	                                                <div class="mt-3">
+														<ul class="list-unstyled work-activity mb-0">
+															<!--<li class="work-item" data-date="2020-21">
+																<h6 class="lh-base mb-0">JTVCC</h6>
+																<p class="font-size-13 mb-2">Detentioner</p>
+																<p>Held in custody for confirming the case. court granted time for compliance.</p>
+															</li>
+															<li class="work-item" data-date="2019-20">
+																<h6 class="lh-base mb-0">SCI</h6>
+																<p class="font-size-13 mb-2">Sentenced</p>
+																<p>Was sentence in the SCI facility for  the offense.</p>
+															</li>
+															<li class="work-item" data-date="2017-20">
+																<h6 class="lh-base mb-0">SCI</h6>
+																<p class="font-size-13 mb-2">sentenced</p>
+																<p>Moved from level 3 to Level1 for good behavior.</p>
+															</li>-->
+														</ul><!-- end ul -->
+													</div>
+	                                            </div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+								</div>
+							</div>
+							<div class="d-flex justify-content-between">									
+								<div id="offenderSignBlock" class="panel">
+                                    <div class="panel-hdr d-flex justify-content-end offenderSignBlock">
+                                        <h2>
+                                            Offender Sign
+                                        </h2>
+                                        <div class="mt-1 mr-2">	
+											<a href="javascript:void(0);" style="background-color: #0b5ed7;color:#fff" class="btn btn-sm btn-icon waves-effect waves-themed headingIconsBlock" data-toggle="tooltip" data-placement="top" data-original-title="Sign"> <i class="fa fa-pencil-square"></i>
+											</a>
+											<a href="javascript:void(0);" style="background-color: #0b5ed7;color:#fff" class="btn btn-sm btn-icon waves-effect waves-themed headingIconsBlock" data-toggle="tooltip" data-placement="top" data-original-title="Save"> <i class="fal fa-save"></i>
+											</a>
+											<a href="javascript:void(0);" class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed headingIconsBlock" data-toggle="tooltip" data-placement="top" data-original-title="Clear"> <i class="fal fa-times"></i>
+											</a> 
+										</div>
+                                    </div>
+                                    <div class="panel-container show">
+                                        <div class="panel-content pb-0">
+                                            <div id="js-checkbox-toggles">
+                                                <canvas class="w-100" id="signatureCanvas" height="30" style="border-radius: 5px;"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+								<div id="officerSignBlock" class="panel mb-0">
+                                    <div class="panel-hdr d-flex align-items-center justify-content-between offenderSignBlock">
+                                        <h2>
+                                            Officer Sign
+                                        </h2>
+                                        <div class="mt-1 mr-2">	
+											<a href="javascript:void(0);" style="background-color: #0b5ed7;color:#fff" class="btn btn-sm btn-icon waves-effect waves-themed headingIconsBlock" data-toggle="tooltip" data-placement="top" data-original-title="Sign"> <i class="fa fa-pencil-square"></i>
+											</a>
+											<a href="javascript:void(0);" style="background-color: #0b5ed7;color:#fff" class="btn btn-sm btn-icon waves-effect waves-themed headingIconsBlock" data-toggle="tooltip" data-placement="top" data-original-title="Save"> <i class="fal fa-save"></i>
+											</a>
+											<a href="javascript:void(0);" class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed headingIconsBlock" data-toggle="tooltip" data-placement="top" data-original-title="Clear"> <i class="fal fa-times"></i>
+											</a> 
+										</div>
+                                    </div>
+                                    <div class="panel-container show">
+                                        <div class="panel-content pb-0">
+                                            <div id="js-checkbox-toggles">
+												<div class="mt-0">	
+	                                                <canvas id="signatureCanvas" class="w-100" height="30" style="border-radius: 5px;"></canvas>
+													<label class="mb-0 ml-2 d-block">Matt Patterson</label>	
+												</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+							</div>
+						</div><!-- end container -->
+									
+								
+									
+					<div class="w-100">
+						
+						<div class="modal fade" id="securityThreatGroup" tabindex="-1" role="dialog" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+								<div class="modal-content">
+									<div class="modal-header pt-3 pb-2">
+										<h6 class="modal-title">Lookup</h6>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true"><i class="fal fa-times"></i></span>
+										</button>
+									</div>
+									<div class="modal-body py-0">
+									    <div class="row">
+											<div class="col-lg-3">
+												<div class="row mx-1">
+													<div class="imgUp position-relative col-lg-6 mr-0 pl-0">
+										                   <label class="text-primary mb-0 mr-2 text-nowrap d-block">Mugshot</label>	
+										                    <div class="imagePreview" style="width:120px;height: 100px;"></div>
+										                    <label class="btn btn-primary waves-effect waves-themed" style="padding: 1px 2px 2px 5px;">
+										                        <i class="fa fa-download"></i> <input type="file" class="uploadFile img " value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+										                    </label>
+										            </div>
+										            <div class="imgUp position-relative col-lg-6 mr-0 pl-0">
+										                   <label class="text-primary mb-0 mr-2 text-nowrap d-block">Fingerprint</label>	
+										                    <div class="imagePreview" style="width:120px;height: 100px;"></div>
+										                    <label class="btn btn-primary waves-effect waves-themed" style="padding: 1px 2px 2px 5px;">
+										                        <i class="fa fa-download"></i> <input type="file" class="uploadFile img" value="Upload Photo" style="width: 0px;height: 0px;overflow: hidden;">
+										                    </label>
+										            </div>
+										            <div class="col-lg-6 d-flex align-items-center pl-0 floatingFields mt-2">
+											            <input type="text" class="form-control MoveMentLogvalueclear rawField floatingLable" aria-label="ID#" placeholder="" name="Group" id="SBINUMBER" data-fld = "SBINUMBER_fld" data-lbl = "ID#" value="" maxlength="8">
+											            <label for="SBINUMBER" class="form-label mb-0 text-nowrap">ID#</label>
+											        </div>
+											        <!-- DOB (col-lg-2 ensures it fits at the end) -->
+											        <div class="col-12 col-lg-6 d-flex align-items-center px-0 floatingFields mt-11px">
+											            <input type="date" class="form-control w-100 rawField floatingLable" aria-label="DOB" id="lookupDOB" data-fld = "lookupDOB_fld" data-lbl = "DOB" name="lookupDOB" value="" placeholder="">
+											            <label for="lookupDOB" class="form-label text-nowrap mb-0">DOB</label>
+											        </div>
+											        <!-- Last Name (col-lg-3) -->
+											        <div class="col-12 col-lg-12 d-flex align-items-center px-0 floatingFields mt-11px">
+											            <input type="text" class="form-control w-100 rawField floatingLable" aria-label="LastName" id="lookupLastName" data-fld = "lookupLastName_fld" data-lbl = "Last Name" name="lookupLastName" value="" placeholder="">
+											            <label for="lookupLastName" class="form-label text-nowrap mb-0">Last Name</label>
+											        </div>
+											        <!-- First Name (Increased width to col-lg-3) -->
+											        <div class="col-12 col-lg-12 d-flex align-items-center px-0 floatingFields mt-11px">
+											            <input type="text" class="form-control w-100 rawField floatingLable" aria-label="FirstName" id="lookupFirstName" data-fld = "lookupFirstName_fld" data-lbl = "First Name" name="lookupFirstName" value="" placeholder="">
+											            <label for="lookupFirstName" class="form-label text-nowrap mb-0">First Name</label>
+											        </div>
+											        <!-- MI & Suffix (Reduced width to col-lg-2 to make space) -->
+											        <div class="col-12 col-lg-6 d-flex align-items-center pl-0 floatingFields mt-11px">
+											            <input type="text" class="form-control rawField floatingLable" aria-label="MI" id="lookupMI" data-fld = "lookupMI_fld" data-lbl = "MI" name="lookupMI" value="" placeholder="">
+											            <label for="lookupMI" class="form-label text-nowrap mb-0">MI</label>
+											        </div>
+											        <div class="col-12 col-lg-6 d-flex align-items-center px-0 floatingFields mt-11px">
+													 	<input type="text" class="form-control rawField floatingLable" aria-label="Suffix" id="lookupSuffix" data-fld = "lookupSuffix_fld" data-lbl = "Suffix" name="lookupSuffix" value="" placeholder="">
+											            <label for="lookupSuffix" class="form-label text-nowrap mb-0">Suffix</label>
+													</div>
+											        <div class="col-12 col-lg-12 d-flex align-items-center justify-content-end px-0 floatingFields mt-11px">
+														<button type="button" class="btn btn-primary btn-sm mb-1 waves-effect waves-themed" id="lookupSearchButton">Search</button>
+													</div>
+												</div>
+											</div>
+											<div class="col-lg-9 pl-1">												
+											    <div class="tabulator" id="lookup-table"></div>
+											    <div class="modal-footer pb-0">
+												    <button type="button" class="btn btn-primary btn-sm waves-effect waves-themed" id="addNewOffenderBtn">Add New Offender</button>
+												    <button type="button" class="btn btn-primary btn-sm waves-effect waves-themed" id="fetchDataBtn">Ok</button>
+												    <button type="button" class="btn btn-secondary btn-sm waves-effect waves-themed" data-dismiss="modal">Cancel</button>
+												</div>
+											</div>
+									    </div>
+									</div>
+								</div> 
+							</div>			
+						</div>
+						
+						<div class="modal fade" id="imageSourceModal" tabindex="-1" role="dialog" aria-hidden="true">
+						    <div class="modal-dialog modal-dialog-centered" role="document"> <!-- modal-sm class removed -->
+						        <div class="modal-content">
+						            <div class="modal-header">
+						                <h5 class="modal-title">Select Image Source</h5>
+						                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+						                </button>
+						            </div>
+						            <div class="modal-body">
+						                <!-- Buttons are now in a flex column for vertical alignment -->
+						                <div class="d-flex flex-column align-items-center">
+						                    <button type="button" class="btn btn-primary waves-effect waves-themed w-75 mb-2" id="btnChooseFile">
+						                        <i class="fal fa-upload mr-1"></i> Select a Picture
+						                    </button>
+						                    <button type="button" class="btn btn-success waves-effect waves-themed w-75" id="btnTakePhoto">
+						                        <i class="fal fa-camera mr-1"></i> Connect to Camera
+						                    </button>
+						                </div>
+						                <!-- Hidden file input remains unchanged -->
+						                <input type="file" id="hiddenFileInput" style="display: none;" accept="image/*" />
+						            </div>
+						        </div>
+						    </div>
+						</div>
+
+						<!-- Modal: Webcam Capture -->
+						<div class="modal fade" id="webcamModal" tabindex="-1" role="dialog" aria-hidden="true">
+						    <div class="modal-dialog modal-dialog-centered" role="document">
+						        <div class="modal-content">
+						            <div class="modal-header">
+						                <h5 class="modal-title">Take Photo</h5>
+						                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						                    <span aria-hidden="true"><i class="fal fa-times"></i></span>
+						                </button>
+						            </div>
+						            <div class="modal-body text-center p-2">
+						                <video id="webcamVideo" width="480" height="360" autoplay playsinline style="border-radius: 7px; border: 1px solid #886ab5; background-color: #000;"></video>
+						                <canvas id="webcamCanvas" style="display:none;"></canvas>
+						            </div>
+						            <div class="modal-footer">
+						                <button type="button" class="btn btn-secondary waves-effect waves-themed" data-dismiss="modal">Cancel</button>
+						                <button type="button" class="btn btn-primary waves-effect waves-themed" id="btnTakeSnapshot">
+						                    <i class="fal fa-camera-retro mr-1"></i> Take Snapshot
+						                </button>
+						            </div>
+						        </div>
+						    </div>
+						</div>
+						
+						<div class="modal fade" id="listModal" tabindex="-1"
+							role="dialog" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered modal-lg"
+								role="document">
+								<div class="modal-content">
+									<div class="modal-header pb-1">
+										<h4 class="modal-title">
+											Select City, State, Zip
+										</h4>
+										<button type="button" class="close"
+											data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true"><i
+													class="fal fa-times"></i></span>
+										</button>
+									</div>
+									<div class="modal-body pt-0 pb-0">
+										<lable for="namefind"
+											class="form-label">Find</lable>
+										<input type="text" class="form-control"
+											aria-label="namefind"
+											name="namefind" id="namefind"
+											value="%">
+											<div class="mt-2" id="city-table"></div>
+									</div>
+									<div class="modal-footer">
+										<button type="button"
+											class="btn btn-primary btn-sm" id="findButton">Find</button>
+										<!--<button type="button" id="addCmntValBtn"
+											class="btn btn-primary btn-sm"
+											data-dismiss="modal">Ok</button>-->
+										<button type="button"
+											class="btn btn-secondary btn-sm"
+											data-dismiss="modal">Cancel</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</main>
+					<!-- this overlay is activated only when mobile menu is triggered -->
+					<div class="page-content-overlay" data-action="toggle"
+						data-class="mobile-nav-on"></div>
+					<!-- END Page Content -->
+					
+					<!-- Modal Large -->
+					<div class="modal fade" id="default-example-modal-lg" tabindex="-1"
+						role="dialog" aria-hidden="true">
+						<div class="modal-dialog modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title">Staff Name</h5>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true"><i class="fal fa-times"></i></span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="row">
+										<label for="search" class="col-form-label col-12 col-lg-1 form-label">Search</label>
+										<div class="col-12 col-lg-11">
+											<input type="text" name="search" id="search" value="" aria-label="search" class="form-control">
+										</div>
+
+									</div>
+									<div class="table-responsive-lg">
+										<table class="table table-bordered m-0">
+											<thead>
+												<tr>
+													<th>Last Name</th>
+													<th>First Name</th>
+													<th>MI</th>
+													<th>Suffix</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>14</td>
+													<td>Staff</td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>14</td>
+													<td>Staff</td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>14</td>
+													<td>Staff</td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>14</td>
+													<td>Staff</td>
+													<td></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td>14</td>
+													<td>Staff</td>
+													<td></td>
+													<td></td>
+												</tr>
+
+											</tbody>
+										</table>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+					<!-- BEGIN Shortcuts -->
+					<!-- modal shortcut -->
+					<div class="modal fade modal-backdrop-transparent"
+						id="modal-shortcut" tabindex="-1" role="dialog"
+						aria-labelledby="modal-shortcut" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-top modal-transparent"
+							role="document">
+							<div class="modal-content">
+								<div class="modal-body">
+									<ul class="app-list w-auto h-auto p-0 text-left">
+										<li><a href="intel_introduction.html"
+											class="app-list-item text-white border-0 m-0">
+												<div class="icon-stack">
+													<i
+														class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
+													<i
+														class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+													<i
+														class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
+												</div> <span class="app-list-name"> Home </span>
+										</a></li>
+										<li><a href="page_inbox_general.html"
+											class="app-list-item text-white border-0 m-0">
+												<div class="icon-stack">
+													<i
+														class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
+													<i
+														class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
+													<i class="ni ni-envelope icon-stack-1x text-white"></i>
+												</div> <span class="app-list-name"> Inbox </span>
+										</a></li>
+										<li><a href="intel_introduction.html"
+											class="app-list-item text-white border-0 m-0">
+												<div class="icon-stack">
+													<i
+														class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+													<i
+														class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
+												</div> <span class="app-list-name"> Add More </span>
+										</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- END Shortcuts -->
+				</div>
+			</div>
+		</div>
+		<!-- END Page Wrapper -->
+		<!-- BEGIN Quick Menu -->
+		<!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
+		<nav class="shortcut-menu d-none d-sm-block"> <input
+			type="checkbox" class="menu-open" name="menu-open" id="menu_open" />
+		<label for="menu_open" class="menu-open-button "> <span
+			class="app-shortcut-icon d-block"></span>
+		</label> <a href="#" class="menu-item btn" data-toggle="tooltip"
+			data-placement="left" title="Scroll Top"> <i
+			class="fal fa-arrow-up"></i>
+		</a> <a href="page_login-alt.html" class="menu-item btn"
+			data-toggle="tooltip" data-placement="left" title="Logout"> <i
+			class="fal fa-sign-out"></i>
+		</a> <a href="#" class="menu-item btn" data-action="app-fullscreen"
+			data-toggle="tooltip" data-placement="left" title="Full Screen">
+			<i class="fal fa-expand"></i>
+		</a> <a href="#" class="menu-item btn" data-action="app-print"
+			data-toggle="tooltip" data-placement="left" title="Print page"> <i
+			class="fal fa-print"></i>
+		</a> <a href="#" class="menu-item btn" data-action="app-voice"
+			data-toggle="tooltip" data-placement="left" title="Voice command">
+			<i class="fal fa-microphone"></i>
+		</a> </nav>
+		<!-- END Quick Menu -->
+		<!-- BEGIN Messenger -->
+		<div class="modal fade js-modal-messenger modal-backdrop-transparent"
+			tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-right">
+				<div class="modal-content h-100">
+					<div
+						class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
+						<div
+							class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+							<span class="mr-2"> <span
+								class="rounded-circle profile-image d-block"
+								style="background-image: url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+							</span>
+							<div class="info-card-text">
+								<a href="javascript:void(0);"
+									class="fs-lg text-truncate text-truncate-lg text-white"
+									data-toggle="dropdown" aria-expanded="false"> Tracey Chang
+									<i
+									class="fal fa-angle-down d-inline-block ml-1 text-white fs-md"></i>
+								</a>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" href="#">Send Email</a> <a
+										class="dropdown-item" href="#">Create Appointment</a> <a
+										class="dropdown-item" href="#">Block User</a>
+								</div>
+								<span class="text-truncate text-truncate-md opacity-80">IT
+									Director</span>
+							</div>
+						</div>
+						<button type="button"
+							class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+							data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"><i class="fal fa-times"></i></span>
+						</button>
+					</div>
+					<div class="modal-body p-0 h-100 d-flex">
+						<!-- BEGIN msgr-list -->
+						<div
+							class="msgr-list d-flex flex-column bg-faded border-faded border-top-0 border-right-0 border-bottom-0 position-absolute pos-top pos-bottom">
+							<div>
+								<div
+									class="height-4 width-3 h3 m-0 d-flex justify-content-center flex-column color-primary-500 pl-3 mt-2">
+									<i class="fal fa-search"></i>
+								</div>
+								<input type="text" class="form-control bg-white" name="msgr_listfilter_input"
+									id="msgr_listfilter_input" placeholder="Filter contacts"
+									aria-label="FriendSearch" data-listfilter="#js-msgr-listfilter">
+							</div>
+							<div class="flex-1 h-100 custom-scroll">
+								<div class="w-100">
+									<ul id="js-msgr-listfilter" class="list-unstyled m-0">
+										<li><a href="#"
+											class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="tracey chang online">
+												<div
+													class="d-table-cell align-middle status status-success status-sm ">
+													<span class="profile-image-md rounded-circle d-block"
+														style="background-image: url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+												</div>
+												<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+													<div class="text-truncate text-truncate-md">
+														Tracey Chang <small
+															class="d-block font-italic text-success fs-xs">
+															Online </small>
+													</div>
+												</div>
+										</a></li>
+										<li><a href="#"
+											class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="oliver kopyuv online">
+												<div
+													class="d-table-cell align-middle status status-success status-sm ">
+													<span class="profile-image-md rounded-circle d-block"
+														style="background-image: url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+												</div>
+												<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+													<div class="text-truncate text-truncate-md">
+														Oliver Kopyuv <small
+															class="d-block font-italic text-success fs-xs">
+															Online </small>
+													</div>
+												</div>
+										</a></li>
+										<li><a href="#"
+											class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="dr john cook phd away">
+												<div
+													class="d-table-cell align-middle status status-warning status-sm ">
+													<span class="profile-image-md rounded-circle d-block"
+														style="background-image: url('img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+												</div>
+												<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+													<div class="text-truncate text-truncate-md">
+														Dr. John Cook PhD <small class="d-block font-italic fs-xs">
+															Away </small>
+													</div>
+												</div>
+										</a></li>
+										<li><a href="#"
+											class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney online">
+												<div
+													class="d-table-cell align-middle status status-success status-sm ">
+													<span class="profile-image-md rounded-circle d-block"
+														style="background-image: url('img/demo/avatars/avatar-g.png'); background-size: cover;"></span>
+												</div>
+												<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+													<div class="text-truncate text-truncate-md">
+														Ali Amdaney <small
+															class="d-block font-italic fs-xs text-success">
+															Online </small>
+													</div>
+												</div>
+										</a></li>
+										<li><a href="#"
+											class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="sarah mcbrook online">
+												<div
+													class="d-table-cell align-middle status status-success status-sm">
+													<span class="profile-image-md rounded-circle d-block"
+														style="background-image: url('img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+												</div>
+												<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+													<div class="text-truncate text-truncate-md">
+														Sarah McBrook <small
+															class="d-block font-italic fs-xs text-success">
+															Online </small>
+													</div>
+												</div>
+										</a></li>
+										<li><a href="#"
+											class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+												<div class="d-table-cell align-middle status status-sm">
+													<span class="profile-image-md rounded-circle d-block"
+														style="background-image: url('img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+												</div>
+												<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+													<div class="text-truncate text-truncate-md">
+														oliver.kopyuv@gotbootstrap.com <small
+															class="d-block font-italic fs-xs"> Offline </small>
+													</div>
+												</div>
+										</a></li>
+										<li><a href="#"
+											class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney busy">
+												<div
+													class="d-table-cell align-middle status status-danger status-sm">
+													<span class="profile-image-md rounded-circle d-block"
+														style="background-image: url('img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
+												</div>
+												<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+													<div class="text-truncate text-truncate-md">
+														oliver.kopyuv@gotbootstrap.com <small
+															class="d-block font-italic fs-xs text-danger">
+															Busy </small>
+													</div>
+												</div>
+										</a></li>
+										<li><a href="#"
+											class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+												<div class="d-table-cell align-middle status status-sm">
+													<span class="profile-image-md rounded-circle d-block"
+														style="background-image: url('img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+												</div>
+												<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+													<div class="text-truncate text-truncate-md">
+														oliver.kopyuv@gotbootstrap.com <small
+															class="d-block font-italic fs-xs"> Offline </small>
+													</div>
+												</div>
+										</a></li>
+										<li><a href="#"
+											class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney inactive">
+												<div class="d-table-cell align-middle">
+													<span class="profile-image-md rounded-circle d-block"
+														style="background-image: url('img/demo/avatars/avatar-m.png'); background-size: cover;"></span>
+												</div>
+												<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+													<div class="text-truncate text-truncate-md">
+														+714651347790 <small
+															class="d-block font-italic fs-xs opacity-50">
+															Missed Call </small>
+													</div>
+												</div>
+										</a></li>
+									</ul>
+									<div class="filter-message js-filter-message"></div>
+								</div>
+							</div>
+							<div>
+								<a class="fs-xl d-flex align-items-center p-3"> <i
+									class="fal fa-cogs"></i>
+								</a>
+							</div>
+						</div>
+						<!-- END msgr-list -->
+						<!-- BEGIN msgr -->
+						<div class="msgr d-flex h-100 flex-column bg-white">
+							<!-- BEGIN custom-scroll -->
+							<div class="custom-scroll flex-1 h-100">
+								<div id="chat_container" class="w-100 p-4">
+									<!-- start .chat-segment -->
+									<div class="chat-segment">
+										<div class="time-stamp text-center mb-2 fw-400">Jun 19</div>
+									</div>
+									<!--  end .chat-segment -->
+									<!-- start .chat-segment -->
+									<div class="chat-segment chat-segment-sent">
+										<div class="chat-message">
+											<p>Hey Ching, did you get my files?</p>
+										</div>
+										<div class="text-right fw-300 text-muted mt-1 fs-xs">
+											3:00 pm</div>
+									</div>
+									<!--  end .chat-segment -->
+									<!-- start .chat-segment -->
+									<div class="chat-segment chat-segment-get">
+										<div class="chat-message">
+											<p>Hi</p>
+											<p>Sorry going through a busy time in office. Yes I
+												analyzed the solution.</p>
+											<p>It will require some resource, which I could not
+												manage.</p>
+										</div>
+										<div class="fw-300 text-muted mt-1 fs-xs">3:24 pm</div>
+									</div>
+									<!--  end .chat-segment -->
+									<!-- start .chat-segment -->
+									<div class="chat-segment chat-segment-sent chat-start">
+										<div class="chat-message">
+											<p>Okay</p>
+										</div>
+									</div>
+									<!--  end .chat-segment -->
+									<!-- start .chat-segment -->
+									<div class="chat-segment chat-segment-sent chat-end">
+										<div class="chat-message">
+											<p>Sending you some dough today, you can allocate the
+												resources to this project.</p>
+										</div>
+										<div class="text-right fw-300 text-muted mt-1 fs-xs">
+											3:26 pm</div>
+									</div>
+									<!--  end .chat-segment -->
+									<!-- start .chat-segment -->
+									<div class="chat-segment chat-segment-get chat-start">
+										<div class="chat-message">
+											<p>Perfect. Thanks a lot!</p>
+										</div>
+									</div>
+									<!--  end .chat-segment -->
+									<!-- start .chat-segment -->
+									<div class="chat-segment chat-segment-get">
+										<div class="chat-message">
+											<p>I will have them ready by tonight.</p>
+										</div>
+									</div>
+									<!--  end .chat-segment -->
+									<!-- start .chat-segment -->
+									<div class="chat-segment chat-segment-get chat-end">
+										<div class="chat-message">
+											<p>Cheers</p>
+										</div>
+									</div>
+									<!--  end .chat-segment -->
+									<!-- start .chat-segment for timestamp -->
+									<div class="chat-segment">
+										<div class="time-stamp text-center mb-2 fw-400">Jun 20</div>
+									</div>
+									<!--  end .chat-segment for timestamp -->
+								</div>
+							</div>
+							<!-- END custom-scroll  -->
+							<!-- BEGIN msgr__chatinput -->
+							<div class="d-flex flex-column">
+								<div
+									class="border-faded border-right-0 border-bottom-0 border-left-0 flex-1 mr-3 ml-3 position-relative shadow-top">
+									<div class="pt-3 pb-1 pr-0 pl-0 rounded-0" tabindex="-1">
+										<div id="msgr_input" contenteditable="true"
+											data-placeholder="Type your message here..."
+											class="height-10 form-content-editable"></div>
+									</div>
+								</div>
+								<div
+									class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
+									<a href="javascript:void(0);"
+										class="btn btn-icon fs-xl width-1 mr-1" data-toggle="tooltip"
+										data-original-title="More options" data-placement="top"> <i
+										class="fal fa-ellipsis-v-alt color-fusion-300"></i>
+									</a> <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1"
+										data-toggle="tooltip" data-original-title="Attach files"
+										data-placement="top"> <i
+										class="fal fa-paperclip color-fusion-300"></i>
+									</a> <a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1"
+										data-toggle="tooltip" data-original-title="Insert photo"
+										data-placement="top"> <i
+										class="fal fa-camera color-fusion-300"></i>
+									</a>
+									<div class="ml-auto">
+										<a href="javascript:void(0);" class="btn btn-info">Send</a>
+									</div>
+								</div>
+							</div>
+							<!-- END msgr__chatinput -->
+						</div>
+						<!-- END msgr -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END Messenger -->
+		<!-- BEGIN Page Settings -->
+		<div class="modal fade js-modal-settings modal-backdrop-transparent"
+			tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-right modal-md">
+				<div class="modal-content">
+					<div
+						class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
+						<h4 class="m-0 text-center color-white">
+							Layout Settings <small class="mb-0 opacity-80">User
+								Interface Settings</small>
+						</h4>
+						<button type="button"
+							class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+							data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"><i class="fal fa-times"></i></span>
+						</button>
+					</div>
+					<div class="modal-body p-0">
+						<div class="settings-panel">
+							<div class="mt-4 d-table w-100 px-5">
+								<div class="d-table-cell align-middle">
+									<h5 class="p-0">App Layout</h5>
+								</div>
+							</div>
+							<div class="list" id="fh">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="header-function-fixed"></a> <span
+									class="onoffswitch-title">Fixed Header</span> <span
+									class="onoffswitch-title-desc">header is in a fixed at
+									all times</span>
+							</div>
+							<div class="list" id="nff">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="nav-function-fixed"></a> <span
+									class="onoffswitch-title">Fixed Navigation</span> <span
+									class="onoffswitch-title-desc">left panel is fixed</span>
+							</div>
+							<div class="list" id="nfm">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="nav-function-minify"></a> <span
+									class="onoffswitch-title">Minify Navigation</span> <span
+									class="onoffswitch-title-desc">Skew nav to maximize
+									space</span>
+							</div>
+							<div class="list" id="nfh">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="nav-function-hidden"></a> <span
+									class="onoffswitch-title">Hide Navigation</span> <span
+									class="onoffswitch-title-desc">roll mouse on edge to
+									reveal</span>
+							</div>
+							<div class="list" id="nft">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="nav-function-top"></a> <span
+									class="onoffswitch-title">Top Navigation</span> <span
+									class="onoffswitch-title-desc">Relocate left pane to top</span>
+							</div>
+							<div class="list" id="mmb">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="mod-main-boxed"></a> <span
+									class="onoffswitch-title">Boxed Layout</span> <span
+									class="onoffswitch-title-desc">Encapsulates to a
+									container</span>
+							</div>
+							<div class="expanded">
+								<ul class="">
+									<li>
+										<div class="bg-fusion-50" data-action="toggle"
+											data-class="mod-bg-1"></div>
+									</li>
+									<li>
+										<div class="bg-warning-200" data-action="toggle"
+											data-class="mod-bg-2"></div>
+									</li>
+									<li>
+										<div class="bg-primary-200" data-action="toggle"
+											data-class="mod-bg-3"></div>
+									</li>
+									<li>
+										<div class="bg-success-300" data-action="toggle"
+											data-class="mod-bg-4"></div>
+									</li>
+								</ul>
+								<div class="list" id="mbgf">
+									<a href="#" onclick="return false;" class="btn btn-switch"
+										data-action="toggle" data-class="mod-fixed-bg"></a> <span
+										class="onoffswitch-title">Fixed Background</span>
+								</div>
+							</div>
+
+							<div class="mt-4 d-table w-100 px-5">
+								<div class="d-table-cell align-middle">
+									<h5 class="p-0">Accessibility</h5>
+								</div>
+							</div>
+							<div class="list" id="mbf">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="mod-bigger-font"></a> <span
+									class="onoffswitch-title">Bigger Content Font</span> <span
+									class="onoffswitch-title-desc">content fonts are bigger
+									for readability</span>
+							</div>
+							<div class="list" id="mhc">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="mod-high-contrast"></a> <span
+									class="onoffswitch-title">High Contrast Text (WCAG 2 AA)</span>
+								<span class="onoffswitch-title-desc">4.5:1 text contrast
+									ratio</span>
+							</div>
+							<div class="list" id="mcb">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="mod-color-blind"></a> <span
+									class="onoffswitch-title">Daltonism <sup>(beta)</sup>
+								</span> <span class="onoffswitch-title-desc">color vision
+									deficiency</span>
+							</div>
+							<div class="list" id="mpc">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="mod-pace-custom"></a> <span
+									class="onoffswitch-title">Preloader Inside</span> <span
+									class="onoffswitch-title-desc">preloader will be inside
+									content</span>
+							</div>
+							<div class="mt-4 d-table w-100 px-5">
+								<div class="d-table-cell align-middle">
+									<h5 class="p-0">Global Modifications</h5>
+								</div>
+							</div>
+							<div class="list" id="mcbg">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="mod-clean-page-bg"></a> <span
+									class="onoffswitch-title">Clean Page Background</span> <span
+									class="onoffswitch-title-desc">adds more whitespace</span>
+							</div>
+							<div class="list" id="mhni">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="mod-hide-nav-icons"></a> <span
+									class="onoffswitch-title">Hide Navigation Icons</span> <span
+									class="onoffswitch-title-desc">invisible navigation
+									icons</span>
+							</div>
+							<div class="list" id="dan">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="mod-disable-animation"></a> <span
+									class="onoffswitch-title">Disable CSS Animation</span> <span
+									class="onoffswitch-title-desc">Disables CSS based
+									animations</span>
+							</div>
+							<div class="list" id="mhic">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="mod-hide-info-card"></a> <span
+									class="onoffswitch-title">Hide Info Card</span> <span
+									class="onoffswitch-title-desc">Hides info card from left
+									panel</span>
+							</div>
+							<div class="list" id="mlph">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="mod-lean-subheader"></a> <span
+									class="onoffswitch-title">Lean Subheader</span> <span
+									class="onoffswitch-title-desc">distinguished page header</span>
+							</div>
+							<div class="list" id="mnl">
+								<a href="#" onclick="return false;" class="btn btn-switch"
+									data-action="toggle" data-class="mod-nav-link"></a> <span
+									class="onoffswitch-title">Hierarchical Navigation</span> <span
+									class="onoffswitch-title-desc">Clear breakdown of nav
+									links</span>
+							</div>
+							<div class="list mt-1">
+								<span class="onoffswitch-title">Global Font Size <small>(RESETS
+										ON REFRESH)</small>
+								</span>
+								<div class="btn-group btn-group-sm btn-group-toggle my-2"
+									data-toggle="buttons">
+									<label class="btn btn-default btn-sm" data-action="toggle-swap"
+										data-class="root-text-sm" data-target="html"> <input
+										type="radio" name="changeFrontSize"> SM </label> <label
+										class="btn btn-default btn-sm" data-action="toggle-swap"
+										data-class="root-text" data-target="html"> <input
+										type="radio" name="changeFrontSize" checked=""> MD </label> <label
+										class="btn btn-default btn-sm" data-action="toggle-swap"
+										data-class="root-text-lg" data-target="html"> <input
+										type="radio" name="changeFrontSize"> LG </label> <label
+										class="btn btn-default btn-sm" data-action="toggle-swap"
+										data-class="root-text-xl" data-target="html"> <input
+										type="radio" name="changeFrontSize"> XL </label>
+								</div>
+								<span class="onoffswitch-title-desc d-block mb-g">Change
+									<strong>root</strong> font size to effect rem values
+								</span>
+							</div>
+							<div class="mt-2 d-table w-100 pl-5 pr-3">
+								<div class="d-table-cell align-middle">
+									<h5 class="p-0">
+										Theme colors <small>(overlays base css)</small>
+									</h5>
+
+								</div>
+							</div>
+							<div class="expanded theme-colors pl-5 pr-3">
+								<ul class="m-0">
+									<li><a href="#" id="myapp-0" data-action="theme-update"
+										data-themesave data-theme="" data-toggle="tooltip"
+										data-placement="top" title="Wisteria (base css)"
+										data-original-title="Wisteria (base css)"></a></li>
+									<li><a href="#" id="myapp-1" data-action="theme-update"
+										data-themesave data-theme="css/themes/cust-theme-1.css"
+										data-toggle="tooltip" data-placement="top" title="Tapestry"
+										data-original-title="Tapestry"></a></li>
+									<li><a href="#" id="myapp-2" data-action="theme-update"
+										data-themesave data-theme="css/themes/cust-theme-2.css"
+										data-toggle="tooltip" data-placement="top" title="Atlantis"
+										data-original-title="Atlantis"></a></li>
+									<li><a href="#" id="myapp-3" data-action="theme-update"
+										data-themesave data-theme="css/themes/cust-theme-3.css"
+										data-toggle="tooltip" data-placement="top" title="Indigo"
+										data-original-title="Indigo"></a></li>
+									<li><a href="#" id="myapp-4" data-action="theme-update"
+										data-themesave data-theme="css/themes/cust-theme-4.css"
+										data-toggle="tooltip" data-placement="top" title="Dodger Blue"
+										data-original-title="Dodger Blue"></a></li>
+									<li><a href="#" id="myapp-5" data-action="theme-update"
+										data-themesave data-theme="css/themes/cust-theme-5.css"
+										data-toggle="tooltip" data-placement="top" title="Tradewind"
+										data-original-title="Tradewind"></a></li>
+									<li><a href="#" id="myapp-6" data-action="theme-update"
+										data-themesave data-theme="css/themes/cust-theme-6.css"
+										data-toggle="tooltip" data-placement="top" title="Cranberry"
+										data-original-title="Cranberry"></a></li>
+									<li><a href="#" id="myapp-7" data-action="theme-update"
+										data-themesave data-theme="css/themes/cust-theme-7.css"
+										data-toggle="tooltip" data-placement="top" title="Oslo Gray"
+										data-original-title="Oslo Gray"></a></li>
+									<li><a href="#" id="myapp-8" data-action="theme-update"
+										data-themesave data-theme="css/themes/cust-theme-8.css"
+										data-toggle="tooltip" data-placement="top"
+										title="Chetwode Blue" data-original-title="Chetwode Blue"></a></li>
+									<li><a href="#" id="myapp-9" data-action="theme-update"
+										data-themesave data-theme="css/themes/cust-theme-9.css"
+										data-toggle="tooltip" data-placement="top" title="Apricot"
+										data-original-title="Apricot"></a></li>
+									<li><a href="#" id="myapp-10" data-action="theme-update"
+										data-themesave data-theme="css/themes/cust-theme-10.css"
+										data-toggle="tooltip" data-placement="top" title="Blue Smoke"
+										data-original-title="Blue Smoke"></a></li>
+									<li><a href="#" id="myapp-11" data-action="theme-update"
+										data-themesave data-theme="css/themes/cust-theme-11.css"
+										data-toggle="tooltip" data-placement="top" title="Green Smoke"
+										data-original-title="Green Smoke"></a></li>
+									<li><a href="#" id="myapp-12" data-action="theme-update"
+										data-themesave data-theme="css/themes/cust-theme-12.css"
+										data-toggle="tooltip" data-placement="top"
+										title="Wild Blue Yonder"
+										data-original-title="Wild Blue Yonder"></a></li>
+									<li><a href="#" id="myapp-13" data-action="theme-update"
+										data-themesave data-theme="css/themes/cust-theme-13.css"
+										data-toggle="tooltip" data-placement="top" title="Emerald"
+										data-original-title="Emerald"></a></li>
+								</ul>
+							</div>
+							<hr class="mb-0 mt-4">
+								<div class="pl-5 pr-3 py-3 bg-faded">
+									<div class="row no-gutters">
+										<div class="col-6 pr-1">
+											<a href="#" class="btn btn-outline-danger fw-500 btn-block"
+												data-action="app-reset">Reset Settings</a>
+										</div>
+										<div class="col-6 pl-1">
+											<a href="#" class="btn btn-danger fw-500 btn-block"
+												data-action="factory-reset">Factory Reset</a>
+										</div>
+									</div>
+								</div>
+						</div>
+						<span id="saving"> </span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- END Page Settings -->
+		
+		<div style="display:none">
+			<form id="entryform">
+				<input type="hidden" name="screenCode" id="screenCode" value="355">
+				
+				<label forx="1" for="no_contact">NoContact</label>
+				<input type="text" id="no_contact" name="no_contact" data-typ="Checkbox">
+				
+				<label forx="1" for="no_contact_btn">NoContactBtn</label>
+				<input type="text" id="no_contact_btn" name="no_contact_btn" data-typ="Button">
+				
+				<label forx="1" for="med_restrict">MedicalRestrict</label>
+				<input type="text" id="med_restrict" name="med_restrict" data-typ="Checkbox">
+				
+				<label forx="1" for="med_restrict_btn">MedicalRestrictBtn</label>
+				<input type="text" id="med_restrict_btn" name="med_restrict_btn" data-typ="Button">
+				
+				<label forx="1" for="STG">STG</label>
+				<input type="text" id="STG" name="STG" data-typ="Checkbox">
+				
+				<label forx="1" for="STG_btn">STGBtn</label>
+				<input type="text" id="STG_btn" name="STG_btn" data-typ="Button">
+				
+				<label forx="1" for="sex_off_flag">SexOffenderFlag</label>
+				<input type="text" id="sex_off_flag" name="sex_off_flag" data-typ="Checkbox">
+				
+				<label forx="1" for="mental_health">MentalHealth</label>
+				<input type="text" id="mental_health" name="mental_health" data-typ="Checkbox">
+				
+				<label forx="1" for="mental_health_btn">MentalHealthBtn</label>
+				<input type="text" id="mental_health_btn" name="mental_health_btn" data-typ="Button">
+				
+				<label forx="1" for="sec_code">SecurityCode</label>
+				<input type="text" id="sec_code" name="sec_code" data-typ="Checkbox">
+				
+				<label forx="1" for="sec_code_btn">SecurityCodeBtn</label>
+				<input type="text" id="sec_code_btn" name="sec_code_btn" data-typ="Button">
+				
+				<label forx="1" for="legal_issues">LegalIssues</label>
+				<input type="text" id="legal_issues" name="legal_issues" data-typ="Checkbox">
+				
+				<label forx="1" for="legal_issues_btn">LegalIssuesBtn</label>
+				<input type="text" id="legal_issues_btn" name="legal_issues_btn" data-typ="Button">
+				
+				<label forx="1" for="dt_notified">DateNotified</label>
+				<input type="text" id="dt_notified" name="dt_notified" data-typ="Date">
+				
+				<label forx="1" for="vital_eye_color">EyeColor</label>
+				<input type="text" id="vital_eye_color" name="vital_eye_color" data-typ="Text">
+				
+				<label forx="1" for="vital_hair">HairColor</label>
+				<input type="text" id="vital_hair" name="vital_hair" data-typ="Text">
+				
+				<label forx="1" for="vital_race">Race</label>
+				<input type="text" id="vital_race" name="vital_race" data-typ="Text">
+				
+				<label forx="1" for="vital_height">Height</label>
+				<input type="text" id="vital_height" name="vital_height" data-typ="Text">
+				
+				<label forx="1" for="vital_weight">Weight</label>
+				<input type="text" id="vital_weight" name="vital_weight" data-typ="Text">
+				
+				<label forx="1" for="vital_dob">DOB</label>
+				<input type="text" id="vital_dob" name="vital_dob" data-typ="Date">
+				
+				<label forx="1" for="vital_birth_state">BirthState</label>
+				<input type="text" id="vital_birth_state" name="vital_birth_state" data-typ="Text">
+				
+				<label forx="1" for="vital_birth_city">BirthCity</label>
+				<input type="text" id="vital_birth_city" name="vital_birth_city" data-typ="Text">
+				
+				<label forx="1" for="vital_last_addr">LastAddress</label>
+				<input type="text" id="vital_last_addr" name="vital_last_addr" data-typ="Text">
+				
+				<label forx="1" for="vital_city">City</label>
+				<input type="text" id="vital_city" name="vital_city" data-typ="Text">
+				
+				<label forx="1" for="vital_state">State</label>
+				<input type="text" id="vital_state" name="vital_state" data-typ="Text">
+				
+				<label forx="1" for="vital_zip">Zip</label>
+				<input type="text" id="vital_zip" name="vital_zip" data-typ="Text">
+				
+				<label forx="1" for="inst_name">InstituteName</label>
+				<input type="text" id="inst_name" name="inst_name" data-typ="Text">
+				
+				<label forx="1" for="assign_ofcr">AssignedOfficer</label>
+				<input type="text" id="assign_ofcr" name="assign_ofcr" data-typ="Text">
+				
+				<label forx="1" for="assign_dt">AssignDate</label>
+				<input type="text" id="assign_dt" name="assign_dt" data-typ="Date">
+				
+				<label forx="1" for="method_receive">MethodReceived</label>
+				<input type="text" id="method_receive" name="method_receive" data-typ="Text">
+				
+				<label forx="1" for="intake_ofcr">IntakeOfficer</label>
+				<input type="text" id="intake_ofcr" name="intake_ofcr" data-typ="Text">
+				
+			</form>
+		</div>
+		
+		<div  id="loadingSpinner" class="spinner-container" style="display: none;">
+				    <div class="spinner" ></div>
+		</div>
+		
+		<style>
+			.datePickerFloat .form-label{
+			color: #886ab5 !important;
+			position: absolute;
+			left: 10px;
+			top: 3px;
+		}
+		/* Note: The following .datePickerFloat rules are now handled by the new .floatingFields rules below for better consistency. */
+		/* We can keep them for fallback but the new rules will override them if the HTML structure is correct. */
+		.datePickerFloat #admissionDate:focus + .form-label,
+		.datePickerFloat #admissionDate.has-value + .form-label,
+		.datePickerFloat #admissionTime:focus + .form-label,
+		.datePickerFloat #admissionTime.has-value + .form-label{
+			color: #886ab5 !important;
+			top: -11px;
+			left: 5px;
+			background: #fff;
+			font-size: 12px;
+			padding:0 5px;
+		}
+
+		.datePickerFloat #dateofbirth:focus + .form-label,
+		.datePickerFloat #dateofbirth.has-value + .form-label{
+			color: #886ab5 !important;
+			top: -11px;
+			left: 5px;
+			background: #fff;
+			font-size: 12px;
+			padding:0 5px;
+		}
+
+		.datepicker{
+			z-index: 9999 !important;
+		}
+		.offenderSignBlock .panel-toolbar{
+			display: none;
+		}			
+		.work-activity {
+			position: relative;
+			color: #74788d;
+			padding-left: 5.5rem
+		}
+
+		.MainBlockSection .mainScreenBlock{
+			margin-left: 0!important;
+		}
+
+		.nav-item .active{
+			border-bottom: 3px solid #886ab5;
+		}
+
+		.work-activity::before {
+			content: "";
+			position: absolute;
+			height: 100%;
+			top: 0;
+			left: 66px;
+			border-left: 1px solid rgba(3,142,220,.25)
+		}
+
+		.work-activity .work-item {
+			position: relative;
+			border-bottom: 2px dashed #eff0f2;
+			margin-bottom: 14px
+		}
+
+		.work-activity .work-item:last-of-type {
+			padding-bottom: 0;
+			margin-bottom: 0;
+			border: none
+		}
+
+		.work-activity .work-item::after,.work-activity .work-item::before {
+			position: absolute;
+			display: block
+		}
+
+		.work-activity .work-item::before {
+			content: attr(data-date);
+			left: -157px;
+			top: -3px;
+			text-align: right;
+			font-weight: 500;
+			color: #74788d;
+			font-size: 12px;
+			min-width: 120px
+		}
+
+		.work-activity .work-item::after {
+			content: "";
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			left: -26px;
+			top: 3px;
+			background-color: #fff;
+			border: 2px solid #038edc
+		}
+
+		.btnsection .btn{
+			white-space: nowrap;
+		}
+							
+		.imgUp{
+			position: relative;
+			margin-right: 5px;
+		}
+		.imagePreview {
+			width: 100%;
+			height: 218px;
+			background-position: center center;
+			background-color:#fff;
+			background-size: cover;
+			background-repeat:no-repeat;
+			display: inline-block;
+			border: 1px solid #886ab5;
+			border-radius: 7px;
+			position: relative;
+		}
+		.del
+		{
+		  position:absolute;
+		  top: 45px;
+		  right: 60px;
+		  width: 28px;
+		  height: 28px;
+		  text-align:center;
+		  line-height:30px;
+		  cursor:pointer;
+		  border-radius: 5px;
+		}
+		.imgAdd
+		{
+		  min-width:25px;
+		  height:25px;
+		  border-radius:5px;
+		  background-color:#886ab5;
+		  color:#fff;
+		  box-shadow:0px 0px 2px 1px rgba(0,0,0,0.2);
+		  text-align:center;
+		  line-height:30px;
+		  margin-top:0px;
+		  cursor:pointer;
+		  font-size:15px;
+		  display: flex;
+		  align-items: center;
+		  justify-content: center;
+		  position: relative;
+		  top: -2px;
+		}
+
+		.imgUp .btn-primary{
+			position: absolute;
+			top: 27px;
+			right: 10px;
+		}
+
+		.imgUp .dynamicadd{
+			top: 30px;
+			right: 5px;
+		}
+
+		.uploadDynamic .del{
+			right: 44px;
+			top: 36px;
+			background: #ffffff21;
+		}
+
+		.imgUp .form-label{
+			height: 17px;
+			margin-top: 5px;
+		}
+
+		.datepicker {
+			width: fit-content;
+		}
+
+		canvas {
+			border: 1px solid #886ab5;
+			touch-action: none; /* Prevent scrolling on touch devices */
+		}
+
+		.registrationHead .form-label{
+			width: 100%;
+			max-width: 110px;
+		}
+
+		.registrationHead .fieldBlock{
+			margin-top: 9px;
+		}
+		    
+		.headingIconsBlock{
+			margin-bottom: 2px!important;
+		}
+
+		.card{
+			box-shadow:0px 0px 4px 0px rgb(155 124 202 / 51%);
+			width: 100%;
+		}
+
+
+		/* Responsive css */
+		@media screen and (max-width: 1366px) {
+			.registrationMainBlock{
+				display: block!important;
+			}
+			.profileBlock{
+				min-width: 100%;	
+			}
+			.releaseBlockMain{
+				display: flex;
+				max-width: 100%;
+			}
+			#admissionReleaseBlock{
+				margin-right: 10px;
+				height: fit-content;
+			}
+			#stayInfoBlock{
+				height: 207px!important;	
+			}
+			#admissionReleaseBlock, #stayInfoBlock{
+				max-width: 50%;
+			}
+		}
+		@media screen and (max-width: 1024px) {
+			.page-content-wrapper{
+				margin-top: 0.5rem !important;
+				height: calc(100vh - 260px) !important;
+			}
+			.releaseBlockMain{
+				display: block;
+			}
+			#admissionReleaseBlock{
+				margin-right: 0;	
+			}
+			#admissionReleaseBlock, #stayInfoBlock{
+				max-width: 100%;
+			}
+			#stayInfoBlock{
+				height: unset !important;
+			}
+		}
+		#stayInfoBlock{
+			height: 360px;
+			overflow-y: auto;	
+		}
+		
+		.floatingFields #dateofbirth,
+		.floatingFields #Sex,
+		.floatingFields #RaceOffender,
+		.floatingFields #admissionDate,
+		.floatingFields #admissionTime,
+		.floatingFields #AdmitCode,
+		.floatingFields #OffenderType,
+		.floatingFields #FromLocation,
+		.floatingFields #ToLocation {
+		    color: #495057; 
+		    padding-top: 4px; 
+		}
+
+		.floatingFields #dateofbirth + .form-label,
+		.floatingFields #Sex + .form-label,
+		.floatingFields #RaceOffender + .form-label,
+		.floatingFields #admissionDate + .form-label,
+		.floatingFields #admissionTime + .form-label,
+		.floatingFields #AdmitCode + .form-label,
+		.floatingFields #OffenderType + .form-label,
+		.floatingFields #FromLocation + .form-label,
+		.floatingFields #ToLocation + .form-label {
+		    position: absolute;
+		    top: 50%;
+		    left: 10px;
+		    transform: translateY(-50%);
+		    font-size: 13.5px;
+		    color: #886ab5; /* FIX: Set the color to the theme purple */
+		    transition: all 0.2s ease-out;
+		    pointer-events: none;
+		    background-color: #fff;
+		    padding: 0 5px;
+		    margin-bottom: 0; /* Reset any default margin */
+		}
+
+		.floatingFields #dateofbirth:focus + .form-label,
+		.floatingFields #dateofbirth.has-value + .form-label,
+		.floatingFields #Sex:focus + .form-label,
+		.floatingFields #Sex.has-value + .form-label,
+		.floatingFields #RaceOffender:focus + .form-label,
+		.floatingFields #RaceOffender.has-value + .form-label,
+		.floatingFields #admissionDate:focus + .form-label,
+		.floatingFields #admissionDate.has-value + .form-label,
+		.floatingFields #admissionTime:focus + .form-label,
+		.floatingFields #admissionTime.has-value + .form-label,
+		.floatingFields #AdmitCode:focus + .form-label,
+		.floatingFields #AdmitCode.has-value + .form-label,
+		.floatingFields #OffenderType:focus + .form-label,
+		.floatingFields #OffenderType.has-value + .form-label,
+		.floatingFields #FromLocation:focus + .form-label,
+		.floatingFields #FromLocation.has-value + .form-label,
+		.floatingFields #ToLocation:focus + .form-label,
+		.floatingFields #ToLocation.has-value + .form-label {
+		    top: -11px;
+			left: 5px;
+		    font-size: 12px;
+		    color: #886ab5;
+		    transform: none;
+			z-index: 1;
+			transition: all 0.2s ease-out;
+		}
+
+		.floatingFields #dateofbirth:focus,
+		.floatingFields #Sex:focus,
+		.floatingFields #RaceOffender:focus,
+		.floatingFields #admissionDate:focus,
+		.floatingFields #admissionTime:focus,
+		.floatingFields #AdmitCode:focus,
+		.floatingFields #OffenderType:focus,
+		.floatingFields #FromLocation:focus,
+		.floatingFields #ToLocation:focus {
+		    border-color: #9b7cca;
+		    box-shadow: 0 0 0 0.2rem rgb(136 106 181 / 25%);
+		}
+			
+		</style>
+
+		<div th:replace="~{fragments/script :: script}"></div>
+		
+		<script src="js/staticjs.js"></script>
+		<script src="js/script.js"></script>
+		<script>
+					
+			document.getElementById('add-card').onclick = function() {
+			   const newCard = document.createElement('div');
+			   newCard.className = 'col-lg-4 col-md-6 dynamic-card-item'; 
+			   newCard.innerHTML = `
+			       <div class="d-flex uploadDynamicBlockMain">
+			           <div class="card mt-2 uploadDynamic">
+			               <div class="card-body p-2">
+			                   <div class="imgUp position-relative">
+			                       <select class="custom-select form-control" style="display: block; margin-bottom: 1px;">
+			                           <option selected value="0">Select View</option>
+			                           <option value="1">Tattoo - Left Arm</option>
+			                           <option value="2">Tattoo - Right Arm</option>
+			                           <option value="3">Scar - Face</option>
+			                       </select>
+			                       <div class="imagePreview"></div>
+			                       <a href="javascript:void(0);" style="padding: 1px 5px 2px 5px;background: #0b5ed7;" class="btn btn-primary dynamicadd js-capture-btn">
+			                           <i class="fa fa-camera"></i>
+			                       </a>
+			                   </div>
+			               </div>
+			           </div>
+			           <i class="fa fa-times del remove-btn button"></i>
+			       </div>`;
+			   document.getElementById('mugshotContainer-Main').appendChild(newCard);
+			   newCard.querySelector('.remove-btn').onclick = function() {
+			       newCard.remove();
+			   };
+			};
+
+			  
+			document.getElementById('add-cardfinger').onclick = function() {
+			   const newCardfingure = document.createElement('div');
+			   newCardfingure.className = 'col-lg-4 col-md-6 dynamic-card-item'; 
+			   newCardfingure.innerHTML = `
+			        <div class="d-flex uploadDynamicBlockMain">
+			           <div class="card mt-2 uploadDynamic">
+			               <div class="card-body p-2">
+			                   <div class="imgUp position-relative">
+			                       <select class="custom-select form-control" style="display: block; margin-bottom: 1px;">
+			                           <option selected value="0">Select Finger</option>
+			                           <option value="1">Left Index</option>
+			                           <option value="2">Right Index</option>
+			                           <option value="3">Right Palm</option>
+			                       </select>
+			                       <div class="imagePreview"></div>
+			                       <a href="javascript:void(0);" style="padding: 1px 5px 2px 5px;background: #0b5ed7;" class="btn btn-primary dynamicadd js-capture-btn">
+			                           <i class="fa fa-camera"></i>
+			                       </a>
+			                   </div>
+			               </div>
+			           </div>
+			           <i class="fa fa-times del remove-btn button"></i>
+			       </div>`;
+			   document.getElementById('fingerContainer-Main').appendChild(newCardfingure);
+			   newCardfingure.querySelector('.remove-btn').onclick = function() {
+			       newCardfingure.remove();
+			   };
+			};
+
+			function showDefaultPriorIncarceration() {
+			    var noRecordsContent = '<li class="work-item">No prior incarceration records found.</li>';
+			    $("#stayInfoBlock .work-activity").html(noRecordsContent);
+			}
+			
+			var  imagendatanull="R0lGODlhoACgAPcAAAAAAAAICAgICAgIEAgQEBAQEBAQGBAYGBgYGBgYIRghISEhISEhKSEpKSkpKSkpMSkxMTExOTE5OTE5Qjk5QjlCQjlCSkJCSkJKSkJKUkpKUkpSUkpSWkpaWlJaWlJaY1JjY1pjY1pja1pra1prc2Nrc2Nzc2Nze2tze2t7hHN7hHOEjHuEjHuElHuMlISMlISMnISUnIyUnIyUpYycpZScrZSlrZSltZyltZyttZytvaWtvaW1vaW1xqW9xq29xq29zq3GzrXGzrXG1rXO1r3O1r3O3r3W3sbGxsbGzsbOzsbW3s7OztbW1tbW3t7e3ufn5+/v7+/v9+/39/f39////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ywAAAAAoACgAAAI/gCpRJESZWBBggYTIlx4sKFChwwfSoxIEaLFiRcrYtyosaPDKFVCiqwSBYiQIUJOpkSpsiXLlytjupQJc6bNmjhp6ry5MyfPnz6DxvQhZWTIkkKKKB1iZKlSI0OUFmHqtAhUqVSnPo26tKlW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"
+			
+			function convertToMMDDYYYY(dateString) {
+			    if (!dateString) return ""; 
+			    var date = new Date(dateString);
+			    if (isNaN(date.getTime())) return ""; 
+
+			    var mm = String(date.getMonth() + 1).padStart(2, '0'); 
+			    var dd = String(date.getDate()).padStart(2, '0'); 
+			    var yyyy = date.getFullYear(); 
+
+			    return mm + "/" + dd + "/" + yyyy;
+			}
+			
+			function convertToYYYYMMDD(dateString) {
+			    if (!dateString) return "";
+
+			    var date = new Date(dateString);
+			    if (isNaN(date.getTime())) return ""; 
+
+			    var yyyy = date.getFullYear();
+			    var mm = String(date.getMonth() + 1).padStart(2, '0');
+			    var dd = String(date.getDate()).padStart(2, '0');
+
+			    return yyyy + "-" + mm + "-" + dd; 
+			}
+			
+			function isValidDate(dateString) {
+			    if (!/^\d{2}\/\d{2}\/\d{4}$/.test(dateString)) {
+			        return false;
+			    }
+			    const parts = dateString.split("/");
+			    const month = parseInt(parts[0], 10);
+			    const day = parseInt(parts[1], 10);
+			    const year = parseInt(parts[2], 10);
+			    if (year < 1900 || year > 2100 || month === 0 || month > 12) {
+			        return false;
+			    }
+			    const monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+			    if (year % 400 === 0 || (year % 100 !== 0 && year % 4 === 0)) {
+			        monthLength[1] = 29;
+			    }
+			    return day > 0 && day <= monthLength[month - 1];
+			}
+
+			function validateDateField(element) {
+			    const $element = $(element);
+			    const dateVal = $element.val();
+			    let isFieldValid = true;
+
+			    if (dateVal) {
+			        const fieldId = $element.attr('id');
+			        const fieldName = fieldId ? ($(`label[for="${fieldId}"]`).text().trim().replace(':', '') || fieldId) : 'this date field';
+			        if (!isValidDate(dateVal)) {
+			            message('CUE', `Please enter a valid date in MM/DD/YYYY format for '${fieldName}'.`, 0);
+			            isFieldValid = false;
+			        } else {
+			            const selectedDate = new Date(dateVal);
+			            const today = new Date();
+			            today.setHours(0, 0, 0, 0);
+			            if (selectedDate > today) {
+			                message('CUE', `The date for '${fieldName}' cannot be in the future.`, 0);
+			                isFieldValid = false;
+			            }
+			        }
+			    }
+			    if (!isFieldValid) {
+			        $element.val('').trigger('change');
+			    }
+			}
+			
+			function formatDate(dateString) {
+			    if (!dateString) return 'N/A';
+			    try {
+			        const date = new Date(dateString);
+			        if (isNaN(date.getTime())) {
+			            const parts = dateString.split(/[-T]/);
+			            if (parts.length >= 3) return `${parts[1]}/${parts[2].substr(0, 2)}/${parts[0]}`;
+			            return dateString;
+			        }
+			        return date.toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' });
+			    } catch {
+			        return dateString;
+			    }
+			}
+			
+			$('input[type="date"]').each(function() {
+			    $(this).attr('type', 'text').addClass('date-input').attr('maxlength', '10');
+
+			    $(this).on('input', function() {
+			        let value = $(this).val().replace(/\D/g, "");
+			        if (value.length > 2) {
+			            value = value.slice(0, 2) + "/" + value.slice(2);
+			        }
+			        if (value.length > 5) {
+			            value = value.slice(0, 5) + "/" + value.slice(5, 9);
+			        }
+			        $(this).val(value);
+			    });
+
+			    $(this).on('change', function() {
+			        validateDateField(this);
+			    });
+
+			    $(this).datepicker({
+			        dateFormat: "mm/dd/yy",
+			        changeMonth: true,
+			        changeYear: true,
+			        yearRange: (function() {
+			            const currentYear = new Date().getFullYear();
+			            return (currentYear - 100) + ":" + currentYear; // Appropriate range for DOB
+			        })(),
+			        maxDate: 0,
+			        onSelect: function(dateText) {
+			            if ($(this).val()) {
+			                $(this).addClass('has-value').trigger('change');
+			            }
+			        },
+			        beforeShow: function(input, inst) {
+			            setTimeout(function() {
+			                const $datepickerDiv = $('#ui-datepicker-div');
+			                if (!$datepickerDiv.find('.custom-btn-wrapper').length) {
+			                    const $wrapper = $('<div>', { class: 'custom-btn-wrapper', css: { display: 'flex', gap: '4px', marginTop: '2px', marginBottom: '2px', justifyContent: 'space-between' } });
+			                    const $todayBtn = $('<button>', { text: "Today", class: 'custom-today-btn', css: { flex: 1, padding: '2px', cursor: 'pointer', background: '#ece0ff', border: 'none' } });
+			                    const $clearBtn = $('<button>', { text: "Clear", class: 'custom-clear-btn', css: { flex: 1, padding: '2px', cursor: 'pointer', background: '#ece0ff', border: 'none' } });
+			                    
+			                    $todayBtn.on('click', function(e) {
+			                        e.preventDefault();
+			                        const date = new Date();
+			                        const today = ('0' + (date.getMonth() + 1)).slice(-2) + '/' + ('0' + date.getDate()).slice(-2) + '/' + date.getFullYear();
+			                        $(input).val(today).addClass('has-value').trigger('change');
+			                        // FIX: Hide datepicker in a separate call
+			                        $(input).datepicker("hide");
+			                    });
+			                    
+			                    $clearBtn.on('click', function(e) {
+			                        e.preventDefault();
+			                        $(input).val('').removeClass('has-value').trigger('change');
+			                        // FIX: Hide datepicker in a separate call
+			                        $(input).datepicker("hide");
+			                    });
+
+			                    $wrapper.append($todayBtn, $clearBtn);
+			                    $datepickerDiv.append($wrapper);
+			                }
+			            }, 10);
+			            return true;
+			        }
+			    });
+				
+				// Handle floating label class
+				$(this).on('input change', function() {
+			        if ($(this).val()) {
+			            $(this).addClass('has-value');
+			        } else {
+			            $(this).removeClass('has-value');
+			        }
+			    });
+			});
+			
+			// Initialize time input with custom formatting
+			$('#admissionTime').attr('type', 'text').attr('maxlength', '5').on('input', function(e) {
+			    const timeInput = $(this);
+			    let value = timeInput.val();
+			    let digits = value.replace(/[^0-9]/g, '');
+
+			    if (digits.length >= 2) {
+			        let hourPart = parseInt(digits.substring(0, 2), 10);
+			        if (hourPart > 23) {
+			            digits = digits.substring(0, 1);
+			        }
+			    }
+			    if (digits.length >= 4) {
+			        let minutePart = parseInt(digits.substring(2, 4), 10);
+			        if (minutePart > 59) {
+			             digits = digits.substring(0, 3);
+			        }
+			    }
+
+			    if (digits.length > 2) {
+			        timeInput.val(digits.substring(0, 2) + ':' + digits.substring(2));
+			    } else {
+			        timeInput.val(digits);
+			    }
+			}).on('blur', function() {
+			    const timeInput = $(this);
+			    let timeValue = timeInput.val().trim();
+			    if (timeValue === "") {
+			        timeInput.removeClass('has-value').trigger('change');
+			        return;
+			    }
+			    
+			    const parts = timeValue.split(':');
+			    if (parts.length !== 2 || parts[0].length !== 2 || parts[1].length !== 2) {
+			        message('CUE', 'Invalid time format. Please use HH:MM.', 0);
+			        timeInput.val('').removeClass('has-value').trigger('change');
+			        return;
+			    }
+
+			    let hours = parseInt(parts[0], 10);
+			    let minutes = parseInt(parts[1], 10);
+
+			    if (isNaN(hours) || isNaN(minutes) || hours > 23 || minutes > 59) {
+			         message('CUE', 'Invalid time. Please enter a valid HH:MM time.', 0);
+			        timeInput.val('').removeClass('has-value').trigger('change');
+			        return;
+			    }
+			    
+			    timeInput.addClass('has-value').trigger('change');
+			});
+			
+
+			document.getElementById('Sex').addEventListener('change', function() {
+			    if (this.value !== "") {
+			        this.classList.add('has-value');
+			    } else {
+			        this.classList.remove('has-value');
+			    }
+			});
+		
+			
+			function handleFloatingLabel(selectElement) {
+			    if (selectElement.value !== "") {
+			        selectElement.classList.add('has-value');
+			    } else {
+			        selectElement.classList.remove('has-value');
+			    }
+			}
+			
+			document.getElementById('RaceOffender').addEventListener('change', function() {
+			    handleFloatingLabel(this);
+			});
+			
+			document.getElementById('AdmitCode').addEventListener('change', function() {
+			    handleFloatingLabel(this);
+			});
+						
+			document.getElementById('OffenderType').addEventListener('change', function() {
+			    handleFloatingLabel(this);
+			});
+			
+			document.getElementById('FromLocation').addEventListener('change', function() {
+			    handleFloatingLabel(this);
+			});
+			
+			document.getElementById('ToLocation').addEventListener('change', function() {
+			    handleFloatingLabel(this);
+			});
+
+
+			document.getElementById('dateofbirth').addEventListener('change', function() {
+			    if (this.value !== "") {
+			        this.classList.add('has-value');
+			    } else {
+			        this.classList.remove('has-value');
+			    }
+			});
+			
+			document.getElementById('admissionDate').addEventListener('change', function() {
+			    if (this.value !== "") {
+			        this.classList.add('has-value');
+			    } else {
+			        this.classList.remove('has-value');
+			    }
+			});
+
+			document.getElementById('admissionTime').addEventListener('change', function() {
+			    if (this.value !== "") {
+			        this.classList.add('has-value');
+			    } else {
+			        this.classList.remove('has-value');
+			    }
+			});
+			
+			$(document).ready(function() {
+			    let currentImagePreview = null;
+			    let stream = null;
+			    $('.page-content').on('click', '.js-capture-btn', function(e) {
+			        e.preventDefault();
+			        currentImagePreview = $(this).closest('.imgUp').find('.imagePreview');
+			        $('#imageSourceModal').modal('show');
+			    });
+			    $('#btnChooseFile').on('click', function() {
+			        $('#hiddenFileInput').click();
+			    });
+			    $('#hiddenFileInput').on('change', function(e) {
+			        if (!this.files || !this.files[0]) {
+			            return;
+			        }
+			        const reader = new FileReader();
+			        reader.onload = function(event) {
+			            if (currentImagePreview) {
+			                currentImagePreview.css('background-image', 'url(' + event.target.result + ')');
+			            }
+			        };
+			        reader.readAsDataURL(this.files[0]);
+			        $(this).val('');
+			        $('#imageSourceModal').modal('hide');
+			    });
+			    $('#btnTakePhoto').on('click', function() {
+			        $('#imageSourceModal').modal('hide');
+			        $('#webcamModal').modal('show');
+			    });
+			    function stopWebcam() {
+			        if (stream) {
+			            stream.getTracks().forEach(track => track.stop());
+			            stream = null;
+			            const videoElement = document.getElementById('webcamVideo');
+			            if (videoElement) {
+			                videoElement.srcObject = null;
+			            }
+			        }
+			    }
+			    $('#webcamModal').on('shown.bs.modal', async function() {
+			        try {
+			            stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+			            const videoElement = document.getElementById('webcamVideo');
+			            videoElement.srcObject = stream;
+			        } catch (err) {
+			            console.error("Error accessing webcam: ", err.name, err);
+			            let userMessage = 'Could not access the webcam.';
+			            if (err.name === 'NotFoundError' || err.name === 'DevicesNotFoundError') {
+			                userMessage = 'No webcam was found. Please ensure a camera is connected and enabled.';
+			            } else if (err.name === 'NotAllowedError' || err.name === 'PermissionDeniedError') {
+			                userMessage = 'Webcam access was denied. Please allow camera access in your browser settings.';
+			            } else if (err.name === 'NotReadableError' || err.name === 'TrackStartError') {
+			                userMessage = 'The webcam is already in use by another application or there is a hardware error.';
+			            }
+			            message('CUE', userMessage, 0);
+			            $('#webcamModal').modal('hide');
+			        }
+			    });
+			    $('#webcamModal').on('hidden.bs.modal', stopWebcam);
+			    $('#btnTakeSnapshot').on('click', function() {
+			        const video = document.getElementById('webcamVideo');
+			        const canvas = document.getElementById('webcamCanvas');
+			        const context = canvas.getContext('2d');
+			        canvas.width = video.videoWidth;
+			        canvas.height = video.videoHeight;
+			        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+			        const dataUrl = canvas.toDataURL('image/jpeg');
+			        if (currentImagePreview) {
+			            currentImagePreview.css('background-image', 'url(' + dataUrl + ')');
+			        }
+			        $('#webcamModal').modal('hide');
+			    });
+			});
+			
+
+			$(document).ready(function () {
+							
+				const defaultImage = 'data:image/jpeg;base64,' + imagendatanull;
+				document.querySelector("#OffenderPhoto").src = defaultImage;
+					
+				$("#clearButton").click(function () {
+			        const clearAction = () => {
+						$("input[type='text'], input[type='time'], textarea").val("").removeClass('has-value');
+						$("select").prop("selectedIndex", 0).removeClass('has-value');
+						$("input[type='text'], input[type='time'], textarea, select").trigger('change');
+						$("input[type='checkbox'], input[type='radio']").prop("checked", false); 
+						$('#checkboxTransfer, #checkboxRelease').prop('disabled', false);
+						$('#checkboxNewArrival').prop('disabled', false);
+						$('#sbiNumberInput').prop('readonly', true);
+
+						$("#OffenderPhoto").attr("src", defaultImage);
+						$('.imagePreview').css('background-image', 'none');
+						
+						showDefaultPriorIncarceration(); 
+						$('.dynamic-card-item').remove();
+						$('#lookup_icon').focus();
+					};
+
+					if ($('#sbiNumberInput').val() === 'New') {
+				           confirmation("You have unsaved changes. Are you sure you want to clear the screen?", function() {
+				               clearAction();
+				           });
+				       } else {
+				           clearAction();
+				       }
+			    });
+			});
+			
+			
+			$(document).ready(function () {
+				
+				$('#LastName, #FirstName, #MI, #Suffix, #lookupLastName, #lookupFirstName, #lookupMI, #lookupSuffix').on('input', function() {
+                    this.value = this.value.toUpperCase();
+                });
+								
+				$('#lookup_icon').focus();
+				showDefaultPriorIncarceration();
+				
+				performInmateLookup(true);
+
+			    const defaultImage = 'data:image/jpeg;base64,' + imagendatanull;
+			    document.querySelector("#OffenderPhoto").src = defaultImage;
+
+			    
+			    $('#sbiNumberInput').on('input', function () {
+			        this.value = this.value.replace(/[^a-zA-Z0-9]/g, '').substring(0, 8);
+			    });
+
+			   
+			    $('#sbiNumberInput').on('blur', function () {
+			        var sbiNumberInput = $(this).val();
+			        var userId = localStorage.getItem('userId');;
+
+			        if (sbiNumberInput) {
+			            $.ajax({
+			                method: "GET",
+			                url: contextPath + "inmateimage/" + sbiNumberInput + "?userId=" + userId,
+			                success: function (response) {
+			                    var imageData = response;
+			                    if (imageData === "") {
+			                        document.querySelector("#OffenderPhoto").src = defaultImage;
+			                    } else {
+			                        const imageUrl = imageData;
+			                        document.querySelector("#OffenderPhoto").src = imageUrl;
+			                    }
+			                },
+			                error: function (xhr, status, error) {
+			                    console.error("Error fetching inmate image:", error);
+			                    document.querySelector("#OffenderPhoto").src = defaultImage;
+			                }
+			            });
+			        } else {
+			            document.querySelector("#OffenderPhoto").src = defaultImage;
+			        }
+			    });
+				
+				$('#checkboxNewArrival').on('change', function() {
+			        if ($('#sbiNumberInput').val() === 'New' && !$(this).is(':checked')) {
+						message('CUW', 'A new offender must be processed as a New Arrival.', 0);
+			            $(this).prop('checked', true);
+			        }
+			    });
+
+			    
+			    var tabledatacity;
+			    var countyCodeToNameMap = {};
+
+			    
+			    $.ajax({
+			        url: "/OmnetTest/Booking/races",
+			        type: "GET",
+			        success: function (data) {
+			            var raceDropdown = $("#RaceOffender");
+			            raceDropdown.empty();
+			            raceDropdown.append('<option value=""> </option>');
+			            $.each(data, function (index, race) {
+			                raceDropdown.append('<option value="' + race.raceCode + '">' + race.raceDesc + '</option>');
+			            });
+			        },
+			        error: function (xhr, status, error) {
+			            console.error("Error fetching race data:", error);
+			        }
+			    });
+
+			    
+			    
+				
+				var cityStateZipTable;
+				var selectedCityStateZip = null;
+
+				function loadCityStateZipData(searchValue = '') {
+                    const defaultRowCount = 14;
+                    const url = searchValue 
+                        ? "/OmnetTest/Booking/fetchCityStateZip" 
+                        : "/OmnetTest/Booking/fetchAllCityStateZip";
+                    const params = searchValue ? { search: searchValue } : {};
+                    
+                    if (cityStateZipTable) {
+                        cityStateZipTable.clearData();
+                    }
+
+                    // Helper to create empty rows
+                    const createEmptyRows = (count) => {
+                        const rows = [];
+                        for (let i = 0; i < count; i++) {
+                            rows.push({ city: "", state: "", zip: "" });
+                        }
+                        return rows;
+                    };
+
+                    $.ajax({
+                        url: url,
+                        type: "GET",
+                        data: params,
+                        success: function (data) {
+                            let formattedData = [];
+                            if (data && data.length > 0) {
+                                formattedData = data.map(function (item) {
+                                    return {
+                                        city: item.city || item.COUNTY_NAME,
+                                        state: item.state || item.STATE_CODE,
+                                        zip: item.zip || item.ZIP_5,
+                                        countyCode: item.countyCode || item.COUNTY_CODE,
+                                    };
+                                });
+                            }
+                            
+                            let displayData = [];
+                            
+                            // If no results from a search, create placeholder
+                            if (formattedData.length === 0 && searchValue) {
+                                displayData = createEmptyRows(defaultRowCount);
+                                displayData[0].city = "No results found";
+                            } 
+                            // If data exists or it's an initial load
+                            else {
+                                displayData = formattedData;
+                                const currentLength = displayData.length;
+                                // Pad with empty rows if results are fewer than default
+                                if (currentLength < defaultRowCount) {
+                                    const rowsToAdd = defaultRowCount - currentLength;
+                                    for (let i = 0; i < rowsToAdd; i++) {
+                                        displayData.push({ city: "", state: "", zip: "" });
+                                    }
+                                }
+                            }
+
+                            cityStateZipTable.setData(displayData);
+                        },
+                        error: function () {
+                            console.error("Error fetching city, state, and zip data.");
+                            let errorData = createEmptyRows(defaultRowCount);
+                            errorData[0].city = "Error loading data";
+                            cityStateZipTable.setData(errorData);
+                        }
+                    });
+                }
+
+				$('#listModal').on('show.bs.modal', function () {
+								    // Define the default empty row structure
+								    const defaultCityRows = Array(14).fill(null).map(() => ({ 
+								        city: "", 
+								        state: "", 
+								        zip: "" 
+								    }));
+
+								    if (!cityStateZipTable) {
+								        cityStateZipTable = new Tabulator("#city-table", {
+								            layout: "fitColumns",
+								            data: defaultCityRows, // <-- Corrected: Initialized with 14 empty rows
+								            height: 400,
+								            selectable: 1,
+								            columns: [
+								                { title: "City", field: "city", headerSort: false },
+								                { title: "State", field: "state", headerSort: false },
+								                { title: "Zip", field: "zip", headerSort: false },
+								            ],
+								            rowClick: function(e, row) {
+								                selectedCityStateZip = row.getData();
+								                // Ensure not to select an empty or placeholder row
+								                if (selectedCityStateZip && selectedCityStateZip.city && selectedCityStateZip.city !== "No results found" && selectedCityStateZip.city !== "Error loading data") {
+								                    $("#City").val(selectedCityStateZip.city);
+								                    $("#State").val(selectedCityStateZip.state);
+								                    $("#Zip").val(selectedCityStateZip.zip);
+								                    $("#City").data("countyCode", selectedCityStateZip.countyCode);
+								                    $('#listModal').modal('hide');
+								                }
+								            },
+								        });
+								    }
+								    
+								    $("#namefind").val('');
+								    loadCityStateZipData(); // This will now fetch and populate data into the existing structure
+								});
+
+				$(document).on('click', '#city-table .tabulator-row', function() {
+				    console.log("Row clicked via document handler");
+				    if (cityStateZipTable) {
+				        const row = cityStateZipTable.getRow(this);
+				        if (row) {
+				            selectedCityStateZip = row.getData();
+				            if (selectedCityStateZip && selectedCityStateZip.city !== "No results found" && selectedCityStateZip.city !== "Error loading data") {
+				                $("#City").val(selectedCityStateZip.city);
+				                $("#State").val(selectedCityStateZip.state);
+				                $("#Zip").val(selectedCityStateZip.zip);
+				                $("#City").data("countyCode", selectedCityStateZip.countyCode);
+				                $('#listModal').modal('hide');
+								$('.modal-backdrop').remove();
+				            }
+				        }
+				    }
+				});
+
+				$('#listModal').on('shown.bs.modal', function() {
+				    $("#namefind").focus();
+				});
+
+				$("#findButton").click(function () {
+				    loadCityStateZipData($("#namefind").val().trim());
+				});
+
+				$("#namefind").on('keydown', function(e) {
+				    if (e.key === 'Enter') {
+				        e.preventDefault();
+				        $("#findButton").click();
+				    }
+				});
+
+				if (cityStateZipTable) {
+				    cityStateZipTable.on("rowSelectionChanged", function(data, rows) {
+				        if (rows.length > 0) {
+				            selectedCityStateZip = rows[0].getData();
+				        }
+				    });
+				}
+
+
+				/*$("#sbiNumberInput").change(function () {
+				    var sbiNo = $(this).val();
+
+				    if (sbiNo) {
+				        if(sbiNo.length != 8){
+				            message('CUE', 'SbiNo length must be 8 characters', 0);
+				            return;
+				        }
+				       
+						
+				        $.ajax({
+				            url: "/OmnetTest/Booking/getCommitNo",
+				            type: "GET",
+				            data: { sbiNo: sbiNo },
+				            success: function(commitNo) {
+				                if (commitNo) {
+				                    fetchInmateDetails(sbiNo, commitNo);
+				                } else {
+				                    message('CUS', 'New Inmate Registration with ID : ' + sbiNo, 0);
+				                    $("#LastName").focus();
+				                }
+				            },
+				            error: function(xhr, status, error) {
+				                console.error("Error getting commitNo:", error);
+				            }
+				        });
+				    }
+				});*/
+
+				$("#sbiNumberInput").change(function () {
+				    var sbiNo = $(this).val();
+
+				    if (sbiNo) {
+				        if(sbiNo.length != 8){
+				            message('CUE', 'SbiNo length must be 8 characters', 0);
+				            return;
+				        }
+				       
+				        $.ajax({
+				            url: "/OmnetTest/Booking/combinedDetails", 
+				            type: "GET",
+				            data: { sbiNo: sbiNo },
+				            dataType: "json"
+				        }).done(function (data) {
+				            if (data && data.length > 0) {
+				                var inmate = data[0];
+				                var formattedDob = convertToMMDDYYYY(inmate.PRIMARY_DOB);
+				                
+								$('#sbiNumberInput').data('commit_no', inmate.COMMIT_NO); 
+								$('#sbiNumberInput').data('address_seq_num', inmate.ADDRESS_SEQ_NUM);
+				                $("#LastName").val(inmate.COMMIT_LNAME);
+				                $("#FirstName").val(inmate.COMMIT_FNAME);
+				                $("#MI").val(inmate.COMMIT_MNAME);
+				                $("#Suffix").val(inmate.COMMIT_SNAME);
+				                $("#dateofbirth").val(formattedDob);
+				                $("#Sex").val(inmate.GENDER);
+				                $("#RaceOffender").val(inmate.RACE_CODE);
+				                $("#Address1").val(inmate.ADR_STREET_1);
+				                $("#Address2").val('');
+				                $("#City").val(inmate.COUNTY_NAME);
+				                $("#City").data("countyCode", inmate.COUNTY_CODE);
+				                $("#State").val(inmate.STATE_CODE);
+				                $("#Zip").val(inmate.ADR_ZIP_5);
+				                
+				                if (formattedDob) { $("#dateofbirth").addClass('has-value'); } else { $("#dateofbirth").removeClass('has-value'); }
+				                if (inmate.GENDER) { $("#Sex").addClass('has-value'); } else { $("#Sex").removeClass('has-value'); }
+				                if (inmate.RACE_CODE) { $("#RaceOffender").addClass('has-value'); } else { $("#RaceOffender").removeClass('has-value'); }
+								$('#checkboxNewArrival').prop('disabled', true).prop('checked', false);
+				                $("#LastName").focus();
+				            } else {
+				                message('OG02',0,0);
+				                
+				                $("#sbiNumberInput,#LastName, #FirstName, #MI, #Suffix, #dateofbirth, #Address1, #Address2, #City, #State, #Zip").val('');
+				                $("#Sex, #RaceOffender").prop('selectedIndex', 0).removeClass('has-value');
+				                $("#dateofbirth").removeClass('has-value');
+				                $("#OffenderPhoto").attr("src", 'data:image/jpeg;base64,' + imagendatanull);
+								$('#checkboxNewArrival').prop('disabled', false);
+				                setTimeout(function() {
+				                    $('#lookup_icon').focus();
+				                }, 3000);
+				                showDefaultPriorIncarceration();
+				            }
+				        }).fail(function (xhr, status, error) {
+				            console.error("Error fetching combined inmate details:", error);
+				            message('CUE', 'Error fetching inmate details. Please try again.', 0);
+				        });
+
+				        fetchPriorIncarceration(sbiNo);
+				    }
+				});
+								
+				
+			   
+			    function handleEnterKey(currentField, nextField) {
+			        $(currentField).on('keydown', function (e) {
+			            if (e.key === 'Enter') {
+			                e.preventDefault();
+			                $(nextField).focus();
+			            }
+			        });
+			    }
+
+			    const fields = [
+			        "#sbiNumberInput", "#LastName", "#FirstName", "#MI", "#Suffix", "#dateofbirth",
+			        "#Sex", "#RaceOffender", "#Address1", "#Address2", "#City", "#State", "#Zip"
+			    ];
+
+			    for (let i = 0; i < fields.length - 1; i++) {
+			        handleEnterKey(fields[i], fields[i + 1]);
+			    }
+			 
+				$('#addNewOffenderBtn').on('click', function() {
+				    $('#securityThreatGroup').modal('hide');
+				    $('.modal-backdrop').remove(); 
+				    $("#clearButton").click();
+				    $('#sbiNumberInput').val('New').prop('readonly', true);
+				    $('#checkboxNewArrival').prop('disabled', false).prop('checked', true);
+				    $('#checkboxTransfer, #checkboxRelease').prop('disabled', true);
+				    $('#checkboxTransfer, #checkboxRelease').prop('checked', false);
+					$('.imagePreview').css('background-image', 'none');
+					$('#FromLocation').val('90').addClass('has-value').trigger('change');
+					var userInstNum = $('#UserLocation').attr('inst-num');
+				    if (userInstNum) {
+				         $('#ToLocation').val(userInstNum).addClass('has-value').trigger('change');
+				    }
+					
+					const today = new Date();
+					const hours = String(today.getHours()).padStart(2, '0');
+				    const minutes = String(today.getMinutes()).padStart(2, '0');
+				    const formattedTime = `${hours}:${minutes}`;
+				    
+				    const mm = String(today.getMonth() + 1).padStart(2, '0'); 
+				    const dd = String(today.getDate()).padStart(2, '0');
+				    const yyyy = today.getFullYear();
+				    const formattedDate = `${mm}/${dd}/${yyyy}`;
+					$('#admissionTime').val(formattedTime).addClass('has-value').trigger('change');
+				    $('#admissionDate').val(formattedDate).addClass('has-value').trigger('change');
+					
+					
+				    $('#LastName').focus();
+				});
+				
+				function clearAdmissionAndImageData() {
+				    $('#mugshotBlock .imagePreview, #fingerPrintBlock .imagePreview').css('background-image', 'none');
+				    $('#mugshotContainer-Main .dynamic-card-item, #fingerContainer-Main .dynamic-card-item').remove();
+				    const admissionBlock = $('#admissionReleaseBlock');
+				    admissionBlock.find('input[type="checkbox"]').prop('checked', false);
+				    admissionBlock.find('input[type="text"], input[type="time"], select').each(function() {
+				        const $element = $(this);
+				        if ($element.is('select')) {
+				            $element.prop('selectedIndex', 0);
+				        } else {
+				            $element.val('');
+				        }
+				        $element.removeClass('has-value').trigger('change');
+				    });
+				}
+
+				$("#saveInmateButton").click(function () {
+				    var sbiNo = $("#sbiNumberInput").val();
+				    var lastName = $("#LastName").val();
+				    var firstName = $("#FirstName").val();
+				    var dob = $("#dateofbirth").val();
+				    var admitCode = $("#AdmitCode").val();
+				    var offenderType = $("#OffenderType").val();
+				    var admissionDate = $("#admissionDate").val();
+
+					/*if (!checkMandatory()) {
+		                return;
+		            }*/
+
+				    if ($('#checkboxNewArrival').is(':checked') || $('#checkboxTransfer').is(':checked')) {
+				        if (!admitCode) {
+				            message('CUE', 'Please select an Admit Code.', 0);
+				            $('#AdmitCode').focus();
+				            return;
+				        }
+				        if (!offenderType) {
+				            message('CUE', 'Please select an Offender Type.', 0);
+				            $('#OffenderType').focus();
+				            return;
+				        }
+				        if (!admissionDate) {
+				            message('CUE', 'Please enter an Admission Date.', 0);
+				            $('#admissionDate').focus();
+				            return;
+				        }
+				    }
+
+				    let arrDepartFlag = '';
+				    if ($('#checkboxNewArrival').is(':checked')) arrDepartFlag = 'A';
+				    else if ($('#checkboxTransfer').is(':checked')) arrDepartFlag = 'I';
+
+				    var inmateDataPayload = {
+				        sbi_no: sbiNo,
+						commit_no: $("#sbiNumberInput").data('commit_no'), 
+						address_seq_num: $("#sbiNumberInput").data('address_seq_num'), 
+						inmate_first_name: firstName,      
+						inmate_last_name: lastName,          
+				        inmate_middle_name: $("#MI").val(),
+				        inmate_suffix_name: $("#Suffix").val(),
+				        primary_dob: dob,
+				        gender: $("#Sex").val(),
+				        race_code: $("#RaceOffender").val(),
+				        adr_street_1: $("#Address1").val(),
+				        county_code: $("#City").data("countyCode") || null,
+				        state_code: $("#State").val(),
+				        adr_zip_5: $("#Zip").val(),
+				        arr_depart_flag: arrDepartFlag,
+				        admiss_release_code: admitCode,
+				        admiss_release_date: admissionDate,
+				        admiss_release_time: $("#admissionTime").val(),
+				        inst_num: $("#ToLocation").val(),
+				        from_inst_num: $("#FromLocation").val(),
+				        inmt_tp_cd: offenderType
+				    };
+
+				    $.ajax({
+				        url: "/OmnetTest/Booking/saveOrUpdate",
+				        type: "POST",
+				        contentType: "application/json",
+				        data: JSON.stringify(inmateDataPayload),
+				        success: function (response) {
+				            message('S', 0, 0);
+				            var generatedSbiNo = response.sbiNo;
+				            var sbiNoForRefresh = sbiNo;
+
+				            if (sbiNo === 'New' && generatedSbiNo) {
+				                $('#sbiNumberInput').val(generatedSbiNo);
+				                sbiNoForRefresh = generatedSbiNo;
+				            }
+
+				            // Refresh Inmate Details and Prior Incarceration list.
+				            $('#sbiNumberInput').trigger('change');
+
+				            // Handle mugshot saving and refreshing the main photo.
+				            const faceViewImageDiv = $('#project-items-1 .imagePreview');
+				            const bgImage = faceViewImageDiv.css('background-image');
+				            let hasNewMugshot = false;
+
+				            if (bgImage && bgImage !== 'none') {
+				                const base64Marker = 'base64,';
+				                const base64Index = bgImage.indexOf(base64Marker);
+				                
+				                if (base64Index > -1) {
+				                    hasNewMugshot = true;
+				                    const base64Content = bgImage.substring(base64Index + base64Marker.length).replace(/['"]?\)$/, '');
+				                    
+				                    const mugshotPayload = {
+				                        sbiNo: sbiNoForRefresh, 
+				                        imageData: base64Content 
+				                    };
+
+				                    $.ajax({
+				                        url: "/OmnetTest/Booking/saveMugshot",
+				                        type: "POST",
+				                        contentType: "application/json",
+				                        data: JSON.stringify(mugshotPayload),
+				                        success: function(mugshotResponse) {
+				                            console.log("Mugshot uploaded successfully:", mugshotResponse.message);
+				                            $('#sbiNumberInput').trigger('blur');
+				                        },
+				                        error: function(mugshotXhr) {
+				                            var errorMsg = (mugshotXhr.responseJSON && mugshotXhr.responseJSON.message) ? mugshotXhr.responseJSON.message : 'Unknown error during mugshot upload.';
+				                            console.error("Error uploading mugshot:", errorMsg);
+				                            $('#sbiNumberInput').trigger('blur');
+				                        }
+				                    });
+				                }
+				            }
+
+				            if (!hasNewMugshot) {
+				                $('#sbiNumberInput').trigger('blur');
+				            }
+
+				            $('#sbiNumberInput').prop('readonly', true);
+				            $('#checkboxTransfer, #checkboxRelease').prop('disabled', false);
+					
+							clearAdmissionAndImageData();
+				        },
+				        error: function (xhr) {
+				            var errorMsg = (xhr.responseJSON && xhr.responseJSON.message) ? xhr.responseJSON.message : 'Error saving inmate data.';
+				            message('CUE', errorMsg, 0);
+				        }
+				    });
+				});
+				
+				
+				$.ajax({
+				    url: 'Facility',
+				    method: 'GET', 
+				    success: function(response) {
+				        console.log('Facility=', response);
+				       
+				        $('#FromLocation').empty();
+				        $('#ToLocation').empty();
+				        
+				        $('#FromLocation').append('<option value=""></option>');
+				        $('#ToLocation').append('<option value=""></option>');
+				        
+				        $.each(response, function(index, item) {
+				            console.log('InstName', item.inst_NAME);
+				           
+				            $('#FromLocation').append(`
+				                <option value="${item.inst_NUM}">${item.inst_NAME}</option>
+				            `);
+				            
+				            $('#ToLocation').append(`
+				                <option value="${item.inst_NUM}">${item.inst_NAME}</option>
+				            `);
+				        });
+				       
+				        $('.floatingLable').trigger('change');
+				    },
+				    error: function(xhr, status, error) {
+				        console.error('Error:', error);
+				    }
+				});
+				
+
+				$.ajax({
+				    url: "/OmnetTest/Booking/admissionReleaseCodes",
+				    type: "GET",
+				    success: function(data) {
+				        var admitCodeDropdown = $("#AdmitCode");
+				        admitCodeDropdown.empty();
+				        admitCodeDropdown.append('<option value=""></option>');
+				        $.each(data, function(index, code) {
+				            admitCodeDropdown.append('<option value="' + code.admitCode + '">' + code.admitCodeDesc + '</option>');
+				        });
+				        
+				        admitCodeDropdown.trigger('change');
+				    },
+				    error: function(xhr, status, error) {
+				        console.error("Error fetching admission release code data:", error);
+				    }
+				});
+				
+				
+				$.ajax({
+		            url: "/OmnetTest/Booking/offenderTypes",
+		            type: "GET",
+		            success: function(data) {
+		                var offenderTypeDropdown = $("#OffenderType");
+		                offenderTypeDropdown.empty();
+		                offenderTypeDropdown.append('<option value=""></option>');
+		                $.each(data, function(index, type) {
+		                    offenderTypeDropdown.append('<option value="' + type.offenderTypeCode + '">' + type.offenderTypeDesc + '</option>');
+		                });
+		                
+		                offenderTypeDropdown.trigger('change');
+		            },
+		            error: function(xhr, status, error) {
+		                console.error("Error fetching offender type data:", error);
+		            }
+		        });
+			});        
+						
+			$(document).ready(function() {
+			    $('.no_contact.vitalcheckbox').on('change', function() {
+			        
+			        if ($(this).is(':checked')) {
+			            $('.no_contact.vitalcheckbox').not(this).prop('checked', false);
+			        }
+			    });
+			});
+			
+			function fetchPriorIncarceration(sbiNo) {
+			    if (!sbiNo) return;
+			    
+			    $.ajax({
+			        url: "/OmnetTest/Booking/priorIncarceration",
+			        type: "GET",
+			        data: { sbiNo: sbiNo },
+			        success: function(data) {
+			            updatePriorIncarcerationUI(data);
+			        },
+			        error: function(xhr, status, error) {
+			            console.error("Error fetching prior incarceration data:", error);
+			        }
+			    })
+			}
+
+			function updatePriorIncarcerationUI(data) {
+			    var container = $("#stayInfoBlock .work-activity");
+			    container.empty();
+			    
+			    if (data.length === 0) {
+			        container.append('<li class="work-item">No prior incarceration records found</li>');
+			        return;
+			    }
+			    
+			    data.forEach(function(item) {
+					  
+			        var admissionDate = new Date(item.INST_ADMISS_DATE);
+			        var releaseDate = item.INST_RELEASE_DATE ? new Date(item.INST_RELEASE_DATE) : null;
+			        
+			        var dateRange = admissionDate.getFullYear();
+			        if (releaseDate) {
+			            dateRange += '-' + releaseDate.getFullYear().toString().substr(-2);
+			        }
+					
+					if(!admissionDate){
+						dateRange += '-' + releaseDate.getFullYear();
+					}
+			        
+					var isCurrent = item.STAY === 'Current' || item.STAY === 'CURRENT';
+					        var instName = item.INST_NAME || 'Unknown Facility';
+					        if (isCurrent) {
+					            instName += " (CURRENT)";
+					        }
+					var sentType = item.SENT_TYPE_DESC || 'Unknown Type';
+					var status = item.STATUS || '';
+					  
+			        var html = `
+			            <li class="work-item" data-date="${dateRange}">
+			                <h6 class="lh-base mb-0">${instName}</h6>
+			                <p class="font-size-13 mb-2">${sentType}</p>
+			                ${status ? '<p>' + status + '</p>' : ''}
+			            </li>
+			        `;
+			        
+			        container.append(html);
+			    });
+			}
+			
+			/*$("#sbiNumberInput").change(function() {
+			    var sbiNo = $(this).val();
+			    fetchPriorIncarceration(sbiNo);
+			});*/
+			
+			
+			/* $(".imgAdd").click(function(){
+			  $(this).closest(".row").find('.imgAdd').before('<div class="col-lg-4 col-md-6 d-flex uploadDynamicBlockMain"><div class="card mt-2 uploadDynamic"> <div class="card-body p-2"> <div class="imgUp"> <select class="custom-select form-control" id="userCaseload" name="userCaseload"display: block; margin-bottom: 1px;"> <option selected="" value="0">select</option> <option value="1">One</option> <option value="2">Two</option> <option value="3">Three</option> </select> <div class="imagePreview"></div><label style="padding: 1px 2px 2px 5px;background: #0b5ed7;" class="btn btn-primary dynamicadd"> <i class="fa fa-camera"></i> <input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label></div></div></div><i class="fa fa-times del"></i></div>');
+			});
+			$(document).on("click", "i.del" , function() {
+				$(this).parent().remove();
+			});
+			$(function() {
+			    $(document).on("change",".uploadFile", function()
+			    {
+			    	var uploadFile = $(this);
+			        var files = !!this.files ? this.files : [];
+			        if (!files.length || !window.FileReader) return;
+			 
+			        if (/^image/.test( files[0].type)){ 
+			            var reader = new FileReader();
+			            reader.readAsDataURL(files[0]); 
+			 
+			            reader.onloadend = function(){ 
+			                
+							uploadFile.closest(".card").find('.imagePreview').css("background-image", "url("+this.result+")");
+			            }
+			        }			      
+				    
+			    });
+			    document.getElementById('all-project').appendChild(uploadFile);
+			}); */
+			
+			
+			let initialInmateDataCache = null;
+			
+			const tabledatalookup = [
+			  { id: 1, checkbox: "t", sbiNo: "", dob: "", lastName: "", firstName: "", mi: "", suffix: "", mugshot: "", fingerPrint: "", matchPercentage: "" },
+			  { id: 2, checkbox: "t", sbiNo: "", dob: "", lastName: "", firstName: "", mi: "", suffix: "", mugshot: "", fingerPrint: "", matchPercentage: "" },
+			  { id: 3, checkbox: "t", sbiNo: "", dob: "", lastName: "", firstName: "", mi: "", suffix: "", mugshot: "", fingerPrint: "", matchPercentage: "" },
+			  { id: 4, checkbox: "t", sbiNo: "", dob: "", lastName: "", firstName: "", mi: "", suffix: "", mugshot: "", fingerPrint: "", matchPercentage: "" },
+			  { id: 5, checkbox: "t", sbiNo: "", dob: "", lastName: "", firstName: "", mi: "", suffix: "", mugshot: "", fingerPrint: "", matchPercentage: "" },
+			  { id: 6, checkbox: "t", sbiNo: "", dob: "", lastName: "", firstName: "", mi: "", suffix: "", mugshot: "", fingerPrint: "", matchPercentage: "" },
+			  { id: 7, checkbox: "t", sbiNo: "", dob: "", lastName: "", firstName: "", mi: "", suffix: "", mugshot: "", fingerPrint: "", matchPercentage: "" },
+			  { id: 8, checkbox: "t", sbiNo: "", dob: "", lastName: "", firstName: "", mi: "", suffix: "", mugshot: "", fingerPrint: "", matchPercentage: "" },
+			  { id: 9, checkbox: "t", sbiNo: "", dob: "", lastName: "", firstName: "", mi: "", suffix: "", mugshot: "", fingerPrint: "", matchPercentage: "" },
+			  { id: 10, checkbox: "t", sbiNo: "", dob: "", lastName: "", firstName: "", mi: "", suffix: "", mugshot: "", fingerPrint: "", matchPercentage: "" },
+			];
+
+			var inmateLookupTable = new Tabulator("#lookup-table", {
+			  layout: "fitColumns",
+			  data: JSON.parse(JSON.stringify(tabledatalookup)),
+			  height: '275px',
+			  printAsHtml: true,
+			  printStyled: true,
+			  selectable: 1, 
+			  rowSelectionChanged: function(data, rows) {
+			   if (data.length > 1) {
+			      var lastSelectedRow = rows[rows.length - 1];
+			      inmateLookupTable.deselectRow();
+			      lastSelectedRow.select();
+			    }
+			  },
+			  rowClick: function(e, row) {
+			    inmateLookupTable.deselectRow(); 
+			    row.select(); 
+			  },
+			  columns: [
+			  	{ title: "id", field: "id", visible: false },
+				{ title: "upd", field: "upd", visible: false },
+				{ title: "seqno", field: "seqno", visible: false },
+			    {
+			      //title: "Select",
+				  titleFormatter: (column) => setTitleDesc(column, 'Refferalcheckbox', 'Select'),
+			      field: "checkbox",
+			      formatter: "rowSelection",
+			      width: 80,
+			      hozAlign: "center",
+			      headerSort: false,
+			      cellClick: function(e, cell) {
+			        e.stopPropagation(); 
+			        var row = cell.getRow();
+			        if (row.isSelected()) {
+			          row.deselect();
+			        } else {
+			          inmateLookupTable.deselectRow(); 
+			          row.select();
+			        }
+			        return false; 
+			      }
+			    },
+			    { 
+					//title: "#ID",
+					titleFormatter: (column) => setTitleDesc(column, 'sbiNo_tbFld', '#ID'), 
+					field: "sbiNo",
+					headerTooltip:"#ID",
+					headerSort: true,
+					sorter: customSorter,
+					width:100
+				},
+			    { 
+					///title: "Last Name", 
+					titleFormatter: (column) => setTitleDesc(column, 'lastName_tbFld', 'Last Name'),
+					field: "lastName",
+					headerTooltip:"Last Name",
+					headerSort: true,
+					sorter: customSorter,
+					width:120
+				},
+			    { 
+					//title: "First Name",
+					titleFormatter: (column) => setTitleDesc(column, 'firstName_tbFld', 'First Name'), 
+					field: "firstName" ,
+					headerTooltip:"First Name",
+					headerSort: true,
+					sorter: customSorter,
+					width:100
+				},
+			    { 
+					//title: "MI", 
+					titleFormatter: (column) => setTitleDesc(column, 'mi_tbFld', 'MI'),
+					field: "mi",
+					headerTooltip:"MI",
+					headerSort: true,
+					sorter: customSorter,
+					width:50
+				},
+			    { 
+					title: "Suffix",
+					titleFormatter: (column) => setTitleDesc(column, 'suffix_tbFld', 'Suffix'), 
+					field: "suffix" ,
+					headerTooltip:"Suffix",
+					headerSort: true,
+					sorter: customSorter,
+					width:70
+				},
+				{ 
+					//title: "DOB", 
+					titleFormatter: (column) => setTitleDesc(column, 'dob_tbFld', 'DOB'),
+					field: "dob",
+					headerTooltip:"DOB",
+					headerSort: true,
+					sorter: customSorter,
+					width:100
+				},
+			    { 
+					//title: "Mugshot", 
+					titleFormatter: (column) => setTitleDesc(column, 'mugshot_tbFld', 'Mugshot'),
+					field: "mugshot", 
+					formatter:function() { return ''; },
+					headerTooltip:"Mugshot",
+					headerSort: true,
+					sorter: customSorter
+				
+			    },
+			    { 
+					//title: "Finger Print",
+					titleFormatter: (column) => setTitleDesc(column, 'fingerPrint_tbFld', 'Finger Print'), 
+					field: "fingerPrint", 
+					formatter: function() { return ''; },
+					headerTooltip:"Finger Print",
+					headerSort: true,
+					sorter: customSorter
+				},
+			    { 
+				  //title: "Match Percentage", 
+				  titleFormatter: (column) => setTitleDesc(column, 'matchPercentage_tbFld', 'Match Percentage'),
+				  field: "matchPercentage",				
+				  headerTooltip:"Match Percentage",
+				  headerSort: true,
+				  sorter: customSorter
+			    }
+			  ]
+			});
+			
+			tabulatorRegistry["lookup-table"] = {
+               varName: "inmateLookupTable",
+               instance: inmateLookupTable
+           };
+
+		inmateLookupTable.on("rowSelected", function(row) {
+		  var selectedRows = inmateLookupTable.getSelectedRows();
+		  if (selectedRows.length > 1) {
+		    inmateLookupTable.deselectRow();
+		    row.select();
+		  }
+		});
+
+		$('#securityThreatGroup').on('show.bs.modal', function() {
+		    $('.modal-backdrop').remove();
+		    $('#SBINUMBER').val('');
+		    $('#lookupLastName').val('');
+		    $('#lookupFirstName').val('');
+		    $('#lookupMI').val('');
+		    $('#lookupSuffix').val('');
+		    $('#lookupDOB').val('');
+		    $(this).find('.imagePreview').css('background-image', 'none');
+		    
+		    if (inmateLookupTable) {
+		        inmateLookupTable.deselectRow();
+		        if (initialInmateDataCache) {
+		            inmateLookupTable.setData(initialInmateDataCache);
+		        }
+		    }
+		});
+
+		function performInmateLookup(isInitialLoad = false) {
+		    var sbiNo = $('#SBINUMBER').val().trim();
+		    var lastName = $('#lookupLastName').val().trim();
+		    var firstName = $('#lookupFirstName').val().trim();
+		    var middleName = $('#lookupMI').val().trim();
+		    var suffixName = $('#lookupSuffix').val().trim();
+		    var dob = $('#lookupDOB').val().trim();
+
+		    if (!isInitialLoad && !sbiNo && !lastName && !firstName && !middleName && !suffixName && !dob) {
+		        if(initialInmateDataCache) {
+		           inmateLookupTable.setData(initialInmateDataCache);
+		        } else {
+		           performInmateLookup(true); 
+		        }
+		        return;
+		    }
+
+		    inmateLookupTable.deselectRow();
+		    
+		    $.ajax({
+		        url: '/OmnetTest/Booking/inmateLookup',
+		        type: 'GET',
+		        data: { sbiNo: sbiNo, lastName: lastName, firstName: firstName, middleName: middleName, suffixName: suffixName, dob: dob },
+		        success: function(data) {
+		            const formattedData = data.map(result => ({
+		                sbiNo: result.sbiNo,
+		                dob: formatDate(result.dob),
+		                lastName: result.lastName,
+		                firstName: result.firstName,
+		                mi: result.mi,
+		                suffix: result.suffix,
+		                matchPercentage: result.matchPercentage
+		            }));
+		            
+		            let displayData;
+		            // Preserve default row structure by padding results if they are fewer than the default.
+		            if (formattedData.length < tabledatalookup.length) {
+		                displayData = JSON.parse(JSON.stringify(tabledatalookup)); // Start with empty structure
+		                // Overwrite the empty rows with the fetched data
+		                formattedData.forEach((item, index) => {
+		                    if (displayData[index]) {
+		                        displayData[index] = { ...displayData[index], ...item };
+		                    }
+		                });
+		            } else {
+		                // If results are more than or equal to the default, show all of them.
+		                displayData = formattedData;
+		            }
+
+		            inmateLookupTable.setData(displayData);
+		            
+		            // Cache the data only on the initial load.
+		            if (isInitialLoad) {
+		                initialInmateDataCache = displayData;
+		            }
+
+		            if (data.length === 0 && !isInitialLoad) {
+		                message('CUE', 'No matching records found.', 0);
+		            }
+		        },
+		        error: function(xhr, status, error) {
+		            console.error("Error fetching lookup data:", error);
+		            message('CUE', 'Failed to perform lookup. Please check the console for details.', 0);
+		            inmateLookupTable.setData(JSON.parse(JSON.stringify(tabledatalookup)));
+		        }
+		    });
+		}
+
+
+		$('#lookupSearchButton').on('click', performInmateLookup);
+
+		$('#securityThreatGroup .modal-body').on('keyup', 'input', function(e) {
+		    if (e.key === 'Enter') {
+		        e.preventDefault();
+		        if (document.activeElement === e.target) {
+		            $(this).blur();
+		            performInmateLookup();
+		        }
+		    }
+		});
+		
+		$('#securityThreatGroup').on('show.bs.modal', function() {
+            $(this).find('.imagePreview').css('background-image', 'none');
+        });
+		
+		$('#securityThreatGroup').on('shown.bs.modal', function() {
+		    $('#SBINUMBER').focus();
+		});
+		
+		$('#securityThreatGroup').on('change', 'input.uploadFile', function() {
+		    var input = this;
+		    if (input.files && input.files[0]) {
+		        var $preview = $(input).closest('.imgUp').find('.imagePreview');
+		        if ($preview.length) {
+		            var reader = new FileReader();
+		            reader.onload = function(e) {
+		                $preview.css('background-image', 'url(' + e.target.result + ')');
+		            };
+		            reader.readAsDataURL(input.files[0]);
+		        }
+		    }
+		});
+
+		$('.modal-footer #fetchDataBtn').on('click', function() {
+		  var selectedRows = inmateLookupTable.getSelectedData();
+		  if (selectedRows.length > 0) {
+		    var selectedRecord = selectedRows[0];
+		    if (selectedRecord.sbiNo) {
+		      $('#sbiNumberInput').val(selectedRecord.sbiNo).trigger('blur').trigger('change');
+		      $('#securityThreatGroup').modal('hide');
+		      $('.modal-backdrop').remove();
+		    } else {
+		      message('CUE', 'Please select a row with inmate data.', 0);
+		    }
+		  } else {
+		    message('CUE', 'Please select a record from the list.', 0);
+		  }
+		});
+							
+							
+		$(tabledatalookup[0].checkbox).html("<input type='checkbox'>");
+		
+		var sbiNumberInput = $('#sbiNumberInput').val();
+		var screenName = document.getElementById('screenNameHolder').textContent;
+		var screenCode = document.getElementById('screenNameHolder').dataset.name;  
+		console.log(screenName,screenCode)
+		insertSBISearch(screenCode,screenName,sbiNumberInput); 
+		
+		
+		const canvas = document.getElementById('signatureCanvas');
+	    const context = canvas.getContext('2d');
+	
+	    let drawing = false;
+	
+	    canvas.addEventListener('mousedown', (event) => {
+	        drawing = true;
+	        context.beginPath();
+	        context.moveTo(event.offsetX, event.offsetY);
+	    });
+	
+	    canvas.addEventListener('mousemove', (event) => {
+	        if (drawing) {
+	            context.lineTo(event.offsetX, event.offsetY);
+	            context.stroke();
+	        }
+	    });
+	
+	    canvas.addEventListener('mouseup', () => {
+	        drawing = false;
+	    });
+	
+	    canvas.addEventListener('mouseleave', () => {
+	        drawing = false;
+	    });
+	
+	    document.getElementById('clearCanvaButton').addEventListener('click', () => {
+	        context.clearRect(0, 0, canvas.width, canvas.height);
+	    });
+	    
+	    const canvaa = document.getElementById('signatureCan');
+	    const contextcan = canvaa.getContext('2d');
+	
+	    let drawingSign = false;
+	
+	    canvaa.addEventListener('mousedown', (event) => {
+	        drawingSign = true;
+	        contextcan.beginPath();
+	        contextcan.moveTo(event.offsetX, event.offsetY);
+	    });
+	
+	    canvaa.addEventListener('mousemove', (event) => {
+	        if (drawingSign) {
+	            contextcan.lineTo(event.offsetX, event.offsetY);
+	            contextcan.stroke();
+	        }
+	    });
+	
+	    canvaa.addEventListener('mouseup', () => {
+	        drawingSign = false;
+	    });
+	
+	    canvaa.addEventListener('mouseleave', () => {
+	        drawingSign = false;
+	    });
+	    
+	    document.getElementById('clearCanvaBtn').addEventListener('click', () => {
+	        contextcan.clearRect(0, 0, canvaa.width, canvaa.height);
+	    });
+
+		</script>
+		<style>
+			.mugshotcard {
+				width: 100%;
+    			max-width: 270px;
+    		}
+        	.remove-btn { background: #a1a1a1; color: white; border: none; cursor: pointer; }
+		</style>
+			
+		<!--<script src="js/../script.js"></script>
+	<script>
+		$(document).ready(function () {
+			
+		});
+	</script>-->
+		<script type="text/javascript">
+			$('#js-page-content').smartPanel();
+		</script>
+		<!--<script src="js/vendors.bundle.js"></script>
+        <script src="js/app.bundle.js"></script>-->
+		<div th:replace="~{fragments/msgBox :: msgBox}"></div>
+	</body>
+	<!-- BEGIN Page Footer -->
+	<div th:replace="~{fragments/footer :: footer}"></div>
+	<!-- END Page Footer -->
+</html>

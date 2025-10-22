@@ -1,0 +1,547 @@
+<div th:fragment="IncidentInfoSupervisorTab" th:remove="tag">
+	<div class="row form-group">
+		<div class="col-lg-12">
+			<div id="additionaldetail" class="panel">
+				<div class="panel-hdr">
+					<h2>
+						Additional Details
+					</h2>
+				</div>
+				<div class="panel-container show">
+					<div class="panel-content">
+						<div id="js-checkbox-toggles">
+							<div class="row">
+								<div class="d-flex align-items-center col-lg-2 pr-0 selectFloatingLabel">
+									<label for="warrentType" class="form-label mr-2 mb-0 control-label selectFloating">Warrant
+										Type</label>
+									<select
+										class="custom-select form-control typecontact d-block mb-1 floatingLableClick rawField"
+										data-fld = "typer_warrant" data-lbl = "warrentType" id="warrentType">
+										<option>Warrant Type</option>
+										<option value="Option 1">test</option>
+										<option value="Option 2">test1</option>
+									</select>
+								</div>
+								<div class="d-flex align-items-center col-lg-2 pr-0 floatingFields">
+									<input type="text" class="form-control floatingLable rawField" aria-label="" data-fld = "supervisor_warrant" data-lbl = "warrantNumber"
+										id="warrantNumber" name="" value="" placeholder="">
+									<label for="warrantNumber" class="form-label mr-1 text-nowrap mb-0">Warrant#</label>
+								</div>
+								<div class="d-flex align-items-center col-lg-2 pr-0">
+									<div class="custom-control custom-checkbox custom-control-inline ml-2 w-100">
+										<input type="checkbox" class="custom-control-input rawField" data-fld = "offender_rape" data-lbl = "offenderRape" id="offenderRape">
+										<label class="custom-control-label text-nowrap text-nowrap"
+											for="offenderRape">Offender States Rape</label>
+									</div>
+								</div>
+								<div class="d-flex align-items-center col-lg-3 pr-0 selectFloatingLabel">
+									<label for="sexAllegation"class="form-label mr-2 mb-0 control-label selectFloating"
+										style="left: 10px;">Type of Sexual Allegation</label>
+									<select
+										class="custom-select form-control typecontact d-block mb-1 floatingLableClick rawField" data-fld = "super_sexallegation" data-lbl = "sexAllegation"
+										id="sexAllegation">
+										<option value="">Type of Sexual Allegation</option>
+										<option value="1">Inmate Non Consensual Sexual Act</option>
+										<option value="2">Inmate on Inmate Abusive Sexual Contact</option>
+										<option value="3">Staff Sexual Misconduct</option>
+										<option value="4">Staff Sexual Harassment</option>
+										<option value="5">Inmate on Inmate Sexual Harassment</option>
+									</select>
+								</div>
+								<div class="d-flex align-items-center col-lg-3 pr-0 selectFloatingLabel">
+									<label class="form-label mr-2 mb-0 control-label selectFloating" for="locationCategory"
+										style="left: 10px;">Location Category</label>
+									<select
+										class="custom-select form-control typecontact d-block mb-1 floatingLableClick rawField"
+										data-fld = "loc_cat" data-lbl = "locationCategory" id="locationCategory">
+										<option>Location Category</option>
+										<option value="Option 1">test</option>
+										<option value="Option 2">test1</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="standardCheck" class="panel">
+				<div class="panel-hdr">
+					<h2>
+						Standard Check List
+					</h2>
+					<div class="d-flex align-items-center justify-content-end">
+						<!--<span class="d-flex ml-2">
+							<a id="newCheckList" href="javascript:void(0);"
+								class="btn btn-primary btn-sm btn-icon waves-effect waves-themed headingIconsBlock mr-1"
+								data-toggle="tooltip" data-placement="top" data-original-title="New"> <i
+									class="fa-solid fa-plus"></i>
+							</a>
+						</span>-->
+					</div>
+				</div>
+				<div class="panel-container show">
+					<div class="panel-content">
+						<div id="js-checkbox-toggles">
+							<div class="row">
+								<div class="d-flex align-items-center col-lg-6 pr-0">
+									<table id="standardcheck-table" class="w-100"></table>
+								</div>
+								<div class="col-lg-6">
+									<div class="d-flex align-items-center floatingFields">
+										<input type="text" class="form-control floatingLable rawField" data-fld = "com_by" data-lbl = "completedBy" aria-label="Security"
+											placeholder="" name="Group" id="completedBy" value="" disabled>
+										<label for="completedBy" class="form-label mb-0 text-nowrap"
+											style="left: 10px;">Completed By</label>
+										<span data-toggle="modal" data-target="#selectSupervisorModal">
+											<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off"
+												data-toggle="tooltip" data-placement="top"
+												data-original-title="Select  Supervisor"
+												data-class="nav-function-hidden">
+												<i class="fa fa-users"></i>
+											</a>
+										</span>
+									</div>
+									<div class="w-100 mt-3 floatingFieldsTextarea">
+										<textarea class="form-control floatingLabletextarea rawField" data-fld="sup_comm" data-lbl="Comments" placeholder=""
+											id="completedComments" rows="9" name="Comments" aria-label="Comments" 
+											style="resize:none;" value=""></textarea>
+										<label for="completedComments" class="form-label mb-0 text-nowrap">Comments</label><div class="charCount"><span id="completecom">0</span>/500 characters</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="selectSupervisorModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header pt-3 pb-2">
+						<h6 class="modal-title"> Officer Information </h6>
+						<button type="button" class="close" data-dismiss="modal" id="cancelOfcrPopup123" aria-label="Close">
+							<span aria-hidden="true"><i class="fal fa-times"></i></span>
+						</button>
+					</div>
+					<div class="modal-body py-0">
+						<div class="d-flex align-items-center mb-2 floatingFields mt-2">
+							<input type="text" id="supKey" class="form-control floatingLable" aria-label="dob" name="Find"
+								value="" placeholder="">
+							<label for="dob" class="form-label mb-0 text-nowrap" style="left: 10px;">Find</label>
+							<button type="button" class="btn btn-primary btn-sm ml-2" id="supSrch">Find</button>
+						</div>
+						<div id="selectSupervisor-table"> </div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn">Ok</button>
+						<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		
+		//const userId = localStorage.getItem('userId');
+		// Define Test Data
+		var tabledatastandardcheck = [
+			{
+				id: "0",
+				checkbox: "t",
+				description: "",
+				date: "",
+			},
+			{
+				id: "1",
+				checkbox: "t",
+				description: "",
+				date: "",
+			},
+			{
+				id: "2",
+				checkbox: "t",
+				description: "",
+				date: "",
+			},
+			{
+				id: "3",
+				checkbox: "t",
+				description: "",
+				date: "",
+			},
+			{
+				id: "4",
+				checkbox: "t",
+				description: "",
+				date: "",
+			},
+			{
+				id: "5",
+				checkbox: "t",
+				description: "",
+				date: "",
+			},
+			{
+				id: "6",
+				checkbox: "t",
+				description: "",
+				date: "",
+			},
+			{
+				id: "7",
+				checkbox: "t",
+				description: "",
+				date: "",
+			},
+			{
+				id: "8",
+				checkbox: "t",
+				description: "",
+				date: "",
+			},
+			{
+				id: "9",
+				checkbox: "t",
+				description: "",
+				date: "",
+			},
+			{
+				id: "10",
+				checkbox: "t",
+				description: "",
+				date: "",
+			},
+		];
+
+		//Define Table
+		var standardCheckTbl = new Tabulator("#standardcheck-table", {
+			layout: "fitColumns",
+			data: tabledatastandardcheck,
+			height: '225px',
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+			
+		
+					{ title: "seqno", field: "seqno", visible: false },
+			
+			
+				{
+					title: "id",
+					field: "id",
+					visible: false,
+				},
+				{
+					title: 'upd',
+					visible: false,
+					field: "upd",
+				},
+				{
+					title: 'QUES_CODE',
+					visible: false,
+					field: "QUES_CODE",
+				},
+				{
+					//title: "Completed",
+					titleFormatter: (column) => setTitleDesc(column, 'Re_Completed', 'Completed'),
+					field: "checkbox",
+					formatter: function (cell) {
+						// Create a checkbox element
+						var checkbox = document.createElement("input");
+						checkbox.type = "checkbox";
+						if (cell.getValue() == 'Y') {
+							checkbox.checked = true;
+						} else {
+							checkbox.checked = false;
+						}
+
+						checkbox.addEventListener("change", function () {
+							//setUpdSup(cell);
+							// Update the cell value when checkbox is changed
+							rowData = cell.getRow().getData();
+							if (checkbox.checked) {
+								//alert('yes');
+								//$('#completedBy').val('test');
+								//rowData.completedBy = 'BADMMRP';
+								//alert(getCurrentDt());
+								//rowData.date = getCurrentDt();								
+								cell.setValue('Y');
+								setNames3(userId, 'completedBy');
+								var ide = cell.getRow().getData().id;
+								setTimeout(function () {
+									setSupData(ide, 'completedFullName', $('#completedBy').val());
+									setSupData(ide, 'completedBy', userId);
+									setSupData(ide, 'date', getCurrentDt());
+									setUpdSup(cell);
+								}, 1000);
+								//alert(ide);
+								//alert(getRowIdByCell(cell));
+								//rowData.completedFullName = $('#completedBy').val();
+							} else {
+								cell.setValue('N');
+							}
+
+						});
+						return checkbox; // Return the checkbox element
+					},
+					width: 100,
+				},
+				{
+					//title: "Description",
+					titleFormatter: (column) => setTitleDesc(column, 'date_Description', 'Description'),
+					field: "description",
+				},
+				{
+					//title: "Date",
+					titleFormatter: (column) => setTitleDesc(column, 'date_Date', 'Date'),
+					field: "date",
+					editor: dateEditor,
+					cellEdited: function (cell) {
+						setUpdSup(cell);
+					},
+					width: 150,
+
+				},
+				{
+					field: "completedBy",
+					visible: false,
+				},
+				{
+					field: "completedFullName",
+					visible: false,
+				},
+				{
+					field: "comments",
+					visible: false,
+				},
+			]
+		});
+		
+		tabulatorRegistry["standardcheck-table"] = {
+					varName: "standardCheckTbl",
+					instance: standardCheckTbl
+				};
+
+		function setUpdSup(cell) {
+			// Get the row data
+			const rowData = cell.getRow().getData();
+
+			// Set the 'upd' field to 'Y'
+			rowData.upd = "Y";
+
+			// Update the row data
+			//cell.getRow().update(rowData);
+			//updatable = true;
+
+			const rows = standardCheckTbl.getRows();
+			var data_joint = '';
+			dataToShow5 = [];
+			for (let row of rows) {
+				const data = row.getData();
+
+				//alert(data.upd);
+
+				if (data.upd == 'Y') {
+					
+					//alert(data.date);
+
+					var SupData = {
+						INCIDENT_SEQ_NUM: $('#incidentNo').val(),
+						INST_NUM: $('#institution').val(),
+						cb_completed: data.checkbox,
+						ques_code: data.QUES_CODE,
+						ques_desc: data.description,
+						completed_by: data.completedBy,
+						chklist_date: formatDateWithCurrentTime(data.date),
+						comments: data.comments
+					}
+
+					console.log("checking EveData : " + SupData);
+
+					//!@#$
+					dataToShow5.push(SupData);
+
+				}
+			}
+		}
+
+		function setSupData(rowNumber, columnField, valueToSet) {
+			// Get the row by its index (rowNumber - 1 because rowNumber is 1-based)
+			var row = standardCheckTbl.getRow(rowNumber);
+
+			// Check if the row exists
+			if (row) {
+				// Update the specific field in the row
+				row.update({[columnField]: valueToSet});
+			} else {
+				console.error("Row not found");
+			}
+		}
+
+		function getRowIdByCell(cell) {
+			// Ensure the provided cell is a valid HTMLTableCellElement
+			if (cell instanceof HTMLTableCellElement) {
+				// Get the row that contains the cell
+				const row = cell.parentElement; // or cell.closest('tr') for more robustness
+				// Get the row ID (assuming the row has an ID attribute)
+				return row.id || null; // Return the row ID or null if it doesn't exist
+			}
+			return null; // Return null if the input is not a valid cell
+		}
+
+		function setNames3(userid, field) {
+			$.ajax({
+				method: "POST",
+				url: contextPath + 'getNames',
+				dataType: "json",
+				data: {
+					userid: userid
+				},
+				success: function (response) {
+					var lname = nullhandler3(response[0]['USER_LAST_NAME']) + ' ';
+					var fname = nullhandler3(response[0]['USER_FIRST_NAME']) + ' ';
+					var mname = nullhandler3(response[0]['USER_MID_NAME']) + ' ';
+					var sname = nullhandler3(response[0]['USER_SUFFIX_NAME']) + ' ';
+
+					var nam = lname + fname + mname + sname;
+					$('#' + field).val(nam);
+				},
+				error: function (error) {
+					console.error('Error:', error);
+					console.log(error.responseText);
+				}
+			});
+		}
+
+		function nullhandler3(str) {
+			if (str == 'null' || str == null) {
+				return '';
+			} else {
+				return str;
+			}
+		}
+
+		function getCurrentDt() {
+			const date = new Date();
+			const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+			const day = String(date.getDate()).padStart(2, '0');
+			const year = date.getFullYear();
+
+			return `${month}/${day}/${year}`;
+		}
+
+		// Define Test Data
+		var selectSupervisor = [
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+		];
+
+		//Define Table
+		var supTable = new Tabulator("#selectSupervisor-table", {
+			layout: "fitColumns",
+			data: selectSupervisor,
+			height: '140px',
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+				{title: "userid", field: "USER_ID", visible: false},
+				{
+					title: "Last Name",
+					field: "USER_LAST_NAME",
+				},
+				{
+					title: "First Name",
+					field: "USER_FIRST_NAME",
+				},
+				{
+					title: "MI",
+					field: "USER_MID_NAME",
+					width: 80,
+				},
+				{
+					title: "Suffix",
+					field: "USER_SUFFIX_NAME",
+					width: 100,
+				},
+			]
+		});
+
+		$(document.body).on('keyup', '#supKey', function (e) {
+			if (e.keyCode == 13) {
+				$('#supSrch').trigger('click');
+			}
+		});
+
+		$(document.body).on("click", "#supSrch", function () {
+			var value = $('#supKey').val().toLowerCase();
+			setOfficerTab3(value);
+		});
+
+		function setOfficerTab3(srchkey) {
+			supTable.setData('getIncidentStaff?srchkey=' + srchkey);
+		}
+		
+		supTable.on("rowClick", function (e, row) {
+			//alert("Row " + row.getData().user_name + " Clicked!!!!");
+			var curr_fld = $('#curr_sup_fld').val();
+			$('.modal-backdrop').hide();
+			$('#cancelOfcrPopup123').trigger('click');
+
+			var staff_nm = nullhandler2(row.getData().USER_LAST_NAME) + ' ';
+			staff_nm += nullhandler2(row.getData().USER_FIRST_NAME) + ' ';
+			staff_nm += nullhandler2(row.getData().USER_MID_NAME) + ' ';
+			staff_nm += nullhandler2(row.getData().USER_SUFFIX_NAME) + ' ';
+			
+			setSupData(curr_fld, 'completedBy', row.getData().USER_ID);
+			setSupData(curr_fld, 'completedFullName', staff_nm.trim());
+			$('#completedBy').val(staff_nm.trim());
+			var mycell = getCellByFieldAndRowId(standardCheckTbl, "comments", curr);
+			setUpdSup(mycell);
+			
+			
+			
+
+		});
+
+		$('#selectSupervisorModal').on('shown.bs.modal', function () {
+		$('#supKey').val('');
+		setOfficerTab3('');
+		setTimeout(function() {
+		$('#supKey').focus();
+		}, 100);
+		});
+		
+		
+		
+		$(tabledatastandardcheck[0].checkbox).html("<input type='checkbox'>");
+
+	</script>
+</div>

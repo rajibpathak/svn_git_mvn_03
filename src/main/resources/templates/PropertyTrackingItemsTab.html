@@ -1,0 +1,1141 @@
+<div th:fragment="PropertyTrackingItemsTab" th:remove="tag">
+	<div class="row">
+		<div class="col-lg-12" style="background: #f3eff4;"> 
+			<div id="propertyHead" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Property
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content p-1">
+                        <div id="js-checkbox-toggles">
+                            <div class="row">
+								<div class="col-12 col-lg-12">
+									<div class="row mx-1">
+										<div class="col-md-4 col-lg-4 col-xl-3 px-0">
+											<div class="row mx-1">
+												<div class="col-12 col-md-6 col-lg-6 pl-0 d-flex align-items-center mt-2">
+													<div class="money-container floatingFields w-100">
+														  <input type="number" min="0.00" step="0.01" class="form-control floatingLable PropertyTrackingItems_Tab_Hdr money-input formInputField-itms rawField" data-max-int="9" data-max-dec="2" data-fld="moneyAmt-Items" data-lbl="Money Amount" tabindex="2" aria-label="moneyAmt-Items" name="PROP_TRK_AMT" id="moneyAmt-Items" value="" placeholder="">
+														  <label for="moneyAmt-Items" class="form-label mb-0 pl-2 text-nowrap">Money Amount</label>
+														  <span class="money-symbol">$</span>																					
+													</div>
+												</div>
+												<div class="col-12 col-md-6 col-lg-6 pl-0 d-flex align-items-center mt-2 floatingFields">
+													<input type="number" min="0" step="1" class="form-control floatingLable PropertyTrackingItems_Tab_Hdr formInputField-itms numberInputField rawField" data-max-length="6" tabindex="3" aria-label="boxNum" data-fld="boxNum" data-lbl="Box Number" name="PROP_BOX_NUM" id="boxNum" value=" " placeholder="">
+													<label for="boxNum" class="form-label mb-0 text-nowrap">Box Number</label>																					
+												</div>
+											</div>
+										</div>
+										<div class="col-12 col-md-4 col-lg-4 col-xl-3 pl-0 d-flex align-items-center mt-2 floatingFields">
+											<input type="text" class="form-control floatingLable formInputField-itms rawField" aria-label="collectedByItemsInp" id="collectedByItemsInp" data-fld="collectedByItemsInp" data-lbl="Collected By" name="collectedByItemsInp" value="" placeholder="" disabled>
+											<label for="collectedByItemsInp" class="form-label mb-0 text-nowrap">Collected By</label>	
+											<span data-toggle="modal" data-target="#ObservingOfficer" class="ObservingOfficer" id="collectedByItems" modal-title="Collected By">
+												<a href="#" id="collectedByItems-a" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center formInputField-itms" data-class="nav-function-hidden" 
+													data-toggle="tooltip" data-placement="top" data-original-title="Collected By" tabindex="4">
+													<i class="fa fa-users" aria-hidden="true"></i>
+												</a>
+											</span>																				
+											<input type="hidden" class="PropertyTrackingItems_Tab_Hdr" aria-label="" name="" id="collectedByItemsHdn" value="" placeholder="">
+										</div>
+										<div class="col-12 col-md-4 col-lg-4 col-xl-3 pl-0 d-flex align-items-center mt-2 floatingFields">
+											<input type="text" class="form-control floatingLable rawField" aria-label="returnedByItemsInp" id="returnedByItemsInp" name="returnedByItemsInp" data-fld="returnedByItemsInp" data-lbl="Returned By" value="" placeholder="" disabled>
+											<label for="returnedByItemsInp" class="form-label mb-0 mr-1 text-nowrap">Returned By</label>	
+											<span data-toggle="modal" data-target="#ObservingOfficer" class="ObservingOfficer" id="returnedByItems" modal-title="Returned By">
+												<a href="#" id="returnedByItems-a" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center formInputField-itms" data-class="nav-function-hidden"
+												data-toggle="tooltip" data-placement="top" data-original-title="Returned By" tabindex="5">
+													<i class="fa fa-users" aria-hidden="true"></i>
+												</a>
+											</span>	
+										</div>
+										<div class="col-md-4 mt-md-3 col-lg-4 mt-lg-3 col-xl-3 mt-xl-2 px-0">
+											<div class="row mx-1">
+												<div class="col-12 col-md-6 col-lg-6 pl-0 d-flex align-items-center floatingFields">
+													<input class="form-control floatingLable DateVerify date-input date-input2 PropertyTrackingItems_Tab_Hdr formInputField-itms rawField" tabindex="6" size="16" type="text" data-lbl="Date Collected" data-fld="dateCollected" aria-label="dateCollected" name="PROP_TRK_DT" id="dateCollected" value="" placeholder="" autocomplete="off">
+													<label class="form-label"  for="dateCollected">Date Collected</label> 
+												</div>
+												<div class="col-12 col-md-6 col-lg-6 pl-0 d-flex align-items-center floatingFields">
+													<input class="form-control floatingLable DateVerify date-input date-input2 PropertyTrackingItems_Tab_Hdr formInputField-itms rawField" tabindex="7" size="16" type="text" data-lbl="Date Returned" data-fld="dateReturned-Items" aria-label="dateReturned-Items" name="PROP_RETN_DT" id="dateReturned-Items" value="" placeholder="" autocomplete="off">
+													<label class="form-label"  for="dateReturned-Items">Date Returned</label> 
+												</div>
+											</div>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Property Description
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content p-1">
+                        <div id="js-checkbox-toggles">
+                            <div class="row mx-1">
+								<div class="col-12 col-md-5 col-lg-5 col-xl-4 pl-0">
+									<div id="table-container" class="mb-1">
+										<div id="itemsTable"></div>
+									</div>
+								</div>
+								<div class="col-12 col-md-7 col-lg-7 col-xl-8 px-0">
+									<div class="form-group row mx-1">
+										<div class="col-12 col-md-3 col-lg-3 col-xl-3 pl-0 d-flex align-items-center mt-2 floatingFields">
+											<input type="number" min="0" step="1" class="form-control floatingLable PropertyTrackingItems_Tab_Desc formInputField-itms numberInputField rawField" data-max-length="4" data-fld="receiveQty" data-lbl="Qty" aria-label="receiveQty" name="PROP_INMT_ITM_QTY" id="receiveQty" value=" " placeholder="">
+											<label for="receiveQty" class="form-label mb-0 text-nowrap">Qty</label>																					
+										</div>
+										<div class="col-12 col-md-3 col-lg-3 col-xl-3 pl-0 d-flex align-items-center mt-2 floatingFields">
+											<input type="number" min="0" step="1" class="form-control floatingLable PropertyTrackingItems_Tab_Desc formInputField-itms numberInputField rawField" data-max-length="4" data-fld="returnQty" data-lbl="Returned Qty" aria-label="returnQty" name="PROP_INMT_ITM_RETN_QTY" id="returnQty" value=" " placeholder="">
+											<label for="returnQty" min="0" step="1" class="form-label mb-0 text-nowrap">Returned Qty</label>																						
+										</div>
+										<div class="col-12 col-lg-12 pl-0 d-flex align-items mt-2" style="flex-direction: column;">
+											<textarea class="form-control PropertyTrackingItems_Tab_Desc formInputField-itms textareaField rawField" data-fld="itmsColtCmnts" data-lbl="Comments" id="itmsColtCmnts" placeholder="Comments" rows="7" maxlength="2000" name="PROP_INMT_ITM_DESC" aria-label="itmsColtCmnts" value=""></textarea>
+											<small class="text-muted" data-asw-org-font-size="13"><span id="itmsColtCmnts-count">0</span>/2000 characters</small>
+										</div>
+										<div class="col-12 col-md-8 col-lg-8 col-xl-7 pl-0 d-flex align-items-center mt-1">
+											<span class="mb-0 mr-1 text-nowrap text-primary">Returned To</span>			
+											<div class="floatingFields">
+												<input type="text" class="form-control floatingLable PropertyTrackingItems_Tab_Desc formInputField-itms nameInputField rawField" data-max-length="20" data-fld="PROP_INMT_RETN_LST_NM" data-lbl="Last Name" aria-label="PROP_INMT_RETN_LST_NM" name="PROP_INMT_RETN_LST_NM" id="PROP_INMT_RETN_LST_NM" value="" style="margin-right: 0.1rem;" placeholder="Last Name">
+												<label for="PROP_INMT_RETN_LST_NM" class="form-label mb-0 mr-2 text-nowrap">Last Name</label>
+											</div>
+											<div class="floatingFields">
+												<input type="text" class="form-control floatingLable PropertyTrackingItems_Tab_Desc formInputField-itms nameInputField rawField" data-max-length="15" data-fld="PROP_INMT_RETN_FST_NM" data-lbl="First Name" aria-label="PROP_INMT_RETN_FST_NM" name="PROP_INMT_RETN_FST_NM" id="PROP_INMT_RETN_FST_NM" value="" style="margin-right: 0.1rem;" placeholder="First Name">
+												<label for="PROP_INMT_RETN_FST_NM" class="form-label mb-0 mr-2 text-nowrap">First Name</label>
+											</div>
+											<div class="floatingFields">
+												<input type="text" class="form-control floatingLable PropertyTrackingItems_Tab_Desc formInputField-itms nameInputField rawField" data-max-length="1" data-fld="PROP_INMT_RETN_MID_NM" data-lbl="Mid." aria-label="PROP_INMT_RETN_MID_NM" name="PROP_INMT_RETN_MID_NM" id="PROP_INMT_RETN_MID_NM" value="" style="width: 2.4rem; margin-right: 0.1rem;" placeholder="Middle Name">
+												<label for="PROP_INMT_RETN_MID_NM" class="form-label mb-0 mr-2 text-nowrap">Mid.</label>
+											</div>
+											<div class="floatingFields">
+												<input type="text" class="form-control floatingLable PropertyTrackingItems_Tab_Desc formInputField-itms nameInputField rawField"  data-max-length="5" data-fld="PROP_INMT_RETN_SFX" data-lbl="Sffx." aria-label="PROP_INMT_RETN_SFX" name="PROP_INMT_RETN_SFX" id="PROP_INMT_RETN_SFX" value="" style="width: 3rem;"  placeholder="Suffix">																					
+												<label for="PROP_INMT_RETN_SFX" class="form-label mb-0 mr-2 text-nowrap">Sffx.</label>
+											</div>
+										</div>
+										<div class="col-12 col-md-4 mt-md-2 col-lg-4 mt-lg-2 col-xl-5 mt-xl-1 pl-0 d-flex align-items-center selectFloatingLabel">
+											<input hidden="true" class="form-control w-100" type="text" aria-label="" name="" id="RelationSearchInput" value="" placeholder="">
+											<select class="custom-select form-control typecontact PropertyTrackingItems_Tab_Desc formInputField-itms floatingLableClick rawField" id="returnRelationItems" name="RELATIONSHIP_CODE" data-lbl="Relationship" data-fld="returnRelationItems">
+												<option value="null">Relationship</option>
+											</select>																					
+											<label for="returnRelationItems" class="form-label mb-0 text-nowrap selectFloating">Relationship</label>
+										</div>
+									</div>
+								</div>
+							</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="panel-content d-flex justify-content-center align-items-center mb-2">
+				<button class="btn btn-sm btn-primary ml-1 align-items-center" id="prevPropertyBtn-Colt" disabled data-toggle="tooltip" data-placement="top" data-original-title="Previous">
+					<i class="fa fa-arrow-left"></i>
+				</button>
+				<button class="btn btn-sm btn-primary ml-1 align-items-center"id="nextPropertyBtn-Colt" disabled data-toggle="tooltip" data-placement="top" data-original-title="Next">
+					<i class="fa fa-arrow-right"></i>
+				</button>
+			</div>
+		</div>
+		
+	</div>
+	<style>
+		/*.tabulator .tabulator-row.selected-row {
+		    background-color: #B7DDF2;
+		}*/
+		#itemsTable{
+			height: fit-content;
+			max-height: 220px;
+		}
+	</style>
+	<script>	
+		var coltItemsHdrData = [];
+		var itemsTableData = [];
+		var coltItmsPropSeqNo = null;
+		var itemsDescTable = new Tabulator("#itemsTable", {
+								layout: "fitColumns",
+								placeholder:"No Data Available",
+								//progressiveLoad: "scroll",
+								//progressiveLoadScrollMargin: 400,
+								data: itemsTableData,
+								selectableRows:1,
+								height: '320px',
+								virtualDom: false,
+								
+								columns: [
+									{
+										//title: "Received",
+										titleFormatter: (column) => setTitleDesc(column, 'receivedItms-itmsTbl', 'Received'),
+										field: "PROP_INMT_ITM_QTY",
+										headerSort:false,
+										formatter: (cell) => {
+											const value = cell.getValue();
+											const row = cell.getRow();
+											const index = row.getPosition();
+											return `
+												<input type="checkbox" class="coltItmsChkBox" ${value != null ? 'checked disabled' : ''} onclick="markColtReceived(event, ${index-1})"/>
+											    <label>${value}</label>
+											`;
+										},
+										width: 100,
+									},
+									{
+										//title: "Item",
+										titleFormatter: (column) => setTitleDesc(column, 'itemDesc-itmsTbl', 'Item'),
+										field: "ITEM_DESC",
+										headerSort:false
+									},
+									{
+										//title: "Returned",
+										titleFormatter: (column) => setTitleDesc(column, 'returnedItms-itmsTbl', 'Returned'),
+										field: "PROP_INMT_ITM_RETN_QTY",
+										headerSort:false,
+										formatter: (cell) => {
+											const value = cell.getValue();
+											const row = cell.getRow();
+											const index = row.getPosition();
+											return `
+												<input type="checkbox" class="coltItmsChkBox" ${value != null ? 'checked disabled' : ''} onclick="markColtRetrn(event, ${index-1})"/>
+											`;
+										},
+										width: 100,
+									},
+								]
+		});
+		
+		tabulatorRegistry['itemsTable']={varName: 'itemsDescTable', instance: itemsDescTable}
+							
+		var currColtPropIndx = 0;
+		var currColtItemIndx = null;
+		function getPropertyTrackingItemsTabHdr(commitNo){
+			$.ajax({
+				url: contextPath + 'propertyTrackingHdr',
+				type: 'GET',
+				data: {
+					commitNo: commitNo,
+					propType: "RPT"
+				},
+				success: function (response) {																
+					if (response && !response.error) {
+						coltItemsHdrData = response.RESULTSET;
+						setPropertyTrackingItemsTabHdr();
+						//document.getElementById("commonPerloader").style.display="none";
+					}else {
+						console.error("Server returned error: ", response.error);
+						custom_msg('CUW', "Unable to load property tracking data. Please try again later.");
+					}						
+				}
+			});
+		}
+		
+		var currCommitNo = null;
+		async function createEmptyColtHdrObj(passedInstNum = null, propType){
+			var instNum = passedInstNum;
+										
+			if (!instNum) {
+				try{
+					instNum = await getInstitutionNo();
+				}catch{
+					console.error("Failed to get Institution Number:", error);
+				}
+			}
+										
+			const emptyObject = {
+				"INMATE_COMMIT_NO": currCommitNo,
+				"INSTITUTION_INST_NUM": instNum,
+				"USERS_USER_ID": "",
+				"USER_FIRST_NAME": "",
+				"USER_LAST_NAME": "",
+				"USER_MID_NAME": "",
+				"USER_SUFFIX_NAME": "",
+				"USERS_USER_ID_RETURN_BY": "",
+				"PROP_TRK_SEQ_NO": null,
+				"PROP_TRK_AMT": "",
+				"PROP_RETN_DT": null,
+				"PROP_TRK_DT": null,
+				"PROP_TRK_TP": propType,
+				"PROP_BOX_NUM": ""
+			};
+			return emptyObject;
+		}
+									
+		async function setPropertyTrackingItemsTabHdr(){
+										  
+			if(coltItemsHdrData == [] || coltItemsHdrData.length == 0){
+				const obj = await createEmptyColtHdrObj(null, "RPT");
+				coltItemsHdrData.push(obj);
+			}
+										
+			data = coltItemsHdrData[currColtPropIndx];
+										
+			$("#moneyAmt-Items").val(data.PROP_TRK_AMT ? data.PROP_TRK_AMT : "");
+			$("#boxNum").val(data.PROP_BOX_NUM ? data.PROP_BOX_NUM : '');
+			$("#dateCollected").val(formatDate(data.PROP_TRK_DT ? data.PROP_TRK_DT : ''));
+			$("#dateReturned-Items").val(formatDate(data.PROP_RETN_DT ? data.PROP_RETN_DT : ''));
+			$("#collectedByItemsInp").val(
+				(data.USER_LAST_NAME ? data.USER_LAST_NAME : "") +
+				(data.USER_FIRST_NAME ? ", "+data.USER_FIRST_NAME : "") +
+				(data.USER_MID_NAME ? " "+data.USER_MID_NAME : "") +
+				(data.USER_SUFFIX_NAME ? " "+data.USER_SUFFIX_NAME : "")
+			);
+										
+			if(data.USERS_USER_ID_RETURN_BY != null && data.USERS_USER_ID_RETURN_BY != ''){
+				$.ajax({
+					url: contextPath + 'getUserFullName',
+					type: 'GET',
+					data: {
+						userId: data.USERS_USER_ID_RETURN_BY
+					},
+					success: function (res) {
+						$("#returnedByItemsInp").val(res ? res : '');
+					}
+				});
+				}else {
+					$("#returnedByItemsInp").val('');
+				}
+										
+				coltItmsPropSeqNo = data.PROP_TRK_SEQ_NO;
+										
+				setColtItemsDesc(coltItmsPropSeqNo);
+				enableOrDisableColtItmsMoveBtns();
+			}
+									
+			function setColtItemsDesc(prpTrkSeq){
+				$.ajax({
+					url: contextPath + 'propertyTrackingItmsColt',
+					type: 'GET',
+					data: {
+						propTrkSeq: prpTrkSeq
+					},
+					success: function (res) {
+						itemsTableData = res.RESULTSET;
+						itemsDescTable.setData(itemsTableData);
+						
+						// Select 1st row
+						currColtItemIndx = 0;
+						populateInputFields(itemsTableData[0]); // Populate input fields
+						let firstRow = itemsDescTable.getRows()[0];
+						if(firstRow){
+						    firstRow.select();
+						}
+						
+						setTimeout(() => {
+							$('#moneyAmt-Items').focus();
+						}, 300);
+						//document.getElementById("commonPerloader").style.display="none";
+						/*if(currColtItemIndx){
+							setTimeout(() => {
+								itemsDescTable.getRowFromPosition(currColtItemIndx+1).select();
+							}, 500);
+						}*/
+					}
+				});
+			}
+									
+			function enableOrDisableColtItmsMoveBtns(){
+				// prev should will forward in the array
+				// next should go back in the array
+				const isAtStart = currColtPropIndx === 0;
+				const isAtEnd = currColtPropIndx === coltItemsHdrData.length - 1;
+				document.getElementById("nextPropertyBtn-Colt").disabled = isAtStart;
+				document.getElementById("prevPropertyBtn-Colt").disabled = isAtEnd;
+			}
+									
+			function populateInputFields(rowData){
+												
+				$("#receiveQty").val(rowData.PROP_INMT_ITM_QTY ? rowData.PROP_INMT_ITM_QTY : '');
+				$("#returnQty").val(rowData.PROP_INMT_ITM_RETN_QTY ? rowData.PROP_INMT_ITM_RETN_QTY : '');
+												
+				$("#PROP_INMT_RETN_FST_NM").val(rowData.PROP_INMT_RETN_FST_NM ? rowData.PROP_INMT_RETN_FST_NM : "");
+				$("#PROP_INMT_RETN_LST_NM").val(rowData.PROP_INMT_RETN_LST_NM ? rowData.PROP_INMT_RETN_LST_NM : "");
+				$("#PROP_INMT_RETN_MID_NM").val(rowData.PROP_INMT_RETN_MID_NM ? rowData.PROP_INMT_RETN_MID_NM : "");
+				$("#PROP_INMT_RETN_SFX").val(rowData.PROP_INMT_RETN_SFX ? rowData.PROP_INMT_RETN_SFX : "");
+												
+				//$('#returnRelationItems').val(rowData.RELATIONSHIP_CODE);
+				//$("#returnRelationItems").val(rowData.RELATIONSHIP_CODE).trigger("change");
+				//$('#returnRelationItems').val(rowData.RELATIONSHIP_CODE);
+				$('#returnRelationItems')
+				  .val(rowData.RELATIONSHIP_CODE)
+				  .select2({ placeholder: 'Select Relationship' }) // optional
+				  .trigger('change.select2');
+				$('#itmsColtCmnts').val(rowData.PROP_INMT_ITM_DESC ? rowData.PROP_INMT_ITM_DESC : '');
+
+				updateCharCount("itmsColtCmnts");
+				document.getElementById('receiveQty').focus();
+			}
+
+			let selectedRow = null;
+			function displayRowSelection(row, rowElement){
+				// Remove the selected class from the previously selected row
+				if (selectedRow) {
+					selectedRow.getElement().classList.remove('selected-row');
+				}
+
+				// Add the selected class to the currently clicked row
+				rowElement.classList.add('selected-row');
+
+				// Update the selectedRow variable
+				selectedRow = row;
+			}
+											
+			// use convertToMMDDYYYY() common funct. instead
+			function formatDate(dateString) {
+				if (dateString) {
+					// Create a Date object from the ISO 8601 date string
+					var date = new Date(dateString);
+
+					// Check if the date is valid
+					if (!isNaN(date.getTime())) {
+						// Format the date to MM/DD/YYYY
+						return (
+							(date.getMonth() + 1).toString().padStart(2, '0') + '/' +
+							date.getDate().toString().padStart(2, '0') + '/' +
+							date.getFullYear()
+						);
+					} else {
+						console.error("Invalid date string:", dateString);
+						return ''; // Return an empty string for invalid dates
+					}
+				}
+				return '';
+			}
+
+			function markColtReceived(event, indx){
+
+				if(event.target.checked){
+					coltItmsUpdated = true;
+					updatedColtItms.add(indx);
+				}else{
+					updatedColtItms.delete(indx);
+					const tableRow = itemsTableData[indx];
+					tableRow.PROP_INMT_ITM_QTY = null;
+					if(updatedColtItms.size === 0){ coltItmsUpdated=false;}
+				}
+			}
+											
+			function markColtRetrn(event, indx){
+				const tableRow = itemsTableData[indx];
+				const checkbox = event.target;
+														
+				const receivedValue = tableRow.PROP_INMT_ITM_QTY;
+				const isReceivedChecked = receivedValue != null;
+
+				// Check if the checkbox is checked
+				const isChecked = checkbox.checked;
+
+				if (isChecked) {
+					if (isReceivedChecked) {
+						$('#returnQty').val(receivedValue);
+						tableRow.PROP_INMT_ITM_RETN_QTY = receivedValue;
+						coltItmsUpdated = true;
+						updatedColtItms.add(indx);
+					}else {
+						custom_msg('CUW', "Item cannot be marked as returned unless it is marked as received and a quantity is entered");
+						checkbox.checked = false; // revert the action
+					}
+				} else {
+					tableRow.PROP_INMT_ITM_RETN_QTY = null;
+					if (updatedColtItms.size === 0) {
+						coltItmsUpdated = false;
+					}
+				}
+			}
+
+		const sameOrAfter = (d1, d2) => new Date(d1).setHours(0,0,0,0) >= new Date(d2).setHours(0,0,0,0);
+		
+		
+		function saveHdrUpdates() {
+		    return new Promise((resolve, reject) => {
+		        if (!hdrUpdated) return resolve();
+
+		        let updateset = [];
+		        const updatedItmsArray = Array.from(updatedColtItmsHdr);
+		        for (let i = 0; i < updatedItmsArray.length; i++) {
+		            const prop = coltItemsHdrData[updatedItmsArray[i]];
+					console.log(prop);
+		            if (!prop.USERS_USER_ID) {
+		                //custom_msg('CUW', "Please enter the Collected By and Collected Date for the property.");
+						lastFocusedInput = document.getElementById("collectedByItems-a");
+		                return reject("Please enter the Collected By for the property.");
+		            }
+					if(!prop.PROP_TRK_DT){
+						lastFocusedInput = document.getElementById("dateCollected");
+						return reject("Please enter the Collected Date for the property.");
+					}
+					if(!prop.USERS_USER_ID_RETURN_BY && prop.PROP_RETN_DT){
+						lastFocusedInput = document.getElementById("returnedByItems-a");
+						return reject("Please enter the Returned By for the property.");
+					}
+					if(prop.USERS_USER_ID_RETURN_BY && !prop.PROP_RETN_DT){
+						lastFocusedInput = document.getElementById("dateReturned-Items");
+						return reject("Please enter the Returned Date for the property.");
+					}
+		            updateset.push(prop);
+		        }
+
+		        if (updateset.length === 0) return resolve();
+				
+				const currentDate = new Date();
+				if(new Date(updateset[0].PROP_TRK_DT) > currentDate){
+					return reject("Future date not allowed");
+				}
+				if(updateset[0].PROP_RETN_DT && new Date(updateset[0].PROP_RETN_DT) > currentDate){
+					return reject("Future date not allowed");
+				}
+
+				if (updateset[0].PROP_RETN_DT && !sameOrAfter(updateset[0].PROP_RETN_DT, updateset[0].PROP_TRK_DT)) {
+					return reject("Date Returned should not be greater than Collected Date");
+				}
+				
+				if (updateset[0].PROP_TRK_DT) {
+					updateset[0].PROP_TRK_DT = convertToISO(updateset[0].PROP_TRK_DT);
+				}
+				if (updateset[0].PROP_RETN_DT) {
+					updateset[0].PROP_RETN_DT = convertToISO(updateset[0].PROP_RETN_DT);
+				}
+				console.log(updateset);
+		        $.ajax({
+		            url: contextPath + 'updatePropertyTrackingHdr',
+		            type: 'POST',
+		            contentType: 'application/json',
+		            data: JSON.stringify(updateset),
+		            success: function (response) {
+						if(response && response.status === 'SUCCESS'){
+							hdrUpdated = false;
+							newPropertyAdded = false;
+							updatedColtItmsHdr = new Set();
+							if(response.nextSequence){
+								updateset[0].PROP_TRK_SEQ_NO = response.nextSequence;
+								coltItemsHdrData[currColtPropIndx].PROP_TRK_SEQ_NO = response.nextSequence;
+								coltItmsPropSeqNo = response.nextSequence;
+							}
+							resolve();
+						}else{
+							reject(response.message);
+						}
+		            },
+		            error: function (xhr, status, error) {
+						reject("Failed to update department header items. " + error);
+					}
+		        });
+		    });
+		}
+		
+		function saveColtItms() {
+		    return new Promise((resolve, reject) => {
+		        if (!coltItmsUpdated) return resolve();
+
+		        const prop = coltItemsHdrData[currColtPropIndx];
+		        if (prop.USERS_USER_ID == '') {
+					lastFocusedInput = document.getElementById("collectedByItems-a");
+					return reject("Please enter the Collected By for the property.");
+		        }
+				if(prop.PROP_TRK_DT == ''){
+					lastFocusedInput = document.getElementById("dateCollected");
+					return reject("Please enter the Collected Date for the property.");
+				}
+
+		        const updatedColtItmsArray = Array.from(updatedColtItms);
+		        let allChkdCounter = 0;
+
+		        for (let i = 0; i < updatedColtItmsArray.length; i++) {
+		            const value = updatedColtItmsArray[i];
+		            const row = itemsDescTable.getRowFromPosition(value + 1);
+
+		            if (row) {
+		                const checkboxes = row.getElement().querySelectorAll(".coltItmsChkBox");
+		                if (checkboxes.length >= 2) {
+							const [chk1, chk2] = checkboxes;
+		                    const itm = itemsTableData[updatedColtItmsArray[i]];
+							const qty = Number(itm.PROP_INMT_ITM_QTY);
+    						const retQty = Number(itm.PROP_INMT_ITM_RETN_QTY);
+
+		                    // Collected but quantity missing or zero
+							if (!chk1.checked && qty > 0) {
+								itemsDescTable.scrollToRow(row, "top", true);
+								return reject("Please verify item selections. All collected item checkboxes must be checked.");
+							}
+
+							// Checkbox checked but quantity invalid
+							if (chk1.checked && (!qty || qty <= 0)) {
+								itemsDescTable.scrollToRow(row, "top", true);
+								return reject("Enter the quantity of the property selected");
+							}
+
+							// Has Return
+							const hasRetQty = retQty !== null && retQty !== "" && retQty>0;
+							if(hasRetQty || chk2.checked){
+								// Return mismatch between checkbox and quantity
+								if(!chk2.checked) {
+									itemsDescTable.scrollToRow(row, "top", true);
+									row.select();
+									return reject("Please verify item selections. All returned item checkboxes must be checked");
+								}
+								if(!hasRetQty){
+									itemsDescTable.scrollToRow(row, "top", true);
+									row.select();
+									return reject("Enter quantity for selected items.");
+								}
+								
+								if(qty<retQty){
+									itemsDescTable.scrollToRow(row, "top", true);
+									row.select();
+									return reject("Return quantity mismatch. Returned quantity should match Received quantity.");
+								}
+								
+								if((!prop.USERS_USER_ID_RETURN_BY)){
+									itemsDescTable.scrollToRow(row, "top", true);
+									lastFocusedInput = document.getElementById("returnedByItems-a");
+									return reject("Please enter the Returned By for the property.");
+								}
+								if(!prop.PROP_RETN_DT){
+									itemsDescTable.scrollToRow(row, "top", true);
+									lastFocusedInput = document.getElementById("dateReturned-Items");
+									return reject("Please enter the Returned Date for the property.");
+								}
+								if(itm.RELATIONSHIP_CODE && itm.RELATIONSHIP_CODE=="null"){
+									itm.RELATIONSHIP_CODE = null;
+								}
+								if((itm.PROP_INMT_RETN_FST_NM || itm.PROP_INMT_RETN_LST_NM || itm.PROP_INMT_RETN_MID_NM || itm.PROP_INMT_RETN_SFX) && itm.RELATIONSHIP_CODE==null){
+									itemsDescTable.scrollToRow(row, "top", true);
+									$("#returnRelationItems").select2('open');
+									return reject("Please select Relationship.");
+								}
+								if (itm.RELATIONSHIP_CODE != null && !(
+										itm.PROP_INMT_RETN_FST_NM ||
+										itm.PROP_INMT_RETN_LST_NM ||
+										itm.PROP_INMT_RETN_MID_NM ||
+										itm.PROP_INMT_RETN_SFX
+								)){
+									itemsDescTable.scrollToRow(row, "top", true);
+									lastFocusedInput = document.getElementById("PROP_INMT_RETN_LST_NM");
+									return reject("Please enter the name property was returned to");
+								}
+							}
+
+		                    allChkdCounter += 1;
+		                }
+		            } else {
+		                console.warn("Index out of bounds in saveColtItms:", value);
+		            }
+		        }
+
+		        if (allChkdCounter !== updatedColtItmsArray.length) {
+		            return reject("Not all required checkboxes are checked.");
+		        }
+
+		        const itmsToSave = updatedColtItmsArray.map(i => itemsTableData[i]);
+				
+				const requestData = {
+				    propTrkSeqNo: coltItmsPropSeqNo,
+				    updateSet: itmsToSave
+				};
+						
+				$.ajax({
+					url: contextPath + 'updatePropertyTrackingColtItems',
+					type: 'POST',
+					contentType: 'application/json',
+					data: JSON.stringify(requestData),
+					success: function (response) {
+						if(response && response.status === 'SUCCESS'){
+							coltItmsUpdated = false;
+							newPropertyAdded = false;
+							updatedColtItms = new Set();
+							setColtItemsDesc(coltItmsPropSeqNo);
+							resolve();
+						}else {
+							console.warn("Internal Server error when updating Collected Items:", response);
+							reject(response && response.message ? response.message : "Error occured when saving collected Items.");
+						}
+					},
+					error: function (xhr, status, error) {
+						console.error("XHR Error:", error);
+						reject(xhr.responseJSON?.message || "Error occured when saving collected Items.");
+					}
+				});
+
+		        //updateColtItms(itmsToSave);
+		        //coltItmsUpdated = false;
+		        //updatedColtItms = new Set();
+		    });
+		}
+		
+		function saveDeptHdrUpdates() {
+		    return new Promise((resolve, reject) => {
+		        if (!deptHdrUpdated) return resolve();
+
+		        const updatedItmsArray = Array.from(updatedIssdItmsHdr);
+		        let updateset = [];
+
+		        for (let i = 0; i < updatedItmsArray.length; i++) {
+		            const prop = issdItemsHdrData[updatedItmsArray[i]];
+		            if (!prop.USERS_USER_ID) {
+						lastFocusedInput = document.getElementById("issuedByDept-a");
+		                return reject("Please enter the Issued By for the property.");
+		            }
+					if(!prop.PROP_TRK_DT){
+						lastFocusedInput = document.getElementById("dateIssued");
+						return reject("Please enter the Issued Date for the property.");
+					}
+					if(!prop.USERS_USER_ID_RETURN_BY && prop.PROP_RETN_DT){
+						lastFocusedInput = document.getElementById("returnedToDept-a");
+						return reject("Please enter the Returned By for the property.");
+					}
+					if(prop.USERS_USER_ID_RETURN_BY && !prop.PROP_RETN_DT){
+						lastFocusedInput = document.getElementById("dateReturned-Dept");
+						return reject("Please enter the Returned Date for the property.");
+					}
+		            updateset.push(prop);
+		        }
+
+		        if (updateset.length === 0) return resolve();
+				
+				const currentDate = new Date();
+				if(new Date(updateset[0].PROP_TRK_DT) > currentDate){
+					return reject("Future date not allowed");
+				}
+				if(updateset[0].PROP_RETN_DT && new Date(updateset[0].PROP_RETN_DT) > currentDate){
+					return reject("Future date not allowed");
+				}
+				if (updateset[0].PROP_RETN_DT && !sameOrAfter(updateset[0].PROP_RETN_DT, updateset[0].PROP_TRK_DT)) {
+					return reject("Date Issued should be less than Returned Date");
+				}
+				
+				if (updateset[0].PROP_TRK_DT) {
+					updateset[0].PROP_TRK_DT = convertToISO(updateset[0].PROP_TRK_DT);
+				}
+				if (updateset[0].PROP_RETN_DT) {
+					updateset[0].PROP_RETN_DT = convertToISO(updateset[0].PROP_RETN_DT);
+				}
+
+		        $.ajax({
+		            url: contextPath + 'updatePropertyTrackingHdr',
+		            type: 'POST',
+		            contentType: 'application/json',
+		            data: JSON.stringify(updateset),
+		            success: function (response) {
+						if(response && response.status === 'SUCCESS'){
+							deptHdrUpdated = false;
+							newPropertyAdded = false;
+							updatedIssdItmsHdr = new Set();
+							if(response.nextSequence){
+								updateset[0].PROP_TRK_SEQ_NO = response.nextSequence;
+								issdItemsHdrData[currIssdPropIndx].PROP_TRK_SEQ_NO = response.nextSequence;
+								issdItmsPropSeqNo = response.nextSequence;
+							}
+							resolve();
+						}else{
+							reject(response.message);
+						}
+		            },
+		            error: function (xhr, status, error) {
+		                reject("Failed to update department header items. " + error);
+						loader(0);
+		            },
+					complete: function (response){
+					   		setTimeout(function (){
+					   		loader(0);
+					   	},1500)
+					}
+		        });
+		    });
+		}
+		
+		function saveDeptItms() {
+		    return new Promise((resolve, reject) => {
+		        if (!deptItmsUpdated) return resolve();
+
+		        const prop = issdItemsHdrData[currIssdPropIndx];
+		        if (prop.USERS_USER_ID == '' || prop.PROP_TRK_DT == '') {
+		            return reject("Please enter the Collected By and Collected Date for the property.");
+		        }
+
+		        const updatedDeptItmsArray = Array.from(updatedIssdItms);
+		        let allChkdCounter = 0;
+
+		        for (let i = 0; i < updatedDeptItmsArray.length; i++) {
+		            const value = updatedDeptItmsArray[i];
+		            const row = deptDescTable.getRowFromPosition(value + 1);
+
+		            if (row) {
+		                const checkboxes = row.getElement().querySelectorAll(".deptItmsChkBox");
+		                if (checkboxes.length > 0) {
+		                    const checkbox = checkboxes[0];
+		                    const itm = deptTableData[value];
+
+							const qty = Number(itm.PROP_DOC_ITM_QTY);
+    						const retQty = Number(itm.PROP_DOC_ITM_RETN_QTY);
+							const hasQty = itm.PROP_DOC_ITM_QTY !== null && itm.PROP_DOC_ITM_QTY !== "" && itm.PROP_DOC_ITM_QTY>0;
+    						const hasRetQty = itm.PROP_DOC_ITM_RETN_QTY !== null && itm.PROP_DOC_ITM_RETN_QTY !== "" && itm.PROP_DOC_ITM_RETN_QTY>0;
+
+		                    if (hasQty && !checkbox.checked) {
+		                        deptDescTable.scrollToRow(row, "top", true);
+		                        return reject("Please verify item selections. All issued item checkboxes must be checked.");
+		                    }
+							
+							if(checkbox.checked && !hasQty){
+								itemsDescTable.scrollToRow(row, "top", true);
+								return reject("Enter quantity for selected items.");
+							}
+							
+							if(hasRetQty && !prop.USERS_USER_ID_RETURN_BY){
+								itemsDescTable.scrollToRow(row, "top", true);
+								lastFocusedInput = document.getElementById("returnedToDept-a");
+								return reject("Please enter the Returned To for the property.");
+							}
+							if(hasRetQty && !prop.PROP_RETN_DT){
+								itemsDescTable.scrollToRow(row, "top", true);
+								lastFocusedInput = document.getElementById("dateReturned-Dept");
+								return reject("Please enter the Returned Date for the property.");
+							}
+							if(hasRetQty && (retQty!=qty)){
+								itm.PROP_DOC_ITM_RETN_QTY = itm.PROP_DOC_ITM_QTY;
+							}
+
+		                    allChkdCounter += 1;
+		                }
+		            } else {
+		                console.warn("Index out of bounds in saveDeptItms:", value);
+		            }
+		        }
+
+		        if (allChkdCounter !== updatedDeptItmsArray.length) {
+		            return reject("Please verify item selections. All issued item checkboxes must be checked.");
+		        }
+
+		        const itmsToSave = updatedDeptItmsArray.map(i => deptTableData[i]);
+		        //updateDeptItms(itmsToSave); // Assuming this is a defined function
+				const requestData = {
+								            propTrkSeqNo: issdItmsPropSeqNo,
+								            updateSet: itmsToSave
+								        };
+				
+				$.ajax({
+										url: contextPath + 'updatePropertyTrackingIssdItems',
+										type: 'POST',
+										contentType: 'application/json',
+										data: JSON.stringify(requestData),
+										success: function (response) {
+											if(response && response.status === 'SUCCESS'){
+												deptItmsUpdated = false;
+												newPropertyAdded = false;
+												updatedIssdItms = new Set();
+												setIssdItemsDesc(issdItmsPropSeqNo);
+												resolve();
+											}else{
+												console.warn("Internal Server error when updating Issued Items:", response);
+												reject(response && response.message ? response.message : "Error occured when saving issued Items.");
+											}
+										},
+										error: function (xhr, status, error) {
+											console.error("XHR Error:", error);
+											reject(xhr.responseJSON?.message || "Error occured when saving issued Items.");
+										}
+									});
+		    });
+		}
+		
+		function getInstitutionNo() {
+		    return $.get(contextPath + "getInstitutionNum", {
+		        sbiNum: $('#sbiNumberInput').val().trim(),
+		        commitNo: currCommitNo
+		    });
+		}
+		
+		function clearItmsPropDescFields(){
+			$("#receiveQty").val('');
+			$("#returnQty").val('');
+			$("#itmsColtCmnts").val('');
+			$("#PROP_INMT_RETN_LST_NM").val('');
+			$("#PROP_INMT_RETN_FST_NM").val('');
+			$("#PROP_INMT_RETN_MID_NM").val('');
+			$("#PROP_INMT_RETN_SFX").val('');
+			$('#returnRelationItems')
+					.val('null')
+					.select2({ placeholder: 'Select Relationship' }) // optional
+					.trigger('change.select2');
+			updateCharCount("itmsColtCmnts");
+		}
+		
+		function convertToISO(dateString){
+			const isoRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{3})?(Z|[+-]\d{2}:\d{2})$/;
+			if (isoRegex.test(dateString)) {
+				// It's already in ISO format, return as-is
+				return dateString;
+			}
+			// Otherwise, assume MM-DD-YYYY and validate
+			//const dashRegex = /^\d{2}-\d{2}-\d{4}$/;
+			const dashRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+			if (!dashRegex.test(dateString)) {
+				throw new Error("Invalid date format. Expected MM/DD/YYYY or ISO 8601 format.");
+			}
+					 
+			const [month, day, year] = dateString.split("/");
+			const date = new Date(`${year}-${month}-${day}T00:00:00Z`);
+					     
+			return date.toISOString();
+		}
+		
+		let hdrUpdated = false;
+		let coltItmsUpdated = false;
+		let updatedColtItms = new Set();
+		let updatedColtItmsHdr = new Set();
+		$(document).ready(function () {
+			
+			$('#previousstay-table').on('change', function(){
+				var selectedCommitNo = localStorage.getItem('selectedCommitNo', selectedCommitNo);
+				if (selectedCommitNo && selectedCommitNo != null){
+					currCommitNo = selectedCommitNo;
+					getPropertyTrackingItemsTabHdr(selectedCommitNo);
+					getPropertyTrackingDeptTabHdr(selectedCommitNo);
+				}
+			});
+			
+			$("#itemsTable").on("click", ".tabulator-row", function (e) {
+				// Get the row component from the clicked element
+				const rowElement = this; // The clicked row element
+				const row = itemsDescTable.getRow(rowElement); // Get the row component
+				if (row) {
+					const rowData = row.getData(); // Get the full data object
+					currColtItemIndx = row.getPosition()-1;
+					
+					populateInputFields(rowData); // Populate input fields
+				}
+			});		
+			
+			$("#prevPropertyBtn-Colt").on("click", function (e) {
+				if(hdrUpdated || coltItmsUpdated){
+					custom_msg('CUW', "Please save your changes before moving to previous property.");
+					return;
+				}
+				currColtPropIndx++;
+				setPropertyTrackingItemsTabHdr();
+				clearItmsPropDescFields();
+			});
+			$("#nextPropertyBtn-Colt").on("click", function (e) {
+				if(hdrUpdated || coltItmsUpdated){
+					custom_msg('CUW', "Please save your changes before moving to next property.");
+					return;
+				}
+				currColtPropIndx--;
+				setPropertyTrackingItemsTabHdr();
+				clearItmsPropDescFields();
+			});
+			
+			$('.PropertyTrackingItems_Tab_Hdr').on('change', function() {
+				if(coltItemsHdrData.length > 0 && coltItemsHdrData != []){
+					const fieldName = $(this).attr('name');
+					coltItemsHdrData[currColtPropIndx][fieldName] = $(this).val();
+					hdrUpdated = true;
+					updatedColtItmsHdr.add(currColtPropIndx);
+				}
+			});
+			
+			$('.PropertyTrackingItems_Tab_Desc').on('change', function() {
+				if(currColtItemIndx != null && itemsTableData.length > 0 && itemsTableData != []){
+					const fieldName = $(this).attr('name');
+					if(fieldName == "PROP_INMT_RETN_NAME"){return;}
+					// see how collected by is saved and store that in a hidden field.
+					itemsTableData[currColtItemIndx][fieldName] = $(this).val();
+					coltItmsUpdated = true;
+					updatedColtItms.add(currColtItemIndx);
+				}
+			});
+			
+			/*$(".date-input-blockFuture").datepicker({
+			    dateFormat: "mm/dd/yy",
+			    changeMonth: true,
+			    changeYear: true,
+				yearRange: (function() {
+				       var currentYear = new Date().getFullYear(); // Get the current year
+				       return (currentYear - 20) + ":" + (currentYear + 20); // Set the range from 20 years before to 20 years after the current year
+				})(),
+			    maxDate: 0,
+				beforeShow: function(input, inst) {
+				        setTimeout(function() {
+				            const $datepickerDiv = $('#ui-datepicker-div');
+
+				            // Avoid adding multiple times
+				            if (!$datepickerDiv.find('.custom-btn-wrapper').length) {
+				                const $wrapper = $('<div>', {
+				                    class: 'custom-btn-wrapper',
+				                    css: {
+				                        display: 'flex',
+				                        gap: '4px',
+				                        marginTop: '2px',
+										marginBottom: '2px',
+				                        justifyContent: 'space-between'
+				                    }
+				                });
+
+				                const $todayBtn = $('<button>', {
+				                    text: "Today",
+				                    class: 'custom-today-btn',
+				                    css: {
+				                        flex: 1,
+				                        padding: '2px',
+				                        cursor: 'pointer',
+										background: '#ece0ff', 
+										border: 'none'
+				                    },
+				                    click: function(e) {
+				                        e.preventDefault();
+				                        const today = $.datepicker.formatDate("mm/dd/yy", new Date());
+				                        $(input).val(today).trigger('change').datepicker("hide");
+				                    }
+				                });
+
+				                const $clearBtn = $('<button>', {
+				                    text: "Clear",
+				                    class: 'custom-clear-btn',
+				                    css: {
+				                        flex: 1,
+				                        padding: '2px',
+				                        cursor: 'pointer',
+										background: '#ece0ff',
+										border: 'none'
+				                    },
+				                    click: function(e) {
+				                        e.preventDefault();
+				                        $(input).val('').trigger('change').datepicker("hide");
+				                    }
+				                });
+
+				                $wrapper.append($todayBtn, $clearBtn);
+				                $datepickerDiv.append($wrapper);
+				            }
+				        }, 10);
+				    }
+			});
+			$(".date-input-allowFuture").datepicker({
+						    dateFormat: "mm/dd/yy",
+						    changeMonth: true,
+						    changeYear: true,
+							yearRange: (function() {
+							       var currentYear = new Date().getFullYear(); // Get the current year
+							       return (currentYear - 20) + ":" + (currentYear + 20); // Set the range from 20 years before to 20 years after the current year
+							})(),
+							beforeShow: function(input, inst) {
+							        setTimeout(function() {
+							            const $datepickerDiv = $('#ui-datepicker-div');
+
+							            // Avoid adding multiple times
+							            if (!$datepickerDiv.find('.custom-btn-wrapper').length) {
+							                const $wrapper = $('<div>', {
+							                    class: 'custom-btn-wrapper',
+							                    css: {
+							                        display: 'flex',
+							                        gap: '4px',
+							                        marginTop: '2px',
+													marginBottom: '2px',
+							                        justifyContent: 'space-between'
+							                    }
+							                });
+
+							                const $todayBtn = $('<button>', {
+							                    text: "Today",
+							                    class: 'custom-today-btn',
+							                    css: {
+							                        flex: 1,
+							                        padding: '2px',
+							                        cursor: 'pointer',
+													background: '#ece0ff', 
+													border: 'none'
+							                    },
+							                    click: function(e) {
+							                        e.preventDefault();
+							                        const today = $.datepicker.formatDate("mm/dd/yy", new Date());
+							                        $(input).val(today).datepicker("hide");
+							                    }
+							                });
+
+							                const $clearBtn = $('<button>', {
+							                    text: "Clear",
+							                    class: 'custom-clear-btn',
+							                    css: {
+							                        flex: 1,
+							                        padding: '2px',
+							                        cursor: 'pointer',
+													background: '#ece0ff',
+													border: 'none'
+							                    },
+							                    click: function(e) {
+							                        e.preventDefault();
+							                        $(input).val('').trigger('change').datepicker("hide");
+							                    }
+							                });
+
+							                $wrapper.append($todayBtn, $clearBtn);
+							                $datepickerDiv.append($wrapper);
+							            }
+							        }, 10);
+							    }
+						});*/
+
+			
+			$('#saveProperty').on('click', async function () {
+				if(hdrUpdated || coltItmsUpdated || deptHdrUpdated || deptItmsUpdated){
+			    //console.log("Saving Data...");
+				try {
+				    await Promise.all([
+				    	(async () => {
+				            await saveHdrUpdates();
+				            await saveColtItms();
+				        })(),
+				        (async () => {
+				        	await saveDeptHdrUpdates();
+				            await saveDeptItms();
+				        })()
+				    ]);
+
+				    custom_msg('CUS', 'Changes have been saved successfully to OMNet.');
+				}catch (err) {
+				    console.error("Save error:", err);
+				    if (typeof err === 'string') {
+				    	custom_msg('CUW', err);
+				    }
+					else if (err.message){
+						custom_msg('CUE', 'An error occurred when saving property. '+err.message);
+					} 
+					else {
+				    	custom_msg('CUE', 'An error occurred when saving property.');
+				    }
+				}
+				}
+				else if (newPropertyAdded && (!hdrUpdated || !coltItmsUpdated || !deptHdrUpdated || !deptItmsUpdated)){
+					custom_msg('CUW', 'No records to save.');
+				}
+			});
+
+		});
+		
+		function resetColtItmsTab(){
+			/** Colt items screen */
+			itemsDescTable.setData([]);
+			coltItemsHdrData = [];
+			itemsTableData = [];
+
+			updatedColtItms = new Set();
+			updatedColtItmsHdr = new Set();
+
+			coltItmsPropSeqNo = null;
+			currColtItemIndx = null;
+			currColtPropIndx = 0;
+			hdrUpdated = false;
+			coltItmsUpdated = false;
+			selectedRow = null;
+			return;
+		}
+		
+		/*window.addEventListener('beforeunload', function(event) {
+		  if (hdrUpdated) {
+		    // Customize the message as needed
+		    event.returnValue = "You have unsaved changes. Are you sure you want to leave?";
+		    return "You have unsaved changes. Are you sure you want to leave?"; // Required for older browsers
+		  }
+		});*/
+	</script>
+</div>

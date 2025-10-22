@@ -1,0 +1,166 @@
+<div th:fragment="IncidentInfoApprovalTab" th:remove="tag">
+	<div id="incidentInfoApproval" class="panel mb-0">
+	    <div class="panel-hdr">
+	        <h2>
+	            Approved By
+	        </h2>
+	    </div>
+	    <div class="panel-container show">
+	        <div class="panel-content p-1">
+	            <div id="js-checkbox-toggles">
+					<div class="row mx-1 form-group">
+						<div class="d-flex align-items-center col-lg-4 pl-0 floatingFields mt-2">
+							<input type="text" class="form-control floatingLable rawField" aria-label="Security" placeholder="" name="Group" id="approve_name" value="" data-fld = "approve_name_fld" data-lbl = "Approved By" disabled>
+							<input type="hidden" id="approve_id">
+							<label for="Security" class="form-label mb-0 text-nowrap">Approved By</label>
+							<span>													
+								<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off myStaffPopup2" data-next="approve_id" data-title="Approved By" data-toggle="tooltip" data-placement="top" data-original-title="Approved By" data-class="nav-function-hidden">
+		                            <i class="fa fa-users"></i>
+		                         </a>
+							</span>
+						</div>
+						<div class="d-flex align-items-center col-lg-2 col-xl-1 pl-0 floatingFields mt-2">
+							<input type="text" class="form-control floatingLable dtfld rawField" aria-label="Security" placeholder="" name="Group" id="approve_dt" data-fld = "approve_dt_fld" data-lbl = "Date" value="">
+							<label for="Security" class="form-label mb-0 text-nowrap">Date</label>
+						</div>
+						<div class="d-flex align-items-center col-lg-2 col-xl-3 pl-0 selectFloatingLabel mt-2">
+							<select class="custom-select form-control typecontact floatingLableClick rawField" id="approve_title" data-fld = "approve_title_fld" data-lbl = "Title">
+								<option></option>
+								<option value="Option 1"> </option>
+								<option value="Option 2"> </option>
+							</select>
+							<label for="Security" class="form-label mb-0 text-nowrap selectFloating">Title</label>
+						</div>
+						<div class="d-flex align-items-center col-lg-4 pr-0 mt-2">
+							<div class="custom-control custom-radio">
+	                            <input type="radio" class="custom-control-input rawField" id="ApproveddRadio" name="ApproveddRadio" data-fld = "ApproveddRadio_fld" data-lbl = "Approved">
+	                            <label class="custom-control-label" for="ApproveddRadio">Approved</label>
+	                        </div>
+	                        <div class="custom-control custom-radio mx-2">
+	                            <input type="radio" class="custom-control-input rawField" id="DisapprovedRadio" name="ApproveddRadio" data-fld = "DisapprovedRadio_fld" data-lbl = "Disapproved">
+	                            <label class="custom-control-label" for="DisapprovedRadio">Disapproved</label>
+	                        </div>
+							<input type="hidden" id="approval_info">
+	                        <div class="custom-control custom-checkbox custom-control-inline ml-2">
+								<input type="checkbox" class="custom-control-input rawField" id="approve_check" data-fld = "approve_check_fld" data-lbl = "Follow-Up-Required">
+								<label class="custom-control-label text-nowrap text-nowrap" for="approve_check">Follow-Up-Required</label>
+							</div>
+						</div>
+						<div class="align-items-center col-lg-12 mt-1 px-0 floatingFieldsTextarea">
+						  <textarea class="form-control floatingLabletextarea rawField" 
+						    placeholder="" 
+						    id="approve_cmt" 
+						    data-fld="approve_cmt_fld" 
+						    data-lbl="Comments" 
+						    rows="14" 
+						    name="Comments" 
+						    aria-label="Comments" 
+						    style="resize:none;"
+						    spellcheck="true"></textarea>
+						  <label for="approve_cmt" class="form-label mb-0">Comments</label>
+						  <div class="charCount">
+						    <span id="appcmt">0</span>/1000 characters
+						  </div>
+						</div>
+					 </div>
+					 <input type="hidden" id="ok_info">
+					 <input type="hidden" id="approve_declared" value="N">
+					 <input type="hidden" id="approve_given">
+	                <div class="modal fade" id="ApprovedByModal" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header pt-3 pb-2">
+									<h6 class="modal-title">Approved By</h6>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true"><i class="fal fa-times"></i></span>
+									</button>
+								</div>
+								<div class="modal-body py-0">
+									<div class="d-flex align-items-center mb-2 floatingFields">
+										<input type="text" class="form-control floatingLable" aria-label="dob" name="Find" id="Find" value="" placeholder="%">
+										<label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+										<button type="button" class="btn btn-primary btn-sm ml-2" id="fetchDataBtn" >Find</button>
+									</div>
+									<div id="approvedby-table"></div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Ok</button>
+									<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+								</div>
+							</div> 
+						</div>			
+					</div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	<style>
+		#incidentInfoApproval .floatingFields label {
+		    left: 10px!important;
+		}
+	</style>
+	<script>
+		// Define Test Data
+		var approvedby = [
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+		];
+
+		//Define Table
+		var table = new Tabulator("#approvedby-table", {
+			layout: "fitColumns",
+			data: approvedby,
+			height: '140px',
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+				{
+					title: "Last Name",
+					field: "lastname",
+				},
+				{
+					title: "First Name",
+					field: "firstname",
+				},
+				{
+					title: "MI",
+					field: "mi",
+					width: 80,
+				},
+				{
+					title: "Suffix",
+					field: "suffix",
+					width: 100,
+				},
+			]
+		});
+	</script>
+</div> 

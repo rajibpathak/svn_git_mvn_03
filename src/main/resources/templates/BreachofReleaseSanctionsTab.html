@@ -1,0 +1,37 @@
+<div th:fragment="BreachofReleaseSanctionsTab" th:remove="tag">
+	<div class="row">
+		<div class="col-lg-12">
+			<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">SUMMARY INFORMATION</h6>
+			<div class="p-1">
+				<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Breach Summary/History of Supervision</label>	
+				<textarea class="form-control" placeholder="" id="addComments" rows="4" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+			</div>
+		</div>
+		<div class="col-lg-12">
+			<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">SANCTION DETAILS</h6>
+			<div class="panel panelContentBlock p-1 mb-1">
+				<div class="row">
+					<div class="col-12 col-lg-2 pr-0 d-flex align-items-center">
+						<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Bail Amount</label>																					
+						<input type="text" class="form-control w-100" aria-label="weight" name="weight" id="weight" value="$10,000.00">
+					</div>
+					<div class="col-12 col-lg-4 pr-0 d-flex align-items-center mt-1">
+						<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Bail Type</label>																					
+						<select class="custom-select form-control typecontact">
+							<option>SECURED BOND</option>
+							<option value="Option 1">test</option>
+							<option value="Option 2">test1</option>
+						</select>
+					</div>
+					<div class="col-12 col-lg-2 d-flex align-items-center">
+						<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Bail Date</label>																					
+						<input type="text" class="form-control w-100" aria-label="weight" name="weight" id="weight" value="08/27/2024">
+					</div>
+					<div class="col-12 col-lg-12 d-flex align-items-center mt-1">
+						<textarea class="form-control" placeholder="Breach Recommendation" id="addComments" rows="6" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

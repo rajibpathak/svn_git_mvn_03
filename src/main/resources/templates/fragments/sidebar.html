@@ -1,0 +1,592 @@
+<div th:fragment="sidebar" th:remove="tag">
+	
+	<aside class="page-sidebar">
+        <!--<div class="page-logo">
+            <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut">
+                <img src="img/logo.png" alt="SmartAdmin WebApp" aria-roledescription="logo">
+                <span class="page-logo-text mr-1">SmartAdmin WebApp</span>
+                <span class="position-absolute text-white opacity-50 small pos-top pos-right mr-2 mt-n2"></span>
+                <i class="fal fa-angle-down d-inline-block ml-1 fs-lg color-primary-300"></i>
+            </a>
+        </div>-->
+        <!-- BEGIN PRIMARY NAVIGATION -->
+        <nav id="js-primary-nav" class="primary-nav" role="navigation">
+            <div class="nav-filter">
+                <div class="position-relative">
+                    <input type="text" id="nav_filter_input" placeholder="Filter menu" class="form-control" tabindex="0">
+                    <a href="#" onclick="return false;" class="btn-primary btn-search-close js-waves-off" data-action="toggle" data-class="list-filter-active" data-target=".page-sidebar">
+                        <i class="fal fa-chevron-up"></i>
+                    </a>
+                </div>
+            </div>
+            <!--<div class="info-card">
+                <img src="img/demo/avatars/avatar-admin.png" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+                <div class="info-card-text">
+                    <a href="#" class="d-flex align-items-center text-white">
+                        <span class="text-truncate text-truncate-sm d-inline-block">
+                            Dr. Codex Lantern
+                        </span>
+                    </a>
+                    <span class="d-inline-block text-truncate text-truncate-sm">Toronto, Canada</span>
+                </div>
+                <img src="img/card-backgrounds/cover-2-lg.png" class="cover" alt="cover">
+                <a href="#" onclick="return false;" class="pull-trigger-btn" data-action="toggle" data-class="list-filter-active" data-target=".page-sidebar" data-focus="nav_filter_input">
+                    <i class="fal fa-angle-down"></i>
+                </a>
+            </div>-->
+            <ul id="js-nav-menu" class="nav-menu submenu">
+                          
+              <!--   <li class="">
+                    <a href="#" title="" data-filter-tags="application intel">
+                        <i class="fa fa-address-card"></i>
+                        <span class="nav-link-text" data-i18n="nav.application_demograph">Demographics</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#" title="" data-filter-tags="application intel">
+                        <i class="fa-solid fa-capsules"></i>
+                        <span class="nav-link-text" data-i18n="nav.application_drug">Drug/DNA</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#" title="" data-filter-tags="application intel">
+                        <i class="fa fa-ban"></i>
+                        <span class="nav-link-text" data-i18n="nav.application_contact">No Contact</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#" title="" data-filter-tags="application intel">
+                        <i class="fa fa-check-circle"></i>
+                        <span class="nav-link-text" data-i18n="nav.application_orient">Orientation Checklist</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#" title="" data-filter-tags="application intel">
+                        <i class="fa fa-pencil-square"></i>
+                        <span class="nav-link-text" data-i18n="nav.application_property">Property Tracking</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#" title="" data-filter-tags="application intel">
+                        <i class="fa fa-users"></i>
+                        <span class="nav-link-text" data-i18n="nav.application_stg">STG</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a href="#" title="" data-filter-tags="application intel">
+                        <i class="fas fa-user-injured"></i>
+                        <span class="nav-link-text" data-i18n="nav.application_scars">Scars, Marks and Tattoo</span>
+                    </a>
+                </li> -->
+            </ul>
+            
+        </nav>
+        <!-- END PRIMARY NAVIGATION -->
+        <!-- NAV FOOTER -->
+        <div class="nav-footer shadow-top">
+            <a href="#" onclick="return false;" data-action="toggle" data-class="nav-function-minify" class="hidden-md-down">
+                <i class="ni ni-chevron-right"></i>
+                <i class="ni ni-chevron-right"></i>
+            </a>
+            <ul class="list-table m-auto nav-footer-buttons">
+                <li>
+                    <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Chat logs">
+                        <i class="fal fa-comments"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Support Chat">
+                        <i class="fal fa-life-ring"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" data-toggle="tooltip" data-placement="top" title="Make a call">
+                        <i class="fal fa-phone"></i>
+                    </a>
+                </li>
+            </ul>
+        </div> <!-- END NAV FOOTER -->
+        
+        <!-- BEGIN Page Footer -->
+			<div th:replace="~{fragments/footer :: footer}"></div>
+		<!-- END Page Footer -->
+    </aside>
+    <style>
+	    .nav-function-hidden .page-footer{
+	    	display:none;
+	    }
+	     .nav-function-minify .page-footer{
+	    	display:none;
+	    }
+		.nav-function-hidden:not(.nav-function-top) .page-header [data-class=nav-function-hidden] {
+	        background: #505050;
+	        border-color: #363636 !important;
+	        box-shadow: inset 0 0 3px 1px rgba(0, 0, 0, .37);
+	        color: #fff !important;
+	    }
+		.hidden-md-down .dropdown-icon-menu>ul>li .btn:hover, .header-btn:hover {
+		    box-shadow: none;
+		    border-color: #886ab5;
+		    background: #a38cc6;
+		    color: #fff;
+		}
+		.nav-function-fixed .page-sidebar{
+			top: 18.5%!important;
+		}
+		.nav-function-hidden .page-sidebar{
+			top: 0;
+		}
+		.nav-function-minify .page-sidebar{
+			top: 0%;
+			width: 40px!important;
+		}
+		.nav-function-minify:not(.nav-function-top).nav-function-hidden .page-sidebar {
+	        left: -2.0625rem;
+	    }
+		.page-sidebar{
+			height: 100%;
+		    position: sticky;
+		    top: 16%;
+		    width: 215px;
+		}
+		.nav-function-hidden:not(.nav-function-top) .page-sidebar{
+			left: -13rem;
+		}
+		.nav-function-minify:not(.nav-function-top) .page-sidebar .primary-nav .nav-menu > li > a > .nav-link-text{
+			left: 50px!important;
+		}
+		.nav-function-fixed:not(.nav-function-top):not(.nav-function-hidden):not(.nav-function-minify) .page-content-wrapper {
+	        padding-left: 13.875rem;
+	    }
+		.nav-function-minify:not(.nav-function-top).nav-function-fixed:not(.nav-function-hidden) .page-content-wrapper {
+	        padding-left: 2.6875rem!important;
+	    }
+		.mod-nav-link .nav-menu li a{
+			padding-left: 15px;
+			padding-right: 10px;
+		}
+		
+		.nav-function-minify .page-sidebar{
+			width: 50px;
+		}
+		.nav-function-minify .nav-function-fixed  {
+			top: 18%;
+		}
+		#js-primary-nav{
+			height: 100%;
+		}
+		.page-footer{
+		    position: sticky;
+			left: 0;
+		    bottom: 0;
+		    z-index: 99999;
+		   	width: 215px;
+		}
+		.page-content-wrapper{
+		    height: calc(100vh - 140px)!important;
+		}
+		.disabled-linkSidebar{
+		pointer-events: none;
+    	color: #ccc; 
+		}
+	</style>
+	
+	<script>
+	document.body.classList.add('mod-bg-1', 'mod-nav-link', 'desktop', 'chrome', 'webkit', 'pace-done', 'blur');
+	  if($('.Registrationsidebar').length){
+	 	 $('.submenu').append(`
+				 <li class="">
+                 <a href="Demographics" title="" data-filter-tags="application intel">
+                     <i class="fa fa-address-card"></i>
+                     <span class="nav-link-text" data-i18n="nav.application_demograph">Demographics</span>
+                 </a>
+             </li>
+     	<li class="">
+             <a href="AliasInformation" title="" data-filter-tags="application intel">
+                 <i class="fa fa-user-plus"></i>
+                 <span class="nav-link-text" data-i18n="nav.application_alias">Alias</span>
+             </a>
+         </li>
+         <li class="">
+         <a href="ScarsMarksTattoos" title="" data-filter-tags="application intel">
+             <i class="fas fa-user-injured"></i>
+             <span class="nav-link-text" data-i18n="nav.application_scars">Scars, Marks and Tattoo</span>
+         </a>
+     </li>
+     <li class="">
+     <a href="PropertyTracking" title="" data-filter-tags="application intel">
+         <i class="fa fa-pencil-square"></i>
+         <span class="nav-link-text" data-i18n="nav.application_property">Property Tracking</span>
+     </a>
+ </li>
+ <li class="">
+ <a href="NoContactsCBINOCT" title="" data-filter-tags="application intel">
+     <i class="fa fa-ban"></i>
+     <span class="nav-link-text" data-i18n="nav.application_contact">No Contact</span>
+ </a>
+</li>
+<li class="">
+<a href="securityThreatGroup" title="" data-filter-tags="application intel">
+    <i class="fa fa-users"></i>
+    <span class="nav-link-text" data-i18n="nav.application_stg">STG</span>
+</a>
+</li>
+<li class="">
+<a href="DrugDnaTest" title="" data-filter-tags="application intel">
+    <i class="fa-solid fa-capsules"></i>
+    <span class="nav-link-text" data-i18n="nav.application_drug">Drug/DNA</span>
+</a>
+</li>
+<li class="">
+<a href="EmergencyAttention" title="" data-filter-tags="application intel">
+    <i class="fa-solid fa-capsules"></i>
+    <span class="nav-link-text" data-i18n="nav.application_drug">Emergency Attention</span>
+</a>
+</li>
+<li class="">
+<a href="OrientationChecklistCBI_ORTA" title="" data-filter-tags="application intel">
+    <i class="fa fa-check-circle"></i>
+    <span class="nav-link-text" data-i18n="nav.application_orient">Orientation Checklist</span>
+</a>
+</li>
+         `);
+		 console.log( 'Hellosidebar');
+      } 
+	  
+	  if($('.DocketsSidebar').length){
+		  $('.submenu').append(`
+				  <li class="">
+	                 <a href="InmateChargesDockets" title="" data-filter-tags="application intel">
+	                     <i class="fa fa-address-card"></i>
+	                     <span class="nav-link-text" data-i18n="nav.application_demograph">Inmate Charges/Dockets</span>
+	                 </a>
+	             </li>
+					 <li class="">
+	                 <a href="SentenceCalc" title="" data-filter-tags="application intel">
+	                     <i class="fa fa-address-card"></i>
+	                     <span class="nav-link-text" data-i18n="nav.application_demograph">Sentence Calculation</span>
+	                 </a>
+	             </li>
+	     	<li class="">
+	             <a href="PrintStatusSheet" title="" data-filter-tags="application intel">
+	                 <i class="fa fa-user-plus"></i>
+	                 <span class="nav-link-text" data-i18n="nav.application_alias">Print Status Sheet</span>
+	             </a>
+	         </li>
+	         `);
+	  }
+	  if($('.CaseManagementSidebar').length){
+		  $('.submenu').append(`
+					 <li class="">
+	                 <a href="CSMCaseNotes" title="" data-filter-tags="application intel">
+	                     <i class="fa fa-address-card"></i>
+	                     <span class="nav-link-text" data-i18n="nav.application_demograph">Case Notes</span>
+	                 </a>
+	             </li>
+	             <li class="">
+                 <a href="#" title="" data-filter-tags="application intel">
+                     <i class="fa fa-address-card"></i>
+                     <span class="nav-link-text" data-i18n="nav.application_demograph">Officer Assignment</span>
+                 </a>
+             </li>
+             <li class="">
+             <a href="#" title="" data-filter-tags="application intel">
+                 <i class="fa fa-address-card"></i>
+                 <span class="nav-link-text" data-i18n="nav.application_demograph">Progress Report</span>
+             </a>
+         </li>
+         <li class="">
+         <a href="#" title="" data-filter-tags="application intel">
+             <i class="fa fa-address-card"></i>
+             <span class="nav-link-text" data-i18n="nav.application_demograph">Violation Report</span>
+         </a>
+     </li>
+     <li class="">
+     <a href="#" title="" data-filter-tags="application intel">
+         <i class="fa fa-address-card"></i>
+         <span class="nav-link-text" data-i18n="nav.application_demograph">Officer CaseLoad</span>
+     </a>
+   </li>
+	         `);
+	  }
+	 
+	  if($('.MovementsSidebar').length){
+		  $('.submenu').append(`
+				  <li class="">
+
+				  <a href="OffenderWithoutBedAssignment" title="" data-filter-tags="application intel">
+
+				  <i class="fa-solid fa-newspaper"></i>
+
+				  <span class="nav-link-text" data-i18n="nav.application_scars">Offender Without Bed Assignment</span>
+
+				  </a>
+
+				  </li>
+
+				  <li class="">
+
+				  <a href="AssignOffenderBed" title="" data-filter-tags="application intel">
+
+				  <i class="fa-solid fa-bed"></i>
+
+				  <span class="nav-link-text" data-i18n="nav.application_alias">Assign Offender To Bed</span>
+
+				  </a>
+
+				  </li>
+
+				  <li class="">
+
+				  <a href="HousingFacilityBedAssignment" title="" data-filter-tags="application intel">
+
+				  <i class="fa fa-pencil-square"></i>
+
+				  <span class="nav-link-text" data-i18n="nav.application_property">Housing Facility Bed Assignment</span>
+
+				  </a>
+
+				  </li>
+
+				  <li class="">
+
+				  <a href="MassOffenderMovement" title="" data-filter-tags="application intel">
+
+				  <i class="fa-solid fa-arrows-turn-to-dots"></i>
+
+				  <span class="nav-link-text" data-i18n="nav.application_demograph">Inmate Mass Movement</span>
+
+				  </a>
+
+				  </li>
+
+				  <li class="">
+
+				  <a href="IndividualOffenderMovement" title="" data-filter-tags="application intel">
+
+				  <i class="fa-solid fa-arrows-left-right"></i>
+
+				  <span class="nav-link-text" data-i18n="nav.application_drug">Inmate Individual Movement</span>
+
+				  </a>
+
+				  </li>
+
+				  <li class="">
+
+				  <a href="HousingEntityWaitlist" title="" data-filter-tags="application intel">
+
+				  <i class="fa-solid fa-rectangle-list"></i>
+
+				  <span class="nav-link-text" data-i18n="nav.application_contact">Housing Entity Waitlist</span>
+
+				  </a>
+
+				  </li>
+
+				  <li class="">
+
+				  <a href="SwapOffenderBeds" title="" data-filter-tags="application intel">
+
+				  <i class="fa-solid fa-arrows-turn-to-dots"></i>
+
+				  <span class="nav-link-text" data-i18n="nav.application_stg">Swap Bed</span>
+
+				  </a>
+
+				  </li>
+
+				  <li class="">
+
+				  <a href="MovementLogScreen" title="" data-filter-tags="application intel">
+
+				  <i class="fa-solid fa-file-contract"></i>
+
+				  <span class="nav-link-text" data-i18n="nav.application_drug">Movement Log</span>
+
+				  </a>
+
+				  </li>
+	
+	         `);
+	  }
+	
+
+	  if($('.ClassificationSidebar').length){
+		  $('.submenu').append(`
+					 <li class="ClassificationSummary">
+	                 <a href="IncidentSummary" title="" data-filter-tags="application intel">
+	                     <i class="fa fa-address-card"></i>
+	                     <span class="nav-link-text" data-i18n="nav.application_demograph">Classification SUMMARY</a>
+	             </li>
+
+	         `);
+	  }
+	
+	  if($('.IncidentSidebar').length){
+		  $('.submenu').append(`
+					 <li class="">
+	                 <a href="IncidentInformation" title="" data-filter-tags="application intel">
+	                     <i class="fa fa-address-card"></i>
+	                     <span class="nav-link-text" data-i18n="nav.application_demograph">Incident Information</span>
+	                 </a>
+	             </li>
+	     	<li class="">
+	             <a href="Disciplinaryinformation" title="" data-filter-tags="application intel">
+	                 <i class="fa fa-user-plus"></i>
+	                 <span class="nav-link-text" data-i18n="nav.application_alias">Disciplinary Information</span>
+	             </a>
+	         </li>
+	         `);
+	  }
+	  var sidebarMapping='GrievanceSidebar';
+	  if($('.' + sidebarMapping).length){
+		  $('.submenu').append(`
+					 <li class="">
+	                 <a href="OffenderGrievance" title="" data-filter-tags="application intel">
+	                     <i class="fa fa-address-card"></i>
+	                     <span class="nav-link-text" data-i18n="nav.application_demograph">Grievance information</span>
+	                 </a>
+	             </li>
+	             </li>
+				 <li class="">
+                 <a href="#" title="" data-filter-tags="application intel">
+                     <i class="fa fa-address-card"></i>
+                     <span class="nav-link-text" data-i18n="nav.application_demograph">Grievance Query</span>
+                 </a>
+             </li>
+	         `);
+	  }
+	  if($('.ProgramSidebar').length){
+		  $('.submenu').append(`
+	             <li class="">
+                 <a href="#" title="" data-filter-tags="application intel">
+                     <i class="fa fa-address-card"></i>
+                     <span class="nav-link-text" data-i18n="nav.application_demograph">Enrollment</span>
+                 </a>
+             </li>
+             <li class="">
+             <a href="#" title="" data-filter-tags="application intel">
+                 <i class="fa fa-address-card"></i>
+                 <span class="nav-link-text" data-i18n="nav.application_demograph">Attendance</span>
+             </a>
+             </li>
+             <li class="">
+             <a href="#" title="" data-filter-tags="application intel">
+                 <i class="fa fa-address-card"></i>
+                 <span class="nav-link-text" data-i18n="nav.application_demograph">Evaluation</span>
+             </a>
+         </li>
+	         `);
+	  }
+	  if($('.AdminSidebar').length){
+		  $('.submenu').append(`
+				  <li class="">
+	              <a href="UserSetup" title="" data-filter-tags="application intel">
+	                  <i class="fa fa-address-card"></i>
+	                  <span class="nav-link-text" data-i18n="nav.application_demograph">User Setup</span>
+	              </a>
+	          </li>
+					 <li class="">
+	                 <a href="MenuSetup" title="" data-filter-tags="application intel">
+	                     <i class="fa fa-address-card"></i>
+	                     <span class="nav-link-text" data-i18n="nav.application_demograph">Menu Setup</span>
+	                 </a>
+	             </li>
+	             <li class="">
+                 <a href="ScreenSetup" title="" data-filter-tags="application intel">
+                     <i class="fa fa-address-card"></i>
+                     <span class="nav-link-text" data-i18n="nav.application_demograph">Screen Setup</span>
+                 </a>
+             </li>
+             <li class="">
+             <a href="RoleSetup" title="" data-filter-tags="application intel">
+                 <i class="fa fa-address-card"></i>
+                 <span class="nav-link-text" data-i18n="nav.application_demograph">Role Setup</span>
+             </a>
+            </li>
+            <li class="">
+            <a href="MessageSetup" title="" data-filter-tags="application intel">
+              <i class="fa fa-address-card"></i>
+               <span class="nav-link-text" data-i18n="nav.application_demograph">Message Setup</span>
+            </a>
+         </li> 
+	         `);
+	  }
+ 
+
+/*  $.ajax({
+     url: 'getMenuAccess', // <-- Ensure this is the correct path
+     type: 'GET',
+     contentType: 'application/json',
+     success: function (response) {
+         console.log("AJAX success. Response:", response);
+
+         // Get current page name (e.g., UserSetup)
+         const currentPath = window.location.pathname.split('/').pop().split('?')[0].split('#')[0].trim();
+         console.log("Current path:", currentPath);
+
+         let matchedMenuCode = null;
+         const menuItemsToRender = [];
+
+         // Loop over response and collect items
+         response.forEach(item => {
+             // Clean the screen_URL to extract just the file name
+             const screenName = item.screen_URL.split('/').pop().split('?')[0].split('#')[0].trim();
+
+             // Store menu item for potential rendering
+             menuItemsToRender.push({
+                 menu_CODE: item.menu_CODE,
+                 html: `
+                     <li class="${item.menu_CODE}">
+                         <a href="${item.screen_URL}" title="" data-filter-tags="application intel">
+                             <i class="fa fa-address-card"></i>
+                             <span class="nav-link-text">${item.screen_NAME}</span>
+                         </a>
+                     </li>
+                 `
+             });
+
+             // Check if this item matches the current page
+             if (screenName === currentPath) {
+                 matchedMenuCode = item.menu_CODE;
+             }
+         });
+
+         console.log("Matched menu_CODE:", matchedMenuCode);
+
+         if (matchedMenuCode) {
+             // Only append items with the same menu_CODE
+             menuItemsToRender.forEach(item => {
+                 if (item.menu_CODE === matchedMenuCode) {
+                     $('.submenu').append(item.html);
+                 }
+             });
+         } else {
+             console.warn("No matching menu item found for current path.");
+         }
+     },
+     error: function (xhr, status, error) {
+         console.error("AJAX error:", status, error);
+     }
+ });  */
+
+		    const currentPage = window.location.pathname.split('/').pop().toLowerCase();
+		
+		    $('.submenu a').each(function () {
+		        const linkHref = $(this).attr('href').toLowerCase();
+
+		        if (linkHref === currentPage) {
+		            $(this).addClass('disabled-linkSidebar');
+		            $(this).removeAttr('href'); // make it unclickable
+		        }
+		    });
+	
+
+	  
+	</script>
+</div>
+            
+
+            
+           

@@ -1,0 +1,366 @@
+<div th:fragment="employmentAgreementEmployerTab" th:remove="tag">
+	<div class="row">
+		<div class="col-lg-12">
+			  <div class="panel panelContentBlock mb-2 p-1">		
+				<div class="row"> 
+					<div class="col-12 col-lg-12">
+						<div class="row">
+							<div class="col-12 col-lg-4 pr-0 d-flex align-items-center">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Employer Name</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value=" ">
+							</div>
+							<div class="col-12 col-lg-4 pr-0 d-flex align-items-center">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Occupation</label>																		
+								<select class="custom-select form-control typecontact">
+									<option> </option>
+									<option value="Option 1">test</option>
+									<option value="Option 2">test1</option>
+								</select>
+							</div>
+							<div class="col-12 col-lg-4 d-flex align-items-center">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Address</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value=" ">
+							</div>
+							<div class="col-12 col-lg-4 pr-0 d-flex align-items-center mt-3">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">City/State/Zip</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled>
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled style="width:50px;">
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled style="width:80px;">
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled style="width:80px;">
+								<span data-toggle="modal" data-target="#SelectStateZipModal">
+									<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Select State Zip" data-class="nav-function-hidden">
+			                            <i class="fa fa-download"></i>
+			                         </a>
+			                    </span>
+							</div>
+							<div class="col-12 col-lg-4 pr-0 d-flex align-items-center mt-3">
+								<span class="d-flex px-2" style="border: 1px solid #7a59ad;border-radius: 5px;">									
+									<label for="weight" class="form-label mb-0 mr-4 text-nowrap" style="font-weight:700;">Employment Type</label>
+									<div class="custom-control custom-radio mr-5">
+	                                    <input type="radio" class="custom-control-input" id="FullTimeRadios" name="FullTimeRadios">
+	                                    <label class="custom-control-label" for="FullTimeRadios">Full Time</label>
+	                                </div>
+	                                <div class="custom-control custom-radio mr-5">
+	                                    <input type="radio" class="custom-control-input" id="FullTimeRadios" name="PartTimeRadios">
+	                                    <label class="custom-control-label" for="PartTimeRadios">Part Time</label>
+	                                </div>
+	                                <div class="custom-control custom-radio">
+	                                    <input type="radio" class="custom-control-input" id="UnemployedRadios" name="UnemployedRadios">
+	                                    <label class="custom-control-label" for="UnemployedRadios">Unemployed</label>
+	                                </div>
+								</span>
+							</div>
+							<div class="col-12 col-lg-4 d-flex align-items-center mt-3">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Phone</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value=" ">
+								<label for="weight" class="form-label mb-0 mx-2 text-nowrap">Start Date</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value=" " style="width:80px;">
+								<label for="weight" class="form-label mb-0 mx-2 text-nowrap">End Date</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value=" " style="width:80px;">
+							</div>
+							<div class="col-12 col-lg-4 pr-0 d-flex align-items-center mt-3">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Hourly Rate</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value=" ">
+								<label for="weight" class="form-label mb-0 mx-2 text-nowrap"># Hrs Paid/wk</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value=" ">
+							</div>
+							<div class="col-12 col-lg-4 pr-0 d-flex align-items-center mt-3">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Date Of First Paycheck</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value=" ">	
+							</div>
+							<div class="col-12 col-lg-4 pr-0 d-flex align-items-center mt-3">
+								<label for="weight" class="form-label mb-0 mr-4 text-nowrap" style="font-weight:700;">Frequency Of Paychecks</label>
+								<div class="custom-control custom-radio mr-5">
+                                    <input type="radio" class="custom-control-input" id="BiweeklyRadios" name="BiweeklyRadios">
+                                    <label class="custom-control-label" for="BiweeklyRadios">Biweekly</label>
+                                </div>
+                                <div class="custom-control custom-radio mr-5">
+                                    <input type="radio" class="custom-control-input" id="WeeklyRadios" name="WeeklyRadios">
+                                    <label class="custom-control-label" for="WeeklyRadios">Weekly</label>
+                                </div>
+							</div>
+							<div class="col-12 col-lg-4 pr-0 d-flex align-items-center mt-3">
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input type="checkbox" class="custom-control-input" id="WorkLocationCheck">
+									<label class="custom-control-label text-nowrap" for="WorkLocationCheck">Work Location Same As</label>
+								</div>
+							</div>
+							<div class="col-12 col-lg-4 pr-0 d-flex align-items-center mt-3">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Work Related Transportation Time</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value=" ">	
+							</div>
+							<div class="col-12 col-lg-4 d-flex align-items-center mt-3">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Method of Transportation</label>																					
+								<select class="custom-select form-control typecontact">
+									<option> </option>
+									<option value="Option 1">test</option>
+									<option value="Option 2">test1</option>
+								</select>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-8 pr-0">
+					<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">VERIFICATION</h6>
+					<div class="panel panelContentBlock mb-2 p-1">
+						<div class="d-flex align-items-center my-2">							
+							<div class="custom-control custom-checkbox custom-control-inline">
+								<input type="checkbox" class="custom-control-input" id="WorkLocationCheck">
+								<label class="custom-control-label text-nowrap" for="WorkLocationCheck">Verification</label>
+							</div>
+							<div class="d-flex align-items-center mr-2">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Date</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value=" ">	
+							</div>
+							<div class="d-flex align-items-center w-100">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Verified By:</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value=" " disabled>	
+								<span data-toggle="modal" data-target="#verificationFindModal">
+									<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="verification" data-class="nav-function-hidden">
+			                            <i class="fa fa-download"></i>
+			                        </a>
+			                    </span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">VERIFICATION</h6>
+					<div class="d-flex align-items-center panel panelContentBlock mb-2 p-1">
+						<div class="d-flex align-items-center w-100 my-2">
+							<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Updated Date Time</label>																					
+							<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value=" " disabled>
+						</div>
+					</div>
+				</div>
+				<div class="d-flex justify-content-end mr-3 my-3 w-100">
+					<button type="button" class="btn-primary btn btn-sm mr-3">Previous</button>
+					<button type="button" class="btn-primary btn btn-sm">Next</button>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="SelectStateZipModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header pt-3 pb-2">
+						<h6 class="modal-title">Select City, State, Zip</h6>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"><i class="fal fa-times"></i></span>
+						</button>
+					</div>
+					<div class="modal-body py-0">
+						<div class="mb-2">
+							<label for="dob" class="form-label mb-0 mr-2 text-nowrap d-block">Enter a partial value to limit the list, %% to see all values.</label>
+							<label for="dob" class="form-label mb-0 mr-2 mt-3 text-nowrap">Warning: Entering % to see all values may take a very long time. Entering criteria that can be used to reduce the list may be <br> significantly faster.</label>
+						</div>
+						<div class="d-flex align-items-center mb-2">
+							<label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+							<input type="text" class="form-control" aria-label="dob" name="Find" id="Find" value="%">
+						</div>
+						<div id="table-container">
+							<div class="tableFixHead">
+							  <table id="" class="table table-striped table-bordered table-sm">
+							    <thead>
+								    <tr>
+										<th>City</th>
+										<th style="width: 100px;">State</th>
+										<th style="width: 100px;">Zip 5</th>
+										<th style="width: 100px;">Zip 4</th>
+									</tr>
+							    </thead>
+							   <tbody>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+										<td style="width: 100px;">
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+									</tr>
+								</tbody>
+							  </table>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Find</button>
+						<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Ok</button>
+						<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+					</div>
+				</div> 
+			</div>			
+		</div>
+		<div class="modal fade" id="verificationFindModal" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header pt-3 pb-2">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true"><i class="fal fa-times"></i></span>
+						</button>
+					</div>
+					<div class="modal-body py-0">
+						<div class="d-flex align-items-center mb-2">
+							<label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+							<input type="text" class="form-control" aria-label="dob" name="Find" id="Find" value="%">
+						</div>
+						<div id="table-container">
+							<div class="tableFixHead">
+							  <table id="" class="table table-striped table-bordered table-sm">
+							    <thead>
+								    <tr>
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th style="width: 50px;">MI</th>
+										<th style="width: 100px;">Suffix</th>
+									</tr>
+							    </thead>
+							   <tbody>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="ADMINISTRATOR" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="DACS" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="W" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="ADMINISTRATOR" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="DACS" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="W" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="ADMINISTRATOR" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="DACS" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="W" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="ADMINISTRATOR" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="DACS" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="W" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="ADMINISTRATOR" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="DACS" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="W" disabled>
+										</td>
+										<td>
+											<input type="text" class="form-control" aria-label="fname" name="fname" id="fname" value="" disabled>
+										</td>
+									</tr>
+								</tbody>
+							  </table>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Find</button>
+						<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Ok</button>
+						<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+					</div>
+				</div> 
+			</div>			
+		</div>
+	</div>
+</div>

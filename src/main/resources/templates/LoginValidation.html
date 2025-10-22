@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>
+		Omnet
+	</title>
+	<meta name="description" content="Login">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
+	<!-- Call App Mode on ios devices -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- Remove Tap Highlight on Windows Phone IE -->
+	<meta name="msapplication-tap-highlight" content="no">
+	<!-- base css -->
+	<link rel="stylesheet" media="screen, print" href="css/vendors.bundle.css">
+	<link rel="stylesheet" media="screen, print" href="css/app.bundle.css">
+	<!-- Place favicon.ico in the root directory -->
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+	<link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<!-- 	Optional: page related CSS -->
+	<link rel="stylesheet" media="screen, print" href="css/page-login.css">
+	<script src="js/notifications/sweetalert2/sweetalert2.bundle.js"></script>
+</head>
+<style>
+	.page-logo-text {
+		font-weight: 400;
+		font-size: 22px;
+		text-align: center;
+	}
+	html body .blankpage-form-field {
+    width: 450px;
+    }
+    .passwordEyeIcon .fa-eye{
+	top: 12px;
+    right: 12px;
+}
+body {
+  user-select: none; /* Standard syntax */
+  -webkit-user-select: none; /* Safari, Chrome */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE 10 and 11 */   
+}
+
+</style>
+
+<body>
+<meta http-equiv="Cache-Control" th:attr="content=${cacheControl}"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+	<div class="blankpage-form-field">
+		<div
+			class="page-logo m-0 w-100 align-items-center justify-content-center rounded border-bottom-left-radius-0 border-bottom-right-radius-0 px-4">
+			<a href="javascript:void(0)" class="page-logo-link press-scale-down d-flex align-items-center">
+				<img id="dacsImage" alt="DACS Logo" aria-roledescription="logo" style="height:68px; width:68px;">
+				<span class="page-logo-text mr-1"><b id="clientname"></b></span>
+			</a>
+		</div>
+		<div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
+		<div class="" style="text-align: center; margin-top: -20px; margin-bottom: 10px;">
+        <img id="omnetImage" alt="DACS Logo" aria-roledescrption="logo">
+		</div>
+
+			<form action="OmnetDesktop">
+				<div class="form-group">
+					
+				<h3 class="form-label" for="password" style="color: red; text-align: center;">Please enter OTP to verify your account</h3>
+				 <div id="errorNAME" style="display:none"></div> 
+				<div id="ResponseNAME" style="display:none"></div>
+					<input type="text" id="otpInput"  name="userOTP" class="form-control" placeholder="Please enter OTP" value="">
+					<span class="help-block">
+						Check your registered email for OTP
+						<button  id="Re-Generate" class="float-right border-0 bg-transparent" style="color:#886ab5;">Re-Generate OTP</button>
+					</span>
+				</div>
+			
+				<button type="button"  id="validateOTP" class="btn btn-default float-right">Submit</button>
+			</form>
+			<br><br>
+			<div class="blankpage-footer text-center">
+			© <span class="hidden-md-down fw-700" id="current-year"></span><img height="30"  alt="www.cntit.com" src="img/CNTIT_logo.png"> All rights reserved.<br>Powered by <a href="https://www.cntinfotech.com/" target="_blank"> CntInfotech</a>.
+		</div>
+		</div>
+
+	</div>
+
+	<video poster="img/backgrounds/clouds.png" id="bgvid" playsinline autoplay muted loop>
+		<source src="media/video/cc.webm" type="video/webm">
+		<source src="media/video/cc.mp4" type="video/mp4">
+	</video>
+	<script src="js/vendors.bundle.js"></script>
+	<script src="js/app.bundle.js"></script>
+	<!-- Page related scripts -->
+
+<script th:inline="javascript">
+document.addEventListener("DOMContentLoaded", function() {
+    const inputs = document.querySelectorAll('input, textarea');
+    inputs.forEach(function(input) {
+        input.setAttribute('autocomplete', 'off');
+    });
+});
+document.getElementById("current-year").innerHTML = new Date().getFullYear();
+$(document).ready(function () {
+	/*<![CDATA[*/
+	var contextPath = /*[[@{/}]]*/'';
+/*]]>*/
+
+          var xhr = new XMLHttpRequest();
+              xhr.onload = (res) => {
+                  if (res.target.status == 200) {
+                      document.getElementById("clientname").innerHTML = res.target.responseText;
+                  }
+              };
+              xhr.onerror = () => {
+                  console.error("An error occurred during the XMLHttpRequest.");
+              };
+              xhr.open("GET",contextPath+ "clientname", true);
+              xhr.send();
+              
+	fetch(contextPath+"clientlogo")
+.then(response => response.blob())
+.then(blob => {
+const url = URL.createObjectURL(blob);
+document.getElementById("dacsImage").src = url;
+})
+.catch(error => {
+console.error("Error loading DACS logo:", error);
+});
+
+fetch(contextPath+"OmnetLogo")
+.then(response => response.blob())
+.then(blob => {
+const url = URL.createObjectURL(blob);
+document.getElementById("omnetImage").src = url;
+})
+.catch(error => {
+console.error("Error loading Omnet logo:", error);
+});
+	checkBackButtonNavigation();
+	
+	  $('#otpInput').on('keydown', function (event) {
+	        if (event.keyCode === 13) { 
+	        	 event.preventDefault();
+	            $('#validateOTP').trigger('click'); 
+	        }
+	    });
+
+    
+    $('#validateOTP').on('click', function () {
+    	  $('#errorNAME').hide(); 
+          $('#responseMessage').hide();
+          $('#errorNAME').hide(); 
+       
+          if ($('#otpInput').val() == '') {
+            $('#errorNAME').html('<span style="color: red;">Please enter OTP</span>');
+            $('#errorNAME').css('display', 'block');
+            $('#username').focus();
+            return;
+        }
+
+        var userOTP = $('#otpInput').val().toString();
+        var token = window.location.pathname.replace('/OmnetTest/LoginValidation-', '');
+        var data = { token: token, userOTP: userOTP };
+
+        $.ajax({
+            method: "POST",
+            url: contextPath + "LoginApi/validateOTP",
+            data: $.param(data),
+            dataType: "text",
+            success: function (response, textStatus, jqXHR) {
+                if (response.includes("OTP is valid")) {
+                    window.location.href = contextPath + "OmnetDesktop";
+                } else if (response.includes("OTP is Invalid")) {
+                    $('#errorNAME').html('<span style="color: red;">OTP is invalid</span>').show();
+                    $('#responseMessage').hide();
+                    $('#responseMessage').hide(); 
+                } else if (response.includes("OTP is Expired")) {
+                    $('#errorNAME').html('<span style="color: red;">OTP has expired</span>').show();
+                    $('#responseMessage').hide();
+                    $('#responseMessage').hide(); 
+                } else {
+                    $('#errorNAME').html('<span style="color: red;">' + response + '</span>').show();
+                    $('#responseMessage').hide();
+                    $('#responseMessage').hide(); 
+                }
+            },
+            error: function (error) {
+                $("#errorNAME").text("Error: " + error.responseText);
+            }
+        });
+    });
+
+    $('#Re-Generate').on('click', function (event) {
+    	$('#otpInput').val('');
+        event.preventDefault();
+        var userId = localStorage.getItem('userId');
+
+        $.ajax({
+            method: "GET",
+            url:  contextPath+"LoginApi/regenerateOTP",
+            data: { userId: userId },
+            success: function (response) {
+                $('#ResponseNAME').html('<span style="color:#886ab5;">OTP Regenerated</span>');
+                $('#ResponseNAME').css('display', 'block');
+                $('#ResponseNAME').show(); 
+                $('#errorNAME').hide();
+            },
+            error: function (error) {
+            	 $('#errorNAME').show(); 
+                 $('#ResponseNAME').hide();
+                 $('#errorNAME').hide(); 
+                console.error("Error:", error);
+               
+            }
+        });
+    });
+  	
+})
+
+
+        function checkBackButtonNavigation() {
+            if (performance && performance.navigation && typeof performance.navigation.type === 'number') {
+                if (performance.navigation.type === 2) {
+                    $.ajax({
+                        url:  contextPath+'removeOtpValidationAttribute',
+                        type: 'GET',
+                        success: function () {
+                            console.log('Session attribute removed');
+                            window.location.href =  contextPath+"";
+                        },
+                        error: function () {
+                            console.error('Failed to remove session attribute');
+                        }
+                    });
+                }
+            }
+        }
+
+</script>
+
+
+</body>
+
+</html>

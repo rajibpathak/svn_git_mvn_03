@@ -1,0 +1,123 @@
+<div th:fragment="ArrestIncidentApprovaltab" th:remove="tag">
+	<div class="row">
+		<div class="col-lg-12">
+			<h6 class="headerBlock text-center m-0" style="font-weight: 800;">DOC REPORTING OFFICER/SOURCE</h6>
+			<div class="panel panelContentBlock p-1 mb-1">
+				 <div class="row">
+					 <div class="col-12 col-lg-4 pr-0 d-flex align-items-center">	
+						 <div class="d-flex align-items-center w-100">
+							 <label for="Security" class="form-label text-nowrap mr-2 mb-0">Reported By</label>
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value="Patterson">
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value="Matt">
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value="W"  style="width: 50px;">
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value="" style="width: 90px;">
+							 <a href="#"  id="" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center" data-class="nav-function-hidden">
+								<i class="fa fa-users" aria-hidden="true"></i>
+							 </a>
+						 </div>
+					 </div>
+					 <div class="col-12 col-lg-5 d-flex align-items-center mt-1 pr-0">
+						<div class="custom-control mr-3 custom-checkbox custom-control-inline align-items-center">
+                            <input type="checkbox" class="custom-control-input" id="Comprehend" aria-label="Comprehend" name="Comprehend" value="">
+                            <label class="custom-control-label text-nowrap" for="citdefaultInline1" style="font-weight: 500;">External Source (See individuals involved section for add.details)</label>
+                         </div>
+                         <label for="Security" class="form-label text-nowrap mr-2 mb-0">Date</label>
+						 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value="05/27/2024">
+					</div>
+					<div class="col-12 col-lg-3 d-flex align-items-center">
+						<label class="form-label mr-2 mb-0 text-nowrap">Title</label>
+					    <select class="custom-select form-control">
+					        <option value="1"> </option>
+					        <option value="2">Two</option>
+					        <option value="3">Three</option>
+					    </select>
+					</div>
+					<div class="col-12 col-lg-12 d-flex align-items-center mt-1">
+						<div class="custom-control mr-3 custom-checkbox custom-control-inline align-items-center">
+	                        <input type="checkbox" class="custom-control-input" id="Comprehend" aria-label="Comprehend" name="Comprehend" value="">
+	                        <label class="custom-control-label text-nowrap" for="citdefaultInline1" style="font-weight: 500;">Arrest/Incident Report Completed</label>
+	                    </div>
+					</div>
+					<div class="col-12 col-lg-12 mt-1">
+						<textarea class="form-control" id="addComments" rows="3" name="Comments" placeholder="Facts of Incident" style="resize:none;" value=""></textarea>
+					</div>
+				 </div>
+			</div>
+			<h6 class="headerBlock text-center m-0" style="font-weight: 800;">REVIEWING OFFICER</h6>
+			<div class="panel panelContentBlock p-1 mb-1">
+				 <div class="row">
+					 <div class="col-12 col-lg-4 pr-0 d-flex align-items-center">	
+						 <div class="d-flex align-items-center w-100">
+							 <label for="Security" class="form-label text-nowrap mr-2 mb-0">Reported By</label>
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value=" " disabled>
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value=" " disabled>
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value=""  style="width: 50px;" disabled>
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value="" style="width: 90px;" disabled>
+							 <a href="#" style="opacity: 0.5;" id="" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center" data-class="nav-function-hidden">
+								<i class="fa fa-users" aria-hidden="true"></i>
+							 </a>
+						 </div>
+					 </div>
+					 <div class="col-12 col-lg-3 d-flex align-items-center">
+						<label class="form-label mr-2 mb-0 text-nowrap">Title</label>
+					    <select class="custom-select form-control">
+					        <option value="1"> </option>
+					        <option value="2">Two</option>
+					        <option value="3">Three</option>
+					    </select>
+					</div>
+					 <div class="col-12 col-lg-5 d-flex align-items-center pr-0">
+						<div class="custom-control mr-3 custom-checkbox custom-control-inline align-items-center">
+                            <input type="checkbox" class="custom-control-input" id="Comprehend" aria-label="Comprehend" name="Comprehend" value="">
+                            <label class="custom-control-label text-nowrap" for="citdefaultInline1" style="font-weight: 500;">Reviewed</label>
+                         </div>
+                         <label for="Security" class="form-label text-nowrap mr-2 mb-0">Date</label>
+						 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value="" disabled style="width: 150px;">
+						 <label for="Security" class="form-label text-nowrap mx-2 mb-0">Time</label>
+						 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value="" disabled style="width: 100px;">
+						 <button class="btn btn-primary btn-sm ml-2 text-nowrap" disabled>Assign More Reviewer</button>
+					</div>
+					<div class="col-12 col-lg-12 mt-1">
+						<textarea class="form-control" id="addComments" rows="3" name="Comments" placeholder="Comments" style="resize:none;" value=""></textarea>
+					</div>
+				 </div>
+			</div>
+			<h6 class="headerBlock text-center m-0" style="font-weight: 800;">SUPERVISOR</h6>
+			<div class="panel panelContentBlock p-1 mb-1">
+				 <div class="row">
+					 <div class="col-12 col-lg-4 pr-0 d-flex align-items-center">	
+						 <div class="d-flex align-items-center w-100">
+							 <label for="Security" class="form-label text-nowrap mr-2 mb-0">Supervisor</label>
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value=" ">
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value=" ">
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value=""  style="width: 50px;">
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value="" style="width: 90px;">
+							 <a href="#" style="opacity: 0.5;" id="" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center" data-class="nav-function-hidden">
+								<i class="fa fa-users" aria-hidden="true"></i>
+							 </a>
+						 </div>
+					 </div>
+					 <div class="col-12 col-lg-3 d-flex align-items-center">
+						<label class="form-label mr-2 mb-0 text-nowrap">Decision</label>
+					    <select class="custom-select form-control">
+					        <option value="1"> </option>
+					        <option value="2">Two</option>
+					        <option value="3">Three</option>
+					    </select>
+					</div>
+					 <div class="col-12 col-lg-5 d-flex align-items-center pr-0">
+                         <label for="Security" class="form-label text-nowrap mr-2 mb-0">Date</label>
+						 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value="" style="width: 170px;">
+						 <div class="custom-control ml-3 custom-checkbox custom-control-inline align-items-center">
+                            <input type="checkbox" class="custom-control-input" id="Comprehend" aria-label="Comprehend" name="Comprehend" value="">
+                            <label class="custom-control-label text-nowrap" for="citdefaultInline1" style="font-weight: 500;">Notify Director</label>
+                         </div>
+					</div>
+					<div class="col-12 col-lg-12 mt-1">
+						<textarea class="form-control" id="addComments" rows="3" name="Comments" placeholder="Follow Up Comments" style="resize:none;" value=""></textarea>
+					</div>
+				 </div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,1898 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<title class="Registrationsidebar">ScarsMarksTattoos</title>
+<div th:replace="~{fragments/head :: head}"></div>
+
+<body class="mod-bg-1 mod-nav-link">
+	<div th:replace="~{fragments/header :: header}"></div>
+	<div th:replace="~{fragments/navmenus :: navmenus}"></div>
+	<!-- BEGIN Page Wrapper -->
+	<div class="page-wrapper">
+		<div class="page-inner">
+			<!-- BEGIN Left Aside -->
+			<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+			<!-- END Left Aside -->
+			<div class="page-content-wrapper">
+				<!-- BEGIN Page Header -->
+				<!-- END Page Header -->
+				<!-- BEGIN Page Content -->
+				<!-- the #js-page-content id is needed for some plugins to initialize -->
+				<main id="js-page-content" role="main" class="page-content">
+					<!-- <ol class="breadcrumb page-breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">SmartAdmin</a></li>
+                            <li class="breadcrumb-item">category_1</li>
+                            <li class="breadcrumb-item">category_2</li>
+                            <li class="breadcrumb-item active">Page Titile</li>
+                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        </ol> -->
+					<div class="subheader mb-1">
+						<h1 class="subheader-title">
+							<div th:replace="~{fragments/toggleMenu :: toggleMenu}"></div>
+							<i class='subheader-icon fal fa-'></i> <span id="screenName"
+								th:text="${screenName}"></span></span>
+						</h1>
+						<div class="frame-wrap bg-transparent">
+							<div class="btn-group">
+								<div class="col-12 pr-0">
+									<div class="js-get-date">[your date here]</div>
+								</div>
+								<div class="mr-2">
+									<div class="input-append date position-relative w-100">
+
+										<span class="add-on"></span>
+									</div>
+								</div>
+							</div>
+							<a href="javascript:void(0);" id="add"
+								class="btn btn-primary btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="Add"> <i class="fal fa-plus"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-warning btn-sm btn-icon waves-effect waves-themed disabled"
+								data-toggle="tooltip" data-placement="top" data-original-title="Print"> <i
+									class="fal fa-print"></i>
+							</a> <a href="javascript:void(0);" id="clear"
+								class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="tooltip" data-placement="top" data-original-title="Clear"> <i
+									class="fal fa-times"></i>
+							</a> <a id="saveData" href="javascript:void(0);"
+								class="btn btn-success btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="OK/Save"> <i class="fal fa-save"></i>
+							</a> <a href="javascript:void(0);" id="exit"
+								class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="Cancel/Exit"> <i class="fal fa-sign-out"></i>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="col-lg-12">
+							<div th:replace="~{fragments/formheader :: formheader}"></div>
+							<div class="row">
+								<div class="col-lg-12">
+									<div id="panel-1" class="panel mb-2">
+										<div class="panel-hdr">
+											<h2> INMATE SCARS, MARKS, TATTOOS </h2>
+										</div>
+										<div class="panel-container show">
+											<div class="panel-content">
+												<div id="js-checkbox-toggles">
+													<input type="hidden" id="screenCode" value="CBI_MARK">
+													<input class="rawField" type="hidden" data-fld="SMT_ID"
+														data-lbl="Match ID" data-typ="hide">
+													<input class="rawField" type="hidden" data-fld="SMT_SEQ"
+														data-lbl="Seqno" data-typ="hide">
+													<input type="hidden" class="primary_val">
+													<input type="hidden" name="curr_user" id="curr_user"
+														th:value="${userId}">
+													<input type="hidden" name="curr_name" id="curr_name"
+														th:value="${username}">
+													<input type="hidden" id="vals_SMTLOCATION">
+
+													<div style="justify-content: end; display: flex">
+														<span
+															style="margin-right: 62px; font-size: 20px; font-weight: 600;">Picture
+															Analysis</span>
+														<label class="btn btn-primary waves-effect waves-themed"
+															style="padding:1px 2px 2px 5px;background-color: #0b5ed7;">
+															<i class="fa fa-download"></i> <input type="file"
+																class="uploadFile img" value="Upload Photo"
+																style="width: 0px;height: 0px;overflow: hidden;">
+														</label>
+													</div>
+													<table style="width:100%;">
+														<tr>
+															<td style="width:70%;padding-left: 0;">
+																<div id="scarsmarks_table" class="w-100"></div>
+															</td>
+															<td style="width:30%">
+																<canvas id="bodyCanvas"></canvas>
+																<div id="mytooltip" class="tooltip"></div>
+															</td>
+														</tr>
+													</table>
+
+													<script>
+														const canvas = document.getElementById('bodyCanvas');
+														const ctx = canvas.getContext('2d');
+
+														// Load an image
+														const image = new Image();
+														image.src = 'img/hum2x.png'; // Replace with your image URL
+
+														const bodyParts = [
+															//head: { x: 150, y: 50, radius: 3 },
+															//shoulder: { x: 150, y: 100, radius: 3 },
+															{x: 236, y: 281.5, radius: 3, nam: "HAND, RIGHT, ARTIFICIAL"},
+															{x: 55, y: 281.5, radius: 3, nam: "HAND, LEFT, ARTIFICIAL"},
+															{x: 155, y: 36.5, radius: 3, nam: "EYE, RIGHT, ARTIFICIAL"},
+															{x: 135, y: 36.5, radius: 3, nam: "EYE, LEFT, ARTIFICIAL"},
+															{x: 170, y: 51.5, radius: 3, nam: "EAR, RIGHT, ARTIFICIAL"},
+															{x: 121, y: 51.5, radius: 3, nam: "EAR, LEFT, ARTIFICIAL"},
+															{x: 170, y: 98, radius: 3, nam: "ARTIFICIAL SHOULDER JOINT"}, //Right
+															{x: 120, y: 98, radius: 3, nam: "ARTIFICIAL SHOULDER JOINT"}, //Left
+															{x: 207, y: 158.5, radius: 3, nam: "ARM, RIGHT, ARTIFICIAL"},
+															{x: 83, y: 158.5, radius: 3, nam: "ARM, LEFT, ARTIFICIAL"},
+															{x: 213, y: 201.5, radius: 3, nam: "ARTIFICIAL ELBOW JOINT"},	//Right
+															{x: 75, y: 201.5, radius: 3, nam: "ARTIFICIAL ELBOW JOINT"},	//Left
+															{x: 174, y: 337.5, radius: 3, nam: "LEG, RIGHT, ARTIFICIAL"},
+															{x: 116, y: 337.5, radius: 3, nam: "LEG, LEFT, ARTIFICIAL"},
+															{x: 167, y: 402.5, radius: 3, nam: "ARTIFICIAL KNEE JOINT"},	//Right
+															{x: 124, y: 402.5, radius: 3, nam: "ARTIFICIAL KNEE JOINT"},	//Left
+															{x: 169, y: 524.5, radius: 3, nam: "FOOT, RIGHT, ARTIFICIAL"},
+															{x: 122, y: 524.5, radius: 3, nam: "FOOT, LEFT, ARTIFICIAL"},
+															{x: 180, y: 211.5, radius: 3, nam: "ARTIFICIAL HIP JOINT"},	//Right
+															{x: 112, y: 211.5, radius: 3, nam: "ARTIFICIAL HIP JOINT"}	//Left	
+															// Add more body parts with their coordinates
+														];
+
+														let percent = 80;
+														let common_rad = 0;
+
+														//alert(common_rad);
+
+														image.onload = () => {
+															// Draw the image on the canvas
+
+															const newWidth = (image.width / 100) * percent; // Change this to your desired width
+															const newHeight = (image.height / 100) * percent; // Change this to your desired height
+
+															// Resize the canvas
+															canvas.width = newWidth;
+															canvas.height = newHeight;
+
+															// Draw the image on the canvas
+															ctx.drawImage(image, 0, 0, newWidth, newHeight);
+
+															//ctx.drawImage(image, 0, 0);
+															//alert(bodyParts[0].x);
+															for (var i = 0; i < bodyParts.length; i++) {
+																// Draw a dot at a specific position
+																const dotX = bodyParts[i].x; // X coordinate of the dot
+																const dotY = bodyParts[i].y; // Y coordinate of the dot
+
+																var dotRadius = 0;
+
+																if (common_rad > 0) {
+																	dotRadius = common_rad; // Radius of the dot
+																} else {
+																	dotRadius = bodyParts[i].radius; // Radius of the dot	
+																}
+
+																const scaledX = (dotX / 100) * percent;
+																const scaledY = (dotY / 100) * percent;
+
+																ctx.fillStyle = '#d00'; // Color of the dot
+																ctx.beginPath();
+																ctx.arc(scaledX, scaledY, dotRadius, 0, Math.PI * 2);
+																ctx.fill();
+															}
+														};
+
+														// Check if the click is inside the dot
+														function isInsideDot(x, y, dotX, dotY, dotRadius) {
+															const dx = x - dotX;
+															const dy = y - dotY;
+															return (dx * dx + dy * dy) <= (dotRadius * dotRadius);
+														}
+
+														// Handle click event
+														canvas.addEventListener('click', (event) => {
+															const rectBounds = canvas.getBoundingClientRect();
+															const mouseX = event.clientX - rectBounds.left;
+															const mouseY = event.clientY - rectBounds.top;
+
+															for (var i = 0; i < bodyParts.length; i++) {
+																// Draw a dot at a specific position
+																const dotX = bodyParts[i].x; // X coordinate of the dot
+																const dotY = bodyParts[i].y; // Y coordinate of the dot
+
+																var dotRadius = 0;
+
+																if (common_rad > 0) {
+																	dotRadius = common_rad; // Radius of the dot
+																} else {
+																	dotRadius = bodyParts[i].radius; // Radius of the dot	
+																}
+
+																const part = bodyParts[i].nam; // Name of Part
+
+																const scaledX = (dotX / 100) * percent;
+																const scaledY = (dotY / 100) * percent;
+
+																if (isInsideDot(mouseX, mouseY, scaledX, scaledY, dotRadius)) {
+																	//alert(part);
+																	if ($('#no_of_rec').val() > 0) {
+																		var rowid = $('#current_fld').val();
+																		//alert(part + ' & ' + rowid);
+																		setCellValue(rowid, 'SMTLOCATION', part);
+																		setUpdate(rowid);
+																	}
+																}
+															}
+														});
+													</script>
+
+													<!--<script>
+														const canvas = document.getElementById('bodyCanvas');
+														const ctx = canvas.getContext('2d');
+
+														// Draw a simple representation of a human body
+														function drawBody() {
+															// Head
+															ctx.fillStyle = 'peachpuff';
+															ctx.beginPath();
+															ctx.arc(200, 50, 30, 0, Math.PI * 2);
+															ctx.fill();
+															ctx.stroke();
+
+															// Ears
+															ctx.fillStyle = 'peachpuff';
+															ctx.beginPath();
+															ctx.arc(170, 50, 10, 0, Math.PI * 2); // Left ear
+															ctx.fill();
+															ctx.stroke();
+															ctx.beginPath();
+															ctx.arc(230, 50, 10, 0, Math.PI * 2); // Right ear
+															ctx.fill();
+															ctx.stroke();
+
+															// Body
+															ctx.fillStyle = '#f7371b';
+															ctx.fillRect(170, 80, 60, 150);
+															ctx.strokeRect(170, 80, 60, 150);
+
+															// Arms
+															ctx.fillStyle = 'peachpuff';
+															ctx.fillRect(130, 80, 40, 10); // Left arm
+															ctx.strokeRect(130, 80, 40, 10);
+															ctx.fillRect(230, 80, 40, 10); // Right arm
+															ctx.strokeRect(230, 80, 40, 10);
+
+															// Legs
+															ctx.fillStyle = '#f7371b';
+															ctx.fillRect(170, 230, 25, 100); // Left leg
+															ctx.strokeRect(170, 230, 25, 100);
+															ctx.fillRect(205, 230, 25, 100); // Right leg
+															ctx.strokeRect(205, 230, 25, 100);
+														}
+
+														drawBody();
+
+														// Click event listener
+														canvas.addEventListener('click', function (event) {
+															const rect = canvas.getBoundingClientRect();
+															const x = event.clientX - rect.left;
+															const y = event.clientY - rect.top;
+
+															var rowid = $('#current_fld').val();
+
+															// Check if the click is within the head area
+															if (Math.sqrt((x - 200) ** 2 + (y - 50) ** 2) <= 30) {
+																//alert("This is the head");
+															}
+															// Check if the click is within the ear areas
+															else if (Math.sqrt((x - 170) ** 2 + (y - 50) ** 2) <= 10) {
+																//alert("This is the left ear");
+																setCellValue(rowid, 'smtLocation', 'EAR, LEFT, ARTIFICIAL');
+															} else if (Math.sqrt((x - 230) ** 2 + (y - 50) ** 2) <= 10) {
+																//alert("This is the right ear");
+																setCellValue(rowid, 'smtLocation', 'EAR, RIGHT, ARTIFICIAL');
+															}
+															// Check if the click is within the body area
+															else if (x >= 170 && x <= 230 && y >= 80 && y <= 230) {
+																//alert("This is the body");
+															}
+															// Check if the click is within the arm areas
+															else if (x >= 130 && x <= 170 && y >= 80 && y <= 90) {
+																//alert("This is the left arm");
+																setCellValue(rowid, 'smtLocation', 'ARM, LEFT, ARTIFICIAL');
+															} else if (x >= 230 && x <= 270 && y >= 80 && y <= 90) {
+																//alert("This is the right arm");
+																setCellValue(rowid, 'smtLocation', 'ARM, RIGHT, ARTIFICIAL');
+															}
+															// Check if the click is within the leg areas
+															else if (x >= 170 && x <= 195 && y >= 230 && y <= 330) {
+																//alert("This is the left leg");
+																setCellValue(rowid, 'smtLocation', 'LEG, LEFT, ARTIFICIAL');
+															} else if (x >= 205 && x <= 230 && y >= 230 && y <= 330) {
+																//alert("This is the right leg");
+																setCellValue(rowid, 'smtLocation', 'LEG, RIGHT, ARTIFICIAL');
+															}
+															
+															setUpdate(rowid);
+														});
+													</script>-->
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<input type="hidden" id="current_fld">
+								<div class="d-flex align-items-center justify-content-between w-100 mx-3">
+									<div class="pl-1 ml-2">
+										<label class="form-lable mb-0 mr-1 text-nowrap">Total Record(s) </label>
+										<input type="text" class="" allow-type="text" label-name="No of Offenders"
+											specific="owba_no_offender" aria-label=" " name="ContactDate" id="no_of_rec"
+											readonly value="0" style="width: 50px;text-align:center;">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+				<!-- this overlay is activated only when mobile menu is triggered -->
+				<div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
+				<!-- END Page Content -->
+				<!-- BEGIN Page Footer -->
+			
+				<!-- END Page Footer -->
+				<!-- Modal Large -->
+				<!-- BEGIN Shortcuts -->
+				<!-- modal shortcut -->
+				<div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog"
+					aria-labelledby="modal-shortcut" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-top modal-transparent" role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+								<ul class="app-list w-auto h-auto p-0 text-left">
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Home
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
+												<i class="ni ni-envelope icon-stack-1x text-white"></i>
+											</div>
+											<span class="app-list-name">
+												Inbox
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Add More
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div> <!-- END Shortcuts -->
+			</div>
+		</div>
+	</div>
+	<!-- END Page Wrapper -->
+	<!-- BEGIN Quick Menu -->
+	<!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
+	<nav class="shortcut-menu d-none d-sm-block"> <input type="checkbox" class="menu-open" name="menu-open"
+			id="menu_open" />
+		<label for="menu_open" class="menu-open-button "> <span class="app-shortcut-icon d-block"></span>
+		</label> <a href="#" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Scroll Top"> <i
+				class="fal fa-arrow-up"></i>
+		</a> <a href="page_login-alt.html" class="menu-item btn" data-toggle="tooltip" data-placement="left"
+			title="Logout"> <i class="fal fa-sign-out"></i>
+		</a> <a href="#" class="menu-item btn" data-action="app-fullscreen" data-toggle="tooltip" data-placement="left"
+			title="Full Screen"> <i class="fal fa-expand"></i>
+		</a> <a href="#" class="menu-item btn" data-action="app-print" data-toggle="tooltip" data-placement="left"
+			title="Print page"> <i class="fal fa-print"></i>
+		</a> <a href="#" class="menu-item btn" data-action="app-voice" data-toggle="tooltip" data-placement="left"
+			title="Voice command">
+			<i class="fal fa-microphone"></i>
+		</a>
+	</nav>
+	<!-- END Quick Menu -->
+	<!-- BEGIN Messenger -->
+	<div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right">
+			<div class="modal-content h-100">
+				<div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
+					<div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+						<span class="mr-2">
+							<span class="rounded-circle profile-image d-block"
+								style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+						</span>
+						<div class="info-card-text">
+							<a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white"
+								data-toggle="dropdown" aria-expanded="false">
+								Tracey Chang
+								<i class="fal fa-angle-down d-inline-block ml-1 text-white fs-md"></i>
+							</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">Send Email</a>
+								<a class="dropdown-item" href="#">Create Appointment</a>
+								<a class="dropdown-item" href="#">Block User</a>
+							</div>
+							<span class="text-truncate text-truncate-md opacity-80">IT Director</span>
+						</div>
+					</div>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0 h-100 d-flex">
+					<!-- BEGIN msgr-list -->
+					<div
+						class="msgr-list d-flex flex-column bg-faded border-faded border-top-0 border-right-0 border-bottom-0 position-absolute pos-top pos-bottom">
+						<div>
+							<div
+								class="height-4 width-3 h3 m-0 d-flex justify-content-center flex-column color-primary-500 pl-3 mt-2">
+								<i class="fal fa-search"></i>
+							</div>
+							<input type="text" class="form-control bg-white" id="msgr_listfilter_input"
+								name="msgr_listfilter_input" placeholder="Filter contacts" aria-label="FilterSearch"
+								value="" data-listfilter="#js-msgr-listfilter">
+						</div>
+						<div class="flex-1 h-100 custom-scroll">
+							<div class="w-100">
+								<ul id="js-msgr-listfilter" class="list-unstyled m-0">
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="tracey chang online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Tracey Chang
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="oliver kopyuv online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Oliver Kopyuv
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="dr john cook phd away">
+											<div class="d-table-cell align-middle status status-warning status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Dr. John Cook PhD
+													<small class="d-block font-italic fs-xs">
+														Away
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-g.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Ali Amdaney
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="sarah mcbrook online">
+											<div class="d-table-cell align-middle status status-success status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Sarah McBrook
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney busy">
+											<div class="d-table-cell align-middle status status-danger status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs text-danger">
+														Busy
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney inactive">
+											<div class="d-table-cell align-middle">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-m.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													+714651347790
+													<small class="d-block font-italic fs-xs opacity-50">
+														Missed Call
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+								<div class="filter-message js-filter-message"></div>
+							</div>
+						</div>
+						<div>
+							<a class="fs-xl d-flex align-items-center p-3">
+								<i class="fal fa-cogs"></i>
+							</a>
+						</div>
+					</div>
+					<!-- END msgr-list -->
+					<!-- BEGIN msgr -->
+					<div class="msgr d-flex h-100 flex-column bg-white">
+						<!-- BEGIN custom-scroll -->
+						<div class="custom-scroll flex-1 h-100">
+							<div id="chat_container" class="w-100 p-4">
+								<!-- start .chat-segment -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">
+										Jun 19
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent">
+									<div class="chat-message">
+										<p>
+											Hey Ching, did you get my files?
+										</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:00 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>
+											Hi
+										</p>
+										<p>
+											Sorry going through a busy time in office. Yes I analyzed the solution.
+										</p>
+										<p>
+											It will require some resource, which I could not manage.
+										</p>
+									</div>
+									<div class="fw-300 text-muted mt-1 fs-xs">
+										3:24 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-start">
+									<div class="chat-message">
+										<p>
+											Okay
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-end">
+									<div class="chat-message">
+										<p>
+											Sending you some dough today, you can allocate the resources to this
+											project.
+										</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:26 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-start">
+									<div class="chat-message">
+										<p>
+											Perfect. Thanks a lot!
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>
+											I will have them ready by tonight.
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-end">
+									<div class="chat-message">
+										<p>
+											Cheers
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment for timestamp -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">
+										Jun 20
+									</div>
+								</div>
+								<!--  end .chat-segment for timestamp -->
+							</div>
+						</div>
+						<!-- END custom-scroll  -->
+						<!-- BEGIN msgr__chatinput -->
+						<div class="d-flex flex-column">
+							<div
+								class="border-faded border-right-0 border-bottom-0 border-left-0 flex-1 mr-3 ml-3 position-relative shadow-top">
+								<div class="pt-3 pb-1 pr-0 pl-0 rounded-0" tabindex="-1">
+									<div id="msgr_input" contenteditable="true"
+										data-placeholder="Type your message here..."
+										class="height-10 form-content-editable"></div>
+								</div>
+							</div>
+							<div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1"
+									data-toggle="tooltip" data-original-title="More options" data-placement="top">
+									<i class="fal fa-ellipsis-v-alt color-fusion-300"></i>
+								</a>
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+									data-original-title="Attach files" data-placement="top">
+									<i class="fal fa-paperclip color-fusion-300"></i>
+								</a>
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+									data-original-title="Insert photo" data-placement="top">
+									<i class="fal fa-camera color-fusion-300"></i>
+								</a>
+								<div class="ml-auto">
+									<a href="javascript:void(0);" class="btn btn-info">Send</a>
+								</div>
+							</div>
+						</div>
+						<!-- END msgr__chatinput -->
+					</div>
+					<!-- END msgr -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Messenger -->
+	<!-- BEGIN Page Settings -->
+	<div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right modal-md">
+			<div class="modal-content">
+				<div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
+					<h4 class="m-0 text-center color-white">
+						Layout Settings
+						<small class="mb-0 opacity-80">User Interface Settings</small>
+					</h4>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0">
+					<div class="settings-panel">
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									App Layout
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="fh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="header-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Header</span>
+							<span class="onoffswitch-title-desc">header is in a fixed at all times</span>
+						</div>
+						<div class="list" id="nff">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Navigation</span>
+							<span class="onoffswitch-title-desc">left panel is fixed</span>
+						</div>
+						<div class="list" id="nfm">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-minify"></a>
+							<span class="onoffswitch-title">Minify Navigation</span>
+							<span class="onoffswitch-title-desc">Skew nav to maximize space</span>
+						</div>
+						<div class="list" id="nfh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-hidden"></a>
+							<span class="onoffswitch-title">Hide Navigation</span>
+							<span class="onoffswitch-title-desc">roll mouse on edge to reveal</span>
+						</div>
+						<div class="list" id="nft">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-top"></a>
+							<span class="onoffswitch-title">Top Navigation</span>
+							<span class="onoffswitch-title-desc">Relocate left pane to top</span>
+						</div>
+						<div class="list" id="mmb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-main-boxed"></a>
+							<span class="onoffswitch-title">Boxed Layout</span>
+							<span class="onoffswitch-title-desc">Encapsulates to a container</span>
+						</div>
+						<div class="expanded">
+							<ul class="">
+								<li>
+									<div class="bg-fusion-50" data-action="toggle" data-class="mod-bg-1"></div>
+								</li>
+								<li>
+									<div class="bg-warning-200" data-action="toggle" data-class="mod-bg-2"></div>
+								</li>
+								<li>
+									<div class="bg-primary-200" data-action="toggle" data-class="mod-bg-3"></div>
+								</li>
+								<li>
+									<div class="bg-success-300" data-action="toggle" data-class="mod-bg-4"></div>
+								</li>
+							</ul>
+							<div class="list" id="mbgf">
+								<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+									data-class="mod-fixed-bg"></a>
+								<span class="onoffswitch-title">Fixed Background</span>
+							</div>
+						</div>
+						<!-- <div class="mt-4 d-table w-100 px-5">
+                            <div class="d-table-cell align-middle">
+                                <h5 class="p-0">
+                                    Mobile Menu
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="list" id="nmp">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-push"></a>
+                            <span class="onoffswitch-title">Push Content</span>
+                            <span class="onoffswitch-title-desc">Content pushed on menu reveal</span>
+                        </div>
+                        <div class="list" id="nmno">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-no-overlay"></a>
+                            <span class="onoffswitch-title">No Overlay</span>
+                            <span class="onoffswitch-title-desc">Removes mesh on menu reveal</span>
+                        </div>
+                        <div class="list" id="sldo">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-slide-out"></a>
+                            <span class="onoffswitch-title">Off-Canvas <sup>(beta)</sup></span>
+                            <span class="onoffswitch-title-desc">Content overlaps menu</span>
+                        </div> -->
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Accessibility
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mbf">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-bigger-font"></a>
+							<span class="onoffswitch-title">Bigger Content Font</span>
+							<span class="onoffswitch-title-desc">content fonts are bigger for readability</span>
+						</div>
+						<div class="list" id="mhc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-high-contrast"></a>
+							<span class="onoffswitch-title">High Contrast Text (WCAG 2 AA)</span>
+							<span class="onoffswitch-title-desc">4.5:1 text contrast ratio</span>
+						</div>
+						<div class="list" id="mcb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-color-blind"></a>
+							<span class="onoffswitch-title">Daltonism <sup>(beta)</sup> </span>
+							<span class="onoffswitch-title-desc">color vision deficiency</span>
+						</div>
+						<div class="list" id="mpc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-pace-custom"></a>
+							<span class="onoffswitch-title">Preloader Inside</span>
+							<span class="onoffswitch-title-desc">preloader will be inside content</span>
+						</div>
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Global Modifications
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mcbg">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-clean-page-bg"></a>
+							<span class="onoffswitch-title">Clean Page Background</span>
+							<span class="onoffswitch-title-desc">adds more whitespace</span>
+						</div>
+						<div class="list" id="mhni">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-nav-icons"></a>
+							<span class="onoffswitch-title">Hide Navigation Icons</span>
+							<span class="onoffswitch-title-desc">invisible navigation icons</span>
+						</div>
+						<div class="list" id="dan">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-disable-animation"></a>
+							<span class="onoffswitch-title">Disable CSS Animation</span>
+							<span class="onoffswitch-title-desc">Disables CSS based animations</span>
+						</div>
+						<div class="list" id="mhic">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-info-card"></a>
+							<span class="onoffswitch-title">Hide Info Card</span>
+							<span class="onoffswitch-title-desc">Hides info card from left panel</span>
+						</div>
+						<div class="list" id="mlph">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-lean-subheader"></a>
+							<span class="onoffswitch-title">Lean Subheader</span>
+							<span class="onoffswitch-title-desc">distinguished page header</span>
+						</div>
+						<div class="list" id="mnl">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-nav-link"></a>
+							<span class="onoffswitch-title">Hierarchical Navigation</span>
+							<span class="onoffswitch-title-desc">Clear breakdown of nav links</span>
+						</div>
+						<div class="list mt-1">
+							<span class="onoffswitch-title">Global Font Size <small>(RESETS ON REFRESH)</small> </span>
+							<div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
+								<label for="smRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-sm" data-target="html">
+									<input type="radio" aria-label="smRadio" name="smRadio" id="smRadio" value=""> SM
+								</label>
+								<label for="mdRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text" data-target="html">
+									<input type="radio" aria-label="mdRadio" name="mdRadio" id="mdRadio" value=""
+										checked=""> MD
+								</label>
+								<label for="lgRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-lg" data-target="html">
+									<input type="radio" aria-label="lgRadio" name="lgRadio" id="lgRadio" value=""> LG
+								</label>
+								<label for="xlRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-xl" data-target="html">
+									<input type="radio" aria-label="xlRadio" name="xlRadio" id="xlRadio" value=""> XL
+								</label>
+							</div>
+							<span class="onoffswitch-title-desc d-block mb-g">Change <strong>root</strong> font size to
+								effect rem values</span>
+						</div>
+						<div class="mt-2 d-table w-100 pl-5 pr-3">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Theme colors <small>(overlays base css)</small>
+								</h5>
+								<!-- <div class="fs-xs text-muted p-2 alert alert-warning mt-3 mb-0">
+                                    <i class="fal fa-exclamation-triangle text-warning mr-2"></i>Due to network latency
+                                    and CPU utilization, you may experience a brief flickering effect on page load which
+                                    may show the intial applied theme for a split second. Setting the prefered
+                                    style/theme in the header will prevent this from happening.
+                                </div> -->
+							</div>
+						</div>
+						<div class="expanded theme-colors pl-5 pr-3">
+							<ul class="m-0">
+								<li><a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme=""
+										data-toggle="tooltip" data-placement="top" title="Wisteria (base css)"
+										data-original-title="Wisteria (base css)"></a></li>
+								<li><a href="#" id="myapp-1" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip"
+										data-placement="top" title="Tapestry" data-original-title="Tapestry"></a></li>
+								<li><a href="#" id="myapp-2" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip"
+										data-placement="top" title="Atlantis" data-original-title="Atlantis"></a></li>
+								<li><a href="#" id="myapp-3" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip"
+										data-placement="top" title="Indigo" data-original-title="Indigo"></a></li>
+								<li><a href="#" id="myapp-4" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip"
+										data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a>
+								</li>
+								<li><a href="#" id="myapp-5" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip"
+										data-placement="top" title="Tradewind" data-original-title="Tradewind"></a></li>
+								<li><a href="#" id="myapp-6" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip"
+										data-placement="top" title="Cranberry" data-original-title="Cranberry"></a></li>
+								<li><a href="#" id="myapp-7" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip"
+										data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a></li>
+								<li><a href="#" id="myapp-8" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip"
+										data-placement="top" title="Chetwode Blue"
+										data-original-title="Chetwode Blue"></a></li>
+								<li><a href="#" id="myapp-9" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip"
+										data-placement="top" title="Apricot" data-original-title="Apricot"></a></li>
+								<li><a href="#" id="myapp-10" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip"
+										data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-11" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip"
+										data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-12" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip"
+										data-placement="top" title="Wild Blue Yonder"
+										data-original-title="Wild Blue Yonder"></a></li>
+								<li><a href="#" id="myapp-13" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip"
+										data-placement="top" title="Emerald" data-original-title="Emerald"></a></li>
+							</ul>
+						</div>
+						<hr class="mb-0 mt-4">
+						<div class="pl-5 pr-3 py-3 bg-faded">
+							<div class="row no-gutters">
+								<div class="col-6 pr-1">
+									<a href="#" class="btn btn-outline-danger fw-500 btn-block"
+										data-action="app-reset">Reset Settings</a>
+								</div>
+								<div class="col-6 pl-1">
+									<a href="#" class="btn btn-danger fw-500 btn-block"
+										data-action="factory-reset">Factory Reset</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<span id="saving"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Page Settings -->
+
+	<style>
+		label {
+			font-weight: 500;
+		}
+
+		#officerTbl {
+			/*min-height: 300px;*/
+			/* Set minimum height */
+			max-height: 300px;
+			/* Set maximum height */
+			overflow-y: auto;
+			/* Enable vertical scrolling */
+		}
+
+		.mydisabled {
+			background-color: #ddd;
+			/* Light gray background for disabled rows */
+			/*color: #a0a0a0;*/
+			/* Gray text color */
+			pointer-events: none;
+			/* Disable pointer events */
+		}
+
+		#scarsmarks_table {
+			margin-top: -20px;
+		}
+
+		.tooltip {
+			position: absolute;
+			background-color: rgba(0, 0, 0, 0.8);
+			color: white;
+			padding: 5px;
+			border-radius: 3px;
+			display: none;
+		}
+
+		canvas {
+			/*border: 1px solid #000;*/
+			display: block;
+			margin: 0 auto;
+		}
+
+		.nav-function-top .page-content-wrapper {
+			margin-top: 4rem;
+		}
+	</style>
+
+	<div th:replace="~{fragments/script :: script}"></div>
+	<script>
+		// Define Test Data
+		// Define Test Data
+		var sampleData = [
+			{
+				id: "0",
+				seq: "0",
+			},
+			{
+				id: "1",
+				seq: "0",
+			},
+			{
+				id: "2",
+				seq: "0",
+			},
+			{
+				id: "3",
+				seq: "0",
+			},
+			{
+				id: "4",
+				seq: "0",
+			},
+			{
+				id: "5",
+				seq: "0",
+			},
+			{
+				id: "6",
+				seq: "0",
+			},
+			{
+				id: "7",
+				seq: "0",
+			},
+			{
+				id: "8",
+				seq: "0",
+			},
+			{
+				id: "9",
+				seq: "0",
+			},
+			{
+				id: "10",
+				seq: "0",
+			},
+			{
+				id: "11",
+				seq: "0",
+			},
+			{
+				id: "12",
+				seq: "0",
+			},
+			{
+				id: "13",
+				seq: "0",
+			},
+			{
+				id: "14",
+				seq: "0",
+			},
+			{
+				id: "15",
+				seq: "0",
+			},
+			{
+				id: "16",
+				seq: "0",
+			},
+			{
+				id: "17",
+				seq: "0",
+			},
+			{
+				id: "18",
+				seq: "0",
+			},
+			{
+				id: "19",
+				seq: "0",
+			},
+		];
+
+		function timePickerEditor(cell) {
+			const cellValue = cell.getValue();
+			const input = document.createElement("input");
+			input.type = "time";
+			input.value = cellValue || "";
+			input.style.width = "100%";
+
+			input.addEventListener("change", function () {
+				cell.setValue(this.value);
+			});
+
+			return input;
+		}
+
+		var jsondata = {"test1": "ListItem1", "test2": "ListItem2", "test3": "ListItem2"};
+
+		function getData() {
+			//var jsondata = {"john":"ListItem1","test":"ListItem2","mokey":"kevin"};
+			//alert("from getData : " + jsonata);
+			return jsondata;
+		}
+
+		/*setTimeout(function () {
+			jsondata = {"test4": "ListItem4", "test5": "ListItem5"};
+			alert('executed');
+			alert(getData().toString());
+		}, 12000);*/
+
+		var smtLocation_Array = [];
+		/*setTimeout(function () {
+			smtLocation_Array = JSON.parse($('#vals_smtLocation').val());
+		}, 2000);*/
+
+		var dateEditor = function (cell) {
+			// Create an input element
+			var input = document.createElement("input");
+			input.type = "text";
+			input.value = cell.getValue();
+
+			// Initialize the datepicker
+			$(input).datepicker({
+				dateFormat: "mm/dd/yy", // Set the date format
+				onSelect: function (dateText) {
+					cell.setValue(dateText); // Set the cell value when a date is selected
+				}
+			});
+
+			$(input).css({
+				position: 'relative', // Ensure the input is positioned correctly
+				zIndex: 9999 // Set a high z-index
+			});
+
+			//cell.getElement().appendChild(input);
+			//input.focus();
+
+			return input;
+		};
+
+		//Create Date Editor
+		/*var dateEditor = function (cell, onRendered, success, cancel) {
+			//cell - the cell component for the editable cell
+			//onRendered - function to call when the editor has been rendered
+			//success - function to call to pass thesuccessfully updated value to Tabulator
+			//cancel - function to call to abort the edit and return to a normal cell
+
+			//create and style input
+			var cellValue = luxon.DateTime.fromFormat(cell.getValue(), "MM/dd/yyyy").toFormat("yyyy-MM-dd"),
+				input = document.createElement("input");
+
+			input.setAttribute("type", "date");
+
+			input.style.padding = "4px";
+			input.style.width = "100%";
+			input.style.boxSizing = "border-box";
+
+			input.value = cellValue;
+
+			onRendered(function () {
+				input.focus();
+				input.style.height = "100%";
+			});
+
+			function onChange() {
+				if (input.value != cellValue) {
+					success(luxon.DateTime.fromFormat(input.value, "yyyy-MM-dd").toFormat("MM/dd/yyyy"));
+				} else {
+					cancel();
+				}
+			}
+
+			//submit new value on blur or change
+			input.addEventListener("blur", onChange);
+
+			//submit new value on enter
+			input.addEventListener("keydown", function (e) {
+				if (e.keyCode == 13) {
+					onChange();
+				}
+
+				if (e.keyCode == 27) {
+					cancel();
+				}
+			});
+
+			return input;
+		};*/
+
+		//var typeTest_Array = JSON.parse($('#vals_typeTest').val());
+
+		/*var user_tbl = new Tabulator("#officerTbl", {
+			layout: "fitColumns",
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+				{title: "userid", field: "USER_ID", visible: false},
+				{title: "Last Name", field: "USER_LAST_NAME"},
+				{title: "First Name", field: "USER_FIRST_NAME"},
+				{title: "Mi", field: "USER_MID_NAME", width: 50},
+				{title: "Suffix", field: "USER_SUFFIX_NAME", width: 100},
+			]
+		});*/
+
+		function getCurrentDate() {
+			const today = new Date(); // Get the current date
+			const month = String(today.getMonth() + 1).padStart(2, '0'); // Get the month (0-11) and add 1, then pad with zero
+			const day = String(today.getDate()).padStart(2, '0'); // Get the day (1-31) and pad with zero
+			const year = today.getFullYear(); // Get the full year (yyyy)
+
+			return `${month}/${day}/${year}`; // Return the date in mm/dd/yyyy format
+		}
+
+		function getCurrentTime() {
+			const now = new Date(); // Get the current date and time
+			const hours = String(now.getHours()).padStart(2, '0'); // Get the hours (0-23) and pad with zero
+			const minutes = String(now.getMinutes()).padStart(2, '0'); // Get the minutes (0-59) and pad with zero
+
+			return `${hours}:${minutes}`; // Return the time in HH:mm format
+		}
+
+		//Define Table
+		var table = new Tabulator("#scarsmarks_table", {
+			layout: "fitColumns",
+			data: sampleData,
+			height: '480px',
+			selectableRange: true,
+			printAsHtml: true,
+			printStyled: true,
+			//data: initialData.map(row => ({ ...row, isInitialRow: true })),
+			columns: [
+				{
+					field: "id",
+					visible: false,
+				},
+				{
+					field: "upd",
+					visible: false,
+				},
+				{
+					//title: '<span style="display: none;">Id</span>',
+					editor: "input",
+					visible: false,
+					field: "SMT_ID",
+				},
+				{
+					//title: '<span class="permissible permissible_code" tag="head" style="display: none;" allow-type="hide" specific="smt_seq">Seqno</span>',
+					editor: "input",
+					visible: false,
+					field: "SMT_SEQ",
+				},
+				{
+					//title: "Type of Test <span class='text-danger'>*</span>",
+					//title: '<span class="permissible" tag="head" allow-type="dropdown" specific="smt_location">SMT Location</span>',
+					titleFormatter: (column) => setTitleDesc(column, 'SMTLOCATION', 'SMT Location'),
+					field: "SMTLOCATION",
+					editor: "list",
+					width: 350,
+					sorter: "string",
+					sorterParams: {alignEmptyValues: "bottom"},
+					editorParams: {allowEmpty: true, listOnEmpty: true, valuesLookup: true, autocomplete: true, values: {}},
+					cellEdited: function (cell) {
+						setUpd(cell);
+						setUpdate(cell.getRow().getData().id);
+					},
+					cellClick: function (e, cell) {
+						var myrow = cell.getRow();
+						rowClicked(e, myrow);
+					}
+				},
+				{
+					//title: '<span class="permissible" tag="head" allow-type="text" specific="smt_cmt">Comments</th>',
+					titleFormatter: (column) => setTitleDesc(column, 'COMMENTS', 'Comments'),
+					field: "COMMENTS",
+					editor: "input",
+					/*editorParams: {
+						editorLookup: function (cell) {
+							var isNew = cell.getRow().getData().isNewRow;
+							return isNew ? "input" : false; // if the cell contains an array, use the list editor, otherwise use the input editor;
+						}
+					},*/
+
+
+					//editor: false,
+					/*editor: function (cell) {
+						try {
+							const rowData = cell.getRow().getData();
+							return rowData && rowData.isNewRow ? "input" : false;
+						} catch {
+							return false;
+						}
+					},
+					editable: function (cell) {
+						try {
+							const rowData = cell.getRow().getData();
+							return rowData && rowData.isNewRow;
+						} catch {
+							return false;
+						}
+					},*/
+					sorter: "string",
+					sorterParams: {alignEmptyValues: "bottom"},
+					/*cellClick: function (e, cell) {
+						alert(cell.getRow().getData().isNewRow);
+						if (cell.getRow().getData().isNewRow) {
+							cell.getColumn().updateDefinition({
+								editor: "number"
+							});
+							cell.edit();
+						}*/
+
+					/*var ide = cell.getRow().getData().id;
+					var isNew = cell.getRow().getData().isNewRow;
+					setEditorOption(ide, isNew);*/
+					/*if(isNew == "Y") {
+						cell.getColumn().updateDefinition({editor: "input"});
+					} else {
+						cell.getColumn().updateDefinition({editor: false});
+					}*/
+					//toggleEditor(cell);
+					//},
+					cellEdited: function (cell) {
+						setUpd(cell);
+						setUpdate(cell.getRow().getData().id);
+					},
+				}
+			]
+		});
+
+		tabulatorRegistry["scarsmarks_table"] = {
+			varName: "table",
+			instance: table
+		};
+
+		function setUpd(cell) {
+			// Get the row data
+			const rowData = cell.getRow().getData();
+
+			// Set the 'upd' field to 'Y'
+			rowData.upd = "Y";
+
+			// Update the row data
+			cell.getRow().update(rowData);
+			updatable = true;
+		}
+
+		// Function to add a class to all rows after initialization
+		function addClassToRows(className) {
+			var rows = table.getRows();
+
+			rows.forEach(function (row) {
+				row.getElement().classList.add(className);
+			});
+		}
+
+		setTimeout(function () {
+			addClassToRows("mydisabled");
+		}, 100);
+
+		table.on("rowClick", function (e, row) {
+			rowClicked(e, row);
+		});
+
+		function rowClicked(e, row) {
+			var rowid = row.getData().id;
+			console.log(rowid);
+			//alert(row.getData().isNewRow);
+			//alert(rowid);
+			/*if(row.getData().isNewRow == "Y") {
+				cell.getColumn().updateDefinition({editor: "input"});
+				cell.edit();
+			} else {
+				cell.getColumn().updateDefinition({editor: false});
+			}*/
+
+
+			$('#current_fld').val(rowid);
+		}
+
+		function setUpdate(id) {
+			//alert(id);
+			//$('#drugdna_table').find('.tabulator-row').eq(id).addClass('allow_update');
+			//$('#drugdna_table').find('.tabulator-row').eq(id).attr('allow_id', id);
+			var row = table.getRow(id); // Get the row by ID
+			if (row) {
+				var rowElement = row.getElement(); // Get the row element
+				rowElement.classList.add('allow_update'); // Add the class to the row element
+				rowElement.setAttribute('allow_id', id);
+			} else {
+				console.error("Row not found for rowId:", rowId);
+			}
+		}
+
+		function setEditorOption(id, isNew) {
+			var row = table.getRow(id); // Get the row by ID
+			var cell = row.getCell("comments");
+
+			if (isNew == "Y") {
+				cell.getColumn().updateDefinition({editor: "input"});
+			} else {
+				cell.getColumn().updateDefinition({editor: "number"});
+			}
+
+			setTimeout(() => cell.edit(), 50);
+
+		}
+
+		function refreshTable() {
+			alert('ok1');
+			table.setData(tabledatadrugdna);
+		}
+
+		/*table.on("rowAdded", function (row) {
+			const rowData = row.getData();
+			alert(rowData.isInitialRow);
+			alert(rowData.id);
+
+			// Get the cell (e.g., via row or event)
+			const cell = table.getRow(rowData.id).getCell("comments");
+
+			// Update the column to remove the editor
+			cell.getColumn().updateDefinition({editor: "input"});
+
+		});*/
+
+		$('#add').on('click', function () {
+
+			if ($('#sbiNumberInput').val().trim() == '') {
+				message('W', 0, 0);
+				return;
+			}
+
+			var key_val = $('.primary_val').val();
+
+			if (key_val == '') {
+				message('W', 0, 0);
+				return;
+			}
+
+			table.clearSort();
+
+			var rowCount = table.getData().length;
+			var norec = $('#no_of_rec').val();
+			norec++;
+			$('#no_of_rec').val(norec);
+			//return;
+
+			const newRowData = {
+				id: rowCount,
+				upd: "Y",
+				seq: "0",
+				SMT_ID: "",
+				SMT_SEQ: "",
+				SMTLOCATION: "",
+				COMMENTS: "",
+				isNewRow: true,
+			}; // Example new row data
+			table.addRow(newRowData, true);
+
+			//table.updateColumnDefinition("comments", {editor: "input"});
+
+			/*const row = table.getRow(rowCount);
+			if (!row) return;
+
+			const cells = row.getCells();
+			cells.forEach(cell => {
+				const field = cell.getField();
+				if (field == "comments") {
+					cell.getColumn().updateDefinition({editor: "input"});
+				}
+			});*/
+
+			//var row = table.getRow(rowCount);
+			//var cell = row.getCell("comments");
+			//cell.setEditor("input");
+			//cell.getColumn().updateDefinition({editor: "input"});
+			/*.then(function (row) {
+				// The rowAdded callback will handle adding editors
+				var cell = row.getCell("smtLocation");
+				cell.setEditor("input");
+				cell.edit();
+			}); // true for adding at the top*/
+			//load_class();
+			focusCell(rowCount, "SMTLOCATION");
+			setUpdate(rowCount);
+			$('#current_fld').val(rowCount);
+
+			//setFieldEditorForRow(rowCount, "comments", "input");
+		});
+
+		function setFieldEditorForRow(rowId, fieldName, editorType) {
+
+			alert(rowId + " and " + fieldName + " and " + editorType);
+
+			let row = table.getRow(rowId);
+			if (!row) {
+				alert(`Row with id '${rowId}' not found`);
+				return;
+			}
+
+			let rowData = row.getData();
+			if (!rowData.editableFields) {
+				rowData.editableFields = {};
+			}
+
+			if (editorType) {
+				rowData.editableFields[fieldName] = editorType;
+			} else {
+				delete rowData.editableFields[fieldName];
+			}
+
+			// Update the row data to reflect changes
+			row.update(rowData).then(() => {
+				// Force redraw so editor functions re-evaluate
+				table.redraw(true);
+
+				// Optionally immediately start edit if editor assigned to the cell
+				if (editorType) {
+					setTimeout(() => {
+						const cell = row.getCell(fieldName);
+						if (cell) {
+							cell.edit();
+							//cell.getColumn().updateDefinition({editor: editorType});
+						}
+					}, 50);
+				}
+			});
+		}
+
+		function load_class() {
+
+			for (var i = 0; i < $('.permissible').length; i++) {
+
+				var cls_name = $('.permissible').eq(i).attr('specific');
+				var allow_type = $('.permissible').eq(i).attr('allow-type');
+
+				var tab_id = $('.permissible').eq(i).parents('.tabulator').prop('id');
+
+				$('#' + tab_id).find('.tabulator-cell').addClass('mytd');
+
+				if ($('.permissible').eq(i).attr('tag') == 'head') {
+
+					var tab_fld = $('#' + tab_id + ' .tabulator-cell:eq(' + (i) + ')').attr('tabulator-field');
+
+					table.getRows().forEach(row => {
+						const cell = row.getCell(tab_fld); // Get the cell in the specified column
+						if (cell) {
+							const cellElement = cell.getElement(); // Get the cell's DOM element
+
+							cellElement.classList.add(cls_name);
+							cellElement.classList.add('form-fld');
+							cellElement.setAttribute('data-fld', cls_name); // Add a custom attribute
+							if (allow_type == 'dropdown') {
+								cellElement.classList.add('dropdown_vals');
+							}
+							if ($('#mandatory_fld').val().includes('[' + tab_fld + ']')) {
+								cellElement.classList.add('mandatory');
+							}
+						}
+					});
+				}
+			}
+		}
+
+		//RowSetter
+		function setCellValue(rowNumber, columnField, valueToSet) {
+			// Get the row by its index (rowNumber - 1 because rowNumber is 1-based)
+			var row = table.getRow(rowNumber);
+
+			// Check if the row exists
+			if (row) {
+				// Update the specific field in the row
+				row.update({[columnField]: valueToSet});
+			} else {
+				console.error("Row not found");
+			}
+		}
+
+		//RowGetter
+		function getCellValue(rowId, field) {
+			// Get the row by its ID
+			var row = table.getRow(rowId);
+
+			// Check if the row exists
+			if (row) {
+				// Get the cell value
+				var cell = row.getCell(field);
+				return cell ? cell.getValue() : ''; // Return the cell value or null if the cell doesn't exist
+			} else {
+				console.error("Row not found");
+				return null; // Return null if the row doesn't exist
+			}
+		}
+
+		function focusCell(rowId, field) {
+			var row = table.getRow(rowId); // Get the row by ID
+			if (row) {
+				var cell = row.getCell(field); // Get the cell from the row
+				if (cell) {
+					cell.edit(); // Open the editor for the cell
+					// Wait for the editor to be created before focusing
+					/*setTimeout(function () {
+						var input = cell.getElement().querySelector("input");
+						if (input) {
+							input.focus(); // Focus the input element
+						}
+					}, 0);*/
+				} else {
+					console.error("Cell not found for field:", field);
+				}
+			} else {
+				console.error("Row not found for rowId:", rowId);
+			}
+		}
+
+		/*table.getRows().forEach(function (row) {
+			row.getElement().classList.add('mydisabled');
+		});*/
+
+		//setTimeout(function () {
+		//$('.tabulator-row').addClass('mydisabled');	
+		//$('#scarsmarks_table').find('.tabulator-row').addClass('mydisabled');
+		//}, 2000);
+
+
+		/*table.on("rowClick", function (e, row) {
+			//alert("Row " + row.getData().user_name + " Clicked!!!!");
+			var rowid = row.getData().id;
+			$('#current_fld').val(rowid);
+			var med = getCellValue(rowid, 'med');
+			var cmt = getCellValue(rowid, 'cmt');
+			$('#addMedications').val(med);
+			$('#addComments').val(cmt);
+		});*/
+
+		function populateDropdown(data, dropdownId) {
+			var dropdown = $(dropdownId);
+			dropdown.empty();
+
+			dropdown.append($('<option></option>').attr('value', '').text(''));
+
+			data.forEach(function (item) {
+				var Code = item[0];
+				var Desc = item[1];
+				var option = $('<option></option>').attr('value', Code).text(Desc);
+				dropdown.append(option);
+			});
+		}
+
+		var cont_tp_cd = $('#selectTypeOfContact').find(':selected').val();
+
+		function userIcon(cell) {
+			return `<i class="fa fa-users" style="position: absolute; right: 5px; top: 5px; margin-right: 5px;"></i>`; // HTML with the icon and the age
+		}
+		function downloadIcon(cell) {
+			return `<i class="fa fa-download" style="position: absolute; right: 5px; top: 5px; margin-right: 5px;"></i>`; // HTML with the icon and the age
+		}
+
+		$(document).ready(function () {
+			$(function () {
+				$('.select2').select2();
+
+				$(".select2-placeholder-multiple").select2(
+					{
+						placeholder: "Select State"
+					});
+				$(".js-hide-search").select2(
+					{
+						minimumResultsForSearch: 1 / 0
+					});
+				$(".js-max-length").select2(
+					{
+						maximumSelectionLength: 2,
+						placeholder: "Select maximum 2 items"
+					});
+				$(".select2-placeholder").select2(
+					{
+						placeholder: "Select a state",
+						allowClear: true
+					});
+
+
+
+				$(".js-select2-icons").select2(
+					{
+						minimumResultsForSearch: 1 / 0,
+						templateResult: icon,
+						templateSelection: icon,
+						escapeMarkup: function (elm) {
+							return elm
+						}
+					});
+
+				function icon(elm) {
+					elm.element;
+					return elm.id ? "<i class='" + $(elm.element).data("icon") + " mr-2'></i>" + elm.text : elm.text
+				}
+
+				$(".js-data-example-ajax").select2(
+					{
+						ajax:
+						{
+							url: "https://api.github.com/search/repositories",
+							dataType: 'json',
+							delay: 250,
+							data: function (params) {
+								return {
+									q: params.term, // search term
+									page: params.page
+								};
+							},
+							processResults: function (data, params) {
+								// parse the results into the format expected by Select2
+								// since we are using custom formatting functions we do not need to
+								// alter the remote JSON data, except to indicate that infinite
+								// scrolling can be used
+								params.page = params.page || 1;
+
+								return {
+									results: data.items,
+									pagination:
+									{
+										more: (params.page * 30) < data.total_count
+									}
+								};
+							},
+							cache: true
+						},
+						placeholder: 'Search for a repository',
+						escapeMarkup: function (markup) {
+							return markup;
+						}, // let our custom formatter work
+						minimumInputLength: 1,
+						templateResult: formatRepo,
+						templateSelection: formatRepoSelection
+					});
+
+				function formatRepo(repo) {
+					if (repo.loading) {
+						return repo.text;
+					}
+
+					var markup = "<div class='select2-result-repository clearfix d-flex'>" +
+						"<div class='select2-result-repository__avatar mr-2'><img src='" + repo.owner.avatar_url + "' class='width-2 height-2 mt-1 rounded' /></div>" +
+						"<div class='select2-result-repository__meta'>" +
+						"<div class='select2-result-repository__title fs-lg fw-500'>" + repo.full_name + "</div>";
+
+					if (repo.description) {
+						markup += "<div class='select2-result-repository__description fs-xs opacity-80 mb-1'>" + repo.description + "</div>";
+					}
+
+					markup += "<div class='select2-result-repository__statistics d-flex fs-sm'>" +
+						"<div class='select2-result-repository__forks mr-2'><i class='fal fa-lightbulb'></i> " + repo.forks_count + " Forks</div>" +
+						"<div class='select2-result-repository__stargazers mr-2'><i class='fal fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+						"<div class='select2-result-repository__watchers mr-2'><i class='fal fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+						"</div>" +
+						"</div></div>";
+
+					return markup;
+				}
+
+				function formatRepoSelection(repo) {
+					return repo.full_name || repo.text;
+				}
+
+			});
+
+			function nullHandler(x) {
+				if (x == null) {
+					x = '';
+				}
+				return x;
+			}
+
+		});
+	</script>
+	<div th:replace="~{fragments/reusable :: reusable}"></div>
+	<div th:replace="~{fragments/msgBox :: msgBox}"></div>
+
+	<!--<script src="js/../script.js"></script>
+	<script>
+		$(document).ready(function () {
+			
+		});
+	</script>-->
+</body>
+
+</html>

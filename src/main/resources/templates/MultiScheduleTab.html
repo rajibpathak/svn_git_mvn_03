@@ -1,0 +1,70 @@
+
+<div th:fragment="MultiScheduleTab" th:remove="tag">
+	<div class="row">
+		<div class="col-lg-6 pr-0">
+			
+			<!-- Buttons for Select and Drag Modes -->
+			<div class="btn-group mb-2">
+				<div class="autocomplete"><input type="text" id="offenderSBI" autocomplete="off" class="form-control myflds" placeholder="ID#" style="width:130px;"></div>
+				<div class="autocomplete"><input type="text" id="offenderName" autocomplete="off" style="width:200px;margin-left:10px;margin-right:10px;" class="form-control mx-2 myflds" placeholder="Name"></div>
+				<a id="myfilter" style="width: 40px; border-radius: 3px;" href="javascript:void(0);" class="btn btn-primary btn-sm btn-icon waves-effect waves-themed headingIconsBlock" data-toggle="tooltip" data-placement="top" data-original-title=""> <i class="fal fa-search"></i>
+				</a>
+			    <button id="selectModeBtn" style="display:none;" class="btn btn-sm btn-primary p-1 ml-1 selectBtn">
+			        <i class="fa-solid fa-hand-pointer"></i>
+			    </button>
+			    <button id="dragModeBtn" style="display:none;" class="btn btn-sm btn-primary p-1 ml-1 dragBtn">
+			        <i class="fa-solid fa-hand-back-fist"></i>
+			    </button>
+			</div>
+            <div id="table-container" class="mb-2 d-flex">
+                <div id="offenderTable" class="w-100" style="max-height: 450px;border: 1px solid #7a59ad;"></div>
+            </div>
+        </div>
+		<div class="col-lg-6 form-group">
+			<div id="movement-controls" style="visibility:hidden !important;" class="dropSel d-flex align-items-center w-75">
+				<div class="selectFloatingLabel movement-controls w-75">
+					<label class="form-label mr-2 mb-0 control-label selectFloating">Movement Type</label>
+					<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="multi-movType">
+						<option value="">Movement Type</option> 
+						<option value="O">Other</option>
+			            <option value="H">Housing</option>
+			            <option value="R">Institutional Release</option>
+					</select>
+				</div>
+				<div class="selectFloatingLabel ml-2 movement-controls w-75">
+					<label class="form-label mr-2 mb-0 control-label selectFloating">Location To</label>
+					<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="location-to">
+						<option>Location To</option> 
+						<option value="O">test</option>
+					</select>
+				</div>
+				 <div class="form-check mx-2 d-flex align-items-center">
+			        <input type="checkbox" class="form-check-input" id="move-offender">
+			        <label class="form-check-label" for="move-offender">Moved</label>
+			    </div>
+			    <span id="myuser" style="display:none;" th:text="${username}"></span>
+			    <!--<div class="movement-controls">
+			        <label for="Security" class="form-label mr-1 mb-0 text-nowrap">Movement Type</label>
+			        <select id="multi-movType" style="width: 110px;" class="custom-select form-control" disabled>
+			            <option></option>
+			            <option value="O">Other</option>
+			            <option value="H">Housing</option>
+			            <option value="R">Institutional Release</option>
+			        </select>
+			    </div>
+			    <div class="movement-controls">
+			        <label for="Security" class="form-label mx-2 mb-0 text-nowrap">Location To</label>
+			        <select id="location-to" style="width: 110px; min-width: 100px;" class="custom-select form-control" disabled>
+			            <option></option>
+			        </select>
+			    </div>-->
+			</div>
+			<div class="mt-1 w-100">
+           <div id="table-container" class="mb-2 d-flex">
+                <div id="dropTable" class="w-100" style="max-height: 450px;border: 1px solid #7a59ad;"></div>
+            </div>
+			</div>
+			<!--<button id="clear-dparea" type="button" class="btn btn-primary btn-sm mr-2 waves-effect waves-themed"> Clear </button>-->
+		</div>
+	</div>
+</div>

@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+	<title>Screen Attributes</title>
+	<div th:replace="~{fragments/head :: head}"></div>
+
+	<body class="mod-bg-1 nav-function-top header-function-fixed">
+
+		<!-- BEGIN Page Wrapper -->
+		<div class="page-wrapper">
+			<div class="page-inner">
+				<div class="page-content-wrapper pt-5 mt-0">
+					<!-- BEGIN Page Content -->
+					<!-- the #js-page-content id is needed for some plugins to initialize -->
+					<main id="js-page-content" role="main" class="page-content">
+					<!-- <ol class="breadcrumb page-breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">SmartAdmin</a></li>
+                            <li class="breadcrumb-item">category_1</li>
+                            <li class="breadcrumb-item">category_2</li>
+                            <li class="breadcrumb-item active">Page Titile</li>
+                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        </ol> -->
+					<div class="subheader">
+						<h1 class="subheader-title">
+							<i class='subheader-icon fal fa-window'></i>Table Name</span>
+						</h1>
+
+							<!--<div class="frame-wrap">
+								<a href="javascript:void(0);"
+									class="btn btn-primary btn-sm btn-icon waves-effect waves-themed"
+									data-toggle="tooltip" data-placement="top"
+									data-original-title="Add"> <i class="fal fa-plus"></i>
+								</a> <a href="javascript:void(0);"
+									class="btn btn-warning btn-sm btn-icon waves-effect waves-themed"
+									data-toggle="tooltip" data-placement="top"
+									data-original-title="Print"> <i class="fal fa-print"></i>
+								</a> <a href="javascript:void(0);"
+									class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed"
+									data-toggle="tooltip" data-placement="top"
+									data-original-title="Clear"> <i class="fal fa-times"></i>
+								</a> <a href="javascript:void(0);"
+									class="btn btn-success btn-sm btn-icon waves-effect waves-themed"
+									data-toggle="tooltip" data-placement="top"
+									data-original-title="OK/Save"> <i class="fal fa-save"></i>
+								</a> <a href="javascript:void(0);"
+									class="btn btn-danger btn-sm btn-icon waves-effect waves-themed"
+									data-toggle="tooltip" data-placement="top"
+									data-original-title="Cancel/Exit"> <i
+									class="fal fa-sign-out"></i>
+								</a>
+	                    </div> -->
+					</div>
+
+					<div class="row">
+						<div class="col-12 col-lg-12 col-xl-12">
+							<div class="panel">
+							<div class="panel-hdr">
+									<h2>TableName List</h2>
+								</div>
+								<div class="panel-container show">
+									<div class="panel-content">
+										<button type="button" class="btn btn-primary btn-sm float-right" style="height: fit-content;">Save</button>
+										<table id="usersetupdetails" class="table table-bordered table-hover table-striped w-100">
+											<thead class="bg-primary-600">
+												<tr>
+													<th>Table Name</th>
+													<th class="text-nowrap">Column Name</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>Menu 1</td>
+													<td>
+														<select class="custom-select form-control usr_stp_fld col-4" name="primaryInstNum" id="primaryInst">
+															<option selected="">select</option>
+															<option value="03">One</option>
+															<option value="04">Two</option>
+														</select>
+													</td>
+												</tr>
+												<tr>
+													<td>Menu 2</td>
+													<td>
+														<select class="custom-select form-control usr_stp_fld col-4" name="primaryInstNum" id="primaryInst">
+															<option selected="">select</option>
+															<option value="03">One</option>
+															<option value="04">Two</option>
+														</select>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+					<!-- this overlay is activated only when mobile menu is triggered -->
+					<div class="page-content-overlay" data-action="toggle"
+						data-class="mobile-nav-on"></div>
+					<!-- END Page Content -->
+					<!-- BEGIN Page Footer -->
+					<div th:replace="~{fragments/footer :: footer}"></div>
+					<!-- END Page Footer -->
+					<!-- BEGIN Shortcuts -->
+				</div>
+			</div>
+		</div>
+		<!-- END Page Wrapper -->
+		<!-- BEGIN Quick Menu -->
+		<!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
+		<nav class="shortcut-menu d-none d-sm-block"> <input
+			type="checkbox" class="menu-open" name="menu-open" id="menu_open" />
+		<label for="menu_open" class="menu-open-button "> <span
+			class="app-shortcut-icon d-block"></span>
+		</label> <a href="#" class="menu-item btn" data-toggle="tooltip"
+			data-placement="left" title="Scroll Top"> <i
+			class="fal fa-arrow-up"></i>
+		</a> <a href="page_login-alt.html" class="menu-item btn"
+			data-toggle="tooltip" data-placement="left" title="Logout"> <i
+			class="fal fa-sign-out"></i>
+		</a> <a href="#" class="menu-item btn" data-action="app-fullscreen"
+			data-toggle="tooltip" data-placement="left" title="Full Screen">
+			<i class="fal fa-expand"></i>
+		</a> <a href="#" class="menu-item btn" data-action="app-print"
+			data-toggle="tooltip" data-placement="left" title="Print page"> <i
+			class="fal fa-print"></i>
+		</a> <a href="#" class="menu-item btn" data-action="app-voice"
+			data-toggle="tooltip" data-placement="left" title="Voice command">
+			<i class="fal fa-microphone"></i>
+		</a> </nav>
+		<!-- END Quick Menu -->
+
+		<div th:replace="~{fragments/script :: script}"></div>
+		<script>
+		$(document).ready(function() {
+
+			// initialize datatable
+			$('#usersetupdetails').dataTable({
+				scrollCollapse: true,
+				scrollY: '47vh',
+				paging: false,
+				responsive : true,
+				searching : true,
+				lengthChange : false,
+			});
+
+		});
+		</script>
+		<script>
+			$(document)
+					.ready(
+							function() {
+								$(function() {
+									$('.select2').select2();
+
+									$(".select2-placeholder-multiple").select2(
+											{
+												placeholder : "Select State"
+											});
+									$(".js-hide-search").select2({
+										minimumResultsForSearch : 1 / 0
+									});
+									$(".js-max-length").select2({
+										maximumSelectionLength : 2,
+										placeholder : "Select maximum 2 items"
+									});
+									$(".select2-placeholder").select2({
+										placeholder : "Select a state",
+										allowClear : true
+									});
+
+									$(".js-select2-icons").select2({
+										minimumResultsForSearch : 1 / 0,
+										templateResult : icon,
+										templateSelection : icon,
+										escapeMarkup : function(elm) {
+											return elm
+										}
+									});
+
+									function icon(elm) {
+										elm.element;
+										return elm.id ? "<i class='"
+												+ $(elm.element).data("icon")
+												+ " mr-2'></i>" + elm.text
+												: elm.text
+									}
+
+									$(".js-data-example-ajax")
+											.select2(
+													{
+														ajax : {
+															url : "https://api.github.com/search/repositories",
+															dataType : 'json',
+															delay : 250,
+															data : function(
+																	params) {
+																return {
+																	q : params.term, // search term
+																	page : params.page
+																};
+															},
+															processResults : function(
+																	data,
+																	params) {
+																// parse the results into the format expected by Select2
+																// since we are using custom formatting functions we do not need to
+																// alter the remote JSON data, except to indicate that infinite
+																// scrolling can be used
+																params.page = params.page || 1;
+
+																return {
+																	results : data.items,
+																	pagination : {
+																		more : (params.page * 30) < data.total_count
+																	}
+																};
+															},
+															cache : true
+														},
+														placeholder : 'Search for a repository',
+														escapeMarkup : function(
+																markup) {
+															return markup;
+														}, // let our custom formatter work
+														minimumInputLength : 1,
+														templateResult : formatRepo,
+														templateSelection : formatRepoSelection
+													});
+
+									function formatRepo(repo) {
+										if (repo.loading) {
+											return repo.text;
+										}
+
+										var markup = "<div class='select2-result-repository clearfix d-flex'>"
+												+ "<div class='select2-result-repository__avatar mr-2'><img src='" + repo.owner.avatar_url + "' class='width-2 height-2 mt-1 rounded' /></div>"
+												+ "<div class='select2-result-repository__meta'>"
+												+ "<div class='select2-result-repository__title fs-lg fw-500'>"
+												+ repo.full_name + "</div>";
+
+										if (repo.description) {
+											markup += "<div class='select2-result-repository__description fs-xs opacity-80 mb-1'>"
+													+ repo.description
+													+ "</div>";
+										}
+
+										markup += "<div class='select2-result-repository__statistics d-flex fs-sm'>"
+												+ "<div class='select2-result-repository__forks mr-2'><i class='fal fa-lightbulb'></i> "
+												+ repo.forks_count
+												+ " Forks</div>"
+												+ "<div class='select2-result-repository__stargazers mr-2'><i class='fal fa-star'></i> "
+												+ repo.stargazers_count
+												+ " Stars</div>"
+												+ "<div class='select2-result-repository__watchers mr-2'><i class='fal fa-eye'></i> "
+												+ repo.watchers_count
+												+ " Watchers</div>"
+												+ "</div>"
+												+ "</div></div>";
+
+										return markup;
+									}
+
+									function formatRepoSelection(repo) {
+										return repo.full_name || repo.text;
+									}
+
+								});
+							});
+		</script>
+		<!--<script src="js/../script.js"></script>
+	<script>
+		$(document).ready(function () {
+			
+		});
+	</script>-->
+	</body>
+</html>

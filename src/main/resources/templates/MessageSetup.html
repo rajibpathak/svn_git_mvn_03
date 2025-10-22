@@ -1,0 +1,1835 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<title class="AdminSidebar Screensetuptable">Message Setup</title>
+<div th:replace="~{fragments/head :: head}"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+<body class="mod-bg-1 mod-nav-link">
+	<div th:replace="~{fragments/header :: header}"></div>
+	<div th:replace="~{fragments/navmenus :: navmenus}"></div>
+	<style>
+		.hidden {
+			display: none;
+		}
+
+		.panel-hdr {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.suggestions-list {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			border: 1px solid #ccc;
+			position: absolute;
+			background-color: #fff;
+			z-index: 1;
+		}
+
+		.suggestions-list li {
+			padding: 10px;
+			cursor: pointer;
+		}
+
+		.suggestions-list li:hover {
+			background-color: #f1f1f1;
+		}
+
+		.scrollable-td {
+			max-height: 100px;
+			/* Set your desired max height */
+			overflow-y: auto;
+		}
+
+		.scrollable-content {
+			/* If you want some padding or additional styling for the inner div */
+			padding: 5px;
+		}
+
+		.form-control {
+			height: 30px;
+		}
+
+		element.style {}
+
+		/*#ui-datepicker-div {
+			position: absolute !important;
+			top: auto !important;
+			left: auto !important;
+		}*/
+	</style>
+
+	<!-- BEGIN Page Wrapper -->
+	<div class="page-wrapper">
+		<div class="page-inner">
+			<!-- BEGIN Left Aside -->
+			<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+			<!-- END Left Aside -->
+			<div class="page-content-wrapper">
+				<!-- BEGIN Page Header -->
+
+				<!-- END Page Header -->
+				<!-- BEGIN Page Content -->
+				<!-- the #js-page-content id is needed for some plugins to initialize -->
+				<main id="js-page-content" role="main" class="page-content">
+					<!-- <ol class="breadcrumb page-breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">SmartAdmin</a></li>
+                            <li class="breadcrumb-item">category_1</li>
+                            <li class="breadcrumb-item">category_2</li>
+                            <li class="breadcrumb-item active">Page Titile</li>
+                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        </ol> -->
+					<div class="subheader">
+						<h1 class="subheader-title">
+							<div th:replace="~{fragments/toggleMenu :: toggleMenu}"></div>
+							<i class='subheader-icon fal fa-window'></i>MESSAGE SETUP</span>
+						</h1>
+
+						<div class="frame-wrap">
+							<a href="javascript:void(0);"
+								class="btn btn-primary btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="Add" id="add-button"> <i
+									class="fal fa-plus"></i>
+							</a>
+							<a href="javascript:void(0);"
+								class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="tooltip" data-placement="top" data-original-title="Clear"
+								id="clear-button"> <i class="fal fa-times"></i>
+							</a>
+							<a href="javascript:void(0);"
+								class="btn btn-warning btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="Print" id="prints-button"><i
+									class="fal fa-print"></i>
+							</a>
+							<a href="javascript:void(0);"
+								class="btn btn-success btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="OK/Save" id="save-button"> <i
+									class="fal fa-save"></i>
+							</a>
+							<a href="javascript:void(0);"
+								class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="Cancel/Exit" id="exit-button"> <i
+									class="fal fa-sign-out"></i>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="col-lg-4 col-xl-4">
+							<div class="panel">
+								<div class="panel-hdr">
+									<h2>Message Details</h2>
+								</div>
+								<div class="panel-container show">
+									<div class="panel-content">
+										<!-- datatable start -->
+										<div id="msgdetail_table"></div>
+										<!-- datatable end -->
+									</div>
+									<table class="table table-hover table-clean">
+										<tbody>
+											<tr>
+												<td style="text-align: -webkit-right;"><span
+														style="height:15px; width:15px"
+														class="rounded-circle d-block bg-success-900"></span> </td>
+												<td class="color-success-900">Status : Active</td>
+												<td style="text-align: -webkit-right;"><span
+														style="height:15px; width:15px"
+														class="rounded-circle d-block bg-danger-900"></span> </td>
+												<td class="color-danger-900">Status : Inactive</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+
+						</div>
+						<div class="col-lg-8 col-xl-8">
+							<div class="panel">
+								<div class="panel-hdr">
+									<h2>Message Setup</h2>
+									<div class="panel-content">
+										<table>
+											<tbody>
+												<tr>
+													<td class="custom-font-size"><label><b>Inserted Date
+																:</b></label><span id="insdate"
+															style="margin-right: 20px;"></span></td>
+													<td class="custom-font-size"><label><b>Inserted By
+																:</b></label><span id="insuserid"
+															style="margin-right: 20px;"></span></td>
+													<td class="custom-font-size"><label><b>Last Updated
+																:</b></label><span id="upddate"
+															style="margin-right: 20px;"></span></td>
+													<td class="custom-font-size"><label><b>Updated By :</b></label><span
+															id="upduserid" style="margin-right: 20px;"></span></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="panel-container show">
+									<div class="panel-content">
+										<form>
+											<div class="form-group row">
+												<div class="col-12 col-lg-2">
+													<label class="form-label">Message Code </label> <input type="text"
+														class="form-control" min="1" maxlength="4" id="msg_no">
+													<div id="screen-id-error" class="text-danger"></div>
+												</div>
+												<div class="col-12 col-lg-2">
+													<label class="form-label">Message Type </label>
+													<!--<input type="text"
+														class="form-control" id="msg_typ">-->
+													<select class="form-control" id="msg_typ">
+														<option value="">Select Type</option>
+														<option value="Success">Success</option>
+														<option value="Warning">Warning</option>
+														<option value="Error">Error</option>
+														<option value="Question">Question</option>
+													</select>
+													<div id="screen-name-error" class="text-danger"></div>
+												</div>
+
+												<div class="col-12 col-lg-8">
+													<label class="form-label">Description </label>
+													<input type="text" class="form-control" id="msg_desc">
+													<div id="url-input-error" class="text-danger"></div>
+												</div>
+
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+
+						</div>
+				</main>
+				<!-- this overlay is activated only when mobile menu is triggered -->
+				<div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
+				<!-- END Page Content -->
+				<!-- BEGIN Page Footer -->
+				<div th:replace="~{fragments/footer :: footer}"></div>
+				<!-- END Page Footer -->
+				<!-- BEGIN Shortcuts -->
+				<!-- modal shortcut -->
+				<!-- END Shortcuts -->
+			</div>
+		</div>
+	</div>
+	<!-- END Page Wrapper -->
+	<!-- BEGIN Quick Menu -->
+	<!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
+	<!-- END Quick Menu -->
+	<!-- BEGIN Messenger -->
+	<!-- END msgr-list -->
+	<!-- BEGIN msgr -->
+
+	<!-- END Messenger -->
+	<!-- BEGIN Page Settings -->
+	<!-- END Page Settings -->
+
+	<div th:replace="~{fragments/script :: script}"></div>
+	<script src="js/datagrid/datatables/datatables.bundle.js"></script>
+	<script src="js/datagrid/datatables/datatables.export.js"></script>
+	<script>
+		$(function () {
+			var row_content = $('#tab_bd').html();
+
+			$.extend($.datepicker, {
+				_checkOffset: function (inst, offset, isFixed) {
+					offset.top = $("#" + inst.id).offset().top - $(window).scrollTop() + $("#" + inst.id)[0].getBoundingClientRect().height;
+					return offset;
+				}
+			});
+
+			var msgTable = new Tabulator("#msgdetail_table", {
+				layout: "fitColumns",
+				//data: tabledatascrndetail,
+				height: '320px',
+				printAsHtml: true,
+				printStyled: true,
+				rowFormatter: function (row) {
+					if (row.getData().STATUS == "A") {
+						row.getElement().style.color = "#1ab3a3";
+					} else {
+						row.getElement().style.color = "#fd2087";
+					}
+				},
+				columns: [
+					{
+						title: "Message Code",
+						field: "MSG_NUM",
+						width: 100,
+					},
+					{
+						title: "Type",
+						field: "TYPE",
+					},
+					{
+						title: "Description",
+						field: "DESCRIPTION",
+					},
+					{
+						title: "",
+						field: "STATUS",
+						visible: false,
+					},
+					{
+						title: "",
+						field: "INSERTED_USER_ID",
+						visible: false,
+					},
+					{
+						title: "",
+						field: "UPDATED_USER_ID",
+						visible: false,
+					},
+					{
+						title: "",
+						field: "INSERTED_DATE_TIME",
+						visible: false,
+					},
+					{
+						title: "",
+						field: "UPDATED_DATE_TIME",
+						visible: false,
+					},
+				]
+			});
+
+			setTimeout(function () {
+				msgTable.setData("messageData");
+			}, 1000);
+			//screenTable.setData("getAllScreens");
+
+			msgTable.on("rowClick", function (e, row) {
+				//alert("Row " + row.getData().SCREEN_CODE + " Clicked!!!!");
+				//loadData(row.getData().ROLE_SEQ_NUM);
+
+				var msgNum = row.getData().MSG_NUM;
+				var desc = row.getData().DESCRIPTION;
+				var typ = row.getData().TYPE;
+				var status = row.getData().STATUS;
+				var insertedBy = row.getData().INSERTED_USER_ID;
+				var insertedDateTime = formatDate(row.getData().INSERTED_DATE_TIME);
+				var updatedBy = row.getData().UPDATED_USER_ID;
+				var updatedDateTime = formatDate(row.getData().UPDATED_DATE_TIME);
+
+				$("#msg_no").val(msgNum);
+				$("#msg_desc").val(desc);
+				$("#msg_typ").val(typ);
+
+				$('#customSwitch2').prop('checked', status === 'A');
+
+				$("#insuserid").html(insertedBy);
+				$("#insdate").html(insertedDateTime);
+				$("#upduserid").html(updatedBy);
+				$("#upddate").html(updatedDateTime);
+
+			});
+
+			function formatDate(isoDate) {
+				isoDate = isoDate.split("T")[0];
+				const [year, month, day] = isoDate.split('-');
+				return `${month}/${day}/${year}`;
+			}
+
+			function nullHandler(myval) {
+				var return_val = '';
+				if (myval != ' ' && myval != 'null') {
+					return_val = myval;
+				}
+				return return_val;
+			}
+			
+			$('#save-button').click(function (event) {
+				var msg_no = $('#msg_no').val();
+				var msg_typ = $('#msg_typ').val();
+				var msg_desc = $('#msg_desc').val();
+				$.ajax({
+					url: contextPath + 'savMsg',
+					method: 'POST',
+					dataType: "json",
+					data: {msg_no: msg_no, msg_typ: msg_typ, msg_desc: msg_desc},
+					success: function (response) {
+						//Swal.fire('Success', 'Data Saved', 'success');
+						message('S', 0, 0);
+						msgTable.setData("messageData");
+						//alert('success');
+					},
+					complete: function () {
+						//Swal.fire('Success', 'Data Saved', 'success');
+						message('S', 0, 0);
+						//alert('complete');
+						msgTable.setData("messageData");
+					},
+					error: function (error) {
+						//alert("Error getting table names:", error);
+					}
+				});
+			});
+
+			function getAttr() {
+				var screenCode = $('#screen-id').val();
+
+				$('#fields').empty();
+
+				$.ajax({
+					type: "POST",
+					url: contextPath + "getAttr",
+					dataType: "json",
+					data: {screenCode: screenCode},
+					success: function (response) {
+						//alert(response.length);
+						if (response.length == 0) {
+							return;
+						}
+						var test_content = "";
+						for (var i = 0; i < response.length; i++) {
+							var ide = "";
+							var tag = "";
+							var lbl = nullHandler(response[i]['FIELD_LABEL']);
+							var nam = response[i]['FIELD_NAME'];
+							var must = response[i]['MANDATORY_FLAG'];
+							var chk = response[i]['READ_ONLY_FLAG'];
+							var key = response[i]['PRIMARY_KEY_FLAG'];
+							var tbl = nullHandler(response[i]['TABLE_NAME']);
+							var col = nullHandler(response[i]['COLUMN_NAME']);
+							var lvl = response[i]['FIELD_LEVEL'];
+							var lov = nullHandler(response[i]['ALGORITHM_QUERY']);
+							var vld = nullHandler(response[i]['VALIDATION_LOGIC']);
+
+							if (lvl == '0') {
+								lvl = '';
+							}
+
+							var opt = "";
+							//console.log($('#mydiv label').eq(i).prop('for'));
+
+							var ide = i + 1;
+							test_content += "<tr>";
+							test_content += "<td class='align-middle'>" + ide + "</td>";
+							test_content += "<td class='align-middle'><label class='form-label' for='" + nam + "1'>" + nam + "</label></td>";
+							test_content += "<td class='align-middle'><input type='text' disabled class='form-control attr_label' aria-label='" + nam + "1' name='" + nam + "1' id='" + nam + "1' value='" + lbl + "'></td>";
+
+							if (must == 'Y') {
+								test_content += "<td class='text-center align-middle'><input type='checkbox' checked class='mandatory' aria-label='Location1Mandatory' name='Location1Mandatory' id='Location1Mandatory'></td>";
+							} else {
+								test_content += "<td class='text-center align-middle'><input type='checkbox' class='mandatory' aria-label='Location1Mandatory' name='Location1Mandatory' id='Location1Mandatory'></td>";
+							}
+
+							if (chk == 'Y') {
+								test_content += "<td class='text-center align-middle'><input type='checkbox' checked class='read-only' aria-label='Location1readOnly' name='Location1readOnly' id='Location1readOnly'></td>";
+							} else {
+								test_content += "<td class='text-center align-middle'><input type='checkbox' class='read-only' aria-label='Location1readOnly' name='Location1readOnly' id='Location1readOnly'></td>";
+							}
+
+							if (key == 'Y') {
+								test_content += "<td class='text-center align-middle'><input type='checkbox' checked class='primary-key' aria-label='Location1primaryKey' name='Location1primaryKey' id='Location1primaryKey'></td>";
+							} else {
+								test_content += "<td class='text-center align-middle'><input type='checkbox' class='primary-key' aria-label='Location1primaryKey' name='Location1primaryKey' id='Location1primaryKey'></td>";
+							}
+
+
+
+							/*test_content += `<td class="text-center align-middle"><input type="hidden" class="updatable" value="N">`;
+												test_content += `<a href="#" type="button" class="selectTbl btn btn-primary btn-sm btn-icon waves-effect waves-themed ml-2"`;
+							test_content += `data-toggle="tooltip" data-placement="top" data-original-title="PickList" `;
+							test_content += `"><i class="fal fa-plus"></i>`;
+												test_content += `</a></td>`;*/
+
+							//test_content += `<td><input type="text" class="form-control table_name" aria-label="Location1Column" name="Location1Column" id="Location1Column" value="` + tbl + `"></td>`;
+							test_content += `<td class='align-middle'><input type="text" class="form-control table_name" aria-label="Location1Column" name="Location1Column" id="table_name` + ide + `" list="table-list" value="` + tbl + `"></td>`;
+
+							test_content += `<td class='align-middle'><input type="text" class="form-control column_name" aria-label="Location1Column" name="Location1Column" list="column-list` + ide + `" id="column_name` + ide + `" value="` + col + `">`;
+							test_content += `<datalist id="column-list` + ide + `"></datalist><input type="hidden" class="updatable" value="N"></td>`;
+							test_content += `<td class='align-middle'><input type="text" class="form-control lvl_no" aria-label="Level_Number" name="lvl_no" id="lvl_no` + ide + `" value="` + lvl + `"></td>`;
+
+							if (vld.split('::')[0] == 'hide') {
+								test_content += `<td class='align-middle' colspan='2' style='text-align:center;font-weight:600;color:#700;'>Hidden Field<input value="` + vld + `" class="validationval" type="hidden" id="validationval_` + ide + `"><button class="validcls" style="display:none"></button><button class="lovcls" style="display:none"></button></td>`;
+							} else {
+								test_content += `<td class='align-middle'><button type="button" class="btn btn-primary btn-sm mr-1 validcls" id="validcls_` + ide + `" style="height: fit-content;">Validation</button><input value="` + vld + `" class="validationval" type="hidden" id="validationval_` + ide + `"></td>`;
+							}
+
+							if (vld.split('::')[0] == 'hide') {
+								test_content += ``;
+							} else if (vld.split('::')[0] == 'dropdown') {
+								test_content += `<td class='align-middle'><button type="button" class="btn btn-primary btn-sm text-nowrap lovcls" id="lovcls_` + ide + `" style="height: fit-content;">LOV</button><input value="` + lov + `" class="lovval" type="hidden" id="lovval_` + ide + `"></td>`;
+							} else {
+								test_content += `<td class='align-middle'><button disabled type="button" class="btn btn-primary btn-sm text-nowrap lovcls" id="lovcls_` + ide + `" style="height: fit-content;pointer-events:none;">LOV</button><input value="` + lov + `" class="lovval" type="hidden" id="lovval_` + ide + `"></td>`;
+							}
+
+							test_content += "</tr>";
+
+
+						}
+
+						$('#fields').html(test_content);
+						//buildTable();
+
+					},
+					error: function () {
+						alert("json not found");
+					}
+				});
+			}
+
+			//$('#tab_bd').empty();
+
+			$('#add_row').on('click', function () {
+				var len = $('.datepick-ui').length;
+				var test_content = row_content.split('test_xy').join('test_' + len);
+
+				$('#tab_bd').append(test_content);
+			});
+
+			$('body').on('focus', ".datepick-ui", function () {
+				var ide = $(this).attr('id');
+				//alert(ide);
+				if ($('#' + ide).hasClass('hasDatepicker') === false) {
+					$('#' + ide).datepicker();
+				}
+			});
+
+			$(document.body).on('change', '.rule_opr', function () {
+				var idx = $(this).index('.rule_opr');
+
+				if ($(this).val().includes('today')) {
+					$('.datepick-ui').eq(idx).val('');
+					$('.datepick-ui').eq(idx).attr('disabled', true);
+					$('.datepick-ui').eq(idx).attr('placeholder', 'Current Date');
+				} else {
+					$('.datepick-ui').eq(idx).removeAttr('disabled');
+					$('.datepick-ui').eq(idx).attr('placeholder', 'mm/dd/yyyy');
+				}
+			});
+
+			$(document.body).on('click', '.dt-remove', function () {
+				$(this).parents('tr').remove();
+			});
+
+			$(document.body).on('click', '.validcls', function () {
+
+				var idx = $('.validcls').index(this);
+				//alert(idx);
+				$('.updatable').eq(idx).val('Y');
+
+				var ide = $(this).attr('id');
+				ide = ide.split('validcls_')[1];
+
+				$('.leng').hide();
+				$('.base_rule').hide();
+				$('.dt_rule').hide();
+				$('.dr2').hide();
+				$('.dr0').prop('checked', false);
+				$('.dr1').prop('checked', false);
+				$('.dr2').val('');
+
+				$('#field_typ').val('');
+				$('#rule').val('');
+				$('#leng').val('');
+
+				if ($('#validationval_' + ide).val().trim() != '') {
+					vld_content = $('#validationval_' + ide).val();
+					var typ = vld_content.split('::')[0];
+					var rul = vld_content.split('::')[1];
+					var len = vld_content.split('::')[2];
+
+					$('#field_typ').val(typ);
+
+					if (typ == 'text') {
+
+						var opt = '<option value="">Select Rule</option>';
+						opt += '<option>Alphanumeric</option>';
+						opt += '<option>Number</option>';
+						opt += '<option>Email</option>';
+						$('#rule').html(opt);
+
+						$('#rule').val(rul);
+						$('#leng').val(len);
+						$('.leng').show();
+						$('.base_rule').show();
+					} else if (typ == 'date') {
+						if (rul != 'x') {
+							setDateRule(rul);
+						}
+						$('.dt_rule').show();
+					}
+
+				}
+
+				$('#cur_val_ide').val(ide);
+				document.getElementById('validPopup').click();
+			});
+
+			function setDateRule(rul) {
+
+				rules = rul.split(',');
+				var content = '';
+				for (var i = 0; i < rules.length; i++) {
+					if (i == 0) {
+						content += row_content;
+					} else {
+						var test_content = row_content.split('test_xy').join('test_' + i);
+						content += test_content;
+					}
+
+
+				}
+
+				$('#tab_bd').html(content);
+
+				for (var i = 0; i < rules.length; i++) {
+					//mindt:03/02/2024,maxdt:03/12/2024,not:today
+					$('.rule_opr').eq(i).val('');
+
+					//console.log('test a1 : ' + rules[i].split(':')[0]);
+
+					if (rules[i].includes('today')) {
+						$('.datepick-ui').eq(i).attr('disabled', true);
+						$('.datepick-ui').eq(i).attr('placeholder', 'Current Date');
+						$('.datepick-ui').eq(i).val('');
+
+						if (rules[i].split(':')[0] != '' && rules[i].split(':')[0] != 'x') {
+							$('.rule_opr').eq(i).val(rules[i].split('|||')[0]);
+							$('.failmsg').eq(i).val(rules[i].split('|||')[1]);
+						}
+
+					} else {
+						$('.datepick-ui').eq(i).removeAttr('disabled');
+						$('.datepick-ui').eq(i).attr('placeholder', 'mm/dd/yyyy');
+						$('.datepick-ui').eq(i).val(rules[i].split(':')[1].split('|||')[0]);
+
+						if (rules[i].split(':')[0] != '' && rules[i].split(':')[0] != 'x') {
+							$('.rule_opr').eq(i).val(rules[i].split(':')[0]);
+							$('.failmsg').eq(i).val(rules[i].split(':')[1].split('|||')[1]);
+						}
+					}
+				}
+
+			}
+
+		});
+	</script>
+	<script>
+		$(document)
+			.ready(
+				function () {
+					$(function () {
+						$('.select2').select2();
+
+						$(".select2-placeholder-multiple").select2(
+							{
+								placeholder: "Select State"
+							});
+						$(".js-hide-search").select2({
+							minimumResultsForSearch: 1 / 0
+						});
+						$(".js-max-length").select2({
+							maximumSelectionLength: 2,
+							placeholder: "Select maximum 2 items"
+						});
+						$(".select2-placeholder").select2({
+							placeholder: "Select a state",
+							allowClear: true
+						});
+
+						$(".js-select2-icons").select2({
+							minimumResultsForSearch: 1 / 0,
+							templateResult: icon,
+							templateSelection: icon,
+							escapeMarkup: function (elm) {
+								return elm
+							}
+						});
+
+						function icon(elm) {
+							elm.element;
+							return elm.id ? "<i class='"
+								+ $(elm.element).data("icon")
+								+ " mr-2'></i>" + elm.text
+								: elm.text
+						}
+
+						$(".js-data-example-ajax")
+							.select2(
+								{
+									ajax: {
+										url: "https://api.github.com/search/repositories",
+										dataType: 'json',
+										delay: 250,
+										data: function (
+											params) {
+											return {
+												q: params.term, // search term
+												page: params.page
+											};
+										},
+										processResults: function (
+											data,
+											params) {
+											// parse the results into the format expected by Select2
+											// since we are using custom formatting functions we do not need to
+											// alter the remote JSON data, except to indicate that infinite
+											// scrolling can be used
+											params.page = params.page || 1;
+
+											return {
+												results: data.items,
+												pagination: {
+													more: (params.page * 30) < data.total_count
+												}
+											};
+										},
+										cache: true
+									},
+									placeholder: 'Search for a repository',
+									escapeMarkup: function (
+										markup) {
+										return markup;
+									}, // let our custom formatter work
+									minimumInputLength: 1,
+									templateResult: formatRepo,
+									templateSelection: formatRepoSelection
+								});
+
+						function formatRepo(repo) {
+							if (repo.loading) {
+								return repo.text;
+							}
+
+							var markup = "<div class='select2-result-repository clearfix d-flex'>"
+								+ "<div class='select2-result-repository__avatar mr-2'><img src='" + repo.owner.avatar_url + "' class='width-2 height-2 mt-1 rounded' /></div>"
+								+ "<div class='select2-result-repository__meta'>"
+								+ "<div class='select2-result-repository__title fs-lg fw-500'>"
+								+ repo.full_name + "</div>";
+
+							if (repo.description) {
+								markup += "<div class='select2-result-repository__description fs-xs opacity-80 mb-1'>"
+									+ repo.description
+									+ "</div>";
+							}
+
+							markup += "<div class='select2-result-repository__statistics d-flex fs-sm'>"
+								+ "<div class='select2-result-repository__forks mr-2'><i class='fal fa-lightbulb'></i> "
+								+ repo.forks_count
+								+ " Forks</div>"
+								+ "<div class='select2-result-repository__stargazers mr-2'><i class='fal fa-star'></i> "
+								+ repo.stargazers_count
+								+ " Stars</div>"
+								+ "<div class='select2-result-repository__watchers mr-2'><i class='fal fa-eye'></i> "
+								+ repo.watchers_count
+								+ " Watchers</div>"
+								+ "</div>"
+								+ "</div></div>";
+
+							return markup;
+						}
+
+						function formatRepoSelection(repo) {
+							return repo.full_name || repo.text;
+						}
+					});
+
+				});
+	</script>
+	<!--<script src="js/../script.js"></script>-->
+	<script th:inline="javascript">
+		$(document).ready(function () {
+
+			/*<![CDATA[*/
+			var contextPath = /*[[@{/}]]*/ '';
+			/*]]>*/
+			var userid = '';
+			var updationid = "0";
+			var table;
+			//dataTablefunc();
+
+			function dataTablefunc() {
+				var includeInactive = false;
+
+				var columns = [
+					{data: 'screenCode', title: 'Screen#', visible: true},
+					{data: 'screenName', title: 'Screen Name', visible: true},
+					{data: 'screenUrl', title: 'URL', visible: true},
+					{data: 'status', title: 'Status', visible: false},
+					{data: 'insertedUserId', title: 'Inserted By', visible: false},
+					{data: 'insertedDateTime', title: 'Inserted Date Time', visible: false},
+					{data: 'updatedUserId', title: 'Updated By', visible: false},
+					{data: 'updatedDateTime', title: 'Updated Date Time', visible: false}
+				];
+
+				table = $('#usersetupdetails').DataTable({
+					scrollCollapse: true,
+					scrollY: '47vh',
+					paging: false,
+					responsive: false,
+					searching: true,
+					lengthChange: false,
+					dom: "<'row mb-3'<'col-sm-12 col-md-6 d-flex align-items-center justify-content-start'f><'col-sm-12 col-md-6 d-flex align-items-center justify-content-end'B>>" +
+						"<'row'<'col-sm-12'tr>>" +
+						"<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+					buttons: [
+						{
+							text: 'Include Inactive',
+							className: 'btn-primary btn-sm',
+							action: function (e, dt, node, config) {
+								includeInactive = !includeInactive;
+
+								var button = this;
+								button.text(includeInactive ? 'Hide Inactive' : 'Include Inactive');
+
+								dt.rows().every(function () {
+									var data = this.data();
+									var statusCell = data.status;
+
+									if (statusCell === 'I') {
+										if (includeInactive) {
+											this.nodes().to$().show();
+										} else {
+											this.nodes().to$().hide();
+										}
+									}
+								});
+							}
+						},
+						{
+							extend: 'excelHtml5',
+							text: 'Export to Excel',
+							className: 'btn-success btn-sm',
+							exportOptions: {
+								modifier: {
+									search: 'none'
+								}
+							},
+							init: function (dt, node, config) {
+								node.css('display', 'none');
+							}
+						}
+					],
+					columns: columns,
+					ajax: {
+						url: contextPath + 'ScreenSetupData',
+						method: 'GET',
+						dataSrc: ''
+					},
+					createdRow: function (row, data, dataIndex) {
+						var status = data.status;
+						var colorClass = (status === 'A') ? 'color-success-400' : (status === 'I') ? 'color-danger-400' : '';
+						$(row).addClass(colorClass);
+
+						// Hide inactive rows
+						if (status === 'I') {
+							$(row).hide();
+						}
+					}
+				});
+			}
+
+			async function getSessionAttribute() {
+				try {
+					const response = await fetch(contextPath + 'GetSession', {
+						method: 'GET',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+					});
+
+					if (!response.ok) {
+						throw new Error(`Failed to fetch session attribute. Status: ${response.status}`);
+					}
+
+					const data = await response.json();
+
+					if (data.userId) {
+						userid = data.userId;
+					} else {
+						console.log('No user ID found in the session.');
+					}
+				} catch (error) {
+					console.error('Error fetching session attribute:', error.message);
+				}
+			}
+
+
+
+			function validateScreenName() {
+				var screenName = $('#screen-name').val();
+				var errorContainer = $('#screen-name-error');
+				errorContainer.empty();
+
+				function createError(message) {
+					return $('<div>').addClass('text-danger').text(message);
+				}
+
+				if (screenName.length < 3) {
+					$('#screen-name-error').append(createError("Screen Name should be at least 3 characters long."));
+					return null;
+				}
+
+				if (screenName.length > 30) {
+					$('#screen-name-error').append(createError("Screen name should not exceed 30 characters."));
+					return null;
+				}
+
+				return screenName;
+			}
+
+			function validateScreenId() {
+				var screenid = $('#screen-id').val();
+				var errorContainer = $('#screen-id-error');
+				errorContainer.empty();
+
+				function createError(message) {
+					return $('<div>').addClass('text-danger').text(message);
+				}
+
+				if (!$.isNumeric(screenid)) {
+					$('#screen-id-error').append(createError("Invalid Screen Code"));
+					return null;
+				}
+
+				return screenid;
+			}
+
+			function validateUrlInput() {
+				var urlInput = $('#url-input').val();
+				var errorContainer = $('#url-input-error');
+				errorContainer.empty();
+
+				function createError(message) {
+					return $('<div>').addClass('text-danger').text(message);
+				}
+
+				var urlPattern = /^[A-Za-z]+$/;
+				if (urlInput.length < 3 || !urlInput.match(urlPattern)) {
+					$('#url-input-error').append(createError("Invalid Url please enter a Url with no special characters and space in between"));
+					return null;
+				}
+
+				var url = urlInput;
+
+				return url;
+			}
+
+			function getFormValues() {
+				var screenid = validateScreenId();
+				var screenName = validateScreenName();
+				var url = validateUrlInput();
+				var status = $('#customSwitch2').is(':checked') ? 'A' : 'I';
+				var updid = updationid;
+
+				if (screenid === null || screenName === null || url === null) {
+					return null;
+				}
+
+				var jsonObject = {
+					"screenid": screenid,
+					"screenName": screenName,
+					"url": url,
+					"status": status,
+					"userid": userid,
+					"updid": updid
+				};
+				return jsonObject;;
+			}
+
+			function clearData() {
+				$('#msg_no').val('');
+				$('#msg_typ').val('');
+				$('#msg_desc').val('');
+				$('#insuserid').html('');
+				$('#insdate').html('');
+				$('#upduserid').html('');
+				$('#upddate').html('');
+			}
+
+			function printTable() {
+				var printWindow = window.open('', '_blank');
+				printWindow.document.write('<html><head><title>Table Print</title></head><body>');
+
+				printWindow.document.write('<table border="1" cellpadding="5" cellspacing="0">' + $('#usersetupdetails').html() + '</table>');
+
+				printWindow.document.write('</body></html>');
+				printWindow.document.close();
+
+				printWindow.focus();
+				printWindow.print();
+				printWindow.close();
+			}
+
+			function screenData(Screens) {
+				;
+				$.ajax({
+					method: 'POST',
+					url: contextPath + 'ScreenData',
+					contentType: 'application/json',
+					data: JSON.stringify(Screens),
+					dataType: 'text',
+					success: function (data) {
+						if (typeof data === 'string') {
+							data = data.trim();
+							if (data === "Screen inserted successfully.") {
+								Swal.fire('Success', data, 'success').then(function () {
+									clearData();
+									table.ajax.reload();
+								});
+							} else if (data === "Screen updated successfully.") {
+								Swal.fire('Success', data, 'success').then(function () {
+									clearData();
+									table.ajax.reload();
+								});
+							} else if (data === "Screen data already exists.") {
+								Swal.fire('Warning', data, 'warning');
+							} else if (data === "Screen code already exists.") {
+								Swal.fire('Warning', data, 'warning');
+							} else {
+								console.log('Unknown response:', data);
+							}
+						}
+					},
+					error: function (xhr, textStatus, errorThrown) {
+						console.error('Error:', xhr);
+						if (xhr.status === 403) {
+							Swal.fire('Forbidden', 'Access Denied', 'error');
+						} else {
+							console.log('Unknown error:', textStatus, errorThrown);
+						}
+					}
+				});
+			}
+
+			function formatDate(dateString) {
+				if (dateString) {
+					var date = new Date(dateString);
+					var formattedMonth = (date.getMonth() + 1).toString().padStart(2, '0');
+					var formattedDay = date.getDate().toString().padStart(2, '0');
+					var formattedYear = date.getFullYear().toString().slice(-2);
+					var formattedDate = formattedMonth + '/' + formattedDay + '/' + formattedYear;
+					return formattedDate;
+				}
+				return '';
+			}
+
+			$('#screen-id').on('input', function () {
+				validateScreenId();
+			});
+
+			$('#screen-name').on('input', function () {
+				validateScreenName();
+			});
+
+			$('#url-input').on('input', function () {
+				validateUrlInput();
+			});
+
+
+			$('#add-button').click(function () {
+				clearData();
+			});
+
+			$('#clear-button').click(function () {
+				clearData();
+			});
+
+			$('#iconFile').change(function () {
+				var file = this.files[0];
+				var errorContainer = $('#icon-error');
+
+				if (file && file.size <= 1024) {
+					var reader = new FileReader();
+					reader.onload = function (e) {
+						$('#previewImage').attr('src', e.target.result);
+					}
+					reader.readAsDataURL(file);
+					errorContainer.empty();
+				} else {
+					errorContainer.html('<span class="text-danger">File size should be less than 1KB</span>');
+					$(this).val('');
+				}
+			});
+
+			$('#prints-button').click(function () {
+				$('#usersetupdetails').DataTable().button('.buttons-excel').trigger();
+			});
+
+			$('#usersetupdetails tbody').on('click', 'tr', function () {
+				var row = table.row(this).data();
+				var code = row.screenCode;
+				var desc = row.screenName;
+				var url = row.screenUrl;
+				var status = row.status;
+				var insertedBy = row.insertedUserId;
+				var insertedDateTime = formatDate(row.insertedDateTime);
+				var updatedBy = row.updatedUserId;
+				var updatedDateTime = formatDate(row.updatedDateTime);
+
+				$("#screen-id").val(code);
+				$("#screen-name").val(desc);
+				$("#url-input").val(url);
+				updationid = code;
+
+				$('#customSwitch2').prop('checked', status === 'A');
+
+				$("#insuserid").html(insertedBy);
+				$("#insdate").html(insertedDateTime);
+				$("#upduserid").html(updatedBy);
+				$("#upddate").html(updatedDateTime);
+
+				getAttr();
+			});
+
+			/*Asif*/
+			var existingDropzone = Dropzone.forElement("#filedrop");
+
+			if (existingDropzone) {
+				existingDropzone.destroy(); // Destroy the existing Dropzone instance
+			}
+			// Initialize Dropzone
+			Dropzone.autoDiscover = false; // Prevent Dropzone from automatically attaching to all elements with class 'dropzone'
+
+			var myDropzone = new Dropzone('#filedrop', {
+				url: contextPath + 'upload', // Specify the URL where files should be uploaded
+				autoProcessQueue: false, // Disable auto-uploading
+				maxFiles: 1, // Set maximum number of files to 1 for single file upload
+				acceptedFiles: '.html', // Specify accepted file types
+
+				init: function () {
+					this.on('addedfile', function (file) {
+						// Update UI when a file is added
+						console.log('File added:', file);
+						readFile(file);
+						var cancelLink = document.createElement('a');
+						cancelLink.className = 'dz-cancel';
+						cancelLink.href = 'javascript:;';
+						cancelLink.innerText = 'Cancel';
+
+						var previewElement = file.previewElement;
+						previewElement.appendChild(cancelLink);
+
+						cancelLink.addEventListener('click', function () {
+							myDropzone.removeFile(file);
+						});
+					});
+
+					this.on('removedfile', function (file) {
+						// Update UI when a file is removed
+						console.log('File removed:', file);
+					});
+				}
+			});
+
+			$('#save_data').on('click', function () {
+				var nam = [];
+				var fld = [];
+				var lbl = [];
+				var must = [];
+				var ro = [];
+				var key = [];
+				var upd = [];
+				var tbl = [];
+				var col = [];
+				var lvl = [];
+				var lov = [];
+				var vld = [];
+
+				for (var i = 0; i < $('#fields tr').length; i++) {
+
+					if ($('.updatable').eq(i).val() == 'Y') {
+						nam.push($('#fields tr').eq(i).children('td').eq(0).text());
+						fld.push($('#fields tr').eq(i).children('td').eq(1).text());
+
+						if ($('#fields tr').eq(i).children('td').eq(2).find('.attr_label').val() != '') {
+							lbl.push($('#fields tr').eq(i).children('td').eq(2).find('.attr_label').val());
+						} else {
+							lbl.push('e');
+						}
+
+						if ($('#fields tr').eq(i).children('td').eq(3).find('.mandatory').prop('checked')) {
+							must.push('Y');
+						} else {
+							must.push('N');
+						}
+
+						if ($('#fields tr').eq(i).children('td').eq(4).find('.read-only').prop('checked')) {
+							ro.push('Y');
+						} else {
+							ro.push('N');
+						}
+
+						if ($('#fields tr').eq(i).children('td').eq(5).find('.primary-key').prop('checked')) {
+							key.push('Y');
+						} else {
+							key.push('N');
+						}
+
+						upd.push($('.updatable').eq(i).val());
+
+						if ($('#fields tr').eq(i).children('td').eq(6).find('.table_name').val() != '') {
+							tbl.push($('#fields tr').eq(i).children('td').eq(6).find('.table_name').val());
+						} else {
+							tbl.push('e');
+						}
+
+						if ($('#fields tr').eq(i).children('td').eq(7).find('.column_name').val() != '') {
+							col.push($('#fields tr').eq(i).children('td').eq(7).find('.column_name').val());
+						} else {
+							col.push('e');
+						}
+
+						if ($('#fields tr').eq(i).children('td').eq(8).find('.lvl_no').val() != '') {
+							lvl.push($('#fields tr').eq(i).children('td').eq(8).find('.lvl_no').val());
+						} else {
+							lvl.push('0');
+						}
+
+						if ($('#fields tr').eq(i).children('td').eq(9).find('.validationval').val() != '') {
+							vld.push($('#fields tr').eq(i).children('td').eq(9).find('.validationval').val());
+						} else {
+							vld.push('e');
+						}
+
+						if ($('#fields tr').eq(i).children('td').eq(10).find('.lovval').val() != '') {
+							lov.push($('#fields tr').eq(i).children('td').eq(10).find('.lovval').val());
+						} else {
+							lov.push('e');
+						}
+
+					}
+
+				}
+
+				fld = fld.join("!@#!");
+				lbl = lbl.join("!@#!");
+				must = must.join("!@#!");
+				ro = ro.join("!@#!");
+				key = key.join("!@#!");
+				upd = upd.join("!@#!");
+				tbl = tbl.join("!@#!");
+				col = col.join("!@#!");
+				lvl = lvl.join("!@#!");
+				lov = lov.join("!@#!");
+				vld = vld.join("!@#!");
+				var screenCode = $('#screen-id').val();
+
+				$.ajax({
+					type: "POST",
+					url: contextPath + "saveAttr",
+					data: {field: fld, label: lbl, mandatory: must, readonly: ro, key: key, updatable: upd, screenCode: screenCode, tableName: tbl, columnName: col, level: lvl, lov: lov, vld: vld},
+					success: function (response) {
+						//alert('Data Saved');
+						Swal.fire('Success', 'Data Saved', 'success');
+					},
+					error: function () {
+						alert("json not found");
+					}
+				});
+
+			});
+
+			$('#refresh_btn').on('click', function () {
+
+				for (var i = 0, j = 1; i < $('.rawField').length; i++, j++) {
+					test_content = "";
+					test_content += "<tr style='background:#c6f7d4;'>";
+					test_content += "<td class='align-middle'>" + j + "</td>";
+					test_content += "<td class='align-middle'><label class='form-label'>" + $('.rawField').eq(i).attr('data-fld') + "</label></td>";
+					test_content += "<td class='align-middle'><label class='form-label'>" + $('.rawField').eq(i).attr('data-lbl') + "</label></td>";
+					test_content += "<td class='text-center align-middle'><input type='checkbox' class='mandatory' aria-label='Location1Mandatory' name='Location1Mandatory' id='Location1Mandatory'></td>";
+					test_content += "<td class='text-center align-middle'><input type='checkbox' class='read-only' aria-label='Location1readOnly' name='Location1readOnly' id='Location1readOnly'></td>";
+					test_content += "<td class='text-center align-middle'><input type='checkbox' class='primary-key' aria-label='Location1primaryKey' name='Location1primaryKey' id='Location1primaryKey'></td>";
+					test_content += "<td></td><td></td><td></td><td></td><td></td>";
+					test_content += "</tr>";
+
+					$('#fields').append(test_content);
+				}
+
+				return;
+
+				var exist_flds = [];
+
+				for (var a = 0; a < $('#fields tr').length; a++) {
+					exist_flds.push("[" + $('#fields tr').eq(a).children('td').eq(1).text() + "]");
+				}
+
+				exist_flds = exist_flds.join(",");
+
+				console.log('exist_flds : ' + exist_flds);
+
+				var test_content = "";
+				var j = 0;
+
+				console.log('rawField length : ' + $('.rawField').length);
+
+				for (var i = 0; i < $('.rawField').length; i++) {
+					test_content = "";
+					var ide = "";
+					var lbl = "";
+					var tag = "";
+					var nam = "";
+					var must = "";
+					var chk = "";
+					var opt = "";
+					var valid = "";
+					var allow_type = "";
+					//console.log($('#mydiv label').eq(i).prop('for'));
+					//if ($('#mydiv label').eq(i).attr('forx') == '1') {
+					//ide = $('.permissible').eq(i).attr('specific');
+					console.log('id is ' + ide);
+					//allow_type = $('.permissible').eq(i).attr('allow-type');
+
+					//if (allow_type != 'not') {
+
+					valid = allow_type + "::x::x";
+					nam = ide;
+					tag = $('.rawField').eq(i).prop('tagName');
+
+					if (tag == 'TH') {
+						lbl = $('#mydiv .rawField').eq(i).text().replace(/\s+/g, " ");
+					} else {
+						lbl = $('#mydiv .rawField').eq(i).attr('label-name');
+					}
+					//console.log($('#' + ide).prop('name'));
+					/*if ($('#' + ide).prop('name') != '') {
+						//nam = splitCamel($('#'+ide).prop('name'));
+						nam = $('#' + ide).prop('name');
+						valid = $('#' + ide).attr('data-typ') + "::x::x";
+					}*/
+
+					must = '<input type="checkbox" class="mandatory">';
+					chk = '<input type="checkbox" class="read-only">';
+
+					/*if ($('#' + ide).attr('readonly')) {
+								chk = '<input type="checkbox" checked>';
+					} else {
+								chk = '<input type="checkbox">';
+					}
+	
+							if ($('#mydiv label').eq(i).find('span').hasClass('mandatory')) {
+								must = '<input type="checkbox" checked>';
+					} else {
+								must = '<input type="checkbox">';
+					}*/
+
+
+					/*console.log(tag);
+					if (tag.toString().toLowerCase() == 'select') {
+						opt = $('#' + ide).text().trim().replace(/[_\W]+/g, ",").toString();
+					}*/
+
+					if (!exist_flds.includes("[" + ide + "]")) {
+						j++;
+
+						if (exist_flds.length == 0) {
+							test_content += "<tr>";
+						} else {
+							test_content += "<tr style='background:#c6f7d4;'>";
+						}
+
+						test_content += "<td class='align-middle'>" + j + "</td>";
+						test_content += "<td class='align-middle'><label class='form-label' for='" + ide + "1'>" + ide + "</label></td>";
+						test_content += "<td class='align-middle'><input type='text' disabled class='form-control attr_label' aria-label='" + nam + "1' name='" + nam + "1' id='" + nam + "1' value='" + lbl + "'></td>";
+						test_content += "<td class='text-center align-middle'><input type='checkbox' class='mandatory' aria-label='Location1Mandatory' name='Location1Mandatory' id='Location1Mandatory'></td>";
+						test_content += "<td class='text-center align-middle'><input type='checkbox' class='read-only' aria-label='Location1readOnly' name='Location1readOnly' id='Location1readOnly'></td>";
+						test_content += "<td class='text-center align-middle'><input type='checkbox' class='primary-key' aria-label='Location1primaryKey' name='Location1primaryKey' id='Location1primaryKey'></td>";
+
+						/*test_content += `<td class="text-center align-middle"><input type="hidden" class="updatable" value="Y">`;
+										test_content += `<a href="#" type="button" class="selectTbl btn btn-primary btn-sm btn-icon waves-effect waves-themed ml-2"`;
+						test_content += `data-toggle="tooltip" data-placement="top" data-original-title="PickList" `;
+						test_content += `"><i class="fal fa-plus"></i>`;
+										test_content += `</a></td>`;*/
+
+						//test_content += `<td><input type="text" readonly class="form-control table_name" aria-label="Location1Column" name="Location1Column" id="Location1Column" value=""></td>`;
+						//test_content += `<td><input type="text" readonly class="form-control column_name" aria-label="Location1Column" name="Location1Column" id="Location1Column" value=""></td>`;
+
+						test_content += `<td class='align-middle'><input type="text" class="form-control table_name" aria-label="Location1Column" name="Location1Column" id="table_name` + ide + `" list="table-list"></td>`;
+
+						test_content += `<td class='align-middle'><input type="text" class="form-control column_name" aria-label="Location1Column" name="Location1Column" list="column-list` + ide + `" id="column_name` + ide + `">`;
+						test_content += `<datalist id="column-list` + ide + `"></datalist><input type="hidden" class="updatable" value="Y"></td>`;
+
+						test_content += `<td class='align-middle'><input type="text" class="form-control lvl_no" aria-label="Level_Number" name="lvl_no" id="lvl_no` + ide + `"></td>`;
+
+						if (valid == 'hide::x::x') {
+							test_content += `<td class='align-middle' colspan='2' style='text-align:center;font-weight:600;color:#700;'>Hidden Field<input class="validationval" value="` + valid + `" type="hidden" id="validationval_` + ide + `"><button class="validcls" style="display:none"></button><button class="lovcls" style="display:none"></button></td>`;
+						} else {
+							test_content += `<td class='align-middle'><button type="button" class="btn btn-primary btn-sm mr-1 validcls" id="validcls_` + ide + `" style="height: fit-content;">Validation</button><input class="validationval" value="` + valid + `" type="hidden" id="validationval_` + ide + `"></td>`;
+						}
+
+						if (valid == 'hide::x::x') {
+							test_content == ``;
+						} else if (valid == 'dropdown::x::x') {
+							test_content += `<td class='align-middle'><button type="button" class="btn btn-primary btn-sm text-nowrap lovcls" id="lovcls_` + ide + `" style="height: fit-content;">LOV</button><input class="lovval" type="hidden" id="lovval_` + ide + `"></td>`;
+						} else {
+							test_content += `<td class='align-middle'><button disabled type="button" class="btn btn-primary btn-sm text-nowrap lovcls" id="lovcls_` + ide + `" style="height: fit-content;pointer-events:none;">LOV</button><input class="lovval" type="hidden" id="lovval_` + ide + `"></td>`;
+						}
+
+						test_content += "</tr>";
+
+						$('#fields').append(test_content);
+					} else {
+						j++;
+					}
+
+					//}
+
+
+					//}
+				}
+				//$('#mydiv').empty();
+
+			});
+
+			//setTable();
+
+			//alert('contextPath is ' + contextPath);
+
+			function setTable() {
+				$.ajax({
+					url: contextPath + 'getAllTable',
+					method: 'POST',
+					success: function (response) {
+						var content = '';
+						for (var i = 0; i < response.length; i++) {
+							content += '<option>' + response[i]['NAME'] + '</option>';
+						}
+						$('#table-list').html(content);
+
+					},
+					error: function (error) {
+						//console.error("Error getting table names:", error);
+					}
+				});
+			}
+
+			$(document.body).on('keyup', '.lvl_no', function (e) {
+				var idx = $('.lvl_no').index(this);
+				$('.updatable').eq(idx).val('Y');
+			});
+
+			$(document.body).on('change', '.table_name', function (e) {
+				var tbl = $(this).val();
+				var ide = $(this).attr('id').split('table_name')[1];
+
+				var idx = $('.table_name').index(this);
+				$('.updatable').eq(idx).val('Y');
+
+				$.ajax({
+					url: contextPath + 'getTblCol',
+					method: 'POST',
+					data: {tbl: tbl},
+					success: function (response) {
+						var content = '';
+						for (var i = 0; i < response.length; i++) {
+							content += '<option>' + response[i]['COLUMN_NAME'] + '</option>';
+						}
+						$('#column-list' + ide).html(content);
+						$('#column_name' + ide).val('');
+
+					},
+					error: function (error) {
+						//console.error("Error getting table names:", error);
+					}
+				});
+
+			});
+
+			$(document.body).on('mousedown', '.column_name', function (e) {
+				var ide = $(this).attr('id').split('column_name')[1];
+				var tbl = $('#table_name' + ide).val();
+				if ($('#column-list' + ide).html() == "" && tbl != "") {
+					$.ajax({
+						url: contextPath + 'getTblCol',
+						method: 'POST',
+						data: {tbl: tbl},
+						success: function (response) {
+							var content = '';
+							for (var i = 0; i < response.length; i++) {
+								content += '<option>' + response[i]['COLUMN_NAME'] + '</option>';
+							}
+							$('#column-list' + ide).html(content);
+						},
+						error: function (error) {
+							//console.error("Error getting table names:", error);
+						}
+					});
+				}
+			});
+
+			$(document.body).on('change', '.column_name', function (e) {
+				var idx = $('.column_name').index(this);
+				$('.updatable').eq(idx).val('Y');
+			});
+
+			function readFile(input) {
+				let file = input;
+
+				let reader = new FileReader();
+
+				reader.readAsText(file);
+
+				reader.onload = function () {
+					var content = reader.result;
+					$('#mydiv').html(content);
+
+					/*alert($('#fields').text());
+					
+					if($('#fields').text().trim() == 'No data available in table') {
+						$('#refresh_btn').trigger('click');
+					}*/
+				};
+
+				reader.onerror = function () {
+					console.log(reader.error);
+				};
+
+			}
+
+			$(document.body).on('change', '.mandatory', function () {
+				var idx = $('.mandatory').index(this);
+				//alert(idx);
+				$('.updatable').eq(idx).val('Y');
+			});
+
+			$(document.body).on('change', '.read-only', function () {
+				var idx = $('.read-only').index(this);
+				//alert(idx);
+				$('.updatable').eq(idx).val('Y');
+			});
+
+			$(document.body).on('change', '.primary-key', function () {
+				var idx = $('.primary-key').index(this);
+				//alert(idx);
+				$('.updatable').eq(idx).val('Y');
+			});
+
+			$(document.body).on('click', '.lovcls', function () {
+				var idx = $('.lovcls').index(this);
+				//alert(idx);
+				$('.updatable').eq(idx).val('Y');
+
+				var ide = $(this).attr('id');
+				ide = ide.split('lovcls_')[1];
+
+				$('#chk_hardcoded').trigger('click');
+				$('#lov_comment').val('');
+
+				if ($('#lovval_' + ide).val().trim() != '') {
+					lov_content = $('#lovval_' + ide).val();
+					var category = lov_content.split('::')[0];
+					var content = lov_content.split('::')[1];
+					content = content.split("[q]").join("'");
+					$('#chk_' + category).trigger('click');
+					$('#lov_comment').val(content);
+				}
+
+				$('#current_ide').val(ide);
+				//$('#lovPopup').trigger('click');
+
+				document.getElementById('lovPopup').click();
+			});
+
+			/*var row_content = $('#tab_bd').html();
+			//$('#tab_bd').empty();
+			//$('#tab_bd').html(row_content);
+			//$('.datepick-ui').datepicker();
+
+			$('#add_row').on('click', function () {
+
+				
+				/*row_content += '<tr><td><select class="cond form-control">';
+				row_content += '<option value="">Select</option><option value="<">&lt;</option><option value=">">&gt;</option><option value="<=">&lt;=</option>';
+				row_content += '<option value=">=">&gt;=</option><option value="==">==</option><option value="!=">!=</option></select></td>';
+				row_content += '<td><input type="text" class="datepick-ui dt2 form-control"></td>';
+				row_content += '<td><select class="logic form-control">';
+				row_content += '<option value="">Select</option><option value="and">and</option><option value="or">or</option></select></td></tr>';*/
+
+			/*$('#tab_bd').append(row_content);
+
+			$('.datepick-ui').datepicker();
+
+		});*/
+
+			$('#field_typ').on('change', function () {
+				var opt = '<option value="">Select Rule</option>';
+				$('.leng').hide();
+				$('.base_rule').hide();
+				$('.dt_rule').hide();
+				$('.dr2').hide();
+				if ($(this).val() == 'Text') {
+					$('.leng').show();
+					$('.base_rule').show();
+					opt += '<option>Alphanumeric</option>';
+					opt += '<option>Number</option>';
+					opt += '<option>Email</option>';
+
+				} else if ($(this).val() == 'Date') {
+					$('.dt_rule').show();
+					$('#tab_bd').empty();
+					$('#add_row').trigger('click');
+				}
+				$('#rule').html(opt);
+			});
+
+			$('.dr1').on('change', function () {
+				if ($(this).prop('checked')) {
+					$('.dr0').prop('checked', false);
+					$('.dr2').hide();
+				}
+			});
+
+			$('.dr0').on('change', function () {
+				if ($(this).prop('checked')) {
+					$('.dr1').prop('checked', false);
+					$('.dr2').show();
+				}
+			});
+
+			$('#savLOV').on('click', function () {
+				var ide = $('#current_ide').val();
+				var category = $('input[name="category"]:checked').val();
+				var content = $('#lov_comment').val();
+				$('#lovval_' + ide).val(category + '::' + content.split("'").join("[q]"));
+				var field_name = $('#lovval_' + ide).parents('tr').find('td').eq(1).text();
+				var screen_code = $('#screen-id').val();
+				var algorithm = $('#lovval_' + ide).val();
+				savLOVtoDB(field_name, screen_code, algorithm);
+				$('.close').trigger('click');
+			});
+
+			function savLOVtoDB(field_name, screen, algorithm) {
+				//alert(algorithm);
+				$.ajax({
+					url: contextPath + 'savLOV',
+					method: 'POST',
+					dataType: "json",
+					data: {field_name: field_name, screen: screen, algorithm: algorithm},
+					success: function (response) {
+						Swal.fire('Success', 'Data Saved', 'success');
+					},
+					complete: function () {
+						Swal.fire('Success', 'Data Saved', 'success');
+					},
+					error: function (error) {
+						//console.error("Error getting table names:", error);
+					}
+				});
+			}
+
+			$('#savValid').on('click', function () {
+				var ide = $('#cur_val_ide').val();
+				var typ = $('#field_typ').val();
+				var rul = $('#rule').val();
+				var len = $('#leng').val();
+
+				if (typ == 'date') {
+
+					var leng = $('.rule_tab').length;
+					var rules = [];
+					for (var i = 0; i < leng; i++) {
+						if ($('.rule_opr').eq(i).val() != '') {
+							if ($('.rule_opr').eq(i).val().includes('today')) {
+								rules.push($('.rule_opr').eq(i).val() + "|||" + $('.failmsg').eq(i).val());
+							} else {
+								rules.push($('.rule_opr').eq(i).val() + ":" + $('.datepick-ui').eq(i).val() + "|||" + $('.failmsg').eq(i).val());
+							}
+						}
+					}
+
+					rul = rules.toString();
+
+					//alert(rul);
+
+				}
+
+				if (typ == '') {
+					typ = 'x';
+				}
+
+				if (rul == '') {
+					rul = 'x';
+				}
+
+				if (len == '') {
+					len = 'x';
+				}
+
+				console.log(typ + '::' + rul + '::' + len);
+
+				$('#validationval_' + ide).val(typ + '::' + rul + '::' + len);
+				$('.close').trigger('click');
+			});
+		});
+	</script>
+	<div style="display:none;" id="mydiv"></div>
+
+	<a href="#" data-toggle="modal" data-target="#LOVmodal" style="display:none;" id="lovPopup"></a>
+
+	<div class="modal fade" id="LOVmodal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="padding-bottom:0;">
+					<h4 class="modal-title">
+						Set List of Values
+					</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<input type="radio" id="chk_hardcoded" name="category" value="hardcoded"
+						style="position:relative;top:2px;">
+					  <label for="chk_hardcoded">Static</label>&nbsp;&nbsp;
+					<input type="radio" id="chk_query" name="category" value="query" style="position:relative;top:2px;">
+					  <label for="chk_query">Query</label>&nbsp;&nbsp;
+					<input type="radio" id="chk_json" name="category" value="json" style="position:relative;top:2px;">
+					  <label for="chk_json">JSON</label>
+					<!--<label for="ResidenceCategoryComments" class="form-label">Comments</label>-->
+					<textarea class="form-control" id="lov_comment" rows="5" name="Comments" aria-label="Comments"
+						value="" spellcheck="false"></textarea>
+					<input type="hidden" id="current_ide">
+				</div>
+				<div class="modal-footer">
+					<button id="savLOV" type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<a href="#" data-toggle="modal" data-target="#Validmodal" style="display:none;" id="validPopup"></a>
+
+	<div class="modal fade" id="Validmodal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header" style="padding-bottom:0;">
+					<h4 class="modal-title">
+						Set Validation
+					</h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<label for="field_typ">Field Type</label>
+					<select class="form-control" id="field_typ" disabled>
+						<option value="">Select Field Type</option>
+						<option value="text">Text</option>
+						<option value="dropdown">Dropdown</option>
+						<option value="checkbox">Checkbox</option>
+						<option value="radiobutton">RadioButton</option>
+						<option value="date">Date</option>
+					</select>
+					<!--<input type="text" class="form-control" id="field_typ" disabled>-->
+
+					<label class="base_rule" for="rule">Rule</label>
+					<select class="form-control base_rule" id="rule">
+						<option value="">Select Rule</option>
+					</select>
+
+					<label class="leng" for="rule" style="display:none;">Length</label>
+					<input type="number" class="leng form-control" id="leng" style="display:none;">
+
+					<label style="display:none;" class="dt_rule" for="rule"><br>Date Rule</label>
+					<button type="button" class="dt_rule btn btn-primary btn-sm"
+						style="height: fit-content;float:right;position: relative;top:7px;" id="add_row">Add</button>
+					<br>
+					<!--<input style="display:none;" type="checkbox" class="dt_rule dr1" id="NoPast"> <label for="NoPast" style="display:none;" class="dt_rule">No Past Date</label><br>
+						<input style="display:none;" type="checkbox" class="dt_rule dr1" id="NoFuture"> <label for="NoFuture" style="display:none;" class="dt_rule">No Future Date</label><br>
+						<input style="display:none;" type="checkbox" class="dt_rule dr0" id="DtRange"> <label for="DtRange" style="display:none;" class="dt_rule">Date Range</label><br>-->
+
+					<table class="dt_rule table table-bordered table-hover table-striped w-100">
+						<thead class="bg-primary-600">
+							<tr>
+								<th>Operator</th>
+								<!--<th>Today</th>-->
+								<th>Value</th>
+								<th>Fail Message</th>
+								<th></th>
+							</tr>
+						</thead>
+
+						<tbody id="tab_bd">
+
+							<tr class="rule_tab">
+								<td>
+									<select class="rule_opr form-control">
+										<option value="">Select</option>
+										<option value="maxdt-">&lt;</option>
+										<option value="mindt+">&gt;</option>
+										<option value="maxdt">&lt;=</option>
+										<option value="mindt">&gt;=</option>
+										<option value="not">!=</option>
+										<option value="maxdt-:today">&lt; Today</option>
+										<option value="mindt+:today">&gt; Today</option>
+										<option value="maxdt:today">&lt;= Today</option>
+										<option value="mindt:today">&gt;= Today</option>
+										<option value="not:today">!= Today</option>
+									</select>
+								</td>
+								<td>
+
+									<div class="input-append position-relative">
+										<input id="test_xy" class="datepick-ui datepick-ui2 form-control" type="text"
+											aria-label="dateofbirth" placeholder="mm/dd/yyyy" name="dateofbirth"
+											readonly>
+										<span class="add-on"><i
+												class="fal fa-calendar-alt position-absolute"></i></span>
+									</div>
+
+									<!--<input type="text" class="datepick-ui form-control">-->
+
+								</td>
+								<td style="width:30%;">
+									<input type="text" class="form-control failmsg">
+								</td>
+								<td style="text-align: center;">
+									<!--<select class="rule_logic form-control">
+										<option value=""></option>
+										<option value="AND">AND</option>
+										<option value="OR">OR</option>
+									</select>-->
+									<button type="button"
+										class="btn btn-primary btn-sm waves-effect waves-themed dt-remove">Remove</button>
+								</td>
+							</tr>
+
+						</tbody>
+
+					</table>
+
+					<!--<label style="display:none;" class="dt_rule" for="rule">From Date</label>
+						<input style="display:none;" type="date" class="dt_rule">&nbsp;
+						
+						<label style="display:none;" class="dt_rule" for="rule">To Date</label>
+						<input style="display:none;" type="date" class="dt_rule">-->
+
+					<!--<input type="radio" id="chk_hardcoded" name="category" value="hardcoded"
+							style="position:relative;top:2px;">
+						  <label for="chk_hardcoded">Hardcoded</label>&nbsp;&nbsp;
+						<input type="radio" id="chk_query" name="category" value="query"
+							style="position:relative;top:2px;">
+						  <label for="chk_query">Query</label>-->
+					<!--<label for="ResidenceCategoryComments" class="form-label">Comments</label>-->
+					<!--<textarea class="form-control" id="lov_comment" rows="5" name="Comments" aria-label="Comments"
+							value=""></textarea>-->
+					<!--test-->
+					<input type="hidden" id="cur_val_ide">
+				</div>
+				<div class="modal-footer">
+					<button id="savValid" type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/vendors.bundle.js"></script>
+	<script src="js/app.bundle.js"></script>
+	<div th:replace="~{fragments/msgBox :: msgBox}"></div>
+</body>
+
+</html>

@@ -1,0 +1,2987 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<title class="MovementsSidebar">MassOffenderMovement</title>
+<div th:replace="~{fragments/head :: head}"></div>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<link href="https://unpkg.com/tabulator-tables@4.2.5/dist/css/tabulator.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/tabulator-tables@4.2.5/dist/js/tabulator.min.js"></script>
+
+<body class="mod-bg-1 mod-nav-link">
+
+
+	<!-- BEGIN Page Wrapper -->
+	<!-- BEGIN Page Header -->
+	<div th:replace="~{fragments/header :: header}"></div>
+	<div th:replace="~{fragments/navmenus :: navmenus}"></div>
+	<!-- END Page Header -->
+	<div class="page-wrapper">
+		<div class="page-inner">
+			<!-- BEGIN Left Aside -->
+			<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+			<!-- END Left Aside -->
+			<div class="page-content-wrapper">
+				<!-- BEGIN Page Content -->
+				<!-- the #js-page-content id is needed for some plugins to initialize -->
+				<main id="js-page-content" role="main" class="page-content">
+					<!-- <ol class="breadcrumb page-breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">SmartAdmin</a></li>
+                            <li class="breadcrumb-item">category_1</li>
+                            <li class="breadcrumb-item">category_2</li>
+                            <li class="breadcrumb-item active">Page Titile</li>
+                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        </ol> -->
+					<div class="subheader mb-1">
+						<h1 class="subheader-title">
+							<div th:replace="~{fragments/toggleMenu :: toggleMenu}"></div>
+							<i class='subheader-icon fal fa-'></i> <span id="screenName"
+								th:text="${screenName}"></span></span>
+						</h1>
+						<div class="frame-wrap bg-transparent">
+							<div class="btn-group">
+								<div class="col-12 pr-0">
+									<div class="js-get-date">[your date here]</div>
+								</div>
+							</div>
+							<a href="javascript:void(0);"
+								class="btn btn-primary btn-sm btn-icon waves-effect waves-themed disabled"
+								data-toggle="tooltip" data-placement="top" data-original-title="Add"> <i
+									class="fal fa-plus"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-warning btn-sm btn-icon waves-effect waves-themed disabled"
+								data-toggle="tooltip" data-placement="top" data-original-title="Print"> <i
+									class="fal fa-print"></i>
+							</a> <a href="javascript:void(0);" id="clear-btn"
+								class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="tooltip" data-placement="top" data-original-title="Clear"> <i
+									class="fal fa-times"></i>
+							</a> <a href="javascript:void(0);" id="save-btn"
+								class="btn btn-success btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="OK/Save"> <i class="fal fa-save"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="Cancel/Exit"> <i class="fal fa-sign-out"></i>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="d-flex mainBlock h-100">
+						<div class="d-flex h-100 leftSidebarMain">
+							<div class="ArrowBlockmain">
+								<button class="arrowBtn" id="leftSidebarIcon"><i class="fa fa-chevron-right"
+										aria-hidden="true"></i></button>
+							</div>
+							<input type="hidden" name="screenCode" id="screenCode" value="MOV_MAOM">
+							<div class="contain d-flex pl-0" id="contain">
+								<div class="leftSideBar p-2 mr-0 mt-2">
+									<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center position-relative"
+										style="font-weight: 600;top: -20px;">Search Criteria</h6>
+									<div class="d-flex justify-content-end position-absolute"
+										style="right: 5px;top: 5px;">
+										<span class="d-flex" data-toggle="modal" data-target="">
+											<a id="pinButton" style="height: fit-content;"
+												class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center"
+												data-class="nav-function-hidden">
+												<i class="fa fa-thumb-tack" style="font-size: 15px;color: #fff;"></i>
+											</a>
+										</span>
+									</div>
+									<div class="row">
+										<div class="col-lg-12 mt-1">
+											<div class="panel mb-2 panelContentBlock p-1 headerBlockNew border-0"
+												style="background: unset;box-shadow: unset;">
+												<div class="row form-group">
+													<div class="col-lg-12">
+														<label for="Security"
+															class="form-label mb-2 mb-0 text-nowrap">Movement
+															Type</label>
+														<div class="custom-control custom-radio mb-2">
+															<input type="radio" class="custom-control-input" value="I"
+																id="log-inmates-in" name="LogInmatesRadio">
+															<label class="custom-control-label" for="log-inmates-in">Log
+																Inmates In To</label>
+														</div>
+														<div class="custom-control custom-radio mb-2">
+															<input type="radio" class="custom-control-input" value="O"
+																id="log-inmates-out" name="LogInmatesRadio" checked="">
+															<label class="custom-control-label"
+																for="log-inmates-out">Log Inmates Out From</label>
+														</div>
+													</div>
+													<div class="col-lg-12 mt-1">
+														<label for="Security"
+															class="form-label mb-2 mb-0 text-nowrap">Schedule
+															Type</label>
+														<div class="custom-control custom-radio mb-2">
+															<input type="radio" class="custom-control-input" value="S"
+																id="scheduledRadio" name="ScheduleType">
+															<label class="custom-control-label"
+																for="scheduledRadio">Scheduled</label>
+														</div>
+														<div class="custom-control custom-radio mb-2">
+															<input type="radio" class="custom-control-input" value="U"
+																id="allRadio" name="ScheduleType" checked="">
+															<label class="custom-control-label"
+																for="allRadio">All</label>
+														</div>
+													</div>
+													<div class="col-lg-12 mt-2 selectFloatingLabel ml-2 pl-2">
+														<label for="institution"
+															class="form-label mr-2 mb-0 control-label selectFloating"
+															style="left: 6px;">Institution</label>
+														<select
+															class="custom-select form-control typecontact d-block mb-1 floatingLableClick rawField"
+															id="institution" data-fld="institution"
+															data-lbl="Institution">
+															<option value="">Institution</option>
+														</select>
+													</div>
+													<div class="col-lg-12 mt-2 selectFloatingLabel ml-2 pl-2">
+														<label for="location"
+															class="form-label mr-2 mb-0 control-label selectFloating"
+															style="left:  6px; opacity: 1!important">Location</label>
+														<select
+															class="custom-select form-control typecontact d-block mb-1 floatingLableClick rawField"
+															id="location" data-fld="location" data-lbl="Location">
+															<option value="">Location</option>
+														</select>
+													</div>
+													<div class="col-lg-12 mt-2 selectFloatingLabel ml-2 pl-2">
+														<label for="intermediateHUnit"
+															class="form-label mr-2 mb-0 control-label selectFloating"
+															style="left:  -10px; opacity: 1!important">Intermediate
+															Housing Unit</label>
+														<select
+															class="custom-select form-control typecontact rawField floatingLableClick"
+															id="intermediateHUnit" data-fld="intermediateHUnit"
+															data-lbl="Intermediate Housing Unit">
+															<option value="">Intermediate Housing Unit</option>
+														</select>
+													</div>
+													<div class="d-flex justify-content-end mt-1 w-100 mr-3 mt-2">
+														<button id="search-btn" type="button"
+															class="btn-primary btn btn-sm ml-2 rawField"
+															data-fld="searchBtn" data-lbl="Search"
+															style="width: 90px;">Search</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="row bg-light mx-1 mainScreenBlock"
+							style="width: calc(100% - 25px);margin-left: 0 !important;">
+							<div class="col-lg-12 px-0 mb-0">
+								<div id="panel-1" class="panel mb-0">
+									<div class="panel-container show">
+										<div class="panel-content py-0 px-1">
+											<div id="js-checkbox-toggles">
+												<ul class="nav nav-tabs text-nowrap" role="tablist"
+													style="flex-wrap: nowrap; overflow-y: hidden;">
+													<!--<li class="nav-item"><a class="nav-link" data-toggle="tab"
+															href="#MultiSchedule_Tab" id="multiScheduleTab"
+															role="tab">Multi Schedule</a></li>-->
+													<li style="visibility:hidden !important;position: absolute;"
+														class="nav-item"><a class="nav-link" data-toggle="tab"
+															href="#IndividualSchedule_Tab" role="tab">Individual
+															Schedule</a></li>
+													<!--<li class="nav-item"><a class="nav-link" data-toggle="tab"
+															href="#IndividualSchedule_Tab"
+															role="tab">Individual Schedule</a></li>-->
+													<li class="nav-item"><a class="nav-link" data-toggle="tab"
+															id="multiScheduleTab">Multi Schedule</a></li>
+													<li class="nav-item"><a class="nav-link" data-toggle="tab"
+															id="individualScheduleTab">Individual Schedule</a></li>
+													<input type="hidden" id="multi_populate">
+													<input type="hidden" id="ind_populate">
+												</ul>
+												<div class="tab-content p-0">
+													<!--<div class="tab-pane fade show mt-1" id="MultiSchedule_Tab"
+														role="tabpanel">
+														
+													</div>-->
+													<div class="tab-pane fade show active mt-1"
+														id="IndividualSchedule_Tab" role="tabpanel">
+
+														<div id="multi_segment">
+
+															<div class="row">
+																<div class="col-lg-6 pr-0">
+
+																	<!-- Buttons for Select and Drag Modes -->
+																	<div class="btn-group mb-2">
+																		<div class="autocomplete"><input type="text"
+																				id="offenderSBI" data-fld="offenderSBI"
+																				data-lbl="offender SBI"
+																				autocomplete="off"
+																				class="form-control myflds rawField"
+																				placeholder="ID#" style="width:130px;">
+																		</div>
+																		<div class="autocomplete"><input type="text"
+																				id="offenderName"
+																				data-fld="offenderName"
+																				data-lbl="offender Name"
+																				autocomplete="off"
+																				style="width:200px;margin-left:10px;margin-right:10px;"
+																				class="form-control mx-2 myflds rawField"
+																				placeholder="Name"></div>
+																		<a id="myfilter"
+																			style="width: 40px; border-radius: 3px;"
+																			href="javascript:void(0);"
+																			class="btn btn-primary btn-sm btn-icon waves-effect waves-themed headingIconsBlock"
+																			data-toggle="tooltip" data-placement="top"
+																			data-original-title=""> <i
+																				class="fal fa-search"></i>
+																		</a>
+																		<button id="selectModeBtn" style="display:none;"
+																			class="btn btn-sm btn-primary p-1 ml-1 selectBtn">
+																			<i class="fa-solid fa-hand-pointer"></i>
+																		</button>
+																		<button id="dragModeBtn" style="display:none;"
+																			class="btn btn-sm btn-primary p-1 ml-1 dragBtn">
+																			<i class="fa-solid fa-hand-back-fist"></i>
+																		</button>
+																	</div>
+																	<div id="table-container" class="mb-2 d-flex">
+																		<div id="offenderTable" class="w-100">
+																		</div>
+																	</div>
+																</div>
+																<div class="col-lg-6 form-group">
+																	<div id="movement-controls"
+																		style="visibility:hidden !important;"
+																		class="dropSel d-flex align-items-center w-75">
+																		<div
+																			class="selectFloatingLabel movement-controls w-75">
+																			<label for="multi-movType"
+																				class="form-label mr-2 mb-0 control-label selectFloating">Movement
+																				Type</label>
+																			<select
+																				class="custom-select form-control typecontact d-block mb-1 floatingLableClick rawField"
+																				id="multi-movType"
+																				data-fld="movementType"
+																				data-lbl="Movement Type">
+																				<option value="">Movement Type</option>
+																				<option value="O">Other</option>
+																				<option value="H">Housing</option>
+																				<option value="R">Institutional Release
+																				</option>
+																			</select>
+																		</div>
+																		<div
+																			class="selectFloatingLabel ml-2 movement-controls w-75">
+																			<label for="location-to"
+																				class="form-label mr-2 mb-0 control-label selectFloating">Location
+																				To</label>
+																			<select
+																				class="custom-select form-control typecontact d-block mb-1 floatingLableClick rawField"
+																				id="location-to" data-fld="locationTo"
+																				data-lbl="Location To">
+																				<option>Location To</option>
+																				<option value="O">test</option>
+																			</select>
+																		</div>
+																		<div
+																			class="form-check mx-2 d-flex align-items-center">
+																			<input type="checkbox"
+																				class="form-check-input rawField"
+																				id="move-offender"
+																				data-fld="moveOffender"
+																				data-lbl="Moved">
+																			<label class="form-check-label"
+																				for="move-offender">Moved</label>
+																		</div>
+																		<span id="myuser" style="display:none;"
+																			th:text="${username}"></span>
+																	</div>
+																	<div class="mt-1 w-100">
+																		<div id="table-container" class="mb-2 d-flex">
+																			<div id="dropTable" class="w-100">
+																			</div>
+																		</div>
+																	</div>
+																	<!--<button id="clear-dparea" type="button" class="btn btn-primary btn-sm mr-2 waves-effect waves-themed"> Clear </button>-->
+																</div>
+															</div>
+
+														</div>
+
+														<div id="individual_segment">
+
+															<div id="table-container" class="mb-2">
+																<table id="ind-schedule"
+																	class="table table-striped table-bordered table-sm w-100"
+																	style="margin-bottom:0">
+																</table>
+															</div>
+															<style>
+																.dataTables_empty {
+																	height: 200px;
+																}
+															</style>
+
+															<script>
+
+																var indScheduleTable = new Tabulator("#ind-schedule", {
+																	layout: "fitColumns",
+																	tooltips: true,
+																	movableColumns: true,
+																	resizableRows: true,
+																	height: "475px",
+																	//rowId: "rowId", 
+																	columns: [
+																		//{ title: "rowid", field: "rowId", sorter: "string" },
+																		{
+																			//title: "Other", 
+																			titleFormatter: (column) => setTitleDesc(column, 'indradioOther', 'Other'),
+																			field: "radioOther", formatter: "html", width: 60, hozAlign: "center", headerSort: false,
+																		},
+																		{
+																			//title: "Housing", 
+																			titleFormatter: (column) => setTitleDesc(column, 'indradioHousing', 'Housing'),
+																			field: "radioHousing", formatter: "html", width: 90, hozAlign: "center", headerSort: false,
+																		},
+																		{
+																			//title: "Inst Release", 
+																			titleFormatter: (column) => setTitleDesc(column, 'indradioInstRelease', 'Inst Release'),
+																			field: "radioInstRelease", formatter: "html", width: 100, hozAlign: "center", headerSort: false,
+																		},
+																		{
+																			//title: "Movement Type", 
+																			titleFormatter: (column) => setTitleDesc(column, 'indmovementType', 'Movement Type'),
+																			field: "movementType", sorter: "string", visible: false
+																		},
+																		{
+																			//title: "ID#", 
+																			titleFormatter: (column) => setTitleDesc(column, 'indsbiNo', 'ID#'),
+																			field: "sbiNo", sorter: "string", width: 100, tooltips: true
+																		},
+																		{
+																			//title: "Offender Name (L, F, M, S)", 
+																			titleFormatter: (column) => setTitleDesc(column, 'indname', 'Offender Name (L, F, M, S)'),
+																			field: "name", sorter: "string", tooltips: true
+																		},
+																		{
+																			//title: "Housing Location", 
+																			titleFormatter: (column) => setTitleDesc(column, 'indhousingLoc', 'Housing Location'),
+																			field: "housingLocation", sorter: "string", tooltips: true
+																		},
+																		{
+																			//title: "Activity", 
+																			titleFormatter: (column) => setTitleDesc(column, 'indactivity', 'Activity'),
+																			field: "activity", sorter: "string", tooltips: true
+																		},
+																		{
+																			//title: "Location To", 
+																			titleFormatter: (column) => setTitleDesc(column, 'indlocation', 'Location To'),
+																			field: "locationDropdown", formatter: "html", width: 250
+																		},
+																		{
+																			//title: "To", 
+																			titleFormatter: (column) => setTitleDesc(column, 'indlocationTo', 'To'),
+																			field: "locationTo", sorter: "string", visible: false
+																		},
+																		{
+																			//title: "Offender Moved", 
+																			titleFormatter: (column) => setTitleDesc(column, 'indoffenderMovedChk', 'Offender Moved'),
+																			field: "offenderMovedCheckbox", formatter: "html", width: 50, hozAlign: "center"
+																		},
+																		{
+																			//title: "move", 
+																			titleFormatter: (column) => setTitleDesc(column, 'indinmateMoved', 'move'),
+																			field: "inmateMoved", sorter: "string", visible: false
+																		},
+																	],
+																	placeholder: "Click on the search button to populate data",
+																	rowFormatter: function (row) {
+																		row.getElement().setAttribute("data-id", row.getData().rowId);
+																	},
+																	rowClick: function (e, row) {
+																		//alert(row.getData().rowId);
+																	}
+																});
+
+																tabulatorRegistry["ind-schedule"] = {
+																	varName: "indScheduleTable",
+																	instance: indScheduleTable
+																};
+
+															</script>
+
+														</div>
+
+													</div>
+												</div>
+												<div class="ml-1 mb-2 float-right">
+													<button type="button" class="btn btn-primary btn-sm mr-2 rawField"
+														data-fld="OffMovOutBtn" data-lbl="Offenders Moved Out">
+														Offenders
+														Moved Out </button>
+													<button type="button" class="btn btn-primary btn-sm mr-2 rawField"
+														data-fld="MovementBtn" data-lbl="Movement Roster"> Movement
+														Roster </button>
+													<button type="button" class="btn btn-primary btn-sm mr-1 rawField"
+														data-fld="schduleBtn" data-lbl="Schedule"> Schedule
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+				<!-- this overlay is activated only when mobile menu is triggered -->
+				<div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
+				<!-- END Page Content -->
+				<!-- Modal Large -->
+				<div class="modal fade" id="default-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Staff Name</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true"><i class="fal fa-times"></i></span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="form-group row">
+									<label for="staffSearch"
+										class="col-form-label col-12 col-lg-1 form-label">Search</label>
+									<div class="col-12 col-lg-11">
+										<input type="text" class="form-control" aria-label="staffSearch"
+											name="staffSearch" id="staffSearch" value="">
+									</div>
+
+								</div>
+								<div class="table-responsive-lg">
+									<table class="table table-bordered m-0">
+										<thead>
+											<tr>
+												<th>Last Name</th>
+												<th>First Name</th>
+												<th>MI</th>
+												<th>Suffix</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- BEGIN Shortcuts -->
+				<!-- modal shortcut -->
+				<div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog"
+					aria-labelledby="modal-shortcut" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-top modal-transparent" role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+								<ul class="app-list w-auto h-auto p-0 text-left">
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Home
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
+												<i class="ni ni-envelope icon-stack-1x text-white"></i>
+											</div>
+											<span class="app-list-name">
+												Inbox
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Add More
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div> <!-- END Shortcuts -->
+			</div>
+		</div>
+	</div>
+	<!-- END Page Wrapper -->
+	<!-- BEGIN Quick Menu -->
+	<!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
+	<nav class="shortcut-menu d-none d-sm-block">
+		<input type="checkbox" class="menu-open" name="menu-open" id="menu-open" aria-label="menu-open" value="" />
+		<label for="menu_open" class="menu-open-button ">
+			<span class="app-shortcut-icon d-block"></span>
+		</label>
+		<a href="#" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Scroll Top">
+			<i class="fal fa-arrow-up"></i>
+		</a>
+		<a href="page_login-alt.html" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Logout">
+			<i class="fal fa-sign-out"></i>
+		</a>
+		<a href="#" class="menu-item btn" data-action="app-fullscreen" data-toggle="tooltip" data-placement="left"
+			title="Full Screen">
+			<i class="fal fa-expand"></i>
+		</a>
+		<a href="#" class="menu-item btn" data-action="app-print" data-toggle="tooltip" data-placement="left"
+			title="Print page">
+			<i class="fal fa-print"></i>
+		</a>
+		<a href="#" class="menu-item btn" data-action="app-voice" data-toggle="tooltip" data-placement="left"
+			title="Voice command">
+			<i class="fal fa-microphone"></i>
+		</a>
+	</nav>
+	<!-- END Quick Menu -->
+	<!-- BEGIN Messenger -->
+	<div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right">
+			<div class="modal-content h-100">
+				<div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
+					<div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+						<span class="mr-2">
+							<span class="rounded-circle profile-image d-block"
+								style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+						</span>
+						<div class="info-card-text">
+							<a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white"
+								data-toggle="dropdown" aria-expanded="false">
+								Tracey Chang
+								<i class="fal fa-angle-down d-inline-block ml-1 text-white fs-md"></i>
+							</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">Send Email</a>
+								<a class="dropdown-item" href="#">Create Appointment</a>
+								<a class="dropdown-item" href="#">Block User</a>
+							</div>
+							<span class="text-truncate text-truncate-md opacity-80">IT Director</span>
+						</div>
+					</div>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0 h-100 d-flex">
+					<!-- BEGIN msgr-list -->
+					<div
+						class="msgr-list d-flex flex-column bg-faded border-faded border-top-0 border-right-0 border-bottom-0 position-absolute pos-top pos-bottom">
+						<div>
+							<div
+								class="height-4 width-3 h3 m-0 d-flex justify-content-center flex-column color-primary-500 pl-3 mt-2">
+								<i class="fal fa-search"></i>
+							</div>
+							<input type="text" class="form-control bg-white" id="msgr_listfilter_input"
+								name="msgr_listfilter_input" placeholder="Filter contacts" aria-label="FilterSearch"
+								value="" data-listfilter="#js-msgr-listfilter">
+						</div>
+						<div class="flex-1 h-100 custom-scroll">
+							<div class="w-100">
+								<ul id="js-msgr-listfilter" class="list-unstyled m-0">
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="tracey chang online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Tracey Chang
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="oliver kopyuv online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Oliver Kopyuv
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="dr john cook phd away">
+											<div class="d-table-cell align-middle status status-warning status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Dr. John Cook PhD
+													<small class="d-block font-italic fs-xs">
+														Away
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-g.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Ali Amdaney
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="sarah mcbrook online">
+											<div class="d-table-cell align-middle status status-success status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Sarah McBrook
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney busy">
+											<div class="d-table-cell align-middle status status-danger status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs text-danger">
+														Busy
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney inactive">
+											<div class="d-table-cell align-middle">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-m.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													+714651347790
+													<small class="d-block font-italic fs-xs opacity-50">
+														Missed Call
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+								<div class="filter-message js-filter-message"></div>
+							</div>
+						</div>
+						<div>
+							<a class="fs-xl d-flex align-items-center p-3">
+								<i class="fal fa-cogs"></i>
+							</a>
+						</div>
+					</div>
+					<!-- END msgr -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Messenger -->
+	<!-- BEGIN Page Settings -->
+	<div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right modal-md">
+			<div class="modal-content">
+				<div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
+					<h4 class="m-0 text-center color-white">
+						Layout Settings
+						<small class="mb-0 opacity-80">User Interface Settings</small>
+					</h4>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0">
+					<div class="settings-panel">
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									App Layout
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="fh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="header-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Header</span>
+							<span class="onoffswitch-title-desc">header is in a fixed at all times</span>
+						</div>
+						<div class="list" id="nff">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Navigation</span>
+							<span class="onoffswitch-title-desc">left panel is fixed</span>
+						</div>
+						<div class="list" id="nfm">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-minify"></a>
+							<span class="onoffswitch-title">Minify Navigation</span>
+							<span class="onoffswitch-title-desc">Skew nav to maximize space</span>
+						</div>
+						<div class="list" id="nfh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-hidden"></a>
+							<span class="onoffswitch-title">Hide Navigation</span>
+							<span class="onoffswitch-title-desc">roll mouse on edge to reveal</span>
+						</div>
+						<div class="list" id="nft">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-top"></a>
+							<span class="onoffswitch-title">Top Navigation</span>
+							<span class="onoffswitch-title-desc">Relocate left pane to top</span>
+						</div>
+						<div class="list" id="mmb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-main-boxed"></a>
+							<span class="onoffswitch-title">Boxed Layout</span>
+							<span class="onoffswitch-title-desc">Encapsulates to a container</span>
+						</div>
+						<div class="expanded">
+							<ul class="">
+								<li>
+									<div class="bg-fusion-50" data-action="toggle" data-class="mod-bg-1"></div>
+								</li>
+								<li>
+									<div class="bg-warning-200" data-action="toggle" data-class="mod-bg-2"></div>
+								</li>
+								<li>
+									<div class="bg-primary-200" data-action="toggle" data-class="mod-bg-3"></div>
+								</li>
+								<li>
+									<div class="bg-success-300" data-action="toggle" data-class="mod-bg-4"></div>
+								</li>
+							</ul>
+							<div class="list" id="mbgf">
+								<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+									data-class="mod-fixed-bg"></a>
+								<span class="onoffswitch-title">Fixed Background</span>
+							</div>
+						</div>
+						<!-- <div class="mt-4 d-table w-100 px-5">
+                            <div class="d-table-cell align-middle">
+                                <h5 class="p-0">
+                                    Mobile Menu
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="list" id="nmp">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-push"></a>
+                            <span class="onoffswitch-title">Push Content</span>
+                            <span class="onoffswitch-title-desc">Content pushed on menu reveal</span>
+                        </div>
+                        <div class="list" id="nmno">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-no-overlay"></a>
+                            <span class="onoffswitch-title">No Overlay</span>
+                            <span class="onoffswitch-title-desc">Removes mesh on menu reveal</span>
+                        </div>
+                        <div class="list" id="sldo">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-slide-out"></a>
+                            <span class="onoffswitch-title">Off-Canvas <sup>(beta)</sup></span>
+                            <span class="onoffswitch-title-desc">Content overlaps menu</span>
+                        </div> -->
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Accessibility
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mbf">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-bigger-font"></a>
+							<span class="onoffswitch-title">Bigger Content Font</span>
+							<span class="onoffswitch-title-desc">content fonts are bigger for readability</span>
+						</div>
+						<div class="list" id="mhc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-high-contrast"></a>
+							<span class="onoffswitch-title">High Contrast Text (WCAG 2 AA)</span>
+							<span class="onoffswitch-title-desc">4.5:1 text contrast ratio</span>
+						</div>
+						<div class="list" id="mcb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-color-blind"></a>
+							<span class="onoffswitch-title">Daltonism <sup>(beta)</sup> </span>
+							<span class="onoffswitch-title-desc">color vision deficiency</span>
+						</div>
+						<div class="list" id="mpc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-pace-custom"></a>
+							<span class="onoffswitch-title">Preloader Inside</span>
+							<span class="onoffswitch-title-desc">preloader will be inside content</span>
+						</div>
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Global Modifications
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mcbg">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-clean-page-bg"></a>
+							<span class="onoffswitch-title">Clean Page Background</span>
+							<span class="onoffswitch-title-desc">adds more whitespace</span>
+						</div>
+						<div class="list" id="mhni">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-nav-icons"></a>
+							<span class="onoffswitch-title">Hide Navigation Icons</span>
+							<span class="onoffswitch-title-desc">invisible navigation icons</span>
+						</div>
+						<div class="list" id="dan">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-disable-animation"></a>
+							<span class="onoffswitch-title">Disable CSS Animation</span>
+							<span class="onoffswitch-title-desc">Disables CSS based animations</span>
+						</div>
+						<div class="list" id="mhic">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-info-card"></a>
+							<span class="onoffswitch-title">Hide Info Card</span>
+							<span class="onoffswitch-title-desc">Hides info card from left panel</span>
+						</div>
+						<div class="list" id="mlph">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-lean-subheader"></a>
+							<span class="onoffswitch-title">Lean Subheader</span>
+							<span class="onoffswitch-title-desc">distinguished page header</span>
+						</div>
+						<div class="list" id="mnl">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-nav-link"></a>
+							<span class="onoffswitch-title">Hierarchical Navigation</span>
+							<span class="onoffswitch-title-desc">Clear breakdown of nav links</span>
+						</div>
+						<div class="list mt-1">
+							<span class="onoffswitch-title">Global Font Size <small>(RESETS ON REFRESH)</small> </span>
+							<div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
+								<label for="smRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-sm" data-target="html">
+									<input type="radio" aria-label="smRadio" name="smRadio" id="smRadio" value=""> SM
+								</label>
+								<label for="mdRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text" data-target="html">
+									<input type="radio" aria-label="mdRadio" name="mdRadio" id="mdRadio" value=""
+										checked=""> MD
+								</label>
+								<label for="lgRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-lg" data-target="html">
+									<input type="radio" aria-label="lgRadio" name="lgRadio" id="lgRadio" value=""> LG
+								</label>
+								<label for="xlRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-xl" data-target="html">
+									<input type="radio" aria-label="xlRadio" name="xlRadio" id="xlRadio" value=""> XL
+								</label>
+							</div>
+							<span class="onoffswitch-title-desc d-block mb-g">Change <strong>root</strong> font size to
+								effect rem values</span>
+						</div>
+						<div class="mt-2 d-table w-100 pl-5 pr-3">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Theme colors <small>(overlays base css)</small>
+								</h5>
+								<!-- <div class="fs-xs text-muted p-2 alert alert-warning mt-3 mb-0">
+                                    <i class="fal fa-exclamation-triangle text-warning mr-2"></i>Due to network latency
+                                    and CPU utilization, you may experience a brief flickering effect on page load which
+                                    may show the intial applied theme for a split second. Setting the prefered
+                                    style/theme in the header will prevent this from happening.
+                                </div> -->
+							</div>
+						</div>
+						<div class="expanded theme-colors pl-5 pr-3">
+							<ul class="m-0">
+								<li><a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme=""
+										data-toggle="tooltip" data-placement="top" title="Wisteria (base css)"
+										data-original-title="Wisteria (base css)"></a></li>
+								<li><a href="#" id="myapp-1" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip"
+										data-placement="top" title="Tapestry" data-original-title="Tapestry"></a></li>
+								<li><a href="#" id="myapp-2" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip"
+										data-placement="top" title="Atlantis" data-original-title="Atlantis"></a></li>
+								<li><a href="#" id="myapp-3" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip"
+										data-placement="top" title="Indigo" data-original-title="Indigo"></a></li>
+								<li><a href="#" id="myapp-4" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip"
+										data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a>
+								</li>
+								<li><a href="#" id="myapp-5" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip"
+										data-placement="top" title="Tradewind" data-original-title="Tradewind"></a></li>
+								<li><a href="#" id="myapp-6" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip"
+										data-placement="top" title="Cranberry" data-original-title="Cranberry"></a></li>
+								<li><a href="#" id="myapp-7" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip"
+										data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a></li>
+								<li><a href="#" id="myapp-8" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip"
+										data-placement="top" title="Chetwode Blue"
+										data-original-title="Chetwode Blue"></a></li>
+								<li><a href="#" id="myapp-9" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip"
+										data-placement="top" title="Apricot" data-original-title="Apricot"></a></li>
+								<li><a href="#" id="myapp-10" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip"
+										data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-11" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip"
+										data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-12" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip"
+										data-placement="top" title="Wild Blue Yonder"
+										data-original-title="Wild Blue Yonder"></a></li>
+								<li><a href="#" id="myapp-13" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip"
+										data-placement="top" title="Emerald" data-original-title="Emerald"></a></li>
+							</ul>
+						</div>
+						<hr class="mb-0 mt-4">
+						<div class="pl-5 pr-3 py-3 bg-faded">
+							<div class="row no-gutters">
+								<div class="col-6 pr-1">
+									<a href="#" class="btn btn-outline-danger fw-500 btn-block"
+										data-action="app-reset">Reset Settings</a>
+								</div>
+								<div class="col-6 pl-1">
+									<a href="#" class="btn btn-danger fw-500 btn-block"
+										data-action="factory-reset">Factory Reset</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<span id="saving"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Page Settings -->
+
+	<style>
+		.leftSideBar .form-group.focused .selectFloating {
+			background: #ece0ff;
+		}
+
+		.form-group.focused .selectFloating {
+			background: #ffffff;
+		}
+
+		label {
+			font-weight: 500;
+		}
+
+		.checkboxBlock .custom-checkbox {
+			width: 70px;
+		}
+
+		.levelStatusCheckbox .custom-checkbox {
+			width: 95px;
+		}
+
+		.panelContentBlock {
+			border: 1px solid #7a58ac;
+			border-radius: 5px !important;
+		}
+
+		.drop-area {
+			border: 3px dashed rgb(155, 124, 202);
+			padding: 20px;
+			margin-top: 20px;
+			min-height: 150px;
+			text-align: center;
+		}
+
+		.selected-td {
+			color: #886ab5 !important;
+		}
+
+		.selected-tr {
+			color: #886ab5 !important;
+		}
+
+		.dragging {
+			cursor: grab;
+		}
+
+		.dragging-active {
+			cursor: grabbing;
+		}
+
+		.dataTables_scrollBody {
+			overflow-x: hidden;
+		}
+
+		.form-control {
+			height: 30px;
+		}
+
+		#offenderTable {
+			width: auto;
+			margin-bottom: 0;
+		}
+
+		#selectBtn {
+			background-color: white;
+		}
+
+		#dragBtn {
+			background-color: white;
+		}
+
+		.iconBlock {
+			width: 30px;
+			position: sticky;
+			top: 55%;
+			cursor: pointer;
+		}
+
+		.ArrowBlockmain {
+			width: 25px;
+		}
+
+		.ArrowBlockmain .arrowBtn {
+			position: sticky;
+			top: 55%;
+			height: fit-content;
+			font-size: 20px;
+			border-radius: 0px 5px 5px 0px;
+			padding: 5px;
+			background: linear-gradient(88deg, #ece0ff, #9b7cca);
+			color: #fff;
+			border: 0;
+			z-index: 9;
+		}
+
+		.ArrowBlockmain .arrowBtn:hover {
+			background: linear-gradient(88deg, #ece0ff, #703ebd);
+		}
+
+		.leftSideBar {
+			width: 0;
+			height: 100%;
+			border: 1px solid #c7c7c7;
+			border-radius: 5px;
+			transform: translateX(-290px);
+			transition: all .3s;
+			background: #ece0ff;
+		}
+
+
+		.contain {
+			width: 0;
+		}
+
+		.active {
+			width: 100% !important;
+		}
+
+		.contain.active .leftSideBar {
+			min-width: 250px;
+			transition: all .5s;
+			transform: translateX(-10px);
+			margin-right: 10px;
+		}
+
+		.MainBlockSection .mainScreenBlock {
+			width: calc(100% - 275px) !important;
+		}
+
+		.dt-buttons {
+			margin-right: 10px;
+			margin-top: 5px;
+		}
+
+		.dataTables_wrapper .row:first-child {
+			margin-bottom: 0 !important;
+		}
+
+		#multi-movType #location-to {
+			width: 100px;
+		}
+
+		.tabulator-row.tabulator-selected {
+			background-color: #cce5ff !important;
+		}
+		.tabulator{
+			background-color: #fff;
+		}
+
+		/* CSS to show active state for buttons */
+		.button-active {
+			background-color: #4e73df !important;
+			/* Example color for active button */
+			color: white !important;
+			border: 1px solid #4e73df !important;
+		}
+
+		.tabulator-row {
+			user-select: none;
+			/* Prevent text selection in rows */
+		}
+
+		.locationDropdown option:disabled {
+			color: #a0a0a0;
+			background-color: #f0f0f0;
+			cursor: not-allowed;
+		}
+
+		.tabulator-cell label {
+			opacity: 1 !important;
+		}
+
+		/*the container must be positioned relative:*/
+		.autocomplete {
+			position: relative;
+			display: inline-block;
+		}
+
+		.autocomplete-items {
+			position: absolute;
+			border: 1px solid #d4d4d4;
+			border-bottom: none;
+			border-top: none;
+			z-index: 99;
+			/*position the autocomplete items to be the same width as the container:*/
+			top: 100%;
+			left: 0;
+			right: 0;
+		}
+
+		.autocomplete-items div {
+			padding: 10px;
+			cursor: pointer;
+			background-color: #fff;
+			border-bottom: 1px solid #d4d4d4;
+		}
+
+		/*when hovering an item:*/
+		.autocomplete-items div:hover {
+			background-color: #e9e9e9;
+		}
+
+		/*when navigating through the items using the arrow keys:*/
+		.autocomplete-active {
+			background-color: DodgerBlue !important;
+			color: #ffffff;
+		}
+		
+		.tabulator .tabulator-header .tabulator-col{
+			padding-left: 5px;
+    		padding-top: 5px;	
+		}
+		
+		@media screen and (max-width: 1370px) {
+			#offenderTable, #dropTable{
+				height: 320px!important;
+			}
+			#ind-schedule{
+				height: 360px!important;
+			}
+		}
+	</style>
+
+	<div th:replace="~{fragments/script :: script}"></div>
+	<script src="js/staticjs.js"></script>
+	<script>
+		$(document).ready(function () {
+			$(function () {
+				$('.select2').select2();
+
+				$(".select2-placeholder-multiple").select2(
+					{
+						placeholder: "Select State"
+					});
+				$(".js-hide-search").select2(
+					{
+						minimumResultsForSearch: 1 / 0
+					});
+				$(".js-max-length").select2(
+					{
+						maximumSelectionLength: 2,
+						placeholder: "Select maximum 2 items"
+					});
+				$(".select2-placeholder").select2(
+					{
+						placeholder: "Select a state",
+						allowClear: true
+					});
+
+
+
+				$(".js-select2-icons").select2(
+					{
+						minimumResultsForSearch: 1 / 0,
+						templateResult: icon,
+						templateSelection: icon,
+						escapeMarkup: function (elm) {
+							return elm
+						}
+					});
+
+				function icon(elm) {
+					elm.element;
+					return elm.id ? "<i class='" + $(elm.element).data("icon") + " mr-2'></i>" + elm.text : elm.text
+				}
+
+				$(".js-data-example-ajax").select2(
+					{
+						ajax:
+						{
+							url: "https://api.github.com/search/repositories",
+							dataType: 'json',
+							delay: 250,
+							data: function (params) {
+								return {
+									q: params.term, // search term
+									page: params.page
+								};
+							},
+							processResults: function (data, params) {
+								// parse the results into the format expected by Select2
+								// since we are using custom formatting functions we do not need to
+								// alter the remote JSON data, except to indicate that infinite
+								// scrolling can be used
+								params.page = params.page || 1;
+
+								return {
+									results: data.items,
+									pagination:
+									{
+										more: (params.page * 30) < data.total_count
+									}
+								};
+							},
+							cache: true
+						},
+						placeholder: 'Search for a repository',
+						escapeMarkup: function (markup) {
+							return markup;
+						}, // let our custom formatter work
+						minimumInputLength: 1,
+						templateResult: formatRepo,
+						templateSelection: formatRepoSelection
+					});
+
+				function formatRepo(repo) {
+					if (repo.loading) {
+						return repo.text;
+					}
+
+					var markup = "<div class='select2-result-repository clearfix d-flex'>" +
+						"<div class='select2-result-repository__avatar mr-2'><img src='" + repo.owner.avatar_url + "' class='width-2 height-2 mt-1 rounded' /></div>" +
+						"<div class='select2-result-repository__meta'>" +
+						"<div class='select2-result-repository__title fs-lg fw-500'>" + repo.full_name + "</div>";
+
+					if (repo.description) {
+						markup += "<div class='select2-result-repository__description fs-xs opacity-80 mb-1'>" + repo.description + "</div>";
+					}
+
+					markup += "<div class='select2-result-repository__statistics d-flex fs-sm'>" +
+						"<div class='select2-result-repository__forks mr-2'><i class='fal fa-lightbulb'></i> " + repo.forks_count + " Forks</div>" +
+						"<div class='select2-result-repository__stargazers mr-2'><i class='fal fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+						"<div class='select2-result-repository__watchers mr-2'><i class='fal fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+						"</div>" +
+						"</div></div>";
+
+					return markup;
+				}
+
+				function formatRepoSelection(repo) {
+					return repo.full_name || repo.text;
+				}
+
+			});
+		});
+
+		$(document).ready(function () {
+			var instNum = '1';// Just a dummy variable to send ajax 
+
+			//getInstitution();
+
+			// Function to retrieve Institution value
+			function getInstitution() {
+				$.ajax({
+					method: "POST",
+					url: contextPath + 'getInstitutionMOAM',
+					contentType: 'application/json',
+					data: instNum,
+					success: function (response) {
+						populateDropdown(response, $('#institution'));
+					},
+					error: function (error) {
+						console.error('Error:', error);
+						console.log(error.responseText);
+					}
+				});
+			}
+
+			setTimeout(function () {
+				//getUserInst();
+				var inst = '03';
+				//alert(inst);
+				$('#institution').val(inst.trim());
+				$('#institution').trigger('change');
+			}, 6000);
+
+			setTimeout(function () {
+
+				for (var i = 0; i < $('.tabulator-col-title').length; i++) {
+					$('.tabulator-col-title').eq(i).attr('title', $('.tabulator-col-title').eq(i).text());
+				}
+
+			}, 2000);
+
+			function getUserInst() {
+				var user = $('#myuser').text();
+				$.ajax({
+					type: "POST",
+					url: contextPath + "getCurrentInst",
+					dataType: "json",
+					data: {user: user},
+					success: function (response) {
+
+						//alert(response[0]['INST_NUM']);
+						var inst = response[0]['INST_NUM'];
+						$('#institution').val(inst.trim());
+						$('#institution').trigger('change');
+
+					},
+					error: function () {
+						alert("json not found");
+					}
+				});
+			}
+
+			var selectedInstval = '';
+
+			// Event handler for facility dropdown change
+			$('#institution').on('change', function () {
+				var instNumber = $('#institution').val();
+
+				if (instNumber && instNumber !== '') {
+					if (selectedInstval != instNumber) {
+						selectedInstval = instNumber;
+						getBuilding(instNumber);
+						getHousingUnit(instNumber);
+					}
+				}
+
+			});
+
+			var buildingValue;
+
+			// Function to retrieve building dropdown
+			function getBuilding(instNumber) {
+				$.ajax({
+					method: "POST",
+					url: contextPath + 'getBuildingMOAM',
+					contentType: 'application/json',
+					data: instNumber,
+					success: function (response) {
+						populateDropdown(response, $('#location'));
+						populateDropdown(response, $('#location-to'));
+						buildingValue = response;
+						mapLocationDescriptions();
+					},
+					error: function (error) {
+						console.error('Error:', error);
+						console.log(error.responseText);
+					}
+				});
+			}
+
+			function getHousingUnit(instNumber) {
+				//alert(instNumber);
+				$.ajax({
+					method: "POST",
+					url: contextPath + 'getHousingUnit',
+					dataType: "json",
+					data: {
+						instNum: instNumber
+					},
+					success: function (response) {
+						//alert(response.length);
+						var content = '<option value="">Intermediate Housing Unit</option>';
+						for(var i=0;i<response.length;i++) {
+							content += '<option value="' + response[i]['VAL'] + '">' + response[i]['OPT'] + '</option>';
+						}
+						$('#intermediateHUnit').html(content);
+						
+					},
+					error: function (error) {
+						console.error('Error:', error);
+						console.log(error.responseText);
+					}
+				});
+			}
+
+			//Static functions to populate dropdown
+			function populateDropdown(data, $dropdown) {
+
+				console.log('call populateDropdown...');
+
+				$dropdown.empty();
+				$dropdown.append('<option value="">Location</option>');
+
+				$.each(data, function (index, item) {
+					var $option = $('<option></option>').attr('value', item[0]).text(item[1]);
+
+					if (item.length > 2 && item[2] !== undefined) {
+						$option.attr('data-additional-info', item[2]);
+					}
+
+					$dropdown.append($option);
+				});
+			}
+
+			setTimeout(function () {
+				//$('#individual_segment').css('visibility', 'visible');
+				$('#individual_segment').hide();
+			}, 100);
+
+			$('#multiScheduleTab').trigger('click');
+
+			$('#multiScheduleTab').on('click', function () {
+				//$('#multi_segment').show();
+				//$('#individual_segment').hide();
+				$('#multi_segment').show();
+				$('#individual_segment').hide();
+				//$('#search-btn').trigger('click');
+				if ($('#multi_populate').val() == 'N') {
+					search_function('M');
+					$('#multi_populate').val('Y');
+				}
+			});
+
+			$('#individualScheduleTab').on('click', function () {
+				$('#multi_segment').hide();
+				//$('#individual_segment').css('visibility', 'visible');
+				$('#individual_segment').show();
+				//$('#search-btn').trigger('click');
+				if ($('#ind_populate').val() == 'N') {
+					search_function('I');
+					$('#ind_populate').val('Y');
+				}
+			});
+
+			$('.locationDropdown').parents('.tabulator-cell').removeAttr('title');
+
+			$('#search-btn').on('click', function () {
+
+				if ($('#institution').val() == '') {
+					message('CUW', 'Please select institution', 0);
+					return;
+				}
+
+				var activeTabId = $('.nav-link.active').attr('id');
+				$('#multi_populate').val('');
+				$('#ind_populate').val('');
+
+				dropTable.clearData();
+				indScheduleTable.clearData();
+				offenderTable.clearData();
+				$('#multi-movType').val('');
+				$('#location-to').val('');
+				$('#move-offender').prop('checked', false);
+				$('.dropSel').css('visibility', 'hidden');
+
+				if (activeTabId == 'multiScheduleTab') {
+					search_function('M');
+					$('#multi_populate').val('Y');
+					$('#ind_populate').val('N');
+				}
+
+				if (activeTabId == 'individualScheduleTab') {
+					search_function('I');
+					$('#ind_populate').val('Y');
+					$('#multi_populate').val('N');
+				}
+
+			});
+
+			function search_function(opt) {
+
+				var selectedInstitution = $('#institution').val();
+				var selectedBuilding = $('#location').val();
+				var movementType = $('input[name="LogInmatesRadio"]:checked').val();
+				var scheduleType = $('input[name="ScheduleType"]:checked').val();
+				var queryType = $('#intermediate-housing').val();
+
+				/*if ((selectedInstitution != null && selectedInstitution != '') && (selectedBuilding != null && selectedBuilding != '')
+					&& (movementType != null && movementType != '') && (scheduleType != null && scheduleType != '')) {*/
+				if ((selectedInstitution != null && selectedInstitution != '')
+					&& (movementType != null && movementType != '') && (scheduleType != null && scheduleType != '')) {
+					params = {
+						logInOut: movementType,
+						countLocCode: selectedBuilding,
+						scheduleFlag: scheduleType,
+						instNum: selectedInstitution,
+						queryType: queryType
+					};
+					getMassMovData(params, opt);
+				}
+
+			}
+
+			// Function to retrieve building dropdown
+			function getMassMovData(Params, opt) {
+				$.ajax({
+					method: "POST",
+					url: contextPath + 'getMassMovData',
+					contentType: 'application/json',
+					data: JSON.stringify(Params),
+					success: function (response) {
+						if (opt == 'M') {
+							populateOffenderMovTable(response.massOffenderMov);
+						}
+
+						if (opt == 'I') {
+							populateIndScheduleTable(response.massOffenderMov);
+						}
+
+						$('.locationDropdown').parents('.tabulator-cell').removeAttr('title');
+					},
+					error: function (error) {
+
+					}
+				});
+			}
+
+			/*var indScheduleTable = new Tabulator("#ind-schedule", {
+				layout: "fitColumns",
+				tooltips: true,
+				movableColumns: true,
+				resizableRows: true,
+				height: "450px",
+				//rowId: "rowId", 
+				columns: [
+					//{ title: "rowid", field: "rowId", sorter: "string" },
+					{title: "Other", field: "radioOther", formatter: "html", width: 60, hozAlign: "center", headerSort: false,},
+					{title: "Housing", field: "radioHousing", formatter: "html", width: 90, hozAlign: "center", headerSort: false,},
+					{title: "Inst Release", field: "radioInstRelease", formatter: "html", width: 100, hozAlign: "center",headerSort: false,},
+					{title: "Movement Type", field: "movementType", sorter: "string", visible: false},
+					{title: "ID#", field: "sbiNo", sorter: "string", width: 100, tooltips: true},
+					{title: "Offender Name (L, F, M, S)", field: "name", sorter: "string", tooltips: true},
+					{title: "Housing Location", field: "housingLocation", sorter: "string", tooltips: true},
+					{title: "Activity", field: "activity", sorter: "string", tooltips: true},
+					{title: "Location To", field: "locationDropdown", formatter: "html", width: 250},
+					{title: "To", field: "locationTo", sorter: "string", visible: false},
+					{title: "Offender Moved", field: "offenderMovedCheckbox", formatter: "html", width: 50, hozAlign: "center"},
+					{title: "move", field: "inmateMoved", sorter: "string", visible: false},
+				],
+				placeholder: "Click on the search button to populate data",
+				rowFormatter: function (row) {
+					row.getElement().setAttribute("data-id", row.getData().rowId);
+				},
+				rowClick: function (e, row) {
+					//alert(row.getData().rowId);
+				}
+			});*/
+
+
+			var inmateMovedCheck = {
+
+			}
+
+			function populateIndScheduleTable(massOffenderMov) {
+				var selectedValueOfRadio = $("input[name='LogInmatesRadio']:checked").val();
+				var tableData = massOffenderMov.map(function (offender, index) {
+					var name = `${offender.lastName || ''}, ${offender.firstName || ''}, ${offender.midName || ''}`;
+
+					// Handle radio button based on rgHouRel
+					var radioOther = `<input type="radio" name="radioGroup-${index}" value="O" ${offender.rgHouRel === 'O' ? 'checked' : ''}>`;
+					var radioHousing = `<input type="radio" name="radioGroup-${index}" value="H" ${offender.rgHouRel === 'H' ? 'checked' : ''}>`;
+					var radioInstRelease = `<input type="radio" name="radioGroup-${index}" value="R" ${offender.rgHouRel === 'R' ? 'checked' : ''}>`;
+
+					//var movType = `<input type="text" id="mov_${index}">`;
+
+					// Handle the location dropdown or display based on the radio selection
+					var locationField;
+					if (selectedValueOfRadio === "I") {
+						// For "Location From," display countLocCodeFrom as a static viewable field
+						locationField = `<span>${offender.countLocCodeFrom || ''}</span>`;
+					} else {
+						// Otherwise, provide a dropdown for selecting a location
+						locationField = `<select class="form-control locationDropdown" id="locationDropdown-${index}">
+				                                <!-- Options can be added here based on your requirements -->
+				                             </select>`;
+					}
+
+					var offenderMovedCheckbox = `<div class="custom-control custom-checkbox">
+				            <input type="checkbox" class="custom-control-input" id="offenderMoved-${index}">
+				            <label class="custom-control-label" for="offenderMoved-${index}"></label>
+				        </div>`;
+
+					//alert('rowid : ' + offender.movRowid);
+					//alert('sbi : ' + offender.sbiMstSbiNo);
+
+					var allow_data = false;
+
+					if (getLocationDescription(offender.countLocCodeTo) != '') {
+						allow_data = true;
+					}
+
+					if (selectedValueOfRadio === "I") {
+						allow_data = true;
+					}
+
+					//selectedValueOfRadio
+
+					if (allow_data) {
+						return {
+							rowId: offender.movRowid || '',
+							sbiNo: offender.sbiMstSbiNo || '',
+							radioOther: radioOther,
+							radioHousing: radioHousing,
+							radioInstRelease: radioInstRelease,
+							movementType: '',
+							//locationDropdown: locationField,
+							locationDropdown: selectedValueOfRadio === "I" ? offender.countLocDesc : locationField || '',
+							offenderMovedCheckbox: offenderMovedCheckbox,
+							name: name.split(',').join(''),
+							housingLocation: getLocationDescription(
+								selectedValueOfRadio === "I" ? '' : offender.countLocCodeTo
+							) || '',
+							activity: offender.activity || '',
+							dateTimeOfDep: offender.dateTimeOfDep || null,
+							dateTimeOfArr: offender.dateTimeOfArr || null,
+							comments: offender.comments || null,
+							inmateMoved: offender.inmateMoved || null,
+							rgHouRel: offender.rgHouRel || null,
+							firstName: offender.firstName || '',
+							lastName: offender.lastName || '',
+							midName: offender.midName || '',
+							instNum: offender.instNum || null,
+							commitNo: offender.commitNo || null,
+						};
+					}
+				});
+
+				// Set new data in Tabulator and populate dropdowns after rendering
+				indScheduleTable.setData(tableData).then(function () {
+					massOffenderMov.forEach(function (offender, index) {
+						const dropdown = $(`#locationDropdown-${index}`);
+						const checkbox = $(`#offenderMoved-${index}`);
+
+						// Attach event listener to update inmateMoved field
+						checkbox.on('change', function () {
+							if (this.checked) {
+								inmateMovedCheck[offender.sbiNo] = 'Y';  // Mark as Y when checked
+							} else {
+								delete inmateMovedCheck[offender.sbiNo];  // Remove from object when unchecked
+							}
+						});
+
+						// Populate the dropdown with options
+						populateDropdown(buildingValue, dropdown);
+						updateOptions(dropdown, 'Other');
+
+						// Attach change event listeners to the radio buttons for this row
+						$(`input[name="radioGroup-${index}"]`).on('change', function () {
+							const selectedValue = this.value;
+
+							updateRowActivity(offender.sbiNo, selectedValue);
+							updateOptions(dropdown, selectedValue);
+
+							// Clear the selected dropdown value if it’s invalid for the new radio button selection
+							if (dropdown.find('option:selected').prop('disabled')) {
+								dropdown.val('');
+								checkbox.prop('checked', false);
+							}
+						});
+
+						// Trigger change for the pre-selected radio button
+						if (offender.rgHouRel) {
+							$(`input[name="radioGroup-${index}"][value="${offender.rgHouRel}"]`).trigger('change');
+						}
+
+						dropdown.on('change', function () {
+							if ($(this).val()) {
+								checkbox.prop('checked', true);
+							} else {
+								checkbox.prop('checked', false);
+							}
+						});
+						if (selectedValueOfRadio === 'I') {
+							$(`input[name="radioGroup-${index}"]`).prop('disabled', true);
+						} else {
+							$(`input[name="radioGroup-${index}"]`).prop('disabled', false);
+						}
+					});
+				});
+			}
+
+			function updateRowActivity(sbiNo, selectedValue) {
+				let updatedActivity = '';
+
+				if (selectedValue === 'O') {
+					updatedActivity = '';
+				} else if (selectedValue === 'H') {
+					updatedActivity = 'HOUSING';
+				} else if (selectedValue === 'R') {
+					updatedActivity = 'RELEASE';
+				}
+
+				const row = indScheduleTable.getRows().find(row => row.getData().sbiNo === sbiNo);
+
+				if (row) {
+					row.update({activity: updatedActivity});
+				} else {
+					console.log(`No matching row found for sbiNo: ${sbiNo}`);
+				}
+			}
+
+			// Function to enable/disable dropdown options based on selected movement type
+			function updateOptions(dropdown, movementType) {
+				dropdown.find('option').each(function () {
+					const additionalInfo = $(this).data('additional-info');
+
+					if (movementType === 'O') {
+						$(this).prop('disabled', !(additionalInfo === 'A' || additionalInfo === 'O'));
+					} else if (movementType === 'H') {
+						$(this).prop('disabled', additionalInfo !== 'H');
+					} else if (movementType === 'R') {
+						$(this).prop('disabled', additionalInfo !== 'O');
+					}
+				});
+			}
+
+			var locationDescriptions = {};
+
+			function mapLocationDescriptions() {
+				$('#location option').each(function () {
+					const code = $(this).val();
+					const description = $(this).text();
+					if (code) {
+						locationDescriptions[code] = description;
+					}
+				});
+			}
+
+			// Function to get description for location code
+			function getLocationDescription(code) {
+				return locationDescriptions[code] || '';
+			}
+
+			function check_undef(x) {
+				if (x == undefined || x == 'undefined' || x == null || x == 'null') {
+					x = '';
+				}
+				return x;
+			}
+
+			// Function to populate the offender table with data
+			function populateOffenderMovTable(massOffenderMov) {
+				$('#dragModeBtn').trigger('click');
+				var selectedValue = $("input[name='LogInmatesRadio']:checked").val();
+				//$('#selectModeBtn').removeClass('button-active');
+				//$('#dragModeBtn').removeClass('button-active');
+				//$(".tabulator-row").attr("draggable", false);
+				var nams = [];
+				var sbis = [];
+				var tableData = massOffenderMov.map(function (offender) {
+					// Determine the activity field value based on rgHouRel and selected radio button value
+					var activity = '';
+					if (selectedValue === 'I') {
+						if (offender.rgHouRel === 'H') {
+							activity = 'HOUSING';
+						} else if (offender.rgHouRel === 'R') {
+							activity = 'RELEASE';
+						}
+					}
+
+					console.log("xyz " + offender.movRowid);
+					console.log("123 " + offender.sbiMstSbiNo);
+					/*console.log("countLocCodeFrom " + offender.countLocCodeFrom);
+					console.log("countLocCodeTo " + offender.countLocCodeTo);
+					console.log("countLocDesc " + offender.countLocDesc);*/
+
+					sbis.push(offender.sbiMstSbiNo);
+					nams.push(offender.lastName + ' ' + offender.firstName + ' ' + offender.midName);
+
+					var off_nm = check_undef(offender.lastName) + ' ' + check_undef(offender.firstName) + ' ' + check_undef(offender.midName);
+					//alert(off_nm);
+
+					var allow_data = false;
+
+					if (getLocationDescription(offender.countLocCodeTo) != '') {
+						allow_data = true;
+					}
+
+					if (selectedValue === "I") {
+						allow_data = true;
+					}
+
+					console.log(offender.countLocCodeTo);
+					if (allow_data) {
+						return {
+
+							rowId: offender.movRowid || '',
+							sbiNo: offender.sbiMstSbiNo || '',
+							name: off_nm.split(',').join(''),
+							firstName: offender.firstName || '',
+							lastName: offender.lastName || '',
+							midName: offender.midName || '',
+							housingLocation: selectedValue === "I" ? offender.countLocDesc : getLocationDescription(offender.countLocCodeTo) || '',
+							activity: activity,
+							instNum: offender.instNum || null,
+							commitNo: offender.commitNo || null,
+							dateTimeOfDep: offender.dateTimeOfDep || null,
+							dateTimeOfArr: offender.dateTimeOfArr || null,
+							comments: offender.comments || null,
+							inmateMoved: offender.inmateMoved || null,
+							rgHouRel: offender.rgHouRel || null
+						};
+					}
+				});
+
+				/*offenderTable.setData(tableData);
+				setTimeout(function() {
+					$('#selectModeBtn').trigger('click');
+					$(".tabulator-row").attr("draggable", true);
+				},2000);*/
+				//testWork();
+				offenderTable.clearFilter();
+				$('.myflds').val('');
+				offenderTable.setData(tableData).then(function () {
+					//testWork();
+					$('#selectModeBtn').trigger('click');
+					$(".tabulator-row").attr("draggable", true);
+					autocomplete(document.getElementById("offenderSBI"), sbis);
+					autocomplete(document.getElementById("offenderName"), nams);
+				}).catch(function (error) {
+					console.error("Error setting data:", error);
+				});
+			}
+
+			var offenderTable = new Tabulator("#offenderTable", {
+				layout: "fitColumns",
+				tooltips: true,
+				movableColumns: true,
+				//movableRows: true, //enable movable rows
+				//movableRowsConnectedTables: "#dropTable",
+				resizableRows: false,
+				//selectableRows:true,
+				//selectableRowsRangeMode:"click",
+				height: "450px",
+				selectable: false,
+				columns: [
+					//{ title: "rowid", field: "rowId", sorter: "string" },
+					{
+						//title: "ID#", 
+						titleFormatter: (column) => setTitleDesc(column, 'sbiNo', 'ID#'),
+						field: "sbiNo",
+						sorter: "string"
+					},
+					{
+						//title: "Name (L, F, M, S)", 
+						titleFormatter: (column) => setTitleDesc(column, 'offenderName', 'Name (L, F, M, S)'),
+						field: "name",
+						sorter: "string"
+					},
+					{
+						//title: "Housing Location", 
+						titleFormatter: (column) => setTitleDesc(column, 'housingLocation', 'Housing Location'),
+						field: "housingLocation",
+						sorter: "string"
+					},
+					{
+						//title: "Activity", 
+						titleFormatter: (column) => setTitleDesc(column, 'activity', 'Activity'),
+						field: "activity",
+						sorter: "string"
+					},
+				],
+				rowFormatter: function (row) {
+					row.getElement().setAttribute("data-id", row.getData().rowId);
+				},
+				placeholder: "Click on the search button to populate data",
+				rowClick: function (e, row) {
+					if ($("#selectModeBtn").hasClass("button-active")) {
+						row.toggleSelect();
+						//row.getElement().setAttribute("draggable", true); 
+					}
+				}
+			});
+
+			tabulatorRegistry["offenderTable"] = {
+				varName: "offenderTable",
+				instance: offenderTable
+			};
+
+			// Track the current movement type in the table
+			let currentMovementType = "O";
+
+			function updateLocationColumnTitle() {
+				var selectedValue = $("input[name='LogInmatesRadio']:checked").val();
+				var newTitle = selectedValue === "I" ? "Location From" : "Housing Location";
+				var indTitle = selectedValue === "I" ? "Location From" : "Location To";
+
+				$(".form-check").show();
+
+				// Check if the table already has data of the other type
+				if (selectedValue !== currentMovementType && offenderTable.getData().length > 0) {
+
+					message("alert", "Changing this will clear the existing data in the table. Do you want to proceed?", function () {
+
+						offenderTable.clearData();
+						currentMovementType = selectedValue;
+
+						// Show or hide the dropdown based on currentMovementType
+						if (currentMovementType === "O") {
+							$(".movement-controls").show();  // Show dropdown
+						} else {
+							$(".movement-controls").hide();  // Hide dropdown
+						}
+
+						$("#multi-movType").val("").prop("disabled", currentMovementType !== "O");
+						$("#location-to").val("").prop("disabled", currentMovementType !== "O");
+						$("#move-offender").prop("checked", false);
+
+						offenderTable.setColumns([
+							{title: "ID#", field: "sbiNo", sorter: "string"},
+							{title: "Name (L, F, M, S)", field: "name", sorter: "string"},
+							{title: newTitle, field: "housingLocation", sorter: "string"},
+							{title: "Activity", field: "activity", sorter: "string"}
+						]);
+
+						// Clear and reset other tables
+						indScheduleTable.clearData();
+						/*indScheduleTable.setColumns([
+							{title: "Other", field: "radioOther", formatter: "html", width: 60, hozAlign: "center"},
+							{title: "Housing", field: "radioHousing", formatter: "html", width: 90, hozAlign: "center"},
+							{title: "Inst Release", field: "radioInstRelease", formatter: "html", width: 100, hozAlign: "center"},
+							{title: "Movement Type", field: "movementType", sorter: "string", visible: false},
+							{title: "ID#", field: "sbiNo", sorter: "string", width: 100, tooltips: true},
+							{title: "Offender Name (L, F, M, S)", field: "name", sorter: "string", tooltips: true},
+							{title: "Housing Location", field: "housingLocation", sorter: "string", tooltips: true},
+							{title: "Activity", field: "activity", sorter: "string", tooltips: true},
+							{title: indTitle, field: "locationDropdown", formatter: "html", width: 250},
+							{title: "To", field: "locationTo", sorter: "string", visible: false},
+							{title: "Offender Moved", field: "offenderMovedCheckbox", formatter: "html", width: 50, hozAlign: "center"},
+							{title: "move", field: "inmateMoved", sorter: "string", visible: false},
+						]);*/
+
+						dropTable.clearData();
+						dropTable.setColumns([
+							{title: "ID#", field: "sbiNo", sorter: "string"},
+							{title: "Name (L, F, M, S)", field: "name", sorter: "string"},
+							{title: "Movement Type", field: "movementType", sorter: "string"},
+							{title: selectedValue === "I" ? "Location From" : "Housing Location", field: "locationTo", sorter: "string"},
+							{title: "From", field: "housingLocation", sorter: "string", tooltips: true},
+							{title: "Arrived", field: "arrived", formatter: "tickCross", hozAlign: "center", width: 100, editor: false}  // 'Arrived' checkbox column
+						]);
+
+
+					});
+
+					/*Swal.fire({
+						title: "Change Movement Type",
+						text: "Changing this will clear the existing data in the table. Do you want to proceed?",
+						icon: "warning", 
+						showCancelButton: true,
+						confirmButtonText: "Yes",
+						cancelButtonText: "No"
+					}).then((result) => {
+						if (result.value) {  
+							offenderTable.clearData();
+							currentMovementType = selectedValue;
+			
+							// Show or hide the dropdown based on currentMovementType
+							if (currentMovementType === "O") {
+								$(".movement-controls").show();  // Show dropdown
+							} else {
+								$(".movement-controls").hide();  // Hide dropdown
+							}
+			
+							$("#multi-movType").val("").prop("disabled", currentMovementType !== "O");
+							$("#location-to").val("").prop("disabled", currentMovementType !== "O");
+							$("#move-offender").prop("checked", false);
+			
+							offenderTable.setColumns([
+								{ title: "SBI#", field: "sbiNo", sorter: "string" },
+								{ title: "Name (L, F, M, S)", field: "name", sorter: "string" },
+								{ title: newTitle, field: "housingLocation", sorter: "string" },
+								{ title: "Activity", field: "activity", sorter: "string" }
+							]);
+			
+							// Clear and reset other tables
+							indScheduleTable.clearData();
+							indScheduleTable.setColumns([
+								{ title: "Other", field: "radioOther", formatter: "html", width: 60, hozAlign: "center", tooltips: false },
+								{ title: "Housing", field: "radioHousing", formatter: "html", width: 90, hozAlign: "center", tooltips: true },
+								{ title: "Inst Release", field: "radioInstRelease", formatter: "html", width: 100, hozAlign: "center", tooltips: true },
+								{ title: "SBI#", field: "sbiNo", sorter: "string", width: 100, tooltips: true },
+								{ title: "Offender Name (L, F, M, S)", field: "name", sorter: "string", tooltips: true },
+								{ title: "Housing Location", field: "housingLocation", sorter: "string", tooltips: true },
+								{ title: "Activity", field: "activity", sorter: "string", tooltips: true },
+								{ title: indTitle, field: "locationDropdown", formatter: "html", width: 250, tooltips: false },
+								{ title: "Offender Moved", field: "offenderMovedCheckbox", formatter: "html", width: 50, hozAlign: "center", tooltips: false }
+							]);
+			
+							dropTable.clearData();
+							dropTable.setColumns([
+								{ title: "SBI#", field: "sbiNo", sorter: "string" },
+								{ title: "Name (L, F, M, S)", field: "name", sorter: "string" },
+								{ title: "Movement Type", field: "movementType", sorter: "string", editor: "input" },
+								{ title: selectedValue === "I" ? "Location From" : "Housing Location", field: "locationTo", sorter: "string", editor: "input" },
+								{ title: "From", field: "housingLocation", sorter: "string", tooltips: true },
+								{ title: "Arrived", field: "arrived", formatter: "tickCross", hozAlign: "center", width: 100, editor: false }  // 'Arrived' checkbox column
+							]);
+						} else {
+							$("input[name='LogInmatesRadio'][value='" + currentMovementType + "']").prop("checked", true);
+						}
+					});*/
+				} else {
+					currentMovementType = selectedValue;
+
+					// Show or hide the dropdown based on currentMovementType
+					if (currentMovementType === "O") {
+						$(".movement-controls").show();
+					} else {
+						$(".movement-controls").hide();
+					}
+
+					$("#move-offender").prop("checked", false);
+
+					offenderTable.setColumns([
+						{title: "ID#", field: "sbiNo", sorter: "string"},
+						{title: "Name (L, F, M, S)", field: "name", sorter: "string"},
+						{title: newTitle, field: "housingLocation", sorter: "string"},
+						{title: "Activity", field: "activity", sorter: "string"}
+					]);
+
+					indScheduleTable.clearData();
+					/*indScheduleTable.setColumns([
+						{title: "Other", field: "radioOther", formatter: "html", width: 60, hozAlign: "center"},
+						{title: "Housing", field: "radioHousing", formatter: "html", width: 90, hozAlign: "center"},
+						{title: "Inst Release", field: "radioInstRelease", formatter: "html", width: 100, hozAlign: "center",},
+						{title: "Movement Type", field: "movementType", sorter: "string", visible: false},
+						{title: "ID#", field: "sbiNo", sorter: "string", width: 100, tooltips: true},
+						{title: "Offender Name (L, F, M, S)", field: "name", sorter: "string", tooltips: true},
+						{title: "Housing Location", field: "housingLocation", sorter: "string", tooltips: true},
+						{title: "Activity", field: "activity", sorter: "string", tooltips: true},
+						{title: indTitle, field: "locationDropdown", formatter: "html", width: 250},
+						{title: "To", field: "locationTo", sorter: "string", tooltips: true, visible: false},
+						{title: "Offender Moved", field: "offenderMovedCheckbox", formatter: "html", width: 50, hozAlign: "center"},
+						{title: "move", field: "inmateMoved", sorter: "string", tooltips: true, visible: false},
+					]);*/
+
+					dropTable.setColumns([
+						{title: "ID#", field: "sbiNo", sorter: "string"},
+						{title: "Name (L, F, M, S)", field: "name", sorter: "string"},
+						{title: "Movement Type", field: "movementType", sorter: "string"},
+						{title: selectedValue === "I" ? "Location From" : "Housing Location", field: "locationTo", sorter: "string"},
+						{title: "From", field: "housingLocation", sorter: "string", tooltips: true},
+						{title: "Arrived", field: "arrived", formatter: "tickCross", hozAlign: "center", width: 100, editor: false}  // 'Arrived' checkbox column
+					]);
+				}
+			}
+
+			// Add event listeners to radio buttons
+			$("input[name='LogInmatesRadio']").on("change", function () {
+				updateLocationColumnTitle();
+			});
+
+			// Variables to track mode state
+			let isSelectMode = false;
+
+			// Function to toggle button active state and set the mode
+			function toggleButtonActive(selectedButton, otherButton) {
+				$(otherButton).removeClass("button-active");
+				$(selectedButton).addClass("button-active");
+			}
+
+			// Enable row selection when the "Select" button is clicked
+			$("#selectModeBtn").on("click", function () {
+				toggleButtonActive(this, "#dragModeBtn");
+				offenderTable.options.selectable = true;
+				offenderTable.redraw();
+				$("#offenderTable .tabulator-row").css("cursor", "default");
+				enableTextSelection();
+			});
+
+			// Enable drag mode
+			$("#dragModeBtn").on("click", function () {
+				toggleButtonActive(this, "#selectModeBtn");
+				offenderTable.options.selectable = false;
+				offenderTable.redraw();
+				$("#offenderTable .tabulator-row").css("cursor", "grab");
+				disableTextSelection();
+
+				// Make rows draggable
+				$(".tabulator-row").attr("draggable", true);
+			});
+
+			function testWork() {
+				alert('testWork');
+				offenderTable.options.selectable = true;
+				offenderTable.redraw();
+				enableTextSelection();
+
+				// Make rows draggable
+				$(".tabulator-row").attr("draggable", true);
+			}
+
+			// Handle drag events for selected rows
+			$("#offenderTable").on("dragstart", ".tabulator-row", function (event) {
+				$('#dragModeBtn').trigger('click');
+				if ($("#dragModeBtn").hasClass("button-active")) {
+					const selectedRows = offenderTable.getSelectedRows();
+					const selectedRowData = selectedRows.map(row => row.getData());
+					event.originalEvent.dataTransfer.setData("text/plain", JSON.stringify(selectedRowData));
+					$(this).css("cursor", "grabbing");
+				}
+			});
+
+			$("#offenderTable").on("dragend", ".tabulator-row", function () {
+				$(this).css("cursor", "grab");
+				$('#selectModeBtn').trigger('click');
+
+				var selectElement = document.getElementById('location-to');
+				var options = selectElement.options;
+
+				// First, enable all options
+				for (var i = 0; i < options.length; i++) {
+					//options[i].disabled = false; // Ensure all options are enabled
+					options[i].style.display = 'block';
+				}
+
+				if (dropTable.getRows().length > 0) {
+					$('.dropSel').css('visibility', 'visible');
+
+					var len = dropTable.getRows().length;
+
+					/*for(var i=0;i<len;i++) {
+						alertCellData(i, 'locationTo');
+					}*/
+
+					var allData = dropTable.getData();
+
+					// Extract the specific column data for the first five rows
+					var columnData = allData.map(function (row) {
+						//alert(row['housingLocation']);
+						disableSelectOptions('location-to', row['housingLocation']);
+					});
+
+				} else {
+					$('.dropSel').css('visibility', 'hidden');
+				}
+				/*$('#dragModeBtn').removeClass('button-active');
+				offenderTable.options.selectable = true;
+				offenderTable.redraw();
+				$("#offenderTable .tabulator-row").css("cursor", "default");
+				enableTextSelection();*/
+			});
+
+			function disableSelectOptions(selectId, optionsToDisable) {
+				var selectElement = document.getElementById(selectId);
+				var options = selectElement.options;
+				for (var i = 0; i < options.length; i++) {
+					if (optionsToDisable == options[i].text) {
+						//options[i].disabled = true; // Disable the option
+						options[i].style.display = 'none';
+					}
+				}
+			}
+
+			$("#dropTable").on("dragover", function (event) {
+				event.preventDefault();
+			});
+
+			$("#dropTable").on("drop", function (event) {
+				event.preventDefault();
+
+				const selectedLogType = $("input[name='LogInmatesRadio']:checked").val();
+
+				if ($("#dragModeBtn").hasClass("button-active")) {
+					const dataText = event.originalEvent.dataTransfer.getData("text/plain");
+					const rowData = JSON.parse(dataText);
+
+					// Handle "Log Out" case (existing functionality)
+					if (selectedLogType === "O") {
+						const existingSbiNos = dropTable.getData().map(row => row.sbiNo);
+						rowData.forEach((data) => {
+							if (!existingSbiNos.includes(data.sbiNo)) {
+								dropTable.addData([data]).then(() => {
+									console.log("Row dropped successfully without duplicates");
+									toggleDropdownsForTable();
+								}).catch(err => {
+									console.error("Error adding row to dropTable:", err);
+								});
+							}
+						});
+					}
+
+					// Handle "Log In" case
+					else if (selectedLogType === "I") {
+						// Parse the required fields for "Log In" and map them to dropTable
+						const mappedData = rowData.map(data => ({
+							sbiNo: data.sbiNo,
+							name: data.name,
+							movementType: data.activity,
+							locationTo: data.housingLocation,
+							rowId: data.MovRowid,
+							firstName: data.firstName,
+							lastName: data.lastName,
+							midName: data.midName,
+							instNum: data.instNum,
+							commitNo: data.commitNo,
+							dateTimeOfDep: data.dateTimeOfDep,
+							dateTimeOfArr: data.dateTimeOfArr,
+							comments: data.comments,
+							inmateMoved: data.inmateMoved,
+							rgHouRel: data.rgHouRel
+						}));
+
+						const existingSbiNos = dropTable.getData().map(row => row.sbiNo);
+						mappedData.forEach((data) => {
+							if (!existingSbiNos.includes(data.sbiNo)) {
+								dropTable.addData([data]).then(() => {
+									console.log("Row dropped successfully without duplicates (Log In)");
+									toggleDropdownsForTable();
+								}).catch(err => {
+									console.error("Error adding row to dropTable:", err);
+								});
+							}
+						});
+					}
+				}
+			});
+
+			// Utility functions to disable/enable text selection
+			function disableTextSelection() {
+				$(document).on("selectstart", function (e) {
+					e.preventDefault();
+				});
+			}
+
+			function enableTextSelection() {
+				$(document).off("selectstart");
+			}
+
+			// Event listener for dragging action on rows
+			$("#offenderTable").on("mousedown", ".tabulator-row", function (event) {
+				if ($("#dragModeBtn").hasClass("button-active")) {
+					$(this).css("cursor", "grabbing");
+				}
+			});
+
+			$("#offenderTable").on("mouseup", ".tabulator-row", function (event) {
+				if ($("#dragModeBtn").hasClass("button-active")) {
+					$(this).css("cursor", "grab");
+				}
+			});
+
+			// Initialize Tabulator for dropTable (where dragged rows will be dropped)
+			var dropTable = new Tabulator("#dropTable", {
+				layout: "fitColumns",
+				tooltips: true,
+				height: "450px",
+				columns: [
+					{
+						//title: "ID#", 
+						titleFormatter: (column) => setTitleDesc(column, 'dropsbiNo', 'ID#'),
+						field: "sbiNo",
+						sorter: "string"
+					},
+					{
+						//title: "Name (L, F, M, S)", 
+						titleFormatter: (column) => setTitleDesc(column, 'dropname', 'Name (L, F, M, S)'),
+						field: "name",
+						sorter: "string"
+					},
+					{
+						//title: "Movement Type", 
+						titleFormatter: (column) => setTitleDesc(column, 'dropmovementType', 'Movement Type'),
+						field: "movementType", sorter: "string"
+					},
+					{
+						//title: "Location To", 
+						titleFormatter: (column) => setTitleDesc(column, 'droplocationTo', 'Location To'),
+						field: "locationTo", sorter: "string"
+					},
+					{
+						//title: "From", 
+						titleFormatter: (column) => setTitleDesc(column, 'drophousingLoc', 'From'),
+						field: "housingLocation", sorter: "string", tooltips: true
+					},
+					{
+						//title: "Arrived", 
+						titleFormatter: (column) => setTitleDesc(column, 'droparrived', 'Arrived'),
+						field: "arrived", formatter: "tickCross", hozAlign: "center", width: 100, editor: false
+					}
+				],
+				placeholder: "Drop rows here",
+				movableRows: true
+			});
+
+			tabulatorRegistry["dropTable"] = {
+				varName: "dropTable",
+				instance: dropTable
+			};
+
+			function toggleDropdownsForTable() {
+				if (dropTable.getData().length > 0) {
+					$('#multi-movType').prop('disabled', false);
+					$('#location-to').prop('disabled', false);
+				} else {
+					$('#multi-movType').prop('disabled', true);
+					$('#location-to').prop('disabled', true);
+				}
+			}
+
+			// Change event listener for the Movement Type dropdown
+			$('#multi-movType').first().on('change', function () {
+				var selectedMovementTypeValue = $(this).find("option:selected").val();
+				var selectedMovementTypeText = $(this).find("option:selected").text();
+
+				dropTable.getRows().forEach(function (row) {
+					var data = row.getData();
+
+					data['rgHouRel'] = selectedMovementTypeValue;
+
+					row.update(data);
+
+					var movementTypeCell = row.getCell('movementType');
+					movementTypeCell.getElement().innerHTML = selectedMovementTypeText;
+				});
+			});
+
+			// Change event listener for the Location To dropdown
+			$('#location-to').on('change', function () {
+				var selectedLocationToValue = $(this).find("option:selected").val();
+				var selectedLocationToText = $(this).find("option:selected").text();
+
+				dropTable.getRows().forEach(function (row) {
+					var data = row.getData();
+
+					data['countLocCodeTo'] = selectedLocationToValue;
+
+					row.update(data);
+
+					var locationToCell = row.getCell('locationTo');
+					locationToCell.getElement().innerHTML = selectedLocationToText;
+				});
+			});
+
+			$('#move-offender').on('change', function () {
+				var isChecked = $(this).is(':checked');
+
+				dropTable.getRows().forEach(function (row) {
+					var data = row.getData();
+
+					data.arrived = isChecked;
+
+					data['inmateMoved'] = isChecked ? 'Y' : 'N';
+
+					row.update(data);
+				});
+			});
+
+			$('#save-btn').on('click', function () {
+				var activeTabId = $('.nav-link.active').attr('id');
+				console.log("Active tab ID:", activeTabId);
+
+				//alert('test');
+				//alert(activeTabId);
+
+				var saveData = [];
+				var logInout = $('input[name="LogInmatesRadio"]:checked').val();
+
+				//alert('logInout is ' + logInout);  
+
+				if (logInout) {
+					if (logInout === 'I') {
+						// Handle the logic for 'I' (In) case
+						if (activeTabId === "multiScheduleTab") {
+							//alert(0);
+							var dropTableData = dropTable.getData();  // Get data from dropTable in Multi Schedule tab
+							console.log("Data from dropTable in Multi Schedule tab for 'I':", dropTableData);
+
+							dropTableData.forEach(function (rowData) {
+								var locationTo = rowData.locationTo;
+								var arrived = rowData.arrived;
+
+								var locationOptions = $('#location').find('option');
+								var countLocCodeFrom = '';
+								locationOptions.each(function () {
+									if ($(this).text().trim() === locationTo.trim()) {
+										countLocCodeFrom = $(this).val();
+									}
+								});
+
+								rowData.countLocCodeFrom = countLocCodeFrom;
+								rowData.inmateMoved = arrived === true ? 'Y' : 'N';
+
+								saveData.push(rowData);
+							});
+							console.log("Data from dropTable in Multi Schedule tab for 'I' for saving:", saveData);
+							saveMassOffMov(logInout, saveData);
+
+						} else if (activeTabId === "individualScheduleTab") {
+							//alert(1);
+							// Handle logic for IndividualScheduleTab
+							var individualScheduleData = indScheduleTable.getData(); // Get data from Tabulator table
+							console.log("Data from IndividualScheduleTab for 'I':", individualScheduleData);
+
+							// Filter rows where 'arrived' checkbox is checked
+							individualScheduleData.forEach(function (rowData) {
+								// Compare sbiNo with inmateMovedCheck array and set inmateMoved
+								if (inmateMovedCheck[rowData.sbiNo] === 'Y') {
+									rowData.inmateMoved = 'Y';
+									var locationTo = rowData.locationTo;
+									var countLocCodeFrom = $('#location').find('option')
+										.filter(function () {return $(this).text().trim() === locationTo.trim();})
+										.val();
+									rowData.countLocCodeFrom = countLocCodeFrom;
+
+									saveData.push(rowData);
+								} else {
+									rowData.inmateMoved = 'N';
+								}
+							});
+							console.log("Filtered data from IndividualScheduleTab with 'arrived' checked for saving:", saveData);
+
+							saveMassOffMov(logInout, saveData);
+						} else {
+							//alert(2);
+							console.log("Active tab is not Multi Schedule or Individual Schedule. No data to retrieve for 'I'.");
+						}
+					} else if (logInout === 'O') {
+						// Handle the logic for 'O'
+						if (activeTabId === "multiScheduleTab") {
+							if ($('#multi-movType').val().length == 0) {
+								message('CUW', 'Please select movement type', 0);
+								return;
+							}
+
+							if ($('#location-to').val().length == 0) {
+								message('CUW', 'Please select location to', 0);
+								return;
+							}
+
+							if (!$('#move-offender').prop('checked')) {
+								message('CUW', 'Please check moved', 0);
+								return;
+							}
+							var dropTableData = dropTable.getData();
+							console.log("Data from dropTable in Multi Schedule tab for 'O':", dropTableData);
+
+							dropTableData.forEach(function (rowData) {
+
+								/*var locationTo = rowData.locationTo;
+								var arrived = rowData.arrived;
+							    
+								console.log("locationTo : " + locationTo);
+								console.log("arrived : " + arrived);
+			
+								var locationOptions = $('#location').find('option');
+								var countLocCodeFrom = '';
+							    
+								console.log("locationOptions : " + locationOptions);
+								console.log("locationOptions.length : " + locationOptions.length);
+							    
+								for(var x=0;x<locationOptions.length;x++) {
+									console.log(locationOptions[x] + ' for x ' + x);
+									if(locationOptions[x].text() == locationTo) {
+										countLocCodeFrom = locationOptions[x];
+									}
+								}*/
+
+								/*locationOptions.each(function() {
+									if ($(this).text().trim() === locationTo.trim()) {
+										countLocCodeFrom = $(this).val();
+									}
+								});*/
+
+								//rowData.countLocCodeFrom = countLocCodeFrom;
+								//rowData.inmateMoved = arrived === true ? 'Y' : 'N';
+
+								//alert("rowData.length : " + rowData.length);
+								//alert("rowData.countLocCodeFrom : " + rowData.countLocCodeFrom);
+								//alert("rowData.countLocCodeFrom : " + rowData.countLocCodeFrom);
+
+								//alert(rowData.housingLocation);
+
+								rowData.countLocCodeFrom = getValueByOptionText(rowData.housingLocation);
+								//alert(rowData.countLocCodeFrom);
+
+								saveData.push(rowData);
+							});
+							console.log(saveData);
+							//alert('multiple final save');
+							saveMassOffMov(logInout, saveData);
+						} else {
+							//console.log("Active tab is not Multi Schedule. No data to retrieve for 'O'.");
+
+							locFlag = false;
+							for (var x = 0; x < $('.locationDropdown').length; x++) {
+								if ($('.locationDropdown').val() != '') {
+									locFlag = true;
+								}
+							}
+
+							if (!locFlag) {
+								message('CUW', 'Please select Location', 0);
+								return;
+							}
+
+							var rows = indScheduleTable.getRows();
+							rows.forEach(function (row) {
+								// Get the cell element for the radio button
+								var cellElementO = row.getCell("radioOther").getElement();
+								var radioButtonO = cellElementO.querySelector('input[type="radio"]');
+
+								var cellElementH = row.getCell("radioHousing").getElement();
+								var radioButtonH = cellElementH.querySelector('input[type="radio"]');
+
+								var cellElementR = row.getCell("radioInstRelease").getElement();
+								var radioButtonR = cellElementR.querySelector('input[type="radio"]');
+
+								if (radioButtonO.checked) {
+									row.update({movementType: "Completed"});
+								}
+								if (radioButtonH.checked) {
+									row.update({movementType: "Housing"});
+								}
+								if (radioButtonR.checked) {
+									row.update({movementType: "Institutional Release"});
+								}
+
+								var cellElementLoc = row.getCell("locationDropdown").getElement();
+								var selValLoc = cellElementLoc.querySelector('select');
+
+								if (selValLoc.value != '') {
+									row.update({locationTo: selValLoc.value});
+								}
+
+								var cellElementMove = row.getCell("offenderMovedCheckbox").getElement();
+								var checkMoved = cellElementMove.querySelector('input[type="checkbox"]');
+
+								if (checkMoved.checked) {
+									row.update({inmateMoved: 'Y'});
+								} else {
+									row.update({inmateMoved: 'N'});
+								}
+
+								//alert(radioButton.checked + ' and ' + radioButton.value);
+
+								// Check if the radio button is checked
+								/*if (radioButton && radioButton.checked) {
+									selectedValue = radioButton.value; // Get the value of the checked radio button
+								}*/
+							});
+
+							var individualScheduleData = indScheduleTable.getData(); // Get data from Tabulator table
+							console.log("Data from IndividualScheduleTab for 'O':", individualScheduleData);
+
+							individualScheduleData.forEach(function (rowData) {
+								// Compare sbiNo with inmateMovedCheck array and set inmateMoved
+								//alert(rowData.radioOther.querySelector('input[type="radio"]').checked);
+								//var cellElement = rowData.radioOther;
+								//var radioButton = cellElement.querySelector('input[type="radio"]');
+
+								//alert(radioButton.checked + ' and ' + radioButton.value);
+
+								/*console.log('x1 rowData.sbiNo : ' + rowData.sbiNo);
+								console.log('x2 inmateMovedCheck[rowData.sbiNo] : ' + inmateMovedCheck[rowData.sbiNo]);
+								//if (inmateMovedCheck[rowData.sbiNo] === 'Y') {
+								console.log('if part');
+								rowData.inmateMoved = 'Y';
+								console.log('x3 rowData.locationTo : ' + rowData.locationTo);
+
+								var locationTo = rowData.locationTo;
+								var countLocCodeFrom = $('#location').find('option')
+									.filter(function () {return $(this).text().trim() === locationTo.trim();})
+									.val();
+								console.log('x4 countLocCodeFrom : ' + countLocCodeFrom);
+								rowData.countLocCodeFrom = countLocCodeFrom;
+								console.log('x5 rowData.countLocCodeFrom : ' + rowData.countLocCodeFrom);*/
+
+								rowData.countLocCodeFrom = getValueByOptionText(rowData.housingLocation);
+								//rowData.instNum = $('#institution').val();
+								saveData.push(rowData);
+								/*} else {
+									console.log('else part');
+									rowData.inmateMoved = 'N';
+								}*/
+							});
+
+							console.log("Test abc :", saveData);
+
+							//alert('final save');
+							saveMassOffMov(logInout, saveData);
+
+						}
+					}
+				} else {
+					console.log("Please make sure all required fields are selected.");
+				}
+			});
+
+			function getValueByOptionText(optionText) {
+				const selectElement = document.getElementById('location');
+				const options = selectElement.options;
+
+				for (let i = 0; i < options.length; i++) {
+					if (options[i].text === optionText) {
+						console.log('Value of the selected option:', options[i].value);
+						//alert('Value of the selected option: ' + options[i].value); // Display the value
+						return options[i].value; // Return the value of the matched option
+					}
+				}
+
+				console.log('Option not found');
+				//alert('Option not found'); // Alert if the option is not found
+				return null; // Return null if not found
+			}
+
+			function saveMassOffMov(logInOut, saveData) {
+				$.ajax({
+					method: "POST",
+					url: contextPath + 'SaveMassOffMov',
+					contentType: 'application/json',
+					data: JSON.stringify({
+						logInOut: logInOut,
+						saveData: saveData
+					}),
+					success: function (response) {
+						//Swal.fire('Success', 'Data saved successfully', 'success');
+						message('S', 0, 0);
+						dropTable.clearData();
+						$('#multi-movType').val('');
+						$('#location-to').val('');
+						$('#move-offender').prop('checked', false);
+						$('.dropSel').css('visibility', 'hidden');
+						$('#search-btn').trigger('click');
+					},
+					error: function (error) {
+						console.error('Error:', error);
+						//Swal.fire('Error', 'Error saving data', 'warning');
+						message('E', 0, 0);
+					},
+					complete: function () {
+						$('#save-button').prop('disabled', false);
+						isSaving = false;
+					}
+				});
+			}
+
+			$('#myfilter').on('click', function () {
+				var sbi = $('#offenderSBI').val();
+				var nam = $('#offenderName').val();
+
+				// Clear existing filters
+				offenderTable.clearFilter();
+
+				const filters = [];
+
+				// Add name filter if provided
+				if (sbi) {
+					filters.push({field: "sbiNo", type: "like", value: sbi});
+				}
+
+				// Add age filter if provided
+				if (nam) {
+					filters.push({field: "name", type: "like", value: nam});
+				}
+
+				// Set new filters if any
+				if (filters.length > 0) {
+					offenderTable.setFilter(filters);
+				}
+				// Set new filter
+				/*if (sbi) {
+					offenderTable.setFilter("sbiNo", "like", sbi);
+				}*/
+			});
+
+			/*$(document.body).on('change', 'input[type="radio"]', function () {
+				// Get the name of the clicked radio button
+				var radioName = $(this).attr('name');
+				var radioValue = $(this).val();
+				
+				if(radioName.includes('radioGroup')) {
+					var ide = radioName.split('radioGroup-')[1];
+					var movVal = '';
+					if(radioValue == 'O') {
+						movVal = 'Other';
+					}
+					if(radioValue == 'H') {
+						movVal = 'Housing';
+					}
+					if(radioValue == 'R') {
+						movVal = 'Institutional Release';
+					}
+					$('#mov_' + ide).val(movVal);
+				}
+				
+				//alert(radioName + ' and ' + radioValue);
+			});*/
+
+			$('#clear-btn').on('click', function () {
+				$('.form-control').val('');
+				$('#multi-movType').val('');
+				offenderTable.clearFilter();
+				offenderTable.clearData();
+				indScheduleTable.clearData();
+				dropTable.clearData();
+				$('.dropSel').css('visibility', 'hidden');
+				getUserInst();
+			});
+
+			function autocomplete(inp, arr) {
+				/*the autocomplete function takes two arguments,
+				the text field element and an array of possible autocompleted values:*/
+				var currentFocus;
+				/*execute a function when someone writes in the text field:*/
+				inp.addEventListener("input", function (e) {
+					var a, b, i, val = this.value;
+					/*close any already open lists of autocompleted values*/
+					closeAllLists();
+					if (!val) {return false;}
+					currentFocus = -1;
+					/*create a DIV element that will contain the items (values):*/
+					a = document.createElement("DIV");
+					a.setAttribute("id", this.id + "autocomplete-list");
+					a.setAttribute("class", "autocomplete-items");
+					/*append the DIV element as a child of the autocomplete container:*/
+					this.parentNode.appendChild(a);
+					/*for each item in the array...*/
+					for (i = 0; i < arr.length; i++) {
+						/*check if the item starts with the same letters as the text field value:*/
+						if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+							/*create a DIV element for each matching element:*/
+							b = document.createElement("DIV");
+							/*make the matching letters bold:*/
+							b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+							b.innerHTML += arr[i].substr(val.length);
+							/*insert a input field that will hold the current array item's value:*/
+							b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+							/*execute a function when someone clicks on the item value (DIV element):*/
+							b.addEventListener("click", function (e) {
+								/*insert the value for the autocomplete text field:*/
+								inp.value = this.getElementsByTagName("input")[0].value;
+								/*close the list of autocompleted values,
+								(or any other open lists of autocompleted values:*/
+								closeAllLists();
+							});
+							a.appendChild(b);
+						}
+					}
+				});
+				/*execute a function presses a key on the keyboard:*/
+				inp.addEventListener("keydown", function (e) {
+					var x = document.getElementById(this.id + "autocomplete-list");
+					if (x) x = x.getElementsByTagName("div");
+					if (e.keyCode == 40) {
+						/*If the arrow DOWN key is pressed,
+						increase the currentFocus variable:*/
+						currentFocus++;
+						/*and and make the current item more visible:*/
+						addActive(x);
+					} else if (e.keyCode == 38) { //up
+						/*If the arrow UP key is pressed,
+						decrease the currentFocus variable:*/
+						currentFocus--;
+						/*and and make the current item more visible:*/
+						addActive(x);
+					} else if (e.keyCode == 13) {
+						/*If the ENTER key is pressed, prevent the form from being submitted,*/
+						e.preventDefault();
+						if (currentFocus > -1) {
+							/*and simulate a click on the "active" item:*/
+							if (x) x[currentFocus].click();
+						}
+					}
+				});
+				function addActive(x) {
+					/*a function to classify an item as "active":*/
+					if (!x) return false;
+					/*start by removing the "active" class on all items:*/
+					removeActive(x);
+					if (currentFocus >= x.length) currentFocus = 0;
+					if (currentFocus < 0) currentFocus = (x.length - 1);
+					/*add class "autocomplete-active":*/
+					x[currentFocus].classList.add("autocomplete-active");
+				}
+				function removeActive(x) {
+					/*a function to remove the "active" class from all autocomplete items:*/
+					for (var i = 0; i < x.length; i++) {
+						x[i].classList.remove("autocomplete-active");
+					}
+				}
+				function closeAllLists(elmnt) {
+					/*close all autocomplete lists in the document,
+					except the one passed as an argument:*/
+					var x = document.getElementsByClassName("autocomplete-items");
+					for (var i = 0; i < x.length; i++) {
+						if (elmnt != x[i] && elmnt != inp) {
+							x[i].parentNode.removeChild(x[i]);
+						}
+					}
+				}
+				/*execute a function when someone clicks in the document:*/
+				document.addEventListener("click", function (e) {
+					closeAllLists(e.target);
+				});
+			}
+
+			/*An array containing all the country names in the world:*/
+			//var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+
+			/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
+			//autocomplete(document.getElementById("offenderName"), countries);
+
+		});
+
+
+
+	</script>
+	<div th:replace="~{fragments/msgBox :: msgBox}"></div>
+	<script src="js/vendors.bundle.js"></script>
+	<script src="js/app.bundle.js"></script>
+
+</body>
+<!-- BEGIN Page Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+<!-- END Page Footer -->
+
+</html>

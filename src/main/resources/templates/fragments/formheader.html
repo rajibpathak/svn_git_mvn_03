@@ -1,0 +1,823 @@
+
+ <div th:fragment="formheader" th:remove="tag">
+	<div class="row">
+		<div class="col-lg-10 pr-0 formHeaderBlock" >								
+	<div class="panel mb-2">
+		<div class="panel-container formHeaderLeftBlock show">
+			<div class="panel-content py-2 pl-2 position-relative" style="padding-right: 25px; z-index: 9;">
+				<div id="search-form"class="position-relative">
+					<div class="form-group row" style="color: #7a59ad;">
+						
+						<div class="col-12 col-lg-2 d-flex align-items-center pr-0 position-relative">
+							<div class="d-flex w-100 floatingFields">														
+								<input type="text" class="form-control floatingLable" aria-label="ID#" 
+									name="sbiNumberInput" id="sbiNumberInput"   th:value="${sbiNumber}" style="font-weight: 500;"  placeholder="" maxlength="8">
+									 <label class="form-label mr-1 mb-0 idlabel" for="">ID#<span class="text-danger">*</span> </label>
+								 <button class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off"
+										data-toggle="tooltip" data-placement="top" data-original-title="Search"
+										>
+									<i id="searchButton" class="fa fa-search" style="font-size: 10px;"></i>
+								</button>
+								<span class="d-flex" data-toggle="modal" data-target=""   id="historyButton"  >									
+									<a href="#"class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center" data-toggle="tooltip" data-placement="top" data-original-title="Prior Incarceration" data-action="toggle">
+										<i class="fa fa-history" style="font-size: 10px;"></i>
+									</a>
+								</span>
+							 </div>
+						</div>
+						<div class="col-12 col-lg-3 pl-2 pr-0">
+							<div class="input-group input-group-multi-transition">
+								<div class="d-flex align-items-center w-100 ">
+									<label for="Name" class="form-label mr-1 text-nowrap mb-0" style="width: 120px;">Name (L,F,M,S)</label>
+									   <input type="text" class="form-control w-100 " style="color:#000;background: unset !important; border: 0;" aria-label="FirstName" id="FirstName" name="FirstName"  title="FirstName"  value placeholder  readonly>
+								</div>
+								
+							</div>
+						</div>
+						<div class="col-lg-2 d-flex align-items-center pl-1 pr-0">
+							<label for="DOB" class="form-label mb-0 mr-1">DOB </label>						
+							<div class="input-append date position-relative w-100" id="mdPicker">
+								<input class="span2 form-control bg-light w-100" size="16" type="text" style="pointer-events: none;background: unset !important; border: 0;" aria-label="dateofbirth" name="dateofbirth" id="dateofbirth" value="" >
+								<span class="add-on"></span>
+							</div>
+						</div>
+						<div class="col-lg-1 d-flex align-items-center pl-2 pr-0">
+							<label for="Race" class="form-label mb-0 mr-1">Sex</label>
+							<input type="text" class="form-control" aria-label="Sex" name="Sex" id="Sex" value="" placeholder="" style="pointer-events: none;background: unset !important; border: 0;">
+						</div>
+						<div class="col-12 col-lg-2 d-flex align-items-center pr-0">
+							<label for="Sex" class="form-label mb-0 mr-1">Race</label>
+							<input type="text" class="form-control w-100" aria-label="offenderrace" name="offenderrace" id="offenderrace" value="" placeholder="" style="pointer-events: none;background: unset !important; border: 0;">
+						</div>
+							<div class="col-12 col-lg-1 d-flex align-items-center text-nowrap pr-0" style="pointer-events: none;">
+								<div class="custom-control custom-checkbox custom-control-inline mr-0">
+									<input type="checkbox" class="custom-control-input formheadercheckbox"id="defaultInline3">
+									<label class="custom-control-label" for="stgCheckbox" style="font-weight: 500;"></label>
+								</div>
+								<span class="mb-0" style="font-weight: 500;">STG </span>
+							</div>
+							<div class="col-12 col-lg-1 d-flex align-items-center text-nowrap pl-0" style="pointer-events: none;">
+								<div class="custom-control custom-checkbox custom-control-inline mr-0">
+									<input type="checkbox" class="custom-control-input formheadercheckbox" id="headmultiStatus">
+									<label class="custom-control-label" for="headmultiStatus" style="font-weight: 500;"></label>
+								</div>
+								<span class="mb-0" style="font-weight: 500;">
+									<span>Multi</span>
+									<span>Status</span>
+								</span>
+							</div>
+					</div>
+					<div class="form-group row">
+						<div class="col-12 col-lg-6 d-flex pr-0 mt-1" style="height: fit-content;">
+							<div class="col-12 col-lg-4 d-flex align-items-center pl-0 pr-0 mt-1">
+								<label for="Location1" class="form-label mb-0 mr-1 text-nowrap">Location 1</label>
+								<input type="text" class="form-control" aria-label="Location1" name="Location1" id="Location1" value="" placeholder="" style="pointer-events: none;background: unset !important; border: 0;">
+							</div>
+							<div class="col-12 col-lg-4 d-flex align-items-center pr-0 pl-0 mt-1">	
+								<label for="Security" class="form-label mb-0 mr-1">Security</label>
+								<input type="text" class="form-control" aria-label="Security" name="Security1" id="Security1" value="" style="pointer-events: none; min-width: 75px;background: unset !important; border: 0;">
+							</div>
+							<div class="col-12 col-lg-5 d-flex align-items-center pr-0 pl-0 mt-1">
+								<label for="AssignedOfficer" class="form-label mb-0 mr-1 text-nowrap" style="width: 165px;">Assigned Officer</label>
+								<input type="text" class="form-control" aria-label="AssignedOfficer" placeholder=" " name="AssignedOfficer1" id="AssignedOfficer1" value="" style="pointer-events: none;background: unset !important; border: 0;">
+							</div>
+						</div>
+						<div class="col-12 col-lg-6 d-flex pr-0 mt-1" style="height: fit-content; padding-left: 10px;">
+							<div class="col-12 col-lg-4 d-flex align-items-center px-0 mt-1">
+								<label for="Location2" class="form-label mb-0 mr-1 text-nowrap">Location 2</label>
+								<input type="text" class="form-control" aria-label="Location2" name="Location2" id="Location2" placeholder="" value="" style="pointer-events: none;background: unset !important; border: 0;">
+							</div>
+							<div class="col-12 col-lg-4 d-flex align-items-center pl-1 pr-0 mt-1">
+								<label for="Security" class="form-label mb-0 mr-1">Security</label>
+								<input type="text" class="form-control" aria-label="Security" name="Security2" id="Security2" value="" style="pointer-events: none; min-width: 73px;background: unset !important; border: 0;">
+							</div>
+							<div class="col-12 col-lg-4 d-flex align-items-center pr-0 mt-1">
+								<label for="AssignedOfficer" class="form-label mb-0 mr-1 text-nowrap">Assigned Officer</label>
+								<input type="text" class="form-control" aria-label="AssignedOfficer2" placeholder=" " name="AssignedOfficer2" id="AssignedOfficer2" value="" style="pointer-events: none;background: unset !important; border: 0;">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<div class="col-lg-2">
+		<div class="panel mb-2 imageBlockMain">
+			<div class="panel-container show imageBlockContainer">
+				<div class="panel-content row p-2 d-flex align-items-center">
+					<div class="col-12 col-lg-3 pr-2 pl-2">
+					<img src="img/demo/avatars/avatar-admin-lg.png" class="imageContainerPhoto"  alt="Inmate"  width="55" height="55">
+					</div>
+					<div class="col-12 col-lg-9 pl-2 position-relative" id="textareaBlock">
+						<div class="">							
+							<textarea class="form-control" placeholder="" rows="4" disabled style="resize: none;line-height: 1;"
+							name="offenderCondition" id="offenderCondition"></textarea>
+						</div>
+						<div class="predictiveBlock position-relative" id="predictiveBlock">					
+						   <img style="z-index: 999;" src="img/demo/predictiveAn.gif" data-toggle="tooltip" data-placement="top" data-original-title="Predictive Analysis" id="predictiveIcon" class="predictiveGif"  alt="Inmate"  width="55" height="55">
+						   <div class="contain containBlock pl-0" id="">
+	                            <div class="leftSideBar predictiveLeftBar mr-0">
+	                                <div class="predictiveHeaderBlock">
+										<h2 class="m-0 text-center color-white">Current Risk Factor </h2>
+									</div>
+	                                <a href="javascript:void(0);" class="closeBtn btn btn-sm btn-icon waves-effect waves-themed" id="PredictiveClose">
+                                            <i class="fal fa-times"></i>
+                                    </a>
+	                                <div class="row ml-0" style="background: #fff;height: calc(100% - 70px);">
+	                                    <div class="col-lg-12 pl-2 mt-2 position-relative">
+	                                        <div class="panel mb-0 panelContentBlock p-1 headerBlockNew border-0" style="background: unset;box-shadow: unset;padding-top: 0 !important;">
+	                                            <div class="d-flex align-items-center predictiveContentBlock">
+													<span class="bulletPoint bulletPointRed"></span>
+													<div class="ml-2">Long Sentence</div>
+												</div>
+												<div class="d-flex align-items-center predictiveContentBlock mt-2">
+													<span class="bulletPoint bulletPointRed"></span>
+													<div class="ml-2">Mental Health</div>
+												</div>
+												<div class="d-flex align-items-center predictiveContentBlock mt-2">
+													<span class="bulletPoint bulletPointYellow"></span>
+													<div class="ml-2">Medical Treatment</div>
+												</div>
+												<div class="d-flex align-items-center predictiveContentBlock mt-2">
+													<span class="bulletPoint bulletPointRed"></span>
+													<div class="ml-2">Escape</div>
+												</div>
+												<div class="d-flex align-items-center predictiveContentBlock mt-2">
+													<span class="bulletPoint bulletPointRed"></span>
+													<div class="ml-2">Re-arrest (Violent Crime)</div>
+												</div>
+												<div class="d-flex align-items-center predictiveContentBlock mt-2">
+													<span class="bulletPoint bulletPointRed"></span>
+													<div class="ml-2">Substance Abuse Relapse</div>
+												</div>
+												<div class="d-flex  align-items-center predictiveContentBlock mt-2">
+													<span class="bulletPoint bulletPointYellow"></span>
+													<div class="ml-2"> Educational Needs</div>
+												</div>
+												<div class="d-flex align-items-center predictiveContentBlock mt-2">
+													<span class="bulletPoint bulletPointRed"></span>
+													<div class="ml-2">Gang Involvement (In-Custody)</div>
+												</div>
+												<div class="d-flex align-items-center predictiveContentBlock mt-2">
+													<span class="bulletPoint bulletPointGreen"></span>
+													<div class="ml-2">Community Reintegration</div>
+												</div>
+												<div class="d-flex align-items-center predictiveContentBlock mt-2">
+													<span class="bulletPoint bulletPointRed"></span>
+													<div class="ml-2">Self-Harm</div>
+												</div>
+												<div class="mt-2 predictiveFooterDesc p-1">
+													<label class="form-label text-content" for="" style="font-size: 16px;"><b>Final Prediction:</b></label>
+													<textarea class="form-control" id=" " placeholder="" rows="9" name="" aria-label="" value="" readonly>
+Based on the cumulative risk factors, offender  ID# 00315564 (FRANKLIN RICHARD V) is classified as High Risk overall. He presents with:
+ * High Risk for Long Sentence (prior violent felonies).
+ * High Risk Mental Health (history of bipolar disorder).
+ * High Risk to Escape (prior attempt, gang affiliation).
+ * High Risk for Substance Abuse Relapse (heroin addiction).
+ </textarea>
+													<label class="form-label text-content mt-2" for="" style="font-size: 16px;"><b>Recommended Actions:</b></label>
+													<textarea class="form-control" id=" " placeholder="" rows="5" name="" aria-label="" value="" readonly>* Placement in a maximum-security facility.
+ * Intensive mental health treatment and monitoring.
+ * Strict substance abuse rehabilitation program.
+ * Limited contact with known gang members.
+ * Close monitoring for self-harm or escape attempts.</textarea>
+												</div>
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </div>
+	                        </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+							
+							<div class="modal fade" id="StayHistoryModal" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header pt-3 pb-2">
+							<h4 class="modal-title">Prior Incarceration</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true"><i class="fal fa-times"></i></span>
+							</button>
+						</div>
+						<div class="modal-body py-0">
+							<div class="d-flex w-100">
+								<span class="w-50 floatingFields mt-2">									
+								    <input type="text" class="form-control floatingLable" aria-label="ID#" name="sbiNumberDisplay" placeholder="" id="sbiNumberDisplay" value="" disabled="">
+								    <label for="sbiNumberDisplay" class="form-label">ID#</label>
+								</span>
+								<span class="w-100 ml-3 floatingFields mt-2">									
+									<input type="text" class="form-control floatingLable" aria-label="ID#" name="offendernameDisplay" placeholder="" id="offendernameDisplay"  value="" disabled="">
+									<label for="ResidenceCategoryComments" class="form-label">Offender Name:</label>
+								</span>
+							</div>
+							<h6 class="my-1 text-primary" style="font-weight: 500;">Offender stays (descending order)</h6>
+							<div class="mb-1" id="previousstay-table"></div>
+							
+						</div>
+						<div class="modal-footer">
+					<!-- 		<button type="button" class="btn btn-primary" id="fetchDataBtn" >Ok</button>
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button> -->
+						</div>
+					</div>
+						
+         
+			</div>			
+         </div>
+         <style>
+      
+			.header-icon:not(.btn)[data-toggle=dropdown] + .dropdown-menu{
+				 right: 4rem;
+			}
+			.predictiveGif{
+				position: absolute;
+			    bottom: 5px;
+			    right: 15px;
+			    width: 25px;
+			    height: 25px;
+			    border-radius: 50px;
+			    cursor: pointer;	
+			}
+			.closeBtn{
+				position: absolute;
+			    top: 0;
+			    right: 5px;
+			    background: unset;
+			    border: 0;
+			    box-shadow: unset;
+			    color: #fff!important;
+			}
+			.closeBtn:hover{
+				font-size: 15px!important;
+			}
+			
+			/*.predictiveFooterDesc{
+				position: fixed;
+			    bottom: 0;
+			    width: 100%;
+			    left: 0px;
+			}*/
+			
+			.containBlock{
+				visibility: hidden;
+				position: fixed;
+			    top: 0;
+			    z-index: 9999999;
+			    right: 0;
+			}
+			
+			.openPredictive .contain{
+				visibility: visible;
+			}
+			
+			.openPredictive .leftSideBar{
+				transform: translateX(-350px);
+			}
+			
+			.predictiveBlock  .leftSideBar{
+				min-width: 350px !important;
+			}
+			
+			.predictiveLeftBar{
+				transform: translateX(190px);
+				border-radius: unset;
+				box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2)!important;
+				height: calc(100vh - 45px) !important;
+			}
+			
+			.predictiveHeaderBlock{
+				background: linear-gradient(250deg, #3e93d6, #8a75aa);
+				padding: 1.25rem 1.5rem;
+				
+			}
+			.clicked-row{
+ background:   #9abcea !important; 
+  cursor: pointer;
+}
+			
+			.bulletPoint{
+				min-width: 10px;
+				height: 10px;
+				border-radius: 50px;
+			}
+			.bulletPointRed {
+				background: #ff0000;
+			}
+			.bulletPointYellow{
+				background: rgb(255, 255, 0)			
+			}
+			.bulletPointGreen{
+				background: rgb(0, 255, 64);
+			}
+			
+			.predictiveContentBlock{
+				color: #000;
+			}
+
+		.formHeaderBlock::before{
+			content: "";
+			position: absolute;
+			width: 118.2%;
+			height: 78px;
+			top: 0;
+			left: 13px;
+			z-index: 9;
+			border: 1px solid #7a59ad;
+			border-radius: 5px;
+		}
+
+		.floatingFields input:focus + .idlabel{
+			background-color: unset!important;
+		}
+		
+		.floatingFields input:focus + .idlabel::before{
+			content: "";
+		    position: absolute;
+		    top: 4px;
+		    left: 0;
+		    background: #ece0ff!important;
+		    width: 35px;
+		    height: 17px;
+		    z-index: -1;
+		}
+		
+		.form-label, .custom-control-label{
+		    color: #7a59ad;
+		}
+		
+		.imageBlockMain, .formHeaderLeftBlock{
+			background: #ece0ff;
+		}
+		.formHeaderLeftBlock label{
+			color: #7a59ad!important;
+			font-weight: 500 !important;
+		}
+
+		.tableFixHead table { border-collapse: collapse; width: 100%; }
+		.tableFixHead th, td { background: #fff; padding: 8px 16px; }
+		
+		.tableFixHead thead th{
+		    background: #7a59ad;
+		    font-weight: 600;
+		    color: #fff;
+		    padding-left: 7px;
+		}
+		
+		.tableFixHead {
+		  overflow: auto;
+		  height: 100%;
+		  max-height: 200px;
+		}
+		
+		.tableFixHead thead th {
+		  position: sticky;
+		  top: 0;
+		  z-index: 9;
+		}
+		.no-pointer-events {
+    pointer-events: none;
+    opacity: 0.5; /* optional, to show visually disabled */
+}
+
+</style>
+	</style>
+	<div th:replace="~{fragments/script :: script}"></div>
+	<!-- <script src="js/staticjs.js"></script> -->
+	<script src="js/script.js"></script> 
+	
+	<script>
+
+	
+	window.addEventListener('DOMContentLoaded', function () {
+        const sbi = sessionStorage.getItem('sbiOmnetDesktop');
+        if (sbi) {
+            const inputField = document.getElementById('sbiNumberInput');
+            if (inputField) {
+                inputField.value = sbi;
+            }
+        }
+    });
+	
+	function insertSBISearch(screenCode,screenName,sbiNumberInput){
+		  $.ajax({
+			  url: 'insertSearchedInmate',
+			  type: 'POST', 
+			   data: {
+				   p_screen_code: screenCode,
+				   p_screen_name: screenName,
+				   p_sbi_no: sbiNumberInput
+				}, 
+			  success: function(response) {
+			  },
+		  }); 
+		  }
+	
+	
+	var  imagendatanull="R0lGODlhoACgAPcAAAAAAAAICAgICAgIEAgQEBAQEBAQGBAYGBgYGBgYIRghISEhISEhKSEpKSkpKSkpMSkxMTExOTE5OTE5Qjk5QjlCQjlCSkJCSkJKSkJKUkpKUkpSUkpSWkpaWlJaWlJaY1JjY1pjY1pja1pra1prc2Nrc2Nzc2Nze2tze2t7hHN7hHOEjHuEjHuElHuMlISMlISMnISUnIyUnIyUpYycpZScrZSlrZSltZyltZyttZytvaWtvaW1vaW1xqW9xq29xq29zq3GzrXGzrXG1rXO1r3O1r3O3r3W3sbGxsbGzsbOzsbW3s7OztbW1tbW3t7e3ufn5+/v7+/v9+/39/f39////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////ywAAAAAoACgAAAI/gCpRJESZWBBggYTIlx4sKFChwwfSoxIEaLFiRcrYtyosaPDKFVCiqwSBYiQIUJOpkSpsiXLlytjupQJc6bNmjhp6ry5MyfPnz6DxvQhZWTIkkKKKB1iZKlSI0OUFmHqtAhUqVSnPo26tKlW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"
+		$(document).ready(function () {
+			 $('#sbiNumberInput').focus();
+			$('#sbiNumberInput').on('input', function () {
+				this.value = this.value.replace(/[^a-zA-Z0-9]/g, '').substring(0, 8);
+			});
+
+			$('#searchButton').on('click', function () {
+				function getLastPathSegment(url) {
+					if (url.endsWith('/')) {
+						url = url.slice(0, -1);
+					}
+					return url.substring(url.lastIndexOf('/') + 1);
+				}
+				var pageUrl = window.location.href;
+				var lastPath = getLastPathSegment(pageUrl);										
+
+				var sbiNumberInput = $('#sbiNumberInput').val();			
+				 if (sbiNumberInput === '') {
+				        message('W01', 0);				       
+				        $('#sbiNumberInput').focus();
+				        $('#ok_btn').data('clear-input', true); 
+				        return;
+				    }
+				    if (sbiNumberInput.length !== 8) {
+				        message('CUW', 'Please enter valid ID#', 0);
+				        $('#sbiNumberInput').focus();
+				        $('#ok_btn').data('clear-input', true); 
+				        return;
+				    }				    	
+				 
+				var userId = localStorage.getItem('userId');
+				$.ajax({
+					method: "POST",
+					url: contextPath + 'checkSbiNoAndLocation',
+					data: {
+						parameter: sbiNumberInput,
+						page: lastPath
+					},
+					success: function (response) {
+						if (response.locationDetails && response.inmateList && response.offenderCondition) {
+							var locationDetails = response.locationDetails;
+							var offenderCondition = response.offenderCondition;
+							var inmateList = response.inmateList;
+							let fullName = 
+							    (inmateList[0][1] || '') + ' ' +
+							    (inmateList[0][2] || '') + ' ' +
+							    (inmateList[0][3] || '') + ' ' +
+							    (inmateList[0][4] || '');
+
+							let fullnamedisplay = formatName(fullName.trim());
+							$("#FirstName").val(fullnamedisplay);
+							setTooltip("#FirstName", fullnamedisplay);
+						     
+							$("#dateofbirth").val(convertToMMDDYYYY(inmateList[0][5]));
+							$("#Sex").val(inmateList[0][6]);
+							$("#offenderCondition").val(offenderCondition);
+							$("#Location1").val(locationDetails['ovc_location1']);
+							localStorage.setItem('location1', locationDetails['ovc_location1']);
+							$("#Security1").val(locationDetails['ovc_security_lvl1']);
+							var assignedofficer1= locationDetails['ovc_assigned_officer1']
+						    setTooltip("#AssignedOfficer1", assignedofficer1);
+							$("#AssignedOfficer1").val(assignedofficer1);
+							$("#Location2").val(locationDetails['ovc_location2']);
+							$("#Security2").val(locationDetails['ovc_security_lvl2']);
+							var assignedofficer2= locationDetails['ovc_assigned_officer2']
+							$("#AssignedOfficer2").val(assignedofficer2);
+						    setTooltip("#AssignedOfficer2", assignedofficer2);
+							
+							 $.ajax({
+							    method: "GET",
+							    url: contextPath + "inmateimage/" + sbiNumberInput + "?userId=" + userId,
+							    success: function (response) {
+							    	  var imageData = response;
+							    
+							          if (imageData ==="") {
+							              const defaultImage = 'data:image/jpeg;base64,'+imagendatanull;
+							             
+							            
+							              document.querySelector(".imageContainerPhoto").src = defaultImage;
+							          } else {
+							              const imageUrl =  imageData;
+							              document.querySelector(".imageContainerPhoto").src = imageUrl;
+							          }
+							      },
+							}); 
+							if (locationDetails['ovc_location1'] && locationDetails['ovc_location2']) {
+								$("#headmultiStatus").prop('checked', true);
+							}
+						}
+						if (response.output != null) {
+							if (response.output && response.output.length > 0) {
+							    $('#offenderrace').val(response.output[0].RACE_DESC);
+							} else {
+							    $('#offenderrace').val('');
+							}
+							if (response.output.length > 0 && response.output[0].STG_STATUS_FLAG == 'Y') {
+							    $('#defaultInline3').prop('checked', true);
+							    $('.STG_btn').removeAttr('disabled').removeAttr('read-only').css('pointer-events', 'auto');
+							  
+							}
+						}												
+					},
+					 
+					error: function (error) {
+						if (error.responseText.includes('The offender is not in your facility')) {
+							$('#clear-btn').click();
+							Swal.fire({
+								title: error.responseText,
+								icon: 'error',
+								confirmButtonText: 'Okay'
+							});
+							
+						} else {
+							$('#errorNAME').text('ID is not valid');
+							$('#errorNAME').css('display', 'block');
+							message('CUW', 'Please enter valid ID#', 0);
+							 
+							 $('#ok_btn').data('clear-input', true)
+							 loader(0);
+						}
+					}
+				});
+			});
+
+
+			$('#historyButton').on('click', function () {			
+				var sbiNumberInput = $('#sbiNumberInput').val().trim();
+				
+				 if (sbiNumberInput === '') {
+				        message('W01', 0);				       
+				        $('#sbiNumberInput').focus();
+				        $('#ok_btn').data('clear-input', true); 
+				        return;
+				    }
+				    if (sbiNumberInput.length !== 8) {
+				        message('CUW', 'Please enter valid ID#', 0);
+				        $('#sbiNumberInput').focus();
+				        $('#ok_btn').data('clear-input', true); 
+				        return;
+				    }
+				$.ajax({
+					url: contextPath + 'getStayHistory',
+					type: 'GET',
+					data: {
+						sbiNo: sbiNumberInput,
+						docIdFlag: "N"
+					},
+					success: function (response) {
+						if (response && response.length > 0) {
+							var inmateName = response[0].inmate_name || '';
+							
+							$('#offendernameDisplay').val(inmateName);
+						}
+						$('#sbiNumberDisplay').val(sbiNumberInput);
+						var selectedCommitNo = localStorage.getItem('selectedCommitNo'); 
+
+						const tabledatapreviousstay = response.map(item => ({
+							Checkbox: item.commit_no,
+							stay: item.stay || '',
+							facility: item.inst_name || '',
+							offenderType: item.sent_type_desc || '',
+							admitted: convertToMMDDYYYY(item.inst_admiss_date),
+							time: item.inst_admiss_time || '',
+							released: convertToMMDDYYYY(item.inst_release_date),
+							time1: item.inst_release_time || '',
+						}));
+						// Add empty rows until length is at least 5
+						while (tabledatapreviousstay.length < 4) {
+						    tabledatapreviousstay.push({
+						        Checkbox: '',
+						        stay: '',
+						        facility: '',
+						        offenderType: '',
+						        admitted: '',
+						        time: '',
+						        released: '',
+						        time1: '',
+						        disabled: true,
+			                    editor:false,
+			                   rowClass: 'no-pointer-events' 
+						    });
+						}
+
+						tablehistory.clearData();
+						tablehistory.setData(tabledatapreviousstay);
+						$('#StayHistoryModal').modal('show');				
+					},
+					error: function (xhr, status, error) {
+						console.error("Error fetching stay history:", error);
+						message('CUW', 'Please enter valid ID#', 0);
+						 $('#ok_btn').data('clear-input', true); // Flag to clear input
+						  loader(0);
+					}
+				});
+			});
+
+
+		
+	
+
+			$('#sbiNumberInput').on('keydown', function (e) {
+			    if (e.key === 'Enter' || e.key === 'Tab') {
+			        this.blur(); // correctly call the blur method
+			        $('#searchButton').trigger('click');
+			    }
+			});
+			
+			
+		
+			 $(':input').on('focus', function () {
+		    	  $(this).attr('autocomplete', 'off')
+		    	}); 
+
+			 function fetchCommitNoDetails(commitNo) {			
+				 function getLastPathSegment(url) {
+						if (url.endsWith('/')) {
+							url = url.slice(0, -1);
+						}
+						return url.substring(url.lastIndexOf('/') + 1);
+					}
+					var pageUrl = window.location.href;
+					var lastPath = getLastPathSegment(pageUrl);
+					
+					var sbiNumberInput = $('#sbiNumberInput').val().trim();
+					 if (sbiNumberInput === '') {
+					        message('W01', 0);				       
+					        $('#sbiNumberInput').focus();
+					        $('#ok_btn').data('clear-input', true); 
+					        return;
+					    }
+					    if (sbiNumberInput.length !== 8) {
+					        message('CUW', 'Please enter valid ID#', 0);
+					        $('#sbiNumberInput').focus();
+					        $('#ok_btn').data('clear-input', true); 
+					        return;
+					    }
+					var userId = localStorage.getItem('userId');
+					
+					
+					$.ajax({
+						method: "POST",
+						url: contextPath + 'checkSbiNoAndLocationHistory',
+						data: {
+							commitNo: commitNo,
+							parameter: sbiNumberInput,
+							page: lastPath
+						},
+						success: function (response) {
+							$('#StayHistoryModal').modal('hide');
+
+							if (response.locationDetails && response.inmateList && response.offenderCondition) {
+								const { locationDetails, inmateList, offenderCondition } = response;								
+								let fullName = 
+								    (inmateList[0][1] || '') + ' ' +
+								    (inmateList[0][2] || '') + ' ' +
+								    (inmateList[0][3] || '') + ' ' +
+								    (inmateList[0][4] || '');
+
+								let fullnamedisplay = formatName(fullName.trim());
+								$("#FirstName").val(fullnamedisplay);
+								setTooltip("#FirstName", fullnamedisplay);					
+								$("#dateofbirth").val(convertToMMDDYYYY(inmateList[0][5]));
+								$("#Sex").val(inmateList[0][6]);
+								$("#offenderCondition").val(offenderCondition);
+
+								$("#Location1").val(locationDetails['ovc_location1']);
+								$("#Security1").val(locationDetails['ovc_security_lvl1']);
+								$("#AssignedOfficer1").val(locationDetails['ovc_assigned_officer1']);
+								$("#Location2").val(locationDetails['ovc_location2']);
+								$("#Security2").val(locationDetails['ovc_security_lvl2']);
+								$("#AssignedOfficer2").val(locationDetails['ovc_assigned_officer2']);
+								localStorage.setItem('location1', locationDetails['ovc_location1']);
+
+								if ($('#screenCode').length) {
+									const screenCode = $('#screenCode').val();
+									if (['CBI_URNE', 'CBI_MARK', 'CBI_ORTA', 'CBI_ALIS', 'CBI_DEMO'].includes(screenCode)) {
+										$('#current_commit').val(commitNo);
+										$('.primary_val').val(commitNo);
+										$('#call_fetch').trigger('click');
+									}
+								}
+
+								// Load photo
+								$.ajax({
+									method: "GET",
+									url: contextPath + "inmateimage/" + sbiNumberInput + "?userId=" + userId,
+									success: function (response) {
+										const imageContainer = document.querySelector(".imageContainerPhoto");
+										if (!response) {
+											imageContainer.src = 'data:image/jpeg;base64,' + imagendatanull;
+										} else {
+											imageContainer.src = response;
+										}
+									}
+								});
+
+								// Handle multi-location checkbox
+								if (locationDetails['ovc_location1'] && locationDetails['ovc_location2']) {
+									$("#headmultiStatus").prop('checked', true);
+								}
+							}
+
+							if (response.output != null) {
+								if (response.output && response.output.length > 0) {
+								    $('#offenderrace').val(response.output[0].RACE_DESC);
+								} else {
+								    $('#offenderrace').val('');
+								}
+								if (response.output.length > 0 && response.output[0].STG_STATUS_FLAG == 'Y') {
+								    $('#defaultInline3').prop('checked', true);
+								    $('.STG_btn').removeAttr('disabled').removeAttr('read-only').css('pointer-events', 'auto');
+								  
+								}
+							}
+						},
+					      complete: function () {
+			                    setTimeout(function () {
+			                        loader(0);
+			                    }, 1500);
+			                },
+						error: function () {
+							$('#errorNAME').text('ID is not valid').show();
+							message('CUW', 'Please enter valid ID#', 0);
+							 $('#ok_btn').data('clear-input', true); 
+							$('#sbiNumberInput').focus();
+							 loader(0);
+						}
+					});
+				}
+
+			var tabledatapreviousstay = [];
+			window.tablehistory = new Tabulator("#previousstay-table", {
+				layout: "fitColumns",
+				data: tabledatapreviousstay,
+				height: '150px',
+				columns: [
+					{title: "Checkbox", field: "Checkbox",visible:false},
+					{title: "Stay#", field: "stay"},
+					{title: "Facility", field: "facility"},
+					{title: "Offender Type", field: "offenderType", width: 200},
+					{title: "Admitted", field: "admitted"},
+					{title: "Time", field: "time"},
+					{title: "Released", field: "released"},
+					{title: "Time", field: "time1"}
+				],	
+		});
+	
+			tablehistory.on("rowClick", function (e, row) {	
+				   const data = row.getData();
+
+				    if (data==null) {				       
+				        return; 
+				        loader(0);
+				    }
+				tablehistory.getRows().forEach(r => r.getElement().classList.remove('selected-row'));
+			    row.getElement().classList.add('clicked-row');			  	  
+			    var commitNo = data.Checkbox;			  
+			    localStorage.setItem('selectedCommitNo', commitNo);
+					fetchCommitNoDetails(commitNo);				    
+			});
+
+			
+			$(document).on('click', '#ok_btn', function (e) {
+			    if ($(this).data('clear-input')) {
+			        $('#sbiNumberInput').val('');
+			        setTimeout(() => {
+			            $('#sbiNumberInput').focus();
+			        }, 100);
+			        $(this).removeData('clear-input');      
+			    }
+			});
+			
+			
+			
+			function convertToMMDDYYYY(dateString) {
+				 if (dateString) {
+				   const date = new Date(dateString);
+				   const formattedMonth = String(date.getUTCMonth() + 1).padStart(2, '0');
+				   const formattedDay = String(date.getUTCDate()).padStart(2, '0');
+				   const formattedYear = date.getUTCFullYear();
+				   return `${formattedMonth}/${formattedDay}/${formattedYear}`;
+				 }
+				 return '';
+				}
+		
+		});
+		
+		
+		
+		const predictiveIcon = document.getElementById("predictiveIcon");
+		const predictiveBlock = document.getElementById("predictiveBlock");
+		const PredictiveClose = document.getElementById("PredictiveClose");
+		predictiveIcon.addEventListener('click', () => {
+		  predictiveBlock.classList.add('openPredictive');
+		});
+		PredictiveClose.addEventListener('click', () => {
+		  predictiveBlock.classList.remove('openPredictive');
+		});
+		
+	</script>
+	<div th:replace="~{fragments/msgBox :: msgBox}"></div>
+</div>

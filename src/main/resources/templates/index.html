@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<title>
+	Omnet-CNT Infotech
+	</title>
+	<meta name="description" content="Login">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
+	<!-- Call App Mode on ios devices -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- Remove Tap Highlight on Windows Phone IE -->
+	<meta name="msapplication-tap-highlight" content="no">
+	<!-- base css -->
+	<link rel="stylesheet" media="screen, print" href="css/vendors.bundle.css">
+	<link rel="stylesheet" media="screen, print" href="css/app.bundle.css">
+	<!-- Place favicon.ico in the root directory -->
+	<link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+	<link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+	<!-- 	Optional: page related CSS -->
+	<link rel="stylesheet" media="screen, print" href="css/page-login.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+</head>
+<style>
+	.page-logo-text {
+		font-weight: 400;
+		font-size: 22px;
+		text-align: center;
+	}
+	html body .blankpage-form-field {
+
+    width: 450px;
+
+    }
+    .form-control{
+  width: 400px;
+  position: relative;
+}
+.form-control input[type="password"]{
+  width: 100%;
+  padding: 12px 36px 12px 12px;
+  box-sizing: border-box;
+}
+.fa-eye{
+  position: absolute;
+  top: 28%;
+  right: 4%;
+  cursor: pointer;
+  color: lightgray;
+}
+
+
+.passwordEyeIcon .fa-eye{
+	    top: 12px;
+    right: 12px;
+}
+
+body {
+  user-select: none; /* Standard syntax */
+  -webkit-user-select: none; /* Safari, Chrome */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE 10 and 11 */   
+}
+
+</style>
+
+
+<body>
+	<div class="blankpage-form-field">
+		<div
+			class="page-logo m-0 w-100 align-items-center justify-content-center rounded border-bottom-left-radius-0 border-bottom-right-radius-0 px-4">
+			<a href="javascript:void(0)" class="page-logo-link press-scale-down d-flex align-items-center">
+				<img id="dacsImage" alt="clientLogo" aria-roledescription="logo" style="height:68px; width:68px;">
+				<span class="page-logo-text mr-1"><b id="clientname"></b></span>
+			</a>
+		</div>
+		<div class="card p-4 border-top-left-radius-0 border-top-right-radius-0">
+			<div class="" style="text-align: center; margin-top: -20px; margin-bottom: 10px;">
+	        	<img  id="omnetImage" alt="Omnet Logo" aria-roledescrption="logo">
+			</div>
+	
+			<form action="OmnetDesktop">
+				<div class="form-group">
+					<div id="errorNAME" style="display:none"></div>
+					<label class="form-label" for="username">Username</label>
+					<input type="text" id="username" name="username" class="form-control" placeholder="Username"   value="">
+				</div>
+				<div class="form-group">
+					<label class="form-label" for="password">Password</label>
+					<div class="position-relative passwordEyeIcon">					
+						<input type="password" id="password" name="password" class="form-control"  placeholder="Password"  value="">
+						 <i class="fa-solid fa-eye position-absolute" id="eye" title="Show"></i>
+					</div>
+				</div>
+				<input type="hidden" id="userStatus" class="form-control" placeholder="statues" value="A">
+				<button id="forget-password" type="button" class="btn btn-link float-left" >Forgot Password</button>
+				<button type="button" id="login" class="btn btn-default float-right">Secure Login</button>
+			</form>
+			
+			<br>
+			<div class="blankpage-footer text-center">
+				© <span class="hidden-md-down fw-700" id="current-year"></span><img height="30"  alt="www.cntit.com" src="img/CNTIT_logo.png"> All rights reserved.<br>Powered by <a href="https://www.cntinfotech.com/" target="_blank"> CntInfotech</a>.
+			</div>
+		</div>
+
+	</div>
+ <div class="modal fade modal-backdrop-transparent" id="forget-modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" >FORGOT PASSWORD</h5>
+                                                            <button type="button"  class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true"><i class="fal fa-times"></i></span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="alert alert-danger">
+
+                                        <p>Kindly choose your email id or mobile number to get OTP </p>
+                                        <p class="m-0">
+											<div
+														class="custom-control custom-checkbox custom-control-inline">
+														<input type="checkbox" class="custom-control-input"
+															id="defaultInline4"> <label
+															class="custom-control-label" for="defaultInline4">xxxxxxxx45</label>
+													</div>
+													<br><br>
+													<div
+														class="custom-control custom-checkbox custom-control-inline">
+														<input type="checkbox" class="custom-control-input"
+															id="defaultInline4"> <label
+															class="custom-control-label" for="defaultInline4">xxxxxxxxxxgmail.com</label>
+													</div>
+                                           
+                                        </p>
+                                  
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <a href="#" type="button" class="btn btn-secondary" data-dismiss="modal">Close</a>
+                                                            <a href="ForgetPassword"  type="button" class="btn btn-primary">Submit</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+	<video poster="img/backgrounds/clouds.png" id="bgvid" playsinline autoplay muted loop>
+		<source src="media/video/cc.webm" type="video/webm">
+		<source src="media/video/cc.mp4" type="video/mp4">
+	</video>
+	
+	 <script src="js/vendors.bundle.js"></script>
+	<script src="js/app.bundle.js"></script> 
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+	<!-- Page related scripts -->
+<script th:inline="javascript">
+
+document.addEventListener("DOMContentLoaded", function() {
+// Remove readonly on focus to allow user editing
+document.querySelectorAll('input, textarea').forEach(function(input) {
+  input.addEventListener('focus', function() {
+	  input.setAttribute('autocomplete', 'off');
+  });
+});
+
+// Also, set autocomplete to a non-standard value
+document.querySelectorAll('input, textarea').forEach(function(input) {
+  input.setAttribute('autocomplete', 'off');
+});
+
+// Reinforce periodically
+    setInterval(function() {
+      document.querySelectorAll('input, textarea').forEach(function(input) {
+        input.setAttribute('autocomplete', 'off');
+      });
+    },0);
+  });
+
+
+$(document).ready(function () {
+	/*<![CDATA[*/
+		var contextPath = /*[[@{/}]]*/'';
+	/*]]>*/
+	
+
+	
+	     var xhr = new XMLHttpRequest();
+              xhr.onload = (res) => {
+                  if (res.target.status == 200) {
+                      document.getElementById("clientname").innerHTML = res.target.responseText;
+                  }
+              };
+              xhr.onerror = () => {
+                  console.error("An error occurred during the XMLHttpRequest.");
+              };
+              xhr.open("GET",contextPath+ "clientname", true);
+              xhr.send();
+              
+              fetch(contextPath+ "clientlogo")
+              .then(response => response.blob())
+              .then(blob => {
+              const url = URL.createObjectURL(blob);
+              document.getElementById("dacsImage").src = url;
+              dacsImage.setAttribute('draggable', false); 
+              })
+              .catch(error => {
+              console.error("Error loading DACS logo:", error);
+              });
+
+              fetch( contextPath+"OmnetLogo")
+              .then(response => response.blob())
+              .then(blob => {
+              const url = URL.createObjectURL(blob);
+              document.getElementById("omnetImage").src = url;
+              omnetImage.setAttribute('draggable', false); 
+              })
+              .catch(error => {
+              console.error("Error loading Omnet logo:", error);
+              });
+	
+	document.getElementById("current-year").innerHTML = new Date().getFullYear();
+    var userId = '';
+    var password = '';
+  
+    $('#password').on('keydown', function (event) {
+        if (event.keyCode === 13) { 
+            $('#login').trigger('click');
+        }
+    });
+   
+
+    
+    $('#eye').on('click', function () {
+        var passwordInput = $('#password');
+        if(passwordInput.attr('type')==='password'){
+        	 $(this).attr('title', ' ');
+        }
+        if (passwordInput.attr('type') === 'password') {
+            passwordInput.attr('type', 'text');
+            $(this).attr('title', 'Hide');
+        } else {
+            passwordInput.attr('type', 'password');
+            $(this).attr('title', 'Show');
+        }
+    });
+
+    $('#login').on('click', function () {
+		var userId = $('#username').val();
+        var currentPassword = $('#password').val();
+        userId = $('#username').val();
+        password = $('#password').val();
+        
+        if ($('#username').val() == '' && ($('#password').val() == '')) {
+            $('#errorNAME').html('<span style="color: red;">Please enter username and password</span>');
+            $('#errorNAME').css('display', 'block');
+            $(('#username') && ('#password')).focus();
+            return;
+        }
+
+        if ($('#username').val() == '') {
+            $('#errorNAME').html('<span style="color: red;">Please enter username</span>');
+            $('#errorNAME').css('display', 'block');
+            $('#username').focus();
+            return;
+        }
+
+        if ($('#password').val() == '') {
+            $('#errorNAME').html('<span style="color: red;">Please enter password</span>');
+            $('#errorNAME').css('display', 'block')
+            $('#password').focus();
+            return;
+        }
+        
+        var userData = {
+            "userId": userId,
+            "currentPassword": currentPassword,
+        };
+
+        $.ajax({
+            type: "POST",
+            url: contextPath+"LoginApi/Authenticate",
+            data: JSON.stringify(userData),
+            contentType: "application/json",
+            success: function (response) {
+            	 let upperCaseUserId = userId.toUpperCase(); 
+            	    localStorage.setItem('userId', upperCaseUserId);
+            	 /* localStorage.setItem('userId', userId);
+            	console.log(userId);  */
+		        window.location.href = response;
+		        
+		    },
+		    error: function (xhr, status, error) {
+		        var suna = xhr.responseText;
+		        console.error("Hi"+" "+suna);
+		        $('#errorNAME').html('<span style="color: red;">'+ suna +'</span>');
+	            $('#errorNAME').css('display', 'block')
+		    }
+        });
+    });
+    
+      function initiateForgetPassword() {
+        return new Promise((resolve, reject) => {
+        	var userId = $('#username').val();
+        	console.log("userIdforget"+userId);
+            $.ajax({
+                type: "POST",
+                url: contextPath+"LoginApi/ForgotPassword",
+                data: { userId: userId },
+                success: function (response) {
+                	console.log(response);
+                	 $('#ResponseNAME').html('<span style="color:#886ab5;">OTP has been sent to your email</span>');
+                     $('#ResponseNAME').css('display', 'block'); 
+                	 let upperCaseUserId = response.toUpperCase(); 
+             	    localStorage.setItem('userId', upperCaseUserId);
+                   /*   localStorage.setItem('userId', response); */
+                     window.location.href = "ForgotPassword";
+                },
+                error: function (error) {
+                	 $('#errorNAME').html('<span style="color: red;">User not found</span>');
+                     $('#errorNAME').css('display', 'block');
+                }
+            });
+        });
+    }
+        
+    $('#forget-password').on('click', function (event) {
+    	userId = $('#username').val();
+        var password = $('#password').val(); 
+        
+        if (userId === '') {
+            $('#errorNAME').html('<span style="color: red;">Please enter username</span>');
+            $('#errorNAME').css('display', 'block');
+            $('#username').focus();
+            event.preventDefault();
+        } else {
+            console.log(userId);
+            console.log('Before initiateForgetPassword');
+            initiateForgetPassword().then(() => {
+            	   $('#usernameDisplay').text('Username: ' + response);
+                window.location.href =  contextPath + "ForgotPassword";
+            }).catch((error) => {
+            	 $('#errorNAME').html('<span style="color: red;">User not found</span>');
+                 $('#errorNAME').css('display', 'block');
+            });
+        }
+    });
+    
+  
+})
+
+          function clearMenuCache() {
+             localStorage.removeItem('menuData');
+             console.log(' menuData cleared '); 
+         }
+
+clearMenuCache(); 
+
+</script>
+</body>
+</html>

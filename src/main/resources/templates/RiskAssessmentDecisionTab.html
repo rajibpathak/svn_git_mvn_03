@@ -1,0 +1,59 @@
+<div th:fragment="RiskAssessmentDecisionTab" th:remove="tag">
+	<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">OTHER SECURITY CONSIDERATIONS</h6>
+	<div class="row m-1"> 
+		<div class="panel mb-2 panelContentBlock p-1">
+			<div class="row m-1">
+				<div class="col-lg-6 pr-0 d-flex align-items-center p-1">
+					<div class="custom-control custom-radio mr-3">
+                        <input type="radio" class="custom-control-input" id="ApprovedcheckedRadio" name="defaultExampleRadios" checked="">
+                        <label class="custom-control-label" for="ApprovedcheckedRadio">Approved</label>
+                    </div>
+                    <div class="custom-control custom-radio mr-3">
+                        <input type="radio" class="custom-control-input" id="DisapprovedRadio" name="defaultExampleRadios">
+                        <label class="custom-control-label" for="DisapprovedRadio">Disapproved</label>
+                    </div>
+                    <div class="custom-control custom-checkbox custom-control-inline mr-1">
+						<input type="checkbox" class="custom-control-input" id="EmergencyContactCheck">
+						<label class="custom-control-label text-nowrap" for="EmergencyContactCheck">Send Notification to Warden</label> 
+					</div>
+					<span class="d-flex">				
+						<label for="Security" class="form-label mx-2 mb-0 text-nowrap text-nowrap">Date Sent</label>
+						<input type="text" class="form-control w-100" aria-label="" value="">
+					</span>
+					<span class="d-flex">				
+						<label for="Security" class="form-label mx-2 mb-0 text-nowrap text-nowrap">Time Sent</label>
+						<input type="text" class="form-control" aria-label="" value="" style="width: 55px;">
+					</span>
+				</div>
+				<div class="col-lg-6 d-flex align-items-center">
+					<label for="Security" class="form-label mr-2 mb-0 text-nowrap text-nowrap">Security / Custody Level Decision</label>
+					<input type="text" class="form-control w-100" aria-label="" value="" placeholder="">
+					<span data-toggle="modal" data-target="#">
+						<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+							<i class="fa fa-download" aria-hidden="true"></i>
+						</a>
+					</span>
+				</div>
+				<div class="col-lg-12 d-flex align-items-center px-0 mt-1">
+					<textarea class="form-control mt-1" id="addComments" placeholder="Rationale for decision" rows="13" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+				</div>
+				<div class="col-lg-12 d-flex align-items-center p-1 mt-1">
+					<label for="Security" class="form-label mr-2 mb-0 text-nowrap text-nowrap">Correctional Lieutenant (F, L, M, S)</label>
+					<input type="text" class="form-control w-100" aria-label="" value="" placeholder="">
+					<span data-toggle="modal" data-target="#">
+						<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+							<i class="fa fa-download" aria-hidden="true"></i>
+						</a>
+					</span> 
+					<label for="Security" class="form-label mx-2 mb-0 text-nowrap text-nowrap">Classification Officer (F, L, M, S)</label>
+					<input type="text" class="form-control w-100" aria-label="" value="" placeholder="Matt Patterson W">
+					<span data-toggle="modal" data-target="#">
+						<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Officer Name (F, L, M, S)">
+							<i class="fa fa-download" aria-hidden="true"></i>
+						</a>
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

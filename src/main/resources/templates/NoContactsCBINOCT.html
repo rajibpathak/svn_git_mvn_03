@@ -1,0 +1,4024 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<title class="Registrationsidebar">NoContacts</title>
+<div th:replace="~{fragments/head :: head}"></div>
+
+<body class="mod-bg-1 mod-nav-link">
+	<div class="topHeaderBlockHidenShow">		
+		<div th:replace="~{fragments/header :: header}"></div>
+		<div th:replace="~{fragments/navmenus :: navmenus}"></div> 
+	</div>
+	<input type="hidden" name="screenCode" id="screenCode" value="CBI_NOCT">
+	<!-- BEGIN Page Wrapper -->
+	<div class="page-wrapper">
+		<div class="page-inner">
+			<!-- BEGIN Left Aside -->
+			<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+			<!-- END Left Aside --> 
+			<div class="page-content-wrapper">
+				<!-- BEGIN Page Header --> 
+			
+				<!-- END Page Header -->
+				<!-- BEGIN Page Content -->
+				<!-- the #js-page-content id is needed for some plugins to initialize -->
+				<main id="js-page-content" role="main" class="page-content">
+					<!-- <ol class="breadcrumb page-breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">SmartAdmin</a></li>
+                            <li class="breadcrumb-item">category_1</li>
+                            <li class="breadcrumb-item">category_2</li>
+                            <li class="breadcrumb-item active">Page Titile</li>
+                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        </ol> -->
+					<div class="subheader mb-1">
+						<h1 class="subheader-title ml-2">
+						<div th:replace="~{fragments/toggleMenu :: toggleMenu}"></div>
+							<i class='subheader-icon fal fa-'></i> <span th:text="${screenName}"></span></span>
+						</h1>
+						<div class="btn-group headerBtnGroup mr-2">
+						 <!-- <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    Go To
+						  </button>-->
+						  <div class="dropdown-menu">
+						    <a class="dropdown-item" href="#">Demographics</a>
+						  </div>
+						</div>
+						<div class="frame-wrap bg-transparent">
+							<div class="btn-group">
+							<div class="col-12 pr-0">
+                      <div class="js-get-date">[your date here]</div>
+                              </div>
+								<div class="mr-2">
+									<div class="input-append date position-relative w-100">
+										<span class="add-on"></span>
+									</div>
+								</div>
+							</div>
+							
+							
+							<a href="javascript:void(0);" id="addRowBtn"
+								class="btn btn-primary btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="tooltip" data-placement="top" data-original-title="Add"> <i
+									class="fal fa-plus"></i>
+							</a> 
+							
+							
+							<a href="javascript:void(0);"
+								class="btn btn-warning btn-sm btn-icon waves-effect waves-themed disabled"
+								data-toggle="tooltip" data-placement="top" data-original-title="Print"> <i
+									class="fal fa-print"></i>
+							</a> 
+							<a href="javascript:void(0);" id="clear-btn"
+								class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="tooltip" data-placement="top" data-original-title="Clear"> <i
+									class="fal fa-times"></i>
+							</a> 
+							<a href="javascript:void(0);"
+								class="btn btn-success btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="OK/Save" id="saveBtn"> <i class="fal fa-save"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="Cancel/Exit"  id="cancelButton"> <i class="fal fa-sign-out"></i>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="col-12 col-xl-12 ml-1">
+							<div th:replace="~{fragments/formheader :: formheader}"></div>
+							
+							<div class="panel">
+								<div class="panel-content">
+									<ul class="nav nav-tabs position-relative" role="tablist">
+										<li class="nav-item"><a class="nav-link active" data-toggle="tab"
+												href="#OtherNo_Contact" role="tab">Other No Contact</a>
+										</li>
+										<li class="nav-item"><a class="nav-link" data-toggle="tab"
+												href="#Codefendant_Info" role="tab">Codefendant Info</a>
+										</li>
+										<li class="nav-item"><a class="nav-link" data-toggle="tab"
+												href="#Victims_Info" role="tab">Victims Info</a>
+										</li>
+										<li class="nav-item"><a class="nav-link" data-toggle="tab"
+												href="#PFA" role="tab">PFA</a>
+										</li>
+									</ul>
+									<div class="tab-content px-1" style="padding-top: 5px!important;">
+										<div class="tab-pane fade show active" id="OtherNo_Contact" role="tabpanel">
+											<div id="offenderShouldContant" class="panel">
+			                                    <div class="panel-hdr">
+			                                        <h2>
+			                                           Offender Should Have No Contact With
+			                                        </h2>
+			                                    </div>
+			                                    <div class="panel-container show">
+			                                        <div class="panel-content p-1">
+			                                            <div id="js-checkbox-toggles">
+			                                                <div class="row">
+																<div class="col-lg-12">
+																	<div class="panel" style="height: fit-content;">
+																		<div class="panel-container show">
+																			
+																			
+																			<!-- This is where Tabulator will render the table -->
+																			
+																			<div id="OffenderContactTable"></div>
+																		</div> 
+																		
+																		<!-- Dummy Table Container (visible on load) -->
+																		
+																		<!--<div id="DummyTableContainer">
+																		    <div id="DummyTable"></div>
+																		</div>-->
+
+																		
+																		<!--<div id="OffenderContactTableContainer" style="display: none;">
+																		    <div id="OffenderContactTable"></div>
+																		</div>-->
+
+																		
+																		<!-----------------end---------------- -->
+																		
+																		
+																	</div>
+																</div>
+															</div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+											<div id="panel-1" class="panel">
+			                                    <div class="panel-hdr">
+			                                        <h2>
+			                                            Other No Contact - Claimed As Other No Contact By
+			                                        </h2>
+			                                    </div>
+			                                    <div class="panel-container show">
+			                                        <div class="panel-content p-1">
+			                                            <div id="js-checkbox-toggles">
+			                                                <div class="row">
+																<div class="col-lg-12">
+																	<div class="panel" style="height: fit-content;">
+																		<div class="panel-container show">
+																			<div id="OtherClaimContactBy-Table"></div>
+																			<!--<table id="OtherClaimContactByTable" class="table table-bordered table-striped w-100 mb-0">
+																				<thead class="bg-primary-600 text-nowrap">
+																					<tr>
+																						<th>SBI #</th>
+																						<th class="">First Name</th>
+																						<th>Last Name</th>
+																						<th>MI</th>
+																						<th>Suffix</th>
+																						<th style="min-width: 200px;">Source</th>
+																						<th style="min-width: 100px;">Date</th>
+																						<th style="min-width: 250px;">Type</th>
+																						<th>Active</th>
+																						<th>Verified</th>
+																					</tr>
+																				</thead>
+																				<tbody>
+																					<tr>
+																						<td>
+																							<input type="text" class="form-control" aria-label="BADMMRP" name="BADMMRP" id="BADMMRP" value="" disabled>
+																						</td>
+																						<td>
+																							<input type="text" class="form-control" aria-label="BADMMRP" name="BADMMRP" id="BADMMRP" value="" disabled>
+																						</td>
+																						<td>
+																							<input type="text" class="form-control" aria-label="BADMMRP" name="BADMMRP" id="BADMMRP" value="" disabled>
+																						</td>
+																						<td>
+																							<input type="text" class="form-control" aria-label="BADMMRP" name="BADMMRP" id="BADMMRP" value="" disabled>
+																						</td>
+																						<td>
+																							<input type="text" class="form-control" aria-label="BADMMRP" name="BADMMRP" id="BADMMRP" value="" disabled>
+																						</td>
+																						<td>
+																							<select class="custom-select form-control" style="width: 200px;" id="options7" placeholder="Select Menu" disabled>
+																								<option>select Menu</option>
+																								
+																							</select>
+																						</td>
+																						<td>
+																							<div class="input-append date position-relative" id="mdPicker">
+																							    <input class="span2 form-control bg-light" size="16" type="text" aria-label="dateofbirth" name="dateofbirth" id="dateofbirth" value="" readonly style="min-width: 100px;" disabled>
+																							    <span class="add-on"></span>
+																							</div>
+																						</td>
+																						<td>
+																							<select class="custom-select form-control" style="width: 250px;" id="options7" placeholder="Select Menu" disabled>
+																								<option>select Menu</option>
+																								
+																							</select>
+																						</td>
+																						<td>
+										                                                	<div class="custom-control custom-checkbox custom-control-inline">
+																								<input type="checkbox" class="custom-control-input" id="DischargePlan8" disabled>
+																								<label class="custom-control-label" for="DischargePlan8"></label>
+																							</div>
+																						</td>
+																						<td>
+																							<div class="custom-control custom-checkbox custom-control-inline">
+																								<input type="checkbox" class="custom-control-input" id="DischargePlan9" disabled >
+																								<label class="custom-control-label" for="DischargePlan9"></label>
+																							</div>
+																						</td>
+																					</tr>
+																					<tr>
+																						<td>
+																							<input type="text" class="form-control" aria-label="BADMMRP" name="BADMMRP" id="BADMMRP" value="" disabled>
+																						</td>
+																						<td>
+																							<input type="text" class="form-control" aria-label="BADMMRP" name="BADMMRP" id="BADMMRP" value="" disabled>
+																						</td>
+																						<td>
+																							<input type="text" class="form-control" aria-label="BADMMRP" name="BADMMRP" id="BADMMRP" value="" disabled>
+																						</td>
+																						<td>
+																							<input type="text" class="form-control" aria-label="BADMMRP" name="BADMMRP" id="BADMMRP" value="" disabled>
+																						</td>
+																						<td>
+																							<input type="text" class="form-control" aria-label="BADMMRP" name="BADMMRP" id="BADMMRP" value="" disabled>
+																						</td>
+																						<td>
+																							<select class="custom-select form-control" style="width: 200px;" id="options7" placeholder="Select Menu" disabled>
+																								<option>select Menu</option>
+																								
+																							</select>
+																						</td>
+																						<td>
+																							<div class="input-append date position-relative" id="mdPicker">
+																							    <input class="span2 form-control bg-light" size="16" type="text" aria-label="dateofbirth" name="dateofbirth" id="dateofbirth" value="" readonly style="min-width: 100px;" disabled>
+																							    <span class="add-on"></span>
+																							</div>
+																						</td>
+																						<td>
+																							<select class="custom-select form-control" style="width: 250px;" id="options7" placeholder="Select Menu" disabled>
+																								<option>select Menu</option>
+																								<option ></option>
+																								
+																							</select>
+																						</td>
+																						<td>
+										                                                	<div class="custom-control custom-checkbox custom-control-inline">
+																								<input type="checkbox" class="custom-control-input" id="DischargePlan8" disabled>
+																								<label class="custom-control-label" for="DischargePlan8"></label>
+																							</div>
+																						</td>
+																						<td>
+																							<div class="custom-control custom-checkbox custom-control-inline">
+																								<input type="checkbox" class="custom-control-input" id="DischargePlan9" disabled >
+																								<label class="custom-control-label" for="DischargePlan9"></label>
+																							</div>
+																						</td>
+																					</tr>
+																				</tbody>
+																			</table>-->
+																		</div>
+																	</div>
+																</div>
+															</div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+											<div id="panel-1" class="panel">
+			                                    <div class="panel-hdr">
+			                                        <h2>
+			                                            No Contact Details
+			                                        </h2>
+			                                    </div>
+			                                    <div class="panel-container show">
+			                                        <div class="panel-content p-1">
+			                                            <div id="js-checkbox-toggles">
+			                                                <div class="row">
+																<div class="col-lg-12">
+																	<div class="panel" style="height: fit-content;">
+																		<div class="panel-container show row m-2">
+																			<div class="col-lg-8 pl-0">
+																				<div class="d-flex">
+																					<div class="mr-1 w-100 floatingFields mt-2">
+																						<input type="text" class="form-control rawField floatingLable"  data-fld="LocationOffice" data-lbl="LocationOffice" placeholder="" aria-label="Location/Office" name="Location/Office" id="LocationOffice" value="" >
+																						<label for="" class="form-label text-nowrap mb-0">Location/Office</label>
+																					</div>
+																					<div class="mr-1 w-100 floatingFields mt-2">	
+																						<input type="text" class="form-control rawField floatingLable" data-fld="Status" data-lbl="Status" placeholder="" aria-label="Location/Office" name="Location/Office" id="Status" value="" >
+																						<label for="" class="form-label text-nowrap mb-0">Status</label>
+																					</div>
+																					<div class="mr-1 w-100 floatingFields mt-2">
+																						<input type="text" class="form-control rawField floatingLable" data-fld="Housing Unit" data-lbl="Housing Unit" placeholder="" aria-label="Location/Office" name="Location/Office" id="HousingUnit" value="" >
+																						<label for="" class="form-label text-nowrap mb-0">Housing Unit</label>
+																					</div>
+																					<div class="mr-1 w-100 floatingFields mt-2">
+																						<input type="text" class="form-control rawField floatingLable" data-fld="Room" data-lbl="Room" placeholder="" aria-label="Location/Office" name="Location/Office" id="Room" value="" >
+																						<label for="" class="form-label text-nowrap mb-0">Room/Cell</label>
+																					</div>
+																					<div class="w-100 floatingFields mt-2">	
+																						<input type="text" class="form-control rawField floatingLable" data-fld="Bed" data-lbl="Bed" placeholder="" aria-label="Location/Office" name="Location/Office" id="Bed" value="" >
+																						<label for="" class="form-label text-nowrap mb-0">Bed</label>
+																					</div>
+																				</div>
+																				<div class="mr-1 w-100 floatingFields mt-3">	
+																					<input type="text" class="form-control w-100 rawField floatingLable" data-fld="Address" data-lbl="Address" placeholder="" aria-label="Location/Office" name="Location/Office" id="Address" value="" >
+																					<label for="" class="form-label text-nowrap mb-0">Address</label>
+																				</div>
+																				<div class="d-flex">
+																					<div class="mr-1 w-100 floatingFields mt-3">	
+																						<input type="text" class="form-control rawField floatingLable" data-fld="City" data-lbl="City" placeholder="" aria-label="Location/Office" name="Location/Office" id="City" value="" >
+																						<label for="" class="form-label text-nowrap mb-0">City</label>
+																					</div>
+																					<div class="mr-1 w-100 floatingFields mt-3">
+																						<input type="text" class="form-control rawField floatingLable" data-fld="State" data-lbl="State" placeholder="" aria-label="Location/Office" name="Location/Office" id="State" value="" >
+																						<label for="" class="form-label text-nowrap mb-0">State</label>
+																					</div>
+																					<div class="mr-1 w-100 floatingFields mt-3">	
+																						<input type="text" class="form-control rawField floatingLable" data-fld="ZIP" data-lbl="ZIP" placeholder="" aria-label="Location/Office" name="Location/Office" id="Zip" value="" >
+																						<label for="" class="form-label text-nowrap mb-0">ZIP</label>
+																					</div>
+																					<div class="w-100 floatingFields mt-3">	
+																						<input type="text" class="form-control rawField floatingLable" data-fld="Phone" data-lbl="Phone" placeholder="" aria-label="Location/Office" name="Location/Office" id="Phone" value="" >
+																						<label for="" class="form-label text-nowrap mb-0">Phone#</label>
+																					</div>
+																				</div>
+																			</div>
+																			
+																			<div class="col-lg-4 px-0 floatingFieldsTextarea mt-2">
+																				<textarea class="form-control rawField floatingLabletextarea" data-fld="Comments" data-lbl="Comments" id="addComments" rows="4" name="Comments" aria-label="Comments" value="" placeholder="" style="resize: none;"></textarea>
+																				<label for="" class="form-label text-nowrap mb-0">Comments</label>
+																				<small id="commentCharCount" class="text-muted">0/75 characters</small>
+																			</div>	
+																		</div>
+																	</div>
+																</div>
+															</div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+										
+										</div>
+										<div class="tab-pane fade" id="Codefendant_Info" role="tabpanel">
+											<div id="panel-1" class="panel">
+			                                    <div class="panel-hdr">
+			                                        <h2>
+			                                            Codefendants Information
+			                                        </h2>
+			                                    </div>
+			                                    <div class="panel-container show">
+			                                        <div class="panel-content p-1">
+			                                            <div id="js-checkbox-toggles">
+			                                                <div id="Codefendant-Table"></div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+											
+											<div id="panel-1" class="panel">
+			                                    <div class="panel-hdr">
+			                                        <h2>
+			                                            Codefendants Details
+			                                        </h2>
+			                                    </div>
+			                                    <div class="panel-container show">
+			                                        <div class="panel-content p-1">
+			                                            <div id="js-checkbox-toggles">
+			                                                <div class="row">
+																<div class="col-lg-12">
+																	<div class=" " style="height: fit-content;">
+																		<div class="panel-container show row m-2">
+																			<div class="col-lg-12 d-flex p-0">
+																				<div class="col-lg-2 pl-0 floatingFields">		
+																					<input type="text" class="form-control floatingLable" placeholder="" aria-label="Location/Office" name="Location/Office" id="Location/Office" value="" disabled>
+																					<label for="" class="form-label text-nowrap mb-0">Status</label>
+																				</div>
+																				<div class="col-lg-2 pl-0 floatingFields">	
+																					<input type="text" class="form-control floatingLable" placeholder="" aria-label="Location/Office" name="Location/Office" id="Location/Office" value="" disabled>
+																					<label for="" class="form-label text-nowrap mb-0">Housing Unit</label>
+																				</div>
+																				<div class="col-lg-2 pl-0 floatingFields">		
+																					<input type="text" class="form-control floatingLable" placeholder="" aria-label="Location/Office" name="Location/Office" id="Location/Office" value="" disabled>
+																					<label for="" class="form-label text-nowrap mb-0">Bed</label>
+																				</div>
+																				<div class="col-lg-3 pl-0 floatingFields">	
+																					<input type="text" class="form-control floatingLable" placeholder="" aria-label="Location/Office" name="Location/Office" id="Location/Office" value="" disabled>
+																					<label for="" class="form-label text-nowrap mb-0">Location</label>
+																				</div>
+																				<div class="col-lg-3 px-0 floatingFields">			
+																					<input type="text" class="form-control floatingLable" placeholder="" aria-label="Location/Office" name="Location/Office" id="Location/Office" value="" disabled>
+																					<label for="" class="form-label text-nowrap mb-0">Room/Cell</label>
+																				</div>
+																			</div>
+																		</div>
+																		<div class="col-lg-12 px-0 floatingFieldsTextarea mt-3" style="padding-top: 0 !important;">
+																			<textarea class="form-control floatingLabletextarea" id="addComments" rows="3" name="Comments" aria-label="Comments" value="" placeholder="" style="resize: none;"></textarea>
+																			<label for="" class="form-label text-nowrap mb-0">Comments</label>
+																		</div>
+																	</div>
+																</div>
+															</div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+										</div>
+										<div class="tab-pane fade" id="Victims_Info" role="tabpanel">
+											<div id="panel-1" class="panel">
+			                                    <div class="panel-hdr">
+			                                        <h2>
+			                                            Victims Information
+			                                        </h2>
+			                                    </div>
+			                                    <div class="panel-container show">
+			                                        <div class="panel-content p-1">
+			                                            <div id="js-checkbox-toggles">
+			                                                <div id="victimInfo-table"></div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+										 	<div class="row">
+												<div class="col-lg-12">
+													<div class="panel" style="height: fit-content;">
+														<div class="panel-container show row m-2">
+															<div class="col-lg-12 d-flex p-0">
+																<div class="col-lg-3 pl-0">
+																	<div id="seqCjiscase-table"></div>
+																</div>
+																<div class="col-lg-9 px-0">
+																	<div id="panel-1" class="panel">
+									                                    <div class="panel-hdr">
+									                                        <h2>
+									                                            Address Information
+									                                        </h2>
+									                                    </div>
+									                                    <div class="panel-container show">
+									                                        <div class="panel-content p-1 form-group">
+									                                            <div id="js-checkbox-toggles">
+									                                                <div class="panel-container show row m-2" style="margin-top: 0 !important;">
+																						<div class="col-lg-4 pl-0 floatingFields mt-2">
+																							<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																							<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">Contact</label>
+										                                                </div>
+										                                                <div class="col-lg-8 px-0 floatingFields mt-2">
+																							<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																							<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">Address</label>
+										                                                </div>
+										                                                <div class="col-lg-2 pl-0 floatingFields mt-3">
+																							<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																							<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">City</label>
+										                                                </div>
+										                                                <div class="col-lg-2 pl-0 floatingFields mt-3">
+																							<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																							<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">State</label>
+										                                                </div>
+										                                                <div class="col-lg-1 pl-0 floatingFields mt-3">
+																							<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																							<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">Zip</label>
+										                                                </div>
+										                                                <div class="col-lg-2 pl-0 floatingFields mt-3">
+																							<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																							<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">Home #</label>
+										                                                </div>
+										                                                <div class="col-lg-1 pl-0 floatingFields mt-3">
+																							<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																							<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">Age</label>
+										                                                </div>
+										                                                <div class="col-lg-2 pl-0 floatingFields mt-3">
+																							<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																							<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">Work #</label>
+										                                                </div>
+										                                                <div class="col-lg-2 px-0 floatingFields mt-3">
+																							<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																							<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">Cell #</label>
+										                                                </div>
+																					</div>
+									                                            </div>
+									                                        </div>
+									                                    </div>
+									                                </div>
+																	<div class="col-lg-12 px-0 floatingFieldsTextarea mt-3">
+																		<textarea class="form-control floatingLabletextarea" placeholder="" id="addComments" rows="5" name="Comments" aria-label="Comments"value=""></textarea>
+																		<label for="" class="form-label text-nowrap mb-0">Charge Description</label>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane fade" id="PFA" role="tabpanel">
+											<div id="panel-1" class="panel">
+			                                    <div class="panel-hdr">
+			                                        <h2>
+			                                            PFA Information
+			                                        </h2>
+			                                    </div>
+			                                    <div class="panel-container show">
+			                                        <div class="panel-content p-1">
+			                                            <div id="js-checkbox-toggles">
+			                                                <div id="pfaInfo-table"></div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                                <div id="panel-1" class="panel">
+			                                    <div class="panel-hdr">
+			                                        <h2>
+			                                            Petitioner Housing Details
+			                                        </h2>
+			                                    </div>
+			                                    <div class="panel-container show">
+			                                        <div class="panel-content p-1">
+			                                            <div id="js-checkbox-toggles">
+			                                                <div class="row mx-1">
+																<div class="col-lg-3 pl-0 floatingFields mt-2">
+																	<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																	<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">Location</label>
+				                                                </div>
+				                                                <div class="col-lg-3 pl-0 floatingFields mt-2">
+																	<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																	<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">Status</label>
+				                                                </div>
+				                                                <div class="col-lg-2 pl-0 floatingFields mt-2">
+																	<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																	<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">Housing Unit</label>
+				                                                </div>
+				                                                <div class="col-lg-2 pl-0 floatingFields mt-2">
+																	<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																	<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">Room/Cell</label>
+				                                                </div>
+				                                                <div class="col-lg-2 px-0 floatingFields mt-2">
+																	<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																	<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">Bed</label>
+				                                                </div>
+															</div>
+															<div class="col-lg-12 px-0 mx-1 mt-3 floatingFieldsTextarea">
+																<textarea class="form-control floatingLabletextarea" placeholder="" id="addComments" rows="3" name="Comments" aria-label="Comments"value=""></textarea>
+																<label for="" class="form-label text-nowrap mb-0">Comments</label>
+															</div>
+			                                            </div> 
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                                <div id="panel-1" class="panel">
+			                                    <div class="panel-hdr">
+			                                        <h2>
+			                                            Petitioner Address
+			                                        </h2>
+			                                    </div>
+			                                    <div class="panel-container show">
+			                                        <div class="panel-content p-1">
+			                                            <div id="js-checkbox-toggles">
+			                                                <div class="row m-1">
+																<div class="col-lg-5 pl-0 floatingFields mt-2">
+																	<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																	<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">Address</label>
+				                                                </div>
+				                                                <div class="col-lg-3 pl-0 floatingFields mt-2">
+																	<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																	<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">City</label>
+				                                                </div>
+				                                                <div class="col-lg-1 pl-0 floatingFields mt-2">
+																	<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																	<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">State</label>
+				                                                </div>
+				                                                <div class="col-lg-1 pl-0 floatingFields mt-2">
+																	<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																	<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">Zip</label>
+				                                                </div>
+				                                                <div class="col-lg-2 px-0 floatingFields mt-2">
+																	<input type="text" class="form-control w-100 floatingLable" aria-label="AssignedOfficer2" id="AssignedOfficer2" name="AssignedOfficer2" value="" placeholder="">
+																	<label for="AssignedOfficer" class="form-label mr-1 text-nowrap mb-0">Phone#</label>
+				                                                </div>
+															</div>
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+				<!-- this overlay is activated only when mobile menu is triggered -->
+				<div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
+				<!-- END Page Content -->
+				<!-- Modal Large -->
+				<div class="modal fade" id="default-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Staff Name</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true"><i class="fal fa-times"></i></span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="form-group row">
+									<label for="staffSearch"
+										class="col-form-label col-12 col-lg-1 form-label">Search</label>
+									<div class="col-12 col-lg-11">
+										<input type="text" class="form-control" aria-label="staffSearch"
+											name="staffSearch" id="staffSearch" value="">
+									</div>
+
+								</div>
+								<div class="table-responsive-lg">
+									<table class="table table-bordered m-0">
+										<thead>
+											<tr>
+												<th>Last Name</th>
+												<th>First Name</th>
+												<th>MI</th>
+												<th>Suffix</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- BEGIN Shortcuts -->
+				<!-- modal shortcut -->
+				<div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog"
+					aria-labelledby="modal-shortcut" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-top modal-transparent" role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+								<ul class="app-list w-auto h-auto p-0 text-left">
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Home
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
+												<i class="ni ni-envelope icon-stack-1x text-white"></i>
+											</div>
+											<span class="app-list-name">
+												Inbox
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Add More
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div> <!-- END Shortcuts -->
+			</div>
+		</div>
+	</div>
+	<!-- END Page Wrapper -->
+	<!-- BEGIN Quick Menu -->
+	<!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
+	<nav class="shortcut-menu d-none d-sm-block"> <input
+		type="checkbox" class="menu-open" name="menu-open" id="menu_open" />
+	<label for="menu_open" class="menu-open-button "> <span
+		class="app-shortcut-icon d-block"></span>
+	</label> <a href="#" class="menu-item btn" data-toggle="tooltip"
+		data-placement="left" title="Scroll Top"> <i
+		class="fal fa-arrow-up"></i>
+	</a> <a href="page_login-alt.html" class="menu-item btn"
+		data-toggle="tooltip" data-placement="left" title="Logout"> <i
+		class="fal fa-sign-out"></i>
+	</a> <a href="#" class="menu-item btn" data-action="app-fullscreen"
+		data-toggle="tooltip" data-placement="left" title="Full Screen"> <i
+		class="fal fa-expand"></i>
+	</a> <a href="#" class="menu-item btn" data-action="app-print"
+		data-toggle="tooltip" data-placement="left" title="Print page"> <i
+		class="fal fa-print"></i>
+	</a> <a href="#" class="menu-item btn" data-action="app-voice"
+		data-toggle="tooltip" data-placement="left" title="Voice command">
+		<i class="fal fa-microphone"></i>
+	</a> </nav>
+	<!-- END Quick Menu -->
+	<!-- BEGIN Messenger -->
+	<div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right">
+			<div class="modal-content h-100">
+				<div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
+					<div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+						<span class="mr-2">
+							<span class="rounded-circle profile-image d-block"
+								style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+						</span>
+						<div class="info-card-text">
+							<a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white"
+								data-toggle="dropdown" aria-expanded="false">
+								Tracey Chang
+								<i class="fal fa-angle-down d-inline-block ml-1 text-white fs-md"></i>
+							</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">Send Email</a>
+								<a class="dropdown-item" href="#">Create Appointment</a>
+								<a class="dropdown-item" href="#">Block User</a>
+							</div>
+							<span class="text-truncate text-truncate-md opacity-80">IT Director</span>
+						</div>
+					</div>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0 h-100 d-flex">
+					<!-- BEGIN msgr-list -->
+					<div
+						class="msgr-list d-flex flex-column bg-faded border-faded border-top-0 border-right-0 border-bottom-0 position-absolute pos-top pos-bottom">
+						<div>
+							<div
+								class="height-4 width-3 h3 m-0 d-flex justify-content-center flex-column color-primary-500 pl-3 mt-2">
+								<i class="fal fa-search"></i>
+							</div>
+							<input type="text" class="form-control bg-white" id="msgr_listfilter_input"
+								name="msgr_listfilter_input" placeholder="Filter contacts" aria-label="FilterSearch"
+								value="" data-listfilter="#js-msgr-listfilter">
+						</div>
+						<div class="flex-1 h-100 custom-scroll">
+							<div class="w-100">
+								<ul id="js-msgr-listfilter" class="list-unstyled m-0">
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="tracey chang online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Tracey Chang
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="oliver kopyuv online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Oliver Kopyuv
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="dr john cook phd away">
+											<div class="d-table-cell align-middle status status-warning status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Dr. John Cook PhD
+													<small class="d-block font-italic fs-xs">
+														Away
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-g.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Ali Amdaney
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="sarah mcbrook online">
+											<div class="d-table-cell align-middle status status-success status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Sarah McBrook
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney busy">
+											<div class="d-table-cell align-middle status status-danger status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs text-danger">
+														Busy
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney inactive">
+											<div class="d-table-cell align-middle">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-m.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													+714651347790
+													<small class="d-block font-italic fs-xs opacity-50">
+														Missed Call
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+								<div class="filter-message js-filter-message"></div>
+							</div>
+						</div>
+						<div>
+							<a class="fs-xl d-flex align-items-center p-3">
+								<i class="fal fa-cogs"></i>
+							</a>
+						</div>
+					</div>
+					<!-- END msgr-list -->
+					<!-- BEGIN msgr -->
+					<div class="msgr d-flex h-100 flex-column bg-white">
+						<!-- BEGIN custom-scroll -->
+						<div class="custom-scroll flex-1 h-100">
+							<div id="chat_container" class="w-100 p-4">
+								<!-- start .chat-segment -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">
+										Jun 19
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent">
+									<div class="chat-message">
+										<p>
+											Hey Ching, did you get my files?
+										</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:00 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>
+											Hi
+										</p>
+										<p>
+											Sorry going through a busy time in office. Yes I analyzed the solution.
+										</p>
+										<p>
+											It will require some resource, which I could not manage.
+										</p>
+									</div>
+									<div class="fw-300 text-muted mt-1 fs-xs">
+										3:24 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-start">
+									<div class="chat-message">
+										<p>
+											Okay
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-end">
+									<div class="chat-message">
+										<p>
+											Sending you some dough today, you can allocate the resources to this
+											project.
+										</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:26 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-start">
+									<div class="chat-message">
+										<p>
+											Perfect. Thanks a lot!
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>
+											I will have them ready by tonight.
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-end">
+									<div class="chat-message">
+										<p>
+											Cheers
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment for timestamp -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">
+										Jun 20
+									</div>
+								</div>
+								<!--  end .chat-segment for timestamp -->
+							</div>
+						</div>
+						<!-- END custom-scroll  -->
+						<!-- BEGIN msgr__chatinput -->
+						<div class="d-flex flex-column">
+							<div
+								class="border-faded border-right-0 border-bottom-0 border-left-0 flex-1 mr-3 ml-3 position-relative shadow-top">
+								<div class="pt-3 pb-1 pr-0 pl-0 rounded-0" tabindex="-1">
+									<div id="msgr_input" contenteditable="true"
+										data-placeholder="Type your message here..."
+										class="height-10 form-content-editable"></div>
+								</div>
+							</div>
+							<div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1"
+									data-toggle="tooltip" data-original-title="More options" data-placement="top">
+									<i class="fal fa-ellipsis-v-alt color-fusion-300"></i>
+								</a>
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+									data-original-title="Attach files" data-placement="top">
+									<i class="fal fa-paperclip color-fusion-300"></i>
+								</a>
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+									data-original-title="Insert photo" data-placement="top">
+									<i class="fal fa-camera color-fusion-300"></i>
+								</a>
+								<div class="ml-auto">
+									<a href="javascript:void(0);" class="btn btn-info">Send</a>
+								</div>
+							</div>
+						</div>
+						<!-- END msgr__chatinput -->
+					</div>
+					<!-- END msgr -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Messenger -->
+	<!-- BEGIN Page Settings -->
+	<div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right modal-md">
+			<div class="modal-content">
+				<div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
+					<h4 class="m-0 text-center color-white">
+						Layout Settings
+						<small class="mb-0 opacity-80">User Interface Settings</small>
+					</h4>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0">
+					<div class="settings-panel">
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									App Layout
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="fh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="header-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Header</span>
+							<span class="onoffswitch-title-desc">header is in a fixed at all times</span>
+						</div>
+						<div class="list" id="nff">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Navigation</span>
+							<span class="onoffswitch-title-desc">left panel is fixed</span>
+						</div>
+						<div class="list" id="nfm">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-minify"></a>
+							<span class="onoffswitch-title">Minify Navigation</span>
+							<span class="onoffswitch-title-desc">Skew nav to maximize space</span>
+						</div>
+						<div class="list" id="nfh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-hidden"></a>
+							<span class="onoffswitch-title">Hide Navigation</span>
+							<span class="onoffswitch-title-desc">roll mouse on edge to reveal</span>
+						</div>
+						<div class="list" id="nft">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-top"></a>
+							<span class="onoffswitch-title">Top Navigation</span>
+							<span class="onoffswitch-title-desc">Relocate left pane to top</span>
+						</div>
+						<div class="list" id="mmb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-main-boxed"></a>
+							<span class="onoffswitch-title">Boxed Layout</span>
+							<span class="onoffswitch-title-desc">Encapsulates to a container</span>
+						</div>
+						<div class="expanded">
+							<ul class="">
+								<li>
+									<div class="bg-fusion-50" data-action="toggle" data-class="mod-bg-1"></div>
+								</li>
+								<li>
+									<div class="bg-warning-200" data-action="toggle" data-class="mod-bg-2"></div>
+								</li>
+								<li>
+									<div class="bg-primary-200" data-action="toggle" data-class="mod-bg-3"></div>
+								</li>
+								<li>
+									<div class="bg-success-300" data-action="toggle" data-class="mod-bg-4"></div>
+								</li>
+							</ul>
+							<div class="list" id="mbgf">
+								<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+									data-class="mod-fixed-bg"></a>
+								<span class="onoffswitch-title">Fixed Background</span>
+							</div>
+						</div>
+						<!-- <div class="mt-4 d-table w-100 px-5">
+                            <div class="d-table-cell align-middle">
+                                <h5 class="p-0">
+                                    Mobile Menu
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="list" id="nmp">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-push"></a>
+                            <span class="onoffswitch-title">Push Content</span>
+                            <span class="onoffswitch-title-desc">Content pushed on menu reveal</span>
+                        </div>
+                        <div class="list" id="nmno">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-no-overlay"></a>
+                            <span class="onoffswitch-title">No Overlay</span>
+                            <span class="onoffswitch-title-desc">Removes mesh on menu reveal</span>
+                        </div>
+                        <div class="list" id="sldo">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-slide-out"></a>
+                            <span class="onoffswitch-title">Off-Canvas <sup>(beta)</sup></span>
+                            <span class="onoffswitch-title-desc">Content overlaps menu</span>
+                        </div> -->
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Accessibility
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mbf">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-bigger-font"></a>
+							<span class="onoffswitch-title">Bigger Content Font</span>
+							<span class="onoffswitch-title-desc">content fonts are bigger for readability</span>
+						</div>
+						<div class="list" id="mhc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-high-contrast"></a>
+							<span class="onoffswitch-title">High Contrast Text (WCAG 2 AA)</span>
+							<span class="onoffswitch-title-desc">4.5:1 text contrast ratio</span>
+						</div>
+						<div class="list" id="mcb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-color-blind"></a>
+							<span class="onoffswitch-title">Daltonism <sup>(beta)</sup> </span>
+							<span class="onoffswitch-title-desc">color vision deficiency</span>
+						</div>
+						<div class="list" id="mpc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-pace-custom"></a>
+							<span class="onoffswitch-title">Preloader Inside</span>
+							<span class="onoffswitch-title-desc">preloader will be inside content</span>
+						</div>
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Global Modifications
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mcbg">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-clean-page-bg"></a>
+							<span class="onoffswitch-title">Clean Page Background</span>
+							<span class="onoffswitch-title-desc">adds more whitespace</span>
+						</div>
+						<div class="list" id="mhni">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-nav-icons"></a>
+							<span class="onoffswitch-title">Hide Navigation Icons</span>
+							<span class="onoffswitch-title-desc">invisible navigation icons</span>
+						</div>
+						<div class="list" id="dan">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-disable-animation"></a>
+							<span class="onoffswitch-title">Disable CSS Animation</span>
+							<span class="onoffswitch-title-desc">Disables CSS based animations</span>
+						</div>
+						<div class="list" id="mhic">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-info-card"></a>
+							<span class="onoffswitch-title">Hide Info Card</span>
+							<span class="onoffswitch-title-desc">Hides info card from left panel</span>
+						</div>
+						<div class="list" id="mlph">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-lean-subheader"></a>
+							<span class="onoffswitch-title">Lean Subheader</span>
+							<span class="onoffswitch-title-desc">distinguished page header</span>
+						</div>
+						<div class="list" id="mnl">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-nav-link"></a>
+							<span class="onoffswitch-title">Hierarchical Navigation</span>
+							<span class="onoffswitch-title-desc">Clear breakdown of nav links</span>
+						</div>
+						<div class="list mt-1">
+							<span class="onoffswitch-title">Global Font Size <small>(RESETS ON REFRESH)</small> </span>
+							<div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
+								<label for="smRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-sm" data-target="html">
+									<input type="radio" aria-label="smRadio" name="smRadio" id="smRadio" value=""> SM
+								</label>
+								<label for="mdRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text" data-target="html">
+									<input type="radio" aria-label="mdRadio" name="mdRadio" id="mdRadio" value=""
+										checked=""> MD
+								</label>
+								<label for="lgRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-lg" data-target="html">
+									<input type="radio" aria-label="lgRadio" name="lgRadio" id="lgRadio" value=""> LG
+								</label>
+								<label for="xlRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-xl" data-target="html">
+									<input type="radio" aria-label="xlRadio" name="xlRadio" id="xlRadio" value=""> XL
+								</label>
+							</div>
+							<span class="onoffswitch-title-desc d-block mb-g">Change <strong>root</strong> font size to
+								effect rem values</span>
+						</div>
+						<div class="mt-2 d-table w-100 pl-5 pr-3">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Theme colors <small>(overlays base css)</small>
+								</h5>
+								<!-- <div class="fs-xs text-muted p-2 alert alert-warning mt-3 mb-0">
+                                    <i class="fal fa-exclamation-triangle text-warning mr-2"></i>Due to network latency
+                                    and CPU utilization, you may experience a brief flickering effect on page load which
+                                    may show the intial applied theme for a split second. Setting the prefered
+                                    style/theme in the header will prevent this from happening.
+                                </div> -->
+							</div>
+						</div>
+						<div class="expanded theme-colors pl-5 pr-3">
+							<ul class="m-0">
+								<li><a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme=""
+										data-toggle="tooltip" data-placement="top" title="Wisteria (base css)"
+										data-original-title="Wisteria (base css)"></a></li>
+								<li><a href="#" id="myapp-1" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip"
+										data-placement="top" title="Tapestry" data-original-title="Tapestry"></a></li>
+								<li><a href="#" id="myapp-2" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip"
+										data-placement="top" title="Atlantis" data-original-title="Atlantis"></a></li>
+								<li><a href="#" id="myapp-3" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip"
+										data-placement="top" title="Indigo" data-original-title="Indigo"></a></li>
+								<li><a href="#" id="myapp-4" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip"
+										data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a>
+								</li>
+								<li><a href="#" id="myapp-5" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip"
+										data-placement="top" title="Tradewind" data-original-title="Tradewind"></a></li>
+								<li><a href="#" id="myapp-6" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip"
+										data-placement="top" title="Cranberry" data-original-title="Cranberry"></a></li>
+								<li><a href="#" id="myapp-7" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip"
+										data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a></li>
+								<li><a href="#" id="myapp-8" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip"
+										data-placement="top" title="Chetwode Blue"
+										data-original-title="Chetwode Blue"></a></li>
+								<li><a href="#" id="myapp-9" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip"
+										data-placement="top" title="Apricot" data-original-title="Apricot"></a></li>
+								<li><a href="#" id="myapp-10" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip"
+										data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-11" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip"
+										data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-12" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip"
+										data-placement="top" title="Wild Blue Yonder"
+										data-original-title="Wild Blue Yonder"></a></li>
+								<li><a href="#" id="myapp-13" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip"
+										data-placement="top" title="Emerald" data-original-title="Emerald"></a></li>
+							</ul>
+						</div>
+						<hr class="mb-0 mt-4">
+						<div class="pl-5 pr-3 py-3 bg-faded">
+							<div class="row no-gutters">
+								<div class="col-6 pr-1">
+									<a href="#" class="btn btn-outline-danger fw-500 btn-block"
+										data-action="app-reset">Reset Settings</a>
+								</div>
+								<div class="col-6 pl-1">
+									<a href="#" class="btn btn-danger fw-500 btn-block"
+										data-action="factory-reset">Factory Reset</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<span id="saving"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Page Settings -->
+	
+	<style>
+		.page-content-wrapper{
+			height: calc(100vh - 140px)!important;
+		}
+		/* existing styles */
+		h6{
+			color: #7a59ad;
+			font-weight: 500;
+		}
+		#dtBasicExample	tr{
+			white-space: nowrap;
+		}
+		#dtBasicExample .sorting_asc:first-child::before{
+			display: none;
+		}
+		#dtBasicExample .sorting_asc:first-child::after{
+			display: none;
+		}
+		#dtBasicExample_wrapper div:first-child{
+			margin: 0!important;
+			padding-top: 0;
+		}
+		#dtBasicExample_wrapper .col-sm-12{
+			padding: 0;
+		}
+		.dataTables_info{
+			margin-left: 12px;
+			padding-top: 0;
+		}
+		#dtBasicExample{
+			margin-bottom: 5px !important;
+		}
+		.panel{
+			margin-bottom: 8px !important;
+		}
+		.dataTables_scrollHeadInner{
+			width: 100%!important;
+			white-space: nowrap;
+		}
+		#initiatelfms .dataTables_wrapper .row:nth-child(1){
+			margin-bottom: 5px !important;
+		} 
+		#initiatelfms .dataTables_info{
+			margin-left: 0px!important;
+		}
+		.headerBtnGroup .dropdown-item{
+			padding: .2rem 1.5rem;
+		}
+		.select2-container--open .select2-dropdown--below {
+			z-index: 9999;
+		}
+		label{
+			font-weight: 500;
+		}
+		#OffenderContactTable_wrapper .row:first-child{
+			margin-bottom: 0!important;
+		}
+		#OffenderContactTable_info{
+			margin-left: 0;
+			padding-top: 4px;
+		}
+		#OtherClaimContactByTable_wrapper .row:first-child{
+			margin-bottom: 0!important;
+		}
+		#OtherClaimContactByTable_info{ 
+			margin-left: 0;
+			padding-top: 4px;
+		}
+		#CodefendantTable_wrapper .row:first-child{
+			margin-bottom: 0!important;
+		}
+		#CodefendantTable_info{ 
+			margin-left: 0;
+			padding-top: 4px;
+		}
+		
+		.tabulator .tabulator-tableholder{
+			overflow-x: hidden;
+		}
+		
+
+		/* New Safe Styles for custom checkbox inside Tabulator only */
+		
+		
+		/* Target Tabulator's tick and cross styling */
+		.tabulator .tabulator-cell .tabulator-tickcross {
+		    background-color: #d3d3d3; /* Light grey */
+		    border-radius: 3px;
+		    width: 20px;
+		    height: 20px;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    font-weight: bold;
+		    cursor: pointer;
+		}
+
+		/* White checkmark when checked */
+		.tabulator .tabulator-cell .tabulator-tickcross.ticked::after {
+		    content: "✓";
+		    color: white;
+		    font-size: 14px;
+		}
+		
+		.ActiveRow {
+		    background-color: #9abcea !important;
+		    
+		}
+		
+		tabulator.tabulator-block-select, .tabulator.tabulator-ranges .tabulator-cell:not(.tabulator-editing){
+								display: inline-flex;
+							}
+							.tabulator-row .tabulator-cell.tabulator-editing {
+							    display: inline-flex;
+							}
+							.leader-editor-checkbox::before{
+							    content: '';
+							    display: inline-block;
+							    width: 12px;
+							    height: 14px;
+							    border: 2px solid #0075ff;
+							    margin-top: 4px;
+							    }
+
+		
+	
+	</style>
+
+
+	<div th:replace="~{fragments/script :: script}"></div>
+	<script src="js/staticjs.js"></script>
+	<script>
+	$(document).ready(function () {
+		 $('#cancelButton').on('click', function () {
+		        const urls = JSON.parse(sessionStorage.getItem('urls')) || [];
+		        let currentIndex = parseInt(sessionStorage.getItem('currentIndex')) || 0;
+
+		        console.log("URLs from sessionStorage:", urls);
+		        
+		        // Check if there are URLs in the sessionStorage
+		        if (urls.length > 0) {
+		            if (currentIndex < urls.length - 1) {
+		                // If there are more URLs, navigate to the next one
+		                currentIndex++;
+		                window.location.href = urls[currentIndex]; // Open the next URL
+		            } else {
+		                // If we're at the last URL, go to the original page (BookingNavigation)
+		                window.location.href = urls[urls.length - 1]; // Go to the last URL (this will show the final page)
+		            }
+		            // Store the current index in sessionStorage to track the URL state
+		            sessionStorage.setItem('currentIndex', currentIndex);
+		        } else {
+		            console.log("No URLs available to open.");
+		        }
+		    });
+			
+		  
+			$(function () {
+				$('.select2').select2();
+
+				$(".select2-placeholder-multiple").select2(
+					{
+						placeholder: "Select State"
+					});
+				$(".js-hide-search").select2(
+					{
+						minimumResultsForSearch: 1 / 0
+					});
+				$(".js-max-length").select2(
+					{
+						maximumSelectionLength: 2,
+						placeholder: "Select maximum 2 items"
+					});
+				$(".select2-placeholder").select2(
+					{
+						placeholder: "Select a state",
+						allowClear: true
+					});
+
+
+
+				$(".js-select2-icons").select2(
+					{
+						minimumResultsForSearch: 1 / 0,
+						templateResult: icon,
+						templateSelection: icon,
+						escapeMarkup: function (elm) {
+							return elm
+						}
+					});
+					
+/*-----------------------------------------------------------------------------------------start---------------------------------------------------------------*/
+					
+					
+				
+					let offenderTableData = [];
+					let sourceDropdownOptions = [];
+					let typeDropdownOptions = []; 
+					let index = 0;
+					let lastCommitNoToHighlight = null;
+					let lastFocusedField = null;
+
+					
+					
+					// ===========================
+					// Generic Checkbox Formatter
+					// ===========================
+					function genericCheckboxFormatter(expectedValue) {
+					    return function(cell, formatterParams, onRendered) {
+					        const value = cell.getValue();
+					        const checkbox = document.createElement("input");
+					        checkbox.type = "checkbox";
+					        checkbox.checked = value === expectedValue;
+					        checkbox.disabled = true;
+					        return checkbox;
+					    };
+					}
+					
+					function checkboxFormatter(cell) {
+								 	const checked = !!cell.getValue();
+							    return `<input  type="checkbox" ${checked ? "checked" : ""} />`; 
+							  }
+					
+										
+					// ===========================
+					// Generic Checkbox Editor
+					// ===========================
+					function genericCheckboxEditor(expectedValue) {
+					    return function(cell, onRendered, success, cancel) {
+					        const isChecked = cell.getValue() === expectedValue;
+					        const input = document.createElement("input");
+					        input.type = "checkbox";
+					        input.checked = isChecked;
+					        input.classList.add("leader-editor-checkbox");
+
+					        input.addEventListener("change", function () {
+					            success(input.checked); // returns true/false
+					        });
+
+					        input.addEventListener("keydown", function (e) {
+					            if (e.key === "Enter") {
+					                input.checked = !input.checked;
+					                success(input.checked);
+					            } else if (e.key === "Escape") {
+					                cancel();
+					            }
+					        });
+
+					        onRendered(() => input.focus());
+
+					        return input;
+					    };
+					}
+					
+					
+					// ===========================
+					// Custom Date Editor Function
+					// ===========================
+
+					// --- Custom Date Editor Function ---
+					var customDateEditor = function (cell, onRendered, success, cancel) {
+					    var input = document.createElement("input");
+					    input.type = "text";
+
+					    // Extract and clean the initial date value for the editor
+					    const rawValue = cell.getValue();
+					    let initialDateValue = "";
+					    if (rawValue) {
+					        const potentialDatePart = rawValue.substring(0, 10);
+					        if (/^\d{2}\/\d{2}\/\d{4}$/.test(potentialDatePart)) {
+					            initialDateValue = potentialDatePart;
+					        } else {
+					            try {
+					                const dateObj = new Date(rawValue);
+					                if (!isNaN(dateObj.getTime())) {
+					                    initialDateValue = (dateObj.getMonth() + 1).toString().padStart(2, '0') + '/' +
+					                                       dateObj.getDate().toString().padStart(2, '0') + '/' +
+					                                       dateObj.getFullYear();
+					                }
+					            } catch (e) {
+					                // Ignore parsing errors
+					            }
+					        }
+					    }
+					    input.value = initialDateValue;
+
+					    input.setAttribute("maxlength", "10");
+					    input.style.padding = "4px";
+					    input.style.width = "100%";
+
+					    // Add input event listener for auto-formatting as user types
+					    input.addEventListener("input", function (e) {
+					        let value = input.value.replace(/\D/g, '');
+					        let formattedValue = '';
+
+					        if (value.length > 0) {
+					            formattedValue = value.substring(0, 2);
+					            if (value.length >= 3) {
+					                formattedValue += '/' + value.substring(2, 4);
+					            }
+					            if (value.length >= 5) {
+					                formattedValue += '/' + value.substring(4, 8);
+					            }
+					        }
+					        input.value = formattedValue;
+					    });
+
+					    // Initialize jQuery UI Datepicker
+					    $(input).datepicker({
+					        dateFormat: "mm/dd/yy",
+					        changeMonth: true,
+					        changeYear: true,
+					        yearRange: "1900:2050",
+					        onSelect: function (dateText) {
+					            success(dateText); // calendar selection commits immediately
+					            $(input).datepicker("hide"); // <<<--- ADDED: Close the datepicker on selection
+					        }
+					    });
+
+					    // Handle keyboard events
+					    input.addEventListener("keydown", function (e) {
+					        const dateText = input.value.trim();
+					        const isValid = /^\d{2}\/\d{2}\/\d{4}$/.test(dateText);
+
+					        if (e.key === "Enter" || e.key === "Tab") {
+					            e.preventDefault(); // Prevent default browser tab behavior
+					            $(input).datepicker("hide"); // <<<--- ADDED: Close the datepicker on Enter/Tab
+								console.log("Datepicker selected:", dateText);
+					            if (isValid) {
+					                success(dateText); // Commit valid date
+					            } else {
+					                cancel(); // Cancel if invalid
+					            }
+					        } else if (e.key === "Escape") {
+					            $(input).datepicker("hide");// <<<--- ADDED: Close the datepicker on Escape
+					            cancel(); // Cancel on escape
+					        }
+					    });
+
+					    // Focus and select text when editor opens
+					    onRendered(function () {
+					        input.focus();
+					        input.select();
+					    });
+
+					    return input;
+					};
+
+					// --- Custom Date Formatter Function (remains the same) ---
+					var customDateFormatter = function (cell) {
+					    const raw = cell.getValue();
+					    if (raw) {
+					        let dateString = raw;
+					        const toIndex = raw.indexOf('TO');
+					        if (toIndex !== -1) {
+					            dateString = raw.substring(0, toIndex);
+					        }
+
+					        const dateObj = new Date(dateString);
+
+					        if (!isNaN(dateObj.getTime())) {
+					            return (dateObj.getMonth() + 1).toString().padStart(2, '0') + '/' +
+					                   dateObj.getDate().toString().padStart(2, '0') + '/' +
+					                   dateObj.getFullYear();
+					        }
+					    }
+					    return "";
+					};
+					
+					function convertDateFormat(dateInput) {
+					    const formatDate = (dateStr) => {
+					        const trimmed = (dateStr || "").trim();
+					        if (trimmed === "") return "";
+
+					        // ISO format (safe)
+					        if (/^\d{4}-\d{2}-\d{2}$/.test(trimmed)) return trimmed;
+
+					        // MM/DD/YYYY
+					        const parts = trimmed.split('/');
+					        if (parts.length === 3) {
+					            const [mm, dd, yyyy] = parts;
+					            return `${yyyy}-${mm.padStart(2, '0')}-${dd.padStart(2, '0')}`;
+					        }
+
+					        return ""; // Invalid format
+					    };
+
+					    if (Array.isArray(dateInput)) {
+					        return dateInput.map(formatDate).join(',');
+					    } else {
+					        return formatDate(dateInput);
+					    }
+					}
+					
+					
+					
+					// ===========================
+					// Dummy Table
+					// ===========================
+					
+					const dummyTable = new Tabulator("#DummyTable", {
+					    layout: "fitColumns",
+					    placeholder: "No Data Available",
+					    data: [],
+					    selectable: false,
+					    cellNavigation: false,
+					    tabNavigation: false,
+					    editorActivate: "false",
+					    columns: [
+						{
+													
+													title: "ID #",
+													field: "sbiNo",
+													width: 90,
+													
+												},
+											        { 		
+														title: "First Name",
+													            field: "enemyNameFirst",
+													            
+													             
+													},
+													{
+														titleFormatter: (column) => setTitleDesc(column, 'offenderTable_Last Name', 'Last Name'),	
+													            title: "Last Name",
+													            field: "enemyNameLast",
+													           
+													},
+													{
+														titleFormatter: (column) => setTitleDesc(column, 'offenderTable_MI', 'MI'),	
+													            title: "MI",
+													            field: "enemyNameMiddle",
+													          
+													            width: 50,
+													            
+													 },
+											        { 
+														titleFormatter: (column) => setTitleDesc(column, 'offenderTable_Suffix', 'Suffix'),	
+														title: "Suffix", 
+													 field: "enemyNameSuffix",
+													 width: 70,
+													 
+												 },
+												 {
+													titleFormatter: (column) => setTitleDesc(column, 'offenderTable_Source', 'Source'),
+												     title: "Source",
+												     field: "reportingSourceCode",
+												     editor: "list",
+													 width: 180,
+												     
+												     
+												     
+												 },
+												 {
+													titleFormatter: (column) => setTitleDesc(column, 'offenderTable_Date', 'Date'),
+												     title: "Date",
+												     field: "inmtSourceDt",
+												     width: 90,
+												     
+												 },
+													{
+														titleFormatter: (column) => setTitleDesc(column, 'offenderTable_Type', 'Type'),
+													    title: "Type",
+													    field: "inmtEnmyTp",
+													    
+													},
+													{
+														titleFormatter: (column) => setTitleDesc(column, 'offenderTable_Active', 'Active'),						    
+														title: "Active",
+													    field: "inmtActiveFlg",
+													    hozAlign: "center",
+													    width: 85,
+													    headerSort: false,
+													  
+													},
+														{
+															titleFormatter: (column) => setTitleDesc(column, 'offenderTable_Verified', 'Verified'),		
+														    title: "Verified",
+														    field: "inmtVrfyFlg",
+														    hozAlign: "center",
+														    width: 85,
+														    headerSort: false,
+														    
+													
+														}
+											]
+					});
+
+					
+					// ===========================
+					// Originall table
+					// ===========================
+					
+					
+					
+
+					const offenderTable = new Tabulator("#OffenderContactTable", 
+					{
+						layout: "fitColumns",
+						    placeholder: "No Data Available",
+						    data: offenderTableData,
+						    cellNavigation: true, 
+							selectableRange: 1, 
+							tabNavigation: true,
+						    autoResize: true,
+						    maxHeight: "150px", // Scrolls when more than ~4 rows
+						    virtualDom: true,   // Required for vertical scrolling to work properly
+						   /*  responsiveLayout: "collapse",
+						    resizableColumnFit: true, */
+							editorActivate: "click",
+					    columns: [
+						/*{
+							title: "id",
+							field: "id",
+							visible: false,
+						},*/
+						{
+							title: 'upd',
+							visible: false,
+							field: "upd",
+						},
+						/*{
+							title: 'rowid',
+							visible: false,
+							field: "rowid",
+						},*/
+						
+						{
+							//titleFormatter: (column) => setTitleDesc(column, 'commitNo', 'commitNo'),
+							//title: "commitNo",
+							field: "commitNo",
+							visible: false,
+						},
+						{
+							title: "enemyCommitNo",
+							field: "enemyCommitNo",
+							visible: false,
+						},
+						{
+							title: "enemyStatus",
+							field: "enemyStatus",
+							visible: false,
+						},
+						{
+						    title: "Comment",
+						    field: "enemyComment",
+						    visible: false  // Hidden but exists in data
+						},
+						{
+							title: "rowId",
+							field: "rowId",
+							visible: false,
+						},
+						{
+							title: "id",
+							field: "id",
+							visible: false,
+						},
+						
+						{
+							titleFormatter: (column) => setTitleDesc(column, 'offenderTable_ID #', 'ID #'),
+							title: "ID #",
+							field: "sbiNo",
+							width: 90,
+							editor: customInputEditor,
+						    editable: true,
+							    cellClick: function (e, cell) {
+							        const rowData = cell.getRow().getData();
+							        if (rowData.isNew && !rowData.sbiNo) {
+							            cell.edit(); // open editor if it's a new row and sbiNo is blank
+							        }
+							    }
+						},
+					        { 	titleFormatter: (column) => setTitleDesc(column, 'offenderTable_First Name', 'First Name'),		
+								title: "First Name",
+							            field: "enemyNameFirst",
+							            editor: true,
+							             
+							},
+							{
+								titleFormatter: (column) => setTitleDesc(column, 'offenderTable_Last Name', 'Last Name'),	
+							            title: "Last Name",
+							            field: "enemyNameLast",
+							            editor: true,
+							            /*editable: function (cell) 
+										{
+							                return !cell.getValue();
+							            }*/
+							},
+							{
+								titleFormatter: (column) => setTitleDesc(column, 'offenderTable_MI', 'MI'),	
+							            title: "MI",
+							            field: "enemyNameMiddle",
+							            editor: "input",
+							            width: 50,
+							            editor: true
+							 },
+					        { 
+								titleFormatter: (column) => setTitleDesc(column, 'offenderTable_Suffix', 'Suffix'),	
+								title: "Suffix", 
+							 field: "enemyNameSuffix",
+							 width: 70,
+							 editor: "input",
+							 editor: true
+						 },
+						 {
+							titleFormatter: (column) => setTitleDesc(column, 'offenderTable_Source', 'Source'),
+						     title: "Source",
+						     field: "reportingSourceCode",
+						     editor: "list",
+							 width: 180,
+						     editorParams: function () {
+						         return {
+						             values: sourceDropdownOptions.length > 0
+						                 ? sourceDropdownOptions
+						                 : [{ label: "Loading...", value: "" }]
+						         };
+						     },
+						     formatter: function (cell) {
+						         const code = cell.getValue();
+						         const match = sourceDropdownOptions.find(option => option.value === code);
+						         return match ? match.label : code;
+						     },
+						     cellEdited: function (cell) {
+								console.log("Source selected: ",cell.getValue());
+						         const row = cell.getRow();
+						         row.update({
+						             ...row.getData(),
+						             isEdited: true
+						         });
+						     }
+						 },
+						 {
+							titleFormatter: (column) => setTitleDesc(column, 'offenderTable_Date', 'Date'),
+						     title: "Date",
+						     field: "inmtSourceDt",
+						     width: 90,
+						     editor: customDateEditor,
+						     formatter: customDateFormatter,
+						     cellEdited: function (cell) {
+								console.log("Date cell edited:", cell.getValue());
+						         const row = cell.getRow();
+						         row.update({
+						             ...row.getData(),
+						             isEdited: true
+						         });
+						     }
+						 },
+							{
+								titleFormatter: (column) => setTitleDesc(column, 'offenderTable_Type', 'Type'),
+							    title: "Type",
+							    field: "inmtEnmyTp",
+							    editor: "list",
+							    editorParams: function () {
+							        return {
+							            values: typeDropdownOptions.length > 0
+							                ? typeDropdownOptions
+							                : [{ label: "Loading...", value: "" }]
+							        };
+							    },
+							    formatter: function (cell) {
+							        const code = cell.getValue();
+							        const match = typeDropdownOptions.find(option => option.value === code);
+							        return match ? match.label : code;
+							    },
+							    cellEdited: function (cell) {
+									console.log("Type",cell.getValue());
+							        const row = cell.getRow();
+							        row.update({
+							            ...row.getData(),
+							            isEdited: true
+							        });
+							    }
+							},
+							{
+								titleFormatter: (column) => setTitleDesc(column, 'offenderTable_Active', 'Active'),						    
+								title: "Active",
+														    field: "inmtActiveFlg",
+														    hozAlign: "center",
+														    width: 85,
+														    headerSort: false,
+														    formatter: genericCheckboxFormatter('A'),
+														    editor: genericCheckboxEditor('A'),
+														    cellEdited: function (cell) {
+														        const row = cell.getRow();
+														        const isChecked = cell.getValue();
+														        const newValue = isChecked ? 'A' : '';
+
+														        row.update({
+														            ...row.getData(),
+														            inmtActiveFlg: newValue,
+														            isEdited: true
+														        });
+
+														        console.log(`Row ${row.getPosition(true)} updated Active to: ${newValue}`);
+														    },
+															cellFocus: function (e, cell) {
+																if (cell.getColumn().getField() === "inmtActiveFlg") {
+																	setTimeout(() => cell.edit(), 10);
+																}
+															},
+														},
+														{
+															titleFormatter: (column) => setTitleDesc(column, 'offenderTable_Verified', 'Verified'),		
+														    title: "Verified",
+														    field: "inmtVrfyFlg",
+														    hozAlign: "center",
+														    width: 85,
+														    headerSort: false,
+														    formatter: genericCheckboxFormatter('Y'),
+														    editor: genericCheckboxEditor('Y'),
+														    cellEdited: function (cell) {
+														        const row = cell.getRow();
+														        const isChecked = cell.getValue();
+														        const newValue = isChecked ? 'Y' : '';
+
+														        row.update({
+														            ...row.getData(),
+														            inmtVrfyFlg: newValue,
+														            isEdited: true
+														        });
+
+														        console.log(`Row ${row.getPosition(true)} updated Verified to: ${newValue}`);
+														    },
+															cellFocus: function (e, cell) {
+																				if (cell.getColumn().getField() === "inmtActiveFlg") {
+																					setTimeout(() => cell.edit(), 10);
+																				}
+																														},
+														}
+														
+
+
+					    ],
+						
+						
+						rowFormatter: function (row) {
+						    const rowData = row.getData();
+						    const rowElement = row.getElement();
+
+							
+
+						    rowElement.setAttribute('data-sbiNo', rowData.sbiNo || '');
+						    rowElement.setAttribute('data-firstName', rowData.enemyNameFirst || '');
+						    rowElement.setAttribute('data-lastName', rowData.enemyNameLast || '');
+						    rowElement.setAttribute('data-commitNo', rowData.commitNo || '');
+						}
+
+       
+					});
+					
+					
+					// Initial visibility setup
+					/*$("#DummyTableContainer").show();
+					$("#OffenderContactTableContainer").hide();
+					
+					$("#searchBtn").on("click", function () {
+					    const sbiNo = $("#sbiNumberInput").val().trim();
+
+					    if (!sbiNo) {
+					        alert("Please enter an SBI Number.");
+					        return;
+					    }
+
+					    // Toggle visibility
+					    $("#DummyTableContainer").hide();
+					    $("#OffenderContactTableContainer").show();
+
+					    // Load offender table data
+					    loadOffenderTableData(sbiNo);  // We’ll define this in Step 3
+					});*/
+
+					
+
+					tabulatorRegistry["OffenderContactTable"] = {
+									varName: "offenderTable",
+									instance: offenderTable
+								};
+					
+					window.offenderTable = offenderTable;
+					
+					
+					
+					let prevCell = null;
+					
+					$(document).on('keydown', function(e) {
+					    // Arrow key handler
+					    if (['ArrowDown', 'ArrowUp', 'ArrowRight', 'ArrowLeft'].includes(e.key)) {
+					        if (window.offenderTable) {
+					            const ranges = window.offenderTable.getRanges();
+					            if (ranges.length > 0) {
+					                const range = ranges[0];
+					                const structuredCells = range.getStructuredCells();
+					                if (structuredCells.length > 0 && structuredCells[0].length > 0) {
+					                    const firstCell = structuredCells[0][0];
+					                    const row = firstCell.getRow();
+					                    handleOffenderRowClick(row);
+					                }
+					            }
+					        } else {
+					            console.warn("Arrow key handler: offenderTable not yet available in window scope.");
+					        }
+					    }
+
+					    // Specific Tab handler: when focus is in #addComments
+					    else if (e.key === 'Tab' && document.activeElement.id === "addComments") {
+					        e.preventDefault();
+
+					        const allRows = offenderTable.getRows();
+					        const currentRow = window.lastClickedRow;
+
+					        if (!currentRow) return;
+
+					        const currentIndex = allRows.findIndex(r => r === currentRow);
+
+					        if (currentIndex !== -1 && currentIndex < allRows.length - 1) {
+					            const nextRow = allRows[currentIndex + 1];
+					            handleOffenderRowClick(nextRow);
+					            focusCell(offenderTable, nextRow.getData().id, "sbiNo");
+					        } else {
+					            console.log("Reached the last row or no next row found.");
+					        }
+
+					        return;
+					    }
+
+					    // General Tab handler (for Verified column logic)
+					    else if (e.key === 'Tab') {
+					        console.log("--- Tab key pressed (Global Handler) ---");
+
+					        const ranges = offenderTable.getRanges();
+					        let matched = false;
+
+					        if (ranges.length > 0) {
+					            const range = ranges[0];
+					            const structuredCells = range.getStructuredCells();
+					            for (let rowCells of structuredCells) {
+					                for (let cell of rowCells) {
+					                    const columnTitle = cell.getColumn().getDefinition().title;
+					                    if (columnTitle === prevCell) {
+					                        const row = cell.getRow();
+					                        const rowData = row.getData();
+					                        handleOffenderRowClick(row);
+					                        $('#addComments').val(rowData.enemyComment || '');
+					                        document.getElementById("addComments").focus();
+					                        prevCell = null;
+					                        e.preventDefault();
+					                        matched = true;
+					                        return;
+					                    }
+					                    prevCell = columnTitle;
+					                }
+					            }
+					        }
+
+					        
+							
+
+					    }
+					});
+
+
+					
+					/*else if (e.key === 'Tab') {
+					    console.log("--- Tab key pressed (Global Handler) ---");
+
+					    let ranges = offenderTable.getRanges();
+					    let structuredCells = [];
+
+					    if (ranges.length > 0) {
+					        const range = ranges[0];
+					        structuredCells = range.getStructuredCells();
+					    }
+
+					    // Fallback for newly added rows (getRanges may be empty)
+					    if (structuredCells.length === 0) {
+					        const focusedElement = document.activeElement;
+					        const cellElement = focusedElement.closest(".tabulator-cell");
+
+					        if (cellElement) {
+					            const cellComponent = Tabulator.prototype.findCell(cellElement);
+					            if (cellComponent) {
+					                structuredCells = [[cellComponent]]; // simulate Tabulator range structure
+					            }
+					        }
+					    }
+
+					    // Now apply your original logic
+					    if (structuredCells.length > 0) {
+					        for (let rowCells of structuredCells) {
+					            for (let cell of rowCells) {
+					                const columnTitle = cell.getColumn().getDefinition().title;
+					                const targetTitle = 'Verified';
+					                console.log(prevCell);
+
+					                if (columnTitle === prevCell) {
+					                    const row = cell.getRow();
+					                    const rowData = row.getData();
+
+					                    handleOffenderRowClick(row);
+					                    $('#addComments').val(rowData.enemyComment || '');
+					                    document.getElementById("addComments").focus();
+
+					                    prevCell = null;
+					                    e.preventDefault(); // prevent default tabbing behavior
+					                    return;
+					                }
+
+					                prevCell = columnTitle;
+					            }
+					        }
+					    }
+					}
+					});*/
+
+					
+					
+					
+					function customInputEditor(cell, onRendered, success, cancel) {
+					    const cellValue = cell.getValue();
+					    const input = document.createElement("input");
+					    input.type = "text";
+					    input.classList.add("custom-cell-input");
+					    input.value = cellValue;
+					    
+					    if(!cell.getRow().getData().isNew){
+					        //input.disabled = true;
+					        input.addEventListener('keydown', e => e.preventDefault()); // block keystrokes
+					        input.addEventListener('paste', e => e.preventDefault()); // block paste
+					    }
+					    // Optional: assign a unique ID if needed
+					    //input.id = "input-" + cell.getRow().getPosition();
+					    onRendered(() => {
+					        input.focus();
+					        input.style.width = "100%";
+					    });
+					    // Event: Detect Enter or blur to save
+						input.addEventListener("keydown", function (e) {
+						       if (e.key === "Enter") {
+						           success(input.value);
+						       } else if (e.key === "Tab") {
+						           e.preventDefault(); // Prevent browser tab-out
+						           success(input.value);
+
+						           // Move focus to the next editable cell to the right
+						           setTimeout(() => {
+						               const nextCell = cell.getRow().getNextCell(cell.getColumn(), true); // true = move right
+						               if (nextCell && nextCell.getColumn().getDefinition().editor) {
+						                   nextCell.edit(); // Open the next cell’s editor
+						               }
+						           }, 10);
+						       } else if (e.key === "Escape") {
+						           cancel();
+						       }
+						   });
+					    input.addEventListener("blur", function () {
+					        success(input.value);
+					    });
+					    
+					    return input;
+					}
+
+					
+					window.addEventListener('resize', function () {
+					    offenderTable.redraw(true); // forces recalculation and alignment
+					});
+
+					
+					
+					//window.offenderTable = offenderTable;
+										// to add a new row and edit the cell
+										offenderTable.on("cellEdited", function(cell) {
+										    if (cell.getField() === "sbiNo") {
+										        const sbiNo = cell.getValue();
+										        const row = cell.getRow();
+
+										        if (sbiNo) {
+										            console.log("SBI No edited:", sbiNo);
+										            populateNameFieldsFromSbi(sbiNo, row, function(commitNo) {
+										                if (commitNo) {
+										                    fetchLocationForEnemy(commitNo);
+										                }
+										            });
+										        }
+										    }
+										});
+										
+										
+										
+										
+										offenderTable.on("rowClick", function (e, row) 
+										{
+											handleOffenderRowClick(row);
+											
+										});
+										
+										
+										function handleOffenderRowClick(row) 
+										{
+											// Your original rowClick logic here
+										    offenderTable.getRows().forEach(r => {
+										        r.getElement().classList.remove('ActiveRow');
+										    });
+										
+										    row.getElement().classList.add('ActiveRow');
+										
+										    const rowData = row.getData();
+										    window.lastClickedRow = row;
+										    $('#addComments').val(rowData.enemyComment || '');
+										
+										    const sbiCell = row.getCell("sbiNo");
+										    const sbiValue = sbiCell.getValue();
+										    if (rowData.isNew && sbiValue.trim() === "") {
+										        console.log("New row clicked. Allow SBI edit.");
+										        if (sbiCell) sbiCell.edit();
+										        return;
+										    }
+										
+										    const clickedCommitNo = rowData.enemyCommitNo;
+										    if (clickedCommitNo) {
+										        fetchLocationForEnemy(clickedCommitNo);
+										    } else {
+										        console.log("No commit number. Making row editable.");
+										        row.update({ isNew: true });
+										        if (sbiCell) sbiCell.edit();
+										    }
+										}
+
+										
+
+					
+										function populateNameFieldsFromSbi(sbiNo, row, callback) 
+										{
+											if (!sbiNo) return;
+
+										    const allRows = offenderTable.getRows();
+										    const currentRow = row;
+										    const searchSbi = $('#sbiNumberInput').val().trim();
+
+										    // Check if SBI matches the one being searched for
+										    if (sbiNo === searchSbi) {
+										        message('CUW', "Enemy ID# cannot be same as the Inmate", 0);
+												
+										        row.update({ sbiNo: "" });
+										        setTimeout(() => {
+										            const sbiCell = currentRow.getCell("sbiNo");
+										            if (sbiCell) sbiCell.edit();
+										        }, 100);
+										        return;
+										    }
+
+										    // Check if already present in another row
+										    const isDuplicate = allRows.some(r =>
+										        r !== currentRow && r.getData().sbiNo === sbiNo
+										    );
+
+										    if (isDuplicate) {
+										        message('CUW', "This ID# is already existing.", 0);
+										        row.update({ sbiNo: "" });
+										        setTimeout(() => {
+										            const sbiCell = currentRow.getCell("sbiNo");
+										            if (sbiCell) sbiCell.edit();
+										        }, 100);
+										        return;
+										    }
+
+										    // Proceed with fetch if valid
+										    $.ajax({
+										        url: contextPath + 'addNoContactsInmateInfo',
+										        type: 'GET',
+										        data: { parameter: sbiNo },
+										        success: function (response) {
+										            if (response && response.inmateList && response.inmateList[1]) {
+										                const updatedData = {
+										                    ...row.getData(),
+										                    enemyNameFirst: response.inmateList[1][2] || "",
+										                    enemyNameLast: response.inmateList[1][1] || "",
+										                    enemyNameMiddle: response.inmateList[1][3] || "",
+										                    enemyNameSuffix: response.inmateList[1][4] || "",
+										                    enemyCommitNo: response.commitNo || ""
+										                };
+
+										                row.update(updatedData);
+
+										                if (typeof callback === "function") {
+										                    callback(response.commitNo);
+										                }
+										            } else {
+										                message('CUW', "No inmate data found for this ID#.", 0);
+										            }
+										        },
+										        error: function () {
+										            message('CUW', "Invalid ID#. Please enter a valid ID#", 0);
+										        }
+										    });
+										}
+
+
+					
+					// To get NoContactDetails For the Enemy
+					function fetchLocationForEnemy(commitNo) {
+					    console.log("Fetching location for commitNo:", commitNo);
+					    $.ajax({
+					        url: contextPath + 'getNoContactLocation',   // backend must handle this URL
+					        type: 'GET',
+					        data: { commitNo: commitNo },
+					        success: function (res) {
+					            console.log("Location data:", res);
+					            if (res) {
+					                $('#LocationOffice').val(res.ovc_location || '');
+					                $('#Status').val(res.ovc_status_desc || '');
+					                $('#HousingUnit').val(res.ovc_unit_desc || '');
+					                $('#Room').val(res.ovc_cell_desc || '');
+					                $('#Bed').val(res.ovc_bed_desc || '');
+					                $('#Address').val(res.ovc_adr_street_1 || '');
+					                $('#City').val(res.ovc_county_name || '');
+					                $('#State').val(res.ovc_state_name || '');
+					                $('#Zip').val(res.ovc_adr_zip_5 || '');
+					                $('#Phone').val(res.ovc_phone_no || '');
+					            } else {
+					                //alert("No location data found for this commitNo");
+									message('CUW', "No location data found for this commitNo", 0);
+					            }
+					        },
+					        error: function (xhr, status, error) {
+					            console.error("Error fetching location:", status, error);
+					            //alert("Failed to fetch location details.");
+								message('CUW', "Failed to fetch location details.", 0);
+					        }
+					    });
+					}
+					
+					// Fetch Source Dropdown
+					function loadSourceDropdown() {
+					    $.ajax({
+					        url: contextPath + 'sourcedropdown',
+					        type: 'GET',
+					        success: function (dropdownData) {
+					            sourceDropdownOptions = dropdownData.map(item => ({
+					                value: item.reportingSourceCode,
+					                label: item.reportingDdesc
+					            }));
+
+					            console.log("Source dropdown loaded:", sourceDropdownOptions);
+
+					            // Update Source column
+					            offenderTable.getColumn("reportingSourceCode").updateDefinition({
+					                editorParams: {
+					                    values: sourceDropdownOptions
+					                }
+					            });
+
+					            // Redraw after updating Source
+					            offenderTable.redraw(true);
+
+					            // Now load Type Dropdown after Source loaded
+					            loadTypeDropdown();
+					        },
+					        error: function () {
+								message('CUW', "Failed to load source dropdown.", 0);
+					        }
+					    });
+					}
+
+					// Fetch Type Dropdown
+					function loadTypeDropdown() {
+					    $.ajax({
+					        url: contextPath + 'typedropdown',
+					        type: 'GET',
+					        success: function (dropdownData) {
+					            typeDropdownOptions = dropdownData.map(item => ({
+					                value: item.enemyTpCd,
+					                label: item.enemyTpDesc
+					            }));
+
+					            console.log("Type dropdown loaded:", typeDropdownOptions);
+
+					            // Update Type column
+					            offenderTable.getColumn("inmtEnmyTp").updateDefinition({
+					                editorParams: {
+					                    values: typeDropdownOptions
+					                }
+					            });
+
+					            // Redraw after updating Type
+					            offenderTable.redraw(true);
+
+					            // Now finally fetch Enemy data
+					            getoffenderTable();
+					        },
+					        error: function () {
+								message('CUW', "Failed to load type dropdown.", 0);
+					        }
+					    });
+					}
+
+					
+					
+					// For adding a new row
+					var currCell = null; 
+					$('#addRowBtn').on('click', function () {
+					    console.log("Add Row button clicked.");
+
+					    const sbiNoInput = $('#sbiNumberInput').val().trim();
+
+					    if (!sbiNoInput) {
+					        message('CUW', "Please enter ID#", 0);
+					        return;
+					    }
+
+						var nextSeq = offenderTable.getData().length + 1;
+						                        const newRowData = {
+						                            enemyStatus: $('#Status').val(),
+						                            rowId: nextSeq,
+						                            id: nextSeq,
+						                            sbiNo: "", 
+						                            isNew: true,
+						                            enemyNameFirst: "",
+						                            enemyNameLast: "",
+						                            enemyNameMiddle: "",
+						                            enemyNameSuffix: "",
+						                            reportingSourceCode: "",
+						                            inmtSourceDt: new Date().toISOString().split("T")[0],
+						                            inmtEnmyTp: "",
+						                            inmtActiveFlg: "",
+						                            inmtVrfyFlg: "",
+						                            GetEditableRow: "OffenderContactRow",
+						                            addClassRow: true
+						                        };
+						isTextareaFocused = false;
+					    offenderTable.addRow(newRowData, true);
+						//focusCell(offenderTable, nextSeq, "sbiNo");
+						setTimeout(() => {
+							focusCell(offenderTable, nextSeq, "sbiNo");
+						}, 50);
+						currCell = nextSeq;
+					    
+					});
+						$('#add-on').on('click', function () {
+						let maxId = updatedData.length > 0 ? Math.max(...updatedData.map(row => row.id || 0)): 0;
+						let newId = maxId + 1;
+						let newRow = {
+						id: newId,
+						checkbox: 't',
+						stggangname: '',
+						nickname: '',
+						checkbox1: 't',
+						stgStatus: '',
+						selfReported: '',
+						gangComments: '',
+						isNew: true
+						};
+						updatedData.unshift(newRow);	
+						});
+
+						
+						function focusCell(table, rowId, field) {
+						    const row = table.getRow(rowId);
+						    if (!row) {
+						        console.error("focusCell: Row not found for rowId:", rowId);
+						        return;
+						    }
+
+						    const cell = row.getCell(field);
+						    if (!cell) {
+						        console.error("focusCell: Cell not found for field:", field);
+						        return;
+						    }
+
+						    const columnDef = cell.getColumn().getDefinition();
+
+						    // Check if column is editable
+						    const isEditable = columnDef.editor !== false && columnDef.editor !== undefined;
+						    if (!isEditable) {
+						        console.warn(`focusCell: Field "${field}" is not editable.`);
+						        return;
+						    }
+
+						    try {
+						        cell.edit(); // open the editor safely
+
+						        // Wait for the DOM to update before attempting to focus input
+						        setTimeout(() => {
+						            const input = cell.getElement().querySelector("input, select, textarea");
+						            if (input) {
+						                input.focus();
+						                handleOffenderRowClick(row); // trigger click handler for syncing
+						            } else {
+						                console.warn(`focusCell: No input element found inside the editor for field "${field}"`);
+						            }
+						        }, 0);
+						    } catch (err) {
+						        console.error("focusCell: Error during cell.edit()", err);
+						    }
+						}
+
+						var dateString;
+						function convertToMMDDYYYY(dateString) {
+										  if (dateString) {
+										    const date = new Date(dateString);
+										    const formattedMonth = String(date.getUTCMonth() + 1).padStart(2, '0');
+										    const formattedDay = String(date.getUTCDate()).padStart(2, '0');
+										    const formattedYear = date.getUTCFullYear();
+										    return `${formattedMonth}/${formattedDay}/${formattedYear}`;
+										  }
+										  return '';
+										}
+					
+						function getoffenderTable() {
+							loader(1);
+						    $.ajax({
+						        url: contextPath + 'getEnemies',
+						        type: 'GET',
+						        data: {
+						            sbiNo: $('#sbiNumberInput').val().trim()
+						        },
+								success: function (response) {
+								if (response && response.otherContact) {
+								                const tabledata = [];
+
+								                $.each(response.otherContact, function(index, item) {
+								                    tabledata.push({
+								                        commitNo: item.commitNo || "",
+								                        enemyComment: item.enemyComment || "",
+								                        enemyCommitNo: item.enemyCommitNo || "",
+								                        enemyNameFirst: item.enemyNameFirst || "",
+								                        enemyNameLast: item.enemyNameLast || "",
+								                        enemyNameMiddle: item.enemyNameMiddle || "",
+								                        enemyNameSuffix: item.enemyNameSuffix || "",
+								                        enemyStatus: item.enemyStatus || "",
+								                        enmyRowid: item.enmyRowid || "",
+								                        inmtActiveFlg: item.inmtActiveFlg || "",
+								                        inmtEnmyTp: item.inmtEnmyTp || "",
+								                        inmtSourceDt: convertToMMDDYYYY(item.inmtSourceDt),
+								                        inmtVrfyFlg: item.inmtVrfyFlg || "",
+								                        reportingSourceCode: item.reportingSourceCode || "",
+								                        sbiNo: item.sbiNo || "",
+								                        rowId: item.enmyRowid || null,
+								                        isNew: false,
+								                        isEdited: false,
+								                        id: index + 1
+								                    });
+								                });
+
+						                offenderTable.setData(tabledata);	
+						                // MODIFIED: Ensure initial focus and row click logic after data load
+						                setTimeout(() => {
+											
+						                    const allRows = offenderTable.getRows();
+						                    let rowToHighlight = null;
+
+						                    // Try to find the row that was highlighted before (e.g., after a save)
+						                    if (lastCommitNoToHighlight) {
+						                        rowToHighlight = allRows.find(r =>
+						                            r.getData().enemyCommitNo === lastCommitNoToHighlight
+						                        );
+						                    }
+
+						                    // If no specific row to highlight, or it's not found, default to the first row
+						                    if (!rowToHighlight && allRows.length > 0) {
+						                        rowToHighlight = allRows[0];
+						                    }
+
+						                    if (rowToHighlight) {
+						                        // Directly call handleOffenderRowClick to apply highlight, load comments, fetch location.
+						                        // This replaces the duplicated logic previously here.
+						                        handleOffenderRowClick(rowToHighlight);
+
+						                        // Then, if you still want to set Tabulator's internal active cell (for keyboard nav), do it.
+						                        const targetCell = rowToHighlight.getCell("sbiNo");
+						                        if (targetCell) {
+						                            // We avoid `cell.edit()` here unless you specifically want the editor to open on initial load.
+						                            // Just setting active cell for keyboard navigation is usually enough.
+						                            //offenderTable._cellManager.setActiveCell(targetCell);
+						                            targetCell.getElement().focus(); // Set DOM focus for initial interaction
+						                        }
+						                    }
+						                    lastCommitNoToHighlight = null; // Clear after use
+						                }, 100); // Give Tabulator a moment to render
+
+						            } else {
+						                message('CUW', "No data found for given ID#.", 0);
+						                offenderTable.clearData(); // Clear table if no data found
+						            }
+						        },
+								complete: function (response){
+								   		        	setTimeout(function (){
+								   		        		loader(0);
+								   		        	},1500)
+								   		        },
+											  error: function(error) {
+										          console.error('Error:', error);
+										          loader(0);
+										          console.log(error.responseText);
+										      },
+
+						        /*error: function () {
+						            message('CUE', "Failed to fetch offender data.", 0);
+						            offenderTable.clearData(); // Clear table on error
+						        }*/
+						    });
+						}	
+						
+										
+					
+					const textarea = document.getElementById('addComments');
+					
+					let isTextareaFocused = false;
+					textarea.addEventListener('focus', () => {
+					    isTextareaFocused = true;
+					  });
+
+
+					// To manage Offender Contact Table with inline editing, navigation, and comment sync
+					  $('#myModal').on('hidden.bs.modal', function() 
+					  {
+                        setTimeout(function(){
+							if(isTextareaFocused)
+							{
+								textarea.focus();
+							}
+							else{
+								focusCell(offenderTable, currCell, "sbiNo");
+							}
+                            //currModalBtnClicked.querySelector(".btn").focus();
+                            //currModalBtnClicked = null;
+                        },100);
+					  });
+					  
+					  
+					
+					// Comment Code for Insert/Update
+					const MAX_BYTES = 75;
+
+					// Byte length function using UTF-8 encoding
+					function getByteLength(str) {
+					    return new TextEncoder().encode(str).length;
+					}
+
+					// Trim the string to fit in MAX_BYTES
+					function trimToMaxBytes(str, maxBytes) {
+					    const encoder = new TextEncoder();
+					    let result = '';
+					    let byteCount = 0;
+
+					    for (const char of str) {
+					        const bytes = encoder.encode(char);
+					        if (byteCount + bytes.length > maxBytes) break;
+					        result += char;
+					        byteCount += bytes.length;
+					    }
+
+					    return result;
+					}
+
+					// Update the byte counter in format "x/75 characters"
+					function updateRemainingBytesDisplay(str) {
+					    const used = getByteLength(str);
+					    const $counter = $('#commentCharCount');
+
+					    $counter
+					        .text(`${used}/${MAX_BYTES} characters`)
+					        .toggleClass('text-danger', used > MAX_BYTES)
+					        .toggleClass('text-muted', used <= MAX_BYTES);
+					}
+
+					// Typing input
+					$('#addComments').on('input', function () {
+					    const $commentBox = $(this);
+					    let comment = $commentBox.val();
+
+					    const byteLength = getByteLength(comment);
+					    if (byteLength > MAX_BYTES) {
+					        comment = trimToMaxBytes(comment, MAX_BYTES);
+					        $commentBox.val(comment);
+					        message('CUW', "Maximum character limit reached. You cannot Paste or Type additional text", 0);
+					    }
+
+					    updateRemainingBytesDisplay(comment);
+
+					    if (window.lastClickedRow) {
+					        const row = window.lastClickedRow;
+					        row.update({
+					            ...row.getData(),
+					            enemyComment: comment.trim(),
+					            isEdited: true
+					        });
+					    }
+					});
+
+					// Pasting input
+					$('#addComments').on('paste', function (e) {
+					    const pastedText = (e.originalEvent || e).clipboardData.getData('text');
+					    if (getByteLength(pastedText) > MAX_BYTES) {
+					        e.preventDefault();
+					        const trimmed = trimToMaxBytes(pastedText, MAX_BYTES);
+					        $(this).val(trimmed);
+					        updateRemainingBytesDisplay(trimmed);
+					        message('CUW', "Maximum character limit reached. Only part of Pasted content was accepted.", 0);
+
+					        if (window.lastClickedRow) {
+					            const row = window.lastClickedRow;
+					            row.update({
+					                ...row.getData(),
+					                enemyComment: trimmed,
+					                isEdited: true
+					            });
+					        }
+
+					        setTimeout(() => {
+					            $(this).focus();
+					        }, 10);
+					    }
+					});
+
+		
+
+
+
+					// Save Functionality
+					
+					$('#saveBtn').on('click', function (e) {
+						
+					    let sbiNo = $('#sbiNumberInput').val();
+					    if (!sbiNo) {
+					        message('CUW', "Please enter ID#.", 0);
+					        return;
+					    }
+
+					    const comments = $('#addComments').val().trim();
+					    //var changedate="06/05/2025";
+			//			loader(1);
+						
+					    $.ajax({
+					        url: contextPath + 'vitalcommitNo',
+					        type: 'GET',
+					        data: { parameter: sbiNo },
+					        success: function (commitnotest) {
+					            const allRows = offenderTable.getData();
+					            const newRows = allRows.filter(row => row.isNew);
+					            const editedRows = allRows.filter(row => row.isEdited && !row.isNew);
+
+					            if (newRows.length === 0 && editedRows.length === 0) {
+					                message('CUW', "No changes to save.", 0);
+					                return;
+					            }
+
+					            const rowsToCheck = [...newRows, ...editedRows];
+
+					            for (let row of rowsToCheck) {
+					                if (!row.sbiNo) {
+					                    message('CUW', `Please enter ID#`, 0);
+					                    focusDropdownCell("sbiNo", row.id);
+					                    return;
+					                }
+					                if (!row.reportingSourceCode) {
+					                    message('CUW', `Reporting Source Should be Entered..!`, 0);
+					                    focusDropdownCell("reportingSourceCode", row.id);
+					                    return;
+					                }
+					                if (!row.inmtEnmyTp) {
+					                    message('CUW', `Enemy Type Should be Entered...!`, 0);
+					                    focusDropdownCell("inmtEnmyTp", row.id);
+					                    return;
+					                }
+					            }
+
+					            let statusEnemyCheck = $('#Status').val();
+					            statusEnemyCheck = statusEnemyCheck === "ACTIVE" ? 'A' : null;
+
+					            // Sync comment
+					            if (window.lastClickedRow) {
+					                const lastRow = window.lastClickedRow;
+					                const lastRowData = lastRow.getData();
+
+					                const targetRow = rowsToCheck.find(row =>
+					                    row.enemyCommitNo === lastRowData.enemyCommitNo
+					                );
+
+					                if (targetRow && targetRow.enemyComment !== comments) {
+					                    targetRow.enemyComment = comments;
+					                    targetRow.isEdited = true;
+					                }
+
+					                lastCommitNoToHighlight = lastRowData.enemyCommitNo;
+									focusCell(offenderTable, lastCommitNoToHighlight, 'sbiNo');
+									e.preventDefault();
+									
+									var DateCovert=convertDateFormat(lastRowData.inmtSourceDt);
+									console.log('check covert date='+DateCovert);
+					            }
+								
+								
+								const buildPayload = (row) => {
+								    const rawDate = row.inmtSourceDt || "";
+								    const safeDate = convertDateFormat(rawDate);
+									console.log("safeDate",safeDate);
+								    
+								    return {
+								        commitNo: commitnotest,
+								        sbiNo: row.sbiNo,
+								        enemyCommitNo: row.enemyCommitNo,
+								        enemyStatus: statusEnemyCheck,
+								        rowId: row.rowId || null,
+								        enemyNameFirst: row.enemyNameFirst || "",
+								        enemyNameLast: row.enemyNameLast || "",
+								        enemyNameMiddle: row.enemyNameMiddle || "",
+								        enemyNameSuffix: row.enemyNameSuffix || "",
+								        reportingSourceCode: row.reportingSourceCode || "",
+								        inmtSourceDt: safeDate !== "" ? safeDate : new Date().toISOString().split("T")[0], // <- Fallback
+								        inmtEnmyTp: row.inmtEnmyTp || "",
+								        inmtActiveFlg: row.inmtActiveFlg || "",
+								        inmtVrfyFlg: row.inmtVrfyFlg || "",
+								        enemyComment: row.enemyComment || "",
+								        enmyRowid: row.enmyRowid || ""
+								    };
+								};
+
+								
+								var check = newRows.map(row => buildPayload(row).inmtSourceDt); 
+								console.log("inmtSourceDt",check);
+								
+
+					            const insertPayload = newRows.map(buildPayload);
+								console.log("Insert Payload:", insertPayload);
+					            const updatePayload = editedRows.map(buildPayload);
+								console.log("Update Payload:", updatePayload);
+								
+								
+								
+								
+					            // INSERT new rows
+					            if (insertPayload.length > 0) {
+									console.log("Insert Payload:", insertPayload);
+					                $.ajax({
+					                    url: contextPath + 'insertNoContactDetails',
+					                    type: 'POST',
+					                    contentType: 'application/json',
+					                    data: JSON.stringify(insertPayload),
+					                    success: function () {
+					                        message('CUS', "Changes have been successfully Saved in OMnet.", 0);
+					                        //reloadAndHighlight();
+											getoffenderTable();
+					                    },
+					                    error: function () {
+					                        message('CUE', "Failed to save changes in OMnet.", 0);
+					                    }
+					                });
+					            }
+								
+								
+					            // UPDATE existing rows
+					            if (updatePayload.length > 0) {
+									console.log("Insert Payload:", updatePayload);
+					                $.ajax({
+					                    url: contextPath + 'updateNoContactDetails',
+					                    type: 'POST',
+					                    contentType: 'application/json',
+					                    data: JSON.stringify(updatePayload),
+					                    success: function () {
+					                        message('CUS', "Changes have been successfully Saved in OMnet.", 0);
+					                        //reloadAndHighlight();
+											getoffenderTable();
+					                    },
+					                    error: function () {
+					                        message('CUE', "Failed to update changes.", 0);
+					                    }
+					                });
+					            }
+					        },
+							complete: function (response){
+							   		        	setTimeout(function (){
+							   		        		loader(0);
+							   		        	},1500)
+							   		        },
+
+							
+					        /*error: function (xhr, status, error) {
+					            message('CUE', "Error fetching commitNo.", 0);
+					            console.error("Error fetching commitNo:", error);
+					        }*/
+							error: function(error) {
+								          console.error('Error:', error);
+								          loader(0);
+								          console.log(error.responseText);
+								      },
+
+					    });
+						
+					});
+
+					
+					$('#clear-btn').on('click', function () {
+					    // Clear form inputs
+					    $('#sbiNumberInput').val('');
+					    $('#Comments').val('');
+					    $('#Status').val('');
+					    $('#LocationOffice').val('');
+					    $('#HousingUnit').val('');
+					    $('#Room').val('');
+					    $('#Bed').val('');
+					    $('#Address').val('');
+					    $('#City').val('');
+					    $('#State').val('');
+					    $('#Zip').val('');
+					    $('#Phone').val('');
+						$('#addComments').val('');
+					    // Clear and reset table
+					    offenderTable.clearData(); // Removes all rows
+						clamiedNoContactTable.clearData();
+
+					    // ptionally reset flags
+					    // offenderTable.replaceData([]); // You can also use this if needed
+						$('.imageContainerPhoto').attr('src', "img/demo/avatars/avatar-admin-lg.png")
+
+						clearFormHeaderData(); 
+						
+						
+						
+					    console.log("Form and table cleared.");
+					});
+
+					
+					    $(document).ready(function () 
+						{
+							$(document).ajaxComplete(function(event, xhr, settings) 
+							{
+								if (settings.url.includes('checkSbiNoAndLocation') && xhr.status === 200)
+								{
+									getoffenderTable()
+								}
+							});
+							loadSourceDropdown();
+						});
+					});
+					
+
+					
+					
+
+					
+
+	
+					
+					/*-----------------------------------------------------end------------------------------------------------------*/
+				function icon(elm) {
+					elm.element;
+					return elm.id ? "<i class='" + $(elm.element).data("icon") + " mr-2'></i>" + elm.text : elm.text
+				}
+
+				$(".js-data-example-ajax").select2(
+					{
+						ajax:
+						{
+							url: "https://api.github.com/search/repositories",
+							dataType: 'json',
+							delay: 250,
+							data: function (params) {
+								return {
+									q: params.term, // search term
+									page: params.page
+								};
+							},
+							processResults: function (data, params) {
+								// parse the results into the format expected by Select2
+								// since we are using custom formatting functions we do not need to
+								// alter the remote JSON data, except to indicate that infinite
+								// scrolling can be used
+								params.page = params.page || 1;
+
+								return {
+									results: data.items,
+									pagination:
+									{
+										more: (params.page * 30) < data.total_count
+									}
+								};
+							},
+							cache: true
+						},
+						placeholder: 'Search for a repository',
+						escapeMarkup: function (markup) {
+							return markup;
+						}, // let our custom formatter work
+						minimumInputLength: 1,
+						templateResult: formatRepo,
+						templateSelection: formatRepoSelection
+					});
+
+				function formatRepo(repo) {
+					if (repo.loading) {
+						return repo.text;
+					}
+
+					var markup = "<div class='select2-result-repository clearfix d-flex'>" +
+						"<div class='select2-result-repository__avatar mr-2'><img src='" + repo.owner.avatar_url + "' class='width-2 height-2 mt-1 rounded' /></div>" +
+						"<div class='select2-result-repository__meta'>" +
+						"<div class='select2-result-repository__title fs-lg fw-500'>" + repo.full_name + "</div>";
+
+					if (repo.description) {
+						markup += "<div class='select2-result-repository__description fs-xs opacity-80 mb-1'>" + repo.description + "</div>";
+					}
+
+					markup += "<div class='select2-result-repository__statistics d-flex fs-sm'>" +
+						"<div class='select2-result-repository__forks mr-2'><i class='fal fa-lightbulb'></i> " + repo.forks_count + " Forks</div>" +
+						"<div class='select2-result-repository__stargazers mr-2'><i class='fal fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+						"<div class='select2-result-repository__watchers mr-2'><i class='fal fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+						"</div>" +
+						"</div></div>";
+
+					return markup;
+				}
+
+				function formatRepoSelection(repo) {
+					return repo.full_name || repo.text;
+				}
+
+			});
+			
+/*--------------------------------------------------------------*/
+						// Define Test Data
+		var tabledataOtherClaimContactBy = [];
+		
+		
+		let sourceDropdownOptions = [];
+		let typeDropdownOptions = [];
+		 
+		
+		//Define Table
+		var clamiedNoContactTable = new Tabulator("#OtherClaimContactBy-Table", {
+		  layout: "fitColumns",
+		  placeholder: "No Data Available",
+		  data: tabledataOtherClaimContactBy,
+		  maxHeight: "150px",                    // Enables scroll when content exceeds
+		 /*  virtualDom: true, */                      // Required for scroll behavior
+		  printAsHtml: true,
+		  printStyled: true,
+		  /* responsiveLayout: "collapse",         // Collapses columns in small widths
+		  resizableColumnFit: true , */
+		  columns: [
+		  {
+		      titleFormatter: (column) => setTitleDesc(column, 'clamiedNoContactTable_ID #', 'ID #'),
+			  title: "ID #",
+		      field: "SBI_MST_SBI_NO",
+		      width: 90,
+		      editor: "input",
+		      editable: true   // Always editable
+		  },
+			{
+				title: "First Name",
+				field: "COMMIT_FNAME",
+				editor: "input",
+				 editable: function (cell) 
+				 {
+					return !cell.getValue();
+				  }  
+			},
+			{
+				title: "Last Name",
+				field: "COMMIT_LNAME",
+				editor: "input",
+				editable: function (cell) 
+				{
+					return !cell.getValue();
+				}  
+			},
+			{
+				title: "MI",
+				field: "COMMIT_MNAME",
+				width:50,
+				editor: "input",
+				editable: function (cell) 
+				{
+					return !cell.getValue();
+				}  
+			},
+			{
+				title: "Suffix",
+				field: "COMMIT_SNAME",
+				width:70,
+				editor: "input",
+				editable: function (cell) 
+				 {
+					return !cell.getValue();
+				  }  
+			},
+			{
+				title: "Source",
+				field: "REPORTING_DESC",
+				editor: "select", 
+				/*editor: "list",*/
+	            editorParams: function () 
+				{
+                	return {
+						values: sourceDropdownOptions.length > 0
+                        ? sourceDropdownOptions
+                        : [{ label: "Loading...", value: "" }]
+	              };
+	            },
+	            formatter: function (cell) {
+	                const code = cell.getValue();
+	                const match = sourceDropdownOptions.find(option => option.value === code);
+	                return match ? match.label : code;
+	            }
+			},
+			{
+				title: "Date",
+				field: "INMT_SOURCE_DT",
+				width:90,
+				formatter: cell => {
+		            const raw = cell.getValue();
+		            return raw ? new Date(raw).toLocaleDateString() : "";
+		        }
+			},
+			{
+				title: "Type",
+				field: "ENEMY_TP_DESC",
+				editor: "select", 
+				editorParams: function () {
+                return 
+				{
+                    values: typeDropdownOptions.length > 0
+                        ? typeDropdownOptions
+                        : [{ label: "Loading...", value: "" }]
+						};
+				}
+			},
+			{
+			    title: "Active",
+			    field: "INMT_ACTIVE_FLG",
+			    hozAlign: "center",
+			    width: 85,
+			    headerSort: false,
+			    editable: false,
+			    formatter: function (cell) {
+			        const value = cell.getValue();
+			        const checked = value === 'A' ? 'checked' : '';
+			        return `<input type="checkbox" disabled ${checked} />`;
+			    }
+			},
+			{
+			    title: "Verified",
+			    field: "INMT_VRFY_FLG",
+			    hozAlign: "center",
+			    width: 85,
+			    headerSort: false,
+			    editable: false,
+			    formatter: function (cell) {
+			        const value = cell.getValue();
+			        const checked = value === 'Y' ? 'checked' : '';
+			        return `<input type="checkbox" disabled ${checked} />`;
+			    }
+			}
+		  ]
+		});
+		
+		
+		tabulatorRegistry["OtherClaimContactBy-Table"] = {
+											varName: "clamiedNoContactTable",
+											instance: clamiedNoContactTable
+										};
+
+		clamiedNoContactTable.on("rowClick", function (e, row) {
+		    const rowData = row.getData();
+		    console.log("Row clicked:", rowData);
+			const commitNo = rowData.ENEMY_COMMIT_NO || rowData.commitNo || rowData.enemyCommitNo;
+			console.log("Commit No:", commitNo);
+			if(commitNo)
+			{
+				fetchLocationForEnemy(commitNo);
+				$('#addComments').val('');
+			}
+			
+		});
+		
+		function fetchLocationForEnemy(commitNo) 
+		{
+		    console.log("Fetching location for commitNo:", commitNo);
+		    $.ajax({
+		        url: contextPath + 'getNoContactLocation',  
+		        type: 'GET',
+		        data: { commitNo: commitNo },
+		        success: function (res) {
+		            console.log("Location data:", res);
+		            if (res) {
+		                $('#LocationOffice').val(res.ovc_location || '');
+		                $('#Status').val(res.ovc_status_desc || '');
+		                $('#HousingUnit').val(res.ovc_unit_desc || '');
+		                $('#Room').val(res.ovc_cell_desc || '');
+		                $('#Bed').val(res.ovc_bed_desc || '');
+		                $('#Address').val(res.ovc_adr_street_1 || '');
+		                $('#City').val(res.ovc_county_name || '');
+		                $('#State').val(res.ovc_state_name || '');
+		                $('#Zip').val(res.ovc_adr_zip_5 || '');
+		                $('#Phone').val(res.ovc_phone_no || '');
+		            } else {
+		                //alert("No location data found for this commitNo");
+						message('CUW', "No location data found for this commitNo", 0);
+		            }
+		        },
+		        error: function (xhr, status, error) 
+				{
+		            console.error("Error fetching location:", status, error);
+		            //alert("Failed to fetch location details.");
+					message('CUW', "Failed to fetch location details.", 0);
+		        }
+	    	});
+		}
+		
+		// Fetch Source Dropdown
+		function loadSourceDropdown() {
+		    $.ajax({
+		        url: contextPath + 'sourcedropdown',
+		        type: 'GET',
+		        success: function (dropdownData) {
+		            sourceDropdownOptions = dropdownData.map(item => ({
+		                value: item.reportingSourceCode,
+		                label: item.reportingDdesc
+		            }));
+
+		            console.log("Source dropdown loaded:", sourceDropdownOptions);
+
+		            // Update Source column
+		            clamiedNoContactTable.getColumn("REPORTING_DESC").updateDefinition({
+		                editorParams: {
+		                    values: sourceDropdownOptions
+		                }
+		            });
+
+		            // Redraw after updating Source
+		            clamiedNoContactTable.redraw(true);
+
+		            // Now load Type Dropdown after Source loaded
+		            loadTypeDropdown();
+		        },
+		        error: function () {
+		            //alert("Failed to load source dropdown.");
+					message('CUW', "Failed to load source dropdown.", 0);
+		        }
+		    });
+		}
+
+
+		// Fetch Type Dropdown
+		function loadTypeDropdown() {
+		    $.ajax({
+		        url: contextPath + 'typedropdown',
+		        type: 'GET',
+		        success: function (dropdownData) {
+		            typeDropdownOptions = dropdownData.map(item => ({
+		                value: item.enemyTpCd,
+		                label: item.enemyTpDesc
+		            }));
+
+		            console.log("Type dropdown loaded:", typeDropdownOptions);
+
+		            // Update Type column
+		            clamiedNoContactTable.getColumn("ENEMY_TP_DESC").updateDefinition({
+		                editorParams: {
+		                    values: typeDropdownOptions
+		                }
+		            });
+
+		            // Redraw after updating Type
+		            clamiedNoContactTable.redraw(true);
+
+		            // Now finally fetch Enemy data
+		            getoffenderTable();
+		        },
+		        error: function () {
+		            //alert("Failed to load type dropdown.");
+					message('CUW', "Failed to load type dropdown.", 0);
+		        }
+		    });
+		}
+
+
+							
+							
+		/*function getclamiedoffenderTable()
+							{
+								$.ajax({
+									url: contextPath + 'getEnemies',
+									type: 'GET',
+									data:
+									{
+										sbiNo: $('#sbiNumberInput').val().trim()
+									},
+									success: function (response) 
+									{
+										if (response) 
+										{
+											
+											tabledataOtherClaimContactBy=response.claimedOtherContact
+											clamiedNoContactTable.setData(tabledataOtherClaimContactBy)
+											
+										}
+									}
+								});
+							}*/
+							
+							function getclamiedoffenderTable() {
+							    const sbiNo = $('#sbiNumberInput').val().trim();
+
+							    $.ajax({
+							        url: contextPath + 'getEnemies',
+							        type: 'GET',
+							        data: { sbiNo: sbiNo },
+							        success: function (response) {
+							            if (response && Array.isArray(response.claimedOtherContact)) {
+							                tabledataOtherClaimContactBy = response.claimedOtherContact;
+
+							                // Load data into the table
+							                clamiedNoContactTable.setData(tabledataOtherClaimContactBy);
+
+							                // Ensure SBI_MST_SBI_NO column is editable
+							                clamiedNoContactTable.getColumn("SBI_MST_SBI_NO").updateDefinition({
+							                    editable: true
+							                });
+
+							                clamiedNoContactTable.redraw(true);
+							            } else {
+							                clamiedNoContactTable.clearData();
+							                message('CUW', 'No offender data found for the given SBI #.', 0);
+							            }
+							        },
+							        error: function (xhr, status, error) {
+							            console.error("Failed to load offender data:", status, error);
+							            message('CUW', 'Error fetching offender data.', 0);
+							        }
+							    });
+							}
+
+
+												
+	    $(document).ready(function () 
+		{
+			$(document).ajaxComplete(function(event, xhr, settings) 
+			{
+				if (settings.url.includes('checkSbiNoAndLocation') && xhr.status === 200)
+				{
+					getclamiedoffenderTable()
+				}
+			});
+		});
+															
+												
+												
+		
+		//---------------------------------------------------------------------------------------------------------------------------------------------------------------//
+			// Define Test Data
+		var tabledataCodefendant = [
+		  {
+		    case: "",
+		    id: "",
+		    fname: "",
+		    lname: "",
+		    mi: "",
+		    suffix: "",
+		    dob: "",
+		    date: "",
+		    sentencingCourtName: "",
+		  },
+		  {
+		    case: "",
+		    id: "",
+		    fname: "",
+		    lname: "",
+		    mi: "",
+		    suffix: "",
+		    dob: "",
+		    date: "",
+		    sentencingCourtName: "",
+		  },
+		  {
+		    case: "",
+		    id: "",
+		    fname: "",
+		    lname: "",
+		    mi: "",
+		    suffix: "",
+		    dob: "",
+		    date: "",
+		    sentencingCourtName: "",
+		  },
+		  {
+		    case: "",
+		    id: "",
+		    fname: "",
+		    lname: "",
+		    mi: "",
+		    suffix: "",
+		    dob: "",
+		    date: "",
+		    sentencingCourtName: "",
+		  },
+		  {
+		    case: "",
+		    id: "",
+		    fname: "",
+		    lname: "",
+		    mi: "",
+		    suffix: "",
+		    dob: "",
+		    date: "",
+		    sentencingCourtName: "",
+		  },
+		];
+		
+		//Define Table
+		var table = new Tabulator("#Codefendant-Table", {
+		  layout: "fitColumns",
+		  data: tabledataCodefendant,
+		  height: '150px',
+		  printAsHtml: true,
+		  printStyled: true,
+		  columns: [
+		  	{
+				title: "Case#",
+				field: "case",
+				width:100,
+			},
+		  	{
+				title: "ID#",
+				field: "id",
+				width:100,
+			},
+			{
+				title: "First Name",
+				field: "fname",
+			},
+			{
+				title: "Last Name",
+				field: "lname",
+			},
+			{
+				title: "MI",
+				field: "mi",
+				width:50,
+			},
+			{
+				title: "Suffix",
+				field: "suffix",
+				width:100,
+			},
+			{
+				title: "DOB",
+				field: "dob",
+				width:100,
+			},
+			{
+				title: "Date",
+				field: "date",
+				width:100,
+			},
+			{
+				title: "Sentencing Court Name",
+				field: "sentencingCourtName",
+			},
+		  ]
+		});
+		
+			// Define Test Data
+		var tabledatavictimInfo = [
+		  {
+		    case: "",
+		    vicseq: "",
+		    fname: "",
+		    lname: "",
+		    mi: "",
+		    suffix: "",
+		    checkbox: "t",
+		    checkbox1: "t",
+		    relationshiptoAccused: "",
+		  },
+		  {
+		    case: "",
+		    vicseq: "",
+		    fname: "",
+		    lname: "",
+		    mi: "",
+		    suffix: "",
+		    checkbox: "t",
+		    checkbox1: "t",
+		    relationshiptoAccused: "",
+		  },
+		  {
+		    case: "",
+		    vicseq: "",
+		    fname: "",
+		    lname: "",
+		    mi: "",
+		    suffix: "",
+		    checkbox: "t",
+		    checkbox1: "t",
+		    relationshiptoAccused: "",
+		  },
+		  {
+		    case: "",
+		    vicseq: "",
+		    fname: "",
+		    lname: "",
+		    mi: "",
+		    suffix: "",
+		    checkbox: "t",
+		    checkbox1: "t",
+		    relationshiptoAccused: "",
+		  },
+		  {
+		    case: "",
+		    vicseq: "",
+		    fname: "",
+		    lname: "",
+		    mi: "",
+		    suffix: "",
+		    checkbox: "t",
+		    checkbox1: "t",
+		    relationshiptoAccused: "",
+		  },
+		];
+		
+		//Define Table
+		var table = new Tabulator("#victimInfo-table", {
+		  layout: "fitColumns",
+		  data: tabledatavictimInfo,
+		  height: '150px',
+		  printAsHtml: true,
+		  printStyled: true,
+		  columns: [
+		  	{
+				title: "Case#",
+				field: "case",
+				width:100,
+			},
+		  	{
+				title: "Vic Seq#",
+				field: "vicseq",
+				width:120,
+			},
+			{
+				title: "First Name",
+				field: "fname",
+			},
+			{
+				title: "Last Name",
+				field: "lname",
+			},
+			{
+				title: "MI",
+				field: "mi",
+				width:50,
+			},
+			{
+				title: "Suffix",
+				field: "suffix",
+				width:100,
+			},
+			{
+				title: "Juv",
+				field: "checkbox",
+				formatter: (cell) => {
+					const value = cell.getValue();
+					if (value) {
+						return `
+	                    <input type="checkbox" />
+	                    <label>${value}</label>
+	                `;
+					}
+				},
+				width: 70,
+				headerSort: false,
+			},
+			{
+				title: "Dead",
+				field: "checkbox1",
+				formatter: (cell) => {
+					const value = cell.getValue();
+					if (value) {
+						return `
+	                    <input type="checkbox" />
+	                    <label>${value}</label>
+	                `;
+					}
+				},
+				width: 70,
+				headerSort: false,
+			},
+			{
+				title: "Relationship to Accused",
+				field: "relationshiptoAccused",
+			},
+		  ]
+		});
+		
+			// Define Test Data
+		var tabledataseqCjiscase = [
+		  {
+		    seq: "",
+		    cJISCase: "",
+		  },
+		  {
+		    seq: "",
+		    cJISCase: "",
+		  },
+		  {
+		    seq: "",
+		    cJISCase: "",
+		  },
+		  {
+		    seq: "",
+		    cJISCase: "",
+		  },
+		  {
+		    seq: "",
+		    cJISCase: "",
+		  },
+		  {
+		    seq: "",
+		    cJISCase: "",
+		  },
+		  {
+		    seq: "",
+		    cJISCase: "",
+		  },
+		  {
+		    seq: "",
+		    cJISCase: "",
+		  },
+		];
+		
+		//Define Table
+		var table = new Tabulator("#seqCjiscase-table", {
+		  layout: "fitColumns",
+		  data: tabledataseqCjiscase,
+		  height: '235px',
+		  printAsHtml: true,
+		  printStyled: true,
+		  columns: [
+		  	{
+				title: "Seq#",
+				field: "seq",
+				width:100,
+			},
+		  	{
+				title: "CJIS Case#",
+				field: "cJISCase",
+			},
+		  ]
+		});
+		
+		
+			// Define Test Data
+		var tabledatapfaInfo = [
+		  {
+		    orderID: "",
+		    orderDate: "",
+		    hearingOfficer: "",
+		    expirationDt: "",
+		    sbi: "",
+		    ss: "",
+		    petitionerName: "",
+		    relationship: "",
+		  },
+		  {
+		    orderID: "",
+		    orderDate: "",
+		    hearingOfficer: "",
+		    expirationDt: "",
+		    sbi: "",
+		    ss: "",
+		    petitionerName: "",
+		    relationship: "",
+		  },
+		  {
+		    orderID: "",
+		    orderDate: "",
+		    hearingOfficer: "",
+		    expirationDt: "",
+		    sbi: "",
+		    ss: "",
+		    petitionerName: "",
+		    relationship: "",
+		  },
+		  {
+		    orderID: "",
+		    orderDate: "",
+		    hearingOfficer: "",
+		    expirationDt: "",
+		    sbi: "",
+		    ss: "",
+		    petitionerName: "",
+		    relationship: "",
+		  },
+		  {
+		    orderID: "",
+		    orderDate: "",
+		    hearingOfficer: "",
+		    expirationDt: "",
+		    sbi: "",
+		    ss: "",
+		    petitionerName: "",
+		    relationship: "",
+		  },
+		];
+		
+		//Define Table
+		var table = new Tabulator("#pfaInfo-table", {
+		  layout: "fitColumns",
+		  data: tabledatapfaInfo,
+		  height: '170px',
+		  printAsHtml: true,
+		  printStyled: true,
+		  columns: [
+		  	{
+				title: "Order ID#",
+				field: "orderID",
+				width:120,
+			},
+		  	{
+				title: "Order Date",
+				field: "orderDate",
+			},
+			{
+				title: "Hearing Officer",
+				field: "hearingOfficer",
+			},
+			{
+				title: "Expiration Dt",
+				field: "expirationDt",
+			},
+			{
+				title: "SBI #",
+				field: "sbi",
+				width:100,
+			},
+			{
+				title: "SS #",
+				field: "ss",
+				width:100,
+			},
+			{
+				title: "Petitioner Name",
+				field: "petitionerName",
+			},
+			{
+				title: "Relationship",
+				field: "relationship",
+			},
+		  ]
+		});	
+		
+		$(tabledataOtherClaimContactBy[0].checkbox).html("<input type='checkbox'>");
+		$(tabledatavictimInfo[0].checkbox).html("<input type='checkbox'>");
+			
+		
+		$(document).ready(function() {
+			// initialize datatable
+			$('#OffenderContactTable').dataTable({
+				scrollY: "200px",
+	            scrollCollapse: true,
+	            paging: false,
+	            searching: false,
+	            ordering: false,
+	            showNEntries: false,
+	            info: false
+			});
+
+		});
+		$(document).ready(function() {
+			// initialize datatable
+			$('#OtherClaimContactByTable').dataTable({
+				scrollY: "200px",
+	            scrollCollapse: true,
+	            paging: false,
+	            searching: false,
+	            ordering: false,
+	            showNEntries: false,
+	            info: false
+			});
+
+		});
+		$(document).ready(function() {
+			// initialize datatable
+			$('#CodefendantTable').dataTable({
+	            scrollY: "200px",
+	            scrollCollapse: true,
+	            paging: false,
+	            searching: false,
+	            ordering: false,
+	            showNEntries: false,
+	            info: false
+			});
+
+		});
+	const addCmntText = document.getElementById('addComments');
+	const addCmntclickBtn = document.getElementById('addCmntValBtn');
+	const addCmntshowVal = document.getElementById('addCmntValShow');
+	const addCmntClear = document.getElementById('addCmntValClear');
+	
+	function addcmtfun(){
+		addCmntshowVal.innerHTML = addCmntText.value;
+	}
+	
+	addCmntclickBtn.addEventListener('click', addcmtfun);
+	addCmntClear.addEventListener('click', ()=> {
+			addCmntshowVal.innerHTML = addCmntText.value = '';
+	});
+	
+	
+	
+	
+		
+	</script>
+	<!--<script src="js/../script.js"></script>
+	<script>
+					           
+	</script>-->
+	
+	<!-- Your other scripts -->
+
+	<!-- Tabulator JS -->
+	<!--<script src="https://unpkg.com/tabulator-tables@5.4.4/dist/js/tabulator.min.js"></script>-->
+		<script type="text/javascript">
+			$('#js-page-content').smartPanel();
+		</script>
+		<div th:replace="~{fragments/msgBox :: msgBox}"></div>
+	</body>
+	
+
+</body>
+	<!-- BEGIN Page Footer -->
+		<div th:replace="~{fragments/footer :: footer}"></div>
+	<!-- END Page Footer -->
+</html>

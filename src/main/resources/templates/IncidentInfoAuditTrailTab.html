@@ -1,0 +1,253 @@
+<div th:fragment="IncidentInfoAuditTrailTab" th:remove="tag">
+	<div id="panel-1" class="panel">
+        <div class="panel-container show">
+            <div class="panel-content p-1">
+                <div id="js-checkbox-toggles">
+                    <div class="row">
+						<div class="col-lg-12 pl-0"> 
+							<div  class="d-flex align-items-center my-2">
+								<div class="custom-control custom-checkbox custom-control-inline ml-3">
+									<input type="checkbox" class="custom-control-input auditCheck rawField" value="UPDATE" id="CreateCheck" data-fld = "CreateCheck_fld" data-lbl = "Create / Modify Only" checked="">
+									<label class="custom-control-label text-nowrap" for="CreateCheck">Create / Modify Only</label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline ml-3">
+									<input type="checkbox" class="custom-control-input auditCheck rawField" value="QUERY" id="ReadCheckbox" data-fld = "ReadCheckbox_fld" data-lbl = "Read Only">
+									<label class="custom-control-label text-nowrap" for="ReadCheckbox">Read Only</label>
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline ml-3">
+									<input type="checkbox" class="custom-control-input auditCheck rawField" value="ALL" id="AllCheckbox" data-fld = "AllCheckbox_fld" data-lbl = "All">
+									<label class="custom-control-label text-nowrap" for="AllCheckbox">All</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">Audit Trail</h6>
+					 <div class="panel panelContentBlock mb-2 p-1">
+						<div id="table-container" class="w-100">
+							<div id="auditTrail-table"></div> 
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<style>
+		#auditTrail-table{
+			height: 100%;
+			max-height: 240px;
+		}
+	</style>
+	<script>
+		// Define Test Data
+		var auditTrail = [
+			{
+				id: 1,
+				date: "",
+				time: "",
+				firstname: "",
+				lastname: "",
+				mi: "",
+				suffix: "",
+				typeofActivity: "",
+			},
+			{
+				id: 2,
+				date: "",
+				time: "",
+				firstname: "",
+				lastname: "",
+				mi: "",
+				suffix: "",
+				typeofActivity: "",
+			},
+			{
+				id: 3,
+				date: "",
+				time: "",
+				firstname: "",
+				lastname: "",
+				mi: "",
+				suffix: "",
+				typeofActivity: "",
+			},
+			{
+				id: 4,
+				date: "",
+				time: "",
+				firstname: "",
+				lastname: "",
+				mi: "",
+				suffix: "",
+				typeofActivity: "",
+			},
+			{
+				id: 5,
+				date: "",
+				time: "",
+				firstname: "",
+				lastname: "",
+				mi: "",
+				suffix: "",
+				typeofActivity: "",
+			},
+			{
+				id: 6,
+				date: "",
+				time: "",
+				firstname: "",
+				lastname: "",
+				mi: "",
+				suffix: "",
+				typeofActivity: "",
+			},
+			{
+				id: 7,
+				date: "",
+				time: "",
+				firstname: "",
+				lastname: "",
+				mi: "",
+				suffix: "",
+				typeofActivity: "",
+			},
+			{
+				id: 8,
+				date: "",
+				time: "",
+				firstname: "",
+				lastname: "",
+				mi: "",
+				suffix: "",
+				typeofActivity: "",
+			},
+			{
+				id: 9,
+				date: "",
+				time: "",
+				firstname: "",
+				lastname: "",
+				mi: "",
+				suffix: "",
+				typeofActivity: "",
+			},
+			{
+				id: 10,
+				date: "",
+				time: "",
+				firstname: "",
+				lastname: "",
+				mi: "",
+				suffix: "",
+				typeofActivity: "",
+			},
+			{
+				id: 11,
+				date: "",
+				time: "",
+				firstname: "",
+				lastname: "",
+				mi: "",
+				suffix: "",
+				typeofActivity: "",
+			},
+			{
+				id: 12,
+				date: "",
+				time: "",
+				firstname: "",
+				lastname: "",
+				mi: "",
+				suffix: "",
+				typeofActivity: "",
+			},
+			{
+				id: 13,
+				date: "",
+				time: "",
+				firstname: "",
+				lastname: "",
+				mi: "",
+				suffix: "",
+				typeofActivity: "",
+			},
+			{
+				id: 14,
+				date: "",
+				time: "",
+				firstname: "",
+				lastname: "",
+				mi: "",
+				suffix: "",
+				typeofActivity: "",
+			},
+			{
+				id: 15,
+				date: "",
+				time: "",
+				firstname: "",
+				lastname: "",
+				mi: "",
+				suffix: "",
+				typeofActivity: "",
+			},
+		];
+
+		//Define Table
+		var auditTable = new Tabulator("#auditTrail-table", {
+			layout: "fitColumns",
+			data: auditTrail,
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+				{ title: "id", field: "id", visible: false },
+			{ title: "upd", field: "upd", visible: false },
+			{ title: "seqno", field: "seqno", visible: false },
+				{
+					//title: "Date",
+					titleFormatter: (column) => setTitleDesc(column, 'auditDate_tbfld', 'Date'),
+					field: "auditDate",
+					width: 100,
+				},
+				{
+					//title: "Time",
+					titleFormatter: (column) => setTitleDesc(column, 'auditTime_tbfld', 'Time'),
+					field: "auditTime",
+					width: 80,
+				},
+				{
+					//title: "First Name",
+					titleFormatter: (column) => setTitleDesc(column, 'auditFName_tbfld', 'First Name'),
+					field: "auditFName",
+				},
+				{
+					//title: "Last Name",
+					titleFormatter: (column) => setTitleDesc(column, 'auditLName_tbfld', 'Last Name'),
+					field: "auditLName",
+				},
+				{
+					//title: "MI",
+					titleFormatter: (column) => setTitleDesc(column, 'auditMName_tbfld', 'MI'),
+					field: "auditMName",
+					width: 80,
+				},
+				{
+					//title: "Suffix",
+					titleFormatter: (column) => setTitleDesc(column, 'auditSName_tbfld', 'Suffix'),
+					field: "auditSName",
+					width: 100,
+				},
+				{
+					//title: "Type of Activity",
+					titleFormatter: (column) => setTitleDesc(column, 'auditTypeofAct_tbfld', 'Type of Activity'),
+					field: "auditTypeofAct",
+				},
+			]
+		});
+
+		tabulatorRegistry["auditTrail-table"] = {
+			varName: "auditTable",
+			instance: auditTable
+		};
+		
+	</script>
+</div> 

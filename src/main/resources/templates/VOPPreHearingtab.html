@@ -1,0 +1,67 @@
+<div th:fragment="VOPPreHearingtab" th:remove="tag">
+	<div class="panel panelContentBlock p-1 mb-1 mt-2">	
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="row ml-1 mb-1">
+					<div class="col-12 col-lg-2 pl-0 d-flex align-items-center pr-0">
+						 <label class="form-lable mb-0 mr-1 text-nowrap">Date Reported</label>
+						 <input type="text" class="form-control" aria-label=" " name="ContactDate" id="" value="">
+					 </div>
+					 <div class="col-12 col-lg-2 d-flex align-items-center pr-0">
+						 <label class="form-lable mb-0 mr-1 text-nowrap">Date Hearing</label>
+						 <input type="text" class="form-control" aria-label=" " name="ContactDate" id="" value="">
+					 </div>
+					 <div class="col-12 col-lg-2 d-flex align-items-center pr-0">
+						 <label class="form-lable mb-0 mr-1 text-nowrap">Hearing Time</label>
+						 <input type="text" class="form-control" aria-label=" " name="ContactDate" id="" value="">
+					 </div>
+					 <div class="col-lg-6 d-flex align-items-center mt-1">
+						<label for="Security" class="form-label mr-2 mb-0 text-nowrap">Institution</label>
+						<select class="custom-select form-control" disabled>
+							<option></option>
+							<option value="Option 1">test</option>
+							<option value="Option 2">test1</option>
+						</select>
+					</div>
+					<div class="col-12 col-lg-6 pr-0 pl-0 d-flex align-items-center mt-1">	
+						<label for="Security" class="form-label text-nowrap mr-2 mb-0">Pre Hearing Officer(F,L,M,S)</label>
+						<input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value=" " disabled>
+					</div>
+					<div class="col-12 col-lg-1 d-flex align-items-center pr-0">
+						<div class="custom-control custom-checkbox custom-control-inline" style="opacity: 0.5;">
+							<input type="checkbox" class="custom-control-input" id="groupSupplementarycheckbox2">
+							<label class="custom-control-label" for="groupSupplementarycheckbox2" style="font-weight: 500;">Founded</label>
+						</div>
+					</div>
+					<div class="col-12 col-lg-2 pr-0 d-flex align-items-center mt-1">	
+						<label for="Security" class="form-label text-nowrap mr-2 mb-0">Parole Code</label>
+						<input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value=" " disabled>
+					</div>
+					<div class="col-12 col-lg-6 px-0 mt-1">	
+						<label class="form-lable mb-0 mr-1">Parole Description</label>
+						<textarea class="form-control" id="addComments" placeholder="" rows="4" name="Comments" aria-label="Comments" style="resize:none;" value="" disabled></textarea>
+					</div>
+					<div class="col-12 col-lg-6 mt-1">	
+						<label class="form-lable mb-0 mr-1">Violation Comment</label>
+						<textarea class="form-control" id="addComments" placeholder="" rows="4" name="Comments" aria-label="Comments" style="resize:none;" value="" disabled></textarea>
+					</div>
+					<div class="col-12 col-lg-12 mt-1 pl-0">	
+						<textarea class="form-control" id="addComments" placeholder="Evidence" rows="2" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+					</div>
+					<div class="col-12 col-lg-12 mt-1 pl-0">	
+						<textarea class="form-control" id="addComments" placeholder="Determination" rows="2" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+					</div>
+					<div class="col-12 col-lg-12 mt-1 pl-0 d-flex align-items-center">
+						<textarea class="form-control" id="addComments" placeholder="Probable Cause" rows="2" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+						<span class="pl-2"> 
+							<div><button type="button" class="btn btn-primary btn-sm text-nowrap mb-1">Next Record</button></div>
+							<div><button type="button" class="btn btn-primary btn-sm text-nowrap">Prev Record</button></div>
+						</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

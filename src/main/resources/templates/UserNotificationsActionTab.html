@@ -1,0 +1,636 @@
+<div th:fragment="UserNotificationsActionTab" th:remove="tag">
+	<div class="row">
+		<div class="col-md-12 pr-md-3 col-lg-5 pr-lg-0 col-xl-5 pr-xl-0">
+			<div id="actionReqCat-table"></div>
+			<div class="d-flex align-items-center my-1">
+				<div class="d-flex align-items-center floatingFields mt-2 mr-2">
+					<input type="text" class="form-control w-100 rawField floatingLable" placeholder="" data-fld="Total_Categories_ActionTab" data-lbl="Total Categories" aria-label="weight" name="weight" id="CategoryTotal" value="">
+					<label for="CategoryTotal" class="form-label mb-0 text-nowrap ">Total Categories</label>																					
+				</div>
+				<div class="d-flex align-items-center mr-2 floatingFields mt-2">
+					<input type="text" class="form-control w-100 rawField floatingLable" placeholder="" data-fld="Total Count_ActionTab" data-lbl="Total Count" aria-label="weight" name="weight" id="CategoryTotalCount" value="">
+					<label for="CategoryTotalCount" class="form-label mb-0 text-nowrap">Total Count:</label>																					
+				</div>
+				<button type="button" class="btn btn-primary btn-sm rawField mt-2" data-fld="REFRESH_ActionTab" data-lbl="REFRESH" id="Refresh0">REFRESH</button>
+			</div>
+		</div>
+		<div class="col-md-12 col-lg-7 col-xl-7">
+			<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">DETAILS</h6>
+			<div id="actionReqDetail-table"></div>
+			<div class="mt-3">
+				<div class="floatingFieldsTextarea">																			
+					<textarea class="form-control rawField floatingLabletextarea" data-fld="Message_Text_ActionTab" data-lbl="Message Text" placeholder="" id="addComments" rows="6" name="Comments" aria-label="Comments" style="resize:none;"  value="" readonly onclick="redirectToPage(urlredirectforscreen)"></textarea>
+				<label for="addComments" class="form-label mb-0 mr-2 text-nowrap">Message Text</label>	
+				</div>
+				<div class="d-flex align-items-center mt-2">
+					<button type="button" class="btn btn-primary btn-sm mr-2 rawField" data-fld="Select_All_ActionTab" data-lbl="Select All_" id="SelectAllActionRequired">Select All</button>
+					<button type="button" class="btn btn-primary btn-sm rawField" data-fld="De-Select_All_ActionTab" data-lbl="De-Select All" id="DeSelectAllActionRequired">De-Select All</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<style>
+		
+		#actionReqCat-table .tabulator-tableholder{
+			overflow-x: hidden!important;
+		}
+		@media screen and (max-width: 1370px) {
+		    #actionReqCat-table{
+				height: 335px !important;
+			}
+			#actionReqDetail-table{
+				height: 160px !important;
+			}
+		}
+		
+		.tabulator-row .tabulator-cell.tabulator-editing {
+		    padding:4px;
+		}
+		
+		input.ActionRequiredcheckbox1::before {
+    content: "";
+    width: 13px;
+    height: 13px;
+    top: -1px;
+    left: -1px;
+    position: absolute;
+    border: 1px solid #1d68cd;
+    border-radius: 4px;
+    z-index: 9;
+}
+		
+/*  		tabulator.tabulator-block-select, .tabulator.tabulator-ranges .tabulator-cell:not(.tabulator-editing){
+	display: inline-flex;
+    justify-content: left;
+} 
+
+.leader-editor-checkbox::before{
+        content: '';
+	    display: inline-block;
+	    width: 14px;
+	    height: 14px;
+	    border: 2px solid #0075ff;
+	    position: absolute;
+	    top: 1px;
+	    left: 1px;
+    } */
+    
+	</style>
+	
+	<script>
+	document.getElementById('Refresh0').addEventListener('click', function() {
+	      // Refresh the page
+	   //   location.reload();
+	      NotiactionReq()
+	    });
+	
+	function convertToMMDDYYYY(dateString) {
+		if (dateString) {
+		var date = new Date(dateString);
+		var formattedMonth = (date.getMonth() + 1).toString().padStart(2, '0');
+		var formattedDay = date.getDate().toString().padStart(2, '0');
+		var formattedYear = date.getFullYear().toString();
+		var formattedDate = formattedMonth + '/' + formattedDay + '/' + formattedYear;
+		return formattedDate;
+		}
+		return '';
+		}
+	
+	var urlredirectforscreen;
+	 function redirectToPage(urlredirectforscreen) {
+        // Redirect to the dynamic URL passed as an argument
+        window.location.href = urlredirectforscreen;
+    }
+
+	
+ 	 $('#SelectAllActionRequired').on('click', function() {
+		$('.ActionRequiredcheckbox').prop('checked', true);
+	});
+
+	$('#DeSelectAllActionRequired').on('click', function() {
+		$('.ActionRequiredcheckbox').prop('checked', false);
+	});  
+	
+
+	 
+	
+	function NotiactionReq(){
+	$.ajax({
+        url: 'NOTI',
+        method: 'GET', 
+        success: function(data) {
+        	let sum = 0;
+        	$('#CategoryTotal').val(data.length);
+        	tabledata1=[];   	
+    $.each(data, function(index, item) { 
+    var	countdata=item['COUNT(A.ROWID)'];
+    var ShortMessage=item.SHORT_MESSAGE;
+    var Message=item.MESSAGE_DESCRIPTION;
+   
+    tabledata1.push({
+        countvalues: countdata,
+        shortMessagevalues: ShortMessage,
+        messagevalues: Message
+    });
+
+    
+    sum += countdata;
+
+
+    });
+    
+    if(data.length<=17){
+	 var tabledata1Extra = [];
+	 var numRecords=17;
+	 var Dlength=data.length;
+ 	 var extraRecord=numRecords-Dlength;
+	 tabledata1Extra = Array.from({ length: extraRecord }, () => ({
+		 countvalues: "",
+	        shortMessagevalues: "",
+	        messagevalues: "",
+	        }));
+	 tabledata1=tabledata1.concat(tabledata1Extra);
+    }
+    
+  tableAction.setData(tabledata1);
+    
+    $('#CategoryTotalCount').val(sum);
+     var firstBedRow = $('.mycolor-mycolorblue').first(); 
+    if (firstBedRow.length > 0) {
+        firstBedRow.trigger('click'); 
+    }  
+     
+              }, 
+        
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+          }
+       });
+	
+
+	}
+	
+
+		var tabledata1 = [];
+	    var actionNum = 17;
+	    tabledata1 = Array.from({ length: actionNum }, () => ({
+				        		 DATE_TIME_SENT: "",
+				        		 SBI_NO: "",
+				        		 OFFENDER_NAME: "",
+				        		 CREATED_USER_NAME: "",
+				        		 NO_OF_DAYS : "",
+				        		 checkbox: false,
+				   		        }));
+			        	 
+			
+		var tableAction = new Tabulator("#actionReqCat-table", {
+		  layout: "fitColumns",
+		  data: tabledata1,
+		  height: "460px",
+		  printAsHtml: true,
+		  printStyled: true,
+		  printRowRange: function () {
+		    return this.getRows().filter((row) => {
+		      return row.getData().gender === "male";
+		    });
+		  },
+		  columns: [
+			  {
+					title: "id",
+					field: "id",
+					visible: false,
+				},
+				{
+					title: 'upd',
+					visible: false,
+					field: "upd",
+				},
+				{
+					title: 'rowid',
+					visible: false,
+					field: "rowid",
+				},
+			  {
+			//	title: "Category",
+				titleFormatter: (column) => setTitleDesc(column, 'Category_Table_ActionTab', 'Category'),
+				 headerTooltip:"Category",
+				field: "messagevalues",
+				cellMouseOver: function (e, cell) {
+			          const data = cell.getRow().getData();
+			          if (data.messagevalues) {
+			              showCustomTooltip(e, cell, `${data.messagevalues}`);
+			            }
+			        },
+			        cellMouseMove: moveCustomTooltip,
+			        cellMouseOut: hideCustomTooltip,
+				 sorter: customSorter 
+			},
+		    {
+		   //   title: "Count",
+		      titleFormatter: (column) => setTitleDesc(column, 'Count_Table_ActionTab', 'Count'),
+		      headerTooltip:"Count",
+		      field: "countvalues",
+		      cellMouseOver: function (e, cell) {
+		          const data = cell.getRow().getData();
+		          if (data.countvalues) {
+		              showCustomTooltip(e, cell, `${data.countvalues}`);
+		            }
+		        },
+		        cellMouseMove: moveCustomTooltip,
+		        cellMouseOut: hideCustomTooltip,
+		      width: 90,
+		      sorter: customSorter 
+		    }
+		  ],
+		   rowFormatter: function(row) {
+			   var rowData = row.getData();  
+	            var commentsType = rowData.shortMessagevalues || ''; 
+	            var colorClass ='mycolor-' +"mycolorblue" ;
+	            var rowElement = row.getElement(); 
+	            rowElement.classList.add(colorClass);
+	            rowElement.setAttribute('data-COMMENTS-type', commentsType); 
+	        }
+		});
+		
+		tabulatorRegistry["actionReqCat-table"] = {
+				varName: "tableAction",
+				instance: tableAction
+			};
+		
+//		 }
+		
+		$(document).on('click', '.mycolor-mycolorblue', function (e) {
+		    e.preventDefault();
+
+		    var $div = $(this);
+		    $('.ActionRequiredcheckbox').prop('checked', false);
+		    const ShortMessage = $div.attr('data-comments-type');  
+		    console.log('ShortMessage='+ShortMessage);
+		    if(ShortMessage !== ''){
+	 		$.ajax({
+		        url: 'NOTI_dtl',
+		        method: 'GET',
+		         data: {
+		        	 ivc_short_message:ShortMessage
+				}, 
+		        success: function(data) {
+		        	tabledata2=[];   
+		        	
+		        	 $.each(data, function(index, item) {
+		        		 
+		        		 var Date=convertToMMDDYYYY(item.DATE_TIME_SENT);
+		        		 var sbi=item.SBI_NO;
+		        		 var offendername=formatName(item.OFFENDER_NAME);
+		        		 var sentby=formatName(item.CREATED_USER_NAME);
+		        		 var noofdays=item.NO_OF_DAYS ;
+		        		 var remove=item.REMOVE;
+		        		 var message=item.MESSAGE_TEXT;
+		        		 var shmessage=item.SHORT_MESSAGE;
+		        		 var SeqNo=item.USER_MESS_SEQ_NUM;
+		        		 var screencode=item.SCREEN_CODE;
+		        		 var commitno=item.COMMIT_NO;
+		        		 var sentbyuserid=item.CREATED_USER_ID;
+		        		 var URL=item.SCREEN_URL;
+		        		 
+		        		 tabledata2.push({
+		        			 DATE_TIME_SENT: Date,
+		        			 SBI_NO: sbi,
+		        			 OFFENDER_NAME: offendername,
+		        			 CREATED_USER_NAME: sentby,
+		        			 NO_OF_DAYS: noofdays,
+		        			 checkbox: remove === "Y" ? true : false,
+		        			 MESSAGE_TEXT: message,
+		        			 SHORT_MESSAGE: shmessage,
+		        			 USER_MESS_SEQ_NUM: SeqNo,
+		        			 SCREEN_CODE: screencode,
+		        			 COMMIT_NO: commitno,
+		        			 CREATED_USER_ID: sentbyuserid,
+		        			 URLScreen: URL
+		        		    });
+		        		 
+		        		 
+		        		 
+		        	 });
+		        	 if(data.length<=10){
+		        		 var tabledata2Extra = [];
+			        	 var numRecords=10;
+			        	  	var Dlength=data.length;
+			        	 var extraRecord=numRecords-Dlength;
+			        	 tabledata2Extra = Array.from({ length: extraRecord }, () => ({
+			        		 DATE_TIME_SENT: "",
+			        		 SBI_NO: "",
+			        		 OFFENDER_NAME: "",
+			        		 CREATED_USER_NAME: "",
+			        		 NO_OF_DAYS : "",
+			        		 checkbox: "",
+			   		        }));
+		        	 }
+		        	
+		        
+		        	 
+		        	 tabledata2=tabledata2.concat(tabledata2Extra);
+
+
+		        	 tableActionDetail.setData(tabledata2);
+		        	 
+		                 var firstBedRow = $('.Message-Text').first();
+		                 if (firstBedRow.length > 0) {
+		                     firstBedRow.trigger('click');
+		                     console.log('Click works after');
+		                 } 
+	 
+		              }, 
+		        
+		        error: function(xhr, status, error) {
+		            console.error('Error:', error);
+		          }
+		       }); 
+		}
+
+		});
+
+		
+		// Define Test Data
+		var tabledata2 = [];
+		var actionDetailNum=10;
+		 tabledata2Extra = Array.from({ length: actionDetailNum }, () => ({
+    		 DATE_TIME_SENT: "",
+    		 SBI_NO: "",
+    		 OFFENDER_NAME: "",
+    		 CREATED_USER_NAME: "",
+    		 NO_OF_DAYS : "",
+    		 checkbox: false,
+		        }));
+		 
+		  var checkboxEditorfield = function(cell, onRendered, success, cancel) {
+			    var input = document.createElement("input");
+			    input.type = "checkbox";
+			    input.checked = !!cell.getValue();
+			    input.classList.add("ActionRequiredcheckbox1");
+			    
+			    var CN=cell.getData().DATE_TIME_SENT;
+		 	    var ID=cell.getData().NO_OF_DAYS;
+			    
+			    console.log('Just print'+CN+' '+ID);
+			    
+			     if (CN === '' && ID === '') {
+			        input.classList.add("disable-pointer");
+			        // Optional: Disable editing logic too
+			        input.disabled = true;
+			        return input; // Prevent adding event listeners
+			      }  
+			    
+			    input.addEventListener("change", function () {
+			      success(input.checked);
+			    });
+
+			    input.addEventListener("keydown", function (e) {
+			      if (e.key === "Enter") {
+			        e.preventDefault();
+			        input.checked = !input.checked;
+			        success(input.checked);
+			      } else if (e.key === "Escape") {
+			        cancel();
+			      }
+			    });
+
+			    onRendered(function () {
+			      input.focus({ preventScroll: true });
+			    });
+
+			    return input;
+			  };
+			  
+				  
+		   function checkboxFormatter(cell) {
+				 	const checked = !!cell.getValue();
+			    return `<input class="ActionRequiredcheckbox checkboxclick"  type="checkbox" ${checked ? "checked" : ""} />`; 
+			  } 
+		
+	//	Tablevalue2(tabledata2);
+	//	function Tablevalue2(tabledata2) {
+			var tableActionDetail = new Tabulator("#actionReqDetail-table", {
+			    layout: "fitColumns",
+			    data: tabledata2,
+			    height: "285px",
+			    printAsHtml: true,
+			    printStyled: true,
+			    printRowRange: function () {
+			        return this.getRows().filter((row) => {
+			            return row.getData().gender === "male";
+			        });
+			    },
+			    columns: [
+			    	{
+						title: "id",
+						field: "id",
+						visible: false,
+					},
+					{
+						title: 'upd',
+						visible: false,
+						field: "upd",
+					},
+					{
+						title: 'rowid',
+						visible: false,
+						field: "rowid",
+					},
+			    	{
+			            title: "Date",
+			            titleFormatter: (column) => setTitleDesc(column, 'Date_Table_ActionDetailTab', 'Date'),
+			            headerTooltip:"Date",
+			            field: "DATE_TIME_SENT",
+			            cellMouseOver: function (e, cell) {
+					          const data = cell.getRow().getData();
+					          if (data.DATE_TIME_SENT) {
+					              showCustomTooltip(e, cell, `${data.DATE_TIME_SENT}`);
+					            }
+					        },
+					        cellMouseMove: moveCustomTooltip,
+					        cellMouseOut: hideCustomTooltip,
+			            width: 120,
+			            sorter: customSorter 
+			        },
+			        {
+			            title: "ID#",
+			            titleFormatter: (column) => setTitleDesc(column, 'SBI_Table_ActionDetailTab', 'ID#'),
+			            headerTooltip:"ID#",
+			            field: "SBI_NO",
+			            cellMouseOver: function (e, cell) {
+					          const data = cell.getRow().getData();
+					          if (data.SBI_NO) {
+					              showCustomTooltip(e, cell, `${data.SBI_NO}`);
+					            }
+					        },
+					        cellMouseMove: moveCustomTooltip,
+					        cellMouseOut: hideCustomTooltip,
+			            width: 90,
+			            sorter: customSorter 
+			        },
+			        {
+			            title: "Offender Name (L, F, M, S)",
+			            titleFormatter: (column) => setTitleDesc(column, 'OffenderName(F,L,M,S)_Table_ActionDetailTab', 'Offender Name (L, F, M, S)'),
+			            headerTooltip:"Offender Name (L, F, M, S)",
+			            field: "OFFENDER_NAME",
+			            cellMouseOver: function (e, cell) {
+					          const data = cell.getRow().getData();
+					          if (data.OFFENDER_NAME) {
+					              showCustomTooltip(e, cell, `${data.OFFENDER_NAME}`);
+					            }
+					        },
+					        cellMouseMove: moveCustomTooltip,
+					        cellMouseOut: hideCustomTooltip,
+			            width: 200,
+			            sorter: customSorter 
+			        },
+			        {
+			            title: "Sent By (L, F, M, S)",
+			            titleFormatter: (column) => setTitleDesc(column, 'SentBy(F,L,M,S)_Table_ActionDetailTab', 'Sent By (L, F, M, S)'),
+			            headerTooltip:"Sent By (L, F, M, S)",
+			            field: "CREATED_USER_NAME",
+			            cellMouseOver: function (e, cell) {
+					          const data = cell.getRow().getData();
+					          if (data.CREATED_USER_NAME) {
+					              showCustomTooltip(e, cell, `${data.CREATED_USER_NAME}`);
+					            }
+					        },
+					        cellMouseMove: moveCustomTooltip,
+					        cellMouseOut: hideCustomTooltip,
+			            width: 200,
+			            sorter: customSorter 
+			        },
+			        {
+			            title: "Days#",
+			            titleFormatter: (column) => setTitleDesc(column, 'Days_Table_ActionDetailTab', 'Days#'),
+			            headerTooltip:"Days#",
+			            field: "NO_OF_DAYS",
+			            cellMouseOver: function (e, cell) {
+					          const data = cell.getRow().getData();
+					          if (data.NO_OF_DAYS) {
+					              showCustomTooltip(e, cell, `${data.NO_OF_DAYS}`);
+					            }
+					        },
+					        cellMouseMove: moveCustomTooltip,
+					        cellMouseOut: hideCustomTooltip,
+			            width: 120,
+			            sorter: customSorter 
+			        },
+			        {
+			            title: "Remove",
+			            titleFormatter: (column) => setTitleDesc(column, 'Remove_Table_ActionDetailTab', 'Remove'),
+			            headerTooltip:"Remove",
+			            headerSort: false,
+			            hozAlign: "center", 
+			            formatter: checkboxFormatter, 
+						  editor: checkboxEditorfield, 
+			            field: "checkbox",
+			            headerTooltip:"Remove",
+			        /*     sorter: customSorter, 
+			            formatter: (cell) => {
+			                const value = cell.getValue();
+			                if (value) {
+			                    return `
+			                        <input class="ActionRequiredcheckbox checkboxclick" name="Checkboxvalues" type="checkbox" />
+			                        <label>${value}</label>
+			                    `;
+			                }
+			            }, */
+			           
+						 
+			        },
+			    ],
+			  /*   rowClick: function(e, row) {
+			        var rowData = row.getData(); 
+			        var Message2 = rowData.MESSAGE_TEXT || ''; 
+			        $('#addComments').val(Message2);
+
+			        console.log('Message=' + Message2); 
+			    }, */
+			    rowFormatter: function (row) {
+		            var rowData = row.getData();
+		            var rowElement = row.getElement();
+		            // Attach event listener to checkbox
+		            var checkbox = rowElement.querySelector(".checkboxclick");
+		            if (checkbox) {
+		                checkbox.addEventListener("click", function (event) {
+		                    event.stopPropagation(); // Prevent row click event
+		                    showPopup(rowData); // Pass row data to the popup
+		                });
+		            }
+		        },
+			    rowFormatter: function(row) {
+			        var rowData = row.getData();
+			        var SeqNo = rowData.USER_MESS_SEQ_NUM || null;
+			        var Date = rowData.DATE_TIME_SENT || null;
+			        var Sbi = rowData.SBI_NO || null;
+			        var offenderName = rowData.OFFENDER_NAME || null;
+			        var sentbyname = rowData.CREATED_USER_NAME || null;
+			        var noofdays = rowData.NO_OF_DAYS || null;
+			        var remove = rowData.checkbox || null;
+			        var MessageText = rowData.MESSAGE_TEXT || '';
+			        var shortMessage = rowData.SHORT_MESSAGE || null;
+			        var screencode = rowData.SCREEN_CODE || null;
+			        var Commitno = rowData.COMMIT_NO || null;
+			        var Sentbyuserid = rowData.CREATED_USER_ID || null;
+			        var ScreenURL = rowData.URLScreen || '#';
+			        var colorClass = 'Message-Text';
+			        var rowElement = row.getElement();
+			        rowElement.classList.add(colorClass);
+			        rowElement.setAttribute('data-SeqNo-type', SeqNo);
+			        rowElement.setAttribute('data-Date-type', Date);
+			        rowElement.setAttribute('data-Sbi-type', Sbi);
+			        rowElement.setAttribute('data-offenderName-type', offenderName);
+			        rowElement.setAttribute('data-sentbyname-type', sentbyname);
+			        rowElement.setAttribute('data-noofdays-type', noofdays);
+			        rowElement.setAttribute('data-remove-type', remove);
+			        rowElement.setAttribute('data-Message-type', MessageText);
+			        rowElement.setAttribute('data-shortMessage-type', shortMessage);
+			        rowElement.setAttribute('data-screencode-type', screencode);
+			        rowElement.setAttribute('data-Commitno-type', Commitno);
+			        rowElement.setAttribute('data-Sentbyuserid-type', Sentbyuserid);
+			        rowElement.setAttribute('data-url-type', ScreenURL);
+			    }
+			});
+			
+			tabulatorRegistry["actionReqDetail-table"] = {
+					varName: "tableActionDetail",
+					instance: tableActionDetail
+				};
+		
+//			}
+
+		
+		
+
+	    	$(document).on('click', '.Message-Text', function (e) {
+	    		 if ($(e.target).is('input[type="checkbox"]')) {
+				        return;
+				    }
+			    e.preventDefault();
+			   // e.stopImmediatePropagation();
+
+			    var $div = $(this);
+                var url1 = $div.attr('data-url-type'); 
+                
+                urlredirectforscreen=url1;
+                console.log('Message=' + urlredirectforscreen);
+			    const Message2 = $div.attr('data-Message-type'); 
+			    
+			    $('#addComments').val(Message2);
+			    console.log('Message=' + url1);
+			}); 
+	   	
+	    	NotiactionReq();
+	   	
+		/* document.getElementById("print").addEventListener("click", function (){
+		  table.print();
+		});
+		 */
+	/* 	$(tabledata2[0].checkbox).html("<input type='checkbox'>");
+		$(Tablevalue2[0].checkbox).html("<input type='checkbox'>"); */
+		
+	
+	</script>
+</div>

@@ -1,0 +1,123 @@
+<div th:fragment="FamilyEmergencyParentTab" th:remove="tag">
+	<div class="row">
+		<div class="col-lg-12">
+			<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">RELATIONSHIP INFORMATION</h6>
+			<div class="row"> 
+				<div class="col-12 col-lg-12"> 
+					<div class="panel panelContentBlock mb-2 p-1 w-100" style="max-width: 1023px; margin:auto">	
+						<div class="row">
+							<div class="col-lg-9 pr-0">
+								<div class="d-flex align-items-center mt-2">
+									<label for="weight" class="form-label mb-0 mr-2 text-nowrap" style="min-width: 100px;">Name (F, L, M, S)</label>																					
+									<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+								</div>
+								<div class="d-flex align-items-center mt-3">
+									<label for="weight" class="form-label mb-0 mr-2 text-nowrap" style="min-width: 100px;">Address</label>																					
+									<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+								</div>
+								<div class="d-flex align-items-center mt-3">
+									<label for="weight" class="form-label mb-0 mr-2 text-nowrap" style="min-width: 100px;">City/State/ZIP</label>																				
+									<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled>
+									<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled style="width: 150px;">
+									<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled style="width: 100px;">
+									<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled style="width: 100px;">
+									<span>
+										<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Click here to Lock the Record">
+											<i class="fa fa-download" aria-hidden="true"></i>
+										</a>
+									</span>
+								</div>
+								<div class="d-flex align-items-center mt-3">
+									<div class="d-flex align-items-center mr-3">
+										<label for="weight" class="form-label mb-0 mr-2 text-nowrap" style="min-width: 100px;">Home Phone</label>																					
+										<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" style="width: 150px;">
+									</div>
+									<div class="d-flex align-items-center mr-3">
+										<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Work Phone</label>																					
+										<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" style="width: 150px;">
+									</div>
+									<div class="d-flex align-items-center w-100">
+										<label for="weight" class="form-label mb-0 text-nowrap mr-2">Date of Birth</label>																					
+										<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+									</div>
+								</div>	
+								<div class="d-flex align-items-center mt-3">
+									<label for="weight" class="form-label mb-0 mr-2 text-nowrap" style="min-width: 100px;">CJIS C/S/Z</label>																					
+									<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled>
+								</div>
+							</div>
+							<div class="col-lg-3 pl-3">
+								<div class="custom-control custom-checkbox custom-control-inline mt-3">
+									<input type="checkbox" class="custom-control-input" id="EmergencyContactCheck">
+									<label class="custom-control-label text-nowrap" for="EmergencyContactCheck">Emergency Contact</label> 
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline mt-3">
+									<input type="checkbox" class="custom-control-input" id="EmergencyContactCheck">
+									<label class="custom-control-label text-nowrap" for="EmergencyContactCheck">Raised By</label> 
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline mt-3 d-block">
+									<input type="checkbox" class="custom-control-input" id="EmergencyContactCheck">
+									<label class="custom-control-label text-nowrap" for="EmergencyContactCheck">Dependent</label> 
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline mt-3">
+									<input type="checkbox" class="custom-control-input" id="EmergencyContactCheck">
+									<label class="custom-control-label text-nowrap" for="EmergencyContactCheck">Deceased</label> 
+								</div>
+								<div class="d-flex align-items-center mt-3">
+									<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Date</label>																					
+									<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel panelContentBlock p-1 w-100" style="max-width: 1023px; margin: 10px auto">	
+						<div class="row">
+							<div class="col-lg-4 pr-0 d-flex align-items-center mt-3">
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input type="checkbox" class="custom-control-input" id="RaisedCheck">
+									<label class="custom-control-label text-nowrap" for="RaisedCheck">Incarcerated</label> 
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline ml-2 pl-0 w-100">
+									<label for="weight" class="form-label mb-0 mr-2 text-nowrap">SBI#</label>																					
+									<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+								</div>
+							</div>
+							<div class="col-lg-4 pr-0 d-flex align-items-center mt-3 pl-0 ">
+								<div class="custom-control custom-checkbox custom-control-inline pl-0">
+									<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Institution</label>																					
+									<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled>
+								</div>
+							</div>
+							<div class="col-lg-12 d-flex align-items-center mt-3">
+								<div class="custom-control custom-checkbox custom-control-inline pl-0 w-100 mr-0">
+									<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Other Relevant Information</label>																					
+									<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+								</div>
+							</div>
+							<div class="col-lg-4 pr-0 d-flex align-items-center mt-3">
+								<div class="custom-control custom-checkbox custom-control-inline mr-3">
+									<input type="checkbox" class="custom-control-input" id="PIncarceratedCheck">
+									<label class="custom-control-label text-nowrap" for="PIncarceratedCheck">P&P Incarcerated</label> 
+								</div>
+								<div class="custom-control custom-checkbox custom-control-inline w-100 pl-0">
+									<label for="weight" class="form-label mb-0 mr-2 text-nowrap">SBI#</label>																					
+									<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="">
+								</div>
+							</div>
+							<div class="col-lg-8 d-flex align-items-center mt-3 pl-0">
+								<div class="custom-control custom-checkbox custom-control-inline w-100 mr-0 pl-0">
+									<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Name</label>																					
+									<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="d-flex justify-content-end" style="max-width: 1023px; margin: 10px auto">
+						<button type="button" class="btn btn-primary btn-sm mr-2" id="" >Copy From</button>
+						<button type="button" class="btn btn-primary btn-sm" id="" >Copy To</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

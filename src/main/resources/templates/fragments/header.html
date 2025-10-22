@@ -1,0 +1,728 @@
+ <div th:fragment="header" th:remove="tag">
+ <header class="page-header px-2" role="banner" >
+  <!-- we need this logo when user switches to nav-function-top -->
+					  <div class="desktopviewstyle">
+	                    <div class="page-logo d-none p-0" style="width: fit-content;">
+	                        <a href="#" class="page-logo-link press-scale-down d-flex align-items-center position-relative" data-toggle="modal" data-target="#modal-shortcut" style="background: #584475;">
+	                   		<img id="omnetImage" alt="SmartAdmin WebApp" aria-roledescription="logo" style="height:65px;">
+	                   		<!--<img src="img/demo/menuicons/omnetlogo.png" id=""class="" alt="omnet_logo" style="height:65px;">-->
+	                           <!--  <span class="page-logo-text mr-1"><b>OMNET</b></span> -->
+	                        </a>
+	                    </div> 
+	                    
+	                     <div class="d-flex w-100">
+	                      <div class="page-logo d-flex pl-6 w-100" style="background: #584475; box-shadow: unset;">
+	                           
+	                          <img id="dacsImage" alt="SmartAdmin WebApp" aria-roledescription="logo" style="height:60px; width:60px;">
+	                              <span class="page-logo-text mr-1"><b id="clientname"></b></span>
+	                        </div>
+	                          </div>
+					  </div>
+         <!--            <div class="search">
+                        <form class="app-forms hidden-xs-down" role="search" action="page_search.html"
+                            autocomplete="off">
+                            <input type="text" id="search-field" placeholder="Search for anything" class="form-control"
+                                tabindex="1">
+                            <a href="#" onclick="return false;" class="btn-danger btn-search-close js-waves-off d-none"
+                                data-action="toggle" data-class="mobile-search-on">
+                                <i class="fal fa-times"></i>
+                            </a>
+                        </form>
+                    </div> -->
+                    
+                    <div class="ml-auto d-flex headerUserBlock" style="width: 60%;background: #584475;">
+						<!-- Search -->
+						<div class="mr-2 position-relative" style="top: 25px; left: 35px;" title="Search">
+							<i class="fa fa-search position-absolute" style="font-size: 18px; color: #fff; right: 0"></i>
+							<input type="text" class="headerSearch form-control border-right-0 border-0 bg-transparent position-relative" aria-label="lastName" id="lastname" name="lastName" value="" style="border-radius: 0; top: -5px;">
+						</div>
+                        
+                        <!-- Spell Check -->
+						<div class="mr-2 position-relative" style="top: 26px; left: 37px;" title="Spell Check">
+							<i class="fa-solid fa-spell-check" style="font-size: 18px; color: #fff;"></i>
+						</div>
+						
+                        <!-- app shortcuts -->
+                        <div class="position-relative" style="left: 25px; top: 1px;">
+                            <a href="#" class="header-icon" data-toggle="dropdown" title="My Apps">
+                                <i class="fal fa-cube"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-animated w-auto h-auto">
+                                <div
+                                    class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center rounded-top">
+                                    <h4 class="m-0 text-center color-white">
+                                        Quick Shortcut
+                                         </h4>
+                                </div>
+                                <div class="custom-scroll h-100">
+                                    <ul class="app-list">
+                                        <li>
+                                            <a href="#" class="app-list-item hover-white">
+                                                <span class="icon-stack">
+                                                    <i class="base-7 icon-stack-2x color-primary-500"></i>
+                                                    <i class="fa fa-search icon-stack-1x text-white fs-lg"></i>
+                                                </span>
+                                                <span class="app-list-name">
+                                                    Search
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="VitalStatistics" class="app-list-item hover-white">
+                                                <span class="icon-stack">
+                                                    <i class="base-7 icon-stack-2x color-info-500"></i>
+                                                    <i class="ni ni-graph icon-stack-1x text-white"></i>
+                                                </span>
+                                                <span class="app-list-name">
+                                                    Vital Statistics
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="app-list-item hover-white">
+                                                <span class="icon-stack">
+                                                    <i class="base-7 icon-stack-2x color-success-500"></i>
+                                                    <i class="fa fa-check icon-stack-1x text-white fs-lg"></i>
+                                                </span>
+                                                <span class="app-list-name">
+                                                    Spell Check
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="PrintStatusSheet" class="app-list-item hover-white">
+                                                <span class="icon-stack">
+                                                    <i class="base-7 icon-stack-2x color-secondary-500"></i>
+                                                    <i class=" fa fa-sticky-note icon-stack-1x text-white fs-lg"></i>
+                                                </span>
+                                                <span class="app-list-name">
+                                                    Status Sheet
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="OffenderInformation" class="app-list-item hover-white">
+                                                <span class="icon-stack">
+                                                    <i class="base-7 icon-stack-2x color-info-500"></i>
+                                                    <i class="fa fa-address-card icon-stack-1x text-white fs-lg"></i>
+                                             
+                                                </span>
+                                                <span class="app-list-name">
+                                                    Offender Information
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="app-list-item hover-white">
+                                                <span class="icon-stack">
+                                                    <i class="base-7 icon-stack-2x color-primary-500"></i>
+                                                    <i class="fa fa-question icon-stack-1x text-white fs-lg"></i>
+                                                </span>
+                                                <span class="app-list-name">
+                                                    Help
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="app-list-item hover-white">
+                                                <span class="icon-stack">
+                                                    <i class="base-7 icon-stack-2x color-warning-500"></i>
+                                                    <i class="fa fa-fax icon-stack-1x text-white fs-lg"></i>
+                                                </span>
+                                                <span class="app-list-name">
+                                                    Scan
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- app notification -->
+                        <div class="position-relative" style="left: 7px;">
+                            <a href="UserNotifications" class="header-icon" title="">
+                                <i class="fal fa-bell"></i>
+                            </a>
+                            <!--<div class="dropdown-menu dropdown-menu-animated dropdown-xl">
+                                <div
+                                    class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center rounded-top mb-2">
+                                    <h4 class="m-0 text-center color-white">
+                                        <small class="mb-0 opacity-80">Notifications</small>
+                                    </h4>
+                                </div>
+                               
+                                <div class="tab-content tab-notification">
+                                 
+                           
+                                        <div class="custom-scroll h-100">
+                                            <ul class="notification">
+                                                <li class="unread">
+                                                    <div class="d-flex align-items-center show-child-on-hover">
+                                                        <span class="d-flex flex-column flex-1">
+                                                            <span class="name d-flex align-items-center">Administrator
+                                                                <span
+                                                                    class="badge badge-success fw-n ml-1">UPDATE</span></span>
+                                                            <span class="msg-a fs-sm">
+                                                                System updated to version <strong>4.0.1</strong> <a
+                                                                    href="intel_build_notes.html">(patch notes)</a>
+                                                            </span>
+                                                            <span class="fs-nano text-muted mt-1">5 mins ago</span>
+                                                        </span>
+                                                        <div
+                                                            class="show-on-hover-parent position-absolute pos-right pos-bottom p-3">
+                                                            <a href="#" class="text-muted" title="delete"><i
+                                                                    class="fal fa-trash-alt"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center show-child-on-hover">
+                                                        <div class="d-flex flex-column flex-1">
+                                                            <span class="name">
+                                                                Adison Lee <span class="fw-300 d-inline">replied to your
+                                                                    video <a href="#" class="fw-400"> Cancer Drug</a>
+                                                                </span>
+                                                            </span>
+                                                            <span class="msg-a fs-sm mt-2">Bring to the table win-win
+                                                                survival strategies to ensure proactive domination. At
+                                                                the end of the day...</span>
+                                                            <span class="fs-nano text-muted mt-1">10 minutes ago</span>
+                                                        </div>
+                                                        <div
+                                                            class="show-on-hover-parent position-absolute pos-right pos-bottom p-3">
+                                                            <a href="#" class="text-muted" title="delete"><i
+                                                                    class="fal fa-trash-alt"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center show-child-on-hover">
+                                                        <img src="img/demo/avatars/avatar-m.png" data-src="img/demo/avatars/avatar-k.png" class="profile-image rounded-circle" alt="k" />
+                                                        <div class="d-flex flex-column flex-1">
+                                                            <span class="name">
+                                                                Troy Norman'<span class="fw-300">s new
+                                                                    connections</span>
+                                                            </span>
+                                                            <div class="fs-sm d-flex align-items-center mt-2">
+                                                                <span
+                                                                    class="profile-image-md mr-1 rounded-circle d-inline-block"
+                                                                    style="background-image:url('img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+                                                                <span
+                                                                    class="profile-image-md mr-1 rounded-circle d-inline-block"
+                                                                    style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+                                                                <span
+                                                                    class="profile-image-md mr-1 rounded-circle d-inline-block"
+                                                                    style="background-image:url('img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+                                                                <span
+                                                                    class="profile-image-md mr-1 rounded-circle d-inline-block"
+                                                                    style="background-image:url('img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+                                                                <div data-hasmore="+3"
+                                                                    class="rounded-circle profile-image-md mr-1">
+                                                                    <span
+                                                                        class="profile-image-md mr-1 rounded-circle d-inline-block"
+                                                                        style="background-image:url('img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+                                                                </div>
+                                                            </div>
+                                                            <span class="fs-nano text-muted mt-1">55 minutes ago</span>
+                                                        </div>
+                                                        <div
+                                                            class="show-on-hover-parent position-absolute pos-right pos-bottom p-3">
+                                                            <a href="#" class="text-muted" title="delete"><i
+                                                                    class="fal fa-trash-alt"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center show-child-on-hover">
+                                                        <img src="img/demo/avatars/avatar-m.png" data-src="img/demo/avatars/avatar-e.png" class="profile-image-sm rounded-circle align-self-start mt-1" alt="k" />
+                                                        <div class="d-flex flex-column flex-1">
+                                                            <span class="name">Dr John Cook <span class="fw-300">sent a
+                                                                    <span class="text-danger">new
+                                                                        signal</span></span></span>
+                                                            <span class="msg-a fs-sm mt-2">Nanotechnology immersion
+                                                                along the information highway will close the loop on
+                                                                focusing solely on the bottom line.</span>
+                                                            <span class="fs-nano text-muted mt-1">10 minutes ago</span>
+                                                        </div>
+                                                        <div
+                                                            class="show-on-hover-parent position-absolute pos-right pos-bottom p-3">
+                                                            <a href="#" class="text-muted" title="delete"><i
+                                                                    class="fal fa-trash-alt"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center show-child-on-hover">
+                                                        <div class="d-flex flex-column flex-1">
+                                                            <span class="name">Lab Images <span class="fw-300">were
+                                                                    updated!</span></span>
+                                                            <div class="fs-sm d-flex align-items-center mt-1">
+                                                                <a href="#" class="mr-1 mt-1" title="Cell A-0012">
+                                                                    <span class="d-block img-share"
+                                                                        style="background-image:url('img/thumbs/pic-7.png'); background-size: cover;"></span>
+                                                                </a>
+                                                                <a href="#" class="mr-1 mt-1"
+                                                                    title="Patient A-473 saliva">
+                                                                    <span class="d-block img-share"
+                                                                        style="background-image:url('img/thumbs/pic-8.png'); background-size: cover;"></span>
+                                                                </a>
+                                                                <a href="#" class="mr-1 mt-1"
+                                                                    title="Patient A-473 blood cells">
+                                                                    <span class="d-block img-share"
+                                                                        style="background-image:url('img/thumbs/pic-11.png'); background-size: cover;"></span>
+                                                                </a>
+                                                                <a href="#" class="mr-1 mt-1"
+                                                                    title="Patient A-473 Membrane O.C">
+                                                                    <span class="d-block img-share"
+                                                                        style="background-image:url('img/thumbs/pic-12.png'); background-size: cover;"></span>
+                                                                </a>
+                                                            </div>
+                                                            <span class="fs-nano text-muted mt-1">55 minutes ago</span>
+                                                        </div>
+                                                        <div
+                                                            class="show-on-hover-parent position-absolute pos-right pos-bottom p-3">
+                                                            <a href="#" class="text-muted" title="delete"><i
+                                                                    class="fal fa-trash-alt"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="d-flex align-items-center show-child-on-hover">
+                                                        <img src="img/demo/avatars/avatar-m.png" data-src="img/demo/avatars/avatar-h.png" class="profile-image rounded-circle align-self-start mt-1" alt="k" />
+                                                        <div class="d-flex flex-column flex-1">
+                                                            <div class="name mb-2">
+                                                                Lisa Lamar<span class="fw-300"> updated project</span>
+                                                            </div>
+                                                            <div class="row fs-b fw-300">
+                                                                <div class="col text-left">
+                                                                    Progress
+                                                                </div>
+                                                                <div class="col text-right fw-500">
+                                                                    45%
+                                                                </div>
+                                                            </div>
+                                                            <div class="progress progress-sm d-flex mt-1">
+                                                                <span
+                                                                    class="progress-bar bg-primary-500 progress-bar-striped"
+                                                                    role="progressbar" style="width: 45%"
+                                                                    aria-valuenow="45" aria-valuemin="0"
+                                                                    aria-valuemax="100"></span>
+                                                            </div>
+                                                            <span class="fs-nano text-muted mt-1">2 hrs ago</span>
+                                                            <div
+                                                                class="show-on-hover-parent position-absolute pos-right pos-bottom p-3">
+                                                                <a href="#" class="text-muted" title="delete"><i
+                                                                        class="fal fa-trash-alt"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                               
+                               
+                                </div>
+                                 <div
+                                    class="py-2 px-3 bg-faded d-block rounded-bottom text-right border-faded border-bottom-0 border-right-0 border-left-0">
+                                    <a href="#" class="fs-xs fw-500 ml-auto">view all notifications</a>
+                                </div> 
+                            </div>-->
+                        </div>
+                        
+                        <!--Help-->
+                        <div class="mr-2 position-relative" style="top: 25px; left: 8px;" title="Help">
+							<i class="fa fa-question" style="font-size: 18px; color: #fff;"></i>
+						</div>
+						
+                        <!-- app user menu -->
+                        <div class="w-50 pr-2 usernameBlockHeader">
+                            <a href="#" data-toggle="dropdown"  class="header-icon d-flex align-items-center justify-content-center ml-2">
+                                <img src="img/demo/avatars/avatar-admin.png" class="profile-image rounded-circle" alt="Dr. Codex Lantern">
+                                <!-- you can also add username next to the avatar with the codes below: -->
+                                 <div class="info-card-text w-75 text-left ml-2">
+                                            <div class=" mr-1 text-nowrap" th:text="${username}"></div>
+                                            <span id ="UserLocation"  class="opacity-80"></span>
+                                        </div>
+                                <i class="ni ni-chevron-down hidden-xs-down"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-animated dropdown-lg">
+                                <div class="dropdown-header bg-trans-gradient d-flex flex-row py-4 rounded-top">
+                                    <div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+                                        <span class="mr-2">
+                                            <img src="img/demo/avatars/avatar-admin.png" class="rounded-circle profile-image" alt="Dr. Codex Lantern">
+                                        </span>
+                                        <div class="info-card-text">
+                                            <div class="fs-lg text-truncate text-truncate-lg" th:text="${username}"></div>
+                                            <span id ="UserLocation" class="text-truncate text-truncate-md opacity-80"></span>
+                                            <a href="" >change</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="dropdown-divider m-0"></div>
+                                <a href="#" class="dropdown-item" data-action="">
+                                    <i class="fal fa-user"></i>
+                                    <span data-i18n="drpdwn.fullscreen"> View Profile</span>
+                                </a>
+                                <div class="dropdown-divider m-0"></div>
+                                <a href="#" class="dropdown-item" data-toggle="modal" data-target=".js-modal-settings">
+                                    <i class="fal fa-cog"></i>
+                                    <span data-i18n="drpdwn.settings"> Settings</span>
+                                </a>
+                                <div class="dropdown-divider m-0"></div>
+                                <a href="ChangePassword" class="dropdown-item">
+                                    <i class="fal fa-lock"></i>
+                                    <span data-i18n="drpdwn.settings"> Change Password</span>
+                                </a>
+                                <!-- <a href="#" class="dropdown-item" data-action="app-print">
+                                    <span data-i18n="drpdwn.print">Print</span>
+                                    <i class="float-right text-muted fw-n">Ctrl + P</i>
+                                </a> -->
+                                <!-- <div class="dropdown-multilevel dropdown-multilevel-left">
+                                    <div class="dropdown-item">
+                                        Language
+                                    </div>
+                                    <div class="dropdown-menu">
+                                        <a href="#?lang=fr" class="dropdown-item" data-action="lang" data-lang="fr">Français</a>
+                                        <a href="#?lang=en" class="dropdown-item active" data-action="lang" data-lang="en">English (US)</a>
+                                        <a href="#?lang=es" class="dropdown-item" data-action="lang" data-lang="es">Español</a>
+                                        <a href="#?lang=ru" class="dropdown-item" data-action="lang" data-lang="ru">Русский язык</a>
+                                        <a href="#?lang=jp" class="dropdown-item" data-action="lang" data-lang="jp">日本語</a>
+                                        <a href="#?lang=ch" class="dropdown-item" data-action="lang" data-lang="ch">中文</a>
+                                    </div>
+                                </div> -->
+                                <div class="dropdown-divider m-0"></div>
+                                <a id="logout" class="dropdown-item fw-500 pt-3 pb-3" href="#">
+                                    <i class="fal fa-sign-out"></i>
+                                    <span data-i18n="drpdwn.page-logout"> Logout</span>
+                              
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </header>
+                <div id="custom-tooltip" class="custom-tooltip"></div>
+                <style>
+					.desktopviewstyle{
+						display: flex;
+						width: 100%;
+					}
+					.headerSearch:hover{
+						transition: all .3s;
+						border-bottom: 1px solid #fff!important;
+					}
+					.header-icon:not(.btn):hover > [class*='fa-']:only-child, .header-icon:not(.btn):hover > .ni{
+						cursor: pointer;
+					}
+					.headerSearch:hover{
+						border-bottom: 1px solid #fff!important;
+					}
+			</style>
+               <script th:inline="javascript">
+
+                /*<![CDATA[*/
+        		var contextPath = /*[[@{/}]]*/'';
+        	/*]]>*/
+                    var xhr = new XMLHttpRequest();
+              xhr.onload = (res) => {
+                  if (res.target.status == 200) {
+                      document.getElementById("clientname").innerHTML = res.target.responseText;
+                  }
+              };
+              xhr.onerror = () => {
+                  console.error("An error occurred during the XMLHttpRequest.");
+              };
+              xhr.open("GET",contextPath+ "clientname", true);
+              xhr.send();
+              
+              document.addEventListener('DOMContentLoaded', function () {
+                  var logoutLink = document.getElementById('logout');
+                  logoutLink.href =  contextPath+""; 
+              });
+           
+              $.ajax({
+                type: "GET",
+                url: contextPath+"UserLocation",
+   
+                success: function(response) {
+                	if(response != null){
+                		const institutionName = response[0].institution;
+                		const firstSpaceIndex = institutionName.indexOf(" ");
+
+                		const shortName = firstSpaceIndex !== -1 
+                		    ? institutionName.substring(0, firstSpaceIndex) 
+                		    : institutionName; 
+                		    console.log(shortName);
+                        var locationText = shortName;  
+				        var locationValue = response[0].instNum;	            
+				        $("#UserLocation").text(locationText).attr("inst-num", locationValue);
+                	}else{
+                		console.log("no value obtained");
+                	}
+                },
+                error: function(error) {
+                  console.error("Error fetching user location:", error);
+                }
+              });
+             
+            
+              
+            
+            
+              fetch(contextPath+ "clientlogo")
+              .then(response => response.blob())
+              .then(blob => {
+              const url = URL.createObjectURL(blob);
+              document.getElementById("dacsImage").src = url;
+              dacsImage.setAttribute('draggable', false); 
+              })
+              .catch(error => {
+              console.error("Error loading DACS logo:", error);
+              });
+
+              fetch(contextPath+ "OmnetLogo")
+              .then(response => response.blob())
+              .then(blob => {
+              const url = URL.createObjectURL(blob);
+              document.getElementById("omnetImage").src = url;
+              omnetImage.setAttribute('draggable', false); 
+              })
+              .catch(error => {
+              console.error("Error loading Omnet logo:", error);
+              });
+            
+              $(document).ready(function () {
+            	  
+            // date picker with future date
+              $(".date-input1").attr("maxlength", "10").datepicker({
+          	    dateFormat: "mm/dd/yy",
+          	    changeMonth: true,
+          	    changeYear: true,
+          	    yearRange: function () {
+          	        var currentYear = new Date().getFullYear();
+          	        return (currentYear - 20) + ":" + (currentYear + 20);
+          	    }(),
+          	    onSelect: function (dateText, inst) {
+          	        $(this).datepicker("hide");
+          	    },
+				beforeShow: function(input, inst) {
+								        setTimeout(function() {
+								            const $datepickerDiv = $('#ui-datepicker-div');
+
+								            // Avoid adding multiple times
+								            if (!$datepickerDiv.find('.custom-btn-wrapper').length) {
+								                const $wrapper = $('<div>', {
+								                    class: 'custom-btn-wrapper',
+								                    css: {
+								                        display: 'flex',
+								                        gap: '4px',
+								                        marginTop: '2px',
+														marginBottom: '2px',
+								                        justifyContent: 'space-between'
+								                    }
+								                });
+
+								                const $todayBtn = $('<button>', {
+								                    text: "Today",
+								                    class: 'custom-today-btn',
+								                    css: {
+								                        flex: 1,
+								                        padding: '2px',
+								                        cursor: 'pointer',
+														background: '#ece0ff', 
+														border: 'none'
+								                    },
+								                    click: function(e) {
+								                        e.preventDefault();
+								                        const today = $.datepicker.formatDate("mm/dd/yy", new Date());
+								                        $(input).val(today).trigger('change').datepicker("hide");
+								                    }
+								                });
+
+								                const $clearBtn = $('<button>', {
+								                    text: "Clear",
+								                    class: 'custom-clear-btn',
+								                    css: {
+								                        flex: 1,
+								                        padding: '2px',
+								                        cursor: 'pointer',
+														background: '#ece0ff',
+														border: 'none'
+								                    },
+								                    click: function(e) {
+								                        e.preventDefault();
+								                        $(input).val('').trigger('change');
+								                    }
+								                });
+
+								                $wrapper.append($todayBtn, $clearBtn);
+								                $datepickerDiv.append($wrapper);
+								            }
+								        }, 10);
+								    }
+          	}).on("input", function () {
+          	    
+          		let value = $(this).val().replace(/\D/g, ""); 
+          	    if (value.length >= 3 && value.length <= 4) {
+          	        value = value.slice(0, 2) + "/" + value.slice(2);
+          	    } else if (value.length > 4 && value.length <= 8) {
+          	        value = value.slice(0, 2) + "/" + value.slice(2, 4) + "/" + value.slice(4);
+          	    }
+          	    $(this).val(value);
+          		
+          		if ($(this).val().length === 10) {
+          	        $(this).datepicker("hide");
+          	    }
+          	});
+			// Date picker blocked future date
+			$(".date-input2").attr("maxlength", "10").datepicker({
+			          	    dateFormat: "mm/dd/yy",
+			          	    changeMonth: true,
+			          	    changeYear: true,
+			          	    yearRange: function () {
+			          	        var currentYear = new Date().getFullYear();
+			          	        return (currentYear - 20) + ":" + (currentYear + 20);
+			          	    }(),
+			          	    onSelect: function (dateText, inst) {
+			          	        $(this).datepicker("hide");
+								$(this).trigger("change");
+			          	    },
+							maxDate: 0,
+							beforeShow: function(input, inst) {
+											        setTimeout(function() {
+											            const $datepickerDiv = $('#ui-datepicker-div');
+
+											            // Avoid adding multiple times
+											            if (!$datepickerDiv.find('.custom-btn-wrapper').length) {
+											                const $wrapper = $('<div>', {
+											                    class: 'custom-btn-wrapper',
+											                    css: {
+											                        display: 'flex',
+											                        gap: '4px',
+											                        marginTop: '2px',
+																	marginBottom: '2px',
+											                        justifyContent: 'space-between'
+											                    }
+											                });
+
+											                const $todayBtn = $('<button>', {
+											                    text: "Today",
+											                    class: 'custom-today-btn',
+											                    css: {
+											                        flex: 1,
+											                        padding: '2px',
+											                        cursor: 'pointer',
+																	background: '#ece0ff', 
+																	border: 'none'
+											                    },
+											                    click: function(e) {
+											                        e.preventDefault();
+											                        const today = $.datepicker.formatDate("mm/dd/yy", new Date());
+											                        $(input).val(today).trigger('change').datepicker("hide");
+											                    }
+											                });
+
+											                const $clearBtn = $('<button>', {
+											                    text: "Clear",
+											                    class: 'custom-clear-btn',
+											                    css: {
+											                        flex: 1,
+											                        padding: '2px',
+											                        cursor: 'pointer',
+																	background: '#ece0ff',
+																	border: 'none'
+											                    },
+											                    click: function(e) {
+											                        e.preventDefault();
+											                        $(input).val('').trigger('change');
+											                    }
+											                });
+
+											                $wrapper.append($todayBtn, $clearBtn);
+											                $datepickerDiv.append($wrapper);
+											            }
+											        }, 10);
+											    }
+			          	}).on("input", function (e) {
+			          	    
+			          		/*let value = $(this).val().replace(/\D/g, ""); 
+			          	    if (value.length >= 3 && value.length <= 4) {
+			          	        value = value.slice(0, 2) + "/" + value.slice(2);
+			          	    } else if (value.length > 4 && value.length <= 8) {
+			          	        value = value.slice(0, 2) + "/" + value.slice(2, 4) + "/" + value.slice(4);
+			          	    }
+			          	    $(this).val(value);*/
+							
+							/*const input = e.target;
+										    const rawValue = input.value;
+										    const originalPos = input.selectionStart;
+
+										    // Remove all non-digits
+										    let digits = rawValue.replace(/\D/g, "");
+										    if (digits.length > 8) digits = digits.slice(0, 8);
+
+										    // Reformat with slashes
+										    let formatted = "";
+										    if (digits.length > 0) formatted += digits.substring(0, 2);
+										    if (digits.length > 2) formatted += "/" + digits.substring(2, 4);
+										    if (digits.length > 4) formatted += "/" + digits.substring(4, 8);
+
+										    // Set the new value
+										    input.value = formatted;
+
+										    // ===== Caret Adjustment =====
+										    // Count how many non-digit characters were added before original cursor position
+										    let pos = originalPos;
+
+										    // Adjust if slash was added before current position
+										    //if (pos > 2 && pos <4) pos--;
+											if (pos>2 && pos <=4) pos = pos+2 
+											if (pos > 2 && pos <5) pos=pos-1;
+										    if (pos > 5) pos=pos-2;
+											
+
+										    // Restore the caret position
+										    input.setSelectionRange(pos, pos);*/
+											const input = e.target;
+											    const rawValue = input.value;
+											    const originalPos = input.selectionStart;
+
+											    // Extract digits
+											    let digits = rawValue.replace(/\D/g, "");
+											    if (digits.length > 8) digits = digits.slice(0, 8);
+
+											    // Reformat with slashes
+											    let formatted = "";
+											    if (digits.length > 0) formatted += digits.substring(0, 2);
+											    if (digits.length > 2) formatted += "/" + digits.substring(2, 4);
+											    if (digits.length > 4) formatted += "/" + digits.substring(4, 8);
+
+											    // Count digits before original cursor
+											    const digitsBeforeCursor = rawValue.slice(0, originalPos).replace(/\D/g, "").length;
+
+											    // Determine new cursor position based on how many slashes will appear before those digits
+											    let newPos = digitsBeforeCursor;
+											    if (digitsBeforeCursor >= 3) newPos += 1; // after first slash
+											    if (digitsBeforeCursor >= 5) newPos += 1; // after second slash
+
+											    // Update value and restore cursor
+											    input.value = formatted;
+											    input.setSelectionRange(newPos, newPos);
+
+											    if ($(this).val().length === 10) {
+											        $(this).datepicker("hide");
+											    }
+			          		
+			          		if ($(this).val().length === 10) {
+			          	        $(this).datepicker("hide");
+			          	    }
+			          	});
+              
+              });
+          /*     var username = document.getElementById('usernameDiv').innerText; */
+            /*   localStorage.setItem('userId', userId); */
+           
+                </script>
+                </div>
+                

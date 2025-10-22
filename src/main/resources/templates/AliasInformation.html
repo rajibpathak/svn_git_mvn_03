@@ -1,0 +1,3949 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<title class="Registrationsidebar">Alias Information</title>
+<div th:replace="~{fragments/head :: head}"></div>
+<style>
+	#topmenu .custom-checkbox {
+		line-height: 2.2;
+	}
+
+	.error_fld {
+		border: 1px solid #f00 !important;
+		outline: none !important;
+	}
+
+	.headerBlock {
+		background: #7a59ad;
+		color: #fff;
+		padding: 5px;
+		border: 1px solid #ccc;
+		margin-left: 5px;
+		margin-right: 5px;
+		font-weight: 600;
+	}
+
+	.panelContentBlock {
+		border: 1px solid #7a58ac;
+		border-radius: 5px !important;
+	}
+
+	.dataTables_scroll {
+		border: 1px solid #7a59ad;
+		border-top: 0;
+	}
+
+	.nav-tabs {
+		border: 1px solid #7a59ad;
+		border-radius: 5px 5px 5px 0px;
+	}
+
+	.aliasNameTable {
+		border: 1px solid #7a59ad;
+		border-top: 0;
+		padding: 0 !important;
+	}
+
+	.tabulator-tableholder {
+		overflow-x: hidden;
+	}
+
+	@media screen and (max-width: 1360px) {
+		.nav-function-fixed .page-sidebar {
+			top: 16% !important;
+		}
+	}
+
+	@media screen and (max-width: 1200px) {
+		.subheader-title {
+			font-size: 18px;
+		}
+	}
+
+	@media screen and (max-width: 1024px) {
+		.nav-function-fixed .page-sidebar {
+			top: 24% !important;
+		}
+
+		.page-content-wrapper {
+			margin-top: 0rem !important;
+		}
+
+		.subheader {
+			display: block;
+		}
+
+		.topheadRightSideBlock {
+			justify-content: end;
+			display: flex;
+		}
+
+		.panel .nav-tabs .nav-link {
+			font-size: 11px !important;
+		}
+	}
+
+	@media screen and (max-width: 992px) {
+		.page-content-wrapper {
+			padding-left: 0 !important;
+		}
+
+		#mdPicker {
+			top: 2px;
+		}
+
+		.subheader-title {
+			color: #7a59ae !important;
+			font-weight: 500 !important;
+		}
+	}
+
+	.mydisabled {
+		background-color: #ddd;
+		/* Light gray background for disabled rows */
+		/*color: #a0a0a0;*/
+		/* Gray text color */
+		pointer-events: none;
+		/* Disable pointer events */
+	}
+</style>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+
+<body class="mod-bg-1 mod-nav-link">
+	<div th:replace="~{fragments/header :: header}"></div>
+	<div th:replace="~{fragments/navmenus :: navmenus}"></div>
+	<!-- BEGIN Page Wrapper -->
+	<div class="page-wrapper">
+		<div class="page-inner">
+			<!-- BEGIN Left Aside -->
+			<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+			<!-- END Left Aside -->
+			<div class="page-content-wrapper">
+				<!-- BEGIN Page Header -->
+
+				<!-- END Page Header -->
+				<!-- BEGIN Page Content -->
+				<!-- the #js-page-content id is needed for some plugins to initialize -->
+				<main id="js-page-content" role="main" class="page-content">
+					<!-- <ol class="breadcrumb page-breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">SmartAdmin</a></li>
+                            <li class="breadcrumb-item">category_1</li>
+                            <li class="breadcrumb-item">category_2</li>
+                            <li class="breadcrumb-item active">Page Titile</li>
+                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        </ol> -->
+					<!--<form id="entryform" style="display: none;"></form>-->
+					<input type="hidden" id="src_val">
+					<input type="hidden" id="nm_typ">
+					<div class="subheader mb-1">
+						<h1 class="subheader-title">
+							<div th:replace="~{fragments/toggleMenu :: toggleMenu}"></div>
+							<i class='subheader-icon fal fa-'></i> <span id="screenName"
+								th:text="${screenName}"></span></span>
+						</h1>
+
+						<div class="frame-wrap bg-transparent">
+							<div class="btn-group">
+								<div class="col-12 pr-0">
+									<div class="js-get-date">[your date here]</div>
+								</div>
+							</div>
+							<a href="javascript:void(0);" id="add"
+								class="btn btn-primary btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="Add"><i class="fal fa-plus"></i>
+							</a>
+							<a href="javascript:void(0);"
+								class="btn btn-warning btn-sm btn-icon waves-effect waves-themed disabled"
+								data-toggle="tooltip" data-placement="top" data-original-title="Print"> <i
+									class="fal fa-print"></i>
+							</a>
+							<a href="javascript:void(0);" id="clear"
+								class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="tooltip" data-placement="top" data-original-title="Clear"> <i
+									class="fal fa-times"></i>
+							</a>
+							<a href="javascript:void(0);" id="save"
+								class="btn btn-success btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="OK/Save"><i class="fal fa-save"></i>
+							</a>
+							<a href="javascript:void(0);" id="exit"
+								class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="Cancel/Exit"><i class="fal fa-sign-out"></i>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="col-12 col-xl-12">
+							<div th:replace="~{fragments/formheader :: formheader}"></div>
+
+							<!--<input type="text" id="datepicker">-->
+							<input type="hidden" name="screenCode" id="screenCode" value="CBI_ALIS">
+							<input type="hidden" class="primary_val">
+							<input type="button" id="call_fetch" style="display: none;">
+							<input type="hidden" name="current_commit" id="current_commit">
+
+							<input type="hidden" id="vals_source">
+							<input type="hidden" id="vals_source2">
+							<input type="hidden" id="vals_source3">
+							<input type="hidden" id="vals_source4">
+							<input type="hidden" id="vals_nameType">
+
+							<div class="panel">
+								<div class="panel-content">
+									<ul class="nav nav-tabs" role="tablist">
+										<li class="nav-item">
+											<a class="nav-link active" data-toggle="tab" id="alis_names"
+												href="#Alias_Name" role="tab">Names</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" data-toggle="tab" id="alis_dob" href="#Birth_Date_Info"
+												role="tab">Birth Dates</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" data-toggle="tab" id="alis_ssn"
+												href="#SocialSecurity_Info" role="tab">Social Security #</a>
+										</li>
+										<li class="nav-item">
+											<a class="nav-link" data-toggle="tab" id="alis_sbi" href="#SBI_Info"
+												role="tab">ID #</a>
+										</li>
+									</ul>
+									<div class="tab-content p-1">
+										<div class="tab-pane fade show active" id="Alias_Name" role="tabpanel">
+											<div id="aliasname" class="panel mb-0">
+												<div class="panel-hdr">
+													<h2 class="aliasname-table-hdr">
+														Alias Names
+													</h2>
+												</div>
+												<div class="panel-container show">
+													<div class="panel-content p-2">
+														<div id="js-checkbox-toggles">
+															<div id="aliasname-table"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane fade" id="Birth_Date_Info" role="tabpanel">
+											<div id="aliasbirthdate" class="panel mb-0">
+												<div class="panel-hdr">
+													<h2 class="aliasbirth-table-hdr">
+														Alias Birth Dates
+													</h2>
+												</div>
+												<div class="panel-container show">
+													<div class="panel-content p-2">
+														<div id="js-checkbox-toggles">
+															<div id="aliasbirth-table"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane fade" id="SocialSecurity_Info" role="tabpanel">
+											<div id="aliasssn" class="panel mb-0">
+												<div class="panel-hdr">
+													<h2 class="aliassocial-table-hdr">
+														Alias Social Security Numbers
+													</h2>
+												</div>
+												<div class="panel-container show">
+													<div class="panel-content p-2">
+														<div id="js-checkbox-toggles">
+															<div id="aliassocial-table"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="tab-pane fade" id="SBI_Info" role="tabpanel">
+											<div id="aliassbi" class="panel mb-0">
+												<div class="panel-hdr">
+													<h2 class="aliasSbi-table-hdr">
+														ID Numbers
+													</h2>
+												</div>
+												<div class="panel-container show">
+													<div class="panel-content p-2">
+														<div id="js-checkbox-toggles">
+															<div id="aliasSbi-table"></div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</main>
+				<!-- this overlay is activated only when mobile menu is triggered -->
+				<div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
+				<!-- END Page Content -->
+				<!-- Modal Large -->
+				<div class="modal fade" id="default-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Staff Name</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true"><i class="fal fa-times"></i></span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="form-group row">
+									<label for="" class="col-form-label col-12 col-lg-1 form-label">Search</label>
+									<div class="col-12 col-lg-11">
+										<input type="text" class="form-control" aria-label="staffSearch"
+											name="staffSearch" id="staffSearch" value="">
+									</div>
+
+								</div>
+								<div class="table-responsive-lg">
+									<table class="table table-bordered m-0">
+										<thead>
+											<tr>
+												<th>Last Name</th>
+												<th>First Name</th>
+												<th>MI</th>
+												<th>Suffix</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- BEGIN Shortcuts -->
+				<!-- modal shortcut -->
+				<div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog"
+					aria-labelledby="modal-shortcut" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-top modal-transparent" role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+								<ul class="app-list w-auto h-auto p-0 text-left">
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Home
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
+												<i class="ni ni-envelope icon-stack-1x text-white"></i>
+											</div>
+											<span class="app-list-name">
+												Inbox
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Add More
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div> <!-- END Shortcuts -->
+			</div>
+		</div>
+	</div>
+	<!-- END Page Wrapper -->
+	<!-- BEGIN Quick Menu -->
+	<!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
+	<nav class="shortcut-menu d-none d-sm-block"> <input type="checkbox" class="menu-open" name="menu-open"
+			id="menu_open" />
+		<label for="menu_open" class="menu-open-button "> <span class="app-shortcut-icon d-block"></span>
+		</label> <a href="#" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Scroll Top"> <i
+				class="fal fa-arrow-up"></i>
+		</a> <a href="page_login-alt.html" class="menu-item btn" data-toggle="tooltip" data-placement="left"
+			title="Logout"> <i class="fal fa-sign-out"></i>
+		</a> <a href="#" class="menu-item btn" data-action="app-fullscreen" data-toggle="tooltip" data-placement="left"
+			title="Full Screen"> <i class="fal fa-expand"></i>
+		</a> <a href="#" class="menu-item btn" data-action="app-print" data-toggle="tooltip" data-placement="left"
+			title="Print page"> <i class="fal fa-print"></i>
+		</a> <a href="#" class="menu-item btn" data-action="app-voice" data-toggle="tooltip" data-placement="left"
+			title="Voice command">
+			<i class="fal fa-microphone"></i>
+		</a>
+	</nav>
+	<!-- END Quick Menu -->
+	<!-- BEGIN Messenger -->
+	<div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right">
+			<div class="modal-content h-100">
+				<div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
+					<div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+						<span class="mr-2">
+							<span class="rounded-circle profile-image d-block"
+								style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+						</span>
+						<div class="info-card-text">
+							<a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white"
+								data-toggle="dropdown" aria-expanded="false">
+								Tracey Chang
+								<i class="fal fa-angle-down d-inline-block ml-1 text-white fs-md"></i>
+							</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">Send Email</a>
+								<a class="dropdown-item" href="#">Create Appointment</a>
+								<a class="dropdown-item" href="#">Block User</a>
+							</div>
+							<span class="text-truncate text-truncate-md opacity-80">IT Director</span>
+						</div>
+					</div>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0 h-100 d-flex">
+					<!-- BEGIN msgr-list -->
+					<div
+						class="msgr-list d-flex flex-column bg-faded border-faded border-top-0 border-right-0 border-bottom-0 position-absolute pos-top pos-bottom">
+						<div>
+							<div
+								class="height-4 width-3 h3 m-0 d-flex justify-content-center flex-column color-primary-500 pl-3 mt-2">
+								<i class="fal fa-search"></i>
+							</div>
+							<input type="text" class="form-control bg-white" id="msgr_listfilter_input"
+								name="msgr_listfilter_input" placeholder="Filter contacts" aria-label="FilterSearch"
+								value="" data-listfilter="#js-msgr-listfilter">
+						</div>
+						<div class="flex-1 h-100 custom-scroll">
+							<div class="w-100">
+								<ul id="js-msgr-listfilter" class="list-unstyled m-0">
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="tracey chang online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Tracey Chang
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="oliver kopyuv online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Oliver Kopyuv
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="dr john cook phd away">
+											<div class="d-table-cell align-middle status status-warning status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Dr. John Cook PhD
+													<small class="d-block font-italic fs-xs">
+														Away
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-g.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Ali Amdaney
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="sarah mcbrook online">
+											<div class="d-table-cell align-middle status status-success status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Sarah McBrook
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney busy">
+											<div class="d-table-cell align-middle status status-danger status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs text-danger">
+														Busy
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney inactive">
+											<div class="d-table-cell align-middle">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-m.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													+714651347790
+													<small class="d-block font-italic fs-xs opacity-50">
+														Missed Call
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+								<div class="filter-message js-filter-message"></div>
+							</div>
+						</div>
+						<div>
+							<a class="fs-xl d-flex align-items-center p-3">
+								<i class="fal fa-cogs"></i>
+							</a>
+						</div>
+					</div>
+					<!-- END msgr-list -->
+					<!-- BEGIN msgr -->
+					<div class="msgr d-flex h-100 flex-column bg-white">
+						<!-- BEGIN custom-scroll -->
+						<div class="custom-scroll flex-1 h-100">
+							<div id="chat_container" class="w-100 p-4">
+								<!-- start .chat-segment -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">
+										Jun 19
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent">
+									<div class="chat-message">
+										<p>
+											Hey Ching, did you get my files?
+										</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:00 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>
+											Hi
+										</p>
+										<p>
+											Sorry going through a busy time in office. Yes I analyzed the solution.
+										</p>
+										<p>
+											It will require some resource, which I could not manage.
+										</p>
+									</div>
+									<div class="fw-300 text-muted mt-1 fs-xs">
+										3:24 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-start">
+									<div class="chat-message">
+										<p>
+											Okay
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-end">
+									<div class="chat-message">
+										<p>
+											Sending you some dough today, you can allocate the resources to this
+											project.
+										</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:26 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-start">
+									<div class="chat-message">
+										<p>
+											Perfect. Thanks a lot!
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>
+											I will have them ready by tonight.
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-end">
+									<div class="chat-message">
+										<p>
+											Cheers
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment for timestamp -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">
+										Jun 20
+									</div>
+								</div>
+								<!--  end .chat-segment for timestamp -->
+							</div>
+						</div>
+						<!-- END custom-scroll  -->
+						<!-- BEGIN msgr__chatinput -->
+						<div class="d-flex flex-column">
+							<div
+								class="border-faded border-right-0 border-bottom-0 border-left-0 flex-1 mr-3 ml-3 position-relative shadow-top">
+								<div class="pt-3 pb-1 pr-0 pl-0 rounded-0" tabindex="-1">
+									<div id="msgr_input" contenteditable="true"
+										data-placeholder="Type your message here..."
+										class="height-10 form-content-editable"></div>
+								</div>
+							</div>
+							<div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1"
+									data-toggle="tooltip" data-original-title="More options" data-placement="top">
+									<i class="fal fa-ellipsis-v-alt color-fusion-300"></i>
+								</a>
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+									data-original-title="Attach files" data-placement="top">
+									<i class="fal fa-paperclip color-fusion-300"></i>
+								</a>
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+									data-original-title="Insert photo" data-placement="top">
+									<i class="fal fa-camera color-fusion-300"></i>
+								</a>
+								<div class="ml-auto">
+									<a href="javascript:void(0);" class="btn btn-info">Send</a>
+								</div>
+							</div>
+						</div>
+						<!-- END msgr__chatinput -->
+					</div>
+					<!-- END msgr -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Messenger -->
+	<!-- BEGIN Page Settings -->
+	<div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right modal-md">
+			<div class="modal-content">
+				<div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
+					<h4 class="m-0 text-center color-white">
+						Layout Settings
+						<small class="mb-0 opacity-80">User Interface Settings</small>
+					</h4>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0">
+					<div class="settings-panel">
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									App Layout
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="fh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="header-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Header</span>
+							<span class="onoffswitch-title-desc">header is in a fixed at all times</span>
+						</div>
+						<div class="list" id="nff">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Navigation</span>
+							<span class="onoffswitch-title-desc">left panel is fixed</span>
+						</div>
+						<div class="list" id="nfm">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-minify"></a>
+							<span class="onoffswitch-title">Minify Navigation</span>
+							<span class="onoffswitch-title-desc">Skew nav to maximize space</span>
+						</div>
+						<div class="list" id="nfh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-hidden"></a>
+							<span class="onoffswitch-title">Hide Navigation</span>
+							<span class="onoffswitch-title-desc">roll mouse on edge to reveal</span>
+						</div>
+						<div class="list" id="nft">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-top"></a>
+							<span class="onoffswitch-title">Top Navigation</span>
+							<span class="onoffswitch-title-desc">Relocate left pane to top</span>
+						</div>
+						<div class="list" id="mmb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-main-boxed"></a>
+							<span class="onoffswitch-title">Boxed Layout</span>
+							<span class="onoffswitch-title-desc">Encapsulates to a container</span>
+						</div>
+						<div class="expanded">
+							<ul class="">
+								<li>
+									<div class="bg-fusion-50" data-action="toggle" data-class="mod-bg-1"></div>
+								</li>
+								<li>
+									<div class="bg-warning-200" data-action="toggle" data-class="mod-bg-2"></div>
+								</li>
+								<li>
+									<div class="bg-primary-200" data-action="toggle" data-class="mod-bg-3"></div>
+								</li>
+								<li>
+									<div class="bg-success-300" data-action="toggle" data-class="mod-bg-4"></div>
+								</li>
+							</ul>
+							<div class="list" id="mbgf">
+								<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+									data-class="mod-fixed-bg"></a>
+								<span class="onoffswitch-title">Fixed Background</span>
+							</div>
+						</div>
+						<!-- <div class="mt-4 d-table w-100 px-5">
+                            <div class="d-table-cell align-middle">
+                                <h5 class="p-0">
+                                    Mobile Menu
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="list" id="nmp">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-push"></a>
+                            <span class="onoffswitch-title">Push Content</span>
+                            <span class="onoffswitch-title-desc">Content pushed on menu reveal</span>
+                        </div>
+                        <div class="list" id="nmno">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-no-overlay"></a>
+                            <span class="onoffswitch-title">No Overlay</span>
+                            <span class="onoffswitch-title-desc">Removes mesh on menu reveal</span>
+                        </div>
+                        <div class="list" id="sldo">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-slide-out"></a>
+                            <span class="onoffswitch-title">Off-Canvas <sup>(beta)</sup></span>
+                            <span class="onoffswitch-title-desc">Content overlaps menu</span>
+                        </div> -->
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Accessibility
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mbf">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-bigger-font"></a>
+							<span class="onoffswitch-title">Bigger Content Font</span>
+							<span class="onoffswitch-title-desc">content fonts are bigger for readability</span>
+						</div>
+						<div class="list" id="mhc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-high-contrast"></a>
+							<span class="onoffswitch-title">High Contrast Text (WCAG 2 AA)</span>
+							<span class="onoffswitch-title-desc">4.5:1 text contrast ratio</span>
+						</div>
+						<div class="list" id="mcb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-color-blind"></a>
+							<span class="onoffswitch-title">Daltonism <sup>(beta)</sup> </span>
+							<span class="onoffswitch-title-desc">color vision deficiency</span>
+						</div>
+						<div class="list" id="mpc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-pace-custom"></a>
+							<span class="onoffswitch-title">Preloader Inside</span>
+							<span class="onoffswitch-title-desc">preloader will be inside content</span>
+						</div>
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Global Modifications
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mcbg">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-clean-page-bg"></a>
+							<span class="onoffswitch-title">Clean Page Background</span>
+							<span class="onoffswitch-title-desc">adds more whitespace</span>
+						</div>
+						<div class="list" id="mhni">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-nav-icons"></a>
+							<span class="onoffswitch-title">Hide Navigation Icons</span>
+							<span class="onoffswitch-title-desc">invisible navigation icons</span>
+						</div>
+						<div class="list" id="dan">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-disable-animation"></a>
+							<span class="onoffswitch-title">Disable CSS Animation</span>
+							<span class="onoffswitch-title-desc">Disables CSS based animations</span>
+						</div>
+						<div class="list" id="mhic">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-info-card"></a>
+							<span class="onoffswitch-title">Hide Info Card</span>
+							<span class="onoffswitch-title-desc">Hides info card from left panel</span>
+						</div>
+						<div class="list" id="mlph">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-lean-subheader"></a>
+							<span class="onoffswitch-title">Lean Subheader</span>
+							<span class="onoffswitch-title-desc">distinguished page header</span>
+						</div>
+						<div class="list" id="mnl">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-nav-link"></a>
+							<span class="onoffswitch-title">Hierarchical Navigation</span>
+							<span class="onoffswitch-title-desc">Clear breakdown of nav links</span>
+						</div>
+						<div class="list mt-1">
+							<span class="onoffswitch-title">Global Font Size <small>(RESETS ON REFRESH)</small> </span>
+							<div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
+								<label for="" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-sm" data-target="html">
+									<input type="radio" aria-label="smRadio" name="smRadio" id="smRadio" value=""> SM
+								</label>
+								<label for="" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text" data-target="html">
+									<input type="radio" aria-label="mdRadio" name="mdRadio" id="mdRadio" value=""
+										checked=""> MD
+								</label>
+								<label for="" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-lg" data-target="html">
+									<input type="radio" aria-label="lgRadio" name="lgRadio" id="lgRadio" value=""> LG
+								</label>
+								<label for="" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-xl" data-target="html">
+									<input type="radio" aria-label="xlRadio" name="xlRadio" id="xlRadio" value=""> XL
+								</label>
+							</div>
+							<span class="onoffswitch-title-desc d-block mb-g">Change <strong>root</strong> font size to
+								effect rem values</span>
+						</div>
+						<div class="mt-2 d-table w-100 pl-5 pr-3">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Theme colors <small>(overlays base css)</small>
+								</h5>
+								<!-- <div class="fs-xs text-muted p-2 alert alert-warning mt-3 mb-0">
+                                    <i class="fal fa-exclamation-triangle text-warning mr-2"></i>Due to network latency
+                                    and CPU utilization, you may experience a brief flickering effect on page load which
+                                    may show the intial applied theme for a split second. Setting the prefered
+                                    style/theme in the header will prevent this from happening.
+                                </div> -->
+							</div>
+						</div>
+						<div class="expanded theme-colors pl-5 pr-3">
+							<ul class="m-0">
+								<li><a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme=""
+										data-toggle="tooltip" data-placement="top" title="Wisteria (base css)"
+										data-original-title="Wisteria (base css)"></a></li>
+								<li><a href="#" id="myapp-1" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip"
+										data-placement="top" title="Tapestry" data-original-title="Tapestry"></a></li>
+								<li><a href="#" id="myapp-2" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip"
+										data-placement="top" title="Atlantis" data-original-title="Atlantis"></a></li>
+								<li><a href="#" id="myapp-3" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip"
+										data-placement="top" title="Indigo" data-original-title="Indigo"></a></li>
+								<li><a href="#" id="myapp-4" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip"
+										data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a>
+								</li>
+								<li><a href="#" id="myapp-5" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip"
+										data-placement="top" title="Tradewind" data-original-title="Tradewind"></a></li>
+								<li><a href="#" id="myapp-6" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip"
+										data-placement="top" title="Cranberry" data-original-title="Cranberry"></a></li>
+								<li><a href="#" id="myapp-7" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip"
+										data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a></li>
+								<li><a href="#" id="myapp-8" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip"
+										data-placement="top" title="Chetwode Blue"
+										data-original-title="Chetwode Blue"></a></li>
+								<li><a href="#" id="myapp-9" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip"
+										data-placement="top" title="Apricot" data-original-title="Apricot"></a></li>
+								<li><a href="#" id="myapp-10" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip"
+										data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-11" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip"
+										data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-12" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip"
+										data-placement="top" title="Wild Blue Yonder"
+										data-original-title="Wild Blue Yonder"></a></li>
+								<li><a href="#" id="myapp-13" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip"
+										data-placement="top" title="Emerald" data-original-title="Emerald"></a></li>
+							</ul>
+						</div>
+						<hr class="mb-0 mt-4">
+						<div class="pl-5 pr-3 py-3 bg-faded">
+							<div class="row no-gutters">
+								<div class="col-6 pr-1">
+									<a href="#" class="btn btn-outline-danger fw-500 btn-block"
+										data-action="app-reset">Reset Settings</a>
+								</div>
+								<div class="col-6 pl-1">
+									<a href="#" class="btn btn-danger fw-500 btn-block"
+										data-action="factory-reset">Factory Reset</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<span id="saving"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Page Settings -->
+
+	<div th:replace="~{fragments/script :: script}"></div>
+	<script>
+		$(document).ready(function () {
+			$('#cancelButton').on('click', function () {
+				const urls = JSON.parse(sessionStorage.getItem('urls')) || [];
+				let currentIndex = parseInt(sessionStorage.getItem('currentIndex')) || 0;
+
+				console.log("URLs from sessionStorage:", urls);
+
+				if (urls.length > 0) {
+					if (currentIndex < urls.length - 1) {
+						currentIndex++;
+						window.location.href = urls[currentIndex];
+					} else {
+
+						window.location.href = urls[urls.length - 1];
+						setTimeout(function () {
+							window.location.href = 'BookingNavigation';
+						}, 500);
+					}
+					sessionStorage.setItem('currentIndex', currentIndex);
+				} else {
+					console.log("No URLs available to open.");
+				}
+			});
+
+
+			/*<![CDATA[*/
+			var contextPath = /*[[@{/}]]*/ '';
+			/*]]>*/
+
+			//$('#alias_body').empty();
+
+			//$("#datepicker").datepicker();
+
+			/*$("#datepicker").datepicker({
+				//minDate: '2024-02-01',
+				minDate: new Date(2024, 2 - 1, 15),
+				maxDate: new Date(2024, 3 - 1, 15),
+				showButtonPanel: true,
+				closeText: 'Clear',
+				onClose: function (dateText, inst) {
+					if ($(window.event.srcElement).hasClass('ui-datepicker-close')) {
+						document.getElementById(this.id).value = '';
+					}
+				}
+			});*/
+
+			/*$("#datepicker12").datepicker({
+				minDate: new Date(2024, 2 - 1, 15),
+				maxDate: new Date(2024, 3 - 1, 15)
+			});*/
+
+
+
+			//$('.datepicker-dropdowns').pickadate({selectYears: true, selectMonths: true});
+
+			/*$("#mydate").datepicker({
+				//minDate: '2024-02-01',
+			   minDate: new Date(2024, 2 - 1, 15),
+			   maxDate: new Date(2024, 3 - 1, 15)
+			});*/
+
+			var content = ``;
+			content += `<tr><td style="display:none"><input type="text" class="seqno" aria-label="Sex" name="Sex" id="Sex" value="0"></td>`;
+			content += `<td><input type="text" class="lname form-control" aria-label="Sex" name="Sex" id="Sex" value=""></td>`;
+			content += `<td><input type="text" class="fname form-control" aria-label="Sex" name="Sex" id="Sex" value=""></td>`;
+			content += `<td style="min-width: 50px;width: 50px;"><input type="text" class="mname form-control" aria-label="Sex" name="Sex" id="Sex" value=""></td>`;
+			content += `<td><input type="text" class="sname form-control" aria-label="Sex" name="Sex" id="Sex" value=""></td>`;
+			content += `<td><div class="input-group input-group-multi-transition">`;
+			content += `<select class="custom-select form-control src" id="options1" placeholder="Select Menu">`;
+			//content += `<option value="">Select Source</option><option value="A">Source2</option><option value="B">Source3</option><option value="C">Source4</option></select></div></td>`;
+			content += `<option value="">Select Source</option></select></div></td>`;
+			content += `<td><div class="input-group input-group-multi-transition">`;
+			content += `<select class="custom-select form-control nametyp" id="options3" placeholder="Select Menu">`;
+			//content += `<option value="">Select Name Type</option><option value="A">Name Type1</option><option value="B">Name Type2</option><option value="C">Name Type3</option></select></div></td>`;
+			content += `<option value="">Select Name Type</option></select></div></td>`;
+			content += `<td style="width:150px;"><div class="input-append date position-relative">`;
+			content += `<input class="span2 form-control bg-light dt datepick-ui" size="16" type="text" data-field="dt" placeholder="mm/dd/yyyy">`;
+			content += `<span class="add-on"><i class="fal fa-calendar-alt position-absolute"></i></span></div></td>`;
+			content += `<td style="min-width: 400px;"><textarea class="form-control cmt" placeholder="" rows="1" id=""> </textarea></td></tr>`;
+
+			//$('#alias_body').html(content);
+
+			/*for (var i = 0; i < 2; i++) {
+				$('#alias_body').append(content);
+			}*/
+
+			$('#add_alias').on('click', function () {
+				$('#alias_body').append(content);
+			});
+
+			//$('.datepick-ui').datepicker();
+
+			//$('.datepicker-dropdowns').pickadate({selectYears: true, selectMonths: true});
+
+			$(document.body).on('change', '.sbichk', function () {
+				var idx = $(this).index('.sbichk');
+				if ($(this).prop('checked')) {
+					$('.sbichk_val').eq(idx).val('Y');
+				} else {
+					$('.sbichk_val').eq(idx).val('N');
+				}
+			});
+
+			$(document.body).on('change', '.dob_chk', function () {
+				var idx = $(this).index('.dob_chk');
+				if ($(this).prop('checked')) {
+					$('.dob_chk_val').eq(idx).val('Y');
+				} else {
+					$('.dob_chk_val').eq(idx).val('N');
+				}
+			});
+
+			$(document.body).on('change', '.soc_chk', function () {
+				var idx = $(this).index('.soc_chk');
+				if ($(this).prop('checked')) {
+					$('.soc_chk_val').eq(idx).val('Y');
+				} else {
+					$('.soc_chk_val').eq(idx).val('N');
+				}
+			});
+
+			$(document.body).on('change', '.verifyssn', function () {
+				var idx = $(this).index('.verifyssn');
+				if ($(this).prop('checked')) {
+					$('.verifyssn_val').eq(idx).val('Y');
+				} else {
+					$('.verifyssn_val').eq(idx).val('N');
+				}
+			});
+
+			/*$('.swal2-confirm').click(function(){
+			   alert('ok 123');
+			   });*/
+
+			$('#sav123').on('click', function () {
+
+				return;
+
+				var key_val = $('.primary_val').val();
+
+				if (key_val == '') {
+					Swal.fire('Alert', 'Please Enter ID', 'warning');
+					return;
+				}
+
+				check_row = [];
+				for (var a = 0; a < $('.tab_body').length; a++) {
+					var thistab = $('.tab_body').eq(a);
+					for (var b = 0; b < thistab.find('tr').length; b++) {
+						var thisrow = thistab.find('tr').eq(b);
+						var getfirst = false;
+						for (var c = 0; c < thisrow.find('td').length; c++) {
+							thisdata = thisrow.find('td').eq(c);
+							if (thisdata.css('display') != 'none') {
+								if (thisdata.find('.form-control').val() != '' && thisdata.find('.form-control').val() != undefined && !getfirst) {
+									getfirst = true;
+								} else if (thisdata.find('.chk_cls').val() == 'Y' && !getfirst) {
+									getfirst = true;
+								}
+							}
+
+						}
+
+						if (getfirst) {
+							check_row.push(a + '%%' + b);
+						}
+					}
+				}
+
+				for (var d = 0; d < check_row.length; d++) {
+					//alert(check_row[d]);
+					var tab = check_row[d].split('%%')[0];
+					var row = check_row[d].split('%%')[1];
+
+					var must_fld = $('.tab_body').eq(tab).children('tr').eq(row).find('.mandatory');
+
+					//alert(must_fld.length + ' for ' + check_row[d]);
+
+					for (var e = 0; e < must_fld.length; e++) {
+
+						if (must_fld.eq(e).val() == '') {
+							var fld = must_fld.eq(e).attr('data-fld');
+							var lbl = $('.lbl-' + fld).text().split('*').join('');
+							Swal.fire('Alert', lbl + ' is mandatory', 'warning');
+							return;
+						}
+
+					}
+				}
+
+				/*var entry_fld = $('.tab_body').find('.form-control');
+				
+				var row_check = false;
+				for(var a = 0; a < entry_fld.length; a++) {
+					if(entry_fld.eq(a).val() != '') {
+						
+					}
+				}*/
+
+				//alert('after loop');
+
+				//return;
+
+				var seqno = [];
+				var lname = [];
+				var fname = [];
+				var mname = [];
+				var sname = [];
+				var src = [];
+				var nametyp = [];
+				var dt = [];
+				var cmt = [];
+				var name_id = [];
+
+				var rcnt1 = 0;
+				var rcnt2 = 0;
+				var rcnt3 = 0;
+				var rcnt4 = 0;
+
+				for (var i = 0; i < $('.seqno').length; i++) {
+					if ($('.lname').eq(i).val() != '') {
+						seqno.push($('.seqno').eq(i).val());
+						lname.push($('.lname').eq(i).val());
+						fname.push($('.fname').eq(i).val());
+						mname.push($('.mname').eq(i).val());
+						sname.push($('.sname').eq(i).val());
+						src.push($('.src').eq(i).val());
+						nametyp.push($('.nametyp').eq(i).val());
+						dt.push($('.dt').eq(i).val());
+						cmt.push($('.cmt').eq(i).val());
+						name_id.push($('.primary_val').val());
+						rcnt1++;
+					}
+				}
+
+				var sbiseqno = [];
+				var sbino = [];
+				var sbisrc = [];
+				var sbichk_val = [];
+				var sbicmt = [];
+				var sbiname_id = [];
+				var sbidt = [];
+
+				for (var i = 0; i < $('.sbiseqno').length; i++) {
+					if ($('.sbino').eq(i).val() != '') {
+						sbiseqno.push($('.sbiseqno').eq(i).val());
+						sbino.push($('.sbino').eq(i).val());
+						sbisrc.push($('.sbisrc').eq(i).val());
+						sbichk_val.push($('.sbichk_val').eq(i).val());
+						sbicmt.push($('.sbicmt').eq(i).val());
+						sbiname_id.push($('.primary_val').val());
+						sbidt.push($('.sbidt_val').val());
+						rcnt3++;
+					}
+				}
+
+				var birth_dt = [];
+				var dob_chk_val = [];
+				var dobsrc = [];
+				var dobcmt = [];
+				var dobdt = [];
+				var dobname_id = [];
+
+				for (var i = 0; i < $('.birth_dt').length; i++) {
+					if ($('.birth_dt').eq(i).val() != '') {
+						birth_dt.push($('.birth_dt').eq(i).val());
+						dob_chk_val.push($('.dob_chk_val').eq(i).val());
+						dobsrc.push($('.dobsrc').eq(i).val());
+						dobcmt.push($('.dobcmt').eq(i).val());
+						dobdt.push($('.dobdt').eq(i).val());
+						dobname_id.push($('.primary_val').val());
+						rcnt2++;
+					}
+				}
+
+				var socseqno = [];
+				var socsec = [];
+				var socsrc = [];
+				var soc_chk_val = [];
+				var verifyssn_val = [];
+				var soc_dt = [];
+				var soccmt = [];
+				var socname_id = [];
+
+				for (var i = 0; i < $('.socseqno').length; i++) {
+					if ($('.socsec').eq(i).val() != '') {
+						socseqno.push($('.socseqno').eq(i).val());
+						socsec.push($('.socsec').eq(i).val());
+						socsrc.push($('.socsrc').eq(i).val());
+						soc_chk_val.push($('.soc_chk_val').eq(i).val());
+						verifyssn_val.push($('.verifyssn_val').eq(i).val());
+						soc_dt.push($('.soc_dt').eq(i).val());
+						soccmt.push($('.soccmt').eq(i).val());
+						socname_id.push($('.primary_val').val());
+						rcnt4++;
+					}
+				}
+
+				$('#seqno').val(seqno.join("!@#!"));
+				$('#lname').val(lname.join("!@#!"));
+				$('#fname').val(fname.join("!@#!"));
+				$('#mname').val(mname.join("!@#!"));
+				$('#sname').val(sname.join("!@#!"));
+				$('#src').val(src.join("!@#!"));
+				$('#nametyp').val(nametyp.join("!@#!"));
+				$('#dt').val(dt.join("!@#!"));
+				$('#cmt').val(cmt.join("!@#!"));
+				$('#name_id').val(name_id.join("!@#!"));
+
+				$('#sbiseqno').val(sbiseqno.join("!@#!"));
+				$('#sbino').val(sbino.join("!@#!"));
+				$('#sbisrc').val(sbisrc.join("!@#!"));
+				$('#sbichk_val').val(sbichk_val.join("!@#!"));
+				$('#sbicmt').val(sbicmt.join("!@#!"));
+				$('#sbiname_id').val(sbiname_id.join("!@#!"));
+				$('#sbidt_val').val(sbidt.join("!@#!"));
+
+				$('#birth_dt').val(birth_dt.join("!@#!"));
+				$('#dob_chk_val').val(dob_chk_val.join("!@#!"));
+				$('#dobsrc').val(dobsrc.join("!@#!"));
+				$('#dobcmt').val(dobcmt.join("!@#!"));
+				$('#dobdt').val(dobdt.join("!@#!"));
+				$('#dobname_id').val(dobname_id.join("!@#!"));
+
+				$('#socseqno').val(socseqno.join("!@#!"));
+				$('#socsec').val(socsec.join("!@#!"));
+				$('#socsrc').val(socsrc.join("!@#!"));
+				$('#soc_chk_val').val(soc_chk_val.join("!@#!"));
+				$('#verifyssn_val').val(verifyssn_val.join("!@#!"));
+				$('#soc_dt').val(soc_dt.join("!@#!"));
+				$('#soccmt').val(soccmt.join("!@#!"));
+				$('#socname_id').val(socname_id.join("!@#!"));
+
+				/*alert($('#seqno').val());
+				alert($('#sbiseqno').val());
+				alert($('#sbino').val());
+				return;*/
+
+				$('#row_cnt1').val(rcnt1);
+				$('#row_cnt2').val(rcnt2);
+				$('#row_cnt3').val(rcnt3);
+				$('#row_cnt4').val(rcnt4);
+
+				/*alert('1 for ' + $('#row_cnt1').val());
+				alert('2 for ' + $('#row_cnt2').val());
+				alert('3 for ' + $('#row_cnt3').val());
+				alert('4 for ' + $('#row_cnt4').val());
+				
+				return;*/
+				$.ajax({
+					type: "POST",
+					url: contextPath + "saveData",
+					data: $('#entryform').serialize(),
+					success: function (response) {
+						//alert("Data Saved");
+						Swal.fire('Success', 'Data Saved', 'success');
+
+						$('.tab_body').find('input[type=text]').val('');
+						$('.tab_body').find('input[type=checkbox]').prop('checked', false);
+						$('.tab_body').find('select').val('');
+						$('.tab_body').find('textarea').val('');
+						$('.chk_cls').val('N');
+						$('.seqno').val('0');
+						$('.dobseqno').val('0');
+						$('.socseqno').val('0');
+						$('.sbiseqno').val('0');
+						fetchData();
+						fetchData2();
+						fetchData3();
+						fetchData4();
+
+						//fetchData();
+					},
+					error: function () {
+						alert("json not found");
+					}
+				});
+			});
+
+			$('.sbichk').on('change', function () {
+				var idx = $('.sbichk').index(this);
+				if ($(this).prop('checked')) {
+					$('.sbichk').eq(idx).val('Y');
+				} else {
+					$('.sbichk').eq(idx).val('N');
+				}
+			});
+
+			function getHistory(key_val) {
+				$.ajax({
+					type: "POST",
+					url: contextPath + "getHistory",
+					dataType: "json",
+					data: {primaryVal: key_val},
+					success: function (response) {
+
+						var content = ``;
+
+						for (var i = 0; i < response.length; i++) {
+
+							content += `<tr><td><div class="custom-control custom-radio custom-control-inline"><input name="history" type="radio" id="id_` + response[i]['COMMIT_NO'] + `" value="` + response[i]['COMMIT_NO'] + `" class="custom-control-input stayhistory">`;
+							content += `<label class="custom-control-label" for="id_` + response[i]['COMMIT_NO'] + `" style="font-weight: 500;"></label></div></td>`;
+
+							if (response[i]['CURRENT_COMMIT_NO'] == response[i]['COMMIT_NO']) {
+								content += `<td><input type="text" class="form-control" aria-label="" name="" id="" value="current" disabled></td>`;
+								$('#sbiNumberDisplay').val(key_val);
+								$('#offendernameDisplay').val(response[i]['INMATE_FULL_NAME']);
+							} else {
+								content += `<td><input type="text" class="form-control" aria-label="" name="" id="" value="` + response[i]['COMMIT_NO'] + `" disabled></td>`;
+							}
+
+							content += `<td><input type="text" class="form-control" aria-label="" name="" id="" value="` + response[i]['Facility'] + `" disabled></td>`;
+							content += `<td><input type="text" class="form-control" aria-label="" name="" id="" value="` + response[i]['ADMISS_METHOD'] + `" disabled></td>`;
+
+							console.log('xy date is ' + response[i]['INST_ADMISS_DATE'].substring(0, 10));
+
+							var dt = '';
+							if (response[i]['INST_ADMISS_DATE'] != '' && response[i]['INST_ADMISS_DATE'] != null) {
+								dt = response[i]['INST_ADMISS_DATE'].substring(0, 10);
+								dt = dt.split('-')[1] + '/' + dt.split('-')[2] + '/' + dt.split('-')[0];
+							}
+
+							content += `<td><input type="text" class="form-control" aria-label="" name="" id="" value="` + dt + `" disabled></td>`;
+							content += `<td><input type="text" class="form-control" aria-label="" name="" id="" value="` + response[i]['INST_ADMISS_TIME'].replace("'", "") + `" disabled></td>`;
+
+							var dt = '';
+							if (response[i]['INST_RELEASE_DATE'] != '' && response[i]['INST_RELEASE_DATE'] != null) {
+								dt = response[i]['INST_RELEASE_DATE'].substring(0, 10);
+								dt = dt.split('-')[1] + '/' + dt.split('-')[2] + '/' + dt.split('-')[0];
+							}
+
+							content += `<td><input type="text" class="form-control" aria-label="" name="" id="" value="` + dt + `" disabled></td>`;
+							content += `<td><input type="text" class="form-control" aria-label="" name="" id="" value="` + response[i]['INST_RELEASE_TIME'].replace("'", "") + `" disabled></td>`;
+
+						}
+
+						$('#historyBody').html(content);
+					},
+					error: function () {
+						alert("json not found");
+					}
+				});
+			}
+
+			function AllowOnlyNumbers(e) {
+				e = (e) ? e : window.event;
+
+				var clipboardData = e.clipboardData ? e.clipboardData : window.clipboardData;
+				var key = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode;
+				var str = (e.type && e.type == "paste") ? clipboardData.getData('Text') : String.fromCharCode(key);
+
+				return (/^\d+$/.test(str));
+			}
+
+			$(document.body).on('keypress', '.num', function (e) {
+				return AllowOnlyNumbers(e);
+			});
+
+			$(document.body).on('keypress keyup keydown focus', '.mail', function (e) {
+
+				if ($(this).val() != '') {
+
+					if (validateEmail($(this).val())) {
+						$(this).removeClass('error_fld');
+					} else {
+						$(this).addClass('error_fld');
+					}
+
+				} else {
+					$(this).removeClass('error_fld');
+				}
+
+
+			});
+
+			function validateEmail(email) {
+				var re = /\S+@\S+\.\S+/;
+				return re.test(email);
+			}
+
+			$('#historyButton').on('click', function () {
+				var commit_no = $('.primary_val').val();
+				$('#id_' + commit_no).trigger('click');
+				document.getElementById('historyPopup').click();
+			});
+
+			function nullhand(str) {
+				if (str == 'null' || str == null) {
+					return '';
+				} else {
+					return str;
+				}
+			}
+
+			function padDigits(number, digits) {
+				return Array(Math.max(digits - String(number).length + 1, 0)).join(0) + number;
+			}
+
+			$(function () {
+				$('.select2').select2();
+
+				$(".select2-placeholder-multiple").select2(
+					{
+						placeholder: "Select State"
+					});
+				$(".js-hide-search").select2(
+					{
+						minimumResultsForSearch: 1 / 0
+					});
+				$(".js-max-length").select2(
+					{
+						maximumSelectionLength: 2,
+						placeholder: "Select maximum 2 items"
+					});
+				$(".select2-placeholder").select2(
+					{
+						placeholder: "Select a state",
+						allowClear: true
+					});
+
+
+
+				$(".js-select2-icons").select2(
+					{
+						minimumResultsForSearch: 1 / 0,
+						templateResult: icon,
+						templateSelection: icon,
+						escapeMarkup: function (elm) {
+							return elm
+						}
+					});
+
+				function icon(elm) {
+					elm.element;
+					return elm.id ? "<i class='" + $(elm.element).data("icon") + " mr-2'></i>" + elm.text : elm.text
+				}
+
+				$(".js-data-example-ajax").select2(
+					{
+						ajax:
+						{
+							url: "https://api.github.com/search/repositories",
+							dataType: 'json',
+							delay: 250,
+							data: function (params) {
+								return {
+									q: params.term, // search term
+									page: params.page
+								};
+							},
+							processResults: function (data, params) {
+								// parse the results into the format expected by Select2
+								// since we are using custom formatting functions we do not need to
+								// alter the remote JSON data, except to indicate that infinite
+								// scrolling can be used
+								params.page = params.page || 1;
+
+								return {
+									results: data.items,
+									pagination:
+									{
+										more: (params.page * 30) < data.total_count
+									}
+								};
+							},
+							cache: true
+						},
+						placeholder: 'Search for a repository',
+						escapeMarkup: function (markup) {
+							return markup;
+						}, // let our custom formatter work
+						minimumInputLength: 1,
+						templateResult: formatRepo,
+						templateSelection: formatRepoSelection
+					});
+
+				function formatRepo(repo) {
+					if (repo.loading) {
+						return repo.text;
+					}
+
+					var markup = "<div class='select2-result-repository clearfix d-flex'>" +
+						"<div class='select2-result-repository__avatar mr-2'><img src='" + repo.owner.avatar_url + "' class='width-2 height-2 mt-1 rounded' /></div>" +
+						"<div class='select2-result-repository__meta'>" +
+						"<div class='select2-result-repository__title fs-lg fw-500'>" + repo.full_name + "</div>";
+
+					if (repo.description) {
+						markup += "<div class='select2-result-repository__description fs-xs opacity-80 mb-1'>" + repo.description + "</div>";
+					}
+
+					markup += "<div class='select2-result-repository__statistics d-flex fs-sm'>" +
+						"<div class='select2-result-repository__forks mr-2'><i class='fal fa-lightbulb'></i> " + repo.forks_count + " Forks</div>" +
+						"<div class='select2-result-repository__stargazers mr-2'><i class='fal fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+						"<div class='select2-result-repository__watchers mr-2'><i class='fal fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+						"</div>" +
+						"</div></div>";
+
+					return markup;
+				}
+
+				function formatRepoSelection(repo) {
+					return repo.full_name || repo.text;
+				}
+
+			});
+
+
+			/*$('.datepicker-dropdowns').pickadate({
+				   selectYears: true, 
+				   selectMonths: true,
+				   min: new Date(2024,3,20),
+				   max: new Date(2024,3,25)
+			   });*/
+
+		});
+
+		$(tabledataaliasbirth[0].checkbox).html("<input type='checkbox'>");
+		$(tabledataaliassocial[0].checkbox).html("<input type='checkbox'>");
+		$(tabledataaliasSbi[0].checkbox).html("<input type='checkbox'>");
+	</script>
+	<script>
+
+		$(function () {
+
+			var updatable = false;
+
+
+			// Define Test Data
+			var tabledataaliasname = [
+				{
+					id: "0",
+					seq: "0",
+					lastName: "",
+					firstName: "",
+					mi: "",
+					suffix: "",
+					source: "",
+					nameType: "",
+					date: "",
+					comments: "",
+				},
+				{
+					id: "1",
+					seq: "0",
+					lastName: "",
+					firstName: "",
+					mi: "",
+					suffix: "",
+					source: "",
+					nameType: "",
+					date: "",
+					comments: "",
+				},
+				{
+					id: "2",
+					seq: "0",
+					lastName: "",
+					firstName: "",
+					mi: "",
+					suffix: "",
+					source: "",
+					nameType: "",
+					date: "",
+					comments: "",
+				},
+				{
+					id: "3",
+					seq: "0",
+					lastName: "",
+					firstName: "",
+					mi: "",
+					suffix: "",
+					source: "",
+					nameType: "",
+					date: "",
+					comments: "",
+				},
+				{
+					id: "4",
+					seq: "0",
+					lastName: "",
+					firstName: "",
+					mi: "",
+					suffix: "",
+					source: "",
+					nameType: "",
+					date: "",
+					comments: "",
+				},
+				{
+					id: "5",
+					seq: "0",
+					lastName: "",
+					firstName: "",
+					mi: "",
+					suffix: "",
+					source: "",
+					nameType: "",
+					date: "",
+					comments: "",
+				},
+				{
+					id: "6",
+					seq: "0",
+					lastName: "",
+					firstName: "",
+					mi: "",
+					suffix: "",
+					source: "",
+					nameType: "",
+					date: "",
+					comments: "",
+				},
+				{
+					id: "7",
+					seq: "0",
+					lastName: "",
+					firstName: "",
+					mi: "",
+					suffix: "",
+					source: "",
+					nameType: "",
+					date: "",
+					comments: "",
+				},
+				{
+					id: "8",
+					seq: "0",
+					lastName: "",
+					firstName: "",
+					mi: "",
+					suffix: "",
+					source: "",
+					nameType: "",
+					date: "",
+					comments: "",
+				},
+				{
+					id: "9",
+					seq: "0",
+					lastName: "",
+					firstName: "",
+					mi: "",
+					suffix: "",
+					source: "",
+					nameType: "",
+					date: "",
+					comments: "",
+				},
+				{
+					id: "10",
+					seq: "0",
+					lastName: "",
+					firstName: "",
+					mi: "",
+					suffix: "",
+					source: "",
+					nameType: "",
+					date: "",
+					comments: "",
+				},
+				{
+					id: "11",
+					seq: "0",
+					lastName: "",
+					firstName: "",
+					mi: "",
+					suffix: "",
+					source: "",
+					nameType: "",
+					date: "",
+					comments: "",
+				},
+				{
+					id: "12",
+					seq: "0",
+					lastName: "",
+					firstName: "",
+					mi: "",
+					suffix: "",
+					source: "",
+					nameType: "",
+					date: "",
+					comments: "",
+				},
+				{
+					id: "13",
+					seq: "0",
+					lastName: "",
+					firstName: "",
+					mi: "",
+					suffix: "",
+					source: "",
+					nameType: "",
+					date: "",
+					comments: "",
+				},
+				{
+					id: "14",
+					seq: "0",
+					lastName: "",
+					firstName: "",
+					mi: "",
+					suffix: "",
+					source: "",
+					nameType: "",
+					date: "",
+					comments: "",
+				},
+				{
+					id: "15",
+					seq: "0",
+					lastName: "",
+					firstName: "",
+					mi: "",
+					suffix: "",
+					source: "",
+					nameType: "",
+					date: "",
+					comments: "",
+				},
+			];
+
+			//Define Table ::Tab1::
+			var table1 = new Tabulator("#aliasname-table", {
+				layout: "fitColumns",
+				data: tabledataaliasname,
+				height: '410px',
+				printAsHtml: true,
+				printStyled: true,
+				selectableRange: true,
+				columns: [
+					{
+						title: 'ID',
+						editor: "input",
+						visible: false,
+						field: "id",
+					},
+					{
+						title: 'Seqno',
+						editor: "input",
+						visible: false,
+						field: "seq",
+					},
+					{
+						title: 'upd',
+						visible: false,
+						field: "upd",
+					},
+					{
+						title: 'rowid',
+						visible: false,
+						field: "rowid",
+					},
+					{
+						//title: "Last Name <span class='text-danger'>*</span>",
+						titleFormatter: (column) => setTitleDesc(column, 'lastName', 'Last Name'),
+						field: "lastName",
+						editor: "input",
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {
+							var newValue = cell.getValue();
+							var ide = cell.getRow().getData().id;
+							setValueForRowAndColumn(table1, ide, 'lnameUp', newValue.toUpperCase());
+							setUpd(cell);
+						},
+						must: true
+					},
+					{
+						//title: "First Name <span class='text-danger'>*</span>",
+						titleFormatter: (column) => setTitleDesc(column, 'firstName', 'First Name'),
+						field: "firstName",
+						editor: "input",
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {
+							var newValue = cell.getValue();
+							var ide = cell.getRow().getData().id;
+							setValueForRowAndColumn(table1, ide, 'fnameUp', newValue.toUpperCase());
+							setUpd(cell);
+						},
+						must: true
+					},
+					{
+						//title: "MI",
+						titleFormatter: (column) => setTitleDesc(column, 'mi', 'MI'),
+						field: "mi",
+						width: 70,
+						editor: "input",
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {setUpd(cell);}
+					},
+					{
+						//title: "Suffix",
+						titleFormatter: (column) => setTitleDesc(column, 'suffix', 'Suffix'),
+						field: "suffix",
+						width: 70,
+						editor: "input",
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {setUpd(cell);}
+					},
+					{
+						//title: '<span class="permissible" tag="head" allow-type="dropdown" specific="smt_location">Source</span>',
+						//title: "Source <span class='text-danger'>*</span>",
+						titleFormatter: (column) => setTitleDesc(column, 'source', 'Source'),
+						field: "source",
+						editor: "list",
+						editorParams: {allowEmpty: true, listOnEmpty: true, valuesLookup: true, autocomplete: true, values: {}},
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {
+							setUpd(cell);
+						},
+						must: true,
+					},
+					{
+						title: 'src_val',
+						visible: false,
+						field: "src_val",
+					},
+					{
+						//title: '<span class="permissible" tag="head" allow-type="dropdown" specific="smt_location">Name Type</span>',
+						//title: "Name Type",
+						titleFormatter: (column) => setTitleDesc(column, 'nameType', 'Name Type'),
+						field: "nameType",
+						editor: "list",
+						editorParams: {allowEmpty: true, listOnEmpty: true, valuesLookup: true, autocomplete: true, values: {}},
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {
+							setUpd(cell);
+						},
+					},
+					{
+						title: 'nmtyp_val',
+						visible: false,
+						field: "nmtyp_val",
+					},
+					{
+						//title: "Date <span class='text-danger'>*</span>",
+						titleFormatter: (column) => setTitleDesc(column, 'date', 'Date'),
+						field: "date",
+						editor: dateEditor,
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {
+							var newValue = cell.getValue();
+							var ide = cell.getRow().getData().id;
+							if (newValue != '') {
+								newValue = formatDate(newValue);
+							}
+							setValueForRowAndColumn(table1, ide, 'actual_dt', newValue);
+							setUpd(cell);
+						},
+						must: true
+					},
+					{
+						title: 'actual_dt',
+						visible: false,
+						field: "actual_dt",
+					},
+					{
+						//title: "Comments",
+						titleFormatter: (column) => setTitleDesc(column, 'comments', 'Comments'),
+						field: "comments",
+						editor: "input",
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {setUpd(cell);}
+					},
+					{
+						title: 'mi2',
+						visible: false,
+						field: "mi2",
+					},
+					{
+						title: 'fnameUp',
+						visible: false,
+						field: "fnameUp",
+					},
+					{
+						title: 'lnameUp',
+						visible: false,
+						field: "lnameUp",
+					},
+					{
+						title: 'commitNo',
+						visible: false,
+						field: "commitNo",
+					},
+				],
+			});
+
+			tabulatorRegistry["aliasname-table"] = {
+				varName: "table1",
+				instance: table1
+			};
+
+			function formatDate(inputDate) {
+				// Split the input date into components
+				const [month, day, year] = inputDate.split('/').map(Number);
+
+				// Create a new Date object using the parsed components
+				const date = new Date(year, month - 1, day); // month is 0-indexed in JavaScript
+
+				// Get the current time
+				const now = new Date();
+
+				// Format the date to YYYY-MM-DD
+				const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+
+				// Format the time to HH:mm:ss
+				const formattedTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+
+				// Combine date and time
+				return `${formattedDate} ${formattedTime}`;
+			}
+
+
+
+			function setUpd(cell) {
+				// Get the row data
+				const rowData = cell.getRow().getData();
+
+				// Set the 'upd' field to 'Y'
+				rowData.upd = "Y";
+
+				// Update the row data
+				cell.getRow().update(rowData);
+				updatable = true;
+			}
+
+			// Define Test Data
+			var tabledataaliasbirth = [
+				{
+					id: "0",
+					seq: "0",
+					dateBirth: "",
+					source2: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "1",
+					seq: "0",
+					dateBirth: "",
+					source2: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "2",
+					seq: "0",
+					dateBirth: "",
+					source2: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "3",
+					seq: "0",
+					dateBirth: "",
+					source2: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "4",
+					seq: "0",
+					dateBirth: "",
+					source2: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "5",
+					seq: "0",
+					dateBirth: "",
+					source2: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "6",
+					seq: "0",
+					dateBirth: "",
+					source2: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "7",
+					seq: "0",
+					dateBirth: "",
+					source2: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "8",
+					seq: "0",
+					dateBirth: "",
+					source2: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "9",
+					seq: "0",
+					dateBirth: "",
+					source2: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "10",
+					seq: "0",
+					dateBirth: "",
+					source2: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "11",
+					seq: "0",
+					dateBirth: "",
+					source2: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "12",
+					seq: "0",
+					dateBirth: "",
+					source2: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "13",
+					seq: "0",
+					dateBirth: "",
+					source2: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "14",
+					seq: "0",
+					dateBirth: "",
+					source2: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "15",
+					seq: "0",
+					dateBirth: "",
+					source2: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+			];
+
+			//Define Table
+			var table2 = new Tabulator("#aliasbirth-table", {
+				layout: "fitColumns",
+				data: tabledataaliasbirth,
+				height: '410px',
+				printAsHtml: true,
+				printStyled: true,
+				selectableRange: true,
+				columns: [
+					{
+						title: 'ID',
+						editor: "input",
+						visible: false,
+						field: "id",
+					},
+					{
+						title: 'Seqno',
+						editor: "input",
+						visible: false,
+						field: "seq",
+					},
+					{
+						title: 'upd',
+						visible: false,
+						field: "upd",
+					},
+					{
+						title: 'rowid',
+						visible: false,
+						field: "rowid",
+					},
+					{
+						//title: "Date of Birth  <span class='text-danger'>*</span>",
+						titleFormatter: (column) => setTitleDesc(column, 'dateBirth', 'Date of Birth'),
+						field: "dateBirth",
+						width: 120,
+						editor: dateEditor,
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {
+							var newValue = cell.getValue();
+							var ide = cell.getRow().getData().id;
+							if (newValue != '') {
+								newValue = formatDate(newValue);
+							}
+							setValueForRowAndColumn(table2, ide, 'actual_dtBirth', newValue);
+							setUpd(cell);
+						},
+						must: true
+					},
+					{
+						title: 'actual_dtBirth',
+						visible: false,
+						field: "actual_dtBirth",
+					},
+					{
+						//title: "Source  <span class='text-danger'>*</span>",
+						titleFormatter: (column) => setTitleDesc(column, 'source2', 'Source'),
+						field: "source2",
+						editor: "list",
+						width: 250,
+						editorParams: {allowEmpty: true, listOnEmpty: true, valuesLookup: true, autocomplete: true, values: {}},
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {setUpd(cell);},
+						must: true
+					},
+					{
+						title: 'src_val',
+						visible: false,
+						field: "src_val",
+					},
+					{
+						//title: "Primary",
+						titleFormatter: (column) => setTitleDesc(column, 'checkbox2', 'Primary'),
+						field: "checkbox",
+						formatter: function (cell) {
+							// Create a checkbox element
+							var checkbox = document.createElement("input");
+							checkbox.type = "checkbox";
+							checkbox.checked = cell.getValue(); // Set checked state based on cell value
+							checkbox.addEventListener("change", function () {
+								// Update the cell value when checkbox is changed
+								cell.setValue(checkbox.checked);
+							});
+							return checkbox; // Return the checkbox element
+						},
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						width: 120,
+						cellEdited: function (cell) {setUpd(cell);}
+					},
+					{
+						//title: "Date <span class='text-danger'>*</span>",
+						titleFormatter: (column) => setTitleDesc(column, 'date2', 'Date'),
+						field: "date",
+						width: 120,
+						editor: dateEditor,
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {
+							var newValue = cell.getValue();
+							var ide = cell.getRow().getData().id;
+							if (newValue != '') {
+								newValue = formatDate(newValue);
+							}
+							setValueForRowAndColumn(table2, ide, 'actual_dt', newValue);
+							setUpd(cell);
+						},
+						must: true
+					},
+					{
+						title: 'actual_dt',
+						visible: false,
+						field: "actual_dt",
+					},
+					{
+						//title: "Comments",
+						titleFormatter: (column) => setTitleDesc(column, 'comments2', 'Comments'),
+						field: "comments",
+						editor: "input",
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {setUpd(cell);}
+					},
+					{
+						title: 'commitNo',
+						visible: false,
+						field: "commitNo",
+					}
+				]
+			});
+
+			tabulatorRegistry["aliasbirth-table"] = {
+				varName: "table2",
+				instance: table2
+			};
+
+			// Define Test Data
+			var tabledataaliassocial = [
+				{
+					id: "0",
+					seq: "0",
+					socialSecurity: "",
+					source3: "",
+					checkbox: false,
+					checkbox1: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "1",
+					seq: "0",
+					socialSecurity: "",
+					source3: "",
+					checkbox: false,
+					checkbox1: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "2",
+					seq: "0",
+					socialSecurity: "",
+					source3: "",
+					checkbox: false,
+					checkbox1: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "3",
+					seq: "0",
+					socialSecurity: "",
+					source3: "",
+					checkbox: false,
+					checkbox1: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "4",
+					seq: "0",
+					socialSecurity: "",
+					source3: "",
+					checkbox: false,
+					checkbox1: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "5",
+					seq: "0",
+					socialSecurity: "",
+					source3: "",
+					checkbox: false,
+					checkbox1: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "6",
+					seq: "0",
+					socialSecurity: "",
+					source3: "",
+					checkbox: false,
+					checkbox1: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "7",
+					seq: "0",
+					socialSecurity: "",
+					source3: "",
+					checkbox: false,
+					checkbox1: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "8",
+					seq: "0",
+					socialSecurity: "",
+					source3: "",
+					checkbox: false,
+					checkbox1: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "9",
+					seq: "0",
+					socialSecurity: "",
+					source3: "",
+					checkbox: false,
+					checkbox1: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "10",
+					seq: "0",
+					socialSecurity: "",
+					source3: "",
+					checkbox: false,
+					checkbox1: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "11",
+					seq: "0",
+					socialSecurity: "",
+					source3: "",
+					checkbox: false,
+					checkbox1: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "12",
+					seq: "0",
+					socialSecurity: "",
+					source3: "",
+					checkbox: false,
+					checkbox1: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "13",
+					seq: "0",
+					socialSecurity: "",
+					source3: "",
+					checkbox: false,
+					checkbox1: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "14",
+					seq: "0",
+					socialSecurity: "",
+					source3: "",
+					checkbox: false,
+					checkbox1: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "15",
+					seq: "0",
+					socialSecurity: "",
+					source3: "",
+					checkbox: false,
+					checkbox1: false,
+					date: "",
+					comments: "",
+				}
+			];
+
+			//Define Table
+			var table3 = new Tabulator("#aliassocial-table", {
+				layout: "fitColumns",
+				data: tabledataaliassocial,
+				height: '410px',
+				printAsHtml: true,
+				printStyled: true,
+				selectableRange: true,
+				columns: [
+					{
+						title: 'ID',
+						editor: "input",
+						visible: false,
+						field: "id",
+					},
+					{
+						title: 'Seqno',
+						editor: "input",
+						visible: false,
+						field: "seq",
+					},
+					{
+						title: 'upd',
+						visible: false,
+						field: "upd",
+					},
+					{
+						title: 'rowid',
+						visible: false,
+						field: "rowid",
+					},
+					{
+						//title: "Social Security# <span class='text-danger'>*</span>",
+						titleFormatter: (column) => setTitleDesc(column, 'socialSecurity', 'Social Security#'),
+						field: "socialSecurity",
+						width: 200,
+						editor: "input",
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {setUpd(cell);},
+						must: true
+					},
+					{
+						//title: "Source <span class='text-danger'>*</span>",
+						titleFormatter: (column) => setTitleDesc(column, 'source3', 'Source'),
+						field: "source3",
+						editor: "list",
+						width: 250,
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						editorParams: {allowEmpty: true, listOnEmpty: true, valuesLookup: true, autocomplete: true, values: {}},
+						cellEdited: function (cell) {setUpd(cell);},
+						must: true
+					},
+					{
+						title: 'src_val',
+						visible: false,
+						field: "src_val",
+					},
+					{
+						//title: "Primary",
+						titleFormatter: (column) => setTitleDesc(column, 'checkbox03', 'Primary'),
+						field: "checkbox",
+						formatter: function (cell) {
+							// Create a checkbox element
+							var checkbox = document.createElement("input");
+							checkbox.type = "checkbox";
+							checkbox.checked = cell.getValue(); // Set checked state based on cell value
+							checkbox.addEventListener("change", function () {
+								// Update the cell value when checkbox is changed
+								cell.setValue(checkbox.checked);
+							});
+							return checkbox; // Return the checkbox element
+						},
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						width: 120,
+						cellEdited: function (cell) {setUpd(cell);}
+					},
+					{
+						//title: "Verified SSN",
+						titleFormatter: (column) => setTitleDesc(column, 'checkbox3', 'Verified SSN'),
+						field: "checkbox1",
+						formatter: function (cell) {
+							// Create a checkbox element
+							var checkbox = document.createElement("input");
+							checkbox.type = "checkbox";
+							checkbox.checked = cell.getValue(); // Set checked state based on cell value
+							checkbox.addEventListener("change", function () {
+								// Update the cell value when checkbox is changed
+								cell.setValue(checkbox.checked);
+							});
+							return checkbox; // Return the checkbox element
+						},
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						width: 120,
+						cellEdited: function (cell) {setUpd(cell);}
+					},
+					{
+						//title: "Date <span class='text-danger'>*</span>",
+						titleFormatter: (column) => setTitleDesc(column, 'date3', 'Date'),
+						field: "date",
+						editor: dateEditor,
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {
+							var newValue = cell.getValue();
+							var ide = cell.getRow().getData().id;
+							if (newValue != '') {
+								newValue = formatDate(newValue);
+							}
+							setValueForRowAndColumn(table3, ide, 'actual_dt', newValue);
+							setUpd(cell);
+						},
+						must: true
+					},
+					{
+						title: 'actual_dt',
+						visible: false,
+						field: "actual_dt",
+					},
+					{
+						//title: "Comments",
+						titleFormatter: (column) => setTitleDesc(column, 'comments3', 'Comments'),
+						field: "comments",
+						editor: "input",
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {setUpd(cell);}
+					},
+					{
+						title: 'commitNo',
+						visible: false,
+						field: "commitNo",
+					}
+				]
+			});
+
+			tabulatorRegistry["aliassocial-table"] = {
+				varName: "table3",
+				instance: table3
+			};
+
+			// Define Test Data
+			var tabledataaliasSbi = [
+				{
+					id: "0",
+					seq: "0",
+					sbinumber: "",
+					source4: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "1",
+					seq: "0",
+					sbinumber: "",
+					source4: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "2",
+					seq: "0",
+					sbinumber: "",
+					source4: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "3",
+					seq: "0",
+					sbinumber: "",
+					source4: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "4",
+					seq: "0",
+					sbinumber: "",
+					source4: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "5",
+					seq: "0",
+					sbinumber: "",
+					source4: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "6",
+					seq: "0",
+					sbinumber: "",
+					source4: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "7",
+					seq: "0",
+					sbinumber: "",
+					source4: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "8",
+					seq: "0",
+					sbinumber: "",
+					source4: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "9",
+					seq: "0",
+					sbinumber: "",
+					source4: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "10",
+					seq: "0",
+					sbinumber: "",
+					source4: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "11",
+					seq: "0",
+					sbinumber: "",
+					source4: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "12",
+					seq: "0",
+					sbinumber: "",
+					source4: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "13",
+					seq: "0",
+					sbinumber: "",
+					source4: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "14",
+					seq: "0",
+					sbinumber: "",
+					source4: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				},
+				{
+					id: "15",
+					seq: "0",
+					sbinumber: "",
+					source4: "",
+					checkbox: false,
+					date: "",
+					comments: "",
+				}
+			];
+
+			//Define Table
+			var table4 = new Tabulator("#aliasSbi-table", {
+				layout: "fitColumns",
+				data: tabledataaliasSbi,
+				height: '430px',
+				printAsHtml: true,
+				printStyled: true,
+				selectableRange: true,
+				columns: [
+					{
+						title: 'ID',
+						editor: "input",
+						visible: false,
+						field: "id",
+					},
+					{
+						title: 'Seqno',
+						editor: "input",
+						visible: false,
+						field: "seq",
+					},
+					{
+						title: 'upd',
+						visible: false,
+						field: "upd",
+					},
+					{
+						title: 'rowid',
+						visible: false,
+						field: "rowid",
+					},
+					{
+						//title: "ID# <span class='text-danger'>*</span>",
+						titleFormatter: (column) => setTitleDesc(column, 'sbinumber4', 'ID#'),
+						field: "sbinumber",
+						width: 200,
+						editor: "input",
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {setUpd(cell);},
+						must: true
+					},
+					{
+						//title: "Source <span class='text-danger'>*</span>",
+						titleFormatter: (column) => setTitleDesc(column, 'source4', 'Source'),
+						field: "source4",
+						editor: "list",
+						width: 250,
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						editorParams: {allowEmpty: true, listOnEmpty: true, valuesLookup: true, autocomplete: true, values: {}},
+						cellEdited: function (cell) {setUpd(cell);},
+						must: true
+					},
+					{
+						title: 'src_val',
+						visible: false,
+						field: "src_val",
+					},
+					{
+						//title: "Primary",
+						titleFormatter: (column) => setTitleDesc(column, 'checkbox4', 'Primary'),
+						field: "checkbox",
+						formatter: function (cell) {
+							// Create a checkbox element
+							var checkbox = document.createElement("input");
+							checkbox.type = "checkbox";
+							checkbox.checked = cell.getValue(); // Set checked state based on cell value
+							checkbox.addEventListener("change", function () {
+								// Update the cell value when checkbox is changed
+								cell.setValue(checkbox.checked);
+							});
+							return checkbox; // Return the checkbox element
+						},
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						width: 120,
+						cellEdited: function (cell) {setUpd(cell);}
+					},
+					{
+						//title: "Date <span class='text-danger'>*</span>",
+						titleFormatter: (column) => setTitleDesc(column, 'date4', 'Date'),
+						field: "date",
+						editor: dateEditor,
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {
+							var newValue = cell.getValue();
+							var ide = cell.getRow().getData().id;
+							if (newValue != '') {
+								newValue = formatDate(newValue);
+							}
+							setValueForRowAndColumn(table4, ide, 'actual_dt', newValue);
+							setUpd(cell);
+						},
+						must: true
+					},
+					{
+						title: 'actual_dt',
+						visible: false,
+						field: "actual_dt",
+					},
+					{
+						//title: "Comments",
+						titleFormatter: (column) => setTitleDesc(column, 'comments4', 'Comments'),
+						field: "comments",
+						editor: "input",
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {setUpd(cell);}
+					},
+					{
+						title: 'commitNo',
+						visible: false,
+						field: "commitNo",
+					}
+				]
+			});
+
+			tabulatorRegistry["aliasSbi-table"] = {
+				varName: "table4",
+				instance: table4
+			};
+
+			function addClassToRows(table, className) {
+				var rows = table.getRows();
+
+				rows.forEach(function (row) {
+					row.getElement().classList.add(className);
+				});
+			}
+
+			function enableRow(table, rowId) {
+				var row = table.getRow(rowId);
+				if (row) {
+					var rowElement = row.getElement();
+					rowElement.classList.remove("mydisabled");
+				} else {
+					console.log("Row with ID " + rowId + " not found.");
+				}
+			}
+
+			setTimeout(function () {
+				//addClassToRows(table1, "mydisabled");
+				addClassToRows(table2, "mydisabled");
+				addClassToRows(table3, "mydisabled");
+				addClassToRows(table4, "mydisabled");
+			}, 100);
+
+			$('#sbiNumberInput').addClass('key_val');
+
+			$('#searchButton').on('click', function () {
+				var key_val = $('#sbiNumberInput').val();
+
+				if (key_val == '') {
+					//message('W',0,0);
+					message('CUW', 'Need to enter ID', 0);
+					return;
+				}
+
+				$('#searchButton').removeClass('fa-search');
+				$('#searchButton').addClass('fa-spinner');
+
+				//alert($('.form-control').length);
+
+				for (var i = 0; i < $('.form-control').length; i++) {
+					if (!$('.form-control').eq(i).hasClass('key_val')) {
+						console.log('here inside');
+						$('.form-control').eq(i).val('');
+					}
+				}
+
+				$('.sbichk').prop('checked', false);
+
+				$('.primary_val').val('');
+
+				$.ajax({
+					type: "POST",
+					url: contextPath + "getInmateData",
+					dataType: "json",
+					data: {primaryVal: key_val},
+					success: function (response) {
+
+						if (response.length == 0) {
+							$('#searchButton').addClass('fa-search');
+							$('#searchButton').removeClass('fa-spinner');
+							$('.tab_body').find('.form-control').addClass('disable_fld');
+							$('.disable_fld').attr('disabled', true);
+							return;
+						}
+
+						//$('.disable_fld').removeAttr('disabled');
+						//$('.form-control').removeClass('disable_fld');
+						//console.log('here disable 123');
+						$('#current_commit').val(response[0]['COMMIT_NO']);
+						$('.primary_val').val(response[0]['COMMIT_NO']);
+						setTimeout(function () {
+							clearFunc(table1);
+							clearFunc(table2);
+							clearFunc(table3);
+							clearFunc(table4);
+							loader(1);
+							fetchData1();
+							//fetchData2();
+							//fetchData3();
+							//fetchData4();
+							//loader(0);
+						}, 1000);
+
+						$('#searchButton').addClass('fa-search');
+						$('#searchButton').removeClass('fa-spinner');
+
+					},
+					error: function () {
+						$('#searchButton').addClass('fa-search');
+						$('#searchButton').removeClass('fa-spinner');
+						$('.tab_body').find('.form-control').addClass('disable_fld');
+						$('.disable_fld').attr('disabled', true);
+						return;
+					}
+				});
+			});
+
+			$('#save').on('click', function () {
+				//Bismillah
+
+				if ($('#sbiNumberInput').val().trim() == '') {
+					message('W', 0, 0);
+					return;
+				}
+
+				var key_val = $('.primary_val').val();
+
+				if (key_val == '') {
+					message('W', 0, 0);
+					return;
+				}
+
+				if (!checkMandatory()) {
+					return;
+				}
+
+				loader(1);
+
+				var dataToShow1 = [];
+				var dataToShow2 = [];
+				var dataToShow3 = [];
+				var dataToShow4 = [];
+
+				var allValid = true;
+				const rows = table1.getRows();
+				// Loop through rows and check for data
+				for (let row of rows) {
+					const data = row.getData();
+					if (data.upd == 'Y') { // Check if row has data
+
+						/*const cells = row.getCells();
+						for (let cell of cells) {
+							const column = cell.getColumn();
+							//alert(column.getDefinition().title);
+							var title = column.getDefinition().title.split("<span class='text-danger'>*</span>")[0].trim();
+
+							// Check if the column has the "must" attribute
+							console.log(column.getField());
+							if (column.getDefinition().must) {
+								if (!data[column.getField()]) { // Check if the field is empty
+									message('CUW', `${title} is mandatory`, 0);
+									allValid = false;
+									break;
+								}
+							}
+						}*/
+
+						var dynamic_Array = JSON.parse($('#vals_source').val());
+						const selectedVal = dynamic_Array.find(myval => myval.label === data.source);
+						data.src_val = selectedVal.value;
+
+						var dynamic_Array = JSON.parse($('#vals_nameType').val());
+						const selectedVal1 = dynamic_Array.find(myval => myval.label === data.nameType);
+						data.nmtyp_val = selectedVal1.value;
+
+						if (allValid) {
+							dataToShow1.push(data);
+						} else {
+							return; // Exit the outer loop
+						}
+
+					}
+				}
+
+				var allValid = true;
+				const rows2 = table2.getRows();
+				// Loop through rows and check for data
+				for (let row of rows2) {
+					const data = row.getData();
+					if (data.upd == 'Y') { // Check if row has data
+
+						/*const cells = row.getCells();
+						for (let cell of cells) {
+							const column = cell.getColumn();
+							var title = column.getDefinition().title.split("<span class='text-danger'>*</span>")[0].trim();
+
+							// Check if the column has the "must" attribute
+							console.log(column.getField());
+							if (column.getDefinition().must) {
+								if (!data[column.getField()]) { // Check if the field is empty
+									message('CUW', `${title} is mandatory`, 0);
+									allValid = false;
+									break;
+								}
+							}
+						}*/
+
+						var dynamic_Array = JSON.parse($('#vals_source2').val());
+						const selectedVal = dynamic_Array.find(myval => myval.label === data.source2);
+						data.src_val = selectedVal.value;
+
+						if (allValid) {
+							dataToShow2.push(data);
+						} else {
+							return; // Exit the outer loop
+						}
+
+					}
+				}
+
+				var allValid = true;
+				const rows3 = table3.getRows();
+				// Loop through rows and check for data
+				for (let row of rows3) {
+					const data = row.getData();
+					if (data.upd == 'Y') { // Check if row has data
+
+						/*const cells = row.getCells();
+						for (let cell of cells) {
+							const column = cell.getColumn();
+							var title = column.getDefinition().title.split("<span class='text-danger'>*</span>")[0].trim();
+
+							// Check if the column has the "must" attribute
+							console.log(column.getField());
+							if (column.getDefinition().must) {
+								if (!data[column.getField()]) { // Check if the field is empty
+									message('CUW', `${title} is mandatory`, 0);
+									allValid = false;
+									break;
+								}
+							}
+						}*/
+
+						var dynamic_Array = JSON.parse($('#vals_source3').val());
+						const selectedVal = dynamic_Array.find(myval => myval.label === data.source3);
+						data.src_val = selectedVal.value;
+
+						if (allValid) {
+							dataToShow3.push(data);
+						} else {
+							return; // Exit the outer loop
+						}
+
+					}
+				}
+
+				var allValid = true;
+				const rows4 = table4.getRows();
+				// Loop through rows and check for data
+				for (let row of rows4) {
+					const data = row.getData();
+					if (data.upd == 'Y') { // Check if row has data
+
+						/*const cells = row.getCells();
+						for (let cell of cells) {
+							const column = cell.getColumn();
+							var title = column.getDefinition().title.split("<span class='text-danger'>*</span>")[0].trim();
+
+							// Check if the column has the "must" attribute
+							console.log(column.getField());
+							if (column.getDefinition().must) {
+								if (!data[column.getField()]) { // Check if the field is empty
+									message('CUW', `${title} is mandatory`, 0);
+									allValid = false;
+									break;
+								}
+							}
+						}*/
+
+						var dynamic_Array = JSON.parse($('#vals_source4').val());
+						const selectedVal = dynamic_Array.find(myval => myval.label === data.source4);
+						data.src_val = selectedVal.value;
+
+						if (allValid) {
+							dataToShow4.push(data);
+						} else {
+							return; // Exit the outer loop
+						}
+
+					}
+				}
+
+				var combinedData = {};
+
+				// Show data in alert
+				if (dataToShow1.length > 0 || dataToShow2.length > 0 || dataToShow3.length > 0 || dataToShow4.length > 0) {
+					//alert(JSON.stringify(dataToShow, null, 2)); // Format for better readability
+
+					if (dataToShow1.length > 0) {
+						combinedData.tab1 = dataToShow1;
+					}
+
+					// Check if table2 has data
+					if (dataToShow2.length > 0) {
+						combinedData.tab2 = dataToShow2;
+					}
+
+					// Check if table3 has data
+					if (dataToShow3.length > 0) {
+						combinedData.tab3 = dataToShow3;
+					}
+
+					// Check if table4 has data
+					if (dataToShow4.length > 0) {
+						combinedData.tab4 = dataToShow4;
+					}
+
+					$.ajax({
+						url: contextPath + "saveAliasName",
+						type: 'POST',
+						contentType: 'application/json',
+						data: JSON.stringify(combinedData),
+						success: function (response) {
+							//alert('Data sent');
+							//loader(0);
+							message('S', 0, 0);
+							$('#call_fetch').trigger('click');
+						},
+					});
+
+				} else {
+					console.log("No data available.");
+				}
+
+				//Alhamdulillah
+			});
+
+			function setValueForRowAndColumn(table, rowNumber, columnField, valueToSet) {
+				// Get the row by its index (rowNumber - 1 because rowNumber is 1-based)
+
+				//console.log('Here final check : ' + rowNumber + ' || ' + columnField + ' || ' + valueToSet);
+
+				if (valueToSet == null) {
+					valueToSet = '';
+				}
+
+				var row = table.getRow(rowNumber);
+
+				// Check if the row exists
+				if (row) {
+					// Update the specific field in the row
+					row.update({[columnField]: valueToSet});
+				} else {
+					console.error("Row not found");
+				}
+			}
+
+			function fetchData1() {
+				var key_val = $('.primary_val').val();
+				var scrn = $('#screenCode').val();
+
+				$.ajax({
+					type: "POST",
+					url: contextPath + "fetchData",
+					dataType: "json",
+					data: {primaryVal: key_val, tab: 1, screen: scrn},
+					success: function (response) {
+
+						if (response.length == 0) {
+							fetchData2();
+						}
+
+						//alert("Alhamdulillah " + response.length);
+
+						for (var i = 0; i < response.length; i++) {
+							enableRow(table1, i);
+							setValueForRowAndColumn(table1, i, "rowid", response[i]['INMATE_NAMES_ROWID']);
+							setValueForRowAndColumn(table1, i, "seq", response[i]['NAME_SEQ_NUM']);
+							setValueForRowAndColumn(table1, i, "lastName", response[i]['NAME_LAST']);
+							setValueForRowAndColumn(table1, i, "firstName", response[i]['NAME_FIRST']);
+
+							setValueForRowAndColumn(table1, i, "mi", response[i]['NAME_MIDDLE']);
+
+							setValueForRowAndColumn(table1, i, "mi2", response[i]['NAME_MIDDLE_2']);
+							setValueForRowAndColumn(table1, i, "fnameUp", response[i]['UPPER_NAME_LAST']);
+							setValueForRowAndColumn(table1, i, "lnameUp", response[i]['UPPER_NAME_FIRST']);
+
+							setValueForRowAndColumn(table1, i, "suffix", response[i]['NAME_SUFFIX']);
+							//alert(response[i]['REPORTING_SOURCE_CODE']);
+
+							var dynamic_Array = JSON.parse($('#vals_source').val());
+							const selectedOption = dynamic_Array.find(option => option.value === response[i]['REPORTING_SOURCE_CODE']); // Find the corresponding option
+							setValueForRowAndColumn(table1, i, "source", selectedOption.label);
+
+
+							var dynamic_Array = JSON.parse($('#vals_nameType').val());
+							const selectedOption1 = dynamic_Array.find(option => option.value === response[i]['NAME_TYPE']); // Find the corresponding option
+							setValueForRowAndColumn(table1, i, "nameType", selectedOption1.label);
+
+							var dt = response[i]['NAME_DT'];
+							var actual_dt = '';
+							if (dt != '' && dt != null) {
+								actual_dt = dt.split("T")[0] + " " + dt.split("T")[1].split(".")[0];
+								dt = dt.split("T")[0];
+								dt = dt.split('-')[1] + '/' + dt.split('-')[2] + '/' + dt.split('-')[0];
+							}
+							setValueForRowAndColumn(table1, i, "actual_dt", actual_dt);
+							setValueForRowAndColumn(table1, i, "date", dt);
+							setValueForRowAndColumn(table1, i, "comments", response[i]['COMMENTS']);
+						}
+
+						var rowCount = table1.getData().length;
+						for (var x = 0; x < rowCount; x++) {
+							setValueForRowAndColumn(table1, x, "commitNo", key_val);
+						}
+
+						fetchData2();
+
+					},
+					error: function () {
+						alert("json not found");
+					}
+				});
+			}
+
+			function fetchData2() {
+				var key_val = $('.primary_val').val();
+				var scrn = $('#screenCode').val();
+
+				$.ajax({
+					type: "POST",
+					url: contextPath + "fetchData",
+					dataType: "json",
+					data: {primaryVal: key_val, tab: 2, screen: scrn},
+					success: function (response) {
+
+						if (response.length == 0) {
+							fetchData3();
+						}
+						//alert("Alhamdulillah " + response.length);
+
+						for (var i = 0; i < response.length; i++) {
+							enableRow(table2, i);
+							setValueForRowAndColumn(table2, i, "rowid", response[i]['INMATE_DOB_ROWID']);
+
+							var dt = response[i]['D_O_B'];
+							var actual_dt = '';
+							if (dt != '' && dt != null) {
+								actual_dt = dt.split("T")[0] + " " + dt.split("T")[1].split(".")[0];
+								dt = dt.split("T")[0];
+								dt = dt.split('-')[1] + '/' + dt.split('-')[2] + '/' + dt.split('-')[0];
+							}
+							setValueForRowAndColumn(table2, i, "actual_dtBirth", actual_dt);
+							setValueForRowAndColumn(table2, i, "dateBirth", dt);
+
+							var dynamic_Array = JSON.parse($('#vals_source2').val());
+							const selectedOption = dynamic_Array.find(option => option.value === response[i]['REPORTING_SOURCE_CODE']); // Find the corresponding option
+							setValueForRowAndColumn(table2, i, "source2", selectedOption.label);
+
+							if (response[i]['PRIMARY_DOB_FLAG'] == 'Y') {
+								setValueForRowAndColumn(table2, i, "checkbox", true);
+							} else {
+								setValueForRowAndColumn(table2, i, "checkbox", false);
+							}
+
+							var dt = response[i]['DOB_DT'];
+							var actual_dt = '';
+							if (dt != '' && dt != null) {
+								actual_dt = dt.split("T")[0] + " " + dt.split("T")[1].split(".")[0];
+								dt = dt.split("T")[0];
+								dt = dt.split('-')[1] + '/' + dt.split('-')[2] + '/' + dt.split('-')[0];
+							}
+							setValueForRowAndColumn(table2, i, "actual_dt", actual_dt);
+							setValueForRowAndColumn(table2, i, "date", dt);
+
+							setValueForRowAndColumn(table2, i, "comments", response[i]['COMMENTS']);
+						}
+
+						fetchData3();
+
+						var rowCount = table2.getData().length;
+						for (var x = 0; x < rowCount; x++) {
+							setValueForRowAndColumn(table2, x, "commitNo", key_val);
+						}
+					},
+					error: function () {
+						alert("json not found");
+					}
+				});
+			}
+
+			function fetchData3() {
+				var key_val = $('.primary_val').val();
+				var scrn = $('#screenCode').val();
+
+				$.ajax({
+					type: "POST",
+					url: contextPath + "fetchData",
+					dataType: "json",
+					data: {primaryVal: key_val, tab: 3, screen: scrn},
+					success: function (response) {
+						//alert(response.length);
+
+						//alert("Alhamdulillah " + response.length);
+
+						if (response.length == 0) {
+							fetchData4();
+						}
+
+						for (var i = 0; i < response.length; i++) {
+							enableRow(table3, i);
+							setValueForRowAndColumn(table3, i, "rowid", response[i]['INMATE_SSN_ROWID']);
+							setValueForRowAndColumn(table3, i, "socialSecurity", response[i]['SOC_SEC_NUM']);
+
+							var dynamic_Array = JSON.parse($('#vals_source3').val());
+							const selectedOption = dynamic_Array.find(option => option.value === response[i]['REPORTING_SOURCE_CODE']); // Find the corresponding option
+							setValueForRowAndColumn(table3, i, "source3", selectedOption.label);
+
+							if (response[i]["NVL(PRIMARY_SSN_FLAG,'N')"] == 'Y') {
+								setValueForRowAndColumn(table3, i, "checkbox", true);
+							} else {
+								setValueForRowAndColumn(table3, i, "checkbox", false);
+							}
+
+							if (response[i]['VERIFIED_FLAG'] == 'Y') {
+								setValueForRowAndColumn(table3, i, "checkbox1", true);
+							} else {
+								setValueForRowAndColumn(table3, i, "checkbox1", false);
+							}
+
+							var dt = response[i]['SSN_DT'];
+							var actual_dt = '';
+							if (dt != '' && dt != null) {
+								actual_dt = dt.split("T")[0] + " " + dt.split("T")[1].split(".")[0];
+								dt = dt.split("T")[0];
+								dt = dt.split('-')[1] + '/' + dt.split('-')[2] + '/' + dt.split('-')[0];
+							}
+							setValueForRowAndColumn(table3, i, "actual_dt", actual_dt);
+							setValueForRowAndColumn(table3, i, "date", dt);
+
+							setValueForRowAndColumn(table3, i, "comments", response[i]['SSN_COMMENTS']);
+						}
+
+						var rowCount = table3.getData().length;
+						for (var x = 0; x < rowCount; x++) {
+							setValueForRowAndColumn(table3, x, "commitNo", key_val);
+						}
+
+						fetchData4();
+					},
+					error: function () {
+						alert("json not found");
+					}
+				});
+			}
+
+			function fetchData4() {
+				var key_val = $('.primary_val').val();
+				var scrn = $('#screenCode').val();
+
+				$.ajax({
+					type: "POST",
+					url: contextPath + "fetchData",
+					dataType: "json",
+					data: {primaryVal: key_val, tab: 4, screen: scrn},
+					success: function (response) {
+
+						if (response.length == 0) {
+							loader(0);
+						}
+
+						//alert("Alhamdulillah " + response.length);
+
+						for (var i = 0; i < response.length; i++) {
+							enableRow(table4, i);
+							setValueForRowAndColumn(table4, i, "rowid", response[i]['INMATE_SBI_ROWID']);
+							setValueForRowAndColumn(table4, i, "sbinumber", response[i]['ALIAS_SBI_NO']);
+
+							var dt = response[i]['ALIAS_SBI_DT'];
+							var actual_dt = '';
+							if (dt != '' && dt != null) {
+								actual_dt = dt.split("T")[0] + " " + dt.split("T")[1].split(".")[0];
+								dt = dt.split("T")[0];
+								dt = dt.split('-')[1] + '/' + dt.split('-')[2] + '/' + dt.split('-')[0];
+							}
+							setValueForRowAndColumn(table4, i, "actual_dt", actual_dt);
+							setValueForRowAndColumn(table4, i, "date", dt);
+
+							var dynamic_Array = JSON.parse($('#vals_source4').val());
+							const selectedOption = dynamic_Array.find(option => option.value === response[i]['REPORTING_SOURCE_CODE']); // Find the corresponding option
+							setValueForRowAndColumn(table4, i, "source4", selectedOption.label);
+
+							if (response[i]['ALIAS_SBI_PRM_FLG'] == 'Y') {
+								setValueForRowAndColumn(table4, i, "checkbox", true);
+							} else {
+								setValueForRowAndColumn(table4, i, "checkbox", false);
+							}
+
+							setValueForRowAndColumn(table4, i, "comments", response[i]['ALIAS_SBI_COMNT']);
+						}
+
+						var rowCount = table4.getData().length;
+						for (var x = 0; x < rowCount; x++) {
+							setValueForRowAndColumn(table4, x, "commitNo", key_val);
+						}
+
+						//loader(0);
+					},
+					complete: function (response) {
+						setTimeout(function () {
+							loader(0);
+						}, 1500);
+					},
+					error: function () {
+						alert("json not found");
+					}
+				});
+			}
+
+			//getRptSrc();
+			//getNmTyp();
+
+			function getRptSrc() {
+				$.ajax({
+					url: contextPath + 'getRptSrc',
+					method: 'POST',
+					dataType: "json",
+					success: function (response) {
+						var jsonData = [];
+						var jsonData2 = [];
+						var entry = [];
+
+						//jsonData = ["Apple","Ball","Cat"];
+						//jsonData2 = ["Apple","Ball","Cat"];
+
+						for (var i = 0; i < response.length; i++) {
+
+							if (response[i]['VAL'] != undefined) {
+								//content += '<option value="' + response[i]['VAL'] + '">' + response[i]['OPT'] + '</option>';
+								entry = {
+									value: response[i]['VAL'].trim(),
+									label: response[i]['OPT'].trim()
+								};
+							} else {
+								//content += '<option value="' + response[i]['OPT'] + '">' + response[i]['OPT'] + '</option>';
+								entry = {
+									value: response[i]['OPT'].trim(),
+									label: response[i]['OPT'].trim()
+								};
+							}
+
+							jsonData.push(response[i]['OPT'].trim());
+							jsonData2.push(entry);
+
+						}
+
+						const src1 = table1.getColumn("source");
+						src1.getDefinition().editorParams.values = jsonData; // Update the editorParams directly
+
+						const src2 = table2.getColumn("source2");
+						src2.getDefinition().editorParams.values = jsonData; // Update the editorParams directly
+
+						const src3 = table3.getColumn("source3");
+						src3.getDefinition().editorParams.values = jsonData; // Update the editorParams directly
+
+						const src4 = table4.getColumn("source4");
+						src4.getDefinition().editorParams.values = jsonData; // Update the editorParams directly
+
+						$('#src_val').val(JSON.stringify(jsonData2));
+
+					},
+					error: function (error) {
+						//console.error("Error getting table names:", error);
+					}
+				});
+			}
+
+			function getNmTyp() {
+
+				$.ajax({
+					url: contextPath + 'getNmTyp',
+					method: 'POST',
+					dataType: "json",
+					success: function (response) {
+						var jsonData = [];
+						var jsonData2 = [];
+						var entry = [];
+
+						for (var i = 0; i < response.length; i++) {
+
+							if (response[i]['VAL'] != undefined) {
+								//content += '<option value="' + response[i]['VAL'] + '">' + response[i]['OPT'] + '</option>';
+								entry = {
+									value: response[i]['VAL'].trim(),
+									label: response[i]['OPT'].trim()
+								};
+							} else {
+								//content += '<option value="' + response[i]['OPT'] + '">' + response[i]['OPT'] + '</option>';
+								entry = {
+									value: response[i]['OPT'].trim(),
+									label: response[i]['OPT'].trim()
+								};
+							}
+
+							jsonData.push(response[i]['OPT'].trim());
+							jsonData2.push(entry);
+
+						}
+
+						const nmTyp = table1.getColumn("nameType");
+						nmTyp.getDefinition().editorParams.values = jsonData; // Update the editorParams directly
+
+						$('#nm_typ').val(JSON.stringify(jsonData2));
+
+					},
+					error: function (error) {
+						//console.error("Error getting table names:", error);
+					}
+				});
+			}
+
+			$('#exit').on('click', function () {
+				message('B', 0, function () {
+					history.back();
+				});
+			});
+
+			$('#clear').on('click', function () {
+
+				if (updatable) {
+					message("alert", "There are unsaved changes on the screen. do u wish to clear?", function () {
+						clr_func();
+					});
+				} else {
+					clr_func();
+				}
+			});
+
+			function clr_func() {
+				updatable = false;
+				$('.form-control').val('');
+				clearFunc(table1);
+				clearFunc(table2);
+				clearFunc(table3);
+				clearFunc(table4);
+			}
+
+			function clearFunc(tbl) {
+				var idx = 0;
+				tbl.getRows().forEach(function (row) {
+					// Iterate through each field in the row
+					Object.keys(row.getData()).forEach(function (field) {
+						// Check if the field is not in the fieldsToKeep array
+						if (field != 'id') {
+							// Set the cell value to an empty string
+							if (field == 'seq') {
+								row.update({[field]: "0"}); // or use null if you prefer
+							} else {
+								row.update({[field]: ""}); // or use null if you prefer	
+							}
+
+						} else {
+							row.update({[field]: idx}); // or use null if you prefer
+							idx++;
+						}
+					});
+				});
+				addClassToRows(tbl, "mydisabled");
+			}
+
+			$('#call_fetch').on('click', function () {
+				updatable = false;
+				clearFunc(table1);
+				clearFunc(table2);
+				clearFunc(table3);
+				clearFunc(table4);
+				loader(1);
+				fetchData1();
+				//fetchData2();
+				//fetchData3();
+				//fetchData4();
+			});
+
+			function getCurrentDate() {
+				const today = new Date(); // Get the current date
+				const month = String(today.getMonth() + 1).padStart(2, '0'); // Get the month (0-11) and add 1, then pad with zero
+				const day = String(today.getDate()).padStart(2, '0'); // Get the day (1-31) and pad with zero
+				const year = today.getFullYear(); // Get the full year (yyyy)
+
+				return `${month}/${day}/${year}`; // Return the date in mm/dd/yyyy format
+			}
+
+			function focusCell(table, rowId, field) {
+				var row = table.getRow(rowId); // Get the row by ID
+				if (row) {
+					var cell = row.getCell(field); // Get the cell from the row
+					if (cell) {
+						cell.edit(); // Open the editor for the cell
+						// Wait for the editor to be created before focusing
+						/*setTimeout(function () {
+							var input = cell.getElement().querySelector("input");
+							if (input) {
+								input.focus(); // Focus the input element
+							}
+						}, 0);*/
+					} else {
+						console.error("Cell not found for field:", field);
+					}
+				} else {
+					console.error("Row not found for rowId:", rowId);
+				}
+			}
+
+			$('#add').on('click', function () {
+
+				if ($('#sbiNumberInput').val().trim() == '') {
+					message('W', 0, 0);
+					return;
+				}
+
+				var key_val = $('.primary_val').val();
+
+				if (key_val == '') {
+					message('W', 0, 0);
+					return;
+				}
+
+				var activeTabId = $('.nav-link.active').attr('id');
+
+				if (activeTabId == 'alis_names') {
+					table1.clearSort();
+
+					var rowCount = table1.getData().length;
+					//return;
+
+					const newRowData = {
+						id: rowCount,
+						seq: "0",
+						rowid: "",
+						lastName: "",
+						firstName: "",
+						mi: "",
+						suffix: "",
+						source: "",
+						nameType: "",
+						date: "",
+						comments: "",
+						commitNo: key_val
+					}; // Example new row data
+					table1.addData(newRowData, true); // true for adding at the top*/
+					setValueForRowAndColumn(table1, rowCount, "upd", "Y");
+					setValueForRowAndColumn(table1, rowCount, "date", getCurrentDate());
+					setValueForRowAndColumn(table1, rowCount, "actual_dt", formatDate(getCurrentDate()));
+					focusCell(table1, rowCount, "lastName");
+				}
+
+				if (activeTabId == 'alis_dob') {
+					table2.clearSort();
+
+					var rowCount = table2.getData().length;
+					//return;
+
+					const newRowData = {
+						id: rowCount,
+						seq: "0",
+						rowid: "",
+						dateBirth: "",
+						source2: "",
+						checkbox: false,
+						date: "",
+						comments: "",
+						commitNo: key_val
+					}; // Example new row data
+					table2.addData(newRowData, true); // true for adding at the top*/
+					setValueForRowAndColumn(table2, rowCount, "upd", "Y");
+					setValueForRowAndColumn(table2, rowCount, "date", getCurrentDate());
+					setValueForRowAndColumn(table2, rowCount, "actual_dt", formatDate(getCurrentDate()));
+					focusCell(table2, rowCount, "dateBirth");
+				}
+
+				if (activeTabId == 'alis_ssn') {
+					table3.clearSort();
+
+					var rowCount = table3.getData().length;
+					//return;
+
+					const newRowData = {
+						id: rowCount,
+						seq: "0",
+						rowid: "",
+						socialSecurity: "",
+						source3: "",
+						checkbox: false,
+						checkbox1: false,
+						date: "",
+						comments: "",
+						commitNo: key_val
+					}; // Example new row data
+					table3.addData(newRowData, true); // true for adding at the top*/
+					setValueForRowAndColumn(table3, rowCount, "upd", "Y");
+					setValueForRowAndColumn(table3, rowCount, "date", getCurrentDate());
+					setValueForRowAndColumn(table3, rowCount, "actual_dt", formatDate(getCurrentDate()));
+					focusCell(table3, rowCount, "socialSecurity");
+				}
+
+				if (activeTabId == 'alis_sbi') {
+					table4.clearSort();
+
+					var rowCount = table4.getData().length;
+					//return;
+
+					const newRowData = {
+						id: rowCount,
+						seq: "0",
+						rowid: "",
+						sbinumber: "",
+						source4: "",
+						checkbox: false,
+						date: "",
+						comments: "",
+						commitNo: key_val
+					}; // Example new row data
+					table4.addData(newRowData, true); // true for adding at the top*/
+					setValueForRowAndColumn(table4, rowCount, "upd", "Y");
+					setValueForRowAndColumn(table4, rowCount, "date", getCurrentDate());
+					setValueForRowAndColumn(table4, rowCount, "actual_dt", formatDate(getCurrentDate()));
+					focusCell(table4, rowCount, "sbinumber");
+				}
+			});
+
+		});
+
+	</script>
+	<!--<script src="js/../script.js"></script>
+	<script>
+		$(document).ready(function () {
+			
+		});
+	</script>-->
+
+	<a href="#" data-toggle="modal" data-target="#HistoryModal" style="display:none;" id="historyPopup"></a>
+
+	<div class="modal fade" id="HistoryModal" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header pt-3 pb-2">
+					<h4 class="modal-title"> List of Previous stays </h4>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body py-0">
+					<div class="d-flex w-100">
+						<span class="w-50">
+							<label for="sbiNumberDisplay" class="form-label">ID#</label>
+							<input type="text" class="form-control" aria-label="ID#" name="sbiNumberDisplay"
+								id="sbiNumberDisplay" value="" disabled="">
+						</span>
+						<span class="w-100 ml-3">
+							<label for="ResidenceCategoryComments" class="form-label">Offender Name:</label>
+							<input type="text" class="form-control" aria-label="ID#" name="offendernameDisplay"
+								id="offendernameDisplay" value="" disabled="">
+						</span>
+					</div>
+					<h6 class="my-1" style="font-weight: 500;">Offender stays (descending order)</h6>
+					<table id="stayHistoryTable" class="table table-bordered table-striped w-100 mb-0">
+						<thead class="bg-primary-600 text-nowrap">
+							<tr>
+								<th class="">Select</th>
+								<th>Stay#</th>
+								<th>Facility</th>
+								<th>Offender Type</th>
+								<th>Admitted</th>
+								<th>Time</th>
+								<th>Released</th>
+								<th>Time</th>
+							</tr>
+						</thead>
+						<tbody id="historyBody">
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="fetchDataBtn">Ok</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- <script src="js/vendors.bundle.js"></script>
+
+        <script src="js/app.bundle.js"></script> -->
+	<script type="text/javascript">
+		$('#js-page-content').smartPanel();
+	</script>
+	<div th:replace="~{fragments/msgBox :: msgBox}"></div>
+</body>
+<!-- BEGIN Page Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+<!-- END Page Footer -->
+
+</html>

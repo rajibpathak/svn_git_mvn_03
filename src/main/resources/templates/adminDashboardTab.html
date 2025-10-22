@@ -1,0 +1,869 @@
+<div th:fragment="adminDashboardTab" th:remove="tag">
+	<link rel="stylesheet" media="screen, print" href="css/datagrid/datatables/datatables.bundle.css">
+    <link rel="stylesheet" media="screen, print" href="css/formplugins/ion-rangeslider/ion-rangeslider.css">
+    <link rel="stylesheet" media="screen, print" href="css/statistics/chartist/chartist.css">
+    <link rel="stylesheet" media="screen, print" href="css/statistics/apexcharts/apexcharts.css">
+	
+	<div class="row">
+        <!--<div class="col-sm-12 col-xl-3">
+			<span class="irs irs--flat js-irs-7 irs-with-grid"><span class="irs"><span class="irs-line" tabindex="0"></span><span class="irs-min" style="visibility: visible;">0</span><span class="irs-max" style="visibility: visible;">1 000</span><span class="irs-from" style="visibility: hidden;">0</span><span class="irs-to" style="visibility: hidden;">0</span><span class="irs-single" style="left: 48.6882%;">500</span></span><span class="irs-grid" style="width: 98.6159%; left: 0.592041%;"><span class="irs-grid-pol" style="left: 0%"></span><span class="irs-grid-text js-grid-text-0" style="left: 0%; margin-left: -0.48051%;">0</span><span class="irs-grid-pol small" style="left: 20%"></span><span class="irs-grid-pol small" style="left: 15%"></span><span class="irs-grid-pol small" style="left: 10%"></span><span class="irs-grid-pol small" style="left: 5%"></span><span class="irs-grid-pol" style="left: 25%"></span><span class="irs-grid-text js-grid-text-1" style="left: 25%; visibility: visible; margin-left: -0.922158%;">250</span><span class="irs-grid-pol small" style="left: 45%"></span><span class="irs-grid-pol small" style="left: 40%"></span><span class="irs-grid-pol small" style="left: 35%"></span><span class="irs-grid-pol small" style="left: 30%"></span><span class="irs-grid-pol" style="left: 50%"></span><span class="irs-grid-text js-grid-text-2" style="left: 50%; visibility: visible; margin-left: -0.922158%;">500</span><span class="irs-grid-pol small" style="left: 70%"></span><span class="irs-grid-pol small" style="left: 65%"></span><span class="irs-grid-pol small" style="left: 60%"></span><span class="irs-grid-pol small" style="left: 55%"></span><span class="irs-grid-pol" style="left: 75%"></span><span class="irs-grid-text js-grid-text-3" style="left: 75%; visibility: visible; margin-left: -0.922158%;">750</span><span class="irs-grid-pol small" style="left: 95%"></span><span class="irs-grid-pol small" style="left: 90%"></span><span class="irs-grid-pol small" style="left: 85%"></span><span class="irs-grid-pol small" style="left: 80%"></span><span class="irs-grid-pol" style="left: 100%"></span><span class="irs-grid-text js-grid-text-4" style="left: 100%; margin-left: -1.25534%;">1 000</span></span><span class="irs-bar irs-bar--single" style="left: 0px; width: 50%;"></span><span class="irs-shadow shadow-single" style="display: block; left: 25.346%; width: 49.308%;"></span><span class="irs-handle single" style="left: 49.308%;"><i></i><i></i><i></i></span></span>
+		</div>-->
+		
+		<div class="col-xl-12">
+			<div id="panel-8" class="panel">
+				
+				<div class="panel-container show">
+					<div class="panel-content">
+						<b>No. Of Days</b>
+						<input id="demo_8" type="text" value="" class="d-none" tabindex="-1" readonly="">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+		<div class="col-xl-6">
+            <!-- basic area chart -->
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Total Inmate Population by Facility <span class="fw-300"><i></i></span>
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div id="listofInmatePopulation-table"></div>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<div class="col-xl-6">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="p-3 bg-info-100 rounded overflow-hidden position-relative text-white mb-g">
+						<div class="">
+							<h3 class="display-4 d-block l-h-n m-0 fw-500">
+								10
+								<h3 class="m-0 l-h-n">New Admission												
+								</h3>											
+							</h3>
+						</div>
+						<i class="fal fa-building position-absolute pos-right pos-bottom opacity-15 mb-n2 mr-n2" style="font-size:6rem"></i>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="p-3 bg-fusion-400 rounded overflow-hidden position-relative text-white mb-g">
+						<div class="">
+							<h3 class="display-4 d-block l-h-n m-0 fw-500">
+								30
+								<h3 class="m-0 l-h-n">Released Offenders
+									
+								</h3>
+							</h3>
+						</div>
+						<i class="fal fa-building position-absolute pos-right pos-bottom opacity-15 mb-n2 mr-n2" style="font-size:6rem"></i>
+					</div>
+				</div>
+				
+				<div class="col-sm-3">
+					<div class="p-3 bg-warning-500 rounded overflow-hidden position-relative text-white mb-g">
+						<div class="">
+							<h3 class="display-4 d-block l-h-n m-0 fw-500">
+								42%
+								<h3 class="m-0 l-h-n">ABSC %										
+								</h3>											
+							</h3>
+						</div>
+						<i class="fal fa-building position-absolute pos-right pos-bottom opacity-15 mb-n2 mr-n2" style="font-size:6rem"></i>
+					</div>
+				</div>
+				<div class="col-sm-3 col-xl-3">
+					<div class="p-3 bg-success-400 rounded overflow-hidden position-relative text-white mb-g">
+						<div class="">
+							<h3 class="display-4 d-block l-h-n m-0 fw-500">
+								70%
+								<h3 class="m-0 l-h-n">CCTV %
+									
+								</h3>
+							</h3>
+						</div>
+						<i class="fal fa-building position-absolute pos-right pos-bottom opacity-15 mb-n2 mr-n2" style="font-size:6rem"></i>
+					</div>
+				</div>
+				
+				<div class="col-sm-3 col-xl-3">
+					<div class="p-3 bg-success-500 rounded overflow-hidden position-relative text-white mb-g">
+						<div class="">
+							<h3 class="display-4 d-block l-h-n m-0 fw-500">
+								58%
+								<h3 class="m-0 l-h-n">ESCP %										
+								</h3>											
+							</h3>
+						</div>
+						<i class="fal fa-building position-absolute pos-right pos-bottom opacity-15 mb-n2 mr-n2" style="font-size:6rem"></i>
+					</div>
+				</div>
+				<div class="col-sm-3 col-xl-3">
+					<div class="p-3 bg-danger-900 rounded overflow-hidden position-relative text-white mb-g">
+						<div class="">
+							<h3 class="display-4 d-block l-h-n m-0 fw-500">
+								91%
+								<h3 class="m-0 l-h-n">JRDC
+									
+								</h3>
+							</h3>
+						</div>
+						<i class="fal fa-building position-absolute pos-right pos-bottom opacity-15 mb-n2 mr-n2" style="font-size:6rem"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+		                         
+    </div>
+	<div class="row">
+		<div class="col-xl-12">
+            <!-- basic area chart -->
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Critical Incidents in the last 48 Hrs <span class="fw-300"><i></i></span>
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div id="listofCriticalIncidents-table"></div>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<div class="col-xl-12">
+            <!-- basic area chart -->
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Red Flagged Offenders <span class="fw-300"><i></i></span>
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div id="listofRedFlag-table"></div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+	
+	<div class="row">						
+		<div class="col-xl-6">
+            <!-- basic area chart -->
+            <div id="panel-1" class="panel">
+                <div class="panel-hdr">
+                    <h2>
+                        Population by Age<span class="fw-300"><i>Graph</i></span>
+                    </h2>
+                </div>
+                <div class="panel-container show">
+                    <div class="panel-content">
+                        <div id="basicLineChartap1" style="width:100%; height:300px;"></div>
+                    </div>
+                </div>
+            </div>
+		</div>
+		<div class="col-xl-3">
+			<div id="panel-8" class="panel">
+				<div class="panel-hdr">
+					<h2>
+						Population by Gender</span>
+					</h2>
+				</div>
+				<div class="panel-container show">
+					<div class="panel-content">
+						<div id="pieChart">
+							<canvas style="width:100%; height:300px;"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-3">
+			<div id="panel-8" class="panel">
+				<div class="panel-hdr">
+					<h2>
+						Population by Race/Ethinicity</span>
+					</h2>
+				</div>
+				<div class="panel-container show">
+					<div class="panel-content">
+						<div id="pieChart_RaceEthinicity">
+							<canvas style="width:100%; height:300px;"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xl-9">
+			<div id="panel-8" class="panel">
+				<div class="panel-hdr">
+					<h2>
+						Population Growth over five years</span>
+					</h2>
+				</div>
+				<div class="panel-container show">
+					<div class="panel-content">
+						<div id="lineGraph_populationGrowthChart">
+							<canvas id="populationGrowthChart" width="400" height="100"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>								
+		</div>
+		<div class="col-xl-3">
+			<div id="panel-8" class="panel">
+				<div class="panel-hdr">
+					<h2>
+						High Risk Population %</span>
+					</h2>
+				</div>
+				<div class="panel-container show">
+					<div class="panel-content">
+						<div id="lineGraph_highRiskPopulationChart">
+							<canvas id="highRiskPopulationChart" width="400" height="400"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xl-12">
+			<div id="panel-8" class="panel">
+				<div class="panel-hdr">
+					<h2>
+						Forecasted Population Growth</span>
+					</h2>
+				</div>
+				<div class="panel-container show">
+					<div class="panel-content">
+						<div id="lineGraph_forecastedPopulationChart">
+							<canvas id="forecastedPopulationChart" width="400" height="120"></canvas>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+		<script src="js/statistics/peity/peity.bundle.js"></script>
+        <script src="js/statistics/flot/flot.bundle.js"></script>
+        <script src="js/statistics/easypiechart/easypiechart.bundle.js"></script>
+        <script src="js/datagrid/datatables/datatables.bundle.js"></script>
+		<script src="js/formplugins/ion-rangeslider/ion-rangeslider.js"></script>
+        <script src="js/statistics/chartjs/chartjs.bundle.js"></script>
+		<script src="js/dependency/moment/moment.js"></script>
+        <script src="js/statistics/demo-data/apexcharts-irregular-data-series.js"></script>
+        <script src="js/statistics/apexcharts/apexcharts.bundle.js"></script>
+        <script src="js/statistics/chartist/chartist.js"></script>
+
+		<script>
+			
+			/* distributed series */
+            var distributedSeries = function()
+            {
+                new Chartist.Bar('#distributedSeries',
+                {
+                    labels: ["Sentenced", "Pretrial", "Hold", "Parole", "ion Violation"],
+                    series: [20, 60, 120, 200, 180]
+                },
+                {
+                    distributeSeries: true
+                });
+            }
+            /* distributed series -- end */
+			
+			
+			/* pie chart Population by Gender */
+            var pieChart = function()
+            {
+                var config = {
+                    type: 'pie',
+                    data:
+                    {
+                        datasets: [
+                        {
+                            data: [
+                                370,
+                                300
+                            ],
+                            backgroundColor: [
+                                '#51adf6', '#fd52a3', // color.info._300, color.danger._400
+                            ],
+                            label: 'My dataset' // for legend
+                        }],
+                        labels: [
+                            "Male",
+                            "Female",
+                        ]
+                    },
+                    options:
+                    {
+                        responsive: true,
+                        legend:
+                        {
+                            display: true,
+                            position: 'bottom',
+                        }
+                    }
+                };
+                new Chart($("#pieChart > canvas").get(0).getContext("2d"), config);
+            }
+            /* pie chart -- end */
+			
+			/* pie chart population by race/ethinicity*/
+            var pieChart_RaceEthinicity = function() {
+			var config = {
+				type: 'pie',
+				data: {
+					datasets: [
+						{
+							data: [
+								167,  // White
+								200,  // Black or African American
+								133,  // Hispanic or Latino
+								33,   // Asian
+								27,   // Native American or Alaska Native
+								13,   // Native Hawaiian or Pacific Islander
+								27    // Other/Unknown
+							],
+							backgroundColor: [
+								"#FF6384",  // Color for White
+								"#36A2EB",  // Color for Black or African American
+								"#FFCE56",  // Color for Hispanic or Latino
+								"#4BC0C0",  // Color for Asian
+								"#9966FF",  // Color for Native American or Alaska Native
+								"#FF9F40",  // Color for Native Hawaiian or Pacific Islander
+								"#C9CBCF"   // Color for Other/Unknown
+							],
+							label: 'Offender Population' // for legend
+						}
+					],
+					labels: [
+						"White",
+						"Black or African American",
+						"Hispanic or Latino",
+						"Asian",
+						"Native American or Alaska Native",
+						"Native Hawaiian or Pacific Islander",
+						"Other/Unknown"
+					]
+				},
+				options: {
+					responsive: true,
+					legend: {
+						display: true,
+						position: 'bottom',
+					}
+				}
+			};
+			new Chart($("#pieChart_RaceEthinicity > canvas").get(0).getContext("2d"), config);
+		}
+            /* pie chart -- end */
+		
+		
+			
+			
+			
+			/* basic line chart */
+            var basicLineChartOptions = {
+                series: [
+                {
+                    name: "Offender",
+                    data: [51, 49, 62, 69, 91, 148]
+                }],
+                chart:
+                {
+                    height: 350,
+                    type: 'line',
+                    zoom:
+                    {
+                        enabled: false
+                    },
+                },
+                tooltip:
+                {
+                    theme: 'dark',
+                },
+                dataLabels:
+                {
+                    enabled: false
+                },
+                stroke:
+                {
+                    curve: 'straight'
+                },
+                title:
+                {
+                    text: 'Next Six Months',
+                    align: 'left'
+                },
+                colors: ['red'],
+                grid:
+                {
+                    row:
+                    {
+                        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                        opacity: 0.5
+                    },
+                },
+                xaxis:
+                {
+                    categories: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+                }
+            };
+
+            var basicLineChart = new ApexCharts(document.querySelector("#basicLineChartap"), basicLineChartOptions);
+            /* basic line chart -- end */
+			
+			/* basic line chart1 */
+            var basicLineChartOptions1 = {
+                series: [
+                {
+                    name: "OffenderCount",
+                    data: [51, 49, 142, 69, 91, 128,40, 19, 22, 9, 3, 1]
+                }],
+                chart:
+                {
+                    height: 350,
+                    type: 'line',
+                    zoom:
+                    {
+                        enabled: false
+                    },
+                },
+                tooltip:
+                {
+                    theme: 'dark',
+                },
+                dataLabels:
+                {
+                    enabled: false
+                },
+                stroke:
+                {
+                    curve: 'straight'
+                },
+                colors: ['#0a6ebd'],
+                grid:
+                {
+                    row:
+                    {
+                        colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                        opacity: 0.5
+                    },
+                },
+                xaxis:
+                {
+                    categories: ['20', '25', '30', '35', '40', '45','50','55','60','65','70','75'],
+                }
+            };
+
+            var basicLineChart1 = new ApexCharts(document.querySelector("#basicLineChartap1"), basicLineChartOptions1);
+            /* basic line chart1 -- end */
+			
+			var ctx = document.getElementById('populationGrowthChart').getContext('2d');
+			var populationGrowthChart = new Chart(ctx, {
+				type: 'line', // Line graph
+				data: {
+					labels: ['2020', '2021', '2022', '2023', '2024'], // X-axis (Years)
+					datasets: [{
+						label: 'Population Growth',
+						data: [1000, 1200, 1400, 1600, 1800], // Y-axis (Population values)
+						borderColor: 'rgba(75, 192, 192, 1)', // Line color
+						backgroundColor: 'rgba(75, 192, 192, 0.2)', // Fill under the line
+						borderWidth: 2,
+						tension: 0.4 // Smooth curve
+					}]
+				},
+				options: {
+					responsive: true,
+					plugins: {
+						legend: {
+							display: true,
+							position: 'top' // Position of the legend
+						}
+					},
+					scales: {
+						x: {
+							title: {
+								display: true,
+								text: 'Year'
+							}
+						},
+						y: {
+							title: {
+								display: true,
+								text: 'Population'
+							},
+							beginAtZero: true // Start Y-axis at zero
+						}
+					}
+				}
+			});
+			
+			var ctx_highRisk = document.getElementById('highRiskPopulationChart').getContext('2d');
+			var highRiskPopulationChart = new Chart(ctx_highRisk, {
+				type: 'pie', // Pie chart type
+				data: {
+					datasets: [{
+						data: [
+							40,  // % Chronic Illness
+							35,  // % Behavioral Health Issues
+							25   // % Security Risks
+						],
+						backgroundColor: [
+							"#FF6384", // Color for Chronic Illness
+							"#36A2EB", // Color for Behavioral Health Issues
+							"#FFCE56"  // Color for Security Risks
+						],
+						hoverBackgroundColor: [
+							"#FF6384",
+							"#36A2EB",
+							"#FFCE56"
+						]
+					}],
+					labels: [
+						"Chronic Illness",
+						"Behavioral Health Issues",
+						"Security Risks"
+					]
+				},
+				options: {
+					responsive: true,
+					plugins: {
+						legend: {
+							display: true,
+							position: 'bottom'
+						},
+						tooltip: {
+							callbacks: {
+								label: function(tooltipItem) {
+									const value = tooltipItem.raw;
+									return value + "%"; // Display percentage
+								}
+							}
+						}
+					}
+				}
+			});
+			
+			var ctx_forecastedPopulation = document.getElementById('forecastedPopulationChart').getContext('2d');
+			var forecastedPopulationChart = new Chart(ctx_forecastedPopulation, {
+				type: 'line', // Line graph
+				data: {
+					labels: ['2020', '2021', '2022', '2023', '2024', '2025'], // X-axis: Years
+					datasets: [
+						{
+							label: 'Historical Population',
+							data: [1000, 1200, 1500, 1800], // Data for 2020 to 2023
+							borderColor: 'rgba(75, 192, 192, 1)',
+							backgroundColor: 'rgba(75, 192, 192, 0.2)',
+							borderWidth: 2,
+							tension: 0.4 // Smooth curve
+						},
+						{
+							label: 'Forecasted Population',
+							data: [null, null, null, null, 2000, 2200], // Skip 2020 to 2023
+							borderColor: 'rgba(255, 99, 132, 1)',
+							backgroundColor: 'rgba(255, 99, 132, 0.2)',
+							borderDash: [5, 5], // Dashed line style
+							borderWidth: 2,
+							tension: 0.4 // Smooth curve
+						}
+					]
+				},
+				options: {
+					responsive: true,
+					plugins: {
+						legend: {
+							display: true,
+							position: 'top' // Display legend on top
+						}
+					},
+					scales: {
+						x: {
+							title: {
+								display: true,
+								text: 'Year'
+							}
+						},
+						y: {
+							title: {
+								display: true,
+								text: 'Population'
+							},
+							beginAtZero: true // Start Y-axis at zero
+						}
+					}
+				}
+			});
+            $(document).ready(function()
+            {
+				
+				/** table 1 - inmated population by facility **/
+				// Define inmated population by facility data
+				var tabledatalistoffac_InmPop = [
+				  {
+					id: "ABSC",
+					count: "100",
+				  },
+				  {
+					id: "CCTV",
+					count: "205",
+				  },
+				  {
+					id: "ESCP",
+					count: "155",
+				  },
+				  {
+					id: "JRDC",
+					count: "210",
+				  },
+				  {
+					id: "STREET",
+					count: "85",
+				  }
+				];
+				//Define Table
+				var InmPopByFacTable = new Tabulator("#listofInmatePopulation-table", {
+				  layout: "fitColumns",
+				  data: tabledatalistoffac_InmPop,
+				  height: 'auto',
+				  printAsHtml: true,
+				  printStyled: true,
+				  columns: [
+					{
+						title: "ID#",
+						field: "id",
+						
+					},
+					{
+						title: "Population Count",
+						field: "count",
+					}
+				  ]
+				});
+				/** end of table 1 **/
+				
+				/** table 1 - inmated population by facility **/
+				// Define inmated population by facility data
+				var tabledatalistoffCriticalIncidents = [
+				  {
+					"IncidentID": 12345,
+					"DateTime": "03/17/2025 10:35 AM",
+					"IncidentType": "Fight/Assault",
+					"InmateID": 87654321,
+					"Location": "Cell Block C",
+					"Description": "Physical altercation between two inmates. Injuries reported.",
+					"ReportedBy": "Officer Johnson",
+					"Status": "Under Review"
+				  },
+				  {
+					"IncidentID": 12346,
+					"DateTime": "03/17/2025 02:15 PM",
+					"IncidentType": "Contraband Discovery",
+					"InmateID": 12345678,
+					"Location": "Visitation Room",
+					"Description": "Illegal substance found during routine search.",
+					"ReportedBy": "Officer Smith",
+					"Status": "Resolved"
+				  },
+				  {
+					"IncidentID": 12347,
+					"DateTime": "03/18/2025 08:45 AM",
+					"IncidentType": "Medical Emergency",
+					"InmateID": 23456789,
+					"Location": "Yard Area",
+					"Description": "Inmate collapsed during outdoor activity. Sent to infirmary.",
+					"ReportedBy": "Nurse Williams",
+					"Status": "Resolved"
+				  },
+				  {
+					"IncidentID": 12348,
+					"DateTime": "03/18/2025 11:00 AM",
+					"IncidentType": "Attempted Escape",
+					"InmateID": 34567890,
+					"Location": "Perimeter Fence",
+					"Description": "Inmate attempted to climb the fence. Incident thwarted.",
+					"ReportedBy": "Officer Adams",
+					"Status": "Under Investigation"
+				  }
+				];
+
+				//Define Table
+				var CriticalIncidentsTable = new Tabulator("#listofCriticalIncidents-table", {
+				  layout: "fitColumns",
+				  data: tabledatalistoffCriticalIncidents,
+				  height: 'auto',
+				  printAsHtml: true,
+				  printStyled: true,
+				  columns: [
+					{
+						title: "IncidentID#",
+						field: "IncidentID",
+						
+					},
+					{
+						title: "Date&Time",
+						field: "DateTime",
+					},
+					{
+						title: "Incident Type",
+						field: "IncidentType",
+					},
+					{
+						title: "InmateID#",
+						field: "InmateID",
+					},
+					{
+						title: "Location",
+						field: "Location",
+					},
+					{
+						title: "Description",
+						field: "Description",
+					},
+					{
+						title: "ReportedBy",
+						field: "ReportedBy",
+					},
+					{
+						title: "Status",
+						field: "Status",
+					}
+				  ]
+				});
+				/** end of table 1 **/
+				
+				/** table 3 - inmated population by facility **/
+				// Define inmated population by facility data
+				var tabledatalistofOffender_RedFlag = [
+				  {
+					"OffenderID": 87654321,
+					"Name": "John Doe",
+					"Age": 35,
+					"OffenseType": "Violent",
+					"RedFlagReason": "History of assaults on staff and inmates",
+					"LastIncidentDate": "2025-03-15",
+					"RiskLevel": "High",
+					"ActionsTaken": ["Increased surveillance", "Restricted access to common areas"]
+				  },
+				  {
+					"OffenderID": 12345678,
+					"Name": "Jane Smith",
+					"Age": 28,
+					"OffenseType": "Contraband",
+					"RedFlagReason": "Frequent contraband smuggling attempts",
+					"LastIncidentDate": "2025-03-14",
+					"RiskLevel": "Medium",
+					"ActionsTaken": ["Regular cell searches", "Limited visitation privileges"]
+				  },
+				  {
+					"OffenderID": 23456789,
+					"Name": "Robert Johnson",
+					"Age": 42,
+					"OffenseType": "Escape Attempt",
+					"RedFlagReason": "Multiple escape attempts",
+					"LastIncidentDate": "2025-03-16",
+					"RiskLevel": "Critical",
+					"ActionsTaken": ["Solitary confinement", "24/7 monitoring"]
+				  },
+				  {
+					"OffenderID": 34567890,
+					"Name": "Emily Brown",
+					"Age": 30,
+					"OffenseType": "Organized Activity",
+					"RedFlagReason": "Suspected leader of inmate gang",
+					"LastIncidentDate": "2025-03-12",
+					"RiskLevel": "High",
+					"ActionsTaken": ["Segregation from known associates", "Communication monitoring"]
+				  }
+				];
+				//Define Table
+				var RedFlag_OffTable = new Tabulator("#listofRedFlag-table", {
+				  layout: "fitColumns",
+				  data: tabledatalistofOffender_RedFlag,
+				  height: 'auto',
+				  printAsHtml: true,
+				  printStyled: true,
+				  columns: [
+					{
+						title: "ID#",
+						field: "OffenderID",
+						
+					},
+					{
+						title: "Offender Name",
+						field: "Name",
+					},
+					{
+						title: "Offense Type",
+						field: "OffenseType",
+					},
+					{
+						title: "RedFlagReason",
+						field: "RedFlagReason",
+					},
+					{
+						title: "LastIncident Date",
+						field: "LastIncidentDate",
+					},
+					{
+						title: "Risk Level",
+						field: "RiskLevel",
+					},
+					{
+						title: "ActionsTaken",
+						field: "ActionsTaken",
+					}
+				  ]
+				});
+				/** end of table 3 **/
+				distributedSeries();              
+				pieChart();
+				        
+				pieChart_RaceEthinicity();
+				
+				basicLineChart.render();
+				basicLineChart1.render();
+                
+				var ionskin = "flat";
+			
+			
+                $('input[type=radio][name=skinchange]').change(function()
+                {
+                    $('.irs').removeClassPrefix('irs--').addClass(this.value);
+                });
+			//Lock and restrict handles
+                $("#demo_8").ionRangeSlider(
+                {
+                    skin: ionskin,
+                    type: "single",
+                    min: 0,
+                    max: 30,
+                    from: 15,
+                    grid: true,
+                    from_min: 1, // set min position for FROM handle (replace FROM to TO to change handle)
+                    from_max: 30, // set max position for FROM handle
+                    from_shadow: true // highlight restriction for FROM handle
+                });
+
+               
+
+
+            });
+
+        </script>
+</div>

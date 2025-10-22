@@ -1,0 +1,3902 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<title class="Registrationsidebar">DemoGraphics</title>
+<div th:replace="~{fragments/head :: head}"></div>
+
+<body class="mod-bg-1 mod-nav-link">
+
+	<!-- BEGIN Page Header -->
+	<div th:replace="~{fragments/header :: header}"></div>
+	<div th:replace="~{fragments/navmenus :: navmenus}"></div>
+	<!-- END Page Header -->
+	<!-- BEGIN Page Wrapper -->
+	<div class="page-wrapper">
+		<div class="page-inner">
+			<!-- BEGIN Left Aside -->
+			<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+			<!-- END Left Aside -->
+			<div class="page-content-wrapper">
+				<!-- BEGIN Page Content -->
+				<!-- the #js-page-content id is needed for some plugins to initialize -->
+				<main id="js-page-content" role="main" class="page-content">
+
+					<!-- <ol class="breadcrumb page-breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">SmartAdmin</a></li>
+                            <li class="breadcrumb-item">category_1</li>
+                            <li class="breadcrumb-item">category_2</li>
+                            <li class="breadcrumb-item active">Page Titile</li>
+                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        </ol> -->
+					<div class="subheader mb-2">
+						<h1 class="subheader-title">
+							<div th:replace="~{fragments/toggleMenu :: toggleMenu}"></div>
+							<i class='subheader-icon fal fa-'></i> <span th:text="${screenName}"></span></span>
+							<span style="display:none" id="user_id" th:text="${userid}"></span></span>
+						</h1>
+						<div class="frame-wrap bg-transparent">
+							<div class="btn-group">
+								<div class="col-12 pr-0">
+									<div class="js-get-date">[your date here]</div>
+								</div>
+							</div>
+							<a id="add" href="javascript:void(0);"
+								class="btn btn-primary btn-sm btn-icon waves-effect waves-themed disabled"
+								data-toggle="tooltip" data-placement="top" data-original-title="Add"> <i
+									class="fal fa-plus"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-warning btn-sm btn-icon waves-effect waves-themed disabled"
+								data-toggle="tooltip" data-placement="top" data-original-title="Print"> <i
+									class="fal fa-print"></i>
+							</a> <a id="clear" href="javascript:void(0);"
+								class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="tooltip" data-placement="top" data-original-title="Clear"> <i
+									class="fal fa-times"></i>
+							</a> <a id="save" href="javascript:void(0);"
+								class="btn btn-success btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="OK/Save"> <i class="fal fa-save"></i>
+							</a> <a id="exit" href="javascript:void(0);"
+								class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="Cancel/Exit"> <i class="fal fa-sign-out"></i>
+							</a>
+						</div>
+
+					</div>
+					<div id="errorNAME" style="display:none; color: red;"></div>
+					<div class="row">
+						<div class="col-12 col-xl-12">
+							<div th:replace="~{fragments/formheader :: formheader}"></div>
+							<input type="hidden" name="screenCode" id="screenCode" value="CBI_DEMO" />
+							<input type="hidden" class="primary_val">
+							<input type="button" id="call_fetch" style="display: none;">
+							<input type="hidden" name="current_commit" id="current_commit">
+							<div class="panel">
+								<div class="panel-content">
+									<ul class="nav nav-tabs" role="tablist">
+										<li class="nav-item"><a class="nav-link active" data-toggle="tab"
+												href="#Demographic_Info" role="tab">Demographic Info</a></li>
+										<li class="nav-item"><a class="nav-link" data-toggle="tab"
+												href="#Address_Information" role="tab">Address Information</a></li>
+									</ul>
+									<div class="tab-content p-0 demographicMain">
+										<div class="tab-pane fade show active mt-1" id="Demographic_Info"
+											role="tabpanel">
+											<div class="row">
+												<div class="col-lg-6">
+													<div id="demo_physicalblock" class="panel mx-1 mt-1 mb-3">
+														<div class="panel-hdr">
+															<h2>
+																Physical Characteristics
+															</h2>
+														</div>
+														<div class="panel-container show">
+															<div class="panel-content">
+																<div id="js-checkbox-toggles">
+																	<div class="form-group row">
+																		<div
+																			class="col-12 col-md-4 col-lg-4 d-flex align-items-center pr-0 floatingFields">
+																			<input type="hidden" id="rowid"
+																				name="rowid">
+																			<input type="hidden" id="info_upd">
+																			<input type="text"
+																				class="form-control w-100 demo_info rawField floatingLable"
+																				aria-label="" id="hair_color_code"
+																				name="" value="" data-fld="hair_color"
+																				data-lbl="Hair Color" placeholder="">
+																			<label for="hair_color_code"
+																				class="form-label text-nowrap mb-0">Hair
+																				Color</label>
+																			<!--<label for="hair_color_code"
+																				class="form-label mb-0 control-label selectFloating">Hair
+																				Color</label>
+																			<select
+																				class="custom-select form-control typecontact d-block mb-1 floatingLableClick demo_info rawField"
+																				id="hair_color_code"
+																				data-fld="hair_color"
+																				data-lbl="Hair Color">
+																				<option value="">Hair Color</option>
+																			</select>-->
+																		</div>
+																		<div
+																			class="col-12 col-md-4 col-lg-4 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 demo_info rawField floatingLable"
+																				aria-label="" id="eye_color_code"
+																				name="" value="" data-fld="eyeColor"
+																				data-lbl="Eye Color" placeholder="">
+																			<label for="eye_color_code"
+																				class="form-label text-nowrap mb-0">Eye
+																				Color</label>
+																			<!--<label for="eye_color_code"
+																				class="form-label mb-0 control-label selectFloating">Eye
+																				Color</label>
+																			<select
+																				class="custom-select form-control typecontact d-block mb-1 floatingLableClick demo_info rawField"
+																				id="eye_color_code" data-fld="eyeColor"
+																				data-lbl="Eye Color">
+																				<option value="">Eye Color</option>
+																			</select>-->
+																		</div>
+																		<div
+																			class="col-12 col-md-4 col-lg-4 d-flex align-items-center pr-0 floatingFields">
+
+																			<input type="text"
+																				class="form-control w-100 demo_info rawField floatingLable"
+																				aria-label="" id="dexterity_code"
+																				name="" value="" data-fld="dexterity"
+																				data-lbl="Dexterity" placeholder="">
+																			<label for="dexterity_code"
+																				class="form-label text-nowrap mb-0">Dexterity</label>
+
+																			<!--<label for="dexterity_code"
+																				class="form-label mb-0 control-label selectFloating">Dexterity</label>
+																			<select
+																				class="custom-select form-control typecontact d-block mb-1 floatingLableClick demo_info rawField"
+																				data-fld="dexterity"
+																				data-lbl="Dexterity"
+																				id="dexterity_code">
+																				<option value="">Dexterity</option>
+																			</select>-->
+																		</div>
+																		<div
+																			class="col-12 col-md-2 mt-md-3 pr-md-2 col-lg-3 mt-lg-3 col-xl-2 mt-xl-3 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 floatingLable demo_info rawField"
+																				data-fld="weight" data-lbl="Weight"
+																				aria-label="" id="weight" name=""
+																				value="" placeholder="">
+																			<label for="weight"
+																				class="form-label text-nowrap mb-0">Weight
+																				lb</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-2 mt-md-3 pr-md-0 col-lg-2 mt-lg-3 col-xl-2 mt-xl-3 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 floatingLable demo_info rawField"
+																				data-fld="height" data-lbl="Height"
+																				aria-label="" id="height" name=""
+																				value="" placeholder="">
+																			<label for="height"
+																				class="form-label text-nowrap mb-0">Height</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-2 mt-md-3 pr-md-2 col-lg-2 mt-lg-3 col-xl-2 mt-xl-3 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 floatingLable demo_info rawField"
+																				data-fld="sex" data-lbl="Sex"
+																				aria-label="" id="sex_field" name=""
+																				value="" placeholder="">
+																			<label for="sex_field"
+																				class="form-label text-nowrap mb-0">Sex</label>
+																			<input type="hidden" id="sex">
+																		</div>
+																		<div
+																			class="col-12 col-md-4 mt-md-3 col-lg-5 mt-lg-3 col-xl-3 mt-xl-3 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 demo_info rawField floatingLable"
+																				aria-label="" id="facial_hair_code"
+																				name="" value="" data-fld="facial_hair"
+																				data-lbl="Facial Hair" placeholder="">
+																			<label for="facial_hair_code"
+																				class="form-label text-nowrap mb-0">Facial
+																				Hair</label>
+																			<!--<label for="facial_hair_code"
+																				class="form-label mb-0 control-label selectFloating">Facial
+																				Hair</label>
+																			<select
+																				class="custom-select form-control typecontact d-block mb-1 floatingLableClick demo_info rawField"
+																				data-fld="facial_hair"
+																				data-lbl="Facial Hair"
+																				id="facial_hair_code">
+																				<option value="">Facial Hair</option>
+																			</select>-->
+																		</div>
+																		<div
+																			class="col-12 col-md-2 mt-md-3 pr-md-0 col-lg-3 mt-lg-2 col-xl-3 mt-xl-3 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 floatingLable demo_info rawField"
+																				aria-label="" id="race_field" name=""
+																				value="" placeholder=""
+																				data-fld="race_field" data-lbl="Race">
+																			<label for="race_field"
+																				class="form-label text-nowrap mb-0">Race</label>
+																			<input type="hidden" id="race_code">
+																		</div>
+																		<div
+																			class="col-12 col-md-4 mt-md-3 col-lg-4 mt-lg-3 col-xl-4 mt-xl-3 d-flex align-items-center pr-0 floatingFields">
+																			<!--<label for="skin_color_code"
+																				class="form-label mb-0 control-label selectFloating">Skin
+																				Color</label>
+																			<select
+																				class="custom-select form-control typecontact d-block mb-1 floatingLableClick demo_info rawField"
+																				id="skin_color_code"
+																				data-fld="skinColor"
+																				data-lbl="Skin Color">
+																				<option value="">Skin Color</option>
+																			</select>-->
+																			<input type="text"
+																				class="form-control w-100 demo_info rawField floatingLable"
+																				aria-label="" id="skin_color_code"
+																				name="" value="" data-fld="skinColor"
+																				data-lbl="Skin Color" placeholder="">
+																			<label for="skin_color_code"
+																				class="form-label text-nowrap mb-0">Skin
+																				Color</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-4 mt-md-3 col-lg-5 mt-lg-3 col-xl-4 mt-xl-3 d-flex align-items-center pr-0 floatingFields">
+																			<!--<label for="build_code"
+																				class="form-label mb-0 control-label selectFloating">Build</label>
+																			<select
+																				class="custom-select form-control typecontact d-block mb-1 floatingLableClick demo_info rawField"
+																				id="build_code" data-fld="buildCode"
+																				data-lbl="Build">
+																				<option value="">Build</option>
+																			</select>-->
+																			<input type="text"
+																				class="form-control w-100 demo_info rawField floatingLable"
+																				aria-label="" id="build_code" name=""
+																				value="" data-fld="buildCode"
+																				data-lbl="Build" placeholder="">
+																			<label for="build_code"
+																				class="form-label text-nowrap mb-0">Build</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-4 mt-md-3 col-lg-7 mt-lg-2 col-xl-3 mt-xl-3 d-flex align-items-center">
+																			<div
+																				class="custom-control custom-checkbox custom-control-inline">
+																				<input type="checkbox"
+																					class="custom-control-input demo_info rawField"
+																					aria-label="glasses" name="glasses"
+																					value="" id="glasses"
+																					data-fld="glasses"
+																					data-lbl="Glasses">
+																				<label class="custom-control-label"
+																					for="glasses"
+																					style="font-weight: 500;">Glasses</label>
+																			</div>
+																			<div
+																				class="custom-control custom-checkbox custom-control-inline">
+																				<input type="checkbox"
+																					class="custom-control-input demo_info rawField"
+																					aria-label="contactcheck"
+																					name="contactcheck" value=""
+																					id="contact_lense"
+																					data-fld="contactLense"
+																					data-lbl="Contacts">
+																				<label class="custom-control-label"
+																					for="contact_lense"
+																					style="font-weight: 500;">Contacts</label>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-6 pl-0">
+													<div id="demo_citizenship" class="panel mx-1 mt-1 mb-3">
+														<div class="panel-hdr">
+															<h2 style="line-height: 1;">
+																Citizenship, Language, Other Information
+															</h2>
+														</div>
+														<div class="panel-container show">
+															<div class="panel-content">
+																<div id="js-checkbox-toggles">
+																	<div class="form-group row">
+																		<div
+																			class="col-12 col-md-4 col-lg-6 col-xl-4 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 demo_info rawField floatingLable"
+																				aria-label="" id="citizenship_code"
+																				name="" value=""
+																				data-fld="citizenshipCode"
+																				data-lbl="Citizenship" placeholder="">
+																			<label for="citizenship_code"
+																				class="form-label text-nowrap mb-0">Citizenship</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-2 pr-md-2 col-lg-4 col-xl-3 mt-xl-0 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 floatingLable demo_info rawField dtfld"
+																				aria-label="" id="primaryDOB" name=""
+																				value="" placeholder=""
+																				data-fld="primaryDOB"
+																				data-lbl="Date of Birth">
+																			<label for="primary_dob"
+																				class="form-label text-nowrap mb-0">Date
+																				of Birth</label>
+																			<input type="hidden"
+																				id="primary_dob_actual">
+																		</div>
+																		<div
+																			class="col-12 col-md-2 col-lg-2 col-xl-1 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 floatingLable demo_info rawField"
+																				aria-label="" id="age" name="" value=""
+																				placeholder="" data-fld="age"
+																				data-lbl="Age">
+																			<label for="age"
+																				class="form-label text-nowrap mb-0">Age</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-4 col-lg-3 mt-lg-3 col-xl-4 mt-xl-0 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 floatingLable demo_info rawField"
+																				aria-label="" id="religion_code" name=""
+																				value="" placeholder=""
+																				data-fld="religionCode"
+																				data-lbl="Religion">
+																			<label for="religion_code"
+																				class="form-label text-nowrap mb-0">Religion</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-4 mt-md-2 col-lg-4 mt-lg-3 col-xl-4 mt-xl-3 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 floatingLable demo_info rawField"
+																				aria-label="" id="place_of_birth_city"
+																				name="" value="" placeholder=""
+																				data-fld="birthCity"
+																				data-lbl="Birth City">
+																			<label for="place_of_birth_city"
+																				class="form-label text-nowrap mb-0">Birth
+																				City</label>
+																			<div class="d-flex">
+																				<span data-toggle="modal"
+																					data-target="#listModal2"
+																					id="callStateTbl">
+																					<a href="#"
+																						class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off"
+																						data-action="toggle"
+																						title="Birth State">
+																						<i class="fa fa-download"></i>
+																					</a>
+																				</span>
+																			</div>
+																		</div>
+																		<div
+																			class="col-12 col-md-4 mt-md-3 pr-md-2 col-lg-5 pr-lg-0 mt-lg-3 col-xl-4 mt-xl-3 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 floatingLable demo_info rawField"
+																				aria-label="" id="place_of_birth_state"
+																				name="" value="" placeholder=""
+																				data-fld="birthState"
+																				data-lbl="Birth State">
+																			<label for="place_of_birth_state"
+																				class="form-label text-nowrap mb-0">Birth
+																				State</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-4 mt-md-3 col-lg-4 mt-lg-3 col-xl-4 mt-xl-3 d-flex align-items-center pr-0 floatingFields">
+																			<!--<label for="ethnic_origin"
+																				class="form-label mb-0 control-label selectFloating">Ethnic
+																				Origin</label>
+																			<select
+																				class="custom-select form-control typecontact d-block mb-1 floatingLableClick demo_info rawField"
+																				id="ethnic_origin"
+																				data-fld="ethnicOrigin"
+																				data-lbl="Ethnic Origin">
+																				<option value="">Ethnic Origin</option>
+																			</select>-->
+																			<input type="text"
+																				class="form-control w-100 floatingLable demo_info rawField"
+																				aria-label="" id="ethnic_origin" name=""
+																				value="" placeholder=""
+																				data-fld="ethnicOrigin"
+																				data-lbl="Ethnic Origin">
+																			<label for="ethnic_origin"
+																				class="form-label text-nowrap mb-0">Ethnic
+																				Origin</label>
+																		</div>
+
+																		<!--<div
+																			class="col-12 col-md-4 mt-md-2 col-lg-4 mt-lg-3 col-xl-4 mt-xl-3 pr-0 selectFloatingLabel">
+																			<label for="religion_code"
+																				class="form-label mb-0 control-label selectFloating">Religion</label>
+																			<select
+																				class="custom-select form-control typecontact d-block mb-1 floatingLableClick demo_info rawField"
+																				id="religion_code"
+																				data-fld="religionCode"
+																				data-lbl="Religion">
+																				<option value="">Religion</option>
+																			</select>
+																		</div>-->
+
+																		<!--<div
+																			class="col-12 col-md-4 col-lg-6 col-xl-4 d-flex align-items-center pr-0 floatingFields">
+																			<div class="autocomplete">
+																				<input type="text"
+																					class="form-control w-100 floatingLable demo_info rawField"
+																					aria-label="" id="religion_code"
+																					data-fld="religionCode"
+																					data-lbl="Religion" name="" value=""
+																					placeholder="">
+
+																				<label for="religion_code"
+																					class="form-label mr-1 text-nowrap mb-0">Religion</label>
+																			</div>
+																		</div>-->
+
+																		<div
+																			class="col-12 col-md-4 mt-md-3 col-lg-4 mt-lg-3 col-xl-4 mt-xl-3 d-flex align-items-center pr-0 floatingFields">
+																			<!--<label for="marital_status_code"
+																				class="form-label mb-0 control-label selectFloating">Marital
+																				Status</label>
+																			<select
+																				class="custom-select form-control typecontact d-block mb-1 floatingLableClick demo_info rawField"
+																				id="marital_status_code"
+																				data-fld="maritalStatus"
+																				data-lbl="Marital Status">
+																				<option value="">Marital Status</option>
+																			</select>-->
+																			<input type="text"
+																				class="form-control w-100 floatingLable demo_info rawField"
+																				aria-label="" id="marital_status_code"
+																				name="" value="" placeholder=""
+																				data-fld="maritalStatus"
+																				data-lbl="Marital Status">
+																			<label for="marital_status_code"
+																				class="form-label text-nowrap mb-0">Marital
+																				Status</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-4 mt-md-3 col-lg-4 mt-lg-3 col-xl-4 mt-xl-3">
+																			<div
+																				class="custom-control custom-checkbox custom-control-inline mr-0">
+																				<input type="checkbox"
+																					class="custom-control-input demo_info rawField"
+																					id="comprehend_english"
+																					aria-label="Comprehend"
+																					name="Comprehend" value=""
+																					data-fld="Comprehend"
+																					data-lbl="Comprehend English">
+																				<label
+																					class="custom-control-label text-nowrap"
+																					for="comprehend_english"
+																					style="font-weight: 500;">Comprehend
+																					English</label>
+																			</div>
+																		</div>
+																		<div
+																			class="col-12 col-md-2 mt-md-3 pl-lg-2 col-lg-2 mt-lg-2 col-xl-2 mt-xl-3 pl-0">
+																			<div
+																				class="custom-control custom-checkbox custom-control-inline ml-2">
+																				<input type="checkbox"
+																					class="custom-control-input demo_info rawField"
+																					id="esl_flag" aria-label="ESL"
+																					name="ESL" value=""
+																					data-fld="eslFlag" data-lbl="ESL">
+																				<label class="custom-control-label"
+																					for="esl_flag"
+																					style="font-weight: 500;">ESL</label>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-6">
+													<div id="demo_genderinfo" class="panel mx-1 mt-1 mb-1">
+														<div class="panel-hdr">
+															<h2>
+																Gender Information
+															</h2>
+														</div>
+														<div class="panel-container show">
+															<div class="panel-content">
+																<div id="js-checkbox-toggles">
+																	<div class="form-group row">
+																		<div
+																			class="col-12 col-md-4 col-lg-6 col-xl-6 d-flex align-items-center pr-0 floatingFields">
+																			<!--<label
+																				class="form-label mb-0 control-label selectFloating">Gender</label>
+																			<select
+																				class="custom-select form-control typecontact d-block mb-1 floatingLableClick"
+																				id="gigender">
+																				<option value="">Gender</option>
+																				<option>X</option>
+																				<option>FEMALE</option>
+																				<option>UNKNOWN</option>
+																				<option>MALE</option>
+																			</select>-->
+																			<input type="text"
+																				class="form-control w-100 rawField floatingLable"
+																				aria-label="" id="gigender" name=""
+																				value="" data-fld="giGender"
+																				data-lbl="Gender" placeholder="">
+																			<label for="gigender"
+																				class="form-label text-nowrap mb-0">Gender</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-4 col-lg-6 col-xl-6 d-flex align-items-center pr-0 floatingFields">
+																			<!--<label
+																				class="form-label mb-0 control-label selectFloating">Strip/UDS</label>
+																			<select
+																				class="custom-select form-control typecontact d-block mb-1 floatingLableClick"
+																				id="gistrip">
+																				<option value="">Strip/UDS</option>
+																				<option>MALE</option>
+																				<option>FEMALE</option>
+																				<option>UNKNOWN</option>
+																			</select>-->
+																			<input type="text"
+																				class="form-control w-100 rawField floatingLable"
+																				aria-label="" id="gistrip" name=""
+																				value="" data-fld="giStrip"
+																				data-lbl="Strip/UDS" placeholder="">
+																			<label for="gistrip"
+																				class="form-label text-nowrap mb-0">Strip/UDS</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-4 col-lg-6 mt-lg-3 col-xl-6 mt-xl-3 d-flex align-items-center pr-0 floatingFields">
+																			<!--<label
+																				class="form-label mb-0 control-label selectFloating">Frisk</label>
+																			<select
+																				class="custom-select form-control typecontact d-block mb-1 floatingLableClick"
+																				id="gifrisk">
+																				<option value="">Frisk</option>
+																				<option>MALE</option>
+																				<option>FEMALE</option>
+																				<option>UNKNOWN</option>
+																			</select>-->
+
+																			<input type="text"
+																				class="form-control w-100 rawField floatingLable"
+																				aria-label="" id="gifrisk" name=""
+																				value="" data-fld="giFrisk"
+																				data-lbl="Frisk" placeholder="">
+																			<label for="gifrisk"
+																				class="form-label text-nowrap mb-0">Frisk</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-4 mt-md-3 col-lg-6 mt-lg-3 col-xl-6 mt-xl-3 d-flex align-items-center pr-0 floatingFields">
+																			<!--<label
+																				class="form-label mb-0 control-label selectFloating">Pronouns</label>
+																			<select
+																				class="custom-select form-control typecontact d-block mb-1 floatingLableClick"
+																				id="gipro">
+																				<option value="">Pronouns</option>
+																				<option>HE/HIM</option>
+																				<option>SHE/HER</option>
+																				<option>THEY/THEM</option>
+																				<option>UNKNOWN</option>
+																			</select>-->
+
+																			<input type="text"
+																				class="form-control w-100 rawField floatingLable"
+																				aria-label="" id="gipro" name=""
+																				value="" data-fld="giPro"
+																				data-lbl="Pronouns" placeholder="">
+																			<label for="gipro"
+																				class="form-label text-nowrap mb-0">Pronouns</label>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div class="col-lg-6 pl-0">
+													<div id="demo_driversLicense" class="panel mx-1 mt-1 mb-1">
+														<div class="panel-hdr">
+															<h2>
+																Driver's License / SID Information
+															</h2>
+														</div>
+														<div class="panel-container show">
+															<div class="panel-content">
+																<div id="js-checkbox-toggles">
+																	<div class="form-group row">
+																		<div
+																			class="col-12 col-md-3 col-lg-5 col-xl-3 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 floatingLable demo_info rawField"
+																				aria-label="" id="drv_state_issue"
+																				name="" value="" placeholder=""
+																				data-fld="drvStateIssue"
+																				data-lbl="Drivers License State">
+																			<label for="drv_state_issue"
+																				class="form-label text-nowrap mb-0">Drivers
+																				License State</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-4 col-lg-7 mt-lg-0 col-xl-5 mt-xl-0 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 floatingLable demo_info rawField"
+																				aria-label="" id="drv_lic_status"
+																				name="" value="" placeholder=""
+																				data-fld="drvPvtLicSts"
+																				data-lbl="Drivers Private License Status">
+																			<label for="driversLicenseState"
+																				class="form-label text-nowrap mb-0">Drivers
+																				Private License Status</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-5 mt-md-0 col-lg-6 mt-lg-3 col-xl-4 mt-xl-0 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 floatingLable demo_info rawField"
+																				aria-label="" id="inmt_prim_sid_no"
+																				name="" value="" placeholder=""
+																				data-fld="stateIdCardNo"
+																				data-lbl="State ID Card Number">
+																			<label for="driversLicenseState"
+																				class="form-label text-nowrap mb-0">State
+																				ID Card Number</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-3 mt-md-3 col-lg-6 mt-lg-3 col-xl-3 mt-xl-3 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 floatingLable demo_info rawField"
+																				aria-label="" id="drv_license_no"
+																				name="" value="" placeholder=""
+																				data-fld="licNo"
+																				data-lbl="License Number">
+																			<label for="driversLicenseState"
+																				class="form-label text-nowrap mb-0">License
+																				Number</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-4 mt-md-3 mt-md-2 col-lg-12 mt-lg-3 col-xl-5 mt-xl-3 d-flex align-items-center pr-0 floatingFields">
+																			<input type="text"
+																				class="form-control w-100 floatingLable demo_info rawField"
+																				aria-label=""
+																				id="drv_lic_commercial_status" name=""
+																				value="" placeholder=""
+																				data-fld="drvLicComSts"
+																				data-lbl="Drivers Commercial License Status">
+																			<label for="driversLicenseState"
+																				class="form-label text-nowrap mb-0">Drivers
+																				Commercial License Status</label>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="tab-pane fade" id="Address_Information" role="tabpanel">
+											<div class="row">
+												<div class="col-lg-9">
+													<div id="demo_addressinfo" class="panel">
+														<div class="panel-hdr">
+															<h2>
+																Address Information
+															</h2>
+														</div>
+														<div class="panel-container show">
+															<div class="panel-content">
+																<div id="js-checkbox-toggles">
+																	<div class="row">
+																		<div
+																			class="col-12 col-md-5 col-lg-6 d-flex align-items-center pl-0 floatingFields mb-1">
+																			<input type="hidden" id="adr_seq"
+																				data-fld="ADDRESS_SEQ_NUM">
+																			<input type="hidden" id="curr_adr_idx">
+																			<input type="text"
+																				class="form-control w-100 floatingLable adr_field adr_fld"
+																				aria-label="LastName" id="address_field"
+																				data-fld="ADR_STREET_1" data-typ=""
+																				name="address_field" value=""
+																				placeholder="">
+																			<label for="Name"
+																				class="form-label mr-1 text-nowrap mb-0"
+																				style="left: 5px;">Address</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-2 col-lg-2  d-flex align-items-center floatingFields pl-0">
+																			<input type="text"
+																				class="form-control w-100 floatingLable adr_field"
+																				aria-label="City" id="city_field"
+																				data-fld="COUNTY_NAME" name="city_field"
+																				value="" data-typ="" placeholder=""
+																				disabled>
+																			<label for="Name"
+																				class="form-label mr-1 text-nowrap mb-0"
+																				style="left: 5px;">City</label>
+																			<input type="hidden" id="county_field"
+																				class="adr_field">
+																		</div>
+																		<div
+																			class="col-12 col-md-2 col-lg-2 d-flex align-items-center floatingFields pl-0">
+																			<input type="text"
+																				class="form-control floatingLable adr_field"
+																				disabled aria-label="State"
+																				id="state_field" data-fld="STATE_CODE"
+																				name="state_field" value="" data-typ=""
+																				placeholder="">
+																			<label for="Name"
+																				class="form-label mr-1 text-nowrap mb-0"
+																				style="left: 5px;">State</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-2 col-lg-2 d-flex align-items-center floatingFields px-0">
+																			<input type="text"
+																				class="form-control floatingLable adr_field"
+																				disabled aria-label="Zip" id="zip_field"
+																				data-fld="ADR_ZIP_5" name="zip_field"
+																				value="" data-typ="" placeholder="">
+																			<label for="Name"
+																				class="form-label mr-1 text-nowrap mb-0"
+																				style="left: 5px;">Zip</label>
+																			<div class="">
+																				<span data-toggle="modal"
+																					data-target="#listModal"
+																					id="callCntyTbl">
+																					<a href="#"
+																						class="btn btn-primary btn-icon btn-sm p-1 ml-1 btn js-waves-off"
+																						data-toggle="tooltip"
+																						data-placement="top"
+																						data-original-title="Choose List"
+																						data-class="nav-function-hidden"
+																						style="height: 25px;">
+																						<i class="fa fa-list position-relative"
+																							style="top: -4px;"></i>
+																					</a>
+																				</span>
+																			</div>
+																		</div>
+																		<div
+																			class="col-12 col-md-2 col-lg-2 mt-lg-2 d-flex align-items-center floatingFields pl-0">
+																			<input type="text"
+																				class="form-control floatingLable adr_field adr_fld"
+																				aria-label="State" id="phone_field"
+																				data-fld="INMT_ADR_PH" data-typ="phone"
+																				name="phone_field" value=""
+																				placeholder="">
+																			<label for="Name"
+																				class="form-label mr-1 text-nowrap mb-0"
+																				style="left: 5px;">Phone
+																				1</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-2 col-lg-2 mt-lg-2 d-flex align-items-center floatingFields pl-0">
+																			<input type="text"
+																				class="form-control floatingLable adr_field adr_fld"
+																				aria-label="State" id="phone_field2"
+																				data-fld="RESIDES_WITH_PHONE"
+																				data-typ="phone" name="phone_field2"
+																				value="" placeholder="">
+																			<label for="Name"
+																				class="form-label mr-1 text-nowrap mb-0"
+																				style="left: 5px;">Phone
+																				2</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-2 col-lg-2 mt-lg-2 d-flex align-items-center floatingFields pl-0">
+																			<input type="text"
+																				class="form-control floatingLable adr_field"
+																				aria-label="" id="dt_change_fld"
+																				name="dt_change_fld" value=""
+																				placeholder="" disabled>
+																			<label for=""
+																				class="form-label mr-1 text-nowrap mb-0"
+																				style="left: 5px;">Date Changed</label>
+																		</div>
+																		<div
+																			class="col-12 col-md-2 col-lg-2 mt-lg-2 pl-0">
+																			<div
+																				class="custom-control custom-checkbox custom-control-inline mt-1">
+																				<input type="checkbox"
+																					class="custom-control-input adr_field rawField adr_fld"
+																					id="homeless_flag"
+																					data-fld="HOMELESS_FLAG"
+																					data-lbl="Homeless?"
+																					data-typ="checkbox">
+																				<label class="custom-control-label"
+																					for="homeless_flag">Homeless?</label>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="row mt-2">
+																		<div class="col-lg-2 pl-0">
+																			<label class="text-primary text-center"
+																				for="">Residence Category:</label>
+																		</div>
+																		<div
+																			class="col-lg-4 pl-0 d-flex align-items-center">
+																			<div class="custom-control custom-radio">
+																				<input type="radio"
+																					class="custom-control-input adr_field adr_fld"
+																					name="ShelterRadio" data-typ="radio"
+																					id="Shelter"
+																					aria-label="ShelterRadio" value="S"
+																					data-fld="RESIDENCE_CATEGORY">
+																				<label class="custom-control-label"
+																					for="Shelter">
+																					Shelter</label>
+																			</div>
+																			<div
+																				class="custom-control custom-radio ml-3">
+																				<input type="radio"
+																					class="custom-control-input adr_field adr_fld"
+																					name="ShelterRadio" data-typ="radio"
+																					id="Supportive"
+																					aria-label="ShelterRadio" value="H"
+																					data-fld="RESIDENCE_CATEGORY">
+																				<label class="custom-control-label"
+																					for="Supportive">
+																					Supportive Housing</label>
+																			</div>
+																		</div>
+																		<div
+																			class="col-lg-6 pl-0 d-flex align-items-center">
+																			<div class="custom-control custom-radio">
+																				<input type="radio"
+																					class="custom-control-input adr_field adr_fld"
+																					name="ShelterRadio" data-typ="radio"
+																					id="Inpatient"
+																					aria-label="ShelterRadio" value="P"
+																					data-fld="RESIDENCE_CATEGORY">
+																				<label
+																					class="custom-control-label text-content"
+																					for="Inpatient">
+																					In-patient Treatment</label>
+																			</div>
+																			<div
+																				class="custom-control custom-radio ml-3">
+																				<input type="radio"
+																					class="custom-control-input adr_field adr_fld"
+																					name="ShelterRadio" data-typ="radio"
+																					id="pvt_residence"
+																					aria-label="ShelterRadio" value="R"
+																					data-fld="RESIDENCE_CATEGORY">
+																				<label
+																					class="custom-control-label text-content"
+																					for="pvt_residence"> Private
+																					Residence</label>
+																			</div>
+																			<div
+																				class="custom-control custom-radio ml-3">
+																				<input type="radio"
+																					class="custom-control-input adr_field adr_fld"
+																					name="ShelterRadio" data-typ="radio"
+																					id="other_residence"
+																					aria-label="ShelterRadio" value="O"
+																					data-fld="RESIDENCE_CATEGORY">
+																				<label class="custom-control-label"
+																					for="other_residence">Other</label>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="row mt-2">
+																		<div
+																			class="col-12 col-lg-3 pl-0 floatingFieldsTextarea mt-1">
+																			<textarea
+																				class="form-control adr_field floatingLabletextarea adr_fld"
+																				id="residenceCatCmt" placeholder=""
+																				rows="4" name="residenceCategory"
+																				aria-label="residenceCategory"
+																				data-fld="RESIDENCE_CAT_COMMENTS"
+																				data-typ="" value=""
+																				maxlength="4000"></textarea>
+																			<label for="Name"
+																				class="form-label text-nowrap mb-0">Residence
+																				Category Comments</label>
+																		</div>
+																		<div
+																			class="col-12 col-lg-3 pl-0 floatingFieldsTextarea mt-1">
+																			<textarea
+																				class="form-control adr_field floatingLabletextarea adr_fld"
+																				id="splDirCmt" placeholder="" rows="4"
+																				name="residenceCategory"
+																				aria-label="residenceCategory"
+																				data-fld="DIRECTIONS" data-typ=""
+																				value="" maxlength="2000"></textarea>
+																			<label for="Name"
+																				class="form-label text-nowrap mb-0">Special
+																				Directions</label>
+																		</div>
+																		<div
+																			class="col-12 col-lg-3 pl-0 floatingFieldsTextarea mt-1">
+																			<textarea
+																				class="form-control adr_field floatingLabletextarea adr_fld"
+																				id="cautionCmt" placeholder="" rows="4"
+																				name="residenceCategory"
+																				aria-label="residenceCategory"
+																				data-fld="CAUTIONS" data-typ="" value=""
+																				maxlength="2000"></textarea>
+																			<label for="Name"
+																				class="form-label text-nowrap mb-0">Cautions</label>
+																		</div>
+																		<div
+																			class="col-12 col-lg-3 pl-0 floatingFieldsTextarea mt-1">
+																			<textarea
+																				class="form-control adr_field floatingLabletextarea adr_fld"
+																				id="hotSpotCmt" placeholder="" rows="4"
+																				name="residenceCategory"
+																				aria-label="residenceCategory"
+																				data-fld="HOT_SPOT_AREAS" data-typ=""
+																				value="" maxlength="2000"></textarea>
+																			<label for="Name"
+																				class="form-label text-nowrap mb-0">Hot
+																				Spot Areas</label>
+																		</div>
+																		<div
+																			class="frame-wrap d-flex justify-content-end w-100 mt-2">
+																			<div class="mb-1">
+																				<button id="prv_adr" type="button"
+																					class="btn btn-sm btn-primary rawField"
+																					data-fld="prevAdr"
+																					data-lbl="Prev Address">Prev
+																					Address</button>
+																				<button id="nxt_adr" type="button"
+																					class="btn btn-sm btn-primary">Next
+																					Address</button>
+																				<button id="new_adr" type="button"
+																					class="btn btn-sm btn-primary">New
+																					Address</button>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="row">
+														<div class="col-lg-5 col-xl-5 pr-0">
+															<div id="demo_weaponDesc" class="panel">
+																<div class="panel-hdr">
+																	<h2 class="weaponDesc-table-hdr">
+																		Weapon Description
+																	</h2>
+																</div>
+																<div class="panel-container show">
+																	<div class="panel-content">
+																		<div id="js-checkbox-toggles">
+																			<div id="weaponDesc-table"></div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="col-lg-7 col-xl-7">
+															<div id="demo_animalinfo" class="panel">
+																<div class="panel-hdr">
+																	<h2 class="animalinfo-table-hdr">
+																		Animal Information
+																	</h2>
+																</div>
+																<div class="panel-container show">
+																	<div class="panel-content">
+																		<div id="js-checkbox-toggles">
+																			<div id="animalinfo-table"></div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+
+
+												<div class="col-lg-3 pl-0">
+													<div id="demo_vehicleInformation" class="panel">
+														<div class="panel-hdr">
+															<h2>
+																Vehicle Information
+															</h2>
+														</div>
+														<div class="panel-container show">
+															<div class="panel-content">
+																<div id="js-checkbox-toggles">
+																	<div
+																		class="col-12 col-lg-12 px-0 d-flex align-items-center mb-1 floatingFields pl-0">
+																		<input type="hidden" id="vehl_rowid"
+																			class="vehl_fld">
+																		<input type="text"
+																			class="form-control w-100 floatingLable vehl_fld"
+																			aria-label="" id="vehl_make"
+																			name="vehl_make" value="" placeholder="">
+																		<label for="Name"
+																			class="form-label mr-1 text-nowrap mb-0"
+																			style="left: 5px;">Make</label>
+																	</div>
+																	<div
+																		class="col-12 col-lg-12 px-0 d-flex align-items-center mt-3 mb-1 floatingFields pl-0">
+																		<input type="text"
+																			class="form-control w-100 floatingLable vehl_fld"
+																			aria-label="" id="vehl_color"
+																			name="vehl_color" value="" placeholder="">
+																		<label for="Name"
+																			class="form-label mr-1 text-nowrap mb-0"
+																			style="left: 5px;">Color</label>
+																	</div>
+																	<div
+																		class="col-12 col-lg-12 px-0 d-flex align-items-center mt-3 mb-1 floatingFields pl-0">
+																		<input type="text"
+																			class="form-control w-100 floatingLable vehl_fld"
+																			aria-label="" id="vehl_vin" name="vehl_vin"
+																			value="" placeholder="">
+																		<label for="Name"
+																			class="form-label mr-1 text-nowrap mb-0"
+																			style="left: 5px;">VIN</label>
+																	</div>
+																	<div
+																		class="col-12 col-lg-12 px-0 d-flex align-items-center mt-3 mb-1 floatingFields pl-0">
+																		<input type="text"
+																			class="form-control w-100 floatingLable vehl_fld"
+																			aria-label="" id="vehl_model"
+																			name="vehl_model" value="" placeholder="">
+																		<label for="Name"
+																			class="form-label mr-1 text-nowrap mb-0"
+																			style="left: 5px;">Modal</label>
+																	</div>
+																	<div
+																		class="col-12 col-lg-12 px-0 d-flex align-items-center mt-3 mb-1 floatingFields pl-0">
+																		<input type="text"
+																			class="form-control w-100 floatingLable vehl_fld"
+																			aria-label="" id="vehl_year"
+																			name="vehl_year" value="" placeholder="">
+																		<label for="Name"
+																			class="form-label mr-1 text-nowrap mb-0"
+																			style="left: 5px;">Year</label>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div id="demo_datetimeinfo" class="panel">
+														<div class="panel-hdr">
+															<h2>
+																Date/Time Information
+															</h2>
+														</div>
+														<div class="panel-container show">
+															<div class="panel-content">
+																<div id="js-checkbox-toggles">
+																	<div class="form-group row">
+																		<div
+																			class="col-12 col-lg-6 d-flex align-items-center floatingFields">
+																			<input type="text"
+																				class="form-control floatingLable"
+																				aria-label="admissionDate"
+																				name="admissionDate" id="admiss_date"
+																				value="" placeholder="" disabled>
+																			<label for=""
+																				class="form-label mr-1 text-nowrap mb-0">Admission
+																				Date</label>
+																			<input type="hidden"
+																				id="admiss_date_actual">
+																		</div>
+																		<div
+																			class="col-12 col-lg-6 d-flex align-items-center floatingFields">
+																			<input type="text"
+																				class="form-control floatingLable"
+																				aria-label="admissionTime"
+																				name="admissionTime" id="admiss_time"
+																				value="" placeholder="" disabled>
+																			<label for=""
+																				class="form-label mr-1 text-nowrap mb-0">Admission
+																				Time</label>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div id="demo_homeConfinement" class="panel">
+														<div class="panel-hdr">
+															<h2>
+																Home Confinement
+															</h2>
+														</div>
+														<div class="panel-container show">
+															<div class="panel-content">
+																<div id="js-checkbox-toggles">
+																	<div class="form-group row">
+																		<div
+																			class="col-12 col-lg-12 d-flex align-items-center floatingFields">
+																			<input type="text"
+																				class="form-control floatingLable"
+																				aria-label="homeAdmissionDate"
+																				name="homeAdmissionDate"
+																				id="homeAdmissionDate" value=""
+																				placeholder="" disabled>
+																			<label for=""
+																				class="form-label mr-1 text-nowrap mb-0">Fmd
+																				Num</label>
+																		</div>
+																		<div
+																			class="col-12 col-lg-12 d-flex align-items-center mt-3 floatingFields">
+																			<input type="text"
+																				class="form-control floatingLable"
+																				aria-label="homeAdmissionTime"
+																				name="homeAdmissionTime"
+																				id="homeAdmissionTime" value=""
+																				placeholder="" disabled>
+																			<label for=""
+																				class="form-label mr-1 text-nowrap mb-0">Xmtr
+																				Num</label>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header pt-3 pb-2">
+									<h6 class="modal-title"> Select City, State, Zip </h6>
+									<button type="button" id="countyClose" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true"><i class="fal fa-times"></i></span>
+									</button>
+								</div>
+								<div class="modal-body py-0">
+									<div
+										class="col-12 col-lg-12 col-md-12 d-flex align-items-center mb-2 px-0 floatingFields">
+										<input type="text" class="form-control w-100 floatingLable" aria-label=""
+											id="countySrch" name="" value="" placeholder="%">
+										<label for="Name" class="form-label mr-1 text-nowrap mb-0">Find</label>
+										<button type="button" class="btn btn-primary btn-sm ml-2"
+											id="fetchCntyDtl">Find</button>
+									</div>
+									<div id="listModal-table"></div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn"
+										data-action="ok">Ok</button>
+									<button type="button" class="btn btn-secondary btn-sm"
+										data-dismiss="modal">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal fade" id="listModal2" tabindex="-1" role="dialog" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+							<div class="modal-content">
+								<div class="modal-header pt-3 pb-2">
+									<h6 class="modal-title"> Select City, State </h6>
+									<button type="button" id="stateClose" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true"><i class="fal fa-times"></i></span>
+									</button>
+								</div>
+								<div class="modal-body py-0">
+									<div
+										class="col-12 col-lg-12 col-md-12 d-flex align-items-center mb-2 px-0 floatingFields">
+										<input type="text" class="form-control w-100 floatingLable" aria-label=""
+											id="stateSrch" name="" value="" placeholder="%">
+										<label for="Name" class="form-label mr-1 text-nowrap mb-0">Find</label>
+										<button type="button" class="btn btn-primary btn-sm ml-2"
+											id="fetchStateDtl">Find</button>
+									</div>
+									<div id="listModal-table2"></div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn2"
+										data-action="ok">Ok</button>
+									<button type="button" class="btn btn-secondary btn-sm"
+										data-dismiss="modal">Cancel</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</main>
+				<!-- this overlay is activated only when mobile menu is triggered -->
+				<div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
+				<!-- END Page Content -->
+				<!-- Modal Large -->
+				<div class="modal fade" id="default-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Staff Name</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true"><i class="fal fa-times"></i></span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="form-group row">
+									<label for="staffSearch"
+										class="col-form-label col-12 col-lg-1 form-label">Search</label>
+									<div class="col-12 col-lg-11">
+										<input type="text" class="form-control" aria-label="staffSearch"
+											name="staffSearch" id="staffSearch" value="">
+									</div>
+
+								</div>
+								<div class="table-responsive-lg">
+									<table class="table table-bordered m-0">
+										<thead>
+											<tr>
+												<th>Last Name</th>
+												<th>First Name</th>
+												<th>MI</th>
+												<th>Suffix</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- BEGIN Shortcuts -->
+				<!-- modal shortcut -->
+				<div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog"
+					aria-labelledby="modal-shortcut" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-top modal-transparent" role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+								<ul class="app-list w-auto h-auto p-0 text-left">
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Home
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
+												<i class="ni ni-envelope icon-stack-1x text-white"></i>
+											</div>
+											<span class="app-list-name">
+												Inbox
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Add More
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div> <!-- END Shortcuts -->
+			</div>
+
+		</div>
+	</div>
+	<!-- END Page Wrapper -->
+	<!-- BEGIN Quick Menu -->
+	<!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
+	<nav class="shortcut-menu d-none d-sm-block"> <input type="checkbox" class="menu-open" name="menu-open"
+			id="menu_open" />
+		<label for="menu_open" class="menu-open-button "> <span class="app-shortcut-icon d-block"></span>
+		</label> <a href="#" class="menu-item btn" data-toggle="tooltip" data-placement="left" title="Scroll Top"> <i
+				class="fal fa-arrow-up"></i>
+		</a> <a href="page_login-alt.html" class="menu-item btn" data-toggle="tooltip" data-placement="left"
+			title="Logout"> <i class="fal fa-sign-out"></i>
+		</a> <a href="#" class="menu-item btn" data-action="app-fullscreen" data-toggle="tooltip" data-placement="left"
+			title="Full Screen"> <i class="fal fa-expand"></i>
+		</a> <a href="#" class="menu-item btn" data-action="app-print" data-toggle="tooltip" data-placement="left"
+			title="Print page"> <i class="fal fa-print"></i>
+		</a> <a href="#" class="menu-item btn" data-action="app-voice" data-toggle="tooltip" data-placement="left"
+			title="Voice command">
+			<i class="fal fa-microphone"></i>
+		</a>
+	</nav>
+	<!-- END Quick Menu -->
+	<!-- BEGIN Messenger -->
+	<div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right">
+			<div class="modal-content h-100">
+				<div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
+					<div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+						<span class="mr-2">
+							<span class="rounded-circle profile-image d-block"
+								style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+						</span>
+						<div class="info-card-text">
+							<a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white"
+								data-toggle="dropdown" aria-expanded="false">
+								Tracey Chang
+								<i class="fal fa-angle-down d-inline-block ml-1 text-white fs-md"></i>
+							</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">Send Email</a>
+								<a class="dropdown-item" href="#">Create Appointment</a>
+								<a class="dropdown-item" href="#">Block User</a>
+							</div>
+							<span class="text-truncate text-truncate-md opacity-80">IT Director</span>
+						</div>
+					</div>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0 h-100 d-flex">
+					<!-- BEGIN msgr-list -->
+					<div
+						class="msgr-list d-flex flex-column bg-faded border-faded border-top-0 border-right-0 border-bottom-0 position-absolute pos-top pos-bottom">
+						<div>
+							<div
+								class="height-4 width-3 h3 m-0 d-flex justify-content-center flex-column color-primary-500 pl-3 mt-2">
+								<i class="fal fa-search"></i>
+							</div>
+							<input type="text" class="form-control bg-white" id="msgr_listfilter_input"
+								name="msgr_listfilter_input" placeholder="Filter contacts" aria-label="FilterSearch"
+								value="" data-listfilter="#js-msgr-listfilter">
+						</div>
+						<div class="flex-1 h-100 custom-scroll">
+							<div class="w-100">
+								<ul id="js-msgr-listfilter" class="list-unstyled m-0">
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="tracey chang online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Tracey Chang
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="oliver kopyuv online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Oliver Kopyuv
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="dr john cook phd away">
+											<div class="d-table-cell align-middle status status-warning status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Dr. John Cook PhD
+													<small class="d-block font-italic fs-xs">
+														Away
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-g.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Ali Amdaney
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="sarah mcbrook online">
+											<div class="d-table-cell align-middle status status-success status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Sarah McBrook
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney busy">
+											<div class="d-table-cell align-middle status status-danger status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs text-danger">
+														Busy
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney inactive">
+											<div class="d-table-cell align-middle">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-m.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													+714651347790
+													<small class="d-block font-italic fs-xs opacity-50">
+														Missed Call
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+								<div class="filter-message js-filter-message"></div>
+							</div>
+						</div>
+						<div>
+							<a class="fs-xl d-flex align-items-center p-3">
+								<i class="fal fa-cogs"></i>
+							</a>
+						</div>
+					</div>
+					<!-- END msgr-list -->
+					<!-- BEGIN msgr -->
+					<div class="msgr d-flex h-100 flex-column bg-white">
+						<!-- BEGIN custom-scroll -->
+						<div class="custom-scroll flex-1 h-100">
+							<div id="chat_container" class="w-100 p-4">
+								<!-- start .chat-segment -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">
+										Jun 19
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent">
+									<div class="chat-message">
+										<p>
+											Hey Ching, did you get my files?
+										</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:00 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>
+											Hi
+										</p>
+										<p>
+											Sorry going through a busy time in office. Yes I analyzed the solution.
+										</p>
+										<p>
+											It will require some resource, which I could not manage.
+										</p>
+									</div>
+									<div class="fw-300 text-muted mt-1 fs-xs">
+										3:24 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-start">
+									<div class="chat-message">
+										<p>
+											Okay
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-end">
+									<div class="chat-message">
+										<p>
+											Sending you some dough today, you can allocate the resources to this
+											project.
+										</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:26 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-start">
+									<div class="chat-message">
+										<p>
+											Perfect. Thanks a lot!
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>
+											I will have them ready by tonight.
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-end">
+									<div class="chat-message">
+										<p>
+											Cheers
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment for timestamp -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">
+										Jun 20
+									</div>
+								</div>
+								<!--  end .chat-segment for timestamp -->
+							</div>
+						</div>
+						<!-- END custom-scroll  -->
+						<!-- BEGIN msgr__chatinput -->
+						<div class="d-flex flex-column">
+							<div
+								class="border-faded border-right-0 border-bottom-0 border-left-0 flex-1 mr-3 ml-3 position-relative shadow-top">
+								<div class="pt-3 pb-1 pr-0 pl-0 rounded-0" tabindex="-1">
+									<div id="msgr_input" contenteditable="true"
+										data-placeholder="Type your message here..."
+										class="height-10 form-content-editable"></div>
+								</div>
+							</div>
+							<div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1"
+									data-toggle="tooltip" data-original-title="More options" data-placement="top">
+									<i class="fal fa-ellipsis-v-alt color-fusion-300"></i>
+								</a>
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+									data-original-title="Attach files" data-placement="top">
+									<i class="fal fa-paperclip color-fusion-300"></i>
+								</a>
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+									data-original-title="Insert photo" data-placement="top">
+									<i class="fal fa-camera color-fusion-300"></i>
+								</a>
+								<div class="ml-auto">
+									<a href="javascript:void(0);" class="btn btn-info">Send</a>
+								</div>
+							</div>
+						</div>
+						<!-- END msgr__chatinput -->
+					</div>
+					<!-- END msgr -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Messenger -->
+	<!-- BEGIN Page Settings -->
+	<div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right modal-md">
+			<div class="modal-content">
+				<div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
+					<h4 class="m-0 text-center color-white">
+						Layout Settings
+						<small class="mb-0 opacity-80">User Interface Settings</small>
+					</h4>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0">
+					<div class="settings-panel">
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									App Layout
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="fh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="header-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Header</span>
+							<span class="onoffswitch-title-desc">header is in a fixed at all times</span>
+						</div>
+						<div class="list" id="nff">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Navigation</span>
+							<span class="onoffswitch-title-desc">left panel is fixed</span>
+						</div>
+						<div class="list" id="nfm">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-minify"></a>
+							<span class="onoffswitch-title">Minify Navigation</span>
+							<span class="onoffswitch-title-desc">Skew nav to maximize space</span>
+						</div>
+						<div class="list" id="nfh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-hidden"></a>
+							<span class="onoffswitch-title">Hide Navigation</span>
+							<span class="onoffswitch-title-desc">roll mouse on edge to reveal</span>
+						</div>
+						<div class="list" id="nft">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-top"></a>
+							<span class="onoffswitch-title">Top Navigation</span>
+							<span class="onoffswitch-title-desc">Relocate left pane to top</span>
+						</div>
+						<div class="list" id="mmb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-main-boxed"></a>
+							<span class="onoffswitch-title">Boxed Layout</span>
+							<span class="onoffswitch-title-desc">Encapsulates to a container</span>
+						</div>
+						<div class="expanded">
+							<ul class="">
+								<li>
+									<div class="bg-fusion-50" data-action="toggle" data-class="mod-bg-1"></div>
+								</li>
+								<li>
+									<div class="bg-warning-200" data-action="toggle" data-class="mod-bg-2"></div>
+								</li>
+								<li>
+									<div class="bg-primary-200" data-action="toggle" data-class="mod-bg-3"></div>
+								</li>
+								<li>
+									<div class="bg-success-300" data-action="toggle" data-class="mod-bg-4"></div>
+								</li>
+							</ul>
+							<div class="list" id="mbgf">
+								<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+									data-class="mod-fixed-bg"></a>
+								<span class="onoffswitch-title">Fixed Background</span>
+							</div>
+						</div>
+						<!-- <div class="mt-4 d-table w-100 px-5">
+                            <div class="d-table-cell align-middle">
+                                <h5 class="p-0">
+                                    Mobile Menu
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="list" id="nmp">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-push"></a>
+                            <span class="onoffswitch-title">Push Content</span>
+                            <span class="onoffswitch-title-desc">Content pushed on menu reveal</span>
+                        </div>
+                        <div class="list" id="nmno">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-no-overlay"></a>
+                            <span class="onoffswitch-title">No Overlay</span>
+                            <span class="onoffswitch-title-desc">Removes mesh on menu reveal</span>
+                        </div>
+                        <div class="list" id="sldo">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-slide-out"></a>
+                            <span class="onoffswitch-title">Off-Canvas <sup>(beta)</sup></span>
+                            <span class="onoffswitch-title-desc">Content overlaps menu</span>
+                        </div> -->
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Accessibility
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mbf">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-bigger-font"></a>
+							<span class="onoffswitch-title">Bigger Content Font</span>
+							<span class="onoffswitch-title-desc">content fonts are bigger for readability</span>
+						</div>
+						<div class="list" id="mhc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-high-contrast"></a>
+							<span class="onoffswitch-title">High Contrast Text (WCAG 2 AA)</span>
+							<span class="onoffswitch-title-desc">4.5:1 text contrast ratio</span>
+						</div>
+						<div class="list" id="mcb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-color-blind"></a>
+							<span class="onoffswitch-title">Daltonism <sup>(beta)</sup> </span>
+							<span class="onoffswitch-title-desc">color vision deficiency</span>
+						</div>
+						<div class="list" id="mpc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-pace-custom"></a>
+							<span class="onoffswitch-title">Preloader Inside</span>
+							<span class="onoffswitch-title-desc">preloader will be inside content</span>
+						</div>
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Global Modifications
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mcbg">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-clean-page-bg"></a>
+							<span class="onoffswitch-title">Clean Page Background</span>
+							<span class="onoffswitch-title-desc">adds more whitespace</span>
+						</div>
+						<div class="list" id="mhni">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-nav-icons"></a>
+							<span class="onoffswitch-title">Hide Navigation Icons</span>
+							<span class="onoffswitch-title-desc">invisible navigation icons</span>
+						</div>
+						<div class="list" id="dan">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-disable-animation"></a>
+							<span class="onoffswitch-title">Disable CSS Animation</span>
+							<span class="onoffswitch-title-desc">Disables CSS based animations</span>
+						</div>
+						<div class="list" id="mhic">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-info-card"></a>
+							<span class="onoffswitch-title">Hide Info Card</span>
+							<span class="onoffswitch-title-desc">Hides info card from left panel</span>
+						</div>
+						<div class="list" id="mlph">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-lean-subheader"></a>
+							<span class="onoffswitch-title">Lean Subheader</span>
+							<span class="onoffswitch-title-desc">distinguished page header</span>
+						</div>
+						<div class="list" id="mnl">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-nav-link"></a>
+							<span class="onoffswitch-title">Hierarchical Navigation</span>
+							<span class="onoffswitch-title-desc">Clear breakdown of nav links</span>
+						</div>
+						<div class="list mt-1">
+							<span class="onoffswitch-title">Global Font Size <small>(RESETS ON REFRESH)</small> </span>
+							<div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
+								<label for="smRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-sm" data-target="html">
+									<input type="radio" aria-label="smRadio" name="smRadio" id="smRadio" value=""> SM
+								</label>
+								<label for="mdRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text" data-target="html">
+									<input type="radio" aria-label="mdRadio" name="mdRadio" id="mdRadio" value=""
+										checked=""> MD
+								</label>
+								<label for="lgRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-lg" data-target="html">
+									<input type="radio" aria-label="lgRadio" name="lgRadio" id="lgRadio" value=""> LG
+								</label>
+								<label for="xlRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-xl" data-target="html">
+									<input type="radio" aria-label="xlRadio" name="xlRadio" id="xlRadio" value=""> XL
+								</label>
+							</div>
+							<span class="onoffswitch-title-desc d-block mb-g">Change <strong>root</strong> font size to
+								effect rem values</span>
+						</div>
+						<div class="mt-2 d-table w-100 pl-5 pr-3">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Theme colors <small>(overlays base css)</small>
+								</h5>
+								<!-- <div class="fs-xs text-muted p-2 alert alert-warning mt-3 mb-0">
+                                    <i class="fal fa-exclamation-triangle text-warning mr-2"></i>Due to network latency
+                                    and CPU utilization, you may experience a brief flickering effect on page load which
+                                    may show the intial applied theme for a split second. Setting the prefered
+                                    style/theme in the header will prevent this from happening.
+                                </div> -->
+							</div>
+						</div>
+						<div class="expanded theme-colors pl-5 pr-3">
+							<ul class="m-0">
+								<li><a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme=""
+										data-toggle="tooltip" data-placement="top" title="Wisteria (base css)"
+										data-original-title="Wisteria (base css)"></a></li>
+								<li><a href="#" id="myapp-1" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip"
+										data-placement="top" title="Tapestry" data-original-title="Tapestry"></a></li>
+								<li><a href="#" id="myapp-2" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip"
+										data-placement="top" title="Atlantis" data-original-title="Atlantis"></a></li>
+								<li><a href="#" id="myapp-3" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip"
+										data-placement="top" title="Indigo" data-original-title="Indigo"></a></li>
+								<li><a href="#" id="myapp-4" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip"
+										data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a>
+								</li>
+								<li><a href="#" id="myapp-5" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip"
+										data-placement="top" title="Tradewind" data-original-title="Tradewind"></a></li>
+								<li><a href="#" id="myapp-6" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip"
+										data-placement="top" title="Cranberry" data-original-title="Cranberry"></a></li>
+								<li><a href="#" id="myapp-7" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip"
+										data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a></li>
+								<li><a href="#" id="myapp-8" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip"
+										data-placement="top" title="Chetwode Blue"
+										data-original-title="Chetwode Blue"></a></li>
+								<li><a href="#" id="myapp-9" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip"
+										data-placement="top" title="Apricot" data-original-title="Apricot"></a></li>
+								<li><a href="#" id="myapp-10" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip"
+										data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-11" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip"
+										data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-12" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip"
+										data-placement="top" title="Wild Blue Yonder"
+										data-original-title="Wild Blue Yonder"></a></li>
+								<li><a href="#" id="myapp-13" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip"
+										data-placement="top" title="Emerald" data-original-title="Emerald"></a></li>
+							</ul>
+						</div>
+						<hr class="mb-0 mt-4">
+						<div class="pl-5 pr-3 py-3 bg-faded">
+							<div class="row no-gutters">
+								<div class="col-6 pr-1">
+									<a href="#" class="btn btn-outline-danger fw-500 btn-block"
+										data-action="app-reset">Reset Settings</a>
+								</div>
+								<div class="col-6 pl-1">
+									<a href="#" class="btn btn-danger fw-500 btn-block"
+										data-action="factory-reset">Factory Reset</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<span id="saving"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Page Settings -->
+	<!--autocomplete Dropdown Css Start-->
+	<style>
+		.autocomplete-items {
+			border-bottom:
+				1pxsolid #d4d4d4;
+		}
+
+		.autocomplete-items div::first-letter {
+			text-transform:
+				uppercase;
+		}
+
+		.autocomplete-items div {
+			padding:
+				4px;
+			border-bottom:
+				unset;
+			cursor: default;
+			font-size:
+				12px;
+			text-transform:
+				lowercase;
+		}
+
+		.autocomplete-items div strong {
+			font-weight: 400;
+		}
+
+		.autocomplete-items div:hover {
+			background:
+				#848181;
+			color:
+				#fff;
+		}
+
+		.optionDropdownArrow::after {
+			content:
+				"▼";
+			position:
+				absolute;
+			right:
+				7px;
+			top:
+				4px;
+			color:
+				#9b9b9b;
+		}
+
+		.optionDropdownArrow .floatingLable {
+			padding-right:
+				22px;
+		}
+
+		/*autocomplete Dropdown Css End*/
+		.nav-tabs {
+			border: 1px solid #7a59ad;
+			border-radius: 5px 5px 5px 0px;
+		}
+
+		.headerBlock {
+			background: #7a59ad;
+			color: #fff;
+			padding: 5px;
+			border: 1px solid #ccc;
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+
+		.panelContentBlock {
+			border: 1px solid #7a58ac;
+			border-radius: 5px !important;
+		}
+
+		.select2-container .select2-selection--single {
+			height: 20px;
+		}
+
+		.select2-selection__rendered {
+			line-height: 1.5 !important;
+		}
+
+		.demographicMain .form-group.focused .selectFloating {
+			background: #fff;
+			left: 5px !important;
+		}
+
+		.demographicMain .floatingFields input:not(:placeholder-shown)+label {
+			background: #fff !important;
+		}
+
+		.floatingFields label {
+			left: 18px;
+			top: unset;
+		}
+
+		.tabulator .tabulator-tableholder {
+			overflow-x: hidden;
+		}
+
+		@media screen and (max-width: 1024px) {
+			.nav-function-fixed .page-sidebar {
+				top: 32% !important;
+			}
+
+			.page-content-wrapper {
+				margin-top: 0rem !important;
+			}
+		}
+	</style>
+
+	<div th:replace="~{fragments/script :: script}"></div>
+	<script src="js/staticjs.js"></script>
+	<script th:inline="javascript">
+		$(document).ready(function () {
+			/*<![CDATA[*/
+			var contextPath = /*[[@{/}]]*/'';
+			/*]]>*/
+			$(function () {
+				$('.select2').select2();
+
+				$(".select2-placeholder-multiple").select2(
+					{
+						placeholder: "Select State"
+					});
+				$(".js-hide-search").select2(
+					{
+						minimumResultsForSearch: 1 / 0
+					});
+				$(".js-max-length").select2(
+					{
+						maximumSelectionLength: 2,
+						placeholder: "Select maximum 2 items"
+					});
+				$(".select2-placeholder").select2(
+					{
+						placeholder: "Select a state",
+						allowClear: true
+					});
+
+
+
+				$(".js-select2-icons").select2(
+					{
+						minimumResultsForSearch: 1 / 0,
+						templateResult: icon,
+						templateSelection: icon,
+						escapeMarkup: function (elm) {
+							return elm
+						}
+					});
+
+				function icon(elm) {
+					elm.element;
+					return elm.id ? "<i class='" + $(elm.element).data("icon") + " mr-2'></i>" + elm.text : elm.text
+				}
+
+				$(".js-data-example-ajax").select2(
+					{
+						ajax:
+						{
+							url: "https://api.github.com/search/repositories",
+							dataType: 'json',
+							delay: 250,
+							data: function (params) {
+								return {
+									q: params.term, // search term
+									page: params.page
+								};
+							},
+							processResults: function (data, params) {
+								// parse the results into the format expected by Select2
+								// since we are using custom formatting functions we do not need to
+								// alter the remote JSON data, except to indicate that infinite
+								// scrolling can be used
+								params.page = params.page || 1;
+
+								return {
+									results: data.items,
+									pagination:
+									{
+										more: (params.page * 30) < data.total_count
+									}
+								};
+							},
+							cache: true
+						},
+						placeholder: 'Search for a repository',
+						escapeMarkup: function (markup) {
+							return markup;
+						},
+						minimumInputLength: 1,
+						templateResult: formatRepo,
+						templateSelection: formatRepoSelection
+					});
+
+				function formatRepo(repo) {
+					if (repo.loading) {
+						return repo.text;
+					}
+
+					var markup = "<div class='select2-result-repository clearfix d-flex'>" +
+						"<div class='select2-result-repository__avatar mr-2'><img src='" + repo.owner.avatar_url + "' class='width-2 height-2 mt-1 rounded' /></div>" +
+						"<div class='select2-result-repository__meta'>" +
+						"<div class='select2-result-repository__title fs-lg fw-500'>" + repo.full_name + "</div>";
+
+					if (repo.description) {
+						markup += "<div class='select2-result-repository__description fs-xs opacity-80 mb-1'>" + repo.description + "</div>";
+					}
+
+					markup += "<div class='select2-result-repository__statistics d-flex fs-sm'>" +
+						"<div class='select2-result-repository__forks mr-2'><i class='fal fa-lightbulb'></i> " + repo.forks_count + " Forks</div>" +
+						"<div class='select2-result-repository__stargazers mr-2'><i class='fal fa-star'></i> " + repo.stargazers_count + " Stars</div>" +
+						"<div class='select2-result-repository__watchers mr-2'><i class='fal fa-eye'></i> " + repo.watchers_count + " Watchers</div>" +
+						"</div>" +
+						"</div></div>";
+
+					return markup;
+				}
+
+				function formatRepoSelection(repo) {
+					return repo.full_name || repo.text;
+				}
+
+			});
+		});
+
+
+		$(function () {
+			$('#sbiNumberInput').addClass('key_val');
+			var adres = [];
+			var current_idx = 0;
+
+			// Define Test Data
+			var tabledatawaeponDesc = [
+				{
+					id: "0",
+					description: "",
+				},
+				{
+					id: "1",
+					description: "",
+				},
+				{
+					id: "2",
+					description: "",
+				},
+				{
+					id: "3",
+					description: "",
+				},
+				{
+					id: "4",
+					description: "",
+				},
+				{
+					id: "5",
+					description: "",
+				},
+				{
+					id: "6",
+					description: "",
+				},
+				{
+					id: "7",
+					description: "",
+				},
+				{
+					id: "8",
+					description: "",
+				},
+				{
+					id: "9",
+					description: "",
+				},
+			];
+
+			//Define Table
+			var weaponTable = new Tabulator("#weaponDesc-table", {
+				layout: "fitColumns",
+				data: tabledatawaeponDesc,
+				height: '200px',
+				printAsHtml: true,
+				printStyled: true,
+				columns: [
+					{
+						title: "id",
+						field: "id",
+						visible: false,
+					},
+					{
+						title: 'upd',
+						visible: false,
+						field: "upd",
+					},
+					{
+						title: 'seqno',
+						visible: false,
+						field: "seqno",
+					},
+					{
+						//title: "Description",
+						field: "description",
+						titleFormatter: (column) => setTitleDesc(column, 'WeaponDesc', 'Description'),
+						/*titleFormatter: function (column) {
+							column.getElement().classList.add("rawField");
+							column.getElement().setAttribute('data-fld', 'WeaponDesc');
+							column.getElement().setAttribute('data-lbl', 'description');
+							return 'Description';
+						},*/
+						editor: "input",
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {setUpdWeap(cell);}
+					},
+					{
+						title: 'commitNo',
+						visible: false,
+						field: "commitNo",
+					},
+					{
+						title: 'adrSeq',
+						visible: false,
+						field: "adrSeq",
+					}
+				]
+			});
+
+			tabulatorRegistry["weaponDesc-table"] = {
+				varName: "weaponTable",
+				instance: weaponTable
+			};
+
+			// Define Test Data
+			var tabledataanimalinfo = [
+				{
+					id: "0",
+					typeOfAnimal: "",
+					lLeashedUnleashed: "",
+					comments: "",
+				},
+				{
+					id: "1",
+					typeOfAnimal: "",
+					lLeashedUnleashed: "",
+					comments: "",
+				},
+				{
+					id: "2",
+					typeOfAnimal: "",
+					lLeashedUnleashed: "",
+					comments: "",
+				},
+				{
+					id: "3",
+					typeOfAnimal: "",
+					lLeashedUnleashed: "",
+					comments: "",
+				},
+				{
+					id: "4",
+					typeOfAnimal: "",
+					lLeashedUnleashed: "",
+					comments: "",
+				},
+				{
+					id: "5",
+					typeOfAnimal: "",
+					lLeashedUnleashed: "",
+					comments: "",
+				},
+				{
+					id: "6",
+					typeOfAnimal: "",
+					lLeashedUnleashed: "",
+					comments: "",
+				},
+				{
+					id: "7",
+					typeOfAnimal: "",
+					lLeashedUnleashed: "",
+					comments: "",
+				},
+				{
+					id: "8",
+					typeOfAnimal: "",
+					lLeashedUnleashed: "",
+					comments: "",
+				},
+				{
+					id: "9",
+					typeOfAnimal: "",
+					lLeashedUnleashed: "",
+					comments: "",
+				},
+			];
+
+			var listModal = [
+				{
+					city: "",
+					state: "",
+					zip5: "",
+					zip4: "",
+				},
+				{
+					city: "",
+					state: "",
+					zip5: "",
+					zip4: "",
+				},
+				{
+					city: "",
+					state: "",
+					zip5: "",
+					zip4: "",
+				},
+				{
+					city: "",
+					state: "",
+					zip5: "",
+					zip4: "",
+				},
+				{
+					city: "",
+					state: "",
+					zip5: "",
+					zip4: "",
+				},
+			];
+
+			//Define Table
+			var zipTable = new Tabulator("#listModal-table", {
+				layout: "fitColumns",
+				//data: listModal,
+				height: '140px',
+				printAsHtml: true,
+				printStyled: true,
+				columns: [
+					{
+						title: "City",
+						field: "COUNTY_CODE",
+						visible: false,
+					},
+					{
+						title: "City",
+						field: "COUNTY_NAME",
+					},
+					{
+						title: "State",
+						field: "STATE_CODE",
+						width: 100,
+					},
+					{
+						title: "Zip 5",
+						field: "ZIP_5",
+						width: 100,
+					},
+					{
+						title: "Zip 4",
+						field: "ZIP_4",
+						width: 100,
+					},
+				]
+			});
+
+			//Define Table
+			var stateTable = new Tabulator("#listModal-table2", {
+				layout: "fitColumns",
+				//data: listModal,
+				height: '140px',
+				printAsHtml: true,
+				printStyled: true,
+				columns: [
+					{
+						title: "City",
+						field: "COUNTY_NAME",
+					},
+					{
+						title: "State",
+						field: "STATE_CODE",
+					}
+				]
+			});
+
+			$('#countySrch').on('keyup', function (e) {
+				if (e.keyCode == 13) {
+					$('#fetchCntyDtl').trigger('click');
+				}
+			});
+
+			$('#stateSrch').on('keyup', function (e) {
+				if (e.keyCode == 13) {
+					$('#fetchStateDtl').trigger('click');
+				}
+			});
+
+			$('#fetchCntyDtl').on('click', function () {
+				var srchWord = $('#countySrch').val();
+				zipTable.setData('getCountyInfo?filterStr=' + srchWord);
+			});
+
+			$('#fetchStateDtl').on('click', function () {
+				var srchWord = $('#stateSrch').val();
+				stateTable.setData('getCountyInfo?filterStr=' + srchWord);
+			});
+
+			$(document.body).on('click', '#callCntyTbl', function () {
+				$('#countySrch').val();
+				zipTable.clearData();
+			});
+
+			$(document.body).on('click', '#callStateTbl', function () {
+				$('#stateSrch').val();
+				stateTable.clearData();
+			});
+
+			zipTable.on("rowClick", function (e, row) {
+
+				$('#county_field').val(row.getData().COUNTY_CODE);
+				$('#city_field').val(row.getData().COUNTY_NAME);
+				$('#state_field').val(row.getData().STATE_CODE);
+				$('#zip_field').val(row.getData().ZIP_5);
+
+				var idx = $('#curr_adr_idx').val();
+				changeFieldValueByIndex(adres, idx, 'COUNTY_NAME', row.getData().COUNTY_NAME);
+				changeFieldValueByIndex(adres, idx, 'ADR_ZIP_5', row.getData().ZIP_5);
+				changeFieldValueByIndex(adres, idx, 'COUNTY_CODE', row.getData().COUNTY_CODE);
+				changeFieldValueByIndex(adres, idx, 'STATE_CODE', row.getData().STATE_CODE);
+				changeFieldValueByIndex(adres, idx, 'updRow', 'Y');
+				changeFieldValueByIndex(adres, idx, 'updAdr', 'Y');
+
+				document.getElementById("countyClose").click();
+			});
+
+			stateTable.on("rowClick", function (e, row) {
+
+				$('#place_of_birth_city').val(row.getData().COUNTY_NAME);
+				$('#place_of_birth_state').val(row.getData().STATE_CODE);
+				$('#info_upd').val('Y');
+				
+				document.getElementById("stateClose").click();
+			});
+
+			function changeFieldValueByIndex(array, index, field, newValue) {
+				if (index < 0 || index >= array.length) {
+					console.error("Index out of bounds");
+					return;
+				}
+				if (array[index].hasOwnProperty(field)) {
+					array[index][field] = newValue;
+				} else {
+					console.error("Field does not exist");
+				}
+			}
+
+			//Define Table
+			var animalTable = new Tabulator("#animalinfo-table", {
+				layout: "fitColumns",
+				data: tabledataanimalinfo,
+				height: '200px',
+				printAsHtml: true,
+				printStyled: true,
+				columns: [
+					{
+						title: "id",
+						field: "id",
+						visible: false,
+					},
+					{
+						title: 'upd',
+						visible: false,
+						field: "upd",
+					},
+					{
+						title: 'rowid',
+						visible: false,
+						field: "rowid",
+					},
+					{
+						//title: "Type Of Animal",
+						field: "typeOfAnimal",
+						titleFormatter: (column) => setTitleDesc(column, 'AnimalTyp', 'Type Of Animal'),
+						editor: "input",
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {setUpdAnim(cell);}
+					},
+					{
+						//title: "Leashed/Unleashed",
+						field: "lLeashedUnleashed",
+						editor: "list", // Use list editor
+						titleFormatter: (column) => setTitleDesc(column, 'lLeashedUnleashed', 'Leashed/Unleashed'),
+						editorParams: {
+							values: [
+								{value: "Leashed", label: "Leashed"},
+								{value: "Unleashed", label: "Unleashed"}
+							]
+						},
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {setUpdAnim(cell);}
+					},
+					{
+						title: 'leashVal',
+						visible: false,
+						field: "leashVal",
+					},
+					{
+						//title: "Comments",
+						field: "comments",
+						editor: "input",
+						titleFormatter: (column) => setTitleDesc(column, 'comments', 'Comments'),
+						sorter: "string",
+						sorterParams: {alignEmptyValues: "bottom"},
+						cellEdited: function (cell) {setUpdAnim(cell);}
+					},
+					{
+						title: 'commitNo',
+						visible: false,
+						field: "commitNo",
+					},
+					{
+						title: 'adrSeq',
+						visible: false,
+						field: "adrSeq",
+					}
+				]
+			});
+
+			tabulatorRegistry["animalinfo-table"] = {
+				varName: "animalTable",
+				instance: animalTable
+			};
+
+			function setUpdWeap(cell) {
+				// Get the row data
+				const rowData = cell.getRow().getData();
+
+				// Set the 'upd' field to 'Y'
+				rowData.upd = "Y";
+				rowData.commitNo = $('.primary_val').val();
+				rowData.adrSeq = $('#adr_seq').val();
+
+				// Update the row data
+				cell.getRow().update(rowData);
+				updatable = true;
+
+				const rows = weaponTable.getRows();
+				var data_joint = '';
+				for (let row of rows) {
+					const data = row.getData();
+					if (data.description != '') {
+						data_joint += '$!';
+						data_joint += data.id + '!@!';
+						data_joint += data.upd + '!@!';
+						data_joint += data.seqno + '!@!';
+						data_joint += data.description + '!@!';
+						data_joint += data.commitNo + '!@!';
+						data_joint += data.adrSeq;
+						data_joint += '!';
+					}
+				}
+				var idx = $('#curr_adr_idx').val();
+				changeFieldValueByIndex(adres, idx, 'WeapDtl', data_joint);
+				changeFieldValueByIndex(adres, idx, 'updRow', 'Y');
+				changeFieldValueByIndex(adres, idx, 'updWeap', 'Y');
+			}
+
+			function setUpdAnim(cell) {
+				// Get the row data
+				const rowData = cell.getRow().getData();
+
+				// Set the 'upd' field to 'Y'
+				rowData.upd = "Y";
+				rowData.commitNo = $('.primary_val').val();
+				rowData.adrSeq = $('#adr_seq').val();
+
+				// Update the row data
+				cell.getRow().update(rowData);
+				updatable = true;
+
+				const rows = animalTable.getRows();
+				var data_joint = '';
+				for (let row of rows) {
+					const data = row.getData();
+					if (data.typeOfAnimal != '' || data.lLeashedUnleashed != '' || data.comments != '') {
+						data_joint += '$!';
+						data_joint += data.id + '!@!';
+						data_joint += data.upd + '!@!';
+						data_joint += data.rowid + '!@!';
+						data_joint += data.typeOfAnimal + '!@!';
+						data_joint += data.lLeashedUnleashed + '!@!';
+						data_joint += data.comments + '!@!';
+						data_joint += data.commitNo + '!@!';
+						data_joint += data.adrSeq;
+						data_joint += '!';
+					}
+				}
+				var idx = $('#curr_adr_idx').val();
+				changeFieldValueByIndex(adres, idx, 'AnimDtl', data_joint);
+				changeFieldValueByIndex(adres, idx, 'updRow', 'Y');
+				changeFieldValueByIndex(adres, idx, 'updAnim', 'Y');
+			}
+
+
+			$('#searchButton').on('click', function () {
+				var key_val = $('#sbiNumberInput').val();
+
+				if (key_val == '') {
+					//message('W',0,0);
+					message('CUW', 'Need to enter ID', 0);
+					return;
+				}
+
+				$('#searchButton').removeClass('fa-search');
+				$('#searchButton').addClass('fa-spinner');
+				//loader(1);
+
+				//alert($('.form-control').length);
+
+				for (var i = 0; i < $('.form-control').length; i++) {
+					if (!$('.form-control').eq(i).hasClass('key_val')) {
+						console.log('here inside');
+						$('.form-control').eq(i).val('');
+					}
+				}
+
+				$('.sbichk').prop('checked', false);
+
+				$('.primary_val').val('');
+
+				$.ajax({
+					type: "POST",
+					url: contextPath + "getInmateData",
+					dataType: "json",
+					data: {primaryVal: key_val},
+					success: function (response) {
+
+						if (response.length == 0) {
+							$('#searchButton').addClass('fa-search');
+							$('#searchButton').removeClass('fa-spinner');
+							$('.tab_body').find('.form-control').addClass('disable_fld');
+							$('.disable_fld').attr('disabled', true);
+							return;
+						}
+
+						//$('.disable_fld').removeAttr('disabled');
+						//$('.form-control').removeClass('disable_fld');
+						//console.log('here disable 123');
+						$('#current_commit').val(response[0]['COMMIT_NO']);
+						$('.primary_val').val(response[0]['COMMIT_NO']);
+						setTimeout(function () {
+							$('.vehl_fld').val('');
+							clearFunc(weaponTable);
+							clearFunc(animalTable);
+							loader(1);
+							fetchData();
+							//fetchData2();
+						}, 1000);
+
+						$('#searchButton').addClass('fa-search');
+						$('#searchButton').removeClass('fa-spinner');
+						//loader(0);
+
+					},
+					error: function () {
+						$('#searchButton').addClass('fa-search');
+						$('#searchButton').removeClass('fa-spinner');
+						$('.tab_body').find('.form-control').addClass('disable_fld');
+						$('.disable_fld').attr('disabled', true);
+						return;
+					}
+				});
+			});
+
+			function formatDate(inputDate) {
+				// Split the input date into components
+				const [month, day, year] = inputDate.split('/').map(Number);
+
+				// Create a new Date object using the parsed components
+				const date = new Date(year, month - 1, day); // month is 0-indexed in JavaScript
+
+				// Get the current time
+				const now = new Date();
+
+				// Format the date to YYYY-MM-DD
+				const formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+
+				// Format the time to HH:mm:ss
+				const formattedTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+
+				// Combine date and time
+				return `${formattedDate} ${formattedTime}`;
+			}
+
+			/*$("#primary_dob").datepicker({
+				dateFormat: "mm/dd/yy", // Set the date format
+				changeMonth: true,
+				changeYear: true,
+				yearRange: "1900:2050"
+			});*/
+
+			/*$("#primary_dob").on('change', function () {
+				var dt = formatDate($(this).val());
+				$('#primary_dob_actual').val(dt);
+			});*/
+
+			$('.disableFld').css('pointer-events', 'none');
+
+			function fetchData() {
+				var key_val = $('.primary_val').val();
+				var scrn = $('#screenCode').val();
+				$.ajax({
+					type: "POST",
+					url: contextPath + "fetchInfo",
+					dataType: "json",
+					data: {primaryVal: key_val, tab: 1, screen: scrn},
+					success: function (response) {
+						//alert("response length : " + response.length);
+
+						for (var i = 0; i < response.length; i++) {
+
+							if (response.length == 0) {
+								fetchData2();
+							}
+
+							$('#rowid').val(response[i]['ROWIDTOCHAR(I.ROWID)']);
+							//$('#hair_color_code').val(nullhandler(response[i]['HAIR_COLOR_CODE']));
+							//$('#hair_color_code').trigger('change');
+							setDrpFld("hair_color_code", nullhandler(response[i]['HAIR_COLOR_CODE']));
+
+							//$('#eye_color_code').val(nullhandler(response[i]['EYE_COLOR_CODE']));
+							//$('#eye_color_code').trigger('change');
+							setDrpFld("eye_color_code", nullhandler(response[i]['EYE_COLOR_CODE']));
+
+							//$('#facial_hair_code').val(nullhandler(response[i]['FACIAL_HAIR_CODE']));
+							//$('#facial_hair_code').trigger('change');
+							setDrpFld("facial_hair_code", nullhandler(response[i]['FACIAL_HAIR_CODE']));
+
+							//$('#dexterity_code').val(nullhandler(response[i]['DEXTERITY_CODE']));
+							//$('#dexterity_code').trigger('change');
+							setDrpFld("dexterity_code", nullhandler(response[i]['DEXTERITY_CODE']));
+
+							//$('#skin_color_code').val(nullhandler(response[i]['SKIN_COLOR_CODE']));
+							//$('#skin_color_code').trigger('change');
+							setDrpFld("skin_color_code", nullhandler(response[i]['SKIN_COLOR_CODE']));
+
+							//$('#build_code').val(nullhandler(response[i]['BUILD_CODE']));
+							//$('#build_code').trigger('change');
+							setDrpFld("build_code", nullhandler(response[i]['BUILD_CODE']));
+
+							var hgt = nullhandler(response[i]['HEIGHT']);
+							if (hgt != '') {
+								hgt = formatTime(hgt);
+							}
+
+							$('#height').val(hgt);
+							$('#weight').val(nullhandler(response[i]['WEIGHT']));
+
+							var sex = nullhandler(response[i]['SEX']);
+							$('#sex').val(sex);
+							if (sex == 'M') {
+								sex = 'Male';
+							}
+
+							if (sex == 'F') {
+								sex = 'Female';
+							}
+
+							if (sex == 'U') {
+								sex = 'Unknown';
+							}
+
+							$('#sex_field').val(sex);
+
+							var race = nullhandler(response[i]['RACE_CODE']);
+							$('#race_code').val(race);
+
+							if (race == 'W') {
+								race = 'WHITE';
+							}
+
+							if (race == 'B') {
+								race = 'BLACK';
+							}
+
+							if (race == 'I') {
+								race = 'INDIAN';
+							}
+
+							if (race == 'A') {
+								race = 'ASIAN';
+							}
+
+							if (race == 'U') {
+								race = 'UNKNOWN';
+							}
+
+
+							$('#race_field').val(race);
+							//setValueForRowAndColumn(table1, i, "comments", response[i]['COMMENTS']);
+
+							var dt = nullhandler(response[i]['ADMISS_DATE']);
+							var actual_dt = '';
+							//alert('dt is ' + dt);
+							if (dt != '' && dt != null) {
+								actual_dt = dt.split("T")[0] + " " + dt.split("T")[1].split(".")[0];
+								dt = dt.split("T")[0];
+								dt = dt.split('-')[1] + '/' + dt.split('-')[2] + '/' + dt.split('-')[0];
+							}
+
+							if (nullhandler(response[i]['GLASSES']) == 'Y') {
+								$('#glasses').prop('checked', true);
+							}
+
+							if (nullhandler(response[i]['CONTACT_LENSE']) == 'Y') {
+								$('#contact_lense').prop('checked', true);
+							}
+
+							$('#admiss_date').val(dt);
+							$('#admiss_date_actual').val(actual_dt);
+							$('#admiss_time').val(nullhandler(response[i]['ADMISS_TIME']));
+
+							//$('#citizenship_code').val(nullhandler(response[i]['CITIZENSHIP_CODE']));
+							//$('#citizenship_code').trigger('change');
+
+							setDrpFld("citizenship_code", nullhandler(response[i]['CITIZENSHIP_CODE']));
+							setDrpFld("religion_code", nullhandler(response[i]['RELIGION_CODE']));
+							/*$('#religion_code').val(nullhandler(response[i]['RELIGION_CODE']));
+							$('#religion_code').trigger('change');*/
+
+							//$('#marital_status_code').val(nullhandler(response[i]['MARITAL_STATUS_CODE']));
+							//$('#marital_status_code').trigger('change');
+							setDrpFld("marital_status_code", nullhandler(response[i]['MARITAL_STATUS_CODE']));
+
+							//$('#ethnic_origin').val(nullhandler(response[i]['ETHNIC_ORIGIN']));
+							//$('#ethnic_origin').trigger('change');
+							setDrpFld("ethnic_origin", nullhandler(response[i]['ETHNIC_ORIGIN']));
+
+							if (nullhandler(response[i]['ESL_FLAG']) == 'Y') {
+								$('#esl_flag').prop('checked', true);
+							}
+
+							if (nullhandler(response[i]['COMPREHEND_ENGLISH']) == 'Y') {
+								$('#comprehend_english').prop('checked', true);
+							}
+
+							var dt = nullhandler(response[i]['PRIMARY_DOB']);
+							var actual_dt
+							//alert('dt is ' + dt);
+							if (dt != '' && dt != null) {
+								actual_dt = dt.split("T")[0] + " " + dt.split("T")[1].split(".")[0];
+								dt = dt.split("T")[0];
+								dt = dt.split('-')[1] + '/' + dt.split('-')[2] + '/' + dt.split('-')[0];
+							}
+
+							$('#primaryDOB').val(dt);
+							$('#primary_dob_actual').val(actual_dt);
+							$('#place_of_birth_city').val(nullhandler(response[i]['PLACE_OF_BIRTH_CITY']));
+							$('#place_of_birth_state').val(nullhandler(response[i]['PLACE_OF_BIRTH_STATE']));
+							$('#age').val(nullhandler(response[i]['AGE']));
+
+							$('#drv_state_issue').val(nullhandler(response[i]['DRV_STATE_ISSUE']));
+							$('#inmt_prim_sid_no').val(nullhandler(response[i]['INMT_PRIM_SID_NO']));
+							$('#drv_license_no').val(nullhandler(response[i]['DRV_LICENSE_NO']));
+							$('#drv_lic_status').val(nullhandler(response[i]['DRV_LIC_STATUS']));
+							$('#drv_lic_commercial_status').val(nullhandler(response[i]['DRV_LIC_COMMERCIAL_STATUS']));
+
+							$('#info_upd').val('');
+							
+							loader(0);
+							fetchData2();
+						}
+
+					},
+					error: function () {
+						alert("json not found");
+					}
+				});
+			}
+
+			//$('#prv_adr').prop('disabled', true);
+			//$('#nxt_adr').prop('disabled', true);
+
+			function fetchData2() {
+				var key_val = $('.primary_val').val();
+				var scrn = $('#screenCode').val();
+
+				$.ajax({
+					type: "POST",
+					url: contextPath + "fetchInfo",
+					dataType: "json",
+					data: {primaryVal: key_val, tab: 2, screen: scrn},
+					success: function (response) {
+						adres = response;
+						console.log(adres);
+						/*if (response.length > 0) {
+							$('#prv_adr').prop('disabled', false);
+						}*/
+
+						if (response.length == 0) {
+							loader(0);
+						}
+
+						//alert("response length for address : " + response.length);
+
+						if (response.length > 0) {
+							console.log("//test -start");
+							console.log("ADR_STREET_1 : " + response[0]['ADR_STREET_1']);
+							console.log("COUNTY_CODE : " + response[0]['COUNTY_CODE']);
+							console.log("STATE_CODE : " + response[0]['STATE_CODE']);
+							console.log("ADR_ZIP_5 : " + response[0]['ADR_ZIP_5']);
+							console.log("ADR_ZIP_4 : " + response[0]['ADR_ZIP_4']);
+							console.log("DIRECTIONS : " + response[0]['DIRECTIONS']);
+							console.log("INMT_ADR_PH : " + response[0]['INMT_ADR_PH']);
+							console.log("RESIDES_WITH_PHONE : " + response[0]['RESIDES_WITH_PHONE']);
+							console.log("INMT_ADR_ST_DT : " + response[0]['INMT_ADR_ST_DT']);
+							console.log("ADDRESS_TYPE : " + response[0]['ADDRESS_TYPE']);
+							console.log("RESIDENCE_TYPE : " + response[0]['RESIDENCE_TYPE']);
+							console.log("ADDRESS_SEQ_NUM : " + response[0]['ADDRESS_SEQ_NUM']);
+							console.log("COUNTY_NAME : " + response[0]['COUNTY_NAME']);
+							console.log("HOT_SPOT_AREAS : " + response[0]['HOT_SPOT_AREAS']);
+							console.log("CAUTIONS : " + response[0]['CAUTIONS']);
+							console.log("CJIS_CITY_STATE_ZIP : " + response[0]['CJIS_CITY_STATE_ZIP']);
+							console.log("HOMELESS_FLAG : " + response[0]['HOMELESS_FLAG']);
+							console.log("RESIDENCE_CATEGORY : " + response[0]['RESIDENCE_CATEGORY']);
+							console.log("RESIDENCE_CAT_COMMENTS : " + response[0]['RESIDENCE_CAT_COMMENTS']);
+							console.log("//test -end");
+							//console.log("INMT_ADR_ST_DT : " + response[1]['INMT_ADR_ST_DT']);
+							//console.log("INMT_ADR_ST_DT : " + response[2]['INMT_ADR_ST_DT']);
+
+							adres.forEach(item => {
+								item['updRow'] = 'N';
+								item['updAdr'] = 'N';
+								item['VehlDtl'] = '';
+								item['updVehl'] = 'N';
+								item['WeapDtl'] = '';
+								item['updWeap'] = 'N';
+								item['AnimDtl'] = '';
+								item['updAnim'] = 'N';
+							});
+
+							populateAddress(0);
+							for (var i = 0; i < response.length; i++) {
+								console.log(i + " for " + response[i]['ADR_STREET_1']);
+							}
+						} else {
+							loader(0);
+							$('.adr_fld').attr('disabled', true);
+						}
+					},
+					error: function () {
+						alert("json not found");
+					}
+				});
+			}
+
+			function populateAddress(x) {
+				$('#curr_adr_idx').val(x);
+				$('#adr_seq').val(adres[x]['ADDRESS_SEQ_NUM']);
+				$('#address_field').val(nullhandler(adres[x]['ADR_STREET_1']));
+				$('#city_field').val(nullhandler(adres[x]['COUNTY_NAME']));
+				$('#state_field').val(nullhandler(adres[x]['STATE_CODE']));
+				$('#zip_field').val(nullhandler(adres[x]['ADR_ZIP_5']));
+				$('#phone_field').val(formatPhone(nullhandler(adres[x]['INMT_ADR_PH'])));
+				$('#phone_field2').val(formatPhone(nullhandler(adres[x]['RESIDES_WITH_PHONE'])));
+
+				var dt = nullhandler(adres[x]['INMT_ADR_ST_DT']);
+				//alert('dt is ' + dt);
+				if (dt != '' && dt != null) {
+					dt = dt.split("T")[0];
+					dt = dt.split('-')[1] + '/' + dt.split('-')[2] + '/' + dt.split('-')[0];
+				}
+
+				$('#dt_change_fld').val(dt);
+
+				if (nullhandler(adres[x]['HOMELESS_FLAG']) == 'Y') {
+					$('#homeless_flag').prop('checked', true);
+				} else {
+					$('#homeless_flag').prop('checked', false);
+				}
+
+				var shelter = nullhandler(adres[x]['RESIDENCE_CATEGORY']);
+
+				if (shelter != '' && shelter != null) {
+					$('input[name="ShelterRadio"][value="' + shelter + '"]').prop('checked', true);
+				} else {
+					$('input[name="ShelterRadio"]').prop('checked', false);
+				}
+
+				$('#residenceCatCmt').val(nullhandler(adres[x]['RESIDENCE_CAT_COMMENTS']));
+				$('#splDirCmt').val(nullhandler(adres[x]['DIRECTIONS']));
+				$('#cautionCmt').val(nullhandler(adres[x]['CAUTIONS']));
+				$('#hotSpotCmt').val(nullhandler(adres[x]['HOT_SPOT_AREAS']));
+
+				$('.vehl_fld').val('');
+				//$('.tabulator-cell').text('');
+
+				clearFunc(weaponTable);
+				clearFunc(animalTable);
+
+				if (adres[x]['VehlDtl'] == '') {
+					fetchData3(adres[x]['ADDRESS_SEQ_NUM']);
+				} else {
+					var VehlDtl = adres[x]['VehlDtl'];
+					//alert(VehlDtl);
+					$('#vehl_make').val(VehlDtl.split('!@!')[0]);
+					$('#vehl_color').val(VehlDtl.split('!@!')[1]);
+					$('#vehl_vin').val(VehlDtl.split('!@!')[2]);
+					$('#vehl_model').val(VehlDtl.split('!@!')[3]);
+					$('#vehl_year').val(VehlDtl.split('!@!')[4]);
+					$('#vehl_rowid').val(VehlDtl.split('!@!')[5]);
+				}
+
+				if (adres[x]['WeapDtl'] == '') {
+					console.log('Check FetchData for Weapon');
+					fetchData4(adres[x]['ADDRESS_SEQ_NUM']);
+				} else {
+					console.log('Check Data from Array for Weapon');
+					var WeapDtl = adres[x]['WeapDtl'];
+					WeapDtl = WeapDtl.slice(0, -1);
+					WeapDtl = WeapDtl.slice(2);
+					console.log('Here WeapDtl : ' + WeapDtl);
+					WeapDtl = WeapDtl.split('!$!');
+					for (var b = 0; b < WeapDtl.length; b++) {
+						setValueForRowAndColumn(weaponTable, b, "upd", WeapDtl[b].split('!@!')[1]);
+						setValueForRowAndColumn(weaponTable, b, "seqno", WeapDtl[b].split('!@!')[2]);
+						setValueForRowAndColumn(weaponTable, b, "description", WeapDtl[b].split('!@!')[3]);
+						setValueForRowAndColumn(weaponTable, b, "commitNo", WeapDtl[b].split('!@!')[4]);
+						setValueForRowAndColumn(weaponTable, b, "adrSeq", WeapDtl[b].split('!@!')[5]);
+					}
+				}
+
+				if (adres[x]['AnimDtl'] == '') {
+					console.log('Check FetchData for Animal');
+					fetchData5(adres[x]['ADDRESS_SEQ_NUM']);
+				} else {
+					console.log('Check Data from Array for Animal');
+					var AnimDtl = adres[x]['AnimDtl'];
+					AnimDtl = AnimDtl.slice(0, -1);
+					AnimDtl = AnimDtl.slice(2);
+					console.log('Here AnimDtl : ' + AnimDtl);
+					AnimDtl = AnimDtl.split('!$!');
+					for (var b = 0; b < AnimDtl.length; b++) {
+						setValueForRowAndColumn(animalTable, b, "upd", AnimDtl[b].split('!@!')[1]);
+						setValueForRowAndColumn(animalTable, b, "rowid", AnimDtl[b].split('!@!')[2]);
+						setValueForRowAndColumn(animalTable, b, "typeOfAnimal", AnimDtl[b].split('!@!')[3]);
+						setValueForRowAndColumn(animalTable, b, "lLeashedUnleashed", AnimDtl[b].split('!@!')[4]);
+						setValueForRowAndColumn(animalTable, b, "comments", AnimDtl[b].split('!@!')[5]);
+						setValueForRowAndColumn(animalTable, b, "commitNo", AnimDtl[b].split('!@!')[6]);
+						setValueForRowAndColumn(animalTable, b, "adrSeq", AnimDtl[b].split('!@!')[7]);
+					}
+				}
+
+				loader(0);
+
+				//fetchData4(adres[x]['ADDRESS_SEQ_NUM']);
+				//fetchData5(adres[x]['ADDRESS_SEQ_NUM']);
+			}
+
+			function clearFunc(tbl) {
+				var idx = 0;
+				tbl.getRows().forEach(function (row) {
+					// Iterate through each field in the row
+					Object.keys(row.getData()).forEach(function (field) {
+						// Check if the field is not in the fieldsToKeep array
+						if (field != 'id') {
+							// Set the cell value to an empty string
+							if (field == 'seq') {
+								row.update({[field]: "0"}); // or use null if you prefer
+							} else {
+								row.update({[field]: ""}); // or use null if you prefer	
+							}
+
+						} else {
+							row.update({[field]: idx}); // or use null if you prefer
+							idx++;
+						}
+					});
+				});
+			}
+
+			function fetchData3(adr_seq) {
+				var key_val = $('.primary_val').val();
+				var scrn = $('#screenCode').val();
+
+				$.ajax({
+					type: "POST",
+					url: contextPath + "fetchInfo2",
+					dataType: "json",
+					data: {primaryVal: key_val, tab: 3, screen: scrn, adr_seq: adr_seq},
+					success: function (response) {
+						if (response.length > 0) {
+							$('#vehl_make').val(nullhandler(response[0]['VEHL_MAKE']));
+							$('#vehl_color').val(nullhandler(response[0]['VEHL_COLOR']));
+							$('#vehl_vin').val(nullhandler(response[0]['VEHL_VIN']));
+							$('#vehl_model').val(nullhandler(response[0]['VEHL_MODEL']));
+							$('#vehl_year').val(nullhandler(response[0]['VEHL_YEAR']));
+							$('#vehl_rowid').val(response[0]['ROWIDTOCHAR(ROWID)']);
+							var idx = $('#curr_adr_idx').val();
+							var val = nullhandler(response[0]['VEHL_MAKE']) + "!@!";
+							val += nullhandler(response[0]['VEHL_COLOR']) + "!@!";
+							val += nullhandler(response[0]['VEHL_VIN']) + "!@!";
+							val += nullhandler(response[0]['VEHL_MODEL']) + "!@!";
+							val += nullhandler(response[0]['VEHL_YEAR']) + "!@!";
+							val += nullhandler(response[0]['ROWIDTOCHAR(ROWID)']);
+							changeFieldValueByIndex(adres, idx, 'VehlDtl', val);
+						}
+					},
+					error: function () {
+						alert("json not found");
+					}
+				});
+			}
+
+			function fetchData4(adr_seq) {
+				var key_val = $('.primary_val').val();
+				var scrn = $('#screenCode').val();
+
+				$.ajax({
+					type: "POST",
+					url: contextPath + "fetchInfo3",
+					dataType: "json",
+					data: {primaryVal: key_val, tab: 4, screen: scrn, adr_seq: adr_seq},
+					success: function (response) {
+						var data_joint = '';
+						for (var i = 0; i < response.length; i++) {
+							setValueForRowAndColumn(weaponTable, i, "description", response[i]['WEAP_DESC']);
+							setValueForRowAndColumn(weaponTable, i, "seqno", response[i]['WEAP_SEQ_NO']);
+							data_joint += '$!';
+							data_joint += i + '!@!';
+							data_joint += '!@!';
+							data_joint += response[i]['WEAP_SEQ_NO'] + '!@!';
+							data_joint += response[i]['WEAP_DESC'] + '!@!';
+							data_joint += key_val + '!@!';
+							data_joint += adr_seq;
+							data_joint += '!';
+						}
+						var idx = $('#curr_adr_idx').val();
+						changeFieldValueByIndex(adres, idx, 'WeapDtl', data_joint);
+					},
+					error: function () {
+						alert("json not found");
+					}
+				});
+			}
+
+			function fetchData5(adr_seq) {
+				var key_val = $('.primary_val').val();
+				var scrn = $('#screenCode').val();
+
+				$.ajax({
+					type: "POST",
+					url: contextPath + "fetchInfo2",
+					dataType: "json",
+					data: {primaryVal: key_val, tab: 5, screen: scrn, adr_seq: adr_seq},
+					success: function (response) {
+						var data_joint = '';
+						for (var i = 0; i < response.length; i++) {
+							setValueForRowAndColumn(animalTable, i, "rowid", response[i]['ROWIDTOCHAR(ROWID)']);
+							setValueForRowAndColumn(animalTable, i, "typeOfAnimal", response[i]['INMT_ANML_TP']);
+							var lease = nullhandler(response[i]['INMT_ANML_LUL_IND']);
+
+							if (lease == 'L') {
+								lease = 'Leashed';
+							} else {
+								lease = 'Unleashed';
+							}
+
+							setValueForRowAndColumn(animalTable, i, "lLeashedUnleashed", lease);
+							setValueForRowAndColumn(animalTable, i, "comments", response[i]['INMT_ANML_DESC']);
+							data_joint += '$!';
+							data_joint += i + '!@!';
+							data_joint += '!@!';
+							data_joint += response[i]['ROWIDTOCHAR(ROWID)'] + '!@!';
+							data_joint += response[i]['INMT_ANML_TP'] + '!@!';
+							data_joint += lease + '!@!';
+							data_joint += response[i]['INMT_ANML_DESC'] + '!@!';
+							data_joint += key_val + '!@!';
+							data_joint += adr_seq;
+							data_joint += '!';
+						}
+						var idx = $('#curr_adr_idx').val();
+						changeFieldValueByIndex(adres, idx, 'AnimDtl', data_joint);
+					},
+					error: function () {
+						alert("json not found");
+					}
+				});
+			}
+
+			function setValueForRowAndColumn(table, rowNumber, columnField, valueToSet) {
+				if (valueToSet == null) {
+					valueToSet = '';
+				}
+
+				var row = table.getRow(rowNumber);
+				if (row) {
+					row.update({[columnField]: valueToSet});
+				} else {
+					console.error("Row not found");
+				}
+			}
+
+			function formatPhone(phoneNumber) {
+				// Remove all non-digit characters
+				if (phoneNumber != '') {
+					const cleaned = ('' + phoneNumber).replace(/\D/g, '');
+
+					// Format the number with hyphens
+					return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 6)}-${cleaned.slice(6)}`;
+				} else {
+					return '';
+				}
+			}
+
+			$('#residenceCatCmt').on('paste', function (e) {
+				$(this).removeAttr('maxlength');
+				setTimeout(function () {
+					var val = $('#residenceCatCmt').val();
+					if (val.length > 4000) {
+						message('CUW', 'Residence Category Comments should not more than 4000 characters', 0);
+						val = val.substring(0, 4000);
+						$('#residenceCatCmt').val(val);
+						$('#residenceCatCmt').attr('maxlength', 4000);
+					}
+				}, 500);
+			});
+
+			$('#splDirCmt').on('paste', function (e) {
+				$(this).removeAttr('maxlength');
+				setTimeout(function () {
+					var val = $('#splDirCmt').val();
+					if (val.length > 2000) {
+						message('CUW', 'Special Directions should not more than 2000 characters', 0);
+						val = val.substring(0, 2000);
+						$('#splDirCmt').val(val);
+						$('#splDirCmt').attr('maxlength', 2000);
+					}
+				}, 500);
+			});
+
+			$('#cautionCmt').on('paste', function (e) {
+				$(this).removeAttr('maxlength');
+				setTimeout(function () {
+					var val = $('#cautionCmt').val();
+					if (val.length > 2000) {
+						message('CUW', 'Cautions should not more than 2000 characters', 0);
+						val = val.substring(0, 2000);
+						$('#cautionCmt').val(val);
+						$('#cautionCmt').attr('maxlength', 2000);
+					}
+				}, 500);
+			});
+
+			$('#hotSpotCmt').on('paste', function (e) {
+				$(this).removeAttr('maxlength');
+				setTimeout(function () {
+					var val = $('#hotSpotCmt').val();
+					if (val.length > 2000) {
+						message('CUW', 'Hot Spot Areas should not more than 2000 characters', 0);
+						val = val.substring(0, 2000);
+						$('#hotSpotCmt').val(val);
+						$('#hotSpotCmt').attr('maxlength', 2000);
+					}
+				}, 500);
+			});
+
+			$('#prv_adr').on('click', function () {
+				if (current_idx < adres.length) {
+					current_idx++;
+					var x = current_idx;
+					populateAddress(x);
+				}
+			});
+
+			$('#nxt_adr').on('click', function () {
+				if (current_idx > 0) {
+					current_idx--;
+					var x = current_idx;
+					populateAddress(x);
+				}
+			});
+
+			$('#new_adr').on('click', function () {
+
+				$('.adr_fld').removeAttr('disabled');
+
+				$('.adr_field').val('');
+				$('#homeless_flag').prop('checked', false);
+				$('.vehl_fld').val('');
+				clearFunc(weaponTable);
+				clearFunc(animalTable);
+				$('#adr_seq').val('');
+				$('#curr_adr_idx').val(0);
+
+				if (adres.length > 0) {
+					// Copy the data at index 0
+					const copiedData = {...adres[0]}; // Shallow copy
+
+					// Make the copied data empty
+					for (let key in copiedData) {
+						copiedData[key] = null; // or you can use '' for strings, 0 for numbers, etc.
+					}
+
+					// Add the empty copied data to the front of the array
+					adres.unshift(copiedData);
+				} else {
+					adres.push({
+						"ROWIDTOCHAR(A.ROWID)": null,
+						"INMT_ADR_ST_DT": null,
+						"COUNTY_NAME": null,
+						"ADR_ZIP_4": null,
+						"ADR_ZIP_5": null,
+						"ADDRESS_TYPE": null,
+						"ADR_STREET_1": null,
+						"RESIDENCE_CAT_COMMENTS": null,
+						"STATE_CODE": null,
+						"RESIDENCE_TYPE": null,
+						"HOT_SPOT_AREAS": null,
+						"INMT_ADR_PH": null,
+						"CJIS_CITY_STATE_ZIP": null,
+						"HOMELESS_FLAG": null,
+						"ADDRESS_SEQ_NUM": null,
+						"RESIDES_WITH_PHONE": null,
+						"CAUTIONS": null,
+						"RESIDENCE_CATEGORY": null,
+						"COUNTY_CODE": null,
+						"COMMIT_NO": null,
+						"DIRECTIONS": null,
+						"updRow": null,
+						"updAdr": null,
+						"VehlDtl": null,
+						"updVehl": null,
+						"WeapDtl": null,
+						"updWeap": null,
+						"AnimDtl": null,
+						"updAnim": null
+					});
+				}
+
+			});
+
+			function nullhandler(str) {
+				if (str == 'null' || str == null) {
+					return '';
+				} else {
+					return str;
+				}
+			}
+
+			function getCurrDtTm() {
+				const now = new Date();
+
+				const year = now.getFullYear();  // e.g., 2023
+				const month = String(now.getMonth() + 1).padStart(2, '0');  // Months are 0-indexed, so +1; pad to 2 digits
+				const day = String(now.getDate()).padStart(2, '0');  // Pad to 2 digits
+				const hours = String(now.getHours()).padStart(2, '0');  // 24-hour format; pad to 2 digits
+				const minutes = String(now.getMinutes()).padStart(2, '0');  // Pad to 2 digits
+				const seconds = String(now.getSeconds()).padStart(2, '0');  // Pad to 2 digits
+
+				return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+			}
+
+			function formatTime(input) {
+				// Convert the input to a string
+				const str = input.toString();
+
+				// Get the length of the string
+				const length = str.length;
+
+				// Determine hours and minutes
+				let hours, minutes;
+
+				if (length === 3) {
+					// If the length is 3, the first digit is hours, and the last two are minutes
+					hours = str[0];
+					minutes = str.slice(1);
+				} else if (length === 2) {
+					// If the length is 2, it means there are no hours, just minutes
+					hours = '0';
+					minutes = str;
+				} else if (length === 1) {
+					// If the length is 1, it means there are no hours, just minutes
+					hours = '0';
+					minutes = '0' + str; // Pad with a zero
+				} else {
+					throw new Error("Input must be a positive integer");
+				}
+
+				// Format the output
+				return `${hours}'${minutes}"`;
+			}
+
+			$('#exit').on('click', function () {
+				message('B', 0, function () {
+					history.back();
+				});
+			});
+
+			$('#clear').on('click', function () {
+				adres = [];
+				current_idx = 0;
+				$('.form-control').val('');
+				$('.custom-control-input').prop('checked', false);
+				$('.imageContainerPhoto').attr('src', initImage);
+				clearSBI();
+				$('#sbiNumberInput').focus();
+				clearFunc2(weaponTable);
+				clearFunc2(animalTable);
+				$('#info_upd').val('');
+			});
+
+			function clearFunc2(tbl) {
+				var idx = 0;
+				tbl.getRows().forEach(function (row) {
+					// Iterate through each field in the row
+					Object.keys(row.getData()).forEach(function (field) {
+						// Check if the field is not in the fieldsToKeep array
+						if (field != 'id') {
+							// Set the cell value to an empty string
+							if (field == 'seq') {
+								row.update({[field]: "0"}); // or use null if you prefer
+							} else {
+								row.update({[field]: ""}); // or use null if you prefer	
+							}
+
+						} else {
+							row.update({[field]: idx}); // or use null if you prefer
+							idx++;
+						}
+					});
+				});
+			}
+
+			$('.adr_field').on('change', function () {
+				var typ = $(this).attr('data-typ');
+				var fld = $(this).attr('data-fld');
+				var val = $(this).val();
+				var idx = $('#curr_adr_idx').val();
+
+				if (typ == 'phone') {
+					val = val.split('-').join('');
+				}
+
+				if (typ == 'checkbox') {
+					if ($(this).prop('checked')) {
+						val = 'Y';
+					} else {
+						val = 'N';
+					}
+				}
+
+				changeFieldValueByIndex(adres, idx, fld, val);
+				changeFieldValueByIndex(adres, idx, 'updRow', 'Y');
+				changeFieldValueByIndex(adres, idx, 'updAdr', 'Y');
+
+				//console.clear();
+				console.log(JSON.stringify(adres));
+			});
+
+			$('.vehl_fld').on('change', function () {
+				var idx = $('#curr_adr_idx').val();
+				var val = $('#vehl_make').val() + '!@!';
+				val += $('#vehl_color').val() + '!@!';
+				val += $('#vehl_vin').val() + '!@!';
+				val += $('#vehl_model').val() + '!@!';
+				val += $('#vehl_year').val() + '!@!';
+				val += $('#vehl_rowid').val();
+				changeFieldValueByIndex(adres, idx, 'VehlDtl', val);
+				changeFieldValueByIndex(adres, idx, 'updRow', 'Y');
+				changeFieldValueByIndex(adres, idx, 'updVehl', 'Y');
+				$('#info_upd').val('Y');
+			});
+
+			$('.demo_info').on('change', function () {
+				$('#info_upd').val('Y');
+			});
+
+			//loader(0);
+
+			function splitDate(x) {
+				var dt = x.split('T')[0];
+				var tm = x.split('T')[1];
+				tm = tm.split('.')[0];
+				return dt + ' ' + tm;
+			}
+
+			$('#save').on('click', function () {
+				//Bismillah
+
+				if ($('#sbiNumberInput').val().trim() == '') {
+					message('W', 0, 0);
+					return;
+				}
+
+				var key_val = $('.primary_val').val();
+
+				if (key_val == '') {
+					message('W', 0, 0);
+					return;
+				}
+
+				if (!checkMandatory()) {
+					return;
+				}
+
+				console.log('Next saving step...');
+
+				var dataToShowX = [];
+				var dataToShow0 = [];
+				var dataToShow1 = [];
+				var dataToShow2 = [];
+				var dataToShow3 = [];
+				var dataToShow4 = [];
+
+				var userID = {
+					user_id: $('#currUser').val()
+				};
+
+				dataToShowX.push(userID);
+
+				if ($('#info_upd').val() == 'Y') {
+					var glasses = '';
+
+					if ($('#glasses').prop('checked')) {
+						glasses = 'Y';
+					} else {
+						glasses = 'N';
+					}
+
+					var contact_lense = '';
+
+					if ($('#contact_lense').prop('checked')) {
+						contact_lense = 'Y';
+					} else {
+						contact_lense = 'N';
+					}
+
+					var comprehend_english = '';
+
+					if ($('#comprehend_english').prop('checked')) {
+						comprehend_english = 'Y';
+					} else {
+						comprehend_english = 'N';
+					}
+
+					var esl_flag = '';
+
+					if ($('#esl_flag').prop('checked')) {
+						esl_flag = 'Y';
+					} else {
+						esl_flag = 'N';
+					}
+
+					var height = '';
+					if ($('#height').val() != '') {
+						height = $('#height').val();
+						height = height.split("'").join("")
+						height = height.split('"').join("");
+					}
+
+					var inmateData = {
+						rowid: $('#rowid').val(),
+						commitNo: key_val,
+						hair_color_code: getDrpFld('hair_color_code'),
+						eye_color_code: getDrpFld('eye_color_code'),
+						weight: $('#weight').val(),
+						glasses: glasses,
+						dexterity_code: getDrpFld('dexterity_code'),
+						height: height,
+						sex: $('#sex').val(),
+						contact_lense: contact_lense,
+						facial_hair_code: getDrpFld('facial_hair_code'),
+						skin_color_code: getDrpFld('skin_color_code'),
+						build_code: getDrpFld('build_code'),
+						race_code: $('#race_code').val(),
+						//citizenship_code: $('#citizenship_code').val(),
+						citizenship_code: getDrpFld("citizenship_code"),
+						place_of_birth_city: $('#place_of_birth_city').val(),
+						//religion_code: $('#religion_code').val(),
+						religion_code: getDrpFld("religion_code"),
+						primary_dob: $('#primary_dob_actual').val(),
+						place_of_birth_state: $('#place_of_birth_state').val(),
+						marital_status_code: getDrpFld('marital_status_code'),
+						comprehend_english: comprehend_english,
+						age: $('#age').val(),
+						drv_state_issue: $('#drv_state_issue').val(),
+						inmt_prim_sid_no: $('#inmt_prim_sid_no').val(),
+						drv_license_no: $('#drv_license_no').val(),
+						admiss_date: $('#admiss_date_actual').val(),
+						admiss_time: $('#admiss_time').val(),
+						drv_lic_status: $('#drv_lic_status').val(),
+						drv_lic_commercial_status: $('#drv_lic_commercial_status').val(),
+						ethnic_origin: getDrpFld('ethnic_origin'),
+						esl_flag: esl_flag
+					};
+
+					dataToShow0.push(inmateData);
+				}
+
+				//console.log(JSON.stringify(adres));
+				//return;
+				console.log(adres.length);
+
+				for (var x = 0; x < adres.length; x++) {
+					if (adres[x]['updRow'] == 'Y') {
+						if (adres[x]['updAdr'] == 'Y') {
+
+							var st_dt = '';
+
+							if (adres[x]['INMT_ADR_ST_DT'] != '' && adres[x]['INMT_ADR_ST_DT'] != undefined) {
+								st_dt = splitDate(adres[x]['INMT_ADR_ST_DT']);
+							} else {
+								st_dt = getCurrDtTm();
+							}
+
+							var adrData = {
+								adr_rowid: adres[x]['ROWIDTOCHAR(A.ROWID)'],
+								commit_no: key_val,
+								adr_street_1: adres[x]['ADR_STREET_1'],
+								county_code: adres[x]['COUNTY_CODE'],
+								state_code: adres[x]['STATE_CODE'],
+								adr_zip_5: adres[x]['ADR_ZIP_5'],
+								adr_zip_4: adres[x]['ADR_ZIP_4'],
+								inmt_adt_spcl_comnt: adres[x]['DIRECTIONS'],
+								inmt_adr_ph: adres[x]['INMT_ADR_PH'],
+								resides_with_phone: adres[x]['RESIDES_WITH_PHONE'],
+								inmt_adr_st_dt: st_dt,
+								address_type: adres[x]['ADDRESS_TYPE'],
+								residence_type: adres[x]['RESIDENCE_TYPE'],
+								address_seq_num: adres[x]['ADDRESS_SEQ_NUM'],
+								county_name: adres[x]['COUNTY_NAME'],
+								hot_spot_areas: adres[x]['HOT_SPOT_AREAS'],
+								cautions: adres[x]['CAUTIONS'],
+								cjis_city_state_zip: adres[x]['CJIS_CITY_STATE_ZIP'],
+								homeless_flag: adres[x]['HOMELESS_FLAG'],
+								residence_category: adres[x]['RESIDENCE_CATEGORY'],
+								residence_cat_comments: adres[x]['RESIDENCE_CAT_COMMENTS']
+							};
+
+							dataToShow1.push(adrData);
+						}
+
+						if (adres[x]['updVehl'] == 'Y') {
+							var VehlDtl = adres[x]['VehlDtl'];
+							var vehlData = {
+								vehl_rowid: VehlDtl.split('!@!')[5],
+								address_seq_num: adres[x]['ADDRESS_SEQ_NUM'],
+								inmate_commit_no: key_val,
+								vehl_make: VehlDtl.split('!@!')[0],
+								vehl_color: VehlDtl.split('!@!')[1],
+								vehl_vin: VehlDtl.split('!@!')[2],
+								vehl_model: VehlDtl.split('!@!')[3],
+								vehl_year: VehlDtl.split('!@!')[4]
+							};
+
+							dataToShow2.push(vehlData);
+						}
+
+						if (adres[x]['updWeap'] == 'Y') {
+							var WeapDtl = adres[x]['WeapDtl'];
+							WeapDtl = WeapDtl.slice(0, -1);
+							WeapDtl = WeapDtl.slice(2);
+							WeapDtl = WeapDtl.split('!$!');
+							for (var b = 0; b < WeapDtl.length; b++) {
+								var upd = WeapDtl[b].split('!@!')[1];
+								if (upd == 'Y') {
+									var weapData = {
+										seqno: WeapDtl[b].split('!@!')[2],
+										description: WeapDtl[b].split('!@!')[3],
+										commitNo: WeapDtl[b].split('!@!')[4],
+										adrSeq: WeapDtl[b].split('!@!')[5]
+									}
+
+									dataToShow4.push(weapData);
+								}
+							}
+						}
+
+						if (adres[x]['updAnim'] == 'Y') {
+							var AnimDtl = adres[x]['AnimDtl'];
+							AnimDtl = AnimDtl.slice(0, -1);
+							AnimDtl = AnimDtl.slice(2);
+							AnimDtl = AnimDtl.split('!$!');
+							for (var b = 0; b < AnimDtl.length; b++) {
+								var upd = AnimDtl[b].split('!@!')[1];
+								if (upd == 'Y') {
+
+									var lease = AnimDtl[b].split('!@!')[4];
+
+									if (lease == 'Leashed') {
+										lease = 'L';
+									} else {
+										lease = 'U';
+									}
+
+									var animData = {
+										rowid: AnimDtl[b].split('!@!')[2],
+										typeOfAnimal: AnimDtl[b].split('!@!')[3],
+										leashVal: lease,
+										comments: AnimDtl[b].split('!@!')[5],
+										commitNo: AnimDtl[b].split('!@!')[6],
+										adrSeq: AnimDtl[b].split('!@!')[7]
+									}
+
+									dataToShow3.push(animData);
+								}
+							}
+						}
+
+					}
+				}
+
+				/*const rows1 = animalTable.getRows();
+				for (let row of rows1) {
+					const data = row.getData();
+					if (data.upd == 'Y') { // Check if row has data
+						if (data.lLeashedUnleashed == 'Leashed') {
+							data.leashVal = 'L';
+						} else {
+							data.leashVal = 'U';
+						}
+
+						dataToShow3.push(data);
+					}
+				}
+
+				const rows2 = weaponTable.getRows();
+				for (let row of rows2) {
+					const data = row.getData();
+					if (data.upd == 'Y') { // Check if row has data
+						dataToShow4.push(data);
+					}
+				}*/
+
+				var combinedData = {};
+				console.log(JSON.stringify(inmateData));
+
+				//alert(dataToShow0.length);
+
+				// Show data in alert
+				if (dataToShow0.length > 0 || dataToShow1.length > 0 || dataToShow2.length > 0 ||
+					dataToShow3.length > 0 || dataToShow4.length > 0) {
+					//alert(JSON.stringify(dataToShow, null, 2)); // Format for better readability
+
+					if (dataToShowX.length > 0) {
+						combinedData.tabX = dataToShowX;
+					}
+
+					if (dataToShow0.length > 0) {
+						combinedData.tab0 = dataToShow0;
+					}
+
+					if (dataToShow1.length > 0) {
+						combinedData.tab1 = dataToShow1;
+					}
+
+					// Check if table2 has data
+					if (dataToShow2.length > 0) {
+						combinedData.tab2 = dataToShow2;
+					}
+
+					// Check if table3 has data
+					if (dataToShow3.length > 0) {
+						combinedData.tab3 = dataToShow3;
+					}
+
+					// Check if table4 has data
+					if (dataToShow4.length > 0) {
+						combinedData.tab4 = dataToShow4;
+					}
+
+					loader(1);
+					$.ajax({
+						url: contextPath + "saveDemo",
+						type: 'POST',
+						contentType: 'application/json',
+						data: JSON.stringify(combinedData),
+						success: function (response) {
+							//alert('Data sent');
+							$('#loading-wrapperx').hide();
+							message('S', 0, 0);
+							$('#call_fetch').trigger('click');
+						},
+						error: function () {
+							$('#loading-wrapperx').hide();
+							message('E', 0, 0);
+							//custom_msg('CUE','Error found when saving the data');
+						}
+					});
+
+				} else {
+					console.log("No data available.");
+				}
+
+				//Alhamdulillah
+			});
+
+		});
+	</script>
+	<script type="text/javascript">
+		$('#js-page-content').smartPanel();
+	</script>
+</body>
+<!-- BEGIN Page Footer -->
+<div th:replace="~{fragments/footer :: footer}"></div>
+<!-- END Page Footer -->
+
+</html>

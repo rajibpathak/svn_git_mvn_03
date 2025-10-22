@@ -1,0 +1,4250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<title class="IncidentSidebar">DisciplinaryInfo</title>
+<div th:replace="~{fragments/head :: head}"></div>
+<body class="mod-bg-1 mod-nav-link">
+	
+<div th:replace="~{fragments/header :: header}"></div>
+<div th:replace="~{fragments/navmenus :: navmenus}"></div>
+	<!-- BEGIN Page Wrapper -->
+	<div class="page-wrapper">
+		<div class="page-inner">
+			<!-- BEGIN Left Aside -->
+			<div th:replace="~{fragments/sidebar :: sidebar}"></div>
+			<!-- END Left Aside --> 
+			<div class="page-content-wrapper">
+				<!-- BEGIN Page Header --> 
+				
+				<!-- END Page Header -->
+				<!-- BEGIN Page Content -->
+				<!-- the #js-page-content id is needed for some plugins to initialize -->
+				<main id="js-page-content" role="main" class="page-content">
+					<!-- <ol class="breadcrumb page-breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0);">SmartAdmin</a></li>
+                            <li class="breadcrumb-item">category_1</li>
+                            <li class="breadcrumb-item">category_2</li>
+                            <li class="breadcrumb-item active">Page Titile</li>
+                            <li class="position-absolute pos-top pos-right d-none d-sm-block"><span class="js-get-date"></span></li>
+                        </ol> -->
+					<div class="subheader mb-1">
+						<h1 class="subheader-title">
+						<div th:replace="~{fragments/toggleMenu :: toggleMenu}"></div>
+							<i class='subheader-icon fal fa-'></i> Disciplinary Info - <span class='fw-300 ml-2'>DIS_INFO</span>
+						</h1>
+						<div class="btn-group headerBtnGroup mr-2">
+						  <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    Go To
+						  </button>
+						  <div class="dropdown-menu">
+						    <a class="dropdown-item" href="#">Violations</a>
+						    <a class="dropdown-item" href="#">Witness Names</a>
+						    <a class="dropdown-item" href="#">Injured Persons</a>
+						    <a class="dropdown-item" href="#">Evidence</a>
+						    <a class="dropdown-item" href="#">Entered By</a>
+						    <a class="dropdown-item" href="#">DOC Reporting Officer/Source</a>
+						    <a class="dropdown-item" href="#">Referred To</a>
+						    <a class="dropdown-item" href="#">Approval</a>
+						  </div>
+						</div>
+						<!--<div class="btn-group headerBtnGroup mr-2 position-relative" style="top: 2px;">
+						  <button type="button" class="btn btn-primary btn-sm dropdown-toggle position-relative" style="top: -3px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						    Go To
+						  </button>
+						  <div class="dropdown-menu">
+							<a class="dropdown-item" href="#" onclick="grievanceScroll()">GRIEVANCE</a>
+						    <a class="dropdown-item" href="#" onclick="lsmeScroll()">LSME</a>
+						    <a class="dropdown-item" href="#" onclick="igcScroll()">IGC</a>
+						    <a class="dropdown-item" href="#" onclick="rgcScroll()">RGC/SME</a>
+						    <a class="dropdown-item" href="#" onclick="mgcScroll()">MGC</a>
+						    <a class="dropdown-item" href="#" onclick="referralScroll()">REFERRAL</a>
+						    <a class="dropdown-item" href="#" onclick="wardenScroll()">WARDEN/BSME</a>
+						    <a class="dropdown-item" href="#" onclick="appealScroll()">APPEAL</a>
+						    <a class="dropdown-item" href="#" onclick="bgoScroll()">BGO</a>
+						    <a class="dropdown-item" href="#" onclick="bureauScroll()">BUREAU CHIEF</a>
+						  </div>
+						</div>-->
+						<div class="frame-wrap bg-transparent">
+							<div class="btn-group">
+							<div class="col-12 pr-0">
+                            <div class="js-get-date">[your date here]</div>
+                            </div>
+								<div class="mr-2">
+									<div class="input-append date position-relative w-100">
+										
+										<span class="add-on"></span>
+									</div>
+								</div>
+							</div>
+							<!--<span data-toggle="modal" data-target="#LSMEmemberModal">-->
+								<a href="javascript:void(0);"
+									class="btn btn-primary btn-sm btn-icon waves-effect waves-themed"
+									data-toggle="tooltip" data-placement="top" data-original-title="Add" id="addNewGrievanceBtn"> <i
+										class="fal fa-plus"></i>
+								</a>
+							<!--</span>-->
+							 <a href="javascript:void(0);"
+								class="btn btn-warning btn-sm btn-icon waves-effect waves-themed disabled"
+								data-toggle="tooltip" data-placement="top" data-original-title="Print"> <i
+									class="fal fa-print"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-secondary btn-sm btn-icon waves-effect waves-themed"
+								data-toggle="tooltip" data-placement="top" data-original-title="Clear" id="clearButton"> <i
+									class="fal fa-times"  ></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-success btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="OK/Save" id="disInfoSave"> <i class="fal fa-save"></i>
+							</a> <a href="javascript:void(0);"
+								class="btn btn-danger btn-sm btn-icon waves-effect waves-themed" data-toggle="tooltip"
+								data-placement="top" data-original-title="Cancel/Exit"> <i class="fal fa-sign-out"></i>
+							</a>
+						</div>
+
+					</div>
+
+					<div class="row">
+						<div class="col-12 col-xl-12">
+							<div th:replace="~{fragments/formheader :: formheader}"></div>
+							<div class="row">
+								<div class="col-lg-2 pr-0">
+									<div class="mr-2 panel p-2" style="margin-bottom: 0!important;height: calc(100vh - 278px);">
+										<div class="p-2 panel" style="margin-bottom: 0!important;">
+											<label for="Security" class="form-label mb-0 text-nowrap" style="margin-right: 13px;">Disciplinary# Date of <br> Occurance</label>
+											<div class="GrievanceList overflow-auto" style="height: calc(100vh - 350px);" id="grievanceListContainer">
+											<!--<div class="idList mt-1">519 <span class="ml-6">04/04/2024</span> </div>
+												<div class="idList">520 <span class="ml-6">04/04/2024</span> </div>
+												<div class="idList">521 <span class="ml-6">05/04/2024</span> </div>
+												<div class="idList">522 <span class="ml-6">06/04/2024</span> </div>
+												<div class="idList">523 <span class="ml-6">07/04/2024</span> </div>
+												<div class="idList">524 <span class="ml-6">08/04/2024</span> </div>
+												<div class="idList">525 <span class="ml-6">08/04/2024</span> </div>
+												<div class="idList">526 <span class="ml-6">09/04/2024</span> </div>
+												<div class="idList">527 <span class="ml-6">10/04/2024</span> </div>
+												<div class="idList">528 <span class="ml-6">11/04/2024</span> </div>
+												<div class="idList">529 <span class="ml-6">11/04/2024</span> </div>
+												<div class="idList">530 <span class="ml-6">12/04/2024</span> </div>
+												<div class="idList">619 <span class="ml-6">13/04/2024</span> </div>
+												<div class="idList">620 <span class="ml-6">13/04/2024</span> </div>
+												<div class="idList">621 <span class="ml-6">14/04/2024</span> </div>
+												<div class="idList">622 <span class="ml-6">15/04/2024</span> </div>
+												<div class="idList">623 <span class="ml-6">16/04/2024</span> </div>
+												<div class="idList">624 <span class="ml-6">17/04/2024</span> </div>
+												<div class="idList">625 <span class="ml-6">18/04/2024</span> </div>
+												<div class="idList">626 <span class="ml-6">18/04/2024</span> </div>
+												<div class="idList">627 <span class="ml-6">19/04/2024</span> </div>
+												<div class="idList">628 <span class="ml-6">19/04/2024</span> </div>
+												<div class="idList">629 <span class="ml-6">20/04/2024</span> </div>
+												<div class="idList">630 <span class="ml-6">20/04/2024</span> </div>
+												<div class="idList">719 <span class="ml-6">21/04/2024</span> </div>
+												<div class="idList">720 <span class="ml-6">21/04/2024</span> </div>
+												<div class="idList">721 <span class="ml-6">23/04/2024</span> </div>
+												<div class="idList">722 <span class="ml-6">24/04/2024</span> </div>
+												<div class="idList">723 <span class="ml-6">25/04/2024</span> </div>
+												<div class="idList">724 <span class="ml-6">25/04/2024</span> </div>
+												<div class="idList">725 <span class="ml-6">26/04/2024</span> </div>
+												<div class="idList">726 <span class="ml-6">26/04/2024</span> </div>
+												<div class="idList">727 <span class="ml-6">27/04/2024</span> </div>
+												<div class="idList">728 <span class="ml-6">27/04/2024</span> </div>
+												<div class="idList">729 <span class="ml-6">28/04/2024</span> </div>
+												<div class="idList">730 <span class="ml-6">29/04/2024</span> </div>-->
+											</div>
+										</div>
+									</div>
+								</div> 
+								<div class="col-lg-10 grievanceMainBlock pr-0">
+										<div id="panel-1" class="panel" style="position: sticky; top: 0;  z-index: 999;">
+		                                    <div class="panel-container show">
+		                                        <div class="panel-content p-1">
+		                                            <div id="js-checkbox-toggles" class="form-group row mx-1">
+	                                                	<div class="col-12 col-lg-3 pl-0 selectFloatingLabel mt-2">
+															<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick disInfo-input" id="disciplinarySelect">
+																<option value="new">New</option>
+																
+															</select>
+															<label class="form-label mr-2 mb-0 control-label selectFloating">Disciplinary#</label>
+		                                                </div>
+		                                                <div class="col-12 col-lg-3 pl-0 selectFloatingLabel d-flex align-items-center mt-2">
+															<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick disInfo-input" id="disciplinaryTypeSelect">
+																<option value="new">Disciplinary Type</option>
+																<option value="Option 1"></option>
+																<option value="Option 2"></option>
+															</select>
+															<label class="form-label mr-2 mb-0 control-label selectFloating disInfo-input">Disciplinary Type</label>
+															<span data-toggle="modal" data-target="#DisciplinaryTypeModal" class="position-relative pl-1 cursor-pointer" style="font-size: 20px;color: #00ab8d;top: -2px;">
+																<i class="fa fa-header" aria-hidden="true"></i>
+															</span>
+		                                                </div>
+		                                                <div class="col-12 col-lg-3 pl-0 selectFloatingLabel mt-2">
+															<label class="form-label mr-2 mb-0 control-label selectFloating disInfo-input">Incident#</label>
+															<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="incidentDetails">
+																<option>Incident</option> 
+																
+																
+															</select>
+		                                                </div>
+		                                                <div class="col-12 col-lg-3 px-0 d-flex align-items-center mt-2 floatingFields">
+															<input type="text" class="form-control w-100 floatingLable disInfo-input" aria-label="" id="groupNoField" name="" value="" placeholder="" disabled>
+															<label for="Name" class="form-label mr-1 text-nowrap mb-0 disInfo-input">Group#</label>
+		                                                </div>
+		                                                <div class="col-12 col-lg-3 d-flex align-items-center pl-0 floatingFields mt-3">
+															<input type="text" class="form-control w-100 floatingLable date-input disInfo-input" aria-label="" id="dateOfOccurrence" name="" value="" placeholder="">
+															<label for="Name" class="form-label mr-1 text-nowrap mb-0">Date of Occurrence</label>
+		                                                </div>
+		                                                <div class="col-12 col-lg-3 d-flex align-items-center pl-0 floatingFields mt-3">
+															<input type="text" class="form-control w-100 floatingLable disInfo-input" aria-label="" id="timeOfOccurrence" name="" value="" placeholder="">
+															<label for="Name" class="form-label mr-1 text-nowrap mb-0">Time of Occurrence</label>
+		                                                </div>
+		                                                <div class="col-12 col-lg-3 d-flex align-items-center pl-0 mt-3 floatingFields">
+															<input type="text" class="form-control w-100 floatingLable disInfo-input" aria-label="" id="locationOfOccurrence" name="" value="" placeholder="" disabled> 
+															<label for="Name" class="form-label mr-1 text-nowrap mb-0">Location of Occurrence</label>
+		                                                </div>
+		                                                <div class="col-12 col-lg-3 px-0 selectFloatingLabel mt-3">
+															<label class="form-label mr-2 mb-0 control-label selectFloating disInfo-input">Status</label>
+															<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="statusSelectCtrl">
+																<option>Status</option> 
+																<option value="O">Opened</option>
+																<option value="C">Closed</option>
+																<option value="X">Excluded</option>
+															</select>
+		                                                </div>
+		                                                <div class="col-12 col-lg-12 px-0 d-flex align-items-center floatingFields mt-3">
+															<input type="text" class="form-control w-100 floatingLable disInfo-input" aria-label="" id="nullifyReasonField" name="" value="" placeholder="">
+															<label for="Name" class="form-label mr-1 text-nowrap mb-0">Reason for Nullification</label>
+		                                                </div>
+		                                            </div>
+		                                        </div>
+		                                    </div>
+		                                </div>
+	                                	<div id="violationtab" class="panel mb-0">
+							                <div class="panel-hdr">
+							                    <h2>
+							                        Violations
+							                    </h2>
+							                </div>
+							                <div class="panel-container show">
+							                    <div class="panel-content p-1">
+							                        <div id="js-checkbox-toggles">
+							                            <div class="row form-group mx-1">
+															<div class="pr-3 mt-2">
+																<label for="Name" class="form-label text-nowrap mb-0">Last 6 Months</label>
+															</div>
+							                                <div class="col-12 col-lg-2 d-flex align-items-center pl-0 mt-2 floatingFields">
+																<input type="text" class="form-control w-100 floatingLable disInfo-input" aria-label="" id="class1Count" name="" value="" placeholder="">
+																<label for="Name" class="form-label mr-1 text-nowrap mb-0">Class 1</label>
+							                                </div>
+							                                <div class="col-12 col-lg-2 d-flex align-items-center pl-0 mt-2 floatingFields">
+																<input type="text" class="form-control w-100 floatingLable disInfo-input" aria-label="" id="class2Count" name="" value="" placeholder="">
+																<label for="Name" class="form-label mr-1 text-nowrap mb-0">Class 2</label>
+							                                </div>
+							                                <div class="col-12 col-lg-2 d-flex align-items-center pl-0 mt-2 floatingFields">
+																<input type="text" class="form-control w-100 floatingLable disInfo-input" aria-label="" id="summaryCount" name="" value="" placeholder="">
+																<label for="Name" class="form-label mr-1 text-nowrap mb-0">Summary</label>
+							                                </div>
+							                                <div class="col-12 col-lg-4 d-flex align-items-center px-0 mt-2 floatingFields">
+																<input type="text" class="form-control floatingLable w-100 disInfo-input" aria-label="" id="offenderHousingField" name="" value="" placeholder="" disabled>
+																<label for="Name" class="form-label mr-1 text-nowrap mb-0 ">Offender Housing Unit</label>
+							                                </div>
+							                                <div class="col-12 col-lg-6 d-flex align-items-center mt-2 px-0">
+																<div id="violated-table" class="w-100"></div>
+							                                </div>
+							                                <div class="col-12 col-lg-6 d-flex align-items-center pr-0 mt-2">
+																<textarea class="form-control m-1 disInfo-input" placeholder="Description Of Violation" id="addComments" rows="10" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+							                                </div>
+							                             </div>
+							                        </div>
+							                    </div>
+							                </div>
+							            </div>
+							            <div id="panel-1" class="panel">
+		                                    <div class="panel-hdr">
+		                                        <h2>
+		                                            Violation Details
+		                                        </h2>
+		                                        <div class="d-flex align-items-center justify-content-end">
+													<span class="d-flex ml-2">
+								                        <a href="javascript:void(0);" id="addWitnessRow" class="btn btn-primary btn-sm btn-icon waves-effect waves-themed headingIconsBlock mr-1" data-toggle="tooltip" data-placement="top" data-original-title="New"> <i class="fa-solid fa-plus"></i>
+														</a>						
+													</span>
+													<span class="d-flex">
+								                        <a href="javascript:void(0);" id="deleteWitnessRow" class="btn btn-danger btn-sm btn-icon waves-effect waves-themed headingIconsBlock mr-1" data-toggle="tooltip" data-placement="top" data-original-title="Delete"> <i class="fa-solid fa-trash"></i>
+														</a>					
+													</span>
+												</div>
+		                                    </div>
+		                                    <div class="panel-container show">
+		                                        <div class="panel-content p-1">
+		                                            <div id="js-checkbox-toggles">
+		                                                <div class="row">
+															<div class="col-lg-6">
+																<h6 class="headerBlock text-center m-0" style="font-weight: 600;">Witness Names</h6>
+																<div id="witness-table"> </div>
+															</div>
+															<div class="col-lg-6">
+																<h6 class="headerBlock text-center m-0" style="font-weight: 600;">Details</h6>
+																<div class="row w-100">
+																	<div class="d-flex align-items-center col-lg-3 pr-0">
+																		<div class="custom-control custom-checkbox custom-control-inline w-100">
+																			<input type="checkbox" class="custom-control-input disInfo-input" id="staffAssault">
+																			<label class="custom-control-label text-nowrap text-nowrap" for="staffAssault">Staff Assault</label>
+																		</div>
+																	</div>
+																	<div class="d-flex align-items-center col-lg-3 pr-0">
+																		<div class="custom-control custom-checkbox custom-control-inline w-100">
+																			<input type="checkbox" class="custom-control-input disInfo-input" id="sexRelated">
+																			<label class="custom-control-label text-nowrap text-nowrap" for="sexRelated">Sex Related</label>
+																		</div>
+																	</div>
+																	<div class="d-flex align-items-center col-lg-3 pr-0">
+																		<div class="custom-control custom-checkbox custom-control-inline w-100">
+																			<input type="checkbox" class="custom-control-input disInfo-input" id="IndustrialAccident">
+																			<label class="custom-control-label text-nowrap text-nowrap" for="IndustrialAccident">IA</label>
+																		</div>
+																	</div>
+																	<div class="d-flex align-items-center col-lg-3">
+																		<div class="custom-control custom-checkbox custom-control-inline w-100">
+																			<input type="checkbox" class="custom-control-input disInfo-input" id="resultOfIncident">
+																			<label class="custom-control-label text-nowrap text-nowrap" for="resultOfIncident">Result of Incident</label>
+																		</div>
+																	</div>
+																	<div class="d-flex align-items-center col-lg-3 pr-0 mt-2">
+																		<div class="custom-control custom-checkbox custom-control-inline w-100">
+																			<input type="checkbox" class="custom-control-input disInfo-input" id="staffInjuries">
+																			<label class="custom-control-label text-nowrap text-nowrap" for="staffInjuries">Staff Injuries</label>
+																		</div>
+																	</div>
+																	<div class="d-flex align-items-center col-lg-3 pr-0 mt-2">
+																		<div class="custom-control custom-checkbox custom-control-inline w-100">
+																			<input type="checkbox" class="custom-control-input disInfo-input" id="stgRelated">
+																			<label class="custom-control-label text-nowrap text-nowrap" for="stgRelated">STG Related</label>
+																		</div>
+																	</div>
+																	<div class="d-flex align-items-center col-lg-3 pr-0 mt-2">
+																		<div class="custom-control custom-checkbox custom-control-inline w-100">
+																			<input type="checkbox" class="custom-control-input disInfo-input" id="inmateAssault">
+																			<label class="custom-control-label text-nowrap text-nowrap" for="inmateAssault">Inmate Assault</label>
+																		</div>
+																	</div>
+																	<div class="d-flex align-items-center col-lg-3 mt-2">
+																		<div class="custom-control custom-checkbox custom-control-inline w-100">
+																			<input type="checkbox" class="custom-control-input disInfo-input" id="resultOfSearch">
+																			<label class="custom-control-label text-nowrap text-nowrap" for="resultOfSearch">Result of Search</label>
+																		</div>
+																	</div>
+																</div>
+																<div class="row mx-1">
+																	<div class="d-flex align-items-center col-lg-6 pl-0 selectFloatingLabel mt-3">
+																		<label class="form-label mb-0 control-label selectFloating bg-light disInfo-input">Assault</label>
+																		<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="assaultTypeDropdown">
+																			<option>Assault</option> 
+																			
+																		</select>
+																	</div>
+																	<div class="d-flex align-items-center col-lg-6 selectFloatingLabel mt-3 px-0">
+																		<label class="form-label mb-0 control-label selectFloating bg-light disInfo-input">Weapon Type</label>
+																		<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="weaponTypeDropdown">
+																			<option>Weapon Type</option> 
+																			
+																		</select>
+																	</div>
+																	<div class="d-flex align-items-center col-lg-12 px-0 floatingFields mt-2">
+																		<input type="text" class="form-control floatingLable disInfo-input" aria-label="" id="weaponNote" name="" value="" placeholder="">
+																		<label for="Name" class="form-label text-nowrap mb-0">Weapon Note</label>
+																	</div>
+																</div>
+															</div>
+															<div class="col-lg-12 mt-2">
+																<textarea class="form-control mt-1 disInfo-input" placeholder="Disposition of Evidence" id="evidenceDisposition" rows="4" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+																<div class="d-flex align-itens-center mt-3 ml-auto w-25">			
+																	<div id="mdPicker" class="floatingFields w-100 input-append date">
+																		<input class="span2 form-control w-100 floatingLable date-input" size="16" type="text" aria-label="" name="" id="dispositionDate" value="" placeholder="">
+																		<label for="Name" class="form-label mr-2 text-nowrap mb-0"  style="left: 10px;">Disposition Date</label>
+																		<span class="add-on"></span>
+																	</div>
+																</div>
+																<textarea class="form-control mt-1" placeholder="Immediate Action Taken" id="actionTaken" rows="4" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+															</div>
+														</div>
+		                                            </div>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                                <div id="enteredBy" class="panel mb-2">
+							                <div class="panel-hdr">
+							                    <h2>
+							                        Entered By / Reffered To
+							                    </h2>
+							                </div>
+							                <div class="panel-container show">
+							                    <div class="panel-content p-1">
+							                        <div id="js-checkbox-toggles">
+														<h6 class="headerBlock text-center m-0" style="font-weight: 600;">Entered By</h6>
+							                            <div class="row">
+															 <div class="d-flex align-items-center col-md-6 col-lg-6 mt-2">
+																<input type="text" class="form-control disInfo-input" aria-label="Security" placeholder="Entered By" name="Group" id="EnteredByUsersInp" value="" disabled>
+																<!---Adith-->
+																<span data-toggle="modal" data-target="#ApproveenteredByModal" class="Users" id="EnteredByUsers"> 							
+																	<a href="#" class="btn btn-primary btn-sm btn js-waves-off p-1 ml-2" data-toggle="tooltip" data-placement="top" data-original-title="Entered By">
+											                            <i class="fa fa-users"></i>
+																		
+											                         </a>
+																</span>
+																
+															 </div>
+															 <div class="d-flex align-items-center col-md-3 col-lg-3 pl-0 selectFloatingLabel mt-2">
+																<label class="form-label mb-0 control-label selectFloating">Title</label>
+																<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="enteredByTitleDropdown">
+																	<option value="">Select Title</option>
+																	
+																</select>
+															</div>
+															<div id="mdPicker" class="col-12 col-md-2 col-lg-2 mt-2 pl-0 d-flex align-itens-center floatingFields mb-1 w-100 input-append date " style="top: 0;">
+																<input class="span2 form-control w-100 floatingLable date-input disInfo-input" type="text" aria-label="" name="" id="EnteredByDate" value="" placeholder="">
+																<label for="Name" class="form-label text-nowrap mb-0">Date</label>
+																<span class="add-on"></span>
+															</div>
+															<div class="col-12 col-md-1 col-lg-1 mt-2 pl-0 d-flex align-itens-center floatingFields">
+																<input class="span2 form-control w-100 floatingLable disInfo-input" type="text" aria-label="" name="" id="EnteredByTime" value="" placeholder="">
+																<label for="Name" class="form-label text-nowrap mb-0">Time</label>
+															</div>
+														 </div>
+														 <h6 class="headerBlock text-center m-0" style="font-weight: 600;">Referred To</h6>
+														 <div class="row">
+															 <div class="d-flex align-items-center col-lg-5 mt-2">
+																
+																<input type="text" class="form-control" aria-label="Security" placeholder="Referred To" name="Group" id="ReferredToUsersInp" value="" disabled>
+																<!---Adith-->
+																<span data-toggle="modal" data-target="#ApproveenteredByModal" class="Users" id="ReferredToUsers">
+																	<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off disInfo-input" data-toggle="tooltip" data-placement="top" data-original-title="Referred To" data-class="nav-function-hidden">
+											                            <i class="fa fa-users"></i>
+											                         </a>
+											                    </span>
+										                         <span  class="position-relative pl-1 cursor-pointer" data-toggle="modal" data-target="#disReferredToHistory" style="font-size: 20px;color: #00ab8d;">
+																	<i class="fa fa-header" aria-hidden="true"></i>
+																</span>
+															 </div>
+															 <div class="d-flex align-items-center col-lg-2 pr-0 selectFloatingLabel mt-2">
+																<label class="form-label mb-0 control-label selectFloating disInfo-input">Title</label>
+																<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="ReferredToTitle">
+																	<option>Title</option> 
+																	
+																	
+																</select>
+															</div>
+															<div class="d-flex align-items-center col-lg-2 mt-2">
+																<div id="mdPicker" class="d-flex align-itens-center floatingFields mb-1 w-100 input-append date">
+																	<input class="span2 form-control w-100 floatingLable date-input disInfo-input" size="16" type="text" aria-label="" name="" id="ReferredToDate" value="" placeholder="">
+																	<label for="Name" class="form-label mr-2 text-nowrap mb-0" style="left: 10px;">Date</label>
+																	<span class="add-on"></span>
+																</div>
+															</div>
+															<div class="col-12 col-md-3 col-lg-3 mt-2 pl-0 d-flex align-itens-center floatingFields">
+																<input class="span2 form-control w-100 floatingLable disInfo-input" type="text" aria-label="" name="" id="ReferredToTime" value="" placeholder="">
+																<label for="Name" class="form-label text-nowrap mb-0">Time</label>
+																<button type="button" class="btn btn-primary btn-sm ml-1" style="min-width: 140px;"> Resend Notification </button>
+															</div>
+															<div class="d-flex align-items-center col-lg-12 mt-1">					
+																<textarea class="form-control" placeholder="Comments" id="ReferredToComments" rows="3" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+															</div>
+														 </div>
+							                        </div>
+							                    </div>
+							                </div>
+							            </div>
+							            <div id="preHearing" class="panel mb-2">
+							                <div class="panel-hdr">
+							                    <h2>
+							                        Pre-Hearing Decision
+							                    </h2>
+							                </div>
+							                <div class="panel-container show">
+							                    <div class="panel-content p-1">
+							                        <div id="js-checkbox-toggles">
+														<h6 class="headerBlock text-center mt-2 mx-0 mb-0" style="font-weight: 600;">Decision</h6>
+							                            <div class="row mx-1">
+															 <div class="d-flex align-items-center col-md-6 col-lg-6 pl-0 mt-2 floatingFields">
+																<input type="text" class="form-control floatingLable" aria-label="Security" placeholder="" name="Group" id="OfficerNameUsersInp" value="" disabled>
+																<label class="form-label mb-0 control-label">Officer Name</label>
+																<span data-toggle="modal" data-target="#ApproveenteredByModal" class="Users" id="OfficerNameUsers"> 							
+																	<a href="#" class="btn btn-primary btn-sm btn js-waves-off p-1 ml-2" data-toggle="tooltip" data-placement="top" data-original-title="Entered By">
+											                            <i class="fa fa-users"></i>
+											                         </a>
+																</span>
+															 </div>
+															 <div class="d-flex align-items-center col-md-3 col-lg-3 pl-0 selectFloatingLabel mt-2">
+																<label class="form-label mb-0 control-label selectFloating disInfo-input">Title</label>
+																<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="decisionTitle">
+																	<option>Title</option> 
+																	
+																</select>
+															</div>
+															<div id="mdPicker" class="col-12 col-md-2 col-lg-2 mt-2 pl-0 d-flex align-itens-center floatingFields mb-1 w-100 input-append date" style="top: 0;">
+																<input class="span2 form-control w-100 floatingLable date-input disInfo-input" type="text" aria-label="" name="" id="decisionDate" value="" placeholder="">
+																<label for="Name" class="form-label text-nowrap mb-0">Date</label>
+																<span class="add-on"></span>
+															</div>
+															<div class="col-12 col-md-1 col-lg-1 mt-2 px-0 d-flex align-itens-center floatingFields">
+																<input class="span2 form-control w-100 floatingLable disInfo-input" type="text" aria-label="" name="" id="decisionTime" value="" placeholder="">
+																<label for="Name" class="form-label text-nowrap mb-0">Time</label>
+															</div>
+															<div class="d-flex align-items-center col-md-6 col-lg-6 pl-0 selectFloatingLabel mt-2">
+																<label class="form-label mb-0 control-label selectFloating disInfo-input">Decision</label>
+																<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="decisionDropDown">
+																	<option>Decision</option> 
+																	
+																</select>
+															</div>
+															<div class="d-flex align-items-center col-lg-12 mt-1 px-0">					
+																<textarea class="form-control disInfo-input" placeholder="Comments" id="decisionAddComments" rows="3" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+															</div>
+														 </div>
+														 <h6 class="headerBlock text-center mt-2 mx-0 mb-0" style="font-weight: 600;">Offender Disposition</h6>
+							                            <div class="row mx-1">
+															 <div class="d-flex align-items-center col-md-3 col-lg-3 pl-0 selectFloatingLabel mt-2">
+																<label class="form-label mb-0 control-label selectFloating disInfo-input">Offender Disposition</label>
+																<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="offenderDispositionDropDown">
+																	<option>Offender Disposition</option> 
+																	
+																</select>
+															</div>
+															<div id="mdPicker" class="col-12 col-md-2 col-lg-2 mt-2 pl-0 d-flex align-itens-center floatingFields mb-1 w-100 input-append date" style="top: 0;">
+																<input class="span2 form-control w-100 floatingLable date-input disInfo-input" type="text" aria-label="" name="" id="offenderDispositionDate" value="" placeholder="">
+																<label for="Name" class="form-label text-nowrap mb-0">Date</label>
+																<span class="add-on"></span>
+															</div>
+															<div class="col-12 col-md-1 col-lg-1 mt-2 pl-0 d-flex align-itens-center floatingFields">
+																<input class="span2 form-control w-100 floatingLable disInfo-input" type="text" aria-label="" name="" id="offenderDispositionTime" value="" placeholder="">
+																<label for="Name" class="form-label text-nowrap mb-0">Time</label>
+															</div>
+															<div class="col-12 col-lg-2 d-flex align-items-center text-nowrap pr-0">
+																<div class="custom-control custom-checkbox custom-control-inline mr-0">
+																	<input type="checkbox" class="custom-control-input formheadercheckbox disInfo-input"id="offenderDispositionCell">
+																	<label class="custom-control-label" for="" style="font-weight: 500;">Cell Secured</label>
+																</div>
+															</div>
+															<div class="d-flex align-items-center col-lg-12 mt-1 px-0">					
+																<textarea class="form-control disInfo-input" placeholder="Reason" id="offenderDispositionReason" rows="3" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+															</div>
+														 </div>
+														 <h6 class="headerBlock text-center mt-2 mx-0 mb-0" style="font-weight: 600;">Referred To</h6>
+														 <div class="row mx-1">
+															 <div class="d-flex align-items-center col-lg-5 mt-2 pl-0">
+																<input type="text" class="form-control" aria-label="Security" placeholder="Referred To" name="Group" id="preHearingRefUsersInp" value="" disabled>
+																<span data-toggle="modal" data-target="#ApproveenteredByModal" class="Users" id="preHearingRefUsers">
+																	<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Referred To" data-class="nav-function-hidden">
+											                            <i class="fa fa-users"></i>
+											                         </a>
+											                    </span>
+															 </div>
+															 <div class="d-flex align-items-center col-lg-4 pl-0 selectFloatingLabel mt-2">
+																<label class="form-label mb-0 control-label selectFloating disInfo-input">Title</label>
+																<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="preHearingRefTitle">
+																	<option>Title</option> 
+																	
+																</select>
+															</div>
+															<div class="d-flex align-items-center pl-0 col-lg-2 mt-2">
+																<div id="mdPicker" class="d-flex align-itens-center floatingFields mb-1 w-100 input-append date">
+																	<input class="span2 form-control w-100 floatingLable date-input disInfo-input" size="16" type="text" aria-label="" name="" id="preHearingRefDate" value="" placeholder="">
+																	<label for="Name" class="form-label mr-2 text-nowrap mb-0" style="left: 10px;">Date</label>
+																	<span class="add-on"></span>
+																</div>
+															</div>
+															<div class="col-12 col-md-2 col-lg-1 mt-2 px-0 d-flex align-itens-center floatingFields">
+																<input class="span2 form-control w-100 floatingLable disInfo-input" type="text" aria-label="" name="" id="preHearingRefTime" value="" placeholder="">
+																<label for="Name" class="form-label text-nowrap mb-0">Time</label>
+															</div>
+															<div class="d-flex align-items-center col-lg-12 mt-1 px-0">					
+																<textarea class="form-control disInfo-input" placeholder="Comments" id="preHearingRefComments" rows="3" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+															</div>
+														 </div>
+							                        </div>
+							                    </div>
+							                </div>
+							            </div>
+							            <div id="approval" class="panel mb-2">
+							                <div class="panel-hdr">
+							                    <h2>
+							                        Approval
+							                    </h2>
+							                </div>
+							                <div class="panel-container show">
+							                    <div class="panel-content p-1">
+							                        <div id="js-checkbox-toggles">
+														<h6 class="headerBlock text-center mt-2 mx-0 mb-0" style="font-weight: 600;">Approved By</h6>
+							                            <div class="row mx-1">
+															 <div class="d-flex align-items-center col-md-4 col-lg-4 pl-0 mt-2 floatingFields">
+																<input type="text" class="form-control floatingLable disInfo-input" aria-label="Security" placeholder="" name="Group" id="ApprovedByUsersInp" value="" disabled>
+																<label class="form-label mb-0 control-label">Approved By</label>
+																<!--TableSpan here for the button-->
+																<span data-toggle="modal" data-target="#ApproveenteredByModal" id = "ApprovedByUsers" class="Users"> 							
+																	<a href="#" class="btn btn-primary btn-sm btn js-waves-off p-1 ml-2" data-toggle="tooltip" data-placement="top" data-original-title="Entered By">
+											                            <i class="fa fa-users"></i>
+											                         </a>
+																</span>
+															 </div>
+															 <div class="d-flex align-items-center col-md-3 col-lg-3 pl-0 selectFloatingLabel mt-2">
+																<label class="form-label mb-0 control-label selectFloating ">Approval Status</label>
+																<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick disInfo-input" id="ApprovedByStatus">
+																	<option>Approval Status</option>
+																	<option>Approved</option> 
+																	<option>Disapproved</option>
+																	
+																</select>
+															</div>
+															<div id="mdPicker" class="col-12 col-md-2 col-lg-1 mt-2 pl-0 d-flex align-itens-center floatingFields mb-1 w-100 input-append date" style="top: 0;">
+																<input class="span2 form-control w-100 floatingLable date-input disInfo-input" type="text" aria-label="" name="" id="ApprovedByDate" value="" placeholder="">
+																<label for="Name" class="form-label text-nowrap mb-0">Date</label>
+																<span class="add-on"></span>
+															</div>
+															<div class="d-flex align-items-center col-md-2 col-lg-2 pl-0 selectFloatingLabel mt-2">
+																<label class="form-label mb-0 control-label selectFloating">Title</label>
+																<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="ApprovedByTitle">
+																	<option>Title</option> 
+																	
+																</select>
+															</div>
+															 <div class="col-12 col-lg-2 d-flex align-items-center text-nowrap pr-0">
+																<div class="custom-control custom-checkbox custom-control-inline mr-0">
+																	<input type="checkbox" class="custom-control-input formheadercheckbox"id="ApprovedByFollowUp">
+																	<label class="custom-control-label" for="" style="font-weight: 500;">Follow-Up Required</label>
+																</div>
+															</div>
+															<div class="d-flex align-items-center col-lg-12 mt-1 px-0">					
+																<textarea class="form-control disInfo-input" placeholder="Comments" id="ApprovedByAddComments" rows="3" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+															</div>
+														 </div>
+														 <h6 class="headerBlock text-center mt-2 mx-0 mb-0" style="font-weight: 600;">Delivered By</h6>
+							                            <div class="row mx-1">
+															<div class="d-flex align-items-center col-md-6 col-lg-6 pl-0 mt-2 floatingFields">
+																<input type="text" class="form-control floatingLable" aria-label="Security" placeholder="" name="Group" id="DeliveredByUsersInp" value="" disabled>
+																<label class="form-label mb-0 control-label">Delivered By</label>
+																<span data-toggle="modal" data-target="#ApproveenteredByModal" id = "DeliveredByUsers" class="Users"> 					
+																	<a href="#" class="btn btn-primary btn-sm btn js-waves-off p-1 ml-2" data-toggle="tooltip" data-placement="top" data-original-title="Entered By">
+											                            <i class="fa fa-users"></i>
+											                         </a>
+																</span>
+															 </div>
+															 <div class="d-flex align-items-center col-md-3 col-lg-3 pl-0 selectFloatingLabel mt-2">
+																<label class="form-label mb-0 control-label selectFloating disInfo-input">Title</label>
+																<select class="custom-select form-control typecontact d-block mb-1 floatingLableClick" id="DeliveredByTitle">
+																	<option>Title</option> 
+																	
+																	
+																</select>
+															</div>
+															<div id="mdPicker" class="col-12 col-md-2 col-lg-2 mt-2 pl-0 d-flex align-itens-center floatingFields mb-1 w-100 input-append date" style="top: 0;">
+																<input class="span2 form-control w-100 floatingLable date-input disInfo-input" type="text" aria-label="" name="" id="DeliveredByDate" value="" placeholder="">
+																<label for="Name" class="form-label text-nowrap mb-0">Date</label>
+																<span class="add-on"></span>
+															</div>
+															<div class="col-12 col-md-1 col-lg-1 mt-2 px-0 d-flex align-itens-center floatingFields">
+																<input class="span2 form-control w-100 floatingLable disInfo-input" type="text" aria-label="" name="" id="DeliveredByTime" value="" placeholder="">
+																<label for="Name" class="form-label text-nowrap mb-0">Time</label>
+															</div>
+															<div class="d-flex align-items-center col-lg-12 mt-1 px-0">					
+																<textarea class="form-control" placeholder="Reason" id="DeliveredByAddComments" rows="3" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+															</div>
+														 </div>
+							                        </div>
+							                    </div>
+							                </div>
+							            </div>
+	                               </div>
+	                             </div>
+								</div>
+							</div>
+							<div class="modal fade" id="DisciplinaryTypeModal" tabindex="-1" role="dialog" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-header pt-3 pb-2">
+											<h6 class="modal-title">History of Discipline Type Change </h6>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true"><i class="fal fa-times"></i></span>
+											</button>
+										</div>
+										<div class="modal-body py-0">
+											<div id="table-container">
+												<div id="historyofDiscipline-table"></div>
+												<div class="mt-3 floatingFieldsTextarea">
+													<textarea class="form-control floatingLabletextarea" placeholder="" id="addComments" rows="2" name="Comments" aria-label="Comments" style="resize:none;" value="" disabled></textarea>
+													<label for="" class="form-label mb-0">Detail description for Disciplinary Type Change</label>
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Ok</button>
+										</div>
+									</div> 
+								</div>			
+							</div>
+							<div class="modal fade" id="disenteredByModal" tabindex="-1" role="dialog" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-header pt-3 pb-2">
+											<h6 class="modal-title"> Help on Entered By (L,F,M,S) </h6>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true"><i class="fal fa-times"></i></span>
+											</button>
+										</div>
+										<div class="modal-body py-0">
+											<div class="d-flex align-items-center mb-2">
+												<label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+												<input type="text" class="form-control" aria-label="dob" name="Find" id="Find" value="" placeholder="%">
+												<button type="button" class="btn btn-primary btn-sm ml-2" id="fetchDataBtn" >Find</button>
+											</div>
+											<div id="discipEnteredBy-table"> </div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Ok</button>
+											<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+										</div>
+									</div> 
+								</div>			
+							</div>
+							<div class="modal fade" id="deliveredenteredByModal" tabindex="-1" role="dialog" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-header pt-3 pb-2">
+											<h6 class="modal-title"> Delivered on Entered By (L,F,M,S) </h6>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true"><i class="fal fa-times"></i></span>
+											</button>
+										</div>
+										<div class="modal-body py-0">
+											<div class="d-flex align-items-center mb-2">
+												<label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+												<input type="text" class="form-control" aria-label="dob" name="Find" id="Find" value="" placeholder="%">
+												<button type="button" class="btn btn-primary btn-sm ml-2" id="fetchDataBtn" >Find</button>
+											</div>
+											<div id="deliveredEnteredBy-table"> </div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Ok</button>
+											<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+										</div>
+									</div> 
+								</div>			
+							</div>
+							<div class="modal fade" id="ApproveenteredByModal" tabindex="-1" role="dialog" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-header pt-3 pb-2">
+											<!--ModelHead Change-->
+											<h6 class="modal-title">  <span id="usersModelHeader">Approved By</span>(L,F,M,S) </h6>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true"><i class="fal fa-times"></i></span>
+											</button>
+										</div>
+										<div class="modal-body py-0">
+											<div class="d-flex align-items-center mb-2">
+												<label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+												<input type="text" class="form-control" aria-label="dob" name="Find" id="Find" value="" placeholder="%">
+												<button type="button" class="btn btn-primary btn-sm ml-2" id="fetchDataBtn" >Find</button>
+											</div>
+											<div id="approveEnteredBy-table"> </div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary btn-sm" data-dismiss="modal" id="approveEnteredByOk" >Ok</button>
+											<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+										</div>
+									</div> 
+								</div>			
+							</div>
+							<div class="modal fade" id="preOfficerNameModal" tabindex="-1" role="dialog" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-header pt-3 pb-2">
+											<h6 class="modal-title"> Help on Pre-Hearing Officer (L,F,M,S) </h6>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true"><i class="fal fa-times"></i></span>
+											</button>
+										</div>
+										<div class="modal-body py-0">
+											<div class="d-flex align-items-center mb-2">
+												<label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+												<input type="text" class="form-control" aria-label="dob" name="Find" id="Find" value="" placeholder="%">
+												<button type="button" class="btn btn-primary btn-sm ml-2" id="fetchDataBtn" >Find</button>
+											</div>
+											<div id="preOfficerName-table"> </div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Ok</button>
+											<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+										</div>
+									</div> 
+								</div>			
+							</div>
+							<div class="modal fade" id="disReferredToModal" tabindex="-1" role="dialog" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-header pt-3 pb-2">
+											<h6 class="modal-title">Help On Referred To (L,F,M,S)</h6>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true"><i class="fal fa-times"></i></span>
+											</button>
+										</div>
+										<div class="modal-body py-0">
+											<div class="d-flex align-items-center mb-2">
+												<label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+												<input type="text" class="form-control" aria-label="dob" name="Find" id="Find" value="" placeholder="%">
+												<button type="button" class="btn btn-primary btn-sm ml-2" id="fetchDataBtn" >Find</button>
+											</div>
+											<div id="disreferredModal-table"> </div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Ok</button>
+											<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+										</div>
+									</div> 
+								</div>			
+							</div>
+							<div class="modal fade" id="preReferredToModal" tabindex="-1" role="dialog" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-header pt-3 pb-2">
+											<h6 class="modal-title">Help On Pre-Hearing Referred To (L,F,M,S)</h6>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true"><i class="fal fa-times"></i></span>
+											</button>
+										</div>
+										<div class="modal-body py-0">
+											<div class="d-flex align-items-center mb-2">
+												<label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+												<input type="text" class="form-control" aria-label="dob" name="Find" id="Find" value="" placeholder="%">
+												<button type="button" class="btn btn-primary btn-sm ml-2" id="fetchDataBtn" >Find</button>
+											</div>
+											<div id="preferredModal-table"> </div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Ok</button>
+											<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+										</div>
+									</div> 
+								</div>			
+							</div>
+							<div class="modal fade" id="disReferredToHistory" tabindex="-1" role="dialog" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-header pt-3 pb-2">
+											<h6 class="modal-title"> Disciplinary Referred to History </h6>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true"><i class="fal fa-times"></i></span>
+											</button>
+										</div>
+										<div class="modal-body py-0">
+											<div id="table-container">
+												<div id="disReferredHistory-table"></div>
+												<div class="mt-3 floatingFieldsTextarea">
+													<textarea class="form-control floatingLabletextarea" placeholder="" id="addComments" rows="2" name="Comments" aria-label="Comments" style="resize:none;" value="" disabled></textarea>
+													<label for="" class="form-label mb-0">Comments</label>
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-primary btn-sm" id="fetchDataBtn" >Ok</button>
+										</div>
+									</div> 
+								</div>			
+							</div>
+						</div>
+					</div>
+				</main>
+				<!-- this overlay is activated only when mobile menu is triggered -->
+				<div class="page-content-overlay" data-action="toggle" data-class="mobile-nav-on"></div>
+				<!-- END Page Content -->
+				<!-- BEGIN Page Footer -->
+				<!--<div th:replace="~{fragments/footer :: footer}"></div>-->
+				<!-- END Page Footer -->
+				<!-- Modal Large -->
+				<div class="modal fade" id="default-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+					<div class="modal-dialog modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Staff Name</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true"><i class="fal fa-times"></i></span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<div class="form-group row">
+									<label for="staffSearch"
+										class="col-form-label col-12 col-lg-1 form-label">Search</label>
+									<div class="col-12 col-lg-11">
+										<input type="text" class="form-control" aria-label="staffSearch"
+											name="staffSearch" id="staffSearch" value="">
+									</div>
+
+								</div>
+								<div class="table-responsive-lg">
+									<table class="table table-bordered m-0">
+										<thead>
+											<tr>
+												<th>Last Name</th>
+												<th>First Name</th>
+												<th>MI</th>
+												<th>Suffix</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td>14</td>
+												<td>Staff</td>
+												<td></td>
+												<td></td>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+				<!-- BEGIN Shortcuts -->
+				<!-- modal shortcut -->
+				<div class="modal fade modal-backdrop-transparent" id="modal-shortcut" tabindex="-1" role="dialog"
+					aria-labelledby="modal-shortcut" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-top modal-transparent" role="document">
+						<div class="modal-content">
+							<div class="modal-body">
+								<ul class="app-list w-auto h-auto p-0 text-left">
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-primary-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-home icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Home
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="page_inbox_general.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-3x opacity-100 color-success-500 "></i>
+												<i class="base base-7 icon-stack-2x opacity-100 color-success-300 "></i>
+												<i class="ni ni-envelope icon-stack-1x text-white"></i>
+											</div>
+											<span class="app-list-name">
+												Inbox
+											</span>
+										</a>
+									</li>
+									<li>
+										<a href="intel_introduction.html" class="app-list-item text-white border-0 m-0">
+											<div class="icon-stack">
+												<i class="base base-7 icon-stack-2x opacity-100 color-primary-300 "></i>
+												<i class="fal fa-plus icon-stack-1x opacity-100 color-white"></i>
+											</div>
+											<span class="app-list-name">
+												Add More
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div> <!-- END Shortcuts -->
+			</div>
+		</div>
+	</div>
+	<!-- END Page Wrapper -->
+	<!-- BEGIN Quick Menu -->
+	<!-- to add more items, please make sure to change the variable '$menu-items: number;' in your _page-components-shortcut.scss -->
+	<nav class="shortcut-menu d-none d-sm-block"> <input
+	type="checkbox" class="menu-open" name="menu-open" id="menu_open" />
+	<label for="menu_open" class="menu-open-button "> <span
+	class="app-shortcut-icon d-block"></span>
+	</label> <a href="#" class="menu-item btn" data-toggle="tooltip"
+	data-placement="left" title="Scroll Top"> <i
+	class="fal fa-arrow-up"></i>
+	</a> <a href="page_login-alt.html" class="menu-item btn"
+	data-toggle="tooltip" data-placement="left" title="Logout"> <i
+	class="fal fa-sign-out"></i>
+	</a> <a href="#" class="menu-item btn" data-action="app-fullscreen"
+	data-toggle="tooltip" data-placement="left" title="Full Screen"> <i
+	class="fal fa-expand"></i>
+	</a> <a href="#" class="menu-item btn" data-action="app-print"
+	data-toggle="tooltip" data-placement="left" title="Print page"> <i
+	class="fal fa-print"></i>
+	</a> <a href="#" class="menu-item btn" data-action="app-voice"
+	data-toggle="tooltip" data-placement="left" title="Voice command">
+	<i class="fal fa-microphone"></i>
+	</a> </nav>
+	<!-- END Quick Menu -->
+	<!-- BEGIN Messenger -->
+	<div class="modal fade js-modal-messenger modal-backdrop-transparent" tabindex="-1" role="dialog"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right">
+			<div class="modal-content h-100">
+				<div class="dropdown-header bg-trans-gradient d-flex align-items-center w-100">
+					<div class="d-flex flex-row align-items-center mt-1 mb-1 color-white">
+						<span class="mr-2">
+							<span class="rounded-circle profile-image d-block"
+								style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+						</span>
+						<div class="info-card-text">
+							<a href="javascript:void(0);" class="fs-lg text-truncate text-truncate-lg text-white"
+								data-toggle="dropdown" aria-expanded="false">
+								Tracey Chang
+								<i class="fal fa-angle-down d-inline-block ml-1 text-white fs-md"></i>
+							</a>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="#">Send Email</a>
+								<a class="dropdown-item" href="#">Create Appointment</a>
+								<a class="dropdown-item" href="#">Block User</a>
+							</div>
+							<span class="text-truncate text-truncate-md opacity-80">IT Director</span>
+						</div>
+					</div>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0 h-100 d-flex">
+					<!-- BEGIN msgr-list -->
+					<div
+						class="msgr-list d-flex flex-column bg-faded border-faded border-top-0 border-right-0 border-bottom-0 position-absolute pos-top pos-bottom">
+						<div>
+							<div
+								class="height-4 width-3 h3 m-0 d-flex justify-content-center flex-column color-primary-500 pl-3 mt-2">
+								<i class="fal fa-search"></i>
+							</div>
+							<input type="text" class="form-control bg-white" id="msgr_listfilter_input"
+								name="msgr_listfilter_input" placeholder="Filter contacts" aria-label="FilterSearch"
+								value="" data-listfilter="#js-msgr-listfilter">
+						</div>
+						<div class="flex-1 h-100 custom-scroll">
+							<div class="w-100">
+								<ul id="js-msgr-listfilter" class="list-unstyled m-0">
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="tracey chang online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-d.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Tracey Chang
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="oliver kopyuv online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-b.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Oliver Kopyuv
+													<small class="d-block font-italic text-success fs-xs">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="dr john cook phd away">
+											<div class="d-table-cell align-middle status status-warning status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-e.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Dr. John Cook PhD
+													<small class="d-block font-italic fs-xs">
+														Away
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney online">
+											<div class="d-table-cell align-middle status status-success status-sm ">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-g.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Ali Amdaney
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="sarah mcbrook online">
+											<div class="d-table-cell align-middle status status-success status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-h.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													Sarah McBrook
+													<small class="d-block font-italic fs-xs text-success">
+														Online
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-a.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney busy">
+											<div class="d-table-cell align-middle status status-danger status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-j.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs text-danger">
+														Busy
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney offline">
+											<div class="d-table-cell align-middle status status-sm">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-c.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													oliver.kopyuv@gotbootstrap.com
+													<small class="d-block font-italic fs-xs">
+														Offline
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+									<li>
+										<a href="#" class="d-table w-100 px-2 py-2 text-dark hover-white"
+											data-filter-tags="ali amdaney inactive">
+											<div class="d-table-cell align-middle">
+												<span class="profile-image-md rounded-circle d-block"
+													style="background-image:url('img/demo/avatars/avatar-m.png'); background-size: cover;"></span>
+											</div>
+											<div class="d-table-cell w-100 align-middle pl-2 pr-2">
+												<div class="text-truncate text-truncate-md">
+													+714651347790
+													<small class="d-block font-italic fs-xs opacity-50">
+														Missed Call
+													</small>
+												</div>
+											</div>
+										</a>
+									</li>
+								</ul>
+								<div class="filter-message js-filter-message"></div>
+							</div>
+						</div>
+						<div>
+							<a class="fs-xl d-flex align-items-center p-3">
+								<i class="fal fa-cogs"></i>
+							</a>
+						</div>
+					</div>
+					<!-- END msgr-list -->
+					<!-- BEGIN msgr -->
+					<div class="msgr d-flex h-100 flex-column bg-white">
+						<!-- BEGIN custom-scroll -->
+						<div class="custom-scroll flex-1 h-100">
+							<div id="chat_container" class="w-100 p-4">
+								<!-- start .chat-segment -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">
+										Jun 19
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent">
+									<div class="chat-message">
+										<p>
+											Hey Ching, did you get my files?
+										</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:00 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>
+											Hi
+										</p>
+										<p>
+											Sorry going through a busy time in office. Yes I analyzed the solution.
+										</p>
+										<p>
+											It will require some resource, which I could not manage.
+										</p>
+									</div>
+									<div class="fw-300 text-muted mt-1 fs-xs">
+										3:24 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-start">
+									<div class="chat-message">
+										<p>
+											Okay
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-sent chat-end">
+									<div class="chat-message">
+										<p>
+											Sending you some dough today, you can allocate the resources to this
+											project.
+										</p>
+									</div>
+									<div class="text-right fw-300 text-muted mt-1 fs-xs">
+										3:26 pm
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-start">
+									<div class="chat-message">
+										<p>
+											Perfect. Thanks a lot!
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get">
+									<div class="chat-message">
+										<p>
+											I will have them ready by tonight.
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment -->
+								<div class="chat-segment chat-segment-get chat-end">
+									<div class="chat-message">
+										<p>
+											Cheers
+										</p>
+									</div>
+								</div>
+								<!--  end .chat-segment -->
+								<!-- start .chat-segment for timestamp -->
+								<div class="chat-segment">
+									<div class="time-stamp text-center mb-2 fw-400">
+										Jun 20
+									</div>
+								</div>
+								<!--  end .chat-segment for timestamp -->
+							</div>
+						</div>
+						<!-- END custom-scroll  -->
+						<!-- BEGIN msgr__chatinput -->
+						<div class="d-flex flex-column">
+							<div
+								class="border-faded border-right-0 border-bottom-0 border-left-0 flex-1 mr-3 ml-3 position-relative shadow-top">
+								<div class="pt-3 pb-1 pr-0 pl-0 rounded-0" tabindex="-1">
+									<div id="msgr_input" contenteditable="true"
+										data-placeholder="Type your message here..."
+										class="height-10 form-content-editable"></div>
+								</div>
+							</div>
+							<div class="height-8 px-3 d-flex flex-row align-items-center flex-wrap flex-shrink-0">
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl width-1 mr-1"
+									data-toggle="tooltip" data-original-title="More options" data-placement="top">
+									<i class="fal fa-ellipsis-v-alt color-fusion-300"></i>
+								</a>
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+									data-original-title="Attach files" data-placement="top">
+									<i class="fal fa-paperclip color-fusion-300"></i>
+								</a>
+								<a href="javascript:void(0);" class="btn btn-icon fs-xl mr-1" data-toggle="tooltip"
+									data-original-title="Insert photo" data-placement="top">
+									<i class="fal fa-camera color-fusion-300"></i>
+								</a>
+								<div class="ml-auto">
+									<a href="javascript:void(0);" class="btn btn-info">Send</a>
+								</div>
+							</div>
+						</div>
+						<!-- END msgr__chatinput -->
+					</div>
+					<!-- END msgr -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END Messenger -->
+	<!-- BEGIN Page Settings -->
+	<div class="modal fade js-modal-settings modal-backdrop-transparent" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-right modal-md">
+			<div class="modal-content">
+				<div class="dropdown-header bg-trans-gradient d-flex justify-content-center align-items-center w-100">
+					<h4 class="m-0 text-center color-white">
+						Layout Settings
+						<small class="mb-0 opacity-80">User Interface Settings</small>
+					</h4>
+					<button type="button" class="close text-white position-absolute pos-top pos-right p-2 m-1 mr-2"
+						data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="fal fa-times"></i></span>
+					</button>
+				</div>
+				<div class="modal-body p-0">
+					<div class="settings-panel">
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									App Layout
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="fh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="header-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Header</span>
+							<span class="onoffswitch-title-desc">header is in a fixed at all times</span>
+						</div>
+						<div class="list" id="nff">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-fixed"></a>
+							<span class="onoffswitch-title">Fixed Navigation</span>
+							<span class="onoffswitch-title-desc">left panel is fixed</span>
+						</div>
+						<div class="list" id="nfm">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-minify"></a>
+							<span class="onoffswitch-title">Minify Navigation</span>
+							<span class="onoffswitch-title-desc">Skew nav to maximize space</span>
+						</div>
+						<div class="list" id="nfh">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-hidden"></a>
+							<span class="onoffswitch-title">Hide Navigation</span>
+							<span class="onoffswitch-title-desc">roll mouse on edge to reveal</span>
+						</div>
+						<div class="list" id="nft">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="nav-function-top"></a>
+							<span class="onoffswitch-title">Top Navigation</span>
+							<span class="onoffswitch-title-desc">Relocate left pane to top</span>
+						</div>
+						<div class="list" id="mmb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-main-boxed"></a>
+							<span class="onoffswitch-title">Boxed Layout</span>
+							<span class="onoffswitch-title-desc">Encapsulates to a container</span>
+						</div>
+						<div class="expanded">
+							<ul class="">
+								<li>
+									<div class="bg-fusion-50" data-action="toggle" data-class="mod-bg-1"></div>
+								</li>
+								<li>
+									<div class="bg-warning-200" data-action="toggle" data-class="mod-bg-2"></div>
+								</li>
+								<li>
+									<div class="bg-primary-200" data-action="toggle" data-class="mod-bg-3"></div>
+								</li>
+								<li>
+									<div class="bg-success-300" data-action="toggle" data-class="mod-bg-4"></div>
+								</li>
+							</ul>
+							<div class="list" id="mbgf">
+								<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+									data-class="mod-fixed-bg"></a>
+								<span class="onoffswitch-title">Fixed Background</span>
+							</div>
+						</div>
+						<!-- <div class="mt-4 d-table w-100 px-5">
+                            <div class="d-table-cell align-middle">
+                                <h5 class="p-0">
+                                    Mobile Menu
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="list" id="nmp">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-push"></a>
+                            <span class="onoffswitch-title">Push Content</span>
+                            <span class="onoffswitch-title-desc">Content pushed on menu reveal</span>
+                        </div>
+                        <div class="list" id="nmno">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-no-overlay"></a>
+                            <span class="onoffswitch-title">No Overlay</span>
+                            <span class="onoffswitch-title-desc">Removes mesh on menu reveal</span>
+                        </div>
+                        <div class="list" id="sldo">
+                            <a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+                                data-class="nav-mobile-slide-out"></a>
+                            <span class="onoffswitch-title">Off-Canvas <sup>(beta)</sup></span>
+                            <span class="onoffswitch-title-desc">Content overlaps menu</span>
+                        </div> -->
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Accessibility
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mbf">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-bigger-font"></a>
+							<span class="onoffswitch-title">Bigger Content Font</span>
+							<span class="onoffswitch-title-desc">content fonts are bigger for readability</span>
+						</div>
+						<div class="list" id="mhc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-high-contrast"></a>
+							<span class="onoffswitch-title">High Contrast Text (WCAG 2 AA)</span>
+							<span class="onoffswitch-title-desc">4.5:1 text contrast ratio</span>
+						</div>
+						<div class="list" id="mcb">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-color-blind"></a>
+							<span class="onoffswitch-title">Daltonism <sup>(beta)</sup> </span>
+							<span class="onoffswitch-title-desc">color vision deficiency</span>
+						</div>
+						<div class="list" id="mpc">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-pace-custom"></a>
+							<span class="onoffswitch-title">Preloader Inside</span>
+							<span class="onoffswitch-title-desc">preloader will be inside content</span>
+						</div>
+						<div class="mt-4 d-table w-100 px-5">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Global Modifications
+								</h5>
+							</div>
+						</div>
+						<div class="list" id="mcbg">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-clean-page-bg"></a>
+							<span class="onoffswitch-title">Clean Page Background</span>
+							<span class="onoffswitch-title-desc">adds more whitespace</span>
+						</div>
+						<div class="list" id="mhni">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-nav-icons"></a>
+							<span class="onoffswitch-title">Hide Navigation Icons</span>
+							<span class="onoffswitch-title-desc">invisible navigation icons</span>
+						</div>
+						<div class="list" id="dan">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-disable-animation"></a>
+							<span class="onoffswitch-title">Disable CSS Animation</span>
+							<span class="onoffswitch-title-desc">Disables CSS based animations</span>
+						</div>
+						<div class="list" id="mhic">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-hide-info-card"></a>
+							<span class="onoffswitch-title">Hide Info Card</span>
+							<span class="onoffswitch-title-desc">Hides info card from left panel</span>
+						</div>
+						<div class="list" id="mlph">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-lean-subheader"></a>
+							<span class="onoffswitch-title">Lean Subheader</span>
+							<span class="onoffswitch-title-desc">distinguished page header</span>
+						</div>
+						<div class="list" id="mnl">
+							<a href="#" onclick="return false;" class="btn btn-switch" data-action="toggle"
+								data-class="mod-nav-link"></a>
+							<span class="onoffswitch-title">Hierarchical Navigation</span>
+							<span class="onoffswitch-title-desc">Clear breakdown of nav links</span>
+						</div>
+						<div class="list mt-1">
+							<span class="onoffswitch-title">Global Font Size <small>(RESETS ON REFRESH)</small> </span>
+							<div class="btn-group btn-group-sm btn-group-toggle my-2" data-toggle="buttons">
+								<label for="smRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-sm" data-target="html">
+									<input type="radio" aria-label="smRadio" name="smRadio" id="smRadio" value=""> SM
+								</label>
+								<label for="mdRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text" data-target="html">
+									<input type="radio" aria-label="mdRadio" name="mdRadio" id="mdRadio" value=""
+										checked=""> MD
+								</label>
+								<label for="lgRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-lg" data-target="html">
+									<input type="radio" aria-label="lgRadio" name="lgRadio" id="lgRadio" value=""> LG
+								</label>
+								<label for="xlRadio" class="btn btn-default btn-sm" data-action="toggle-swap"
+									data-class="root-text-xl" data-target="html">
+									<input type="radio" aria-label="xlRadio" name="xlRadio" id="xlRadio" value=""> XL
+								</label>
+							</div>
+							<span class="onoffswitch-title-desc d-block mb-g">Change <strong>root</strong> font size to
+								effect rem values</span>
+						</div>
+						<div class="mt-2 d-table w-100 pl-5 pr-3">
+							<div class="d-table-cell align-middle">
+								<h5 class="p-0">
+									Theme colors <small>(overlays base css)</small>
+								</h5>
+								<!-- <div class="fs-xs text-muted p-2 alert alert-warning mt-3 mb-0">
+                                    <i class="fal fa-exclamation-triangle text-warning mr-2"></i>Due to network latency
+                                    and CPU utilization, you may experience a brief flickering effect on page load which
+                                    may show the intial applied theme for a split second. Setting the prefered
+                                    style/theme in the header will prevent this from happening.
+                                </div> -->
+							</div>
+						</div>
+						<div id="loadingSpinner" class="spinner-container" style="display: none;">
+						    <div class="spinner"></div>
+						</div>
+						<div class="expanded theme-colors pl-5 pr-3">
+							<ul class="m-0">
+								<li><a href="#" id="myapp-0" data-action="theme-update" data-themesave data-theme=""
+										data-toggle="tooltip" data-placement="top" title="Wisteria (base css)"
+										data-original-title="Wisteria (base css)"></a></li>
+								<li><a href="#" id="myapp-1" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-1.css" data-toggle="tooltip"
+										data-placement="top" title="Tapestry" data-original-title="Tapestry"></a></li>
+								<li><a href="#" id="myapp-2" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-2.css" data-toggle="tooltip"
+										data-placement="top" title="Atlantis" data-original-title="Atlantis"></a></li>
+								<li><a href="#" id="myapp-3" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-3.css" data-toggle="tooltip"
+										data-placement="top" title="Indigo" data-original-title="Indigo"></a></li>
+								<li><a href="#" id="myapp-4" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-4.css" data-toggle="tooltip"
+										data-placement="top" title="Dodger Blue" data-original-title="Dodger Blue"></a>
+								</li>
+								<li><a href="#" id="myapp-5" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-5.css" data-toggle="tooltip"
+										data-placement="top" title="Tradewind" data-original-title="Tradewind"></a></li>
+								<li><a href="#" id="myapp-6" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-6.css" data-toggle="tooltip"
+										data-placement="top" title="Cranberry" data-original-title="Cranberry"></a></li>
+								<li><a href="#" id="myapp-7" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-7.css" data-toggle="tooltip"
+										data-placement="top" title="Oslo Gray" data-original-title="Oslo Gray"></a></li>
+								<li><a href="#" id="myapp-8" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-8.css" data-toggle="tooltip"
+										data-placement="top" title="Chetwode Blue"
+										data-original-title="Chetwode Blue"></a></li>
+								<li><a href="#" id="myapp-9" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-9.css" data-toggle="tooltip"
+										data-placement="top" title="Apricot" data-original-title="Apricot"></a></li>
+								<li><a href="#" id="myapp-10" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-10.css" data-toggle="tooltip"
+										data-placement="top" title="Blue Smoke" data-original-title="Blue Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-11" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-11.css" data-toggle="tooltip"
+										data-placement="top" title="Green Smoke" data-original-title="Green Smoke"></a>
+								</li>
+								<li><a href="#" id="myapp-12" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-12.css" data-toggle="tooltip"
+										data-placement="top" title="Wild Blue Yonder"
+										data-original-title="Wild Blue Yonder"></a></li>
+								<li><a href="#" id="myapp-13" data-action="theme-update" data-themesave
+										data-theme="css/themes/cust-theme-13.css" data-toggle="tooltip"
+										data-placement="top" title="Emerald" data-original-title="Emerald"></a></li>
+							</ul>
+						</div>
+						<hr class="mb-0 mt-4">
+						<div class="pl-5 pr-3 py-3 bg-faded">
+							<div class="row no-gutters">
+								<div class="col-6 pr-1">
+									<a href="#" class="btn btn-outline-danger fw-500 btn-block"
+										data-action="app-reset">Reset Settings</a>
+								</div>
+								<div class="col-6 pl-1">
+									<a href="#" class="btn btn-danger fw-500 btn-block"
+										data-action="factory-reset">Factory Reset</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<span id="saving"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="modal fade" id="returnCorrespondenceModal" tabindex="-1" role="dialog" aria-labelledby="returnCorrespondenceModalLabel" aria-hidden="true">
+	            <div class="modal-dialog modal-lg" role="document">
+	                <div class="modal-content">
+	                    <div class="modal-header">
+	                        <h5 class="modal-title" id="returnCorrespondenceModalLabel">Return with Correspondence</h5>
+	                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                            <span aria-hidden="true">×</span>
+	                        </button>
+	                    </div>
+	                    <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+	                        <form id="returnCorrespondenceForm">
+	                            <div class="form-group">
+	                                <div class="custom-control custom-radio">
+	                                    <input type="radio" id="rcVulgar" name="returnReason" class="custom-control-input" value="vulgar">
+	                                    <label class="custom-control-label" for="rcVulgar"><strong>Vulgar/Abusive or Threatening Language.</strong> Per BOP Policy 4.4 "Inmate Grievance Policy" grievances submitted using vulgar abusive, or threatening language will not be processed. The unacceptable language is highlighted. The grievance may be resubmitted omitting this language.</label>
+	                                </div>
+	                            </div>
+	                            <div class="form-group">
+	                                <div class="custom-control custom-radio">
+	                                    <input type="radio" id="rcDisciplinary" name="returnReason" class="custom-control-input" value="disciplinary">
+	                                    <label class="custom-control-label" for="rcDisciplinary"><strong>Disciplinary Action.</strong> Disciplinary action may not be appealed through the grievance system. Appeals of disciplinary actions must be sent to the Disciplinary Hearing Officer within 15 days of receipt of the Disciplinary Hearing Decision Form using the Disciplinary Hearing Appeal Form. Refer to BOP Policy 4.2 "Rules of Conduct" on how to appeal. Disciplinary #</label>
+	                                    <input type="text" class="form-control form-control-sm ml-3 mt-1" id="rcDisciplinaryNumber" style="width: 200px; display: inline-block;" placeholder="Enter Disciplinary #" disabled>
+	                                </div>
+	                            </div>
+	                            <div class="form-group">
+	                                <div class="custom-control custom-radio">
+	                                    <input type="radio" id="rcParole" name="returnReason" class="custom-control-input" value="parole">
+	                                    <label class="custom-control-label" for="rcParole"><strong>Parole Decision.</strong> Issues with decisions of the Parole Board should be directed to the Board of Parole in writing to:<br>
+	                                    <span style="padding-left: 20px;">Carvel State Office Building - 4th Floor</span><br>
+	                                    <span style="padding-left: 20px;">820 North French Street</span><br>
+	                                    <span style="padding-left: 20px;">Wilmington, DE 19801</span></label>
+	                                </div>
+	                            </div>
+	                            <div class="form-group">
+	                                <div class="custom-control custom-radio">
+	                                    <input type="radio" id="rcClassification" name="returnReason" class="custom-control-input" value="classification">
+	                                    <label class="custom-control-label" for="rcClassification"><strong>Classification Action.</strong> Classification decisions may not be appealed through the grievance system. Written appeals must be within 10-days of receipt of the decision of the committee/board. IBCC decisions shall be directed to the facility Warden/designee. CICB decisions shall be directed to the Classification Administrator. Refer to BOP Policy 3.3 "Classification" on how to appeal.</label>
+	                                </div>
+	                            </div>
+	                            <div class="form-group">
+	                                <div class="custom-control custom-radio">
+	                                    <input type="radio" id="rcProhibitedMail" name="returnReason" class="custom-control-input" value="prohibited_mail">
+	                                    <label class="custom-control-label" for="rcProhibitedMail"><strong>Prohibited Mail.</strong> Decisions on prohibited mail may not be appealed through the grievance system. Written appeals on prohibited mail must be directed to the facility Warden. Refer to BOP Policy 8.92 "Mailroom Operations" on how to appeal.</label>
+	                                </div>
+	                            </div>
+	                            <div class="form-group">
+	                                <div class="custom-control custom-radio">
+	                                    <input type="radio" id="rcDuplicate" name="returnReason" class="custom-control-input" value="duplicate">
+	                                    <label class="custom-control-label" for="rcDuplicate"><strong>Duplicate Grievance(s).</strong> This issue has been addressed previously in Grievance #</label>
+	                                    <input type="text" class="form-control form-control-sm ml-3 mt-1" id="rcDuplicateGrievanceNumber" style="width: 200px; display: inline-block;" placeholder="Enter Grievance #" disabled>
+	                                </div>
+	                            </div>
+	                            <div class="form-group">
+	                                <div class="custom-control custom-radio">
+	                                    <input type="radio" id="rcOriginal" name="returnReason" class="custom-control-input" value="original">
+	                                    <label class="custom-control-label" for="rcOriginal"><strong>Original Grievances</strong> must be submitted to the Inmate Grievance Chairperson. Photocopies are not accepted. The grievance may be resubmitted on the original form.</label>
+	                                </div>
+	                            </div>
+	                             <div class="form-group">
+	                                <div class="custom-control custom-radio">
+	                                    <input type="radio" id="rcInquiryOther" name="returnReason" class="custom-control-input" value="inquiry_other">
+	                                    <label class="custom-control-label" for="rcInquiryOther"><strong>Inquiry on behalf of other Inmates.</strong> Inmate cannot submit grievances for other Inmates.</label>
+	                                </div>
+	                            </div>
+	                            <div class="form-group">
+	                                <div class="custom-control custom-radio">
+	                                    <input type="radio" id="rcExpiredFiling" name="returnReason" class="custom-control-input" value="expired_filing">
+	                                    <label class="custom-control-label" for="rcExpiredFiling"><strong>Expired Filing period.</strong> The grievance was not submitted within seven (7) days of the incident as required in BOP Policy 4.4 "Inmate Grievance Policy."</label>
+	                                </div>
+	                            </div>
+	                            <div class="form-group">
+	                                <div class="custom-control custom-radio">
+	                                    <input type="radio" id="rcAbuse" name="returnReason" class="custom-control-input" value="abuse">
+	                                    <label class="custom-control-label" for="rcAbuse"><strong>Abuse:</strong> Your use of the grievance process has been determined to be abusive. During the restriction period all grievances lodged in excess of the authorized amount shall be returned.</label>
+	                                </div>
+	                            </div>
+	                            <div class="form-group">
+	                                <div class="custom-control custom-radio">
+	                                    <input type="radio" id="rcOtherRadio" name="returnReason" class="custom-control-input" value="other">
+	                                    <label class="custom-control-label" for="rcOtherRadio"><strong>Other:</strong></label>
+	                                </div>
+	                                <textarea class="form-control mt-2" id="rcOtherText" rows="3" disabled></textarea>
+	                            </div>
+	                        </form>
+	                    </div>
+	                    <div class="modal-footer">
+	                        <button type="button" class="btn btn-secondary" id="rcSpellCheckBtn">Spell/Check</button>
+	                        <button type="button" class="btn btn-info" id="rcPrintBtn">Print</button>
+	                        <button type="button" class="btn btn-primary" id="rcOkSaveBtn">OK/Save</button>
+	                        <button type="button" class="btn btn-light" id="rcCancelBtnModal">Cancel/Exit</button>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	<!-- END Page Settings -->
+	
+	
+	
+	
+	
+	<style>
+		.form-group.focused .selectFloating {
+		    opacity: 1;
+		    transform: scale(0.75);
+		    top: -15px;
+		    background: #fff !important;
+		    height: 25px;
+		    font-weight: 500;
+		    z-index: 999;
+		    left:0;
+		}
+		.tabulator .tabulator-tableholder{
+			overflow-x: hidden;
+		}
+		
+		.tabulator .tabulator-row.tabulator-selected {
+		    background-color: #007BFF !important;
+		    color: white;
+		}
+		
+		
+		.page-content-wrapper{
+		    overflow: hidden;
+		}
+		.grievanceMainBlock{
+		    overflow-x: hidden;
+		    overflow-y: auto;
+		    height: calc(100vh - 290px);
+		    position: relative;
+		    right: 5px !important;
+		}
+		
+		.floatingFields input:not(:placeholder-shown) + label {
+				    background: #fff !important;
+				}
+		
+		.datePickerFloat input[type="date"]:focus + label,
+		.datePickerFloat input[type="date"].has-value + label,
+		.datePickerFloat input[type="time"]:focus + label,
+		.datePickerFloat input[type="time"].has-value + label {
+		    color: #886ab5 !important;
+		    top: -10px;
+		    left: 6px;
+		    background: #fff;
+		    font-size: 11px;
+		    z-index: 99;
+		}
+
+		.datePickerFloat input.has-value + label {
+		    color: #886ab5 !important;
+		    top: -10px !important;
+		    left: 6px !important;
+		    font-size: 11px !important;
+		    background: #fff !important;
+		    z-index: 99 !important;
+		}
+		
+		.datePickerFloat .form-label{
+		    color: #000;
+		    position: absolute;
+		    left: 5px;
+		    top: 3px;
+		    transition: all 0.2s ease;
+		    pointer-events: none;
+		}
+		
+		#ui-datepicker-div
+		{
+			z-index: 999 !important;
+		}
+
+		/* Date/time input placeholder handling */
+		input[type="date"]::-webkit-datetime-edit,
+		input[type="time"]::-webkit-datetime-edit {
+		    color: transparent !important;
+		}
+
+
+		input.has-value[type="date"]::-webkit-datetime-edit,
+		input.has-value[type="time"]::-webkit-datetime-edit {
+		    color: black !important;
+		}
+
+		input.has-value[type="date"] + .form-label,
+		input.has-value[type="time"] + .form-label 
+		{
+		    color: #886ab5 !important;
+		    top: -10px;
+		    left: 6px;
+		    background: #fff;
+		    font-size: 11px;
+		}
+
+
+		.floatingFields select.has-value + label {
+		    color: #886ab5 !important;
+		    top: -12px !important;
+		    left: 6px !important;
+		    font-size: 11px; 
+			text-shadow: -1px 1px 0px #fff,2px 1px 0px #fff,-3px 1px 0px #fff,4px 1px 0px #fff,-5px 1px 0px #fff, 6px 1px 0px #fff;
+		}
+		
+		#sbiNumberInput.has-value + label {
+		    background-color:#ede1ff !important;
+		}
+		
+		#sbiNumberInput:not(:placeholder-shown) + label {
+		    background: #fff !important;
+		}
+		
+		body{
+			overflow: hidden;
+		}
+		h6{
+			color: #7a59ad;
+			font-weight: 500;
+		}
+		#grievanceTable_wrapper div:first-child{
+			margin: 0!important;
+			padding-top: 0;
+		}
+		#grievanceTable_wrapper .col-sm-12{
+			padding: 0;
+		}
+		.dataTables_info{
+			margin-left: 12px;
+    		padding-top: 0;
+		}
+		#grievanceTable	{
+			margin-bottom: 5px !important;
+		}
+		.panel{
+			margin-bottom: 8px !important;
+		}
+		.dataTables_scrollHeadInner{
+			width: 100%!important;
+	    	white-space: nowrap;
+		}
+		.dataTables_wrapper .row:nth-child(1){
+			margin-bottom: 0px !important;
+		}
+		
+		label{
+			font-weight: 500;
+		}
+		.headerBlock{
+			background: #7a59ad;
+			color: #fff;
+			padding: 5px;
+			border: 1px solid #ccc;
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+		.panelContentBlock{
+			border: 1px solid #7a58ac;	
+			border-radius: 5px!important;
+		}
+		.nav-tabs{
+			border: 1px solid #7a59ad;
+    		border-radius: 5px 5px 5px 0px;
+		}
+		.GrievanceList .idList:hover{
+			background-color: #ddd;
+		}
+		.tabListMainBlock{
+			height: calc(100vh - 420px);
+			overflow-x: hidden!important;	
+		}
+		.datepicker{
+			width: fit-content;
+		}
+		.headerBtnGroup .dropdown-item{
+			padding: 5px 10px;
+		}
+	</style>
+	
+	
+	
+	<div th:replace="~{fragments/script :: script}"></div>
+	<script src="js/staticjs.js"></script>
+	
+	<!--Tabulator tables-->
+	
+	<script>
+		
+		
+		
+		
+			$(document).ready(function() {
+			   
+			});
+			
+			// Define Test Data
+		var tabledataviolated = [
+			{
+				id: "",
+				checkbox: "t",
+				codeDesc: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				codeDesc: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				codeDesc: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				codeDesc: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				codeDesc: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				codeDesc: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				codeDesc: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				codeDesc: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				codeDesc: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				codeDesc: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				codeDesc: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				codeDesc: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				codeDesc: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				codeDesc: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				codeDesc: "",
+			},
+			
+		];
+		
+		let violationCodeTable = null;
+		let originalViolationCodeData = [];
+		//Define Table
+		violationCodeTable = new Tabulator("#violated-table", {
+		    layout: "fitColumns",
+		    data: tabledataviolated,
+		    height: '200px',
+		    printAsHtml: true,
+		    printStyled: true,
+		    columns: [
+		        {
+		            title: "Violated",
+		            field: "checkbox",
+					width: 100,
+					formatter: function (cell) {
+					    const value = cell.getValue(); // either 't' or ''
+					    return `<input type="checkbox" class="violation-checkbox" ${value === 't' ? 'checked' : ''} />`;
+					},
+		            
+		            cellClick: function (e, cell) {
+		                const rowData = cell.getRow().getData();
+		                console.log("[Checkbox Clicked] Row Data:", rowData);
+
+		                const classType = rowData.classType || rowData.CLASS_TYPE;
+
+		                if (classType) {
+		                    $('#disciplinaryTypeSelect').val(classType).trigger('change');
+		                    console.log(`[Disciplinary Type] Set to: ${classType}`);
+		                } else {
+		                    console.warn("[Checkbox Clicked] classType not found in row data.");
+		                }
+		            }
+		        },
+		        {
+		            title: "Code Desc",
+		            field: "codeDesc"
+		        }
+		    ]
+		});
+
+
+		
+		// === Load Violation Code Table with Optional Pre-Checked LEVEL_OF_CODEs ===
+		function loadViolationCodeTable(preCheckedCodes = []) {
+		    const endpoint = `${contextPath}DisciplineCodeList`;
+
+		    $.ajax({
+		        url: endpoint,
+		        type: 'GET',
+		        success: function (data) {
+		            if (!Array.isArray(data)) {
+		                console.warn("[Violation Codes] Invalid response:", data);
+		                return;
+		            }
+
+		            const classTypeCount = {
+		                CLS1: 0,
+		                CLS2: 0,
+		                SUMM: 0
+		            };
+
+		            const tableData = data.map(item => {
+		                const isChecked = preCheckedCodes.includes(item.LEVEL_OF_CODE);
+		                const classType = item.CLASS_TYPE || '';
+		                if (isChecked && classType in classTypeCount) {
+		                    classTypeCount[classType]++;
+		                }
+
+		                return {
+		                    checkbox: isChecked ? 't' : '',
+		                    codeDesc: item.CODE_DESC,
+		                    classType,
+		                    levelOfCode: item.LEVEL_OF_CODE
+		                };
+		            });
+					
+					originalViolationCodeData = [...tableData];
+					
+					console.log("[originalViolationCodeData]:", originalViolationCodeData);
+					
+					
+		            // Find the classType with the highest count
+		            const mostFrequentClass = Object.entries(classTypeCount)
+		                .sort((a, b) => b[1] - a[1])[0][0]; // e.g., ['SUMM', 3]
+
+		            if (Object.values(classTypeCount).some(count => count > 0)) {
+		                $('#disciplinaryTypeSelect').val(mostFrequentClass).trigger('change');
+		                $('#disciplinaryTypeSelect').closest('div').show();
+		                console.log("[Auto-Select ClassType] Set to:", mostFrequentClass, classTypeCount);
+		            } else {
+		                $('#disciplinaryTypeSelect').closest('div').hide(); // Hide if nothing matched
+		                console.warn("[Auto-Select ClassType] No matching classes found.");
+		            }
+
+		            violationCodeTable.setData(tableData);
+
+		            // Visual checkbox sync
+		            setTimeout(() => {
+		                $('#violated-table .violation-checkbox').each(function (index) {
+		                    if (tableData[index].checkbox === 't') {
+		                        $(this).prop('checked', true);
+		                    }
+		                });
+		            }, 100);
+
+		            console.log("[Violation Table Loaded]:", tableData);
+		        },
+		        error: function (xhr, status, error) {
+		            console.error("[DisciplineCodeList] AJAX error:", status, error);
+		            message('CUW', "Failed to load violation codes.", 0);
+		        }
+		    });
+		}
+
+		// === Load Violations by COMMIT_NO and D_REPORT_NUM and Preselect ===
+		function loadViolationCodeTableFromDiscipline(commitNo, reportNo) {
+		    const endpoint = `${contextPath}DisciplineCodes?P_COMMIT_NO=${encodeURIComponent(commitNo)}&P_D_REPORT_NUM=${encodeURIComponent(reportNo)}`;
+
+		    $.ajax({
+		        url: endpoint,
+		        type: 'GET',
+		        success: function (selectedData) {
+		            if (!Array.isArray(selectedData)) {
+		                console.warn("[Violation Codes] Invalid selected codes format:", selectedData);
+		                return;
+		            }
+
+		            // Pick ALL LEVEL_OF_CODEs, no filtering
+		            const selectedCodes = selectedData.map(item => item.LEVEL_OF_CODE);
+
+		            console.log("[Selected LEVEL_OF_CODEs]:", selectedCodes);
+
+		            // Load all codes and pre-check matched ones
+		            loadViolationCodeTable(selectedCodes);
+		        },
+		        error: function (xhr, status, error) {
+		            console.error("[DisciplineCodes] AJAX error:", status, error);
+		            message('CUW', "Failed to load selected violations.", 0);
+		        }
+		    });
+		}
+
+
+		// === Re-initialize Table After SBI/Location Load ===
+		$(document).ajaxComplete(function (event, xhr, settings) {
+		    if (settings.url.includes("checkSbiNoAndLocation")) {
+		        loadViolationCodeTable();  // No pre-checks in this case
+		    }
+		});
+
+		
+		// Define Test Data
+		var tabledatawitness = [
+			{
+				id: "",
+				lastName: "",
+				firstName: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				id: "",
+				lastName: "",
+				firstName: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				id: "",
+				lastName: "",
+				firstName: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				id: "",
+				lastName: "",
+				firstName: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				id: "",
+				lastName: "",
+				firstName: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				id: "",
+				lastName: "",
+				firstName: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				id: "",
+				lastName: "",
+				firstName: "",
+				mi: "",
+				suffix: "",
+			},
+		];
+
+		
+		//Define Table
+		let witnessTable = null;
+		$(document).ready(function() {
+			witnessTable = new Tabulator("#witness-table", {
+						layout: "fitColumns",
+						data: tabledatawitness,
+						height: '118px',
+						selectable: 1,
+						printAsHtml: true,
+						printStyled: true,
+						columns: [
+						{
+						               title: "ID",  // Needed for tracking new rows, but hidden
+						               field: "id",
+						               visible: false 
+						           },
+						
+							{
+								title: "Last Name",
+								field: "lastName",
+								editor: "input"
+							},
+							{
+								title: "First Name",
+								field: "firstName",
+								editor: "input"
+							},
+							{
+								title: "Mi",
+								field: "mi",
+								width: 70,
+								editor: "input"
+							},
+							{
+								title: "Suffix",
+								field: "suffix",
+								width: 100,
+								editor: "input"
+							},
+						],
+						rowClick: function (e, row) {
+						    row.select();
+						}
+					});
+					
+					witnessTable.on("rowSelectionChanged", function (data, rows) {
+										    if (data.length > 0) {
+										        console.log("[Selected Row Data]:", data[0]);
+										    }
+										});
+					   
+					});
+					
+					
+					
+					// Focus helper for new row
+					function focusWitnessCell(table, rowIndex, field) {
+					    const row = table.getRow(rowIndex);
+					    if (!row) {
+					        console.warn("Row not found:", rowIndex);
+					        return;
+					    }
+
+					    const cell = row.getCell(field);
+					    if (!cell) {
+					        console.warn("Cell not found for field:", field);
+					        return;
+					    }
+
+					    const columnDef = cell.getColumn().getDefinition();
+					    const isEditable = columnDef.editor !== false && columnDef.editor !== undefined;
+
+					    if (!isEditable) {
+					        console.warn(`Field '${field}' is not editable.`);
+					        return;
+					    }
+
+					    try {
+					        cell.edit();
+
+					        setTimeout(() => {
+					            const input = cell.getElement().querySelector("input, select, textarea");
+					            if (input) input.focus();
+					        }, 0);
+					    } catch (err) {
+					        console.error("focusWitnessCell error:", err);
+					    }
+					}
+
+
+					// Add Witness Row at Top
+					$('#addWitnessRow').on('click', function () {
+					    if (!witnessTable) return;
+
+					    const nextId = witnessTable.getDataCount() + 1;
+
+					    const newRowData = {
+					        id: nextId,
+					        lastName: '',
+					        firstName: '',
+					        mi: '',
+					        suffix: '',
+					        isNew: true // Optional flag to style or track unsaved rows
+					    };
+
+					    // Add row to top of the table
+					    witnessTable.addRow(newRowData, true).then((row) => {
+					        // After DOM is ready, focus on 'lastName' input
+					        setTimeout(() => {
+					            focusWitnessCell(witnessTable, row.getPosition(), "lastName");
+					        }, 50);
+					    });
+					});
+
+
+					// Delete Selected Row (or empty top row if none selected)
+					$('#deleteWitnessRow').on('click', function () {
+					    const selectedRows = witnessTable.getSelectedRows();
+
+					    if (selectedRows.length > 0) {
+					        // Always delete selected row, even if it contains data
+					        selectedRows.forEach(row => {
+					            console.log("[Delete] Deleting selected row:", row.getData());
+					            row.delete();
+					        });
+					        return;
+					    }
+
+					    // No row selected — try deleting top row if empty
+					    const allRows = witnessTable.getRows();
+					    if (allRows.length > 0) {
+					        const topRow = allRows[0];
+					        const topData = topRow.getData();
+
+					        const isEmptyRow =
+					            !topData.lastName?.trim() &&
+					            !topData.firstName?.trim() &&
+					            !topData.mi?.trim() &&
+					            !topData.suffix?.trim();
+
+					        if (isEmptyRow) {
+					            console.log("[Delete] No selection — deleting empty top row.");
+					            topRow.delete();
+					            return;
+					        }
+					    }
+
+					    // Nothing selected and top row has data — show warning
+					    message('CUW', "Please select a row to delete.", 0);
+					});
+
+
+
+					// Load Witness Table Data
+					function loadWitnessTable(commitNo, reportNum) {
+					    if (!commitNo || !reportNum) {
+					        console.warn("[Witness] Missing commitNo or reportNum.");
+					        return;
+					    }
+
+					    const endpoint = `${contextPath}WitnessDetails?commitNo=${commitNo}&reportNo=${reportNum}`;
+					    console.log("[Witness] Fetching from:", endpoint);
+
+					    $.ajax({
+					        url: endpoint,
+					        type: 'GET',
+					        success: function (data) {
+					            console.log("[Witness] Raw Response:", data);
+
+					            let filteredData = [];
+
+					            if (Array.isArray(data) && data.length > 0) {
+					                filteredData = data.map(item => ({
+					                    lastName: item.lastName,
+					                    firstName: item.firstName,
+					                    mi: item.mi,
+					                    suffix: item.suffix
+					                }));
+					            } else {
+					                console.warn("[Witness] No witness data returned.");
+					            }
+
+								if (filteredData.length === 0) {
+								    filteredData.push({ lastName: "", firstName: "", mi: "", suffix: "" });
+								}
+
+
+					            if (witnessTable) {
+					                witnessTable.setData(filteredData);
+					            }
+
+					            $("#witness-table").closest(".tabulator").show();
+					        },
+					        error: function (xhr, status, error) {
+					            console.error("[Witness] AJAX error:", status, error);
+
+					            if (witnessTable) {
+					                witnessTable.clearData();
+					                witnessTable.setData([{ lastName: "", firstName: "", mi: "", suffix: "" }]);
+					            }
+
+					            $("#witness-table").closest(".tabulator").show();
+					            message('CUW', "Failed to load witness details.", 0);
+					        }
+					    });
+					}
+
+
+		
+		
+		
+		
+		
+		// Define Test Data
+		var tabledatainjuredPerson = [
+			{
+				id: "",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+		];
+
+		//Define Table
+		var table = new Tabulator("#injuredPerson-table", {
+			layout: "fitColumns",
+			data: tabledatainjuredPerson,
+			height: '200px',
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+				{
+					title: "Select",
+					field: "checkbox",
+					formatter: (cell) => {
+						const value = cell.getValue();
+						if (value) {
+							return `
+		                    <input type="checkbox" />
+		                    <label>${value}</label>
+		                `;
+						}
+					},
+					width: 100,
+				},
+				{
+					title: "Injured Person",
+					field: "injuredPerson",
+					editor: "select",
+					editorParams: {
+					values: {
+						"ACTIVE": "Test",
+						"INACTIVE": "Test",
+						"ASSOCIATE": "Test"
+						}
+					},
+				},
+				{
+					title: "Hospitalization",
+					field: "checkbox1",
+					formatter: (cell) => {
+						const value = cell.getValue();
+						if (value) {
+							return `
+		                    <input type="checkbox" />
+		                    <label>${value}</label>
+		                `;
+						}
+					},
+					width: 150,
+				},
+				{
+					title: "Med. Treatment Provided",
+					field: "checkbox2",
+					formatter: (cell) => {
+						const value = cell.getValue();
+						if (value) {
+							return `
+		                    <input type="checkbox" />
+		                    <label>${value}</label>
+		                `;
+						}
+					},
+					width: 150,
+				},
+				{
+					title: "Location",
+					field: "location",
+				},
+				{
+					title: "Nature of Injury",
+					field: "natureInjury",
+					editor: "select",
+					editorParams: {
+					values: {
+						"ACTIVE": "Test",
+						"INACTIVE": "Test",
+						"ASSOCIATE": "Test"
+						}
+					},
+				},
+			]
+		});
+		
+		// Define Test Data
+		var tabledataevidence = [
+			{
+				id: "",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+		];
+
+		//Define Table
+		var table = new Tabulator("#evidence-table", {
+			layout: "fitColumns",
+			data: tabledataevidence,
+			height: '200px',
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+				{
+					title: "Evidence Type",
+					field: "evidenceType",
+					editor: "select",
+					editorParams: {
+					values: {
+						"ACTIVE": "Test",
+						"INACTIVE": "Test",
+						"ASSOCIATE": "Test"
+						}
+					},
+				},
+				{
+					title: "Date Collected",
+					field: "dateCollected",
+					width: 120,
+				},
+				{
+					title: "Collected By Name (L,F,M,S)",
+					field: "collectedName",
+				},
+				{
+					title: "Secured By Name (L,F,M,S)",
+					field: "securedName",
+				},
+			]
+		});
+		
+
+		
+		// Define Test Data
+		var historyofDiscipline = [
+			{
+				oldType: "",
+				newType: "",
+				reason: "",
+				modifiedby: "",
+				modifieddate: "",
+			},
+			{
+				oldType: "",
+				newType: "",
+				reason: "",
+				modifiedby: "",
+				modifieddate: "",
+			},
+			{
+				oldType: "",
+				newType: "",
+				reason: "",
+				modifiedby: "",
+				modifieddate: "",
+			},
+			{
+				oldType: "",
+				newType: "",
+				reason: "",
+				modifiedby: "",
+				modifieddate: "",
+			},
+			{
+				oldType: "",
+				newType: "",
+				reason: "",
+				modifiedby: "",
+				modifieddate: "",
+			},
+			{
+				oldType: "",
+				newType: "",
+				reason: "",
+				modifiedby: "",
+				modifieddate: "",
+			},
+		];
+
+		//Define Table
+		var table = new Tabulator("#historyofDiscipline-table", {
+			layout: "fitColumns",
+			data: historyofDiscipline,
+			height: '140px',
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+				{
+					title: "Old Type",
+					field: "oldType",
+					width:100,
+				},
+				{
+					title: "New Type",
+					field: "newType",
+					width:100,
+				},
+				{
+					title: "Reason",
+					field: "reason",
+				},
+				{
+					title: "Modified By",
+					field: "modifiedby",
+				},
+				{
+					title: "Modified Date",
+					field: "modifieddate",
+					width: 120,
+				},
+			]
+		});
+		
+		
+		
+		
+
+
+		
+		
+		//===== Table for Approved user========= 
+				
+		var selectedApprovedByUser = null;
+
+		// Define Test Data
+		var approveEnteredBy = [
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+		];
+
+		//Define Table
+		var approveEnteredByTable = new Tabulator("#approveEnteredBy-table", {
+			layout: "fitColumns",
+			data: approveEnteredBy,
+			height: '140px',
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+			{
+				title: "userId",
+				field: "userId",
+				visible: false
+			},
+			
+				{
+					title: "Last Name",
+					field: "lastname",
+				},
+				{
+					title: "First Name",
+					field: "firstname",
+				},
+				{
+					title: "MI",
+					field: "mi",
+					width: 80,
+				},
+				{
+					title: "Suffix",
+					field: "suffix",
+					width: 100,
+				},
+				
+			],
+			//rowClick: onApprovedByRowClick 
+		});
+		
+		
+		
+		// Attach row click
+		approveEnteredByTable.on("rowClick", function (e, row) {
+		    selectedApprovedByUser = row.getData();
+		    console.log("[Row Selected] Approved By User:", selectedApprovedByUser);
+		});
+
+		// Load data from backend
+		function loadOmnetUsers() {
+		    const endpoint = `${contextPath}CBI_NOTI_SentByUser`;
+
+		    $.ajax({
+		        url: endpoint,
+		        type: 'GET',
+		        success: function (data) {
+		            const tableData = data.map(user => ({
+		                userId: user.user_id || '',
+		                lastname: user.userLastName || '',
+		                firstname: user.userFirstName || '',
+		                mi: user.userMidName || '',
+		                suffix: user.userSuffixName || ''
+		            }));
+		            approveEnteredByTable.setData(tableData);
+		        },
+		        error: function (xhr, status, error) {
+		            console.error("[Omnet Users] AJAX error:", status, error);
+		            message('CUW', "Failed to load Omnet user data.", 0);
+		        }
+		    });
+		}
+		
+		let clickedModalID=null;
+
+		// On page ready
+		$(document).ready(function () {
+		    loadOmnetUsers();
+			
+			$(".Users").on("click", function () {
+			clickedModalID = $(this).attr('id'); // Get the ID of the clicked element
+			console.log("clickedModalID",clickedModalID);
+			switch (clickedModalID) {
+			    case "ApprovedByUsers":
+			        $('#usersModelHeader').text('Approved By');
+			        break;
+
+			    case "EnteredByUsers":
+			        $('#usersModelHeader').text('Entered By');
+			        break;
+					
+				case "ReferredToUsers":
+					$('#usersModelHeader').text('Referred By');
+					break;
+					
+					
+				case "OfficerNameUsers":
+					$('#usersModelHeader').text('Officer Name');
+					break;
+				
+				case "preHearingRefUsers":
+				$('#usersModelHeader').text('Referred To');
+				break;
+				
+				case "DeliveredByUsers":
+				$('#usersModelHeader').text('Delivered By');
+				break;
+
+			    default:
+			        $('#usersModelHeader').text('Select User');
+			        break;
+			}
+		});
+
+			$("#approveEnteredByOk").on("click", function () {
+			    if (selectedApprovedByUser) {
+			        const {lastname = "", firstname = "", mi = "",  suffix = "" } = selectedApprovedByUser;
+
+			        // Format full name: Firstname MI Lastname Suffix (only non-empty parts)
+			        const fullName = [lastname,firstname, mi, suffix]
+			            .filter(part => part && part.trim() !== "")
+			            .join(" ")
+			            .trim();
+
+			        //$("#ApprovedByUsersInp").val(fullName);
+					//$("#EnteredByUsersInp").val(fullName);
+					
+					if(clickedModalID)
+					{
+						$('#' + clickedModalID + "Inp").val(fullName);
+						console.log($('#' + clickedModalID + "Inp").val(fullName));
+					}
+			       
+			    } else {
+			        message("CUW", "Please select a user before clicking OK.", 0);
+			    }
+				
+			});
+			
+			
+			
+
+		});
+
+		
+		
+	
+	
+
+				
+		// Define Test Data
+		var disReferredHistory = [
+			{
+				referredUser: "",
+				modifiedBy: "",
+				modifiedDate: "",
+			},
+			{
+				referredUser: "",
+				modifiedBy: "",
+				modifiedDate: "",
+			},
+			{
+				referredUser: "",
+				modifiedBy: "",
+				modifiedDate: "",
+			},
+			{
+				referredUser: "",
+				modifiedBy: "",
+				modifiedDate: "",
+			},
+			{
+				referredUser: "",
+				modifiedBy: "",
+				modifiedDate: "",
+			},
+		];
+
+		//Define Table
+		var table = new Tabulator("#disReferredHistory-table", {
+			layout: "fitColumns",
+			data: disReferredHistory,
+			height: '140px',
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+				{
+					title: "Referred User",
+					field: "referredUser",
+				},
+				{
+					title: "Modified By",
+					field: "modifiedBy",
+				},
+				{
+					title: "Modified Date",
+					field: "modifiedDate",
+					width: 120,
+				},
+			]
+		});
+		
+		
+		$(tabledataviolated[0].checkbox).html("<input type='checkbox'>");
+		$(tabledatainjuredPerson[0].checkbox).html("<input type='checkbox'>");
+		$(tabledataevidence[0].checkbox).html("<input type='checkbox'>");
+	</script>
+	
+	
+	
+	
+	<script>
+		
+		// === Date Picker ===	
+$(document).ready(function() {
+	
+	$(".date-input").datepicker({
+									    dateFormat: "mm/dd/yy",
+									    changeMonth: true,
+									    changeYear: true,
+									    yearRange: "1900:2050",
+										maxDate: 0,	// 0 means today - Max date is today
+									});
+				/*----------------------------------------------------- Start ------------------------------------------------------*/
+				//Adith
+				// === Global State ===
+				window.globalCommitNo = null;
+				window.sbiNo = null;
+				
+				
+				// === Fetch Logged-in User Name and populate 'Entered By' field ===
+				const loggedInUserId = $('#loggedInUserId').val(); // This input must exist or be injected via Thymeleaf/session
+				if (loggedInUserId) {
+				    fetchEnteredByName(loggedInUserId);
+				} else {
+				    console.warn("[EnteredBy] Logged-in User ID not found.");
+				}
+
+
+				// === Utility: Safe JSON Parsing ===
+				function safeParseJson(json) {
+				    try {
+				        return JSON.parse(json);
+				    } catch (e) {
+				        console.error("[JSON Parse Error]:", e);
+				        return null;
+				    }
+				}
+
+				// === Utility: Format Date Object or ISO string → MM/DD/YYYY ===
+				function formatToMMDDYYYY(input) {
+				    let dateObj = null;
+
+				    if (typeof input === 'string') {
+				        const trimmed = input.split('T')[0];
+				        const parts = trimmed.split('-');
+				        if (parts.length === 3) {
+				            dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
+				        }
+				    } else if (input instanceof Date && !isNaN(input)) {
+				        dateObj = input;
+				    }
+
+				    if (dateObj && !isNaN(dateObj.getTime())) {
+				        return (dateObj.getMonth() + 1).toString().padStart(2, '0') + '/' +
+				               dateObj.getDate().toString().padStart(2, '0') + '/' +
+				               dateObj.getFullYear();
+				    }
+
+				    return '';
+				}
+
+				// === Utility: Format YYYY-MM-DD → MM/DD/YYYY ===
+				function formatDateToMMDDYYYY(dateStr) {
+				    if (!dateStr || typeof dateStr !== 'string') return '';
+				    const [year, month, day] = dateStr.split('-');
+				    if (!year || !month || !day) return '';
+				    return `${month.padStart(2, '0')}/${day.padStart(2, '0')}/${year}`;
+				}
+
+				// === Utility: Map Status Code to Human-Readable Label ===
+				function mapStatusCode(code) {
+				    const statusMap = {
+				        "O": "Opened",
+				        "C": "Closed",
+				        "X": "Excluded"
+				    };
+				    return statusMap[code] || '';
+				}
+
+				// === Utility: Populate <select> dropdown ===
+					function populateDropdown($dropdown, dataList, valueKey, labelKey, placeholder = "Select") {
+					    $dropdown.empty();
+					    $dropdown.append(`<option value="">${placeholder}</option>`);
+
+					    const isDisciplinarySelect = $dropdown.attr('id') === 'disciplinarySelect';
+
+					    // Add "New" only for disciplinarySelect
+					    if (isDisciplinarySelect) {
+					        $dropdown.append(`<option value="new">New</option>`);
+					    }
+
+					    dataList.forEach(item => {
+					        const option = $('<option></option>')
+					            .val(item[valueKey])
+					            .text(item[labelKey]);
+					        $dropdown.append(option);
+					    });
+
+					    console.log(`[Dropdown] '${$dropdown.attr('id')}' populated with ${dataList.length}${isDisciplinarySelect ? ' + 1 ("New")' : ''} options.`);
+					}
+
+
+				// === Load Incident Dropdown ===
+				function loadIncidentDropdown() {
+				    if (!window.globalCommitNo) {
+				        console.warn("[Incident] globalCommitNo is not set. Skipping load.");
+				        return;
+				    }
+				    const endpoint = `${contextPath}Incidentdropdown?commitNo=${window.globalCommitNo}`;
+				    console.log("[Incident] Fetching from:", endpoint);
+
+				   return $.ajax({
+				        url: endpoint,
+				        type: 'GET',
+				        success: function (data) {
+				            console.log("[incidentDetails] Response:", data);
+				            if (!Array.isArray(data) || data.length === 0) return;
+				            populateDropdown($('#incidentDetails'), data, 'incidentSeqNum', 'incidentSeqNum', 'Select Incident');
+				        },
+				        error: function (xhr, status, error) {
+				            console.error("[incidentDetails] AJAX error:", status, error);
+				            message('CUW', "Failed to load incidentDetails dropdown.", 0);
+				        }
+				    });
+				}
+
+				// === Load Disciplinary Report IDs ===
+				function loadDisciplinaryDropdown() {
+				    if (!window.globalCommitNo) {
+				        console.warn("[Disciplinary] globalCommitNo is not set. Skipping load.");
+				        return;
+				    }
+				    const endpoint = `${contextPath}DisciplinaryReportIds?P_COMMIT_NO=${window.globalCommitNo}`;
+				    console.log("[Disciplinary] Fetching from:", endpoint);
+
+				  return  $.ajax({
+				        url: endpoint,
+				        type: 'GET',
+				        success: function (data) {
+				            console.log("[Disciplinary] Response:", data);
+				            if (!Array.isArray(data) || data.length === 0) return;
+				            populateDropdown($('#disciplinarySelect'), data, 'D_REPORT_NUM', 'D_REPORT_NUM', 'Disciplinary Report');
+				        },
+				        error: function (xhr, status, error) {
+				            console.error("[Disciplinary] AJAX error:", status, error);
+				            message('CUW', "Failed to load disciplinary report IDs.", 0);
+				        }
+				    });
+				}
+
+				// === Load Disciplinary Types ===
+				function loadDisciplinaryTypeDropdown() {
+				    const endpoint = `${contextPath}DisciplinaryTypes`;
+				    console.log("[DisciplinaryType] Fetching from:", endpoint);
+
+				  return  $.ajax({
+				        url: endpoint,
+				        type: 'GET',
+				        success: function (data) {
+				            console.log("[DisciplinaryType] Response:", data);
+				            if (!Array.isArray(data) || data.length === 0) return;
+				            populateDropdown($('#disciplinaryTypeSelect'), data, 'DSPN_TP_CD', 'DESCRIPTION', 'Disciplinary Type');
+				        },
+				        error: function (xhr, status, error) {
+				            console.error("[DisciplinaryType] AJAX error:", status, error);
+				            message('CUW', "Failed to load disciplinary type dropdown.", 0);
+				        }
+				    });
+				}
+
+				// === Trigger form load when report is new selected ===
+				$(document).on('change', '#disciplinarySelect', function () {
+				    const reportNum = $(this).val();
+				    const commitNo = window.globalCommitNo;
+
+				    console.log("[DisciplinarySelect] Changed:", { reportNum, commitNo });
+
+				    if (reportNum === 'new') {
+				        console.log("[DisciplinarySelect] 'new' selected → clearing form.");
+
+				        clearDisciplinaryFormFields();
+						
+						// Reload dropdown options
+						    loadDisciplinaryTypeDropdown();
+						    loadDecisionDropdown();
+						    loadDispositionDropdown();
+						    loadTitleDropdown();             // For entered/approved/delivered
+						    loadPreHearingRefToDropdown();  // For referred title
+						    loadPreHearingTitleDropdown();  // For decision title
+						    loadAssaultTypeDropdown();
+						    loadWeaponTypeDropdown();
+
+
+						if (witnessTable) {
+						    const rows = witnessTable.getRows();
+						    rows.forEach(row => {
+						        row.update({ lastName: '', firstName: '', mi: '', suffix: '' });
+						    });
+						    console.log("[WitnessTable] Cleared field values but retained rows.");
+						}
+
+				        if (violationCodeTable) {
+				            violationCodeTable.clearData();
+				        }
+
+				        return; // exit early
+				    }
+
+				    if (reportNum && commitNo) {
+				        console.log("[DisciplinarySelect] Valid selection → proceeding with data load...");
+
+				        loadDisciplinaryFormDetails(commitNo, reportNum);
+				        console.log("[DisciplinarySelect] → Called loadDisciplinaryFormDetails");
+
+				        loadHousingUnit(commitNo, reportNum);
+				        console.log("[DisciplinarySelect] → Called loadHousingUnit");
+
+				        loadWitnessTable(commitNo, reportNum);
+				        console.log("[DisciplinarySelect] → Called loadWitnessTable");
+
+				        loadDisciplinaryDetails(commitNo, reportNum);
+				        console.log("[DisciplinarySelect] → Called loadDisciplinaryDetails (flags, dropdowns, evidence)");
+				    } else {
+				        console.warn("[DisciplinarySelect] Skipped loading: Missing reportNum or commitNo.");
+				    }
+				});
+				
+				
+				function clearDisciplinaryFormFields() {
+				    const selectedVal = $('#disciplinarySelect').val();
+
+				    if (selectedVal !== 'new') {
+				        console.log("[Clear] Aborted — disciplinarySelect is not 'new'.");
+				        return;
+				    }
+
+				    // Clear only inputs with 'disInfo-input' class, excluding #disciplinarySelect
+				    $('.disInfo-input').each(function () {
+				        const $this = $(this);
+
+				        // Skip clearing #disciplinarySelect even if it has disInfo-input class
+				        if ($this.attr('id') === 'disciplinarySelect') {
+				            return;  // Skip this field
+				        }
+
+				        if ($this.is('select')) {
+				            $this.val('').trigger('change');  // Reset dropdowns
+				        } else if ($this.is(':checkbox')) {
+				            $this.prop('checked', false);     // Uncheck checkboxes
+				        } else {
+				            $this.val('');                    // Clear text, time, textarea
+				        }
+				    });
+
+				    // Clear resolved user info fields explicitly
+				    $('#EnteredByUsersInp, #ReferredToUsersInp, #OfficerNameUsersInp, #preHearingRefUsersInp, #ApprovedByUsersInp, #DeliveredByUsersInp').val('');
+
+				    // Reset dropdowns that may not have disInfo-input class
+				    $('#decisionDropDown, #offenderDispositionDropDown, #enteredByTitleDropdown').val('').trigger('change');
+
+				    // Clear Witness Table Fields but retain rows
+				    if (witnessTable) {
+				        witnessTable.clearData();
+				        witnessTable.setData([{ lastName: "", firstName: "", mi: "", suffix: "" }]);
+				    }
+
+				    // Reset Violation Code Table
+				    if (violationCodeTable) {
+				        loadViolationCodeTable([]);  // ← no checkboxes pre-selected
+				        $('#disciplinaryTypeSelect').val('').trigger('change').closest('div').hide();
+				    }
+
+				    console.log("[Clear] Cleared form — #disciplinarySelect retained.");
+				}
+
+
+
+
+				// === Trigger form load when report is selected ===
+				function loadDisciplinaryFormDetails(commitNo, reportNum) {
+				    //const detailsEndpoint = `${contextPath}DisciplinaryFormDetails?P_COMMIT_NO=${commitNo}&P_D_REPORT_NUM=${reportNum}`;
+					const detailsEndpoint = `${contextPath}DisciplinaryFormDetails?commitNo=${commitNo}&dReportNum=${reportNum}`;
+				    const locDescEndpoint = `${contextPath}MOV_SWAP_VALUESDisplinary?P_COMMIT_NO=${commitNo}&P_D_REPORT_NUM=${reportNum}`;
+					
+
+				    console.log("[Form] Fetching from:", detailsEndpoint);
+
+				    $.ajax({
+				        url: detailsEndpoint,
+				        type: 'GET',
+				        success: function (data) {
+				            console.log("[Form] Response:", data);
+
+							//$('#incidentDetails').val(data.groupNo || '');
+							const groupNo = data.groupNo || '';
+							$('#incidentDetails').val(groupNo);
+
+							// Make it global
+							window.globalGroupNo = groupNo;
+							
+							const grpIncidentEndpoint = `${contextPath}getGroupSeqNo?incidentSeqNum=${groupNo}`;
+							
+							//$('#groupNoField').val(data.groupNo || '');
+							// Fetch groupSeqNo from separate endpoint and set to groupNoField
+							if (groupNo) {
+							    const grpIncidentEndpoint = `${contextPath}getGroupSeqNo?incidentSeqNum=${groupNo}`;
+							    $.ajax({
+							        url: grpIncidentEndpoint,
+							        type: 'GET',
+							        success: function (groupSeqNo) {
+							            console.log("[GroupSeqNo] Fetched:", groupSeqNo);
+							            $('#groupNoField').val(groupSeqNo || ''); // This sets "381" to the field
+							        },
+							        error: function (xhr, status, error) {
+							            console.error("[GroupSeqNo] AJAX error:", status, error);
+							            message('CUW', "Failed to fetch group sequence number.", 0);
+							        }
+							    });
+							}
+							
+							console.log($('#groupNoField').val());
+
+							
+							
+				            const formattedDate = formatDateToMMDDYYYY(data.dateOfOccurrence);
+				            $('#dateOfOccurrence').val(formattedDate);
+				            $('#timeOfOccurrence').val(data.timeOfOccurrence || '');
+				            $('#statusSelectCtrl').val(data.status || '');
+				            $('#nullifyReasonField').val(data.reasonForNullification || '');
+							$('#addComments').val(data.dspnViolSmryDesc || '');
+
+				            // Now use locDescEndpoint safely
+				            $.ajax({
+				                url: locDescEndpoint,
+				                type: 'GET',
+				                success: function (response) {
+				                    const locDesc = response?.[0]?.LOC_DESC || '';
+				                    console.log("[LOC_DESC] Value:", locDesc);
+				                    $('#locationOfOccurrence').val(locDesc);
+				                },
+				                error: function (xhr, status, error) {
+				                    console.error("[LOC_DESC] AJAX error:", status, error);
+				                    message('CUW', "Failed to load location of occurrence.", 0);
+				                }
+				            });
+				        },
+				        error: function (xhr, status, error) {
+				            console.error("[Form] Load error:", status, error);
+				            message('CUW', "Failed to load disciplinary form data.", 0);
+				        }
+				    });
+				}
+
+				// === Hook: Extract commit number from SBI check and trigger all loads ===
+				$(document).ajaxComplete(function (event, xhr, settings) {
+				    if (settings.url.includes("checkSbiNoAndLocation")) {
+				        const response = safeParseJson(xhr.responseText);
+				        const commitNo = response?.commitNo || response?.commit_no || response?.[0];
+
+				        if (commitNo) {
+				            console.log("[checkSbiNoAndLocation] Commit No extracted:", commitNo);
+				            const sbiValue = $('#sbiNumberInput').val();
+				            console.log("[checkSbiNoAndLocation] SbiNo extracted:", sbiValue);
+				            window.globalCommitNo = commitNo;
+				            window.sbiNo = sbiValue;
+
+				            loadIncidentDropdown();
+				            loadDisciplinaryDropdown();
+				            loadDisciplinaryTypeDropdown();
+				            loadViolationSummary();
+							
+				        } else {
+				            console.warn("[checkSbiNoAndLocation] No commit number found in response.");
+				        }
+				    }
+				});
+
+				/*-----------------------------Violation---------------------------------------*/
+				function loadViolationSummary() {
+				    window.sbiNo = $('#sbiNumberInput').val();
+				    const sbiNo = window.sbiNo;
+				    if (!sbiNo) {
+				        console.warn("[ViolationSummary] sbiNo is not set.");
+				        return;
+				    }
+
+				    const endDate = new Date();
+				    const startDate = new Date();
+				    startDate.setMonth(endDate.getMonth() - 6);
+
+				    const formatDate = (date) => {
+				        const yyyy = date.getFullYear();
+				        const mm = (date.getMonth() + 1).toString().padStart(2, '0');
+				        const dd = date.getDate().toString().padStart(2, '0');
+				        return `${yyyy}-${mm}-${dd}`;
+				    };
+
+				    const idt_start_dt = formatDate(startDate);
+				    const idt_end_dt = formatDate(endDate);
+				    console.log("idt_start_dt", idt_start_dt);
+				    console.log("idt_end_dt", idt_end_dt);
+
+				    const endpoint = `${contextPath}ViolationSummary?sbiNo=${sbiNo}&idt_start_dt=${idt_start_dt}&idt_end_dt=${idt_end_dt}`;
+				    console.log("[ViolationSummary] Fetching from:", endpoint);
+
+				    $.ajax({
+				        url: endpoint,
+				        type: 'GET',
+				        success: function (data) {
+				            console.log("[ViolationSummary] Response:", data);
+				            $('#class1Count').val(data.class1 || 0);
+				            $('#class2Count').val(data.class2 || 0);
+				            $('#summaryCount').val(data.summary || 0);
+				        },
+				        error: function (xhr, status, error) {
+				            console.error("[ViolationSummary] AJAX error:", status, error);
+				            message('CUW', "Failed to load violation summary.", 0);
+				        }
+				    });
+				}
+
+				function loadHousingUnit(commitNo, reportNum) {
+				    const endpoint = `${contextPath}MOV_SWAP_VALUESDisplinary?P_COMMIT_NO=${commitNo}&P_D_REPORT_NUM=${reportNum}`;
+
+				    $.ajax({
+				        url: endpoint,
+				        type: 'GET',
+				        success: function (response) {
+				            console.log("[Housing Unit] Full response:", response);
+
+				            if (Array.isArray(response) && response.length > 0) {
+				                const firstItem = response[0];
+				                const housingUnit = firstItem["SF_GET_HOU_DESC(A.COMMIT_NO)"] || '';
+				                console.log("[Housing Unit] Extracted:", housingUnit);
+				                $('#offenderHousingField').val(housingUnit);
+				            } else {
+				                console.warn("[Housing Unit] No data found in response.");
+				            }
+				        },
+				        error: function (xhr, status, error) {
+				            console.error("[Housing Unit] AJAX error:", status, error);
+				            message('CUW', "Failed to load Housing Unit.", 0);
+				        }
+				    });
+				}
+
+			});
+			
+			/*----------------------------------------------------- Violation Details ------------------------------------------------------*/
+			
+			function formatToMMDDYYYY(input) {
+			    let dateObj = null;
+
+			    if (typeof input === 'string') {
+			        const trimmed = input.split('T')[0];
+			        const parts = trimmed.split('-');
+			        if (parts.length === 3) {
+			            dateObj = new Date(parts[0], parts[1] - 1, parts[2]);
+			        }
+			    } else if (input instanceof Date && !isNaN(input)) {
+			        dateObj = input;
+			    }
+
+			    if (dateObj && !isNaN(dateObj.getTime())) {
+			        return (dateObj.getMonth() + 1).toString().padStart(2, '0') + '/' +
+			               dateObj.getDate().toString().padStart(2, '0') + '/' +
+			               dateObj.getFullYear();
+			    }
+
+			    return '';
+			}
+			
+			function loadAssaultTypeDropdown() {
+			    return $.ajax({
+			        url: contextPath + "AssaultTypes",
+			        type: "GET",
+			        success: function (data) {
+			            const $dropdown = $("#assaultTypeDropdown");
+			            $dropdown.empty().append('<option value="">Select Assault Type</option>');
+			            data.forEach(item => {
+			                $dropdown.append(`<option value="${item.ASSAULT_TYPE_CODE}">${item.ASSAULT_TYPE_DESC}</option>`);
+			            });
+			            console.log("[Assault Types] Dropdown populated:", data);
+			        },
+			        error: function (xhr, status, error) {
+			            console.error("[Assault Types] Failed to load:", status, error);
+			        }
+			    });
+			}
+
+			function loadWeaponTypeDropdown() {
+			    return $.ajax({
+			        url: contextPath + "WeaponTypes",
+			        type: "GET",
+			        success: function (data) {
+			            const $dropdown = $("#weaponTypeDropdown");
+			            $dropdown.empty().append('<option value="">Select Weapon Type</option>');
+			            data.forEach(item => {
+			                $dropdown.append(`<option value="${item.WEAPON_TYPE_CODE}">${item.WEAPON_DESC}</option>`);
+			            });
+			            console.log("[Weapon Types] Dropdown populated:", data);
+			        },
+			        error: function (xhr, status, error) {
+			            console.error("[Weapon Types] Failed to load:", status, error);
+			        }
+			    });
+			}
+
+			
+			
+			
+			
+			
+			
+			
+			/*----------------------------------------------------- Pre-Hearing Decision && Offender Disposition ------------------------------------------------------*/
+			
+			// === Load Titles from TITLE_RT table for 'Title (Pre-Hearing)' dropdown ===
+			function loadPreHearingTitleDropdown() {
+			    const endpoint = contextPath + "ApprovedDeliveredTitleDropdown";
+
+			   return $.ajax({
+			        url: endpoint,
+			        type: 'GET',
+			        success: function (data) {
+			            const $dropdown = $('#decisionTitle');
+			            $dropdown.empty();
+			            $dropdown.append('<option value="">Select Title</option>');
+
+			            if (Array.isArray(data)) {
+			                data.forEach(item => {
+			                    const option = $('<option></option>')
+			                        .val(item.TITLE)
+			                        .text(item.TITLE_DESC);
+			                    $dropdown.append(option);
+			                });
+			                console.log("[Pre-Hearing Title Dropdown] Loaded:", data);
+			            } else {
+			                console.warn("[Pre-Hearing Title Dropdown] Invalid data:", data);
+			            }
+			        },
+			        error: function (xhr, status, error) {
+			            console.error("[Pre-Hearing Title Dropdown] AJAX Error:", status, error);
+			            message('CUW', 'Failed to load Pre-Hearing Title dropdown.', 0);
+			        }
+			    });
+			}
+			
+			// === Load Decision Dropdown for Pre-Hearing Decision ===
+			function loadDecisionDropdown() {
+			    const endpoint = `${contextPath}DecisionDropdown`;
+
+			   return $.ajax({
+			        url: endpoint,
+			        type: 'GET',
+			        success: function (data) {
+			            const $dropdown = $('#decisionDropDown');
+
+			            if (Array.isArray(data) && data.length > 0) {
+							$dropdown.empty().append('<option value="">Decision</option>'); 
+
+			                data.forEach(item => {
+			                    const desc = item.SUB_TP_DESC || '';
+			                    $dropdown.append(`<option value="${desc}">${desc}</option>`);
+			                });
+
+			                console.log("[DecisionDropdown] Loaded:", data);
+			            } else {
+			                console.warn("[DecisionDropdown] Empty or invalid data — dropdown not modified.");
+			            }
+			        },
+			        error: function (xhr, status, error) {
+			            console.error("[DecisionDropdown] AJAX Error:", status, error);
+			        }
+			    });
+			}
+			
+			// === Load Disposition Dropdown for Pre-Hearing Decision ===
+			function loadDispositionDropdown() {
+			    const endpoint = `${contextPath}DispositionDropdown`;
+
+			    return $.ajax({
+			        url: endpoint,
+			        type: 'GET',
+			        success: function (data) {
+			            const $dropdown = $('#offenderDispositionDropDown');
+			            $dropdown.empty().append('<option value="">Disposition</option>');
+
+			            if (Array.isArray(data) && data.length > 0) {
+			                data.forEach(item => {
+			                    const code = item.DISPOSITION_CODE || '';
+			                    const desc = item.DISPOSITION_DESC || '';
+			                    $dropdown.append(`<option value="${code}">${desc}</option>`);
+			                });
+			                console.log("[offenderDispositionDropDown] Loaded:", data);
+			            } else {
+			                console.warn("[offenderDispositionDropDown] No data found.");
+			            }
+			        },
+			        error: function (xhr, status, error) {
+			            console.error("[dispositionDropdown] AJAX Error:", status, error);
+			        }
+			    });
+			}
+
+			
+			// === Load Reffered To Title Dropdown for Pre-Hearing Decision ===
+			function loadPreHearingRefToDropdown() {
+			    const endpoint = `${contextPath}PreHearingRefToDropdown`;
+
+			   return $.ajax({
+			        url: endpoint,
+			        type: 'GET',
+			        success: function (data) {
+			            const $dropdown = $('#preHearingRefTitle');
+			            $dropdown.empty().append('<option value="">Title</option>');
+
+			            if (Array.isArray(data)) {
+			                data.forEach(item => {
+			                    const title = item.preHearingRefTo || '';
+			                    const desc = item.titleDesc || '';
+			                    $dropdown.append(`<option value="${title}">${desc}</option>`);
+			                });
+			                console.log("[preHearingRefTitle] Loaded:", data);
+			            } else {
+			                console.warn("[preHearingRefTitle] Invalid data format:", data);
+			            }
+			        },
+			        error: function (xhr, status, error) {
+			            console.error("[preHearingRefTitle] AJAX Error:", status, error);
+			        }
+			    });
+			}
+
+
+			
+			/*----------------------------------------------------- DropDown ------------------------------------------------------*/
+			
+			
+			
+			
+			// === Load Reffered To Title Dropdown for Approved and Delviered and Referred To Drop Down===
+			
+			function loadTitleDropdown() {
+			    const endpoint = `${contextPath}ApprovedDeliveredTitleDropdown`;
+
+			    return $.ajax({
+			        url: endpoint,
+			        type: 'GET',
+			        dataType: 'json',
+			        success: function (data) {
+			            const dropdowns = [ '#DeliveredByTitle', '#ApprovedByTitle', '#ReferredToTitle','#enteredByTitleDropdown'];
+
+			            dropdowns.forEach(selector => {
+			                const $dropdown = $(selector);
+			                $dropdown.empty().append('<option value="">Title</option>');
+
+			                if (Array.isArray(data)) {
+			                    data.forEach(item => {
+			                        const title = item.TITLE || '';
+			                        const desc = item.TITLE_DESC || '';
+			                        $dropdown.append(`<option value="${title}">${desc}</option>`);
+			                    });
+			                    console.log(`[${selector}] Loaded:`, data);
+			                } else {
+			                    console.warn(`[${selector}] Invalid data format:`, data);
+			                }
+			            });
+			        },
+			        error: function (xhr, status, error) {
+			            console.error("[TitleDropdown] AJAX Error:", status, error);
+			        }
+			    });
+			}
+
+
+
+
+			
+			
+			
+			
+			
+			
+			
+			/*----------------------------------------------------- Function to load DisciplinaryDetails ------------------------------------------------------*/
+			
+			
+			
+			// ===============================
+			// Main Function
+			// ===============================
+			function loadDisciplinaryDetails(commitNo, reportNo) {
+			    if (!commitNo || !reportNo) {
+			        console.warn("[Disciplinary Details] Missing commitNo or reportNo.");
+			        return;
+			    }
+
+			    const endpoint = `${contextPath}MOV_SWAP_VALUESDisplinary?P_COMMIT_NO=${encodeURIComponent(commitNo)}&P_D_REPORT_NUM=${encodeURIComponent(reportNo)}`;
+			    console.log("[Disciplinary Details] Fetching from:", endpoint);
+				
+				loadViolationCodeTableFromDiscipline(commitNo, reportNo);
+				
+			    $.ajax({
+			        url: endpoint,
+			        type: "GET",
+			        success: function (data) {
+			            const info = Array.isArray(data) ? data[0] : data;
+			            if (!info) return console.warn("[Disciplinary Details] Empty response.");
+
+			            loadDisciplinarySections(info); // Populate non-dropdown fields first
+
+			            loadAllDropdowns()
+			                .then(() => {
+			                    setDropdownValues(info); // Populate dropdown values after they're loaded
+			                })
+			                .catch(err => console.error("[Dropdowns] Failed to load:", err));
+			        },
+			        error: function (xhr, status, error) {
+			            console.error("[Disciplinary Details] AJAX error:", status, error);
+			        }
+			    });
+			}
+
+			// ===============================
+			// Load All Dropdowns
+			// ===============================
+			function loadAllDropdowns() {
+			    return Promise.all([
+			        loadAssaultTypeDropdown(),
+			        loadWeaponTypeDropdown(),
+			        loadPreHearingTitleDropdown(),
+			        loadDecisionDropdown(),
+			        loadDispositionDropdown(),
+			        loadPreHearingRefToDropdown(),
+			        loadTitleDropdown()
+			    ]);
+			}
+			
+			// Maps internal decision codes from the backend (e.g., "DSU", "DHR")
+			function mapDecisionCodeToDescription(code) {
+					    const map = {
+					        "DSU": "Summary Disciplinary Action",
+					        "DHR": "Hearing"
+					        // Add more mappings as needed
+					    };
+					    return map[code] || '';
+					}
+
+			// ===============================
+			// Set Dropdown Values
+			// ===============================
+			function setDropdownValues(info) {
+				// Set the selected value for the Assault Type dropdown based on backend response
+				$('#assaultTypeDropdown').val(info.ASSAULT_TYPE_CODE || '');
+				console.log("[ASSAULT_TYPE_CODE] Set to:", info.ASSAULT_TYPE_CODE || '');
+			
+				// Set the selected value for the Weapon Type dropdown
+				$('#weaponTypeDropdown').val(info.WEAPON_TYPE_CODE || '');
+				console.log("[WEAPON_TYPE_CODE] Set to:", info.WEAPON_TYPE_CODE || '');
+			
+				
+				$('#enteredByTitleDropdown').val(info.USER_JOB_TILTLE || '');
+				console.log("[enteredByTitleDropdown] Set to:", info.USER_JOB_TILTLE || '');
+				
+				$('#ReferredToTitle').val(info.TITLE_REFR_TO || '');
+				console.log("[ReferredToTitle] Set to:", info.TITLE_REFR_TO || '');
+			
+				// Set the selected value for Decision Title dropdown
+				$('#decisionTitle').val(info.TITLE_PRE_HEAR || '');
+				console.log("[TITLE_PRE_HEAR] Set to:", info.TITLE_PRE_HEAR || '');
+			
+				// Set the selected value for Decision dropdown
+				/*$('#decisionDropDown').val(info.SUB_TP_PHEAR_DECN || '');
+				console.log("[SUB_TP_PHEAR_DECN] Set to:", info.SUB_TP_PHEAR_DECN || '');*/
+				
+				const decisionLabel = mapDecisionCodeToDescription(info.SUB_TP_PHEAR_DECN);
+				$('#decisionDropDown').val(decisionLabel);
+				console.log("[SUB_TP_PHEAR_DECN] Set to:", decisionLabel);
+			
+				// Set the selected value for Offender Disposition dropdown
+				const dispositionVal = info.DISPOSITION_CODE || '';
+				$('#offenderDispositionDropDown').val(dispositionVal);
+			
+				// Validate that the selected value actually exists in the dropdown
+				if ($('#offenderDispositionDropDown').val() !== dispositionVal) {
+				    console.warn("[offenderDispositionDropDown] Option not found for:", dispositionVal);
+				} else {
+				    console.log("[offenderDispositionDropDown] Successfully set to:", dispositionVal);
+				}
+			
+				// Set the selected value for Pre-Hearing Referred To dropdown
+				$('#preHearingRefTitle').val(info.TITLE_REFR_TO || '');
+				console.log("[TITLE_REFR_TO] Set to:", info.TITLE_REFR_TO || '');
+			
+				// Set the selected value for Approved By Title dropdown
+				$('#ApprovedByTitle').val(info.TITLE_APPROVED || '');
+				console.log("[TITLE_APPROVED] Set to:", info.TITLE_APPROVED || '');
+			
+				// Set the selected value for Delivered By Title dropdown
+				const deliveredVal = String(info.TITLE_DELIVER_BY || '').trim();
+				console.log("[DEBUG] Attempting to set DeliveredByTitle to:", deliveredVal);
+			
+				// Check if the value exists in the dropdown options and set it
+				const match = $('#DeliveredByTitle option').filter(function () {
+				    return $(this).val() === deliveredVal;
+				});
+			
+				if (match.length > 0) {
+				    $('#DeliveredByTitle').val(deliveredVal);
+				    console.log("[DEBUG] Match found. Set successfully.");
+				} else {
+				    console.warn("[DEBUG] No matching option found in DeliveredByTitle for value:", deliveredVal);
+				}
+
+			}
+
+			// ===============================
+			// Master Populate Sections
+			// ===============================
+			function loadDisciplinarySections(info) {
+			    populateCheckBoxes(info);
+			    populateEvidenceFields(info);
+			    populateEnteredAndReferredSection(info);
+			    populatePreHearingDecision(info);
+			    populateOffenderDisposition(info);
+			    populatePreDecisionReferred(info);
+			    populateApprovedBy(info);
+			    populateDeliveredBy(info);
+			    populateStatusFields(info);
+			    populateUserInfo(info);
+				
+				
+			}
+
+			// ===============================
+			// Section Functions
+			// ===============================
+
+			// Checkboxes
+			function populateCheckBoxes(info) {
+			    $("#staffAssault").prop("checked", info.STAFF_ASSAULT_FLAG === "Y");
+			    $("#staffInjuries").prop("checked", info.STAFF_INJURIES_FLAG === "Y");
+			    $("#inmateAssault").prop("checked", info.INMATE_ASSAULT_FLAG === "Y");
+			    $("#resultOfIncident").prop("checked", info.RESULT_OF_INCIDENT === "Y");
+			    $("#resultOfSearch").prop("checked", info.RESULT_OF_SEARCH === "Y");
+				$("#sexRelated").prop("checked", info.SEX_RELATED_FLAG === "Y");
+			    $("#IndustrialAccident").prop("checked", info.INDUSTRIAL_ACCIDENT_FLAG === "Y");
+			    $("#stgRelated").prop("checked", info.STG_RELATED_FLAG === "Y");
+			}
+
+			// Evidence Fields
+			function populateEvidenceFields(info) {
+			    $("#evidenceDisposition").val(info.DSPN_EVDN_DISP_DESC || '');
+			    $("#dispositionDate").val(info.DISPOSITION_DATE ? formatToMMDDYYYY(info.DISPOSITION_DATE) : '');
+			    $("#actionTaken").val(info.ACTION_TAKEN || '');
+			    $("#weaponNote").val(info.WEAPON_NOTE || '');
+			}
+
+			// Entered & Referred Section
+			function populateEnteredAndReferredSection(info) {
+			    $("#EnteredByDate").val(info.ENTERED_BY_DATE ? formatToMMDDYYYY(info.ENTERED_BY_DATE) : '');
+			    $("#EnteredByTime").val(info.ENTERED_BY_TIME || '');
+			    $("#enteredByTitleDropdown").val(info.USER_JOB_TITLE || '');
+
+			    $("#ReferredToDate").val(info.DSPN_REFR_DT ? formatToMMDDYYYY(info.DSPN_REFR_DT) : '');
+			    $("#ReferredToTime").val(info.DSPN_REFR_TM || '');
+			    $("#ReferredToComments").val(info.DSPN_REFR_COMNT || '');
+			    $("#ReferredToTitle").val(info.TITLE_REFR_TO || '');
+			}
+			
+			
+
+			// Pre-Hearing Decision
+			function populatePreHearingDecision(info) {
+			    $("#decisionDate").val(info.DSPN_PHEAR_DT ? formatToMMDDYYYY(info.DSPN_PHEAR_DT) : '');
+			    $("#decisionTime").val(info.DSPN_PHEAR_TM || '');
+			    $("#decisionAddComments").val(info.DSPN_PHEAR_COMNT || '');
+				
+				
+			}
+
+			// Offender Disposition
+			function populateOffenderDisposition(info) {
+			    $("#offenderDispositionDate").val(info.DSPN_DISP_DT ? formatToMMDDYYYY(info.DSPN_DISP_DT) : '');
+			    $("#offenderDispositionTime").val(info.DSPN_DISP_TM || '');
+			    $("#offenderDispositionReason").val(info.DSPN_DISPN_RESN_COMNT || '');
+			    $("#offenderDispositionCell").prop("checked", info.DSPN_DISP_CELL_SECR_FLG === "Y");
+			}
+
+			// Pre-Hearing Referred To
+			function populatePreDecisionReferred(info) {
+			    $("#preHearingRefDate").val(info.DSPN_PHEAR_REFR_DT ? formatToMMDDYYYY(info.DSPN_PHEAR_REFR_DT) : '');
+			    $("#preHearingRefTime").val(info.DSPN_PHEAR_REFR_TM || '');
+			    $("#preHearingRefComments").val(info.DSPN_PHEAR_REFR_COMNT || '');
+			}
+
+			// Approval Fields
+			function populateApprovedBy(info) {
+			    $("#ApprovedByDate").val(info.DATE_APPROVED ? formatToMMDDYYYY(info.DATE_APPROVED) : '');
+			    //$("#ApprovedByStatus").val(info.STATUS_APPROVED || '');
+			    $("#ApprovedByFollowUp").prop("checked", info.FOLLOWUP_REQ_FLAG === "Y");
+			    $("#ApprovedByAddComments").val(info.REVIEWER_COMNTS || '');
+			}
+
+			// Delivery Fields
+			function populateDeliveredBy(info) {
+			    $("#DeliveredByDate").val(info.DSPN_DELV_DT ? formatToMMDDYYYY(info.DSPN_DELV_DT) : '');
+			    $("#DeliveredByTime").val(info.DSPN_DELV_TM || '');
+			    $("#DeliveredByAddComments").val(info.DSPN_DELV_COMNT || '');
+			}
+
+			// Status Fields
+			function populateStatusFields(info) {
+				const statusValue = (info.STATUS_APPROVED || '').trim().toUpperCase();
+
+				if (statusValue === 'A') {
+				    $('#ApprovedByStatus').val('Approved');
+				} else if (statusValue === 'D') {
+				    $('#ApprovedByStatus').val('Disapproved');
+				} else {
+				    $('#ApprovedByStatus').val(''); // fallback or show placeholder
+				}
+			}
+
+			// USER_ID_APPROVED mapping (fallback if full mapping table not loaded)
+			function resolveUserName(userId, targetInputId) {
+			    if (!userId) {
+			        $(`#${targetInputId}`).val('');
+			        return;
+			    }
+
+			    $.ajax({
+			        url: contextPath + 'CBI_NOTI_SentByUser',
+			        type: 'GET',
+			        success: function (response) {
+			            if (Array.isArray(response)) {
+			                const matchedUser = response.find(user => user.user_id === userId);
+			                if (matchedUser) {
+			                    const { userLastName = '', userFirstName = '', userMidName = '', userSuffixName = '' } = matchedUser;
+			                    const fullName = [userLastName, userFirstName, userMidName, userSuffixName].filter(Boolean).join(' ');
+			                    $(`#${targetInputId}`).val(fullName);
+			                    console.log(`[${targetInputId}] Resolved to:`, fullName);
+			                    return;
+			                }
+			            }
+
+			            // fallback if no match
+			            console.warn(`[${targetInputId}] No match found for userId:`, userId);
+			            $(`#${targetInputId}`).val(userId);
+			        },
+			        error: function (xhr, status, error) {
+			            console.error(`[${targetInputId}] Failed to resolve user ID (${userId}):`, status, error);
+			            $(`#${targetInputId}`).val(userId); // fallback to showing ID
+			        }
+			    });
+			}
+
+
+			
+			function populateUserInfo(info) {
+			    if (!info) return;
+
+			    resolveUserName(info.USER_ID_ENTERED_BY, "EnteredByUsersInp");
+			    resolveUserName(info.USER_ID, "ReferredToUsersInp");
+			    resolveUserName(info.USER_ID_PRE_HEAR, "OfficerNameUsersInp");
+			    resolveUserName(info.USER_ID_PRE_HEAR, "preHearingRefUsersInp");
+			    resolveUserName(info.USER_ID_APPROVED, "ApprovedByUsersInp");
+			    resolveUserName(info.USER_ID_DELIVER_BY, "DeliveredByUsersInp");
+			}
+
+			
+			//================================Save Logic=============================
+			
+			
+			
+						
+					
+			/**
+			 * Generates a D_REPORT_NUM for the given Incident Sequence Number,
+			 * based on the Institution Number internally resolved by the backend.
+			 *
+			 * Endpoint: /api/generateReportNumber?incidentSeqNum=...
+			 * Response: { reportNum: "generated_value" }
+			 */
+			 // === Utility Functions ===
+			 // === Utility Functions ===
+			 function toISODate(dateStr) {
+			     if (!dateStr || !/\d{2}\/\d{2}\/\d{4}/.test(dateStr)) return null;
+			     const [month, day, year] = dateStr.split('/');
+			     return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+			 }
+
+			 function safeVal(selector) {
+			     const val = $(selector).val();
+			     return val && val.trim() !== '' ? val.trim() : null;
+			 }
+
+			 function fetchGeneratedReportNumber(inputVal) {
+			     return $.ajax({
+			         url: `${contextPath}generateReportNumber`,
+			         method: 'GET',
+			         data: { incidentSeqNum: inputVal }
+			     });
+			 }
+
+			 // === Main Save Function ===
+			 function collectDisciplinaryInfoAndSave() {
+			     const incidentSeqNum = $('#incidentDetails').val();
+
+			     if (!incidentSeqNum) {
+			         message('CUW', "Please enter Incident #", 0);
+			         return;
+			     }
+
+			     let commitNo = $('#commitNo').val();
+			     if (!commitNo) {
+			         if (window.globalCommitNo) {
+			             $('#commitNo').val(window.globalCommitNo);
+			             commitNo = window.globalCommitNo;
+			         } else {
+			             message('CUW', "Commit No is missing. Please verify SBI number and try again.", 0);
+			             loader(0);
+			             return;
+			         }
+			     }
+
+			     loader(1);
+
+			     fetchGeneratedReportNumber(incidentSeqNum)
+			         .done(function (generatedData) {
+			             const generatedReportNumber = generatedData.reportNum;
+
+			             const payload = {
+			                 INCIDENT_SEQ_NUM: incidentSeqNum,
+			                 D_REPORT_NUM: generatedReportNumber,
+			                 COMMIT_NO: commitNo,
+			                 D_REPORT_DATE: toISODate($('#dateOfOccurrence').val()),
+			                 D_REPORT_TIME: safeVal('#timeOfOccurrence'),
+			                 LOC_DESC: safeVal('#locationOfOccurrence'),
+			                 DREPORT_STATUS: safeVal('#status'),
+			                 REASON_FOR_EXCLUSION: safeVal('#reasonForNullification'),
+			                 SF_GET_HOU_DESC_A_COMMIT_NO: safeVal('#housingUnit'),
+			                 DSPN_TP_CD: safeVal('#disciplinaryTypeSelect'),
+			                 DSPN_VIOL_SMRY_DESC: safeVal('#dspnViolSmryDesc'),
+			                 STAFF_ASSAULT_FLAG: $('#staffAssault').prop('checked') ? 'Y' : null,
+			                 STAFF_INJURIES_FLAG: $('#staffInjuries').prop('checked') ? 'Y' : null,
+			                 INDUSTRIAL_ACCIDENT_FLAG: $('#IndustrialAccident').prop('checked') ? 'Y' : null,
+			                 INMATE_ASSAULT_FLAG: $('#inmateAssault').prop('checked') ? 'Y' : null,
+			                 RESULT_OF_INCIDENT: $('#resultOfIncident').prop('checked') ? 'Y' : null,
+			                 RESULT_OF_SEARCH: $('#resultOfSearch').prop('checked') ? 'Y' : null,
+			                 SEX_RELATED_FLAG: $('#sexRelated').prop('checked') ? 'Y' : null,
+			                 STG_RELATED_FLAG: $('#stgRelated').prop('checked') ? 'Y' : null,
+			                 ASSAULT_TYPE_CODE: safeVal('#assaultTypeDropdown'),
+			                 WEAPON_NOTE: safeVal('#weaponNote'),
+			                 DSPN_EVDN_DISP_DESC: safeVal('#evidenceDisposition'),
+			                 DISPOSITION_DATE: toISODate($('#dispositionDate').val()),
+			                 ACTION_TAKEN: safeVal('#actionTaken'),
+			                 ENTERED_BY_DATE: toISODate($('#EnteredByDate').val()),
+			                 ENTERED_BY_TIME: safeVal('#EnteredByTime'),
+			                 USER_JOB_TILTLE: safeVal('#enteredByTitleDropdown'),
+			                 DSPN_REFR_DT: toISODate($('#ReferredToDate').val()),
+			                 DSPN_REFR_TM: safeVal('#ReferredToTime'),
+			                 DSPN_REFR_COMNT: safeVal('#ReferredToComments'),
+			                 TITLE_REFR_TO: safeVal('#ReferredToTitle'),
+			                 DSPN_PHEAR_DT: toISODate($('#decisionDate').val()),
+			                 DSPN_PHEAR_TM: safeVal('#decisionTime'),
+			                 DSPN_PHEAR_COMNT: safeVal('#decisionAddComments'),
+			                 SUB_TP_PHEAR_DECN: safeVal('#decisionDropDown'),
+			                 TITLE_APPROVED: safeVal('#decisionTitle'),
+			                 DSPN_DISP_DT: toISODate($('#offenderDispositionDate').val()),
+			                 DSPN_DISP_TM: safeVal('#offenderDispositionTime'),
+			                 DSPN_DISPN_RESN_COMNT: safeVal('#offenderDispositionReason'),
+			                 DSPN_DISP_CELL_SECR_FLG: $('#offenderDispositionCell').prop('checked') ? 'Y' : null,
+			                 DISPOSITION_CODE: safeVal('#offenderDispositionDropDown'),
+			                 DSPN_PHEAR_REFR_DT: toISODate($('#preHearingRefDate').val()),
+			                 DSPN_PHEAR_REFR_TM: safeVal('#preHearingRefTime'),
+			                 DSPN_PHEAR_REFR_COMNT: safeVal('#preHearingRefComments'),
+			                 TITLE_PRE_HEAR_REFR: safeVal('#preHearingRefTitle'),
+			                 DATE_APPROVED: toISODate($('#ApprovedByDate').val()),
+			                 APPROVAL_FLAG: safeVal('#ApprovedByStatus'),
+			                 FOLLOWUP_REQ_FLAG: $('#ApprovedByFollowUp').prop('checked') ? 'Y' : null,
+			                 REVIEWER_COMNTS: safeVal('#ApprovedByAddComments'),
+			                 TITLE_PRE_HEAR: safeVal('#ApprovedByTitle'),
+			                 DSPN_DELV_DT: toISODate($('#DeliveredByDate').val()),
+			                 DSPN_DELV_TM: safeVal('#DeliveredByTime'),
+			                 DSPN_DELV_COMNT: safeVal('#DeliveredByAddComments'),
+			                 TITLE_DELIVER_BY: safeVal('#DeliveredByTitle'),
+			                 USER_ID_ENTERED_BY: safeVal('#userIdEnteredBy'),
+			                 USER_ID_REFR_TO: safeVal('#userIdReferredTo'),
+			                 USER_ID_PRE_HEAR: safeVal('#userIdPreHearing'),
+			                 USER_ID_APPROVED: safeVal('#userIdApproved'),
+			                 USER_ID_DELIVER_BY: safeVal('#userIdDeliveredBy')
+			             };
+
+			             console.log("Payload to be inserted:", payload);
+
+			             saveDisciplinaryInfoToBackend([payload]);
+			         })
+			         .fail(function () {
+			             console.error("Failed to generate report number");
+			             message('E', "Unable to generate report number", 0);
+			         });
+			 }
+
+			 // === Save to Backend ===
+			 function saveDisciplinaryInfoToBackend(payloadArray) {
+			     console.log("Payload to be inserted:", payloadArray);
+
+			     $.ajax({
+			         url: `${contextPath}insertDisciplinaryInfo`,
+			         type: 'POST',
+			         contentType: 'application/json',
+			         data: JSON.stringify(payloadArray),
+			         success: function () {
+			             message('CUS', 'Disciplinary Info saved successfully', 0);
+			         },
+			         error: function (xhr, status, error) {
+			             console.error("Error saving:", status, error);
+			             message('CUE', 'Save failed', 0);
+			         },
+			         complete: function () {
+			             setTimeout(() => loader(0), 1500);
+			         }
+			     });
+			 }
+
+			 // === Save Button Hook ===
+			 $(document).on('click', '#disInfoSave', function () {
+			     collectDisciplinaryInfoAndSave();
+			 });
+
+			//================================Other Buttons=============================
+			
+			/*$(document).on('click', '#clearButton', function () {
+				function clearDisciplinaryFormFields() {
+				    // Clear all input[type="text"], input[type="time"], textarea, select — including sbiNumberInput
+				    $('input[type="text"], input[type="time"], textarea, select').val('');
+
+				    // Clear resolved user info fields
+				    $('#EnteredByUsersInp, #ReferredToUsersInp, #OfficerNameUsersInp, #preHearingRefUsersInp, #ApprovedByUsersInp, #DeliveredByUsersInp').val('');
+
+				    // Clear checkboxes
+				    $('input[type="checkbox"]').prop('checked', false);
+
+				    // Reset specific dropdowns
+				    $('#disciplinaryTypeSelect, #statusSelectCtrl, #decisionDropDown, #offenderDispositionDropDown, #enteredByTitleDropdown').val('').trigger('change');
+
+				    // Clear global variables
+				    window.globalCommitNo = null;
+				    window.sbiNo = null;
+
+				    // Clear witness and violation tables if initialized
+				    if (witnessTable) {
+				        witnessTable.clearData();
+				        witnessTable.setData([{ lastName: "", firstName: "", mi: "", suffix: "" }]);
+				    }
+
+				    if (violationCodeTable) {
+				        violationCodeTable.clearData();
+				    }
+
+				    console.log("[ClearButton] All form data, SBI, commitNo, and tables cleared.");
+				}
+
+			});*/
+			
+
+			
+	//});
+		
+
+				
+	        /*----------------------------------------------------- End ------------------------------------------------------*/
+						
+				
+			
+		</script>
+		
+		<script>
+			/*$(document).ready(function() {
+			  $(document).on('click', '#disInfoSave', function() {
+			    console.log("Save BTN", "clicked");
+			    collectDisciplinaryInfoAndSave();
+			  });
+			});*/
+		</script>
+		
+	<div th:replace="~{fragments/msgBox :: msgBox}"></div>
+	<!--<script src="js/../script.js"></script>
+	<script>
+		$(document).ready(function () {
+			
+		});
+	</script>-->
+	<script type="text/javascript">
+		$('#js-page-content').smartPanel();
+	</script>
+</body>
+
+</html>

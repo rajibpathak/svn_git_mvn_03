@@ -1,0 +1,61 @@
+<div th:fragment="PretrialSupervisionCaseClosingTab" th:remove="tag">
+	<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">OTHER SECURITY CONSIDERATIONS</h6>
+	<div class="row m-1"> 
+		<div class="panel mb-2 panelContentBlock p-1 w-100">
+			<div class="row m-1">
+				<div class="col-lg-12 pr-0 d-flex align-items-center">
+					<span class="d-flex ml-3 mr-4 w-100">			
+						<div lass="custom-control custom-checkbox custom-control-inline mr-2">
+							<input type="checkbox" class="custom-control-input" id="SentencedCheck">
+							<label class="custom-control-label text-nowrap" for="SentencedCheck">Sentenced</label> 
+						</div>
+						<input type="text" class="form-control ml-2" aria-label="" value="" disabled>
+					</span> 
+					<span class="d-flex ml-3 mr-4 w-100">			
+						<div lass="custom-control custom-checkbox custom-control-inline mr-2">
+							<input type="checkbox" class="custom-control-input" id="RescindedCheck">
+							<label class="custom-control-label text-nowrap" for="RescindedCheck">Rescinded</label> 
+						</div>
+						<input type="text" class="form-control ml-2" aria-label="" value="" disabled>
+					</span>
+					<span class="d-flex ml-3 mr-4">			
+						<div lass="custom-control custom-checkbox custom-control-inline mr-2">
+							<input type="checkbox" class="custom-control-input" id="BreachCheck">
+							<label class="custom-control-label text-nowrap" for="BreachCheck">Breach of Release</label> 
+						</div>
+						<input type="text" class="form-control ml-2" aria-label="" value="" style="width: 200px;">
+					</span>
+					<span class="d-flex ml-3 mr-4">			
+						<div lass="custom-control custom-checkbox custom-control-inline mr-2">
+							<input type="checkbox" class="custom-control-input" id="DeathCheck">
+							<label class="custom-control-label text-nowrap" for="DeathCheck">Death</label> 
+						</div>
+						<input type="text" class="form-control ml-2" aria-label="" value="" disabled style="width: 200px;">
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">OTHER SECURITY CONSIDERATIONS</h6>
+	<div class="row m-1"> 
+		<div class="panel mb-2 panelContentBlock p-1 w-100">
+			<div class="row m-1">
+				<div class="col-lg-2 pl-0 pr-0 d-flex align-items-center">
+					<label for="Security" class="form-label mr-2 mb-0 text-nowrap text-nowrap">Bail Bond Sheet</label>
+					<input type="text" class="form-control w-100" aria-label="" value="" placeholder="" disabled>
+				</div>
+				<div class="col-lg-2 pr-0 d-flex align-items-center">
+					<label for="Security" class="form-label mr-2 mb-0 text-nowrap text-nowrap">Interview</label>
+					<input type="text" class="form-control w-100" aria-label="" value="" placeholder="" disabled>
+				</div>
+				<div class="col-lg-6 pr-0 d-flex align-items-center">
+					<label for="Security" class="form-label mr-2 mb-0 text-nowrap text-nowrap">Interview Criminal Record/Exhibits A & B Package</label>
+					<input type="text" class="form-control w-100" aria-label="" value="" placeholder="" disabled>
+				</div>
+				<div class="col-lg-12 px-0 mt-2">
+					<textarea class="form-control" disabled id="addComments" placeholder="Comments" rows="10" name="Comments" aria-label="Comments" style="resize:none;" value=""></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

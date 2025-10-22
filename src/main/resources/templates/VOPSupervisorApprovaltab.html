@@ -1,0 +1,65 @@
+<div th:fragment="VOPSupervisorApprovaltab" th:remove="tag">
+	<div class="row mt-2"> 
+		<div class="col-lg-12">
+			<h6 class="mr-0 ml-2 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">DECISION INFORMATION</h6>
+			<div class="panel panelContentBlock p-1 mb-1">
+				<div class="row">
+					<div class="col-12 col-lg-3 d-flex align-items-center pr-0">
+						  <div class="d-flex align-items-center w-100">
+								<label class="form-lable mb-0 mr-1 text-nowrap">Approval</label>
+								<select class="custom-select form-control typecontact">
+									<option> </option>
+									<option value="Option 1">test</option>
+									<option value="Option 2">test1</option>
+								</select>
+						  </div>
+					 </div>
+					 <div class="col-lg-2 d-flex align-items-center">
+						<label class="form-lable mb-0 mr-1 text-nowrap">Date</label>
+						<input type="text" class="form-control" aria-label=" " name="ContactDate" id="" value="" disabled>
+						 <div class="d-flex align-items-center ml-2">
+							<label class="form-lable mb-0 mr-1 text-nowrap">Time</label>
+							<input type="text" class="form-control" aria-label=" " name="ContactDate" id="" value="" disabled>
+						</div>
+					</div>
+					<div class="col-12 col-lg-6 pl-0 d-flex align-items-center mt-1">	
+						 <div class="d-flex align-items-center w-100">
+							 <label for="Security" class="form-label text-nowrap mr-2 mb-0">Supervisor's Name</label>
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value=" " disabled>
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value=" " disabled>
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value=""  style="width: 50px;" disabled>
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value="" style="width: 90px;" disabled>
+						 </div>
+					</div>
+					<div class="col-12 col-lg-1 d-flex align-items-center">
+						 <div class="custom-control custom-checkbox custom-control-inline position-relative" style="left: -6px;">
+							<input type="checkbox" class="custom-control-input" id="ServiceRequested">
+							<label class="custom-control-label text-nowrap" for="ServiceRequested" style="font-weight: 500;">Cancel Flag <span class="text-danger">*</span></label>
+						  </div>
+					 </div>
+					 <div class="col-12 col-lg-5 d-flex align-items-center mt-1">	
+						 <div class="custom-control custom-checkbox custom-control-inline">
+							<input type="checkbox" class="custom-control-input" id="ServiceRequested">
+							<label class="custom-control-label text-nowrap" for="ServiceRequested" style="font-weight: 500;">Preliminary Hearing</label>
+						  </div>
+						 <div class="d-flex align-items-center w-100">
+							 <label for="Security" class="form-label text-nowrap mr-2 mb-0">PHO Name</label>
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value=" ">
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value=" ">
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value=""  style="width: 50px;">
+							 <input type="text" class="form-control" aria-label="Security" placeholder="" name="Group" id="Group" value="" style="width: 90px;">
+							 <a href="#" style="opacity: 0.5;" id="" class="btn btn-primary btn-sm p-1 ml-1 btn js-waves-off d-flex align-items-center" data-class="nav-function-hidden">
+								<i class="fa fa-users" aria-hidden="true"></i>
+							 </a>
+						 </div>
+					</div>
+					<div class="col-12 col-lg-12 d-flex align-items-center mt-1">	
+						<textarea class="form-control mt-1" id="addComments" placeholder="Comments" rows="10" name="Comments" aria-label="Comments" style="resize:none;" value="" disabled></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+

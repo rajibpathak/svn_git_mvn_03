@@ -1,0 +1,92 @@
+<div th:fragment="IndividualScheduleTab" th:remove="tag">
+
+	<div id="table-container" class="mb-2">
+																								<div class="tableFixHead w-100" style="min-height: 600px; max-height: 610px;border: 1px solid #7a59ad;">
+																								 	<table id="ind-schedule" class="table table-striped table-bordered table-sm w-100" style="margin-bottom:0">
+																									</table>
+																								</div>
+																							</div>
+																	<style>
+																		.dataTables_empty{
+																			height: 200px;
+																		}
+																	</style>
+																	
+																	<script>
+																		
+																		var indScheduleTable = new Tabulator("#ind-schedule", {
+																			layout: "fitColumns",
+																			tooltips: true,
+																			movableColumns: true,
+																			resizableRows: true,
+																			height: "450px",
+																			//rowId: "rowId", 
+																			columns: [
+																				//{ title: "rowid", field: "rowId", sorter: "string" },
+																				{
+																					//title: "Other", 
+																					titleFormatter: (column) => setTitleDesc(column, 'indradioOther', 'Other'),
+																					field: "radioOther", formatter: "html", width: 60, hozAlign: "center", headerSort: false,},
+																				{
+																					//title: "Housing", 
+																					titleFormatter: (column) => setTitleDesc(column, 'indradioHousing', 'Housing'),
+																					field: "radioHousing", formatter: "html", width: 90, hozAlign: "center", headerSort: false,},
+																				{
+																					//title: "Inst Release", 
+																					titleFormatter: (column) => setTitleDesc(column, 'indradioInstRelease', 'Inst Release'),
+																					field: "radioInstRelease", formatter: "html", width: 100, hozAlign: "center",headerSort: false,},
+																				{
+																					//title: "Movement Type", 
+																					titleFormatter: (column) => setTitleDesc(column, 'indmovementType', 'Movement Type'),
+																					field: "movementType", sorter: "string", visible: false},
+																				{
+																					//title: "ID#", 
+																					titleFormatter: (column) => setTitleDesc(column, 'indsbiNo', 'ID#'),
+																					field: "sbiNo", sorter: "string", width: 100, tooltips: true},
+																				{
+																					//title: "Offender Name (L, F, M, S)", 
+																					titleFormatter: (column) => setTitleDesc(column, 'indname', 'Offender Name (L, F, M, S)'),
+																					field: "name", sorter: "string", tooltips: true},
+																				{
+																					//title: "Housing Location", 
+																					titleFormatter: (column) => setTitleDesc(column, 'indhousingLoc', 'Housing Location'),
+																					field: "housingLocation", sorter: "string", tooltips: true},
+																				{
+																					//title: "Activity", 
+																					titleFormatter: (column) => setTitleDesc(column, 'indactivity', 'Activity'),
+																					field: "activity", sorter: "string", tooltips: true},
+																				{
+																					//title: "Location To", 
+																					titleFormatter: (column) => setTitleDesc(column, 'indlocation', 'Location To'),
+																					field: "locationDropdown", formatter: "html", width: 250},
+																				{
+																					//title: "To", 
+																					titleFormatter: (column) => setTitleDesc(column, 'indlocationTo', 'To'),
+																					field: "locationTo", sorter: "string", visible: false},
+																				{
+																					//title: "Offender Moved", 
+																					titleFormatter: (column) => setTitleDesc(column, 'indoffenderMovedChk', 'Offender Moved'),
+																					field: "offenderMovedCheckbox", formatter: "html", width: 50, hozAlign: "center"},
+																				{
+																					//title: "move", 
+																					titleFormatter: (column) => setTitleDesc(column, 'indinmateMoved', 'move'),
+																					field: "inmateMoved", sorter: "string", visible: false},
+																			],
+																			placeholder: "Click on the search button to populate data",
+																			rowFormatter: function (row) {
+																				row.getElement().setAttribute("data-id", row.getData().rowId);
+																			},
+																			rowClick: function (e, row) {
+																				//alert(row.getData().rowId);
+																			}
+																		});
+
+																		tabulatorRegistry["ind-schedule"] = {
+																			varName: "indScheduleTable",
+																			instance: indScheduleTable
+																		};
+																		
+																		</script>
+																	
+	
+</div>

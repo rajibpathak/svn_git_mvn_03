@@ -1,0 +1,587 @@
+<div th:fragment="IncidentInfoIncidentDetailNewTab" th:remove="tag">
+	<div class="row">
+		<div class="col-lg-12">
+			<div id="injured" class="panel mb-0">
+				<div class="panel-hdr">
+					<h2>
+						Injured Persons
+					</h2>
+					<div class="d-flex align-items-center justify-content-end">
+						<span class="d-flex ml-2">
+							<a id="newInj" href="javascript:void(0);"
+								class="btn btn-primary btn-sm btn-icon waves-effect waves-themed headingIconsBlock mr-1"
+								data-toggle="tooltip" data-placement="top" data-original-title="New"> <i
+									class="fa-solid fa-plus"></i>
+							</a>
+						</span>
+						<span class="d-flex">
+							<a id="delInj" href="javascript:void(0);"
+								class="btn btn-danger btn-sm btn-icon waves-effect waves-themed headingIconsBlock mr-1"
+								data-toggle="tooltip" data-placement="top" data-original-title="Delete"> <i
+									class="fa-solid fa-trash"></i>
+							</a>
+						</span>
+					</div>
+				</div>
+				<div class="panel-container show">
+					<div class="panel-content">
+						<div id="js-checkbox-toggles">
+							<div class="row">
+								<div class="col-lg-12">
+									<table id="injuredPerson-table"></table>
+									<div class="mt-3 floatingFieldsTextarea"><textarea
+											class="form-control  floatingLabletextarea rawField" placeholder="" id="InjComments" data-fld = "InjComments_fld" data-lbl = "Comments"
+											rows="3" name="Comments" aria-label="Comments"
+											style="resize:none;" value=""></textarea> <label class="form-label"
+											placeholder="" for="example-textarea">Comments</label>
+										<div class="charCount"><span id="injCount">0</span>/1000 characters</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="evidencce" class="panel mb-0 mt-3">
+				<div class="panel-hdr">
+					<h2>
+						Evidence
+					</h2>
+					<div class="d-flex align-items-center justify-content-end">
+						<span class="d-flex ml-2">
+							<a id="newEve" href="javascript:void(0);"
+								class="btn btn-primary btn-sm btn-icon waves-effect waves-themed headingIconsBlock mr-1"
+								data-toggle="tooltip" data-placement="top" data-original-title="New"> <i
+									class="fa-solid fa-plus"></i>
+							</a>
+						</span>
+					</div>
+				</div>
+				<div class="panel-container show">
+					<div class="panel-content">
+						<div id="js-checkbox-toggles">
+							<table id="evidence-table"></table>
+							<div class="mt-3 floatingFieldsTextarea"><textarea
+																		class="form-control  floatingLabletextarea rawField" placeholder="" id="EveComments" data-fld = "EveComments_fld" data-lbl = "Comments"
+																		rows="3"  name="Comments" aria-label="Comments"
+																		style="resize:none;" value=""></textarea> <label class="form-label"
+																		placeholder="" for="example-textarea">Comments</label>
+																	<div class="charCount"><span id="eviCount">0</span>/100 characters</div>
+
+																</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		// Define Test Data
+		var tabledatainjuredPerson = [
+			{
+				id: "1",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "2",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "3",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "4",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "5",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "6",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "7",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "8",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "9",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+			{
+				id: "10",
+				checkbox: "t",
+				injuredPerson: "",
+				checkbox1: "t",
+				checkbox2: "t",
+				location: "",
+				natureInjury: "",
+			},
+		];
+
+		function nullhandler_a(str) {
+			if (str == 'null' || str == null) {
+				return '';
+			} else {
+				return str;
+			}
+		}
+
+		//Define Table
+		var injuredTable = new Tabulator("#injuredPerson-table", {
+			layout: "fitColumns",
+			data: tabledatainjuredPerson,
+			height: '200px',
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+				{ title: "id", field: "id", visible: false },
+			{ title: "upd", field: "upd", visible: false },
+			{ title: "seqno", field: "seqno", visible: false },
+				{
+					title: 'INCD_VCTM_SEQ_NO',
+					visible: false,
+					field: "INCD_VCTM_SEQ_NO",
+				},
+				{
+					//title: "Select",
+					titleFormatter: (column) => setTitleDesc(column, 'Inj_checkbox_tbfld', 'Select'),
+					field: "checkbox",
+					formatter: function (cell) {
+						// Create a checkbox element
+						var checkbox = document.createElement("input");
+						checkbox.type = "checkbox";
+						if (cell.getValue() == 'Y') {
+							checkbox.checked = true;
+						} else {
+							checkbox.checked = false;
+						}
+
+						checkbox.addEventListener("change", function () {
+							// Update the cell value when checkbox is changed
+							if (checkbox.checked) {
+								cell.setValue('Y');
+							} else {
+								cell.setValue('N');
+							}
+							setUpdGen(cell);
+							setUpdInj(cell);
+						});
+						return checkbox; // Return the checkbox element
+					},
+					width: 100,
+					cellEdited: function (cell) {setUpdInj(cell);},
+				},
+				{
+					//title: "Injured Person",
+					titleFormatter: (column) => setTitleDesc(column, 'injuredPerson_tbfld', 'Injured Person'),
+					field: "injuredPerson",
+					editor: "list",
+					editorParams: {
+						allowEmpty: true,
+						listOnEmpty: true,
+						valuesLookup: true,
+						autocomplete: true,
+						values: {}
+					},
+					cellEdited: function (cell) {setUpdInj(cell);},
+					cellClick: function (e, cell) {
+						var myrow = cell.getRow();
+						injTblClk(e, myrow);
+					}
+				},
+				{
+					//title: "Hospitalization",
+					titleFormatter: (column) => setTitleDesc(column, 'hospitalization_tbfld', 'Hospitalization'),
+					field: "checkbox1",
+					formatter: function (cell) {
+						// Create a checkbox element
+						var checkbox = document.createElement("input");
+						checkbox.className = "hospital";
+						checkbox.type = "checkbox";
+						if (cell.getValue() == 'Y') {
+							checkbox.checked = true;
+						} else {
+							checkbox.checked = false;
+						}
+
+						var otherCell = cell.getRow().getCell("checkbox2");
+
+						checkbox.addEventListener("change", function () {
+							rowData = cell.getRow().getData();
+							// Update the cell value when checkbox is changed
+							if (checkbox.checked) {
+								otherCell.getElement().querySelector("input[type='checkbox']").checked = true;
+								rowData.checkbox2 = 'Y';
+								cell.setValue('Y');
+							} else {
+								cell.setValue('N');
+							}
+							setUpdGen(cell);
+							setUpdInj(cell);
+
+						});
+						return checkbox; // Return the checkbox element
+					},
+					width: 150,
+					cellEdited: function (cell) {setUpdInj(cell);},
+				},
+				{
+					//title: "Med. Treatment Provided",
+					titleFormatter: (column) => setTitleDesc(column, 'MedTreatmentProvided_tbfld', 'Med. Treatment Provided'),
+					field: "checkbox2",
+					formatter: function (cell) {
+						// Create a checkbox element
+						var checkbox = document.createElement("input");
+						checkbox.type = "checkbox";
+						checkbox.className = "med";
+						if (cell.getValue() == 'Y') {
+							checkbox.checked = true;
+						} else {
+							checkbox.checked = false;
+						}
+
+						checkbox.addEventListener("change", function () {
+							// Update the cell value when checkbox is changed
+							if (checkbox.checked) {
+								cell.setValue('Y');
+							} else {
+								cell.setValue('N');
+							}
+							setUpdGen(cell);
+							setUpdInj(cell);
+
+						});
+						return checkbox; // Return the checkbox element
+					},
+					width: 150,
+					cellEdited: function (cell) {setUpdInj(cell);},
+				},
+				{
+					//title: "Location",
+					titleFormatter: (column) => setTitleDesc(column, 'Inj_iocation_tbfld', 'Location'),
+					field: "location",
+					editor: "input",
+					cellEdited: function (cell) {setUpdInj(cell);},
+				},
+				{
+					//title: "Nature of Injury",
+					titleFormatter: (column) => setTitleDesc(column, 'natureInjury', 'Nature of Injury'),
+					field: "natureInjury",
+					editor: "list",
+					editorParams: {allowEmpty: true, listOnEmpty: true, valuesLookup: true, autocomplete: true, values: {}},
+					cellEdited: function (cell) {setUpdInj(cell);},
+					cellClick: function (e, cell) {
+						var myrow = cell.getRow();
+						injTblClk(e, myrow);
+					}
+				},
+				{
+					field: "injuredDesc",
+					visible: false,
+				}
+			]
+		});
+
+		
+		tabulatorRegistry["injuredPerson-table"] = {
+					varName: "injuredTable",
+					instance: injuredTable
+				};
+
+
+				function setUpdInj(cell) {
+				    const currentRow = cell.getRow();
+				    if (currentRow) {
+				        currentRow.update({ upd: "Y" });
+				    }
+				    const allRows = injuredTable.getRows();
+				    dataToShow2 = [];
+				    for (let row of allRows) {
+				        const data = row.getData();
+				        if (data.upd === 'Y' && data.injuredPerson && data.injuredPerson.trim() !== '') {
+				            const personParts = data.injuredPerson.split(',').map(p => p.trim());
+				            const l_name = personParts[0] || '';
+				            const f_name = personParts[1] || '';
+				            let nature_val = "";
+				            if (data.natureInjury) {
+				                try {
+				                    const dynamic_Array = JSON.parse($('#nature_inj_val').val() || '[]');
+				                    const selectedVal1 = dynamic_Array.find(myval => myval.label === data.natureInjury);
+				                    if (selectedVal1) {
+				                        nature_val = selectedVal1.value;
+				                    }
+				                } catch(e) {
+				                    console.error("Could not parse 'nature of injury' JSON", e);
+				                }
+				            }
+				            const VictimData = {
+				                VICTIM_SEQ_NUM: data.INCD_VCTM_SEQ_NO || '',
+				                INCIDENT_SEQ_NUM: $('#incidentNo').val() || '',
+				                VCTM_NAME_FIRST: f_name,
+				                VCTM_NAME_LAST: l_name,
+				                VCTM_NAME_MIDDLE: "",
+				                VCTM_NAME_SUFFIX: "",
+				                INCD_VCTM_HSP_FLG: data.checkbox1 === 'Y' ? 'Y' : 'N',
+				                INCD_VCTM_HSP_LOCN: data.location || '',
+				                NATURE_OF_INJURY: nature_val || '',
+				                MED_TREATMENT_PROVIDED: data.checkbox2 === 'Y' ? 'Y' : 'N',
+				                INCD_VCTM_INJR_DESC: data.injuredDesc || '',
+				                INCD_VCTM_DEL_FLG: data.checkbox === 'Y' ? 'Y' : 'N',
+				                inst_num: $('#institution').val() || '',
+				                USER: userId || '',
+				                DATE_TIME: getCurrentDateTime(),
+				                ROW_ID: data.rowid || '',
+				                COUNT_LOC_CODE: ''
+				            };
+				            dataToShow2.push(VictimData);
+				        }
+				    }
+				}
+				
+				
+						// Define Test Data
+		var tabledataevidence = [
+			{
+				id: "1",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "2",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "3",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "4",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "5",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "6",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "7",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "8",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "9",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+			{
+				id: "10",
+				evidenceType: "",
+				dateCollected: "",
+				collectedName: "",
+				securedName: "",
+			},
+		];
+
+		//Define Table
+		var evidenceTable = new Tabulator("#evidence-table", {
+			layout: "fitColumns",
+			data: tabledataevidence,
+			height: '200px',
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+				{ title: "id", field: "id", visible: false },
+			{ title: "upd", field: "upd", visible: false },
+			{ title: "seqno", field: "seqno", visible: false },
+				{
+					title: 'INCD_EVDN_SEQ_NO',
+					visible: false,
+					field: "INCD_EVDN_SEQ_NO",
+				},
+				{
+					title: 'INCD_EVDN_TP',
+					visible: false,
+					field: "INCD_EVDN_TP",
+				},
+				{
+					//title: "Evidence Type",
+					titleFormatter: (column) => setTitleDesc(column, 'EVE_evidenceType_tbfld', 'Evidence Type'),
+					field: "evidenceType",
+					editor: "list",
+					editorParams: {allowEmpty: true, listOnEmpty: true, valuesLookup: true, autocomplete: true, values: {}},
+					cellEdited: function (cell) {setUpdEve(cell);},
+					cellClick: function (e, cell) {
+						var myrow = cell.getRow();
+						eviTblClk(e, myrow);
+					}
+				},
+				{
+					//title: "Date Collected",
+					titleFormatter: (column) => setTitleDesc(column, 'EVE_dateCollected_tbfld', 'Date Collected'),
+					field: "dateCollected",
+					width: 120,
+					editor: dateEditor,
+					cellEdited: function (cell) {setUpdEve(cell);},
+				},
+				{
+					//title: "Collected By Name (L,F,M,S)",
+					titleFormatter: (column) => setTitleDesc(column, 'EVE_collectedName_tbfld', 'Collected By Name (L,F,M,S)'),
+					field: "collectedName",
+					editor: "input",
+					cellEdited: function (cell) {setUpdEve(cell);},
+				},
+				{
+					//title: "Secured By Name (L,F,M,S)",
+					titleFormatter: (column) => setTitleDesc(column, 'EVE_securedName_tbfld', 'Secured By Name (L,F,M,S)'),
+					field: "securedName",
+					editor: "input",
+					cellEdited: function (cell) {setUpdEve(cell);},
+				},
+				{
+					field: "evidenceDesc",
+					visible: false,
+				},
+			]
+		});
+
+		tabulatorRegistry["evidence-table"] = {
+			varName: "evidenceTable",
+			instance: evidenceTable
+		};
+
+		function setUpdEve(cell) {
+				    cell.getRow().update({ upd: "Y" });
+				    updatable = true;
+				    const rows = evidenceTable.getRows();
+				    let updatedDataToShow3 = [];
+				    for (let row of rows) {
+				        const data = row.getData();
+				        if (data.upd === 'Y') {
+				            let eveTyp = '';
+				            if (data.evidenceType) {
+				                try {
+				                    const dynamic_Array = JSON.parse($('#evidence_typ_val').val());
+				                    const selectedVal = dynamic_Array.find(myval => myval.label === data.evidenceType);
+				                    if (selectedVal) {
+				                        eveTyp = selectedVal.value;
+				                    }
+				                } catch(e) { console.error("Could not parse evidence types JSON.", e); }
+				            }
+				            const collectedNameClean = (data.collectedName || '').replace(/,/g, '');
+				            const collectedParts = collectedNameClean.split(' ');
+				            const securedNameClean = (data.securedName || '').replace(/,/g, '');
+				            const securedParts = securedNameClean.split(' ');
+				            const EveData = {
+				                INCIDENT_SEQ_NUM: nullhandler_a($('#incidentNo').val()),
+				                EVIDENCE_SEQ_NUM: nullhandler_a(data.INCD_EVDN_SEQ_NO || ''),
+				                INCD_EVDN_TP: nullhandler_a(data.evidenceDesc),
+				                EVIDENCE_CODE: nullhandler_a(eveTyp),
+				                COL_DATE: data.dateCollected ? formatDateWithCurrentTime(data.dateCollected) : '',
+				                COL_NAME_FIRST: nullhandler_a(collectedParts[1]),
+				                COL_NAME_LAST: nullhandler_a(collectedParts[0]),
+				                COL_NAME_MIDDLE: nullhandler_a(collectedParts[2]),
+				                COL_NAME_SUFFIX: nullhandler_a(collectedParts[3]),
+				                SEC_NAME_FIRST: nullhandler_a(securedParts[1]),
+				                SEC_NAME_LAST: nullhandler_a(securedParts[0]),
+				                SEC_NAME_MIDDLE: nullhandler_a(securedParts[2]),
+				                SEC_NAME_SUFFIX: nullhandler_a(securedParts[3]),
+				                inst_num: nullhandler_a("03"),
+				               USER: nullhandler_a(localStorage.getItem('userId')),
+				                DATE_TIME: getCurrentDateTime()
+				            };
+				            updatedDataToShow3.push(EveData);
+				        }
+				    }
+				    dataToShow3 = updatedDataToShow3;
+				}
+		
+		
+		$(tabledatainjuredPerson[0].checkbox).html("<input type='checkbox'>");
+		$(tabledataevidence[0].checkbox).html("<input type='checkbox'>");
+
+	</script>
+</div>

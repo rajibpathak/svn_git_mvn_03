@@ -1,0 +1,177 @@
+<div th:fragment="FamilyEmergencyFamilyDataTab" th:remove="tag">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="row"> 
+				<div class="col-12 col-lg-12"> 
+					<div class="panel panelContentBlock mb-2 p-1">	
+						<div class="row">
+							<div class="col-lg-2 d-flex align-items-center">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Number of Children</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="2" disabled>
+							</div>
+							<div class="col-lg-2 d-flex align-items-center">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Marital Status</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled>
+							</div>
+							<div class="col-lg-2 d-flex align-items-center">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Number of Siblings</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="0" disabled>
+							</div>
+						</div>
+					</div>
+					<div class="panel panelContentBlock mb-2 p-1">	
+						<div class="row">
+							<div class="col-lg-1 pr-0 d-flex align-items-center">
+								<div class="custom-control custom-checkbox custom-control-inline">
+									<input type="checkbox" class="custom-control-input" id="RaisedCheck">
+									<label class="custom-control-label text-nowrap" for="RaisedCheck">Raised By</label>
+								</div>
+							</div>
+							<div class="col-lg-4 pr-0 d-flex align-items-center">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Name</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled>
+							</div>
+							<div class="col-lg-2 pr-0 d-flex align-items-center">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Relation Type</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled>
+							</div>
+							<div class="col-lg-5 d-flex align-items-center">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Address</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled>
+							</div>
+							<div class="col-lg-3 pr-0 d-flex align-items-center mt-1">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">City</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled>
+							</div>
+							<div class="col-lg-3 pr-0 d-flex align-items-center mt-1">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">State</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled>
+							</div>
+							<div class="col-lg-3 d-flex align-items-center mt-1">
+								<label for="weight" class="form-label mb-0 mr-2 text-nowrap">Zip</label>																					
+								<input type="text" class="form-control" aria-label="weight" name="weight" id="weight" value="" disabled>
+							</div>
+						</div>
+					</div>
+					<h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">View Emergency Contact Information</h6>
+					<div id="familydata-table"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		// Define Test Data
+		var tabledatafamilydata = [
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		  {
+		    id: "",
+		    nameflms: "",
+		    relationType: "",
+		  },
+		];
+		
+		//Define Table
+		var table = new Tabulator("#familydata-table", {
+		  layout: "fitColumns",
+		  data: tabledatafamilydata,
+		  height: '270px',
+		  printAsHtml: true,
+		  printStyled: true,
+		  columns: [
+		   {
+				title: "Name (F,L,M,S)",
+				field: "nameflms",
+			},
+			{
+				title: "Relation Type",
+				field: "relationType",
+			},
+		  ]
+		});
+		
+	</script>
+</div>

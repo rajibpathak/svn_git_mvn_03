@@ -1,0 +1,484 @@
+<div th:fragment="IncidentInfoAssignInvesTab" th:remove="tag">
+	<div id="incidentInfoAssign" class="panel mb-0">
+        <div class="panel-hdr">
+            <h2>
+                Assign Lead Investigator
+            </h2>
+        </div>
+        <div class="panel-container show">
+            <div class="panel-content p-1">
+                <div id="js-checkbox-toggles">
+                    <div class="row mx-1">
+						<div class="d-flex align-items-center col-lg-4 pl-0 floatingFields mt-2">
+							<input type="hidden" id="inv_off_id" value="">
+							<input type="hidden" id="invg_seq_num_hide" value="">
+							<input type="text" class="form-control floatingLable rawField" aria-label="Security" placeholder="" name="Group" id="inv_off" value="" data-fld = "inv_off_fld" data-lbl = "Investigator" disabled>
+							<label for="Security" class="form-label mr-1 mb-0 text-nowrap">Investigator</label>
+							<span data-toggle="modal" data-target="#InvestigatorDetailsModal">													
+								<a href="#" class="btn btn-primary btn-sm p-1 ml-2 btn js-waves-off" data-toggle="tooltip" data-placement="top" data-original-title="Investigator Details" data-class="nav-function-hidden">
+		                            <i class="fa fa-users"></i>
+		                         </a>
+							</span>
+						</div>
+						<div class="d-flex align-items-center col-lg-2 col-xl-1 pl-0 floatingFields mt-2">
+							<input type="text" class="form-control floatingLable date-input rawField" aria-label="Security" placeholder="" name="Group" id="inv_dt" data-fld = "inv_dt_fld" data-lbl = "Date" value="" >
+							<label for="Security" class="form-label mb-0 text-nowrap">Date</label>
+						</div>
+						<div class="d-flex align-items-center col-lg-2 col-xl-1 pl-0 floatingFields mt-2">
+							<input type="text" class="form-control floatingLable tmfld rawField" aria-label="Security" placeholder="" name="Group" id="inv_tm" data-fld = "inv_tm_fld" data-lbl = "Time" value="">
+							<label for="Security" class="form-label mb-0 text-nowrap">Time</label>
+						</div>
+						<div class="d-block align-items-center col-lg-12 mt-3 px-0 floatingFieldsTextarea">
+							<textarea class="form-control rawField floatingLabletextarea rawField" placeholder="" id="inv_notes" data-fld = "inv_notes_fld" data-lbl = "Comments"  rows="5" name="Comments" aria-label="Comments" style="resize:none;" value="" data-maxlength="2000"></textarea>
+							<label for="" class="form-label mb-0 text-nowrap">Comments</label>
+							<div class="charCount"><span id="invCount">0</span>/2000 characters</div>
+															
+						</div>
+					 </div>
+					 <div class="row mt-1">
+						<div class="col-lg-12">
+							 <div class="row">
+								 <div class="col-lg-6 pr-0">
+									 <h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">Assign Lead Investigator</h6>
+									<div id="assignLead-table" class="w-100 mt-1"></div>
+								 </div>
+								 <div class="col-lg-6">
+									 <h6 class="mx-0 mb-0 text-nowrap headerBlock text-center" style="font-weight: 600;">
+										<div class="d-flex align-items-center">
+											<span class="w-100 text-center">Other Investigator</span>
+											<span class="d-flex">
+												<a href="OffenderSummaryProgramsEvaluationScreen" class="btn btn-sm btn-success btn-icon waves-effect waves-themed ml-2"
+													data-toggle="tooltip" data-placement="top" data-original-title="New">
+													<i class="fal fa-plus"></i>
+												</a>						
+											</span>
+										</div>
+									</h6>
+									<div id="otherInvest-table" class="w-100 mt-1"></div>
+									<div class="floatingFieldsTextarea mt-3">										
+										<textarea class="form-control rawField floatingLabletextarea rawField" placeholder="" id="reasonForForwarding" data-fld = "reasonForForwarding_fld" data-lbl = "Reason for Forwarding"  rows="3" name="Comments" aria-label="Comments" style="resize:none;" value="" data-maxlength="500"></textarea>
+										<label for="" class="form-label mb-0 text-nowrap">Reason for Forwarding</label>
+										<div class="charCount"><span id="reasonCount">0</span>/500 characters</div>
+									</div>
+								 </div>
+							 </div>
+						</div>
+						<div class="modal fade" id="InvestigatorDetailsModal" tabindex="-1" role="dialog" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+								<div class="modal-content">
+									<div class="modal-header pt-3 pb-2">
+										<h6 class="modal-title"> Investigator Details</h6>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true"><i class="fal fa-times"></i></span>
+										</button>
+									</div>
+									<div class="modal-body py-0">
+										<div class="d-flex align-items-center mb-2 floatingFields">
+											<input type="text" class="form-control floatingLable" aria-label="dob" name="Find" id="Find" value="" placeholder="%">
+											<label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+											<button type="button" class="btn btn-primary btn-sm ml-2" id="fetchDataBtn" >Find</button>
+										</div>
+										<div id="investigatorModal-table"></div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary btn-sm" id="okInvestigator" >Ok</button>
+										<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+									</div>
+								</div> 
+							</div>			
+						</div>
+						<div class="modal fade" id="investigatorModal" tabindex="-1" role="dialog" aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+								<div class="modal-content">
+									<div class="modal-header pt-3 pb-2">
+										<h6 class="modal-title"> Investigator</h6>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true"><i class="fal fa-times"></i></span>
+										</button>
+									</div>
+									<div class="modal-body py-0">
+										<div class="d-flex align-items-center mb-2 floatingFields">
+											<input type="text" class="form-control floatingLable" aria-label="dob" name="Find" id="Find" value="" placeholder="%">
+											<label for="dob" class="form-label mb-0 mr-2 text-nowrap">Find</label>
+											<button type="button" class="btn btn-primary btn-sm ml-2" id="fetchDataBtn" >Find</button>
+										</div>
+										<div id="investigatorTableModal-table"></div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary btn-sm" id="okInvestigatorDetails" >Ok</button>
+										<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+									</div>
+								</div> 
+							</div>			
+						</div>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+	<style>
+		#incidentInfoAssign .floatingFields label {
+		    left: 10px!important;
+		}
+		#assignLead-table{
+			height: 100%;
+			max-height: 258px;
+		}
+		#otherInvest-table{
+			height: 100%;
+			max-height: 160px;
+		}
+	</style>
+	<script>
+		// Define Test Data
+		var approvedby = [
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+		];
+
+		//Define Table
+		var table = new Tabulator("#approvedby-table", {
+			layout: "fitColumns",
+			data: approvedby,
+			height: '140px',
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+				{
+					title: "Last Name",
+					field: "lastname",
+				},
+				{
+					title: "First Name",
+					field: "firstname",
+				},
+				{
+					title: "MI",
+					field: "mi",
+					width: 80,
+				},
+				{
+					title: "Suffix",
+					field: "suffix",
+					width: 100,
+				},
+			]
+		});
+		
+		// Define Test Data
+		var assignLead = [
+			{
+				incident: "",
+				date: "",
+				time: "",
+				shortDescription: "",
+			},
+			{
+				incident: "",
+				date: "",
+				time: "",
+				shortDescription: "",
+			},
+			{
+				incident: "",
+				date: "",
+				time: "",
+				shortDescription: "",
+			},
+			{
+				incident: "",
+				date: "",
+				time: "",
+				shortDescription: "",
+			},
+			{
+				incident: "",
+				date: "",
+				time: "",
+				shortDescription: "",
+			},
+			{
+				incident: "",
+				date: "",
+				time: "",
+				shortDescription: "",
+			},
+			{
+				incident: "",
+				date: "",
+				time: "",
+				shortDescription: "",
+			},
+			{
+				incident: "",
+				date: "",
+				time: "",
+				shortDescription: "",
+			},
+			{
+				incident: "",
+				date: "",
+				time: "",
+				shortDescription: "",
+			},
+			{
+				incident: "",
+				date: "",
+				time: "",
+				shortDescription: "",
+			},
+		];
+
+		//Define Table
+		var table = new Tabulator("#assignLead-table", {
+			layout: "fitColumns",
+			data: assignLead,
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+				{
+					title: "Incident#",
+					field: "incident",
+				},
+				{
+					title: "Date",
+					field: "date",
+					width: 100,
+				},
+				{
+					title: "Time",
+					field: "time",
+					width: 80,
+				},
+				{
+					title: "Short Description",
+					field: "shortDescription",
+				},
+			]
+		});
+		
+		// Define Test Data
+		var otherInvest = [
+			{
+				assignedTo: "",
+				date: "",
+				time: "",
+			},
+			{
+				assignedTo: "",
+				date: "",
+				time: "",
+			},
+			{
+				assignedTo: "",
+				date: "",
+				time: "",
+			},
+			{
+				assignedTo: "",
+				date: "",
+				time: "",
+			},
+			{
+				assignedTo: "",
+				date: "",
+				time: "",
+			},
+		];
+
+		//Define Table
+		var table = new Tabulator("#otherInvest-table", {
+			layout: "fitColumns",
+			data: otherInvest,
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+				{
+					title: "Assigned To",
+					field: "assignedTo",
+				},
+				{
+				   title: "",
+	               field: "selectBtn",
+	               formatter: mgcUserIcon,
+	               width: 40,
+	               headerSort: false,
+				},
+				{
+					title: "Date",
+					field: "date",
+					width: 100,
+				},
+				{
+					title: "Time",
+					field: "time",
+					width: 80,
+				},
+			]
+		});
+		
+		// Define Test Data
+		var approvedby = [
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+		];
+
+		//Define Table
+		var table = new Tabulator("#investigatorModal-table", {
+			layout: "fitColumns",
+			data: approvedby,
+			height: '140px',
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+				{
+					title: "Last Name",
+					field: "lastname",
+				},
+				{
+					title: "First Name",
+					field: "firstname",
+				},
+				{
+					title: "MI",
+					field: "mi",
+					width: 80,
+				},
+				{
+					title: "Suffix",
+					field: "suffix",
+					width: 100,
+				},
+			]
+		});
+		
+		// Define Test Data
+		var investigatorTableModal = [
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+			{
+				lastname: "",
+				firstname: "",
+				mi: "",
+				suffix: "",
+			},
+		];
+
+		//Define Table
+		var table = new Tabulator("#investigatorTableModal-table", {
+			layout: "fitColumns",
+			data: investigatorTableModal,
+			height: '140px',
+			printAsHtml: true,
+			printStyled: true,
+			columns: [
+				{
+					title: "Last Name",
+					field: "lastname",
+				},
+				{
+					title: "First Name",
+					field: "firstname",
+				},
+				{
+					title: "MI",
+					field: "mi",
+					width: 80,
+				},
+				{
+					title: "Suffix",
+					field: "suffix",
+					width: 100,
+				},
+			]
+		});
+		
+		function mgcUserIcon(cell) {
+			return `<span data-toggle="modal" data-target="#investigatorModal">
+					<a href="#" class="ml-2" title="Select Investigator" data-toggle="tooltip" data-placement="top" data-original-title="Select Investigator">					
+						<i class="fa fa-users" text-primary></i>
+					</a>
+				</span>
+			`; // HTML with the icon and the age
+		}
+		
+	</script>
+</div> 
