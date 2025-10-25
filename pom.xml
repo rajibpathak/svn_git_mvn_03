@@ -21,6 +21,11 @@
 		<spring.version>5.2.8.RELEASE</spring.version>
 		<spring-security.version>5.3.4.RELEASE</spring-security.version>
 	</properties>
+	<properties>
+    <maven.compiler.release>17</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -126,7 +131,7 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>3.6.3</version>
+				<version>3.9.11</version>
 			</plugin>
 		</plugins>
 	</build>
