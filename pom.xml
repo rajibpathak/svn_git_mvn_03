@@ -118,7 +118,7 @@
 <artifactId>spring-security-web</artifactId>
 </dependency>
 	</dependencies>
-<!--	<build>
+	<build>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -126,36 +126,8 @@
 			</plugin>
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>3.9.11</version>
+				<version>3.4.0</version>
 			</plugin>
 		</plugins>
 	</build>
-	
-	    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.9.11</version> 
-            </plugin>
-        </plugins>
-    </build>
-	 -->
-	<build>
-  <plugins>
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-war-plugin</artifactId>
-      <version>3.9.11</version>
-      <dependencies>
-        <dependency>
-          <groupId>org.codehaus.plexus</groupId>
-          <artifactId>plexus-utils</artifactId>
-          <version>3.0.24</version> <!-- Or a newer version -->
-        </dependency>
-      </dependencies>
-    </plugin>
-  </plugins>
-</build>
-
 </project>
